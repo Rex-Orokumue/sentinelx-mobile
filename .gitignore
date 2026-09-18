@@ -46,3 +46,6 @@ app.*.map.json
 
 # Session-local orchestration tooling — never committed
 .superpowers/
+
+# Claude Code session-local state — never committed
+.claude/

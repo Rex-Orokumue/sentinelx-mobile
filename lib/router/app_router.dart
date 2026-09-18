@@ -1,23 +1,18 @@
 import 'package:go_router/go_router.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../data/supabase_tournaments_repository.dart';
 import '../data/tournaments_repository.dart';
 import '../features/tournaments/bracket_screen.dart';
 import '../features/tournaments/tournament_detail_screen.dart';
 import '../features/tournaments/tournament_list_screen.dart';
 
-GoRouter buildAppRouter({TournamentsRepository? repository}) {
-  final tournamentsRepository =
-      repository ?? SupabaseTournamentsRepository(Supabase.instance.client);
-
+GoRouter buildAppRouter({required TournamentsRepository repository}) {
   return GoRouter(
     initialLocation: '/',
     routes: [
       GoRoute(
         path: '/',
         builder: (context, state) => TournamentListScreen(
-          repository: tournamentsRepository,
+          repository: repository,
           onTournamentTap: (tournament) => context.push('/tournaments/${tournament.id}'),
         ),
       ),
@@ -26,7 +21,7 @@ GoRouter buildAppRouter({TournamentsRepository? repository}) {
         builder: (context, state) {
           final id = state.pathParameters['id']!;
           return TournamentDetailScreen(
-            repository: tournamentsRepository,
+            repository: repository,
             tournamentId: id,
             onViewBracket: () => context.push('/tournaments/$id/bracket'),
           );
@@ -35,7 +30,7 @@ GoRouter buildAppRouter({TournamentsRepository? repository}) {
       GoRoute(
         path: '/tournaments/:id/bracket',
         builder: (context, state) => BracketScreen(
-          repository: tournamentsRepository,
+          repository: repository,
           tournamentId: state.pathParameters['id']!,
         ),
       ),
