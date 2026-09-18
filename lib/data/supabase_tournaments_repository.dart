@@ -16,6 +16,14 @@ class SupabaseTournamentsRepository implements TournamentsRepository {
     tournament_start, tournament_end, rules, games(name)
   ''';
 
+  static const _matchColumns = '''
+    id, tournament_id, round, status, score_a, score_b, scheduled_at, completed_at,
+    player_a:profiles!matches_player_a_id_fkey(username, display_name),
+    player_b:profiles!matches_player_b_id_fkey(username, display_name),
+    team_a:squads!matches_team_a_id_fkey(name),
+    team_b:squads!matches_team_b_id_fkey(name)
+  ''';
+
   @override
   Future<List<Tournament>> fetchTournaments() async {
     final rows = await _client
@@ -40,14 +48,10 @@ class SupabaseTournamentsRepository implements TournamentsRepository {
   Future<List<BracketMatch>> fetchBracket(String tournamentId) async {
     final rows = await _client
         .from('matches')
-        .select('id, tournament_id, round')
+        .select(_matchColumns)
         .eq('tournament_id', tournamentId);
-    return rows
-        .map((row) => BracketMatch(
-              id: row['id'] as String,
-              tournamentId: row['tournament_id'] as String,
-              round: row['round'] as String,
-            ))
-        .toList();
+    final matches = rows.map((row) => BracketMatch.fromJson(row)).toList();
+    matches.sort((a, b) => roundSortIndex(a.round).compareTo(roundSortIndex(b.round)));
+    return matches;
   }
 }
