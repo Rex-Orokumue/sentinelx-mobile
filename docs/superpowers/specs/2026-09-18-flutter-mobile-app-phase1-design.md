@@ -1,7 +1,7 @@
 # Flutter Mobile App — Phase 1 (Auth + Read Surfaces) — design
 
 **Date:** 2026-09-18
-**Status:** proposed
+**Status:** **absorbed** into `2026-09-18-flutter-mobile-app-master-design.md` as its Phase 1 — read that spec first. Known corrections (master §2.4): `notifications` is not the bell (`player_notifications` is, and is already readable — no RLS migration needed); `community_posts` is public-read; signup cannot be a bare `supabase.auth.signUp`; several "direct read" screens are computed in TypeScript and need API reads.
 **Builds on:** the existing Next.js/Supabase platform as-is. No new backend concepts —
 this phase is entirely "point a new client at what already exists."
 

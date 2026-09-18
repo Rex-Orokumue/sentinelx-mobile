@@ -1,7 +1,7 @@
 # Sentinel X Mobile — Master Design (full-parity Flutter app)
 
 **Date:** 2026-09-18
-**Status:** proposed — awaiting owner review
+**Status:** reviewed 2026-09-18 — approve-with-amendments feedback incorporated (S1 decoupled and split; environment findings added, §2.5/§3.2/§13/§16/§17); awaiting the §17.0 environment decision before the Phase 0 plan is written
 **Repos:** this one (`sentinelx_mobile`, Flutter) + `github.com/Rex-Orokumue/sentinelx` (Next.js web, owns the database and the new mobile API)
 **Supersedes:** `2026-09-18-flutter-mobile-app-phase1-design.md` — that spec is absorbed as **Phase 1** here, with the corrections in §2.4.
 **Decisions locked with the owner (2026-09-18):**
@@ -71,8 +71,11 @@ Found during the audit above. These are **pre-existing on the web platform**, no
 | **S2** | **Signed-in users can rewrite their own profile row, any column.** `profiles_own_update USING (auth.uid() = id)` has **no `WITH CHECK` and no column restriction**; `authenticated` has UPDATE on all 32 columns; the only trigger is `set_updated_at`. | `pg_policies`, column grants, `pg_trigger` | A user can `PATCH` their own `xp`, `sx_score`, `wins`, `total_titles`, `membership_tier`, `login_streak`, **`kyc_verified`** — bypassing every scoring rule and the withdrawal KYC check. |
 | **S3** | **Direct-insert policies with no guard triggers** on money/result tables: `tournament_registrations` (`tr_own_insert`, `payment_status` defaults `'pending'` but is client-settable), `withdrawal_requests` (`wr_own_insert`), `match_results` (`mr_player_insert`), `friendly_matches`, `friendly_match_results`. No `BEFORE INSERT/UPDATE` guard exists on any of them. | `pg_policies`, `pg_trigger` (only `marketplace_listings` and `buy_requests` have status guards) | Possible self-marking of a registration as paid, self-confirming a result, or inserting withdrawal rows — to be **verified on a Supabase branch**, not prod. |
 
-**Required action (web repo, before Phase 2 ships to any user):**
-- S1: move sensitive columns out of the public read path — a `public_profiles` view / column-level `REVOKE SELECT` on `phone`, `whatsapp_number`, `notification_prefs`, `referred_by`, `deletion_requested_at`, `deleted_at`, `kyc_verified` for `anon` + `authenticated`, with an owner-only accessor (`get_my_profile()` RPC or own-row policy on a split table). Audit every web `select('*')` / `.from('profiles')` first — this will touch web code.
+**Required action (web repo).** *Review feedback (2026-09-18) incorporated:* **S1 is decoupled from the mobile timeline** — it is a live web issue (most players are minors) and is fixed on its own schedule, not as "Phase 0 of the app". S2/S3 remain Phase 0 exit criteria for mobile.
+- **S1 — split in two, because a blanket revoke breaks the web app.** A grep of the web code shows other players' `whatsapp_number` is *intentionally* read in fixture coordination (`lib/dashboard/fixtures.ts`, `lib/matches/*-whatsapp.ts`), friendly match rooms (`dashboard/friendlies/[id]`), and admin bracket/matches/registrations/exchange pages (call sites to be confirmed one by one; the grep lists files, not contexts).
+  - **S1a (do first, low risk):** column-level `REVOKE SELECT` from `anon` + `authenticated` on the columns with **no** legitimate cross-user read — `phone`, `notification_prefs`, `referred_by`, `deletion_requested_at`, `deleted_at`, `kyc_verified` (after a per-column call-site audit; own-row access moves to a `get_my_profile()` RPC or own-row accessor).
+  - **S1b:** `whatsapp_number` becomes readable only by (i) the owner, (ii) staff, and (iii) a *counterpart* — a `SECURITY DEFINER` accessor that returns it only when the caller shares an active/upcoming match, friendly or exchange order with that player. Web call sites switch to the accessor (or service role in server code). This is a design task with web changes, not a one-line migration.
+  - Both steps are verified against a test database (§3.2) before touching production. Do **not** run them on production first.
 - S2: `REVOKE UPDATE` on `profiles` from `authenticated`, re-`GRANT UPDATE (display_name, bio, avatar_url, country, locale, whatsapp_number, notification_prefs …)` only for genuinely user-editable columns; add a `WITH CHECK`/guard trigger for the rest.
 - S3: add status/`payment_status` guard triggers (the `enforce_listing_status` pattern already in the repo), or drop the direct-insert policies where Server Actions already use the service role.
 - Because web Server Actions run as the *user* for many writes, each `REVOKE` needs a per-table check that the web still works. Do this on a **Supabase branch**, not production.
@@ -111,8 +114,18 @@ Owner note: these are outside "build a mobile app" in scope but inside "don't sh
 
 ### 3.2 Environments
 This repo's `CLAUDE.md` notes: **there is one Supabase project (`itxubrkbropttfdackmi`), and it is production** — no staging instance. For a program that adds ~100 write endpoints this is the biggest process risk.
-- **Rule:** all write-path development runs against a **Supabase branch** (`create_branch`) with seed data, never production. Read-only screens may point at prod (as the current slice does).
-- Flutter flavors: `dev` (branch URL + Paystack **test** keys), `prod`. Config via `--dart-define-from-file`, not a committed `env.dart` (the current hard-coded URL/key moves to flavor files; publishable key is public by design but the *flavor split* is what matters).
+- **Verified 2026-09-18:** the Supabase org (`slknegawjebafleisdap`) is on the **Free plan**, so **database branching is not available today** — and the project's only existing branch record (`main`, created 2026-07-06) is in status `MIGRATIONS_FAILED`. That is a possible sign the 109 migrations do not replay cleanly from empty (unverified — the record is old and may be stale), which would affect *every* option below.
+- **Rule (unchanged in spirit):** all write-path development and all security-fix verification (S1–S3) runs against a **non-production database with seed data**, never production. Read-only screens may point at prod (as the current slice does).
+- **Options to get that database** — owner decision, listed in §17.1:
+
+  | Option | Cost | Trade-off |
+  |---|---|---|
+  | A. Upgrade org to **Pro** and use Supabase branches | $25/mo + per-hour branch billing | Ephemeral, per-PR, preview-friendly; requires migrations to replay cleanly |
+  | B. **Second free project** as a persistent `staging` (free plan allows two) | $0 | Persistent, pairs with Vercel preview env + Paystack test keys; must be kept in sync by applying the same migrations; pauses after inactivity on free tier |
+  | C. **Local Supabase stack** (`supabase start`, Docker) | $0 | Fastest loop, fully disposable; no shared URL for a phone on mobile data unless tunnelled; needs Docker on Windows |
+
+  **Whichever is chosen, Phase 0 task 1 is a migration replay check** — build an empty database from `supabase/migrations/*.sql` and diff its schema against production. If it fails, fix or re-baseline (schema dump as a new baseline migration) *before* any other Phase 0 work. Migration files stay timestamp-named per the web `CLAUDE.md`.
+- Flutter flavors: `dev` (test-DB URL + Paystack **test** keys), `prod`. Config via `--dart-define-from-file`, not a committed `env.dart` (the current hard-coded URL/key moves to flavor files; publishable key is public by design but the *flavor split* is what matters).
 - Paystack: test-mode secret on the branch deployment; live only on prod Vercel.
 
 ---
@@ -578,7 +591,7 @@ Each phase ends with a shippable, testable app. **Each phase gets its own implem
 
 | Phase | Scope | New web work | Exit criteria | Size |
 |---|---|---|---|---|
-| **0 Foundation & security** | Flavors, Riverpod migration of existing slice, theme/tokens, i18n scaffold, api client pipeline (`openapi.json` → Dart), router w/ guards + link resolver, `/config`, Sentry + `/errors`, CI. **Web:** S1–S3 fixed on a branch then prod; bearer-auth helper; API scaffolding; `assetlinks.json`; Supabase branch env. | Yes (auth helper, `/config`, `/errors`, security migrations) | S1–S3 closed and verified on branch; an authenticated round-trip through a bearer endpoint from a device; CI green; existing slice unchanged | L |
+| **0 Foundation & security** | **Order matters:** (1) choose the test-DB option (§3.2) and run the **migration replay check**; (2) **S1a → S1b** on the test DB then prod — *independent of, and not gated by, the rest of Phase 0*; (3) S2, S3 on the test DB then prod; (4) flavors, Riverpod migration of existing slice, theme/tokens, i18n scaffold, api client pipeline (`openapi.json` → Dart), router w/ guards + link resolver, `/config`, Sentry + `/errors`, CI; (5) **Web:** bearer-auth helper, API scaffolding, `assetlinks.json`. | Yes (auth helper, `/config`, `/errors`, security migrations) | Test DB exists and replays prod's schema; S1–S3 closed and verified there, then on prod with web smoke-tested; an authenticated round-trip through a bearer endpoint from a device; CI green; existing slice unchanged | L |
 | **1 Auth, shell, home, static** | Login/signup/reset/Google, onboarding gate, tabs, home, static/legal pages, `/session/start`, App Links for email | `signup`, `session/start`, `onboarding`, `home` endpoints | New user can sign up (email + Google), confirm via App Link, claim username, land on Home; ban/retired-username checks proven | L |
 | **2 Compete core** | Tournaments list/detail, registration (+coin discount, waitlist, waivers, invitations), Paystack WebView, bracket/standings (T2), match centre, check-in, result submission, dashboard fixtures, games, minimal settings | Extraction of `tournaments`, `matches`, `scoring` services; endpoints in §7.3 Compete/Match | Full loop on branch: register+pay → published bracket → play → submit result → (admin on web) confirm → standings update; idempotency proven | XL |
 | **3 Progress & profiles** | Rankings, seasons, hall of fame, player profiles, follow, achievements/XP/SX displays, coin ledger view | `rankings`, `seasons`, `hall-of-fame`, `players` endpoints | Numbers match the web page for a sample of 10 players/season; locked achievements never leak | L |
@@ -628,7 +641,8 @@ Each phase ends with a shippable, testable app. **Each phase gets its own implem
 | Risk | Impact | Mitigation |
 |---|---|---|
 | S1–S3 security gaps (§2.5) | PII leak, score/KYC tampering, possible payment bypass | Phase 0 hard gate; fix + verify on a branch |
-| **Only one Supabase project (prod)** | Write-path development can corrupt live data | Supabase branches + Paystack test keys; dev flavor never points at prod for writes |
+| **Only one Supabase project (prod), Free plan (no branching), and possibly non-replayable migrations** | Write-path development and S1–S3 verification have nowhere safe to run; live data at risk | Owner picks Pro / free staging project / local stack (§3.2); migration replay check is Phase 0 task 1; Paystack test keys; dev flavor never points at prod for writes |
+| **Scale: full parity ≈ many months solo** (183 actions, ~90 tables, ~75 admin actions, several XL phases) | Schedule surprise | Known, deliberate bet (D2); every phase ships something usable; phases can stop early with a coherent app |
 | Service extraction touches 183 actions | Regression on the live web app | Per-domain, pure-refactor PRs, existing unit tests as the safety net, web smoke checks before each merge |
 | Concurrent sessions in the web repo (documented merge races) | Lost/staged-file collisions | Worktrees for API work; verify branch + `git diff --cached` before each commit |
 | Store rejection over wagering/escrow/minors | Launch blocked | Feature flags per surface (`/config`), Android first, policy reading up front (§14) |
@@ -639,7 +653,8 @@ Each phase ends with a shippable, testable app. **Each phase gets its own implem
 
 ---
 
-## 17. Open questions (owner decisions; none block Phase 0)
+## 17. Open questions (owner decisions)
+0. **Test-database option (blocks Phase 0 task 1):** A (Pro + branches), B (free staging project), or C (local stack) — §3.2. Recommendation: **B**, with C for fast local loops; A only if per-PR preview databases become worth $25+/mo.
 1. **Age gate / minimum age** for the app listing (13+ statement vs hard gate) — legal input needed (§14).
 2. **Crash tool:** Sentry vs Firebase Crashlytics (default: Sentry + `client_error_logs`).
 3. **API client generator:** `swagger_parser`+retrofit vs `openapi_generator` — decided by a Phase 0 spike, criteria: freezed output, null-safety fidelity, error envelope support.
