@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'core/env.dart';
+import 'router/app_router.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,12 +18,10 @@ class SentinelXApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Sentinel X',
       theme: ThemeData(colorSchemeSeed: Colors.deepPurple, useMaterial3: true),
-      home: const Scaffold(
-        body: Center(child: Text('Sentinel X')),
-      ),
+      routerConfig: buildAppRouter(),
     );
   }
 }
