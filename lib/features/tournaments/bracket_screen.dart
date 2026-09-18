@@ -92,7 +92,16 @@ class _RoundColumn extends StatelessWidget {
             style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: 8),
-          for (final match in matches) _MatchCard(match: match),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  for (final match in matches) _MatchCard(match: match),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

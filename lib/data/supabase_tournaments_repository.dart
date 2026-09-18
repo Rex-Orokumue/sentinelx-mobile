@@ -49,7 +49,9 @@ class SupabaseTournamentsRepository implements TournamentsRepository {
     final rows = await _client
         .from('matches')
         .select(_matchColumns)
-        .eq('tournament_id', tournamentId);
+        .eq('tournament_id', tournamentId)
+        .order('scheduled_at')
+        .order('id');
     final matches = rows.map((row) => BracketMatch.fromJson(row)).toList();
     matches.sort((a, b) => roundSortIndex(a.round).compareTo(roundSortIndex(b.round)));
     return matches;
