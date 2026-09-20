@@ -1,45 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../data/tournaments_repository.dart';
 import '../../models/bracket_match.dart';
+import 'tournaments_providers.dart';
 
-class BracketScreen extends StatefulWidget {
-  const BracketScreen({
-    super.key,
-    required this.repository,
-    required this.tournamentId,
-  });
+class BracketScreen extends ConsumerWidget {
+  const BracketScreen({super.key, required this.tournamentId});
 
-  final TournamentsRepository repository;
   final String tournamentId;
 
   @override
-  State<BracketScreen> createState() => _BracketScreenState();
-}
-
-class _BracketScreenState extends State<BracketScreen> {
-  late final Future<List<BracketMatch>> _future;
-
-  @override
-  void initState() {
-    super.initState();
-    _future = widget.repository.fetchBracket(widget.tournamentId);
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final async = ref.watch(bracketProvider(tournamentId));
     return Scaffold(
       appBar: AppBar(title: const Text('Bracket')),
-      body: FutureBuilder<List<BracketMatch>>(
-        future: _future,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState != ConnectionState.done) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (snapshot.hasError) {
-            return Center(child: Text('Failed to load bracket: ${snapshot.error}'));
-          }
-          final matches = snapshot.data!;
+      body: async.when(
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (error, _) => Center(child: Text('Failed to load bracket: $error')),
+        data: (matches) {
           if (matches.isEmpty) {
             return const Center(child: Text('No matches yet.'));
           }

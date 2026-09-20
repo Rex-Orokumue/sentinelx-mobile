@@ -4,6 +4,7 @@ import 'package:sentinelx_mobile/features/tournaments/tournament_detail_screen.d
 import 'package:sentinelx_mobile/models/tournament.dart';
 
 import '../fakes/fake_tournaments_repository.dart';
+import '../support/pump_app.dart';
 
 Tournament _detailTournament() {
   return Tournament(
@@ -35,13 +36,7 @@ void main() {
   testWidgets('shows tournament details once loaded', (tester) async {
     final repository = FakeTournamentsRepository(tournamentById: _detailTournament());
 
-    await tester.pumpWidget(MaterialApp(
-      home: TournamentDetailScreen(
-        repository: repository,
-        tournamentId: 't1',
-        onViewBracket: () {},
-      ),
-    ));
+    await pumpWithRepo(tester, repository, TournamentDetailScreen(tournamentId: 't1', onViewBracket: () {}));
 
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
 
@@ -55,13 +50,7 @@ void main() {
   testWidgets('shows an error message when the fetch fails', (tester) async {
     final repository = FakeTournamentsRepository(tournamentError: Exception('not found'));
 
-    await tester.pumpWidget(MaterialApp(
-      home: TournamentDetailScreen(
-        repository: repository,
-        tournamentId: 'missing',
-        onViewBracket: () {},
-      ),
-    ));
+    await pumpWithRepo(tester, repository, TournamentDetailScreen(tournamentId: 'missing', onViewBracket: () {}));
     await tester.pumpAndSettle();
 
     expect(find.textContaining('Failed to load tournament'), findsOneWidget);
@@ -71,13 +60,7 @@ void main() {
     final repository = FakeTournamentsRepository(tournamentById: _detailTournament());
     var tapped = false;
 
-    await tester.pumpWidget(MaterialApp(
-      home: TournamentDetailScreen(
-        repository: repository,
-        tournamentId: 't1',
-        onViewBracket: () => tapped = true,
-      ),
-    ));
+    await pumpWithRepo(tester, repository, TournamentDetailScreen(tournamentId: 't1', onViewBracket: () => tapped = true));
     await tester.pumpAndSettle();
 
     await tester.tap(find.byKey(const Key('view-bracket-button')));

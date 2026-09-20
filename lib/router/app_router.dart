@@ -1,18 +1,19 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../data/tournaments_repository.dart';
+import '../features/debug/debug_sign_in_screen.dart';
 import '../features/tournaments/bracket_screen.dart';
 import '../features/tournaments/tournament_detail_screen.dart';
 import '../features/tournaments/tournament_list_screen.dart';
+import '../core/providers.dart';
 
-GoRouter buildAppRouter({required TournamentsRepository repository}) {
+GoRouter buildAppRouter({bool debugTools = false}) {
   return GoRouter(
     initialLocation: '/',
     routes: [
       GoRoute(
         path: '/',
         builder: (context, state) => TournamentListScreen(
-          repository: repository,
           onTournamentTap: (tournament) => context.push('/tournaments/${tournament.id}'),
         ),
       ),
@@ -21,7 +22,6 @@ GoRouter buildAppRouter({required TournamentsRepository repository}) {
         builder: (context, state) {
           final id = state.pathParameters['id']!;
           return TournamentDetailScreen(
-            repository: repository,
             tournamentId: id,
             onViewBracket: () => context.push('/tournaments/$id/bracket'),
           );
@@ -29,11 +29,16 @@ GoRouter buildAppRouter({required TournamentsRepository repository}) {
       ),
       GoRoute(
         path: '/tournaments/:id/bracket',
-        builder: (context, state) => BracketScreen(
-          repository: repository,
-          tournamentId: state.pathParameters['id']!,
-        ),
+        builder: (context, state) => BracketScreen(tournamentId: state.pathParameters['id']!),
       ),
+      if (debugTools)
+        GoRoute(path: '/debug', builder: (context, state) => const DebugSignInScreen()),
     ],
   );
 }
+
+final routerProvider = Provider<GoRouter>((ref) {
+  final router = buildAppRouter(debugTools: ref.watch(appConfigProvider).debugTools);
+  ref.onDispose(router.dispose);
+  return router;
+});

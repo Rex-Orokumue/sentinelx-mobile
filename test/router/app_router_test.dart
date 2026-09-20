@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sentinelx_mobile/models/tournament.dart';
 import 'package:sentinelx_mobile/router/app_router.dart';
 
 import '../fakes/fake_tournaments_repository.dart';
+import '../support/pump_app.dart';
 
 Tournament _tournament() {
   return const Tournament(
@@ -39,9 +41,7 @@ void main() {
       matchesByTournament: const {},
     );
 
-    await tester.pumpWidget(MaterialApp.router(
-      routerConfig: buildAppRouter(repository: repository),
-    ));
+    await pumpRouterWithRepo(tester, repository);
     await tester.pumpAndSettle();
 
     expect(find.text('FC Mobile Premier League'), findsOneWidget);
@@ -60,5 +60,15 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.byKey(const Key('view-bracket-button')), findsOneWidget);
+  });
+
+  test('the /debug route exists only when debug tools are enabled', () {
+    bool hasDebug(bool tools) => buildAppRouter(debugTools: tools)
+        .configuration
+        .routes
+        .whereType<GoRoute>()
+        .any((r) => r.path == '/debug');
+    expect(hasDebug(false), isFalse);
+    expect(hasDebug(true), isTrue);
   });
 }

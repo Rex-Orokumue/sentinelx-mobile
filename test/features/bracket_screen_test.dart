@@ -4,6 +4,7 @@ import 'package:sentinelx_mobile/features/tournaments/bracket_screen.dart';
 import 'package:sentinelx_mobile/models/bracket_match.dart';
 
 import '../fakes/fake_tournaments_repository.dart';
+import '../support/pump_app.dart';
 
 BracketMatch _match({
   required String id,
@@ -37,9 +38,7 @@ void main() {
       ],
     });
 
-    await tester.pumpWidget(MaterialApp(
-      home: BracketScreen(repository: repository, tournamentId: 't1'),
-    ));
+    await pumpWithRepo(tester, repository, const BracketScreen(tournamentId: 't1'));
 
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
 
@@ -74,9 +73,7 @@ void main() {
       ],
     });
 
-    await tester.pumpWidget(MaterialApp(
-      home: BracketScreen(repository: repository, tournamentId: 't1'),
-    ));
+    await pumpWithRepo(tester, repository, const BracketScreen(tournamentId: 't1'));
     await tester.pumpAndSettle();
 
     expect(find.text('TBD'), findsNWidgets(2));
@@ -86,9 +83,7 @@ void main() {
   testWidgets('shows an empty state when the tournament has no matches yet', (tester) async {
     final repository = FakeTournamentsRepository(matchesByTournament: const {});
 
-    await tester.pumpWidget(MaterialApp(
-      home: BracketScreen(repository: repository, tournamentId: 't1'),
-    ));
+    await pumpWithRepo(tester, repository, const BracketScreen(tournamentId: 't1'));
     await tester.pumpAndSettle();
 
     expect(find.text('No matches yet.'), findsOneWidget);
@@ -97,9 +92,7 @@ void main() {
   testWidgets('shows an error message when the fetch fails', (tester) async {
     final repository = FakeTournamentsRepository(bracketError: Exception('network down'));
 
-    await tester.pumpWidget(MaterialApp(
-      home: BracketScreen(repository: repository, tournamentId: 't1'),
-    ));
+    await pumpWithRepo(tester, repository, const BracketScreen(tournamentId: 't1'));
     await tester.pumpAndSettle();
 
     expect(find.textContaining('Failed to load bracket'), findsOneWidget);
@@ -135,9 +128,7 @@ void main() {
       addTearDown(tester.view.resetPhysicalSize);
       addTearDown(tester.view.resetDevicePixelRatio);
 
-      await tester.pumpWidget(MaterialApp(
-        home: BracketScreen(repository: repository, tournamentId: 't1'),
-      ));
+      await pumpWithRepo(tester, repository, const BracketScreen(tournamentId: 't1'));
       await tester.pumpAndSettle();
 
       // No RenderFlex overflow (or any other) exception was thrown while

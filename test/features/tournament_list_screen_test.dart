@@ -4,6 +4,7 @@ import 'package:sentinelx_mobile/features/tournaments/tournament_list_screen.dar
 import 'package:sentinelx_mobile/models/tournament.dart';
 
 import '../fakes/fake_tournaments_repository.dart';
+import '../support/pump_app.dart';
 
 Tournament _tournament({required String id, required String title, required String status}) {
   return Tournament(
@@ -38,12 +39,7 @@ void main() {
       _tournament(id: 't2', title: 'DLS Community Cup III', status: 'completed'),
     ]);
 
-    await tester.pumpWidget(MaterialApp(
-      home: TournamentListScreen(
-        repository: repository,
-        onTournamentTap: (_) {},
-      ),
-    ));
+    await pumpWithRepo(tester, repository, TournamentListScreen(onTournamentTap: (_) {}));
 
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
 
@@ -57,9 +53,7 @@ void main() {
   testWidgets('shows an empty state when there are no tournaments', (tester) async {
     final repository = FakeTournamentsRepository(tournaments: const []);
 
-    await tester.pumpWidget(MaterialApp(
-      home: TournamentListScreen(repository: repository, onTournamentTap: (_) {}),
-    ));
+    await pumpWithRepo(tester, repository, TournamentListScreen(onTournamentTap: (_) {}));
     await tester.pumpAndSettle();
 
     expect(find.text('No tournaments yet.'), findsOneWidget);
@@ -68,9 +62,7 @@ void main() {
   testWidgets('shows an error message when the fetch fails', (tester) async {
     final repository = FakeTournamentsRepository(tournamentsError: Exception('network down'));
 
-    await tester.pumpWidget(MaterialApp(
-      home: TournamentListScreen(repository: repository, onTournamentTap: (_) {}),
-    ));
+    await pumpWithRepo(tester, repository, TournamentListScreen(onTournamentTap: (_) {}));
     await tester.pumpAndSettle();
 
     expect(find.textContaining('Failed to load tournaments'), findsOneWidget);
@@ -81,12 +73,7 @@ void main() {
     final repository = FakeTournamentsRepository(tournaments: [tournament]);
     Tournament? tapped;
 
-    await tester.pumpWidget(MaterialApp(
-      home: TournamentListScreen(
-        repository: repository,
-        onTournamentTap: (t) => tapped = t,
-      ),
-    ));
+    await pumpWithRepo(tester, repository, TournamentListScreen(onTournamentTap: (t) => tapped = t));
     await tester.pumpAndSettle();
 
     await tester.tap(find.byKey(const Key('tournament-tile-t1')));

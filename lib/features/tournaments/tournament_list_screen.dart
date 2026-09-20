@@ -1,57 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../data/tournaments_repository.dart';
 import '../../models/tournament.dart';
+import 'tournaments_providers.dart';
 
-class TournamentListScreen extends StatefulWidget {
-  const TournamentListScreen({
-    super.key,
-    required this.repository,
-    required this.onTournamentTap,
-  });
+class TournamentListScreen extends ConsumerWidget {
+  const TournamentListScreen({super.key, required this.onTournamentTap});
 
-  final TournamentsRepository repository;
   final void Function(Tournament tournament) onTournamentTap;
 
   @override
-  State<TournamentListScreen> createState() => _TournamentListScreenState();
-}
-
-class _TournamentListScreenState extends State<TournamentListScreen> {
-  late final Future<List<Tournament>> _future;
-
-  @override
-  void initState() {
-    super.initState();
-    _future = widget.repository.fetchTournaments();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final tournaments = ref.watch(tournamentsProvider);
     return Scaffold(
       appBar: AppBar(title: const Text('Tournaments')),
-      body: FutureBuilder<List<Tournament>>(
-        future: _future,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState != ConnectionState.done) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (snapshot.hasError) {
-            return Center(child: Text('Failed to load tournaments: ${snapshot.error}'));
-          }
-          final tournaments = snapshot.data!;
-          if (tournaments.isEmpty) {
+      body: tournaments.when(
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (error, _) => Center(child: Text('Failed to load tournaments: $error')),
+        data: (items) {
+          if (items.isEmpty) {
             return const Center(child: Text('No tournaments yet.'));
           }
           return ListView.builder(
-            itemCount: tournaments.length,
+            itemCount: items.length,
             itemBuilder: (context, index) {
-              final tournament = tournaments[index];
+              final tournament = items[index];
               return ListTile(
                 key: Key('tournament-tile-${tournament.id}'),
                 title: Text(tournament.title),
                 subtitle: Text('${tournament.gameName} • ${tournament.status}'),
-                onTap: () => widget.onTournamentTap(tournament),
+                onTap: () => onTournamentTap(tournament),
               );
             },
           );
