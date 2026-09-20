@@ -17,4 +17,6 @@ class FakeAuthRepositoryForForgot implements AuthRepository {
   Future<String> claimUsername(String username) async => username;
   @override
   Future<void> signOut() async {}
+  @override
+  Future<void> signInWithGoogle() async {}
 }

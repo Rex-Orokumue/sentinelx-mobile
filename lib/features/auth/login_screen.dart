@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/auth/auth_providers.dart';
 import '../../core/auth/auth_repository.dart';
 import '../../core/l10n/gen/app_localizations.dart';
+import 'google_sign_in_button.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key, required this.onLoggedIn, required this.onForgotPassword, required this.onCreateAccount});
@@ -100,6 +101,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               ),
               TextButton(onPressed: widget.onForgotPassword, child: Text(l10n.authLoginForgot)),
               TextButton(onPressed: widget.onCreateAccount, child: Text(l10n.authLoginCreateAccount)),
+              const SizedBox(height: 8),
+              Text(l10n.authCommonOr, textAlign: TextAlign.center),
+              const SizedBox(height: 8),
+              GoogleSignInButton(onSignedIn: widget.onLoggedIn),
             ],
           ),
         ),

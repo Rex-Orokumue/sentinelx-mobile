@@ -32,6 +32,8 @@ class _FakeAuthRepository implements AuthRepository {
   Future<String> claimUsername(String username) async => username;
   @override
   Future<void> signOut() async {}
+  @override
+  Future<void> signInWithGoogle() async {}
 }
 
 Future<void> _pump(WidgetTester tester, _FakeAuthRepository repo, {VoidCallback? onLoggedIn}) {

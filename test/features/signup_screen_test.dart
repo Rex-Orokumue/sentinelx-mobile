@@ -26,7 +26,7 @@ Future<void> _pump(WidgetTester tester, _RecordingSignup repo, {String? initialR
     child: MaterialApp(
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: SignupScreen(onSignedUp: onSignedUp ?? (_) {}, onLogIn: () {}, initialRef: initialRef),
+      home: SignupScreen(onSignedUp: onSignedUp ?? (_) {}, onLogIn: () {}, onGoogleSignedIn: () {}, initialRef: initialRef),
     ),
   ));
 }

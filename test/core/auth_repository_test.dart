@@ -118,4 +118,10 @@ void main() {
       throwsA(isA<AuthException>().having((e) => e.code, 'code', 'invalid_credentials')),
     );
   });
+
+  test('signInWithGoogle is on the AuthRepository interface', () {
+    // Compile-time check: AuthRepository must declare signInWithGoogle().
+    // ignore: unused_element, prefer_function_declarations_over_variables
+    Future<void> Function(AuthRepository) _ = (r) => r.signInWithGoogle();
+  });
 }

@@ -1,3 +1,4 @@
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' hide AuthException;
 
 import '../api/api_client.dart';
@@ -19,6 +20,7 @@ abstract class AuthRepository {
   Future<void> resetPassword(String newPassword);
   Future<String> claimUsername(String username);
   Future<void> signOut();
+  Future<void> signInWithGoogle();
 }
 
 // Tier 1 for the two calls Supabase Auth itself already guards
@@ -27,10 +29,11 @@ abstract class AuthRepository {
 // `supabase.auth.signUp`, which skips the ban/retired-username/locale logic
 // (master spec §2.4).
 class SupabaseAuthRepository implements AuthRepository {
-  SupabaseAuthRepository(this._auth, this._api);
+  SupabaseAuthRepository(this._auth, this._api, {String googleWebClientId = ''}) : _googleWebClientId = googleWebClientId;
 
   final GoTrueClient _auth;
   final ApiClient _api;
+  final String _googleWebClientId;
 
   @override
   Future<void> signInWithPassword({required String email, required String password}) async {
@@ -78,6 +81,25 @@ class SupabaseAuthRepository implements AuthRepository {
 
   @override
   Future<void> signOut() => _auth.signOut();
+
+  @override
+  Future<void> signInWithGoogle() async {
+    if (_googleWebClientId.isEmpty) {
+      throw const AuthException('google_not_configured', 'Google sign-in is not set up yet.');
+    }
+    final googleSignIn = GoogleSignIn.instance;
+    await googleSignIn.initialize(serverClientId: _googleWebClientId);
+    final account = await googleSignIn.authenticate();
+    final idToken = account.authentication.idToken;
+    if (idToken == null) {
+      throw const AuthException('google_no_token', 'Google sign-in did not return a token.');
+    }
+    try {
+      await _auth.signInWithIdToken(provider: OAuthProvider.google, idToken: idToken);
+    } on AuthApiException catch (e) {
+      throw AuthException(e.code ?? 'signup_failed', e.message);
+    }
+  }
 
   Future<void> _guard(Future<void> Function() run) async {
     try {

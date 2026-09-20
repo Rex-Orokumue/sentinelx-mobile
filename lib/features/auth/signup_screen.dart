@@ -4,12 +4,23 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/auth/auth_providers.dart';
 import '../../core/auth/auth_repository.dart';
 import '../../core/l10n/gen/app_localizations.dart';
+import 'google_sign_in_button.dart';
 
 class SignupScreen extends ConsumerStatefulWidget {
-  const SignupScreen({super.key, required this.onSignedUp, required this.onLogIn, this.initialRef});
+  const SignupScreen({
+    super.key,
+    required this.onSignedUp,
+    required this.onLogIn,
+    required this.onGoogleSignedIn,
+    this.initialRef,
+  });
 
   final void Function(String email) onSignedUp;
   final VoidCallback onLogIn;
+  // Google sign-in skips email confirmation entirely, so it can never call
+  // onSignedUp (which routes to Check-your-email) — it needs its own
+  // "already signed in" destination, same as LoginScreen.onLoggedIn.
+  final VoidCallback onGoogleSignedIn;
   final String? initialRef;
 
   @override
@@ -80,6 +91,10 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                       child: Text(l10n.authSignupContinueWithEmail),
                     ),
                     TextButton(onPressed: widget.onLogIn, child: Text(l10n.authSignupLogIn)),
+                    const SizedBox(height: 8),
+                    Text(l10n.authCommonOr, textAlign: TextAlign.center),
+                    const SizedBox(height: 8),
+                    GoogleSignInButton(onSignedIn: widget.onGoogleSignedIn),
                   ]
                 : [
                     Text(l10n.authSignupSigningUpAs(_username.text)),

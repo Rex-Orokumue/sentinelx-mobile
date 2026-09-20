@@ -6,5 +6,5 @@ import 'auth_repository.dart';
 final authRepositoryProvider = Provider<AuthRepository>((ref) {
   final supabase = ref.watch(supabaseClientProvider);
   final api = ref.watch(apiClientProvider);
-  return SupabaseAuthRepository(supabase.auth, api);
+  return SupabaseAuthRepository(supabase.auth, api, googleWebClientId: ref.watch(appConfigProvider).googleWebClientId);
 });
