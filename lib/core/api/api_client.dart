@@ -31,6 +31,12 @@ class ApiClient {
     'postClientError': 'post /api/mobile/v1/errors',
     'postDevice': 'post /api/mobile/v1/devices',
     'deleteDevice': 'delete /api/mobile/v1/devices',
+    'postAuthSignup': 'post /api/mobile/v1/auth/signup',
+    'postAuthResendConfirmation': 'post /api/mobile/v1/auth/resend-confirmation',
+    'postAuthRequestReset': 'post /api/mobile/v1/auth/request-reset',
+    'postSessionStart': 'post /api/mobile/v1/session/start',
+    'postOnboardingUsername': 'post /api/mobile/v1/onboarding/username',
+    'getHome': 'get /api/mobile/v1/home',
   };
 
   static const _base = '/api/mobile/v1';
@@ -115,4 +121,37 @@ class ApiClient {
       _send('POST', '/devices', (_) {}, body: {'token': token, 'platform': platform, 'appVersion': appVersion});
 
   Future<void> unregisterDevice(String token) => _send('DELETE', '/devices', (_) {}, body: {'token': token});
+
+  Future<void> postAuthSignup({
+    required String username,
+    required String email,
+    required String password,
+    String? ref,
+    String? locale,
+  }) =>
+      _send('POST', '/auth/signup', (_) {}, body: {
+        'username': username,
+        'email': email,
+        'password': password,
+        'ref': ?ref,
+        'locale': ?locale,
+      });
+
+  Future<void> postAuthResendConfirmation(String email) =>
+      _send('POST', '/auth/resend-confirmation', (_) {}, body: {'email': email});
+
+  Future<void> postAuthRequestReset(String email) =>
+      _send('POST', '/auth/request-reset', (_) {}, body: {'email': email});
+
+  Future<SessionStartResponse> postSessionStart() =>
+      _send('POST', '/session/start', (d) => SessionStartResponse.fromJson(d! as Map<String, dynamic>));
+
+  Future<String> postOnboardingUsername(String username) => _send(
+        'POST',
+        '/onboarding/username',
+        (d) => (d! as Map<String, dynamic>)['username'] as String,
+        body: {'username': username},
+      );
+
+  Future<HomeSummary> getHome() => _send('GET', '/home', (d) => HomeSummary.fromJson(d! as Map<String, dynamic>));
 }

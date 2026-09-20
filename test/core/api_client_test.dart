@@ -140,4 +140,77 @@ void main() {
     expect(req.uri.path, '/api/mobile/v1/devices');
     expect(req.data, {'token': 't' * 30});
   });
+
+  test('postAuthSignup posts username/email/password and omits absent optional fields', () async {
+    final adapter = _FakeAdapter((req) => _json(200, {'data': {'ok': true}}));
+    await _client(adapter).postAuthSignup(username: 'newplayer', email: 'a@b.com', password: 'password123');
+    final req = adapter.requests.single;
+    expect(req.method, 'POST');
+    expect(req.uri.toString(), 'https://api.test/api/mobile/v1/auth/signup');
+    expect(req.data, {'username': 'newplayer', 'email': 'a@b.com', 'password': 'password123'});
+  });
+
+  test('postAuthSignup includes ref and locale when given', () async {
+    final adapter = _FakeAdapter((_) => _json(200, {'data': {'ok': true}}));
+    await _client(adapter).postAuthSignup(username: 'n', email: 'a@b.com', password: 'password123', ref: 'friend1', locale: 'fr');
+    expect(adapter.requests.single.data, {'username': 'n', 'email': 'a@b.com', 'password': 'password123', 'ref': 'friend1', 'locale': 'fr'});
+  });
+
+  test('postAuthResendConfirmation and postAuthRequestReset post the email', () async {
+    final adapter = _FakeAdapter((_) => _json(200, {'data': {'ok': true}}));
+    final client = _client(adapter);
+    await client.postAuthResendConfirmation('a@b.com');
+    expect(adapter.requests.last.uri.toString(), 'https://api.test/api/mobile/v1/auth/resend-confirmation');
+    await client.postAuthRequestReset('a@b.com');
+    expect(adapter.requests.last.uri.toString(), 'https://api.test/api/mobile/v1/auth/request-reset');
+  });
+
+  test('postSessionStart parses the daily-login award and deletion status', () async {
+    final adapter = _FakeAdapter((_) => _json(200, {
+          'data': {
+            'dailyLogin': {'awardedToday': true, 'coinsAwarded': 55, 'xpAwarded': 120, 'streak': 7, 'milestone': 'week'},
+            'deletionRequestedAt': null,
+          }
+        }));
+    final result = await _client(adapter).postSessionStart();
+    expect(adapter.requests.single.method, 'POST');
+    expect(result.dailyLogin.streak, 7);
+    expect(result.dailyLogin.milestone, 'week');
+    expect(result.deletionRequestedAt, isNull);
+  });
+
+  test('postOnboardingUsername posts the username and returns the claimed one', () async {
+    final adapter = _FakeAdapter((_) => _json(200, {'data': {'username': 'BrandNew'}}));
+    final username = await _client(adapter).postOnboardingUsername('BrandNew');
+    expect(adapter.requests.single.data, {'username': 'BrandNew'});
+    expect(username, 'BrandNew');
+  });
+
+  test('getHome parses the full summary', () async {
+    final adapter = _FakeAdapter((_) => _json(200, {
+          'data': {
+            'banner': {'title': 'Hero', 'imageUrl': null, 'linkUrl': null},
+            'featuredTournament': {
+              'id': 't1', 'title': 'FC Mobile Cup', 'slug': 'fc-mobile-cup', 'status': 'active',
+              'prizePool': 8000, 'registrationFee': 500, 'tournamentStart': null, 'registrationEnd': null,
+              'tournamentEnd': null, 'maxPlayers': 16, 'format': 'knockout', 'tournamentType': 'masters',
+              'cardImageUrl': null, 'game': {'name': 'EA FC Mobile', 'iconUrl': null, 'slug': 'ea-fc-mobile', 'category': 'football'},
+            },
+            'upcomingTournaments': [],
+            'leaderboardTeaser': [
+              {'id': 'p1', 'username': 'ada', 'displayName': 'Ada', 'avatarUrl': null, 'wins': 10, 'totalMatches': 15,
+               'sxScore': 900, 'sentinelTier': 'elite', 'membershipTier': 'guardian', 'equippedAvatarBorder': null}
+            ],
+            'hallOfFame': null,
+            'stats': {'playerCount': 42, 'tournamentCount': 7, 'prizesPaidOut': 1000},
+          }
+        }));
+    final summary = await _client(adapter).getHome();
+    expect(adapter.requests.single.uri.toString(), 'https://api.test/api/mobile/v1/home');
+    expect(summary.featuredTournament?.title, 'FC Mobile Cup');
+    expect(summary.featuredTournament?.game?.name, 'EA FC Mobile');
+    expect(summary.leaderboardTeaser.single.username, 'ada');
+    expect(summary.hallOfFame, isNull);
+    expect(summary.stats.playerCount, 42);
+  });
 }
