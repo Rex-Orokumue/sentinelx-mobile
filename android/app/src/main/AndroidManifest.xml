@@ -30,6 +30,7 @@
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <data android:scheme="https" android:host="sentinelxesports.com.ng" android:path="/tournaments"/>
+                <data android:scheme="https" android:host="sentinelxesports.com.ng" android:path="/auth/confirm"/>
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.
