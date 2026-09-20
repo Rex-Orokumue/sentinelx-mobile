@@ -1,0 +1,43 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:sentinelx_mobile/core/auth/auth_providers.dart';
+import 'package:sentinelx_mobile/core/l10n/gen/app_localizations.dart';
+import 'package:sentinelx_mobile/features/onboarding/onboarding_username_screen.dart';
+
+import 'auth_test_fakes.dart';
+
+class _RecordingClaim extends FakeAuthRepositoryForForgot {
+  String? claimed;
+  Object? throwOnClaim;
+
+  @override
+  Future<String> claimUsername(String username) async {
+    claimed = username;
+    if (throwOnClaim != null) throw throwOnClaim!;
+    return username;
+  }
+}
+
+void main() {
+  testWidgets('claims a username and calls onClaimed', (tester) async {
+    final repo = _RecordingClaim();
+    var claimed = false;
+    await tester.pumpWidget(ProviderScope(
+      retry: (_, _) => null,
+      overrides: [authRepositoryProvider.overrideWithValue(repo)],
+      child: MaterialApp(
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: OnboardingUsernameScreen(onClaimed: () => claimed = true),
+      ),
+    ));
+
+    await tester.enterText(find.byKey(const Key('onboarding-username')), 'BrandNew');
+    await tester.tap(find.byKey(const Key('onboarding-username-submit')));
+    await tester.pumpAndSettle();
+
+    expect(repo.claimed, 'BrandNew');
+    expect(claimed, isTrue);
+  });
+}
