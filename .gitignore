@@ -49,3 +49,6 @@ app.*.map.json
 
 # Claude Code session-local state — never committed
 .claude/
+
+# Local git worktrees — never committed
+.worktrees/
