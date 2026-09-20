@@ -6,10 +6,18 @@ import '../features/tournaments/bracket_screen.dart';
 import '../features/tournaments/tournament_detail_screen.dart';
 import '../features/tournaments/tournament_list_screen.dart';
 import '../core/providers.dart';
+import '../core/routing/web_links.dart';
 
 GoRouter buildAppRouter({bool debugTools = false}) {
   return GoRouter(
     initialLocation: '/',
+    // App Links (and later, push/bell taps) hand go_router the raw web URL, which is not itself
+    // a valid route path. resolveWebLink() is the single place that maps it to one.
+    redirect: (context, state) {
+      final incoming = state.uri.toString();
+      final resolved = resolveWebLink(incoming);
+      return (resolved != null && resolved != incoming) ? resolved : null;
+    },
     routes: [
       GoRoute(
         path: '/',

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sentinelx_mobile/features/tournaments/tournaments_providers.dart';
 import 'package:sentinelx_mobile/models/tournament.dart';
 import 'package:sentinelx_mobile/router/app_router.dart';
 
@@ -70,5 +72,24 @@ void main() {
         .any((r) => r.path == '/debug');
     expect(hasDebug(false), isFalse);
     expect(hasDebug(true), isTrue);
+  });
+
+  testWidgets('an incoming App Link with the full web URL resolves to the in-app route instead of 404ing',
+      (tester) async {
+    final repository = FakeTournamentsRepository(tournaments: const []);
+    final router = buildAppRouter();
+
+    await tester.pumpWidget(ProviderScope(
+      retry: (_, _) => null,
+      overrides: [tournamentsRepositoryProvider.overrideWithValue(repository)],
+      child: MaterialApp.router(routerConfig: router),
+    ));
+    await tester.pumpAndSettle();
+
+    router.go('https://sentinelxesports.com.ng/tournaments');
+    await tester.pumpAndSettle();
+
+    expect(router.routerDelegate.currentConfiguration.uri.toString(), '/');
+    expect(find.text('Tournaments'), findsOneWidget);
   });
 }
