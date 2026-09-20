@@ -1,0 +1,9 @@
+{
+  "@@locale": "en",
+  "appName": "Sentinel X",
+  "maintenanceTitle": "We'll be right back",
+  "updateRequiredTitle": "Update required",
+  "updateRequiredBody": "Please update Sentinel X to version {minVersion} or newer to continue.",
+  "@updateRequiredBody": { "placeholders": { "minVersion": { "type": "String" } } },
+  "updateAction": "Update now"
+}
