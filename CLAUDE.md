@@ -12,10 +12,22 @@ dev/staging instance. Be careful with writes; read-only ops are safe by construc
 - Flutter (stable channel), Dart
 - `supabase_flutter` — talks to the Supabase project directly, same as the website's
   `@supabase/supabase-js`
-- `go_router` for navigation
-- **Riverpod** for state management (decided 2026-09-18, master spec D4)
+- `go_router` for navigation — provider-owned via `routerProvider` (`lib/router/app_router.dart`);
+  incoming full web URLs (App Links, later push/bell taps) are rewritten to in-app paths by a
+  top-level `redirect` that calls `resolveWebLink()` (`lib/core/routing/web_links.dart`)
+- **Riverpod** for state management (decided 2026-09-18, master spec D4) — manual providers only,
+  no codegen. App-wide providers live in `lib/core/providers.dart` (config, Supabase client,
+  session, `ApiClient`, remote config, `/me`, role, error reporter); feature-specific providers
+  live beside their feature (e.g. `lib/features/tournaments/tournaments_providers.dart`). Screens
+  are `ConsumerWidget`s that read through these providers — they never construct a repository or
+  API client themselves. New cross-cutting infrastructure (config, api, auth, gate, theme, l10n,
+  routing, errors) goes under `lib/core/`.
 - All writes and all TypeScript-computed reads go through the web repo's `/api/mobile/v1/*`
   (three-tier access model, master spec §3) — **never write via PostgREST**, even where RLS allows it
+- The existing `lib/data`/`lib/models`/`lib/features/tournaments` slice (Riverpod-backed as of
+  Phase 0C) is **temporary** — it reads Supabase directly and is replaced wholesale by the
+  API-backed feature in Phase 2. Don't build further on it; don't reshuffle it into
+  `features/tournaments/{data,domain,application,presentation}/` early.
 
 ## How this project is spec'd
 
@@ -57,4 +69,7 @@ and each phase needing endpoints gets its own spec in the **web** repo first.
 flutter pub get
 flutter run
 flutter doctor   # run this first if anything's unclear about the environment
+flutter analyze  # must be clean before every commit
+flutter test     # must be clean before every commit
+flutter gen-l10n # regenerate lib/core/l10n/gen/* after editing an .arb file; commit the output
 ```
