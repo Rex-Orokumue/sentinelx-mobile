@@ -1,4 +1,4 @@
-package com.example.sentinelx_mobile
+package ng.com.sentinelxesports.app
 
 import io.flutter.embedding.android.FlutterActivity
 
