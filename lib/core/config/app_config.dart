@@ -5,6 +5,7 @@ class AppConfig {
     required this.supabasePublishableKey,
     required this.apiBaseUrl,
     required this.debugTools,
+    required this.googleWebClientId,
   });
 
   /// Build-time config. Override with `--dart-define` or `--dart-define-from-file=config/dev.json`.
@@ -17,6 +18,7 @@ class AppConfig {
   final String supabasePublishableKey;
   final String apiBaseUrl;
   final bool debugTools;
+  final String googleWebClientId;
 
   bool get isDev => flavor == 'dev';
 }
@@ -35,5 +37,6 @@ class _EnvAppConfig extends AppConfig {
           ),
           apiBaseUrl: const String.fromEnvironment('API_BASE_URL', defaultValue: 'https://sentinelxesports.com.ng'),
           debugTools: const bool.fromEnvironment('DEBUG_TOOLS'),
+          googleWebClientId: const String.fromEnvironment('GOOGLE_WEB_CLIENT_ID', defaultValue: ''),
         );
 }

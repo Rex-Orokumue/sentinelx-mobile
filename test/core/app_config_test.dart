@@ -18,8 +18,13 @@ void main() {
       supabasePublishableKey: 'k',
       apiBaseUrl: 'http://10.0.2.2:3000',
       debugTools: true,
+      googleWebClientId: '',
     );
     expect(dev.isDev, isTrue);
     expect(dev.debugTools, isTrue);
+  });
+
+  test('googleWebClientId defaults to empty until the owner sets it', () {
+    expect(const AppConfig.fromEnvironment().googleWebClientId, '');
   });
 }
