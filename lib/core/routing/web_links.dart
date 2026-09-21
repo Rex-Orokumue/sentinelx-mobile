@@ -14,7 +14,13 @@ String? resolveWebLink(String input) {
   if (segments.isEmpty) return '/';
   switch (segments.join('/')) {
     case 'tournaments':
-      return '/';
+      return '/tournaments';
+    case 'tv':
+      return '/tv';
+    case 'community':
+      return '/community';
+    case 'exchange':
+      return '/exchange';
   }
   return null;
 }

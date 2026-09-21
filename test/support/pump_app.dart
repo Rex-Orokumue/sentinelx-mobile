@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:sentinelx_mobile/core/l10n/gen/app_localizations.dart';
 import 'package:sentinelx_mobile/data/tournaments_repository.dart';
 import 'package:sentinelx_mobile/features/tournaments/tournaments_providers.dart';
 import 'package:sentinelx_mobile/router/app_router.dart';
@@ -17,6 +18,10 @@ Future<void> pumpRouterWithRepo(WidgetTester tester, TournamentsRepository repos
   return tester.pumpWidget(ProviderScope(
     retry: (_, _) => null,
     overrides: [tournamentsRepositoryProvider.overrideWithValue(repository)],
-    child: MaterialApp.router(routerConfig: buildAppRouter()),
+    child: MaterialApp.router(
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      routerConfig: buildAppRouter(initialLocation: '/tournaments'),
+    ),
   ));
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sentinelx_mobile/core/l10n/gen/app_localizations.dart';
 import 'package:sentinelx_mobile/features/tournaments/tournaments_providers.dart';
 import 'package:sentinelx_mobile/models/tournament.dart';
 import 'package:sentinelx_mobile/router/app_router.dart';
@@ -64,6 +65,19 @@ void main() {
     expect(find.byKey(const Key('view-bracket-button')), findsOneWidget);
   });
 
+  testWidgets('the tab bar has all five destinations and Home lives outside it', (tester) async {
+    await pumpRouterWithRepo(
+      tester,
+      FakeTournamentsRepository(tournaments: const [], tournamentById: null, matchesByTournament: const {}),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('Compete'), findsOneWidget);
+    expect(find.text('Watch'), findsOneWidget);
+    expect(find.text('Community'), findsOneWidget);
+    expect(find.text('Trade'), findsOneWidget);
+    expect(find.text('Account'), findsOneWidget);
+  });
+
   test('the /debug route exists only when debug tools are enabled', () {
     bool hasDebug(bool tools) => buildAppRouter(debugTools: tools)
         .configuration
@@ -82,14 +96,18 @@ void main() {
     await tester.pumpWidget(ProviderScope(
       retry: (_, _) => null,
       overrides: [tournamentsRepositoryProvider.overrideWithValue(repository)],
-      child: MaterialApp.router(routerConfig: router),
+      child: MaterialApp.router(
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        routerConfig: router,
+      ),
     ));
     await tester.pumpAndSettle();
 
     router.go('https://sentinelxesports.com.ng/tournaments');
     await tester.pumpAndSettle();
 
-    expect(router.routerDelegate.currentConfiguration.uri.toString(), '/');
+    expect(router.routerDelegate.currentConfiguration.uri.toString(), '/tournaments');
     expect(find.text('Tournaments'), findsOneWidget);
   });
 }
