@@ -727,6 +727,300 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Could not update your password. Please try again.'**
   String get authErrorsResetFailed;
+
+  /// No description provided for @termsEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Legal'**
+  String get termsEyebrow;
+
+  /// No description provided for @termsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of Service'**
+  String get termsTitle;
+
+  /// No description provided for @termsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The terms that govern your use of the SentinelX platform.'**
+  String get termsSubtitle;
+
+  /// No description provided for @termsMetaUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Last updated September 2026'**
+  String get termsMetaUpdated;
+
+  /// No description provided for @termsSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'The short version: you must be 13 or older, one account per person, and you play fair — real results, backed by proof. Prize money pays to your bank through Paystack after an ID check. SX Coins are platform points with no cash value. Nigerian law applies. This summary is not the legal text — the sections below are.'**
+  String get termsSummary;
+
+  /// No description provided for @termsMetaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of Service'**
+  String get termsMetaTitle;
+
+  /// No description provided for @termsMetaDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The terms that govern using the SentinelX Esports platform.'**
+  String get termsMetaDescription;
+
+  /// No description provided for @termsS1Heading.
+  ///
+  /// In en, this message translates to:
+  /// **'1. Who We Are'**
+  String get termsS1Heading;
+
+  /// No description provided for @termsS1P1.
+  ///
+  /// In en, this message translates to:
+  /// **'SentinelX Esports is a mobile esports platform operated by Samuel Chinoyerem Akpoke (“we”, “us”, “our”). We are based in Nigeria and our platform is available at sentinelxesports.com.ng.'**
+  String get termsS1P1;
+
+  /// No description provided for @termsS1P2.
+  ///
+  /// In en, this message translates to:
+  /// **'By creating an account or using any part of SentinelX, you agree to these Terms of Service. If you do not agree, please do not use the platform.'**
+  String get termsS1P2;
+
+  /// No description provided for @termsS2Heading.
+  ///
+  /// In en, this message translates to:
+  /// **'2. Eligibility'**
+  String get termsS2Heading;
+
+  /// No description provided for @termsS2P1.
+  ///
+  /// In en, this message translates to:
+  /// **'You must be at least 13 years old to create an account. If you are under 18, you confirm that you have permission from a parent or guardian to use the platform. Players under 18 may not withdraw prize money without verifiable parental or guardian consent.'**
+  String get termsS2P1;
+
+  /// No description provided for @termsS2P2.
+  ///
+  /// In en, this message translates to:
+  /// **'You may only hold one account. Creating multiple accounts to gain an unfair advantage is prohibited and will result in a permanent ban.'**
+  String get termsS2P2;
+
+  /// No description provided for @termsS3Heading.
+  ///
+  /// In en, this message translates to:
+  /// **'3. Your Account'**
+  String get termsS3Heading;
+
+  /// No description provided for @termsS3P1.
+  ///
+  /// In en, this message translates to:
+  /// **'You are responsible for keeping your login details secure. Do not share your password with anyone. You are responsible for all activity that takes place under your account.'**
+  String get termsS3P1;
+
+  /// No description provided for @termsS3P2.
+  ///
+  /// In en, this message translates to:
+  /// **'If you believe your account has been compromised, contact us immediately at <email>sentinelxesports@gmail.com</email>.'**
+  String get termsS3P2;
+
+  /// No description provided for @termsS4Heading.
+  ///
+  /// In en, this message translates to:
+  /// **'4. Tournaments and Entry Fees'**
+  String get termsS4Heading;
+
+  /// No description provided for @termsS4P1.
+  ///
+  /// In en, this message translates to:
+  /// **'Tournament entry fees are set per event and displayed clearly before registration. The current standard fee is ₦500. By registering and completing payment, you confirm your intent to participate.'**
+  String get termsS4P1;
+
+  /// No description provided for @termsS4P2.
+  ///
+  /// In en, this message translates to:
+  /// **'Entry fees are processed securely by Paystack. We do not store your card details.'**
+  String get termsS4P2;
+
+  /// No description provided for @termsS4P3.
+  ///
+  /// In en, this message translates to:
+  /// **'SX Coins may be used to reduce or eliminate entry fees where that option is offered. See the <link>Refund Policy</link> for how cancellations are handled.'**
+  String get termsS4P3;
+
+  /// No description provided for @termsS5Heading.
+  ///
+  /// In en, this message translates to:
+  /// **'5. Match Rules and Fair Play'**
+  String get termsS5Heading;
+
+  /// No description provided for @termsS5Intro.
+  ///
+  /// In en, this message translates to:
+  /// **'All players must compete honestly. The following are prohibited:'**
+  String get termsS5Intro;
+
+  /// No description provided for @termsS5List.
+  ///
+  /// In en, this message translates to:
+  /// **'<li>Submitting false or manipulated match results</li><li>Using external tools, scripts, or exploits to gain an advantage</li><li>Colluding with an opponent to produce a predetermined result</li><li>Threatening, harassing, or abusing opponents</li>'**
+  String get termsS5List;
+
+  /// No description provided for @termsS5P2.
+  ///
+  /// In en, this message translates to:
+  /// **'Match results must be submitted with supporting evidence (screenshot and screen recording). Admin decisions on disputed results are final. Full conduct and match rules are in the <link>Tournament Rules</link>.'**
+  String get termsS5P2;
+
+  /// No description provided for @termsS5P3.
+  ///
+  /// In en, this message translates to:
+  /// **'A no-show — failing to appear for your scheduled match without notice — results in a forfeit and a penalty to your SX Score.'**
+  String get termsS5P3;
+
+  /// No description provided for @termsS6Heading.
+  ///
+  /// In en, this message translates to:
+  /// **'6. Prizes and Withdrawals'**
+  String get termsS6Heading;
+
+  /// No description provided for @termsS6P1.
+  ///
+  /// In en, this message translates to:
+  /// **'Prize money is paid to the bank account you link to your player dashboard via Paystack. You must complete identity verification before your first withdrawal.'**
+  String get termsS6P1;
+
+  /// No description provided for @termsS6P2.
+  ///
+  /// In en, this message translates to:
+  /// **'We aim to process approved withdrawals within 1–5 business days. We are not responsible for delays caused by your bank.'**
+  String get termsS6P2;
+
+  /// No description provided for @termsS7Heading.
+  ///
+  /// In en, this message translates to:
+  /// **'7. SX Coins'**
+  String get termsS7Heading;
+
+  /// No description provided for @termsS7P1.
+  ///
+  /// In en, this message translates to:
+  /// **'SX Coins are a virtual in-platform currency. They are earned by competing and spending time on the platform. SX Coins have no monetary value and cannot be exchanged for cash. They may be used within the platform for entry fee discounts, community features, and the in-platform store. SX Coins may also be staked in community wagering (see section 8), and can be lost if your wager does not win.'**
+  String get termsS7P1;
+
+  /// No description provided for @termsS8Heading.
+  ///
+  /// In en, this message translates to:
+  /// **'8. Community Wagering (SX Coins)'**
+  String get termsS8Heading;
+
+  /// No description provided for @termsS8P1.
+  ///
+  /// In en, this message translates to:
+  /// **'You may stake SX Coins on the outcome of a match you are not playing in. Wagering is optional and uses SX Coins only.'**
+  String get termsS8P1;
+
+  /// No description provided for @termsS8List.
+  ///
+  /// In en, this message translates to:
+  /// **'<li>Wagering opens once both players are confirmed for a scheduled match and closes 15 minutes before the scheduled start time. For matches scheduled across a full day, it closes 24 hours after that day begins.</li><li>A 5% platform fee is taken from the losing pool. Winnings are paid in SX Coins only.</li><li>Wagers settle automatically from the admin-confirmed match result, and that settlement is final.</li><li>If a match is voided or a result is overturned, every stake is returned in full.</li>'**
+  String get termsS8List;
+
+  /// No description provided for @termsS8P2.
+  ///
+  /// In en, this message translates to:
+  /// **'Because SX Coins have no monetary value and cannot be exchanged for cash, community wagering is not betting for money.'**
+  String get termsS8P2;
+
+  /// No description provided for @termsS9Heading.
+  ///
+  /// In en, this message translates to:
+  /// **'9. Gaming Exchange'**
+  String get termsS9Heading;
+
+  /// No description provided for @termsS9P1.
+  ///
+  /// In en, this message translates to:
+  /// **'The Gaming Exchange (powered by Zolarux escrow) allows players to buy and sell gaming accounts and in-game items. SentinelX provides the platform and escrow infrastructure. We are not party to the transaction between buyer and seller and are not liable for disputes that arise from transactions conducted outside the platform\'s escrow system. See <link>how escrow works</link> for the step-by-step.'**
+  String get termsS9P1;
+
+  /// No description provided for @termsS10Heading.
+  ///
+  /// In en, this message translates to:
+  /// **'10. Community Standards'**
+  String get termsS10Heading;
+
+  /// No description provided for @termsS10P1.
+  ///
+  /// In en, this message translates to:
+  /// **'You agree to treat all other members of the SentinelX community with respect. Hate speech, discrimination, threats, and harassment are not tolerated and will result in suspension or permanent ban. See our <link>Community Rules</link> for the full standards.'**
+  String get termsS10P1;
+
+  /// No description provided for @termsS11Heading.
+  ///
+  /// In en, this message translates to:
+  /// **'11. Intellectual Property'**
+  String get termsS11Heading;
+
+  /// No description provided for @termsS11P1.
+  ///
+  /// In en, this message translates to:
+  /// **'All SentinelX branding, design, and original content is owned by SentinelX Esports. You may not reproduce, copy, or distribute our content without written permission. Content you post (match screenshots, community posts) remains yours, but you grant us a licence to display it on the platform.'**
+  String get termsS11P1;
+
+  /// No description provided for @termsS12Heading.
+  ///
+  /// In en, this message translates to:
+  /// **'12. Limitation of Liability'**
+  String get termsS12Heading;
+
+  /// No description provided for @termsS12P1.
+  ///
+  /// In en, this message translates to:
+  /// **'SentinelX Esports is not liable for indirect, incidental, or consequential losses arising from your use of the platform. Our total liability to you for any claim shall not exceed the total entry fees you have paid to us in the 3 months prior to the claim.'**
+  String get termsS12P1;
+
+  /// No description provided for @termsS12P2.
+  ///
+  /// In en, this message translates to:
+  /// **'We do not guarantee uninterrupted access to the platform. We will make reasonable efforts to restore service promptly in the event of downtime.'**
+  String get termsS12P2;
+
+  /// No description provided for @termsS13Heading.
+  ///
+  /// In en, this message translates to:
+  /// **'13. Changes to These Terms'**
+  String get termsS13Heading;
+
+  /// No description provided for @termsS13P1.
+  ///
+  /// In en, this message translates to:
+  /// **'We may update these Terms from time to time. We will notify you via the platform or email when significant changes are made. Continuing to use SentinelX after changes are posted means you accept the updated terms.'**
+  String get termsS13P1;
+
+  /// No description provided for @termsS14Heading.
+  ///
+  /// In en, this message translates to:
+  /// **'14. Governing Law'**
+  String get termsS14Heading;
+
+  /// No description provided for @termsS14P1.
+  ///
+  /// In en, this message translates to:
+  /// **'These Terms are governed by the laws of the Federal Republic of Nigeria. Any disputes shall be subject to the jurisdiction of Nigerian courts.'**
+  String get termsS14P1;
+
+  /// No description provided for @termsS15Heading.
+  ///
+  /// In en, this message translates to:
+  /// **'15. Contact'**
+  String get termsS15Heading;
+
+  /// No description provided for @termsS15P1.
+  ///
+  /// In en, this message translates to:
+  /// **'Questions about these Terms? Email us at <email>sentinelxesports@gmail.com</email> or message us on WhatsApp: <whatsapp>+234 903 239 5685</whatsapp>.'**
+  String get termsS15P1;
 }
 
 class _AppLocalizationsDelegate
