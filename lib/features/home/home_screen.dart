@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/auth/auth_providers.dart';
 import '../../core/auth/onboarding_gate.dart';
 import '../../core/l10n/gen/app_localizations.dart';
+import '../../core/providers.dart';
 import 'home_providers.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -25,9 +26,19 @@ class HomeScreen extends ConsumerWidget {
     }
     final home = ref.watch(homeProvider);
     final l10n = AppLocalizations.of(context);
+    final isSignedIn = ref.watch(meProvider).asData?.value != null;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Sentinel X')),
+      appBar: AppBar(
+        title: const Text('Sentinel X'),
+        actions: [
+          IconButton(
+            key: const Key('home-account'),
+            icon: Icon(isSignedIn ? Icons.person : Icons.person_outline),
+            onPressed: () => onGoTo(isSignedIn ? '/account' : '/login'),
+          ),
+        ],
+      ),
       body: home.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(child: Text('Failed to load: $e')),

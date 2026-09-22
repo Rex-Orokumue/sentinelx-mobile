@@ -17,26 +17,29 @@ class AccountScreen extends ConsumerWidget {
     final me = ref.watch(meProvider).asData?.value;
     return Scaffold(
       appBar: SxTabAppBar(title: 'Account', onLogoTap: onLogoTap),
-      body: Center(
-        child: me == null
-            ? Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  ElevatedButton(key: const Key('account-login'), onPressed: onLogIn, child: const Text('Log in')),
-                  TextButton(key: const Key('account-signup'), onPressed: onSignUp, child: const Text('Create account')),
-                ],
-              )
-            : Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(me.profile?.displayName ?? me.profile?.username ?? me.email ?? ''),
-                  TextButton(
-                    key: const Key('account-sign-out'),
-                    onPressed: () => ref.read(authRepositoryProvider).signOut(),
-                    child: const Text('Sign out'),
-                  ),
-                ],
-              ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Center(
+          child: me == null
+              ? Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ElevatedButton(key: const Key('account-login'), onPressed: onLogIn, child: const Text('Log in')),
+                    TextButton(key: const Key('account-signup'), onPressed: onSignUp, child: const Text('Create account')),
+                  ],
+                )
+              : Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(me.profile?.displayName ?? me.profile?.username ?? me.email ?? ''),
+                    TextButton(
+                      key: const Key('account-sign-out'),
+                      onPressed: () => ref.read(authRepositoryProvider).signOut(),
+                      child: const Text('Sign out'),
+                    ),
+                  ],
+                ),
+        ),
       ),
     );
   }

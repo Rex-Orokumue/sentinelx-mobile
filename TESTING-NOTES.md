@@ -7,3 +7,4 @@ logged here.
 
 | Username | Date | Verified | Cleaned up (anonymise_account) |
 |---|---|---|---|
+| zzqa_p1a | 2026-09-21 | not created: signup blocked, Supabase Auth returned 500 (Resend 550, sentinelxesports.com.ng sender domain not verified); nothing to clean up | n/a |
