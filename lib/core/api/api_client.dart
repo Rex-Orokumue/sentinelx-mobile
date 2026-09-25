@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 
 import '../config/remote_config.dart';
 import 'models.dart';
+import 'progress_models.dart';
 
 class ApiException implements Exception {
   const ApiException({required this.status, required this.code, required this.message, this.fields = const {}});
@@ -158,4 +159,41 @@ class ApiClient {
       );
 
   Future<HomeSummary> getHome() => _send('GET', '/home', (d) => HomeSummary.fromJson(d! as Map<String, dynamic>));
+
+  String _withQuery(String path, Map<String, Object?> query) {
+    final q = <String, String>{
+      for (final e in query.entries)
+        if (e.value != null) e.key: e.value.toString(),
+    };
+    return q.isEmpty ? path : Uri(path: path, queryParameters: q).toString();
+  }
+
+  Future<RankingsPage> getRankings({String? game, String? region, int page = 1}) => _send(
+        'GET',
+        _withQuery('/rankings', {'game': game, 'region': region, 'page': page > 1 ? page : null}),
+        (d) => RankingsPage.fromJson(d! as Map<String, dynamic>),
+      );
+
+  Future<RankingsMe> getRankingsMe({String? game, String? region}) => _send(
+        'GET',
+        _withQuery('/rankings/me', {'game': game, 'region': region}),
+        (d) => RankingsMe.fromJson(d! as Map<String, dynamic>),
+      );
+
+  Future<List<SeasonSummary>> getSeasons() => _send(
+        'GET',
+        '/seasons',
+        (d) => ((d! as Map<String, dynamic>)['seasons'] as List<dynamic>)
+            .map((e) => SeasonSummary.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      );
+
+  Future<SeasonDetail> getSeasonDetail(String slug) =>
+      _send('GET', '/seasons/${Uri.encodeComponent(slug)}', (d) => SeasonDetail.fromJson(d! as Map<String, dynamic>));
+
+  Future<HallOfFame> getHallOfFame({String? game}) => _send(
+        'GET',
+        _withQuery('/hall-of-fame', {'game': game}),
+        (d) => HallOfFame.fromJson(d! as Map<String, dynamic>),
+      );
 }
