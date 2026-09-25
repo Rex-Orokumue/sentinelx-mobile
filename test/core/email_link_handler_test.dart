@@ -39,22 +39,36 @@ void main() {
     expect(result.outcome, EmailLinkOutcome.recovery);
   });
 
-  test('a signup confirmation link reports outcome=verified', () async {
+  test('a signup confirmation link reports outcome=signupConfirmed', () async {
     final auth = _FakeAuth();
     final result = await handleEmailLink(
       Uri.parse('https://sentinelxesports.com.ng/auth/confirm?token_hash=xyz&type=signup'),
       auth: auth,
     );
-    expect(result.outcome, EmailLinkOutcome.verified);
+    expect(result.outcome, EmailLinkOutcome.signupConfirmed);
   });
 
-  test('a locale-prefixed link (fr/pcm) is still handled', () async {
+  test('an email-change link (locale-prefixed) reports outcome=emailChanged, not signupConfirmed', () async {
     final auth = _FakeAuth();
     final result = await handleEmailLink(
       Uri.parse('https://sentinelxesports.com.ng/fr/auth/confirm?token_hash=xyz&type=email_change'),
       auth: auth,
     );
-    expect(result.outcome, EmailLinkOutcome.verified);
+    expect(result.outcome, EmailLinkOutcome.emailChanged);
+  });
+
+  test('invite and magic-link types report their own distinct outcomes', () async {
+    final auth = _FakeAuth();
+    final invite = await handleEmailLink(
+      Uri.parse('https://sentinelxesports.com.ng/auth/confirm?token_hash=a&type=invite'),
+      auth: auth,
+    );
+    expect(invite.outcome, EmailLinkOutcome.invited);
+    final magic = await handleEmailLink(
+      Uri.parse('https://sentinelxesports.com.ng/auth/confirm?token_hash=b&type=magiclink'),
+      auth: auth,
+    );
+    expect(magic.outcome, EmailLinkOutcome.magicLink);
   });
 
   test('a missing token_hash or type reports failed without calling verifyOtp', () async {

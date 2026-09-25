@@ -1,6 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-enum EmailLinkOutcome { verified, recovery, failed }
+enum EmailLinkOutcome { signupConfirmed, emailChanged, invited, magicLink, recovery, failed }
 
 class EmailLinkResult {
   const EmailLinkResult(this.outcome);
@@ -13,6 +13,14 @@ const _typeMap = {
   'email_change': OtpType.emailChange,
   'invite': OtpType.invite,
   'magiclink': OtpType.magiclink,
+};
+
+const _outcomeByType = {
+  OtpType.signup: EmailLinkOutcome.signupConfirmed,
+  OtpType.recovery: EmailLinkOutcome.recovery,
+  OtpType.emailChange: EmailLinkOutcome.emailChanged,
+  OtpType.invite: EmailLinkOutcome.invited,
+  OtpType.magiclink: EmailLinkOutcome.magicLink,
 };
 
 // Handles a claimed https://sentinelxesports.com.ng/auth/confirm App Link.
@@ -30,5 +38,5 @@ Future<EmailLinkResult> handleEmailLink(Uri link, {required GoTrueClient auth}) 
     return const EmailLinkResult(EmailLinkOutcome.failed);
   }
 
-  return EmailLinkResult(type == OtpType.recovery ? EmailLinkOutcome.recovery : EmailLinkOutcome.verified);
+  return EmailLinkResult(_outcomeByType[type]!);
 }

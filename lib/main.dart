@@ -8,7 +8,6 @@ import 'app.dart';
 import 'core/config/app_config.dart';
 import 'core/providers.dart';
 import 'core/routing/incoming_links.dart';
-import 'router/app_router.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,5 +33,5 @@ Future<void> main() async {
 
   runApp(UncontrolledProviderScope(container: container, child: const SentinelXApp()));
 
-  listenForIncomingLinks(router: container.read(routerProvider), auth: container.read(supabaseClientProvider).auth);
+  container.read(incomingLinkListenerProvider);
 }
