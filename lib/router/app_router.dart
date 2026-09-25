@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 
 import '../core/auth/auth_providers.dart';
 import '../core/providers.dart';
+import '../core/api/players_models.dart';
+import '../core/l10n/gen/app_localizations.dart';
 import '../core/routing/web_links.dart';
 import '../features/account/account_screen.dart';
 import '../features/account/edit_profile_screen.dart';
@@ -23,6 +25,13 @@ import '../features/seasons/seasons_list_screen.dart';
 import '../features/seasons/season_detail_screen.dart';
 import '../features/hall_of_fame/hall_of_fame_screen.dart';
 import '../features/onboarding/onboarding_username_screen.dart';
+import '../features/players/follow_list_screen.dart';
+import '../features/players/player_profile_screen.dart';
+import '../features/players/players_directory_screen.dart';
+import '../features/players/players_providers.dart';
+import '../features/progress/history_list_screen.dart';
+import '../features/progress/my_progress_screen.dart';
+import '../features/progress/progress_providers.dart';
 import '../features/tournaments/bracket_screen.dart';
 import '../shared/widgets/coming_soon_screen.dart';
 import 'auth_redirect.dart';
@@ -172,6 +181,39 @@ GoRouter buildAppRouter({
                 path: '/hall-of-fame',
                 builder: (context, state) => const HallOfFameScreen(),
               ),
+            GoRoute(
+              path: '/players',
+              builder: (context, state) => PlayersDirectoryScreen(onPlayerTap: (u) => context.push('/players/${Uri.encodeComponent(u)}')),
+              routes: [
+                GoRoute(
+                  path: ':username',
+                  builder: (context, state) => PlayerProfileScreen(
+                    username: state.pathParameters['username']!,
+                    onLogIn: () => context.push('/login'),
+                    onOpenFollowers: (u) => context.push('/players/${Uri.encodeComponent(u)}/followers'),
+                    onOpenFollowing: (u) => context.push('/players/${Uri.encodeComponent(u)}/following'),
+                  ),
+                  routes: [
+                    GoRoute(
+                      path: 'followers',
+                      builder: (context, state) => FollowListScreen(
+                        username: state.pathParameters['username']!,
+                        kind: FollowListKind.followers,
+                        onPlayerTap: (u) => context.push('/players/${Uri.encodeComponent(u)}'),
+                      ),
+                    ),
+                    GoRoute(
+                      path: 'following',
+                      builder: (context, state) => FollowListScreen(
+                        username: state.pathParameters['username']!,
+                        kind: FollowListKind.following,
+                        onPlayerTap: (u) => context.push('/players/${Uri.encodeComponent(u)}'),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ]),
           StatefulShellBranch(routes: [
             GoRoute(path: '/tv', builder: (context, state) => ComingSoonScreen(title: 'Watch', onLogoTap: () => context.go('/'))),
@@ -190,8 +232,41 @@ GoRouter buildAppRouter({
                 onSignUp: () => context.push('/signup'),
                 onLogoTap: () => context.go('/'),
                 onEditProfile: () => context.push('/account/profile'),
+                onOpenProgress: () => context.push('/account/progress'),
               ),
-              routes: [GoRoute(path: 'profile', builder: (context, state) => const EditProfileScreen())],
+              routes: [
+                GoRoute(path: 'profile', builder: (context, state) => const EditProfileScreen()),
+                GoRoute(
+                  path: 'progress',
+                  builder: (context, state) => MyProgressScreen(onGoTo: (p) => context.push(p), onLogIn: () => context.push('/login')),
+                  routes: [
+                    GoRoute(
+                      path: 'xp',
+                      builder: (context, state) => HistoryListScreen<XpEvent>(
+                        title: AppLocalizations.of(context).progressHistoryXp,
+                        provider: xpHistoryProvider,
+                        rowBuilder: xpRow,
+                      ),
+                    ),
+                    GoRoute(
+                      path: 'score',
+                      builder: (context, state) => HistoryListScreen<SxScoreEvent>(
+                        title: AppLocalizations.of(context).progressHistoryScore,
+                        provider: scoreHistoryProvider,
+                        rowBuilder: scoreRow,
+                      ),
+                    ),
+                    GoRoute(
+                      path: 'coins',
+                      builder: (context, state) => HistoryListScreen<CoinTransaction>(
+                        title: AppLocalizations.of(context).progressHistoryCoins,
+                        provider: coinHistoryProvider,
+                        rowBuilder: coinRow,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ]),
         ],

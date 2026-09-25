@@ -101,6 +101,7 @@ class HomeScreen extends ConsumerWidget {
                 trailing: const Icon(Icons.chevron_right),
                 onTap: () => onGoTo('/hall-of-fame'),
               ),
+              ListTile(key: const Key('home-link-players'), title: Text(l10n.playersTitle), trailing: const Icon(Icons.chevron_right), onTap: () => onGoTo('/players')),
             ],
           ),
         ),

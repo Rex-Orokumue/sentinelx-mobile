@@ -85,6 +85,26 @@ void main() {
     expect(find.text('Could not sign out. Please try again.'), findsOneWidget);
     expect(tester.widget<TextButton>(find.byKey(const Key('account-sign-out'))).onPressed, isNotNull);
   });
+
+  testWidgets('signed in: the My progress tile opens progress', (tester) async {
+    var opened = 0;
+    await tester.pumpWidget(_app(
+      [meProvider.overrideWith((ref) async => _me())],
+      AccountScreen(onLogIn: () {}, onSignUp: () {}, onLogoTap: () {}, onOpenProgress: () => opened++),
+    ));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('account-progress')));
+    expect(opened, 1);
+  });
+
+  testWidgets('signed out: there is no My progress tile', (tester) async {
+    await tester.pumpWidget(_app(
+      [meProvider.overrideWith((ref) async => null)],
+      AccountScreen(onLogIn: () {}, onSignUp: () {}, onLogoTap: () {}, onOpenProgress: () {}),
+    ));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('account-progress')), findsNothing);
+  });
 }
 
 class _FailingSignOutRepository implements AuthRepository {

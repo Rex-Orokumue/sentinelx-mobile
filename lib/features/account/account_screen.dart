@@ -13,12 +13,14 @@ class AccountScreen extends ConsumerStatefulWidget {
     required this.onSignUp,
     required this.onLogoTap,
     this.onEditProfile,
+    this.onOpenProgress,
   });
 
   final VoidCallback onLogIn;
   final VoidCallback onSignUp;
   final VoidCallback onLogoTap;
   final VoidCallback? onEditProfile;
+  final VoidCallback? onOpenProgress;
 
   @override
   ConsumerState<AccountScreen> createState() => _AccountScreenState();
@@ -68,6 +70,13 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
                         key: const Key('account-edit-profile'),
                         onPressed: widget.onEditProfile,
                         child: Text(l10n.cmpAccountEditProfile),
+                      ),
+                    if (widget.onOpenProgress != null)
+                      ListTile(
+                        key: const Key('account-progress'),
+                        title: Text(l10n.accountMyProgress),
+                        trailing: const Icon(Icons.chevron_right),
+                        onTap: widget.onOpenProgress,
                       ),
                     TextButton(
                       key: const Key('account-sign-out'),
