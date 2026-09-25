@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 
 import '../config/remote_config.dart';
 import 'models.dart';
+import 'players_models.dart';
 import 'progress_models.dart';
 
 class ApiException implements Exception {
@@ -38,6 +39,17 @@ class ApiClient {
     'postSessionStart': 'post /api/mobile/v1/session/start',
     'postOnboardingUsername': 'post /api/mobile/v1/onboarding/username',
     'getHome': 'get /api/mobile/v1/home',
+    'searchPlayers': 'get /api/mobile/v1/players',
+    'getPlayerProfile': 'get /api/mobile/v1/players/{username}',
+    'getPlayerFollowers': 'get /api/mobile/v1/players/{username}/followers',
+    'getPlayerFollowing': 'get /api/mobile/v1/players/{username}/following',
+    'getMyFollows': 'get /api/mobile/v1/me/follows',
+    'followPlayer': 'put /api/mobile/v1/players/{username}/follow',
+    'unfollowPlayer': 'delete /api/mobile/v1/players/{username}/follow',
+    'getMyProgress': 'get /api/mobile/v1/me/progress',
+    'getMyXpEvents': 'get /api/mobile/v1/me/xp-events',
+    'getMySxScoreEvents': 'get /api/mobile/v1/me/sx-score-events',
+    'getMyCoinTransactions': 'get /api/mobile/v1/me/coin-transactions',
   };
 
   static const _base = '/api/mobile/v1';
@@ -66,13 +78,14 @@ class ApiClient {
     return ApiClient(dio: dio);
   }
 
-  Future<T> _send<T>(String method, String path, T Function(Object? data) parse, {Object? body}) async {
+  Future<T> _send<T>(String method, String path, T Function(Object? data) parse,
+      {Object? body, Map<String, String>? headers}) async {
     final Response<dynamic> res;
     try {
       res = await _dio.request<dynamic>(
         '$_base$path',
         data: body,
-        options: Options(method: method, responseType: ResponseType.json),
+        options: Options(method: method, responseType: ResponseType.json, headers: headers),
       );
     } on DioException catch (e) {
       throw ApiException(status: 0, code: 'network', message: e.message ?? 'Network error');
@@ -191,5 +204,60 @@ class ApiClient {
         'GET',
         _withQuery('/hall-of-fame', {'game': game}),
         (d) => HallOfFame.fromJson(d! as Map<String, dynamic>),
+      );
+
+  static String _enc(String username) => Uri.encodeComponent(username);
+
+  Future<List<PlayerListItem>> searchPlayers({String q = ''}) => _send(
+        'GET',
+        _withQuery('/players', {'q': q.isEmpty ? null : q}),
+        (d) => (d! as List<dynamic>).map((e) => PlayerListItem.fromJson(e as Map<String, dynamic>)).toList(),
+      );
+
+  Future<PlayerProfile> getPlayerProfile(String username) =>
+      _send('GET', '/players/${_enc(username)}', (d) => PlayerProfile.fromJson(d! as Map<String, dynamic>));
+
+  Future<List<FollowEntry>> getPlayerFollowers(String username) => _send(
+        'GET',
+        '/players/${_enc(username)}/followers',
+        (d) => (d! as List<dynamic>).map((e) => FollowEntry.fromJson(e as Map<String, dynamic>)).toList(),
+      );
+
+  Future<List<FollowEntry>> getPlayerFollowing(String username) => _send(
+        'GET',
+        '/players/${_enc(username)}/following',
+        (d) => (d! as List<dynamic>).map((e) => FollowEntry.fromJson(e as Map<String, dynamic>)).toList(),
+      );
+
+  Future<FollowSets> getMyFollows() => _send('GET', '/me/follows', (d) => FollowSets.fromJson(d! as Map<String, dynamic>));
+
+  Future<FollowOutcome> followPlayer(String username, {required String idempotencyKey}) => _send(
+        'PUT',
+        '/players/${_enc(username)}/follow',
+        (d) => FollowOutcome.fromJson(d! as Map<String, dynamic>),
+        headers: {'Idempotency-Key': idempotencyKey},
+      );
+
+  Future<FollowOutcome> unfollowPlayer(String username) =>
+      _send('DELETE', '/players/${_enc(username)}/follow', (d) => FollowOutcome.fromJson(d! as Map<String, dynamic>));
+
+  Future<MyProgress> getMyProgress() => _send('GET', '/me/progress', (d) => MyProgress.fromJson(d! as Map<String, dynamic>));
+
+  Future<HistoryPage<XpEvent>> getMyXpEvents({String? cursor}) => _send(
+        'GET',
+        _withQuery('/me/xp-events', {'cursor': cursor}),
+        (d) => HistoryPage.parse(d! as Map<String, dynamic>, XpEvent.fromJson),
+      );
+
+  Future<HistoryPage<SxScoreEvent>> getMySxScoreEvents({String? cursor}) => _send(
+        'GET',
+        _withQuery('/me/sx-score-events', {'cursor': cursor}),
+        (d) => HistoryPage.parse(d! as Map<String, dynamic>, SxScoreEvent.fromJson),
+      );
+
+  Future<HistoryPage<CoinTransaction>> getMyCoinTransactions({String? cursor}) => _send(
+        'GET',
+        _withQuery('/me/coin-transactions', {'cursor': cursor}),
+        (d) => HistoryPage.parse(d! as Map<String, dynamic>, CoinTransaction.fromJson),
       );
 }
