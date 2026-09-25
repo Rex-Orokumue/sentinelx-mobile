@@ -83,6 +83,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeUpcomingHeading => 'Upcoming';
 
   @override
+  String get homeLoadError => 'Something went wrong loading this page.';
+
+  @override
   String get homeTopPlayersHeading => 'Top Players';
 
   @override

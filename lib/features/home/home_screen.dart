@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../core/auth/auth_providers.dart';
-import '../../core/auth/onboarding_gate.dart';
 import '../../core/l10n/gen/app_localizations.dart';
 import '../../core/providers.dart';
 import 'home_providers.dart';
@@ -14,16 +12,11 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(sessionStartedProvider); // side-effecting; result not rendered
-    // Catches a signed-in user with no username who reached Home some way
-    // other than the confirm-link flow (incoming_links.dart routes that case
-    // straight to /onboarding/username already) - chiefly a fresh Google
-    // sign-in, which has no username metadata either. Watched (not listened
-    // to) so a gate that is already `username` on first build still redirects;
-    // navigation is deferred a frame since it cannot run mid-build.
-    if (ref.watch(onboardingGateProvider) == OnboardingGate.username) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => onGoTo('/onboarding/username'));
-    }
+    ref.listen(homeProvider, (previous, next) {
+      if (next case AsyncError(:final error, :final stackTrace)) {
+        ref.read(errorReporterProvider).report(error, stackTrace, route: '/');
+      }
+    });
     final home = ref.watch(homeProvider);
     final l10n = AppLocalizations.of(context);
     final isSignedIn = ref.watch(meProvider).asData?.value != null;
@@ -41,7 +34,7 @@ class HomeScreen extends ConsumerWidget {
       ),
       body: home.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (e, _) => Center(child: Text('Failed to load: $e')),
+        error: (e, _) => Center(child: Text(l10n.homeLoadError)),
         data: (summary) => RefreshIndicator(
           onRefresh: () async => ref.invalidate(homeProvider),
           child: ListView(

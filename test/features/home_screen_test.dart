@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sentinelx_mobile/core/api/models.dart';
-import 'package:sentinelx_mobile/core/auth/auth_providers.dart';
-import 'package:sentinelx_mobile/core/auth/onboarding_gate.dart';
 import 'package:sentinelx_mobile/core/l10n/gen/app_localizations.dart';
 import 'package:sentinelx_mobile/features/home/home_providers.dart';
 import 'package:sentinelx_mobile/features/home/home_repository.dart';
@@ -65,41 +63,25 @@ void main() {
     expect(calls, greaterThan(1));
   });
 
-  testWidgets('redirects to onboarding username when the gate says so (e.g. a fresh Google sign-in)', (tester) async {
-    String? goneTo;
+  testWidgets('a load failure shows generic localized text, not the raw exception', (tester) async {
     await tester.pumpWidget(ProviderScope(
       retry: (_, _) => null,
-      overrides: [
-        homeRepositoryProvider.overrideWithValue(_FakeHomeRepository(_summary())),
-        onboardingGateProvider.overrideWithValue(OnboardingGate.username),
-      ],
+      overrides: [homeRepositoryProvider.overrideWithValue(_FailingHomeRepository())],
       child: MaterialApp(
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
-        home: HomeScreen(onGoTo: (path) => goneTo = path),
+        home: HomeScreen(onGoTo: (_) {}),
       ),
     ));
     await tester.pumpAndSettle();
-    expect(goneTo, '/onboarding/username');
+    expect(find.text('Something went wrong loading this page.'), findsOneWidget);
+    expect(find.textContaining('Exception'), findsNothing);
   });
+}
 
-  testWidgets('does not redirect when the gate is clear', (tester) async {
-    String? goneTo;
-    await tester.pumpWidget(ProviderScope(
-      retry: (_, _) => null,
-      overrides: [
-        homeRepositoryProvider.overrideWithValue(_FakeHomeRepository(_summary())),
-        onboardingGateProvider.overrideWithValue(OnboardingGate.none),
-      ],
-      child: MaterialApp(
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        home: HomeScreen(onGoTo: (path) => goneTo = path),
-      ),
-    ));
-    await tester.pumpAndSettle();
-    expect(goneTo, isNull);
-  });
+class _FailingHomeRepository implements HomeRepository {
+  @override
+  Future<HomeSummary> fetchHome() async => throw Exception('network down');
 }
 
 class _CountingRepository implements HomeRepository {

@@ -31,6 +31,7 @@
   "navTv": "TV",
   "navMore": "More",
   "homeUpcomingHeading": "Upcoming",
+  "homeLoadError": "Something went wrong loading this page.",
   "homeTopPlayersHeading": "Top Players",
   "homeFullRankingsLink": "Full Rankings",
   "authMetaLogin": "Log in · SentinelX Esports",

@@ -31,6 +31,7 @@
   "navTv": "TV",
   "navMore": "Plus",
   "homeUpcomingHeading": "À venir",
+  "homeLoadError": "Une erreur s'est produite lors du chargement de cette page.",
   "homeTopPlayersHeading": "Meilleurs joueurs",
   "homeFullRankingsLink": "Classement complet",
   "authMetaLogin": "Connexion · SentinelX Esports",

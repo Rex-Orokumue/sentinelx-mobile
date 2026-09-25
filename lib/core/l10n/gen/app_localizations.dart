@@ -242,6 +242,12 @@ abstract class AppLocalizations {
   /// **'Upcoming'**
   String get homeUpcomingHeading;
 
+  /// No description provided for @homeLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong loading this page.'**
+  String get homeLoadError;
+
   /// No description provided for @homeTopPlayersHeading.
   ///
   /// In en, this message translates to:
