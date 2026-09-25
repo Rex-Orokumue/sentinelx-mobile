@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/auth/auth_providers.dart';
 import '../../core/auth/auth_repository.dart';
 import '../../core/l10n/gen/app_localizations.dart';
+import '../../core/providers.dart';
 
 class OnboardingUsernameScreen extends ConsumerStatefulWidget {
   const OnboardingUsernameScreen({super.key, required this.onClaimed});
@@ -37,6 +38,14 @@ class _OnboardingUsernameScreenState extends ConsumerState<OnboardingUsernameScr
     setState(() { _loading = true; _errorCode = null; });
     try {
       await ref.read(authRepositoryProvider).claimUsername(_username.text.trim());
+      // The router's onboarding guard reads /me; refresh it before leaving so it
+      // sees the new username instead of bouncing the user straight back here.
+      ref.invalidate(meProvider);
+      try {
+        await ref.read(meProvider.future);
+      } catch (_) {
+        // A failed refresh must not undo a successful claim.
+      }
       if (mounted) widget.onClaimed();
     } on AuthException catch (e) {
       if (mounted) setState(() => _errorCode = e.code);
