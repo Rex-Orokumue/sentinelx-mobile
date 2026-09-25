@@ -15,11 +15,28 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
   final _email = TextEditingController();
   bool _loading = false;
   bool _sent = false;
+  bool _error = false;
+
+  @override
+  void dispose() {
+    _email.dispose();
+    super.dispose();
+  }
 
   Future<void> _submit() async {
-    setState(() => _loading = true);
-    await ref.read(authRepositoryProvider).requestReset(_email.text.trim());
-    if (mounted) setState(() { _loading = false; _sent = true; });
+    setState(() {
+      _loading = true;
+      _sent = false;
+      _error = false;
+    });
+    try {
+      await ref.read(authRepositoryProvider).requestReset(_email.text.trim());
+      if (mounted) setState(() => _sent = true);
+    } catch (_) {
+      if (mounted) setState(() => _error = true);
+    } finally {
+      if (mounted) setState(() => _loading = false);
+    }
   }
 
   @override
@@ -49,6 +66,10 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
               if (_sent) ...[
                 const SizedBox(height: 16),
                 Text(l10n.authNoticesResetSent),
+              ],
+              if (_error) ...[
+                const SizedBox(height: 16),
+                Text(l10n.authErrorsForgotFailed, style: const TextStyle(color: Colors.redAccent)),
               ],
             ],
           ),

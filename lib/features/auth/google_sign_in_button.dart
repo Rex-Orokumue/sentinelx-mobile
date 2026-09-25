@@ -16,15 +16,24 @@ class GoogleSignInButton extends ConsumerStatefulWidget {
 
 class _GoogleSignInButtonState extends ConsumerState<GoogleSignInButton> {
   bool _loading = false;
-  String? _error;
+  String? _errorCode;
+
+  // null = show nothing (the user backed out of the account picker).
+  String? _errorText(AppLocalizations l10n, String code) => switch (code) {
+        'google_canceled' => null,
+        'google_not_configured' => l10n.authErrorsGoogleNotConfigured,
+        _ => l10n.authErrorsGoogleFailed,
+      };
 
   Future<void> _tap() async {
-    setState(() { _loading = true; _error = null; });
+    setState(() { _loading = true; _errorCode = null; });
     try {
       await ref.read(authRepositoryProvider).signInWithGoogle();
-      widget.onSignedIn();
+      if (mounted) widget.onSignedIn();
     } on AuthException catch (e) {
-      setState(() => _error = e.message);
+      if (mounted) setState(() => _errorCode = e.code);
+    } catch (_) {
+      if (mounted) setState(() => _errorCode = 'unexpected');
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -33,6 +42,7 @@ class _GoogleSignInButtonState extends ConsumerState<GoogleSignInButton> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final message = _errorCode == null ? null : _errorText(l10n, _errorCode!);
     return Column(
       children: [
         OutlinedButton(
@@ -40,7 +50,7 @@ class _GoogleSignInButtonState extends ConsumerState<GoogleSignInButton> {
           onPressed: _loading ? null : _tap,
           child: Text(l10n.authCommonContinueWithGoogle),
         ),
-        if (_error != null) Text(_error!, style: const TextStyle(color: Colors.redAccent)),
+        if (message != null) Text(message, style: const TextStyle(color: Colors.redAccent)),
       ],
     );
   }

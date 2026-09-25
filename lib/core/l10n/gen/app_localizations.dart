@@ -248,6 +248,42 @@ abstract class AppLocalizations {
   /// **'Something went wrong loading this page.'**
   String get homeLoadError;
 
+  /// No description provided for @accountTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get accountTitle;
+
+  /// No description provided for @accountLogIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in'**
+  String get accountLogIn;
+
+  /// No description provided for @accountCreateAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create account'**
+  String get accountCreateAccount;
+
+  /// No description provided for @accountSignOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get accountSignOut;
+
+  /// No description provided for @accountSigningOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Signing out…'**
+  String get accountSigningOut;
+
+  /// No description provided for @accountSignOutFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not sign out. Please try again.'**
+  String get accountSignOutFailed;
+
   /// No description provided for @homeTopPlayersHeading.
   ///
   /// In en, this message translates to:
@@ -733,6 +769,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Could not update your password. Please try again.'**
   String get authErrorsResetFailed;
+
+  /// No description provided for @authErrorsForgotFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not send the reset link. Please try again.'**
+  String get authErrorsForgotFailed;
+
+  /// No description provided for @authErrorsResendFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not resend the confirmation link. Please try again.'**
+  String get authErrorsResendFailed;
+
+  /// No description provided for @authErrorsGoogleNotConfigured.
+  ///
+  /// In en, this message translates to:
+  /// **'Google sign-in isn\'t set up yet.'**
+  String get authErrorsGoogleNotConfigured;
+
+  /// No description provided for @authErrorsGoogleFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Google sign-in failed. Please try again.'**
+  String get authErrorsGoogleFailed;
 
   /// No description provided for @termsEyebrow.
   ///

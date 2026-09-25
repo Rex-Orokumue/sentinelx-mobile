@@ -16,12 +16,24 @@ class ResetPasswordScreen extends ConsumerStatefulWidget {
 class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
   final _password = TextEditingController();
   bool _loading = false;
+  bool _error = false;
+
+  @override
+  void dispose() {
+    _password.dispose();
+    super.dispose();
+  }
 
   Future<void> _submit() async {
-    setState(() => _loading = true);
+    setState(() {
+      _loading = true;
+      _error = false;
+    });
     try {
       await ref.read(authRepositoryProvider).resetPassword(_password.text);
-      widget.onDone();
+      if (mounted) widget.onDone();
+    } catch (_) {
+      if (mounted) setState(() => _error = true);
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -51,6 +63,10 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                 onPressed: _loading ? null : _submit,
                 child: Text(_loading ? l10n.authResetSubmitting : l10n.authResetSubmit),
               ),
+              if (_error) ...[
+                const SizedBox(height: 16),
+                Text(l10n.authErrorsResetFailed, style: const TextStyle(color: Colors.redAccent)),
+              ],
             ],
           ),
         ),

@@ -86,6 +86,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeLoadError => 'Something went wrong loading this page.';
 
   @override
+  String get accountTitle => 'Account';
+
+  @override
+  String get accountLogIn => 'Log in';
+
+  @override
+  String get accountCreateAccount => 'Create account';
+
+  @override
+  String get accountSignOut => 'Sign out';
+
+  @override
+  String get accountSigningOut => 'Signing out…';
+
+  @override
+  String get accountSignOutFailed => 'Could not sign out. Please try again.';
+
+  @override
   String get homeTopPlayersHeading => 'Top Players';
 
   @override
@@ -354,6 +372,22 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get authErrorsResetFailed =>
       'Could not update your password. Please try again.';
+
+  @override
+  String get authErrorsForgotFailed =>
+      'Could not send the reset link. Please try again.';
+
+  @override
+  String get authErrorsResendFailed =>
+      'Could not resend the confirmation link. Please try again.';
+
+  @override
+  String get authErrorsGoogleNotConfigured =>
+      'Google sign-in isn\'t set up yet.';
+
+  @override
+  String get authErrorsGoogleFailed =>
+      'Google sign-in failed. Please try again.';
 
   @override
   String get termsEyebrow => 'Legal';

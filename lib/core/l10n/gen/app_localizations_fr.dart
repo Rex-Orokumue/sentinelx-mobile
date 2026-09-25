@@ -87,6 +87,25 @@ class AppLocalizationsFr extends AppLocalizations {
       'Une erreur s\'est produite lors du chargement de cette page.';
 
   @override
+  String get accountTitle => 'Compte';
+
+  @override
+  String get accountLogIn => 'Se connecter';
+
+  @override
+  String get accountCreateAccount => 'Créer un compte';
+
+  @override
+  String get accountSignOut => 'Se déconnecter';
+
+  @override
+  String get accountSigningOut => 'Déconnexion…';
+
+  @override
+  String get accountSignOutFailed =>
+      'Impossible de se déconnecter. Veuillez réessayer.';
+
+  @override
   String get homeTopPlayersHeading => 'Meilleurs joueurs';
 
   @override
@@ -361,6 +380,22 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get authErrorsResetFailed =>
       'Impossible de mettre à jour votre mot de passe. Veuillez réessayer.';
+
+  @override
+  String get authErrorsForgotFailed =>
+      'Impossible d\'envoyer le lien de réinitialisation. Veuillez réessayer.';
+
+  @override
+  String get authErrorsResendFailed =>
+      'Impossible de renvoyer le lien de confirmation. Veuillez réessayer.';
+
+  @override
+  String get authErrorsGoogleNotConfigured =>
+      'La connexion Google n\'est pas encore configurée.';
+
+  @override
+  String get authErrorsGoogleFailed =>
+      'La connexion Google a échoué. Veuillez réessayer.';
 
   @override
   String get termsEyebrow => 'Mentions légales';

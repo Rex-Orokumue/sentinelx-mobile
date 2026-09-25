@@ -19,6 +19,12 @@ class _OnboardingUsernameScreenState extends ConsumerState<OnboardingUsernameScr
   bool _loading = false;
   String? _errorCode;
 
+  @override
+  void dispose() {
+    _username.dispose();
+    super.dispose();
+  }
+
   String _errorText(AppLocalizations l10n, String code) => switch (code) {
         'username_too_short' => l10n.authErrorsUsernameTooShort,
         'username_too_long' => l10n.authErrorsUsernameTooLong,
@@ -31,9 +37,11 @@ class _OnboardingUsernameScreenState extends ConsumerState<OnboardingUsernameScr
     setState(() { _loading = true; _errorCode = null; });
     try {
       await ref.read(authRepositoryProvider).claimUsername(_username.text.trim());
-      widget.onClaimed();
+      if (mounted) widget.onClaimed();
     } on AuthException catch (e) {
-      setState(() => _errorCode = e.code);
+      if (mounted) setState(() => _errorCode = e.code);
+    } catch (_) {
+      if (mounted) setState(() => _errorCode = 'unexpected');
     } finally {
       if (mounted) setState(() => _loading = false);
     }

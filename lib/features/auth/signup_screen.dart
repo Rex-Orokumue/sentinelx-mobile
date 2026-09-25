@@ -35,6 +35,14 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
   bool _loading = false;
   String? _errorCode;
 
+  @override
+  void dispose() {
+    _username.dispose();
+    _email.dispose();
+    _password.dispose();
+    super.dispose();
+  }
+
   String _errorText(AppLocalizations l10n, String code) => switch (code) {
         'invalid_email' => l10n.authErrorsInvalidEmail,
         'password_too_short' => l10n.authErrorsPasswordTooShort,
@@ -58,9 +66,11 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
             ref: widget.initialRef,
             locale: locale,
           );
-      widget.onSignedUp(_email.text.trim());
+      if (mounted) widget.onSignedUp(_email.text.trim());
     } on AuthException catch (e) {
-      setState(() => _errorCode = e.code);
+      if (mounted) setState(() => _errorCode = e.code);
+    } catch (_) {
+      if (mounted) setState(() => _errorCode = 'unexpected');
     } finally {
       if (mounted) setState(() => _loading = false);
     }

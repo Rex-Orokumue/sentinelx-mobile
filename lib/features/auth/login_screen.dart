@@ -23,6 +23,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   bool _loading = false;
   String? _errorCode;
   bool _resending = false;
+  bool _resendFailed = false;
+
+  @override
+  void dispose() {
+    _email.dispose();
+    _password.dispose();
+    super.dispose();
+  }
 
   String _errorText(AppLocalizations l10n, String code) => switch (code) {
         'invalid_email' => l10n.authErrorsInvalidEmail,
@@ -39,18 +47,25 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     });
     try {
       await ref.read(authRepositoryProvider).signInWithPassword(email: _email.text.trim(), password: _password.text);
-      widget.onLoggedIn();
+      if (mounted) widget.onLoggedIn();
     } on AuthException catch (e) {
-      setState(() => _errorCode = e.code);
+      if (mounted) setState(() => _errorCode = e.code);
+    } catch (_) {
+      if (mounted) setState(() => _errorCode = 'unexpected');
     } finally {
       if (mounted) setState(() => _loading = false);
     }
   }
 
   Future<void> _resend() async {
-    setState(() => _resending = true);
+    setState(() {
+      _resending = true;
+      _resendFailed = false;
+    });
     try {
       await ref.read(authRepositoryProvider).resendConfirmation(_email.text.trim());
+    } catch (_) {
+      if (mounted) setState(() => _resendFailed = true);
     } finally {
       if (mounted) setState(() => _resending = false);
     }
@@ -92,6 +107,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   onPressed: _resending ? null : _resend,
                   child: Text(_resending ? l10n.authLoginResending : l10n.authLoginResend),
                 ),
+                if (_resendFailed) ...[
+                  const SizedBox(height: 4),
+                  Text(l10n.authErrorsResendFailed, style: const TextStyle(color: Colors.redAccent)),
+                ],
               ],
               const SizedBox(height: 16),
               ElevatedButton(
