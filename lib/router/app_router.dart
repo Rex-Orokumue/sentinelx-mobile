@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../core/auth/auth_providers.dart';
 import '../core/providers.dart';
 import '../core/routing/web_links.dart';
 import '../features/account/account_screen.dart';
@@ -17,16 +18,28 @@ import '../features/tournaments/bracket_screen.dart';
 import '../features/tournaments/tournament_detail_screen.dart';
 import '../features/tournaments/tournament_list_screen.dart';
 import '../shared/widgets/coming_soon_screen.dart';
+import 'auth_redirect.dart';
 
-GoRouter buildAppRouter({bool debugTools = false, String initialLocation = '/'}) {
+GoRouter buildAppRouter({
+  bool debugTools = false,
+  String initialLocation = '/',
+  AuthGateSnapshot Function()? authGate,
+  Listenable? refreshListenable,
+}) {
   return GoRouter(
     initialLocation: initialLocation,
+    refreshListenable: refreshListenable,
     // App Links (and later, push/bell taps) hand go_router the raw web URL, which is not itself
     // a valid route path. resolveWebLink() is the single place that maps it to one.
     redirect: (context, state) {
       final incoming = state.uri.toString();
       final resolved = resolveWebLink(incoming);
       if (resolved != null && resolved != incoming) return resolved;
+      final gate = authGate?.call();
+      if (gate != null) {
+        final authRedirect = evaluateAuthRedirect(gate, state.matchedLocation);
+        if (authRedirect != null) return authRedirect;
+      }
       return null;
     },
     routes: [
@@ -117,7 +130,26 @@ GoRouter buildAppRouter({bool debugTools = false, String initialLocation = '/'})
 }
 
 final routerProvider = Provider<GoRouter>((ref) {
-  final router = buildAppRouter(debugTools: ref.watch(appConfigProvider).debugTools);
-  ref.onDispose(router.dispose);
+  final refresh = _RouterRefresh();
+  ref.listen(sessionProvider, (_, _) => refresh.ping());
+  ref.listen(meProvider, (_, _) => refresh.ping());
+  final router = buildAppRouter(
+    debugTools: ref.watch(appConfigProvider).debugTools,
+    authGate: () => AuthGateSnapshot(
+      isLoading: ref.read(sessionProvider).isLoading ||
+          (ref.read(sessionProvider).value != null && ref.read(meProvider).isLoading),
+      isSignedIn: ref.read(meProvider).asData?.value != null,
+      onboardingGate: ref.read(onboardingGateProvider),
+    ),
+    refreshListenable: refresh,
+  );
+  ref.onDispose(() {
+    router.dispose();
+    refresh.dispose();
+  });
   return router;
 });
+
+class _RouterRefresh extends ChangeNotifier {
+  void ping() => notifyListeners();
+}

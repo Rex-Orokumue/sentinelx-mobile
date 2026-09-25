@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sentinelx_mobile/core/auth/onboarding_gate.dart';
 import 'package:sentinelx_mobile/core/l10n/gen/app_localizations.dart';
 import 'package:sentinelx_mobile/features/tournaments/tournaments_providers.dart';
 import 'package:sentinelx_mobile/models/tournament.dart';
 import 'package:sentinelx_mobile/router/app_router.dart';
+import 'package:sentinelx_mobile/router/auth_redirect.dart';
 
 import '../fakes/fake_tournaments_repository.dart';
 import '../support/pump_app.dart';
@@ -109,5 +111,21 @@ void main() {
 
     expect(router.routerDelegate.currentConfiguration.uri.toString(), '/tournaments');
     expect(find.text('Tournaments'), findsOneWidget);
+  });
+
+  testWidgets('a signed-in user needing a username is redirected there on initial load', (tester) async {
+    final router = buildAppRouter(
+      initialLocation: '/tournaments',
+      authGate: () => const AuthGateSnapshot(isLoading: false, isSignedIn: true, onboardingGate: OnboardingGate.username),
+    );
+    await tester.pumpWidget(ProviderScope(
+      child: MaterialApp.router(
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        routerConfig: router,
+      ),
+    ));
+    await tester.pumpAndSettle();
+    expect(router.routerDelegate.currentConfiguration.uri.toString(), '/onboarding/username');
   });
 }
