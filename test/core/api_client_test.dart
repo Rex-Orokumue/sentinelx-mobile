@@ -213,4 +213,12 @@ void main() {
     expect(summary.hallOfFame, isNull);
     expect(summary.stats.playerCount, 42);
   });
+
+  test('a malformed successful response becomes ApiException(bad_response), not a raw type error', () async {
+    final adapter = _FakeAdapter((_) => _json(200, {'data': {'unexpected': true}})); // missing MeResponse's required fields
+    await expectLater(
+      _client(adapter).getMe(),
+      throwsA(isA<ApiException>().having((e) => e.code, 'code', 'bad_response').having((e) => e.status, 'status', 200)),
+    );
+  });
 }

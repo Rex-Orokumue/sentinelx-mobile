@@ -87,15 +87,20 @@ class SupabaseAuthRepository implements AuthRepository {
     if (_googleWebClientId.isEmpty) {
       throw const AuthException('google_not_configured', 'Google sign-in is not set up yet.');
     }
-    final googleSignIn = GoogleSignIn.instance;
-    await googleSignIn.initialize(serverClientId: _googleWebClientId);
-    final account = await googleSignIn.authenticate();
-    final idToken = account.authentication.idToken;
-    if (idToken == null) {
-      throw const AuthException('google_no_token', 'Google sign-in did not return a token.');
-    }
     try {
+      final googleSignIn = GoogleSignIn.instance;
+      await googleSignIn.initialize(serverClientId: _googleWebClientId);
+      final account = await googleSignIn.authenticate();
+      final idToken = account.authentication.idToken;
+      if (idToken == null) {
+        throw const AuthException('google_no_token', 'Google sign-in did not return a token.');
+      }
       await _auth.signInWithIdToken(provider: OAuthProvider.google, idToken: idToken);
+    } on GoogleSignInException catch (e) {
+      if (e.code == GoogleSignInExceptionCode.canceled) {
+        throw const AuthException('google_canceled', 'Sign-in was canceled.');
+      }
+      throw AuthException('google_sign_in_failed', e.description ?? 'Google sign-in failed.');
     } on AuthApiException catch (e) {
       throw AuthException(e.code ?? 'signup_failed', e.message);
     }

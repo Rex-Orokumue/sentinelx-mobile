@@ -80,7 +80,11 @@ class ApiClient {
     final status = res.statusCode ?? 0;
     final json = res.data;
     if (status >= 200 && status < 300 && json is Map<String, dynamic> && json.containsKey('data')) {
-      return parse(json['data']);
+      try {
+        return parse(json['data']);
+      } catch (_) {
+        throw ApiException(status: status, code: 'bad_response', message: 'Could not read the server response.');
+      }
     }
     if (json is Map<String, dynamic> && json['error'] is Map<String, dynamic>) {
       final err = json['error'] as Map<String, dynamic>;

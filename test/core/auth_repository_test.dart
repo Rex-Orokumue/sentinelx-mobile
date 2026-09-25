@@ -124,4 +124,13 @@ void main() {
     // ignore: unused_element, prefer_function_declarations_over_variables
     Future<void> Function(AuthRepository) _ = (r) => r.signInWithGoogle();
   });
+
+  test('signInWithGoogle throws google_not_configured before touching the Google SDK when no client id is set', () async {
+    final rec = _Recording();
+    final repo = SupabaseAuthRepository(_FakeAuth(rec), _FakeApi(rec)); // googleWebClientId defaults to ''
+    await expectLater(
+      repo.signInWithGoogle(),
+      throwsA(isA<AuthException>().having((e) => e.code, 'code', 'google_not_configured')),
+    );
+  });
 }
