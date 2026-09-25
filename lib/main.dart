@@ -8,6 +8,7 @@ import 'app.dart';
 import 'core/config/app_config.dart';
 import 'core/providers.dart';
 import 'core/routing/incoming_links.dart';
+import 'core/session/session_lifecycle.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,5 +34,8 @@ Future<void> main() async {
 
   runApp(UncontrolledProviderScope(container: container, child: const SentinelXApp()));
 
+  // listen, not read: Riverpod 3 pauses a provider's own ref.listen subscriptions
+  // while nothing is listening to that provider, so a bare read would never fire.
+  container.listen(sessionLifecycleProvider, (_, _) {});
   container.read(incomingLinkListenerProvider);
 }
