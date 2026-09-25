@@ -655,4 +655,349 @@ class AppLocalizationsFr extends AppLocalizations {
   String hallOfFameRunnerUp(String name) {
     return 'Finaliste : $name';
   }
+
+  @override
+  String get commonLoadError =>
+      'Chargement impossible. Touchez pour réessayer.';
+
+  @override
+  String get playersTitle => 'Joueurs';
+
+  @override
+  String get playersSearchHint => 'Rechercher des joueurs';
+
+  @override
+  String get playersEmpty => 'Aucun joueur trouvé.';
+
+  @override
+  String get playersNotFound => 'Joueur introuvable.';
+
+  @override
+  String get profileFollow => 'Suivre';
+
+  @override
+  String get profileFollowing => 'Abonné';
+
+  @override
+  String get profileFollowsYou => 'Vous suit';
+
+  @override
+  String profileFollowersCount(int n) {
+    return '$n abonnés';
+  }
+
+  @override
+  String profileFollowingCount(int n) {
+    return '$n abonnements';
+  }
+
+  @override
+  String get profileStatMatches => 'Matchs';
+
+  @override
+  String get profileStatWins => 'Victoires';
+
+  @override
+  String get profileStatLosses => 'Défaites';
+
+  @override
+  String get profileStatGoalsFor => 'Buts marqués';
+
+  @override
+  String get profileStatGoalsAgainst => 'Buts encaissés';
+
+  @override
+  String get profileStatTitles => 'Titres';
+
+  @override
+  String get profileStatTournaments => 'Tournois';
+
+  @override
+  String get profileStatStreak => 'Série de victoires';
+
+  @override
+  String get profileStatRank => 'Rang mondial';
+
+  @override
+  String profileRankOf(int rank, int total) {
+    return 'n° $rank sur $total';
+  }
+
+  @override
+  String get profileRankUnranked => 'Non classé';
+
+  @override
+  String profileSxScore(int n) {
+    return 'Score SX $n';
+  }
+
+  @override
+  String get profileCategoryStats => 'Buts par catégorie';
+
+  @override
+  String get profileTitlesHeading => 'Titres';
+
+  @override
+  String get profileNoTitles => 'Aucun titre pour le moment.';
+
+  @override
+  String get profileRecentMatches => 'Matchs récents';
+
+  @override
+  String get profileNoMatches => 'Aucun match pour le moment.';
+
+  @override
+  String get profileOutcomeWin => 'Victoire';
+
+  @override
+  String get profileOutcomeLoss => 'Défaite';
+
+  @override
+  String get profileOutcomeDraw => 'Nul';
+
+  @override
+  String get profileAchievements => 'Succès';
+
+  @override
+  String profileAchievementsProgress(int unlocked, int total) {
+    return '$unlocked/$total débloqués';
+  }
+
+  @override
+  String get profileAchievementLocked => 'Verrouillé';
+
+  @override
+  String get profilePosts => 'Publications récentes';
+
+  @override
+  String get profileGallery => 'Galerie';
+
+  @override
+  String get followErrorSelf => 'Vous ne pouvez pas vous suivre vous-même.';
+
+  @override
+  String get followErrorBlocked => 'Vous ne pouvez pas suivre ce joueur.';
+
+  @override
+  String get followErrorNotFound => 'Ce joueur n\'existe plus.';
+
+  @override
+  String get followErrorGeneric =>
+      'Mise à jour impossible. Veuillez réessayer.';
+
+  @override
+  String get followersTitle => 'Abonnés';
+
+  @override
+  String get followingTitle => 'Abonnements';
+
+  @override
+  String get followersEmpty => 'Aucun abonné pour le moment.';
+
+  @override
+  String get followingEmpty => 'Ne suit personne pour le moment.';
+
+  @override
+  String get accountMyProgress => 'Ma progression';
+
+  @override
+  String get progressTitle => 'Ma progression';
+
+  @override
+  String get progressSignIn => 'Connectez-vous pour voir votre progression.';
+
+  @override
+  String get progressXpHeading => 'XP';
+
+  @override
+  String progressXpToNext(int into, int needed, String tier) {
+    return '$into / $needed XP pour $tier';
+  }
+
+  @override
+  String get progressMaxTier => 'Niveau maximum atteint';
+
+  @override
+  String get progressSxScore => 'Score SX';
+
+  @override
+  String get progressCoins => 'Pièces';
+
+  @override
+  String get progressSeasonHeading => 'Classement de la saison';
+
+  @override
+  String progressSeasonRank(int rank) {
+    return 'Rang n° $rank';
+  }
+
+  @override
+  String get progressSeasonUnranked => 'Non classé';
+
+  @override
+  String get progressSeasonMonthly => 'Ce mois-ci';
+
+  @override
+  String get progressSeasonNone => 'Aucune saison en cours.';
+
+  @override
+  String progressToRankSixteen(int n) {
+    return 'Le 16e a $n pts';
+  }
+
+  @override
+  String get progressHistoryXp => 'Historique XP';
+
+  @override
+  String get progressHistoryScore => 'Historique du score SX';
+
+  @override
+  String get progressHistoryCoins => 'Historique des pièces';
+
+  @override
+  String get historyEmpty => 'Aucune activité pour le moment.';
+
+  @override
+  String get historyLoadMoreError =>
+      'Chargement impossible. Touchez pour réessayer.';
+
+  @override
+  String historyBalanceAfter(int n) {
+    return 'Solde $n';
+  }
+
+  @override
+  String get tierRecruit => 'Recrue';
+
+  @override
+  String get tierGuardian => 'Gardien';
+
+  @override
+  String get tierElite => 'Élite';
+
+  @override
+  String get tierSentinel => 'Sentinelle';
+
+  @override
+  String get tierLegend => 'Légende';
+
+  @override
+  String get xpSourceMatchPlayed => 'Match joué';
+
+  @override
+  String get xpSourceMatchWon => 'Match gagné';
+
+  @override
+  String get xpSourceTournamentEntered => 'Tournoi rejoint';
+
+  @override
+  String get xpSourceTournamentCompleted => 'Tournoi terminé';
+
+  @override
+  String get xpSourceTournamentPlacement => 'Classement du tournoi';
+
+  @override
+  String get xpSourceAchievementUnlocked => 'Succès débloqué';
+
+  @override
+  String get xpSourceDailyLogin => 'Connexion quotidienne';
+
+  @override
+  String get xpSourceLoginStreak => 'Série de connexions';
+
+  @override
+  String get xpSourceCommunityActivity => 'Activité communautaire';
+
+  @override
+  String get xpSourceAdminGrant => 'Attribution admin';
+
+  @override
+  String get scoreEventMatchCompleted => 'Match terminé';
+
+  @override
+  String get scoreEventNoShow => 'Forfait';
+
+  @override
+  String get scoreEventRageQuit => 'Match quitté en avance';
+
+  @override
+  String get scoreEventDisputeLost => 'Litige perdu';
+
+  @override
+  String get scoreEventRatingReceived => 'Note reçue';
+
+  @override
+  String get scoreEventAdminFlagConduct => 'Signalement de conduite';
+
+  @override
+  String get scoreEventAdminFlagCheat => 'Signalement de triche';
+
+  @override
+  String get coinSourceMatchPlayed => 'Match joué';
+
+  @override
+  String get coinSourceMatchWon => 'Match gagné';
+
+  @override
+  String get coinSourceTournamentPlacement => 'Classement du tournoi';
+
+  @override
+  String get coinSourceDailyLogin => 'Connexion quotidienne';
+
+  @override
+  String get coinSourceLoginStreak => 'Série de connexions';
+
+  @override
+  String get coinSourceAchievementUnlocked => 'Succès débloqué';
+
+  @override
+  String get coinSourceStorePurchase => 'Achat en boutique';
+
+  @override
+  String get coinSourceCommunityActivity => 'Activité communautaire';
+
+  @override
+  String get coinSourceAdminGrant => 'Attribution admin';
+
+  @override
+  String get coinSourceAdminDeduct => 'Déduction admin';
+
+  @override
+  String get coinSourceWeeklyChallenge => 'Défi hebdomadaire';
+
+  @override
+  String get coinSourceBestPlayWinner => 'Vainqueur Best Play';
+
+  @override
+  String get coinSourceBestPlayRunnerUp => 'Finaliste Best Play';
+
+  @override
+  String get coinSourceEntryDiscount => 'Réduction d\'inscription';
+
+  @override
+  String get coinSourceEntryDiscountRefund => 'Remboursement de réduction';
+
+  @override
+  String get coinSourceWagerStake => 'Mise du pari';
+
+  @override
+  String get coinSourceWagerWon => 'Pari gagné';
+
+  @override
+  String get coinSourceWagerRefund => 'Pari remboursé';
+
+  @override
+  String get coinSourcePostBoost => 'Boost de publication';
+
+  @override
+  String get coinSourceReferralReward => 'Récompense de parrainage';
+
+  @override
+  String get coinSourceReferralMilestone => 'Palier de parrainage';
+
+  @override
+  String get coinSourceFriendlyStake => 'Mise amicale';
+
+  @override
+  String get coinSourceFriendlyStakePayout => 'Gain amical';
 }
