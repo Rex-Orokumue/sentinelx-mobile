@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../core/providers.dart';
+import '../core/api/players_models.dart';
+import '../core/l10n/gen/app_localizations.dart';
 import '../core/routing/web_links.dart';
 import '../features/account/account_screen.dart';
 import '../features/auth/check_email_screen.dart';
@@ -13,6 +15,13 @@ import '../features/auth/signup_screen.dart';
 import '../features/debug/debug_sign_in_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/onboarding/onboarding_username_screen.dart';
+import '../features/players/follow_list_screen.dart';
+import '../features/players/player_profile_screen.dart';
+import '../features/players/players_directory_screen.dart';
+import '../features/players/players_providers.dart';
+import '../features/progress/history_list_screen.dart';
+import '../features/progress/my_progress_screen.dart';
+import '../features/progress/progress_providers.dart';
 import '../features/tournaments/bracket_screen.dart';
 import '../features/tournaments/tournament_detail_screen.dart';
 import '../features/tournaments/tournament_list_screen.dart';
@@ -88,6 +97,39 @@ GoRouter buildAppRouter({bool debugTools = false, String initialLocation = '/'})
                 ),
               ],
             ),
+            GoRoute(
+              path: '/players',
+              builder: (context, state) => PlayersDirectoryScreen(onPlayerTap: (u) => context.push('/players/${Uri.encodeComponent(u)}')),
+              routes: [
+                GoRoute(
+                  path: ':username',
+                  builder: (context, state) => PlayerProfileScreen(
+                    username: state.pathParameters['username']!,
+                    onLogIn: () => context.push('/login'),
+                    onOpenFollowers: (u) => context.push('/players/${Uri.encodeComponent(u)}/followers'),
+                    onOpenFollowing: (u) => context.push('/players/${Uri.encodeComponent(u)}/following'),
+                  ),
+                  routes: [
+                    GoRoute(
+                      path: 'followers',
+                      builder: (context, state) => FollowListScreen(
+                        username: state.pathParameters['username']!,
+                        kind: FollowListKind.followers,
+                        onPlayerTap: (u) => context.push('/players/${Uri.encodeComponent(u)}'),
+                      ),
+                    ),
+                    GoRoute(
+                      path: 'following',
+                      builder: (context, state) => FollowListScreen(
+                        username: state.pathParameters['username']!,
+                        kind: FollowListKind.following,
+                        onPlayerTap: (u) => context.push('/players/${Uri.encodeComponent(u)}'),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ]),
           StatefulShellBranch(routes: [
             GoRoute(path: '/tv', builder: (context, state) => ComingSoonScreen(title: 'Watch', onLogoTap: () => context.go('/'))),
@@ -105,7 +147,40 @@ GoRouter buildAppRouter({bool debugTools = false, String initialLocation = '/'})
                 onLogIn: () => context.push('/login'),
                 onSignUp: () => context.push('/signup'),
                 onLogoTap: () => context.go('/'),
+                onOpenProgress: () => context.push('/account/progress'),
               ),
+              routes: [
+                GoRoute(
+                  path: 'progress',
+                  builder: (context, state) => MyProgressScreen(onGoTo: (p) => context.push(p), onLogIn: () => context.push('/login')),
+                  routes: [
+                    GoRoute(
+                      path: 'xp',
+                      builder: (context, state) => HistoryListScreen<XpEvent>(
+                        title: AppLocalizations.of(context).progressHistoryXp,
+                        provider: xpHistoryProvider,
+                        rowBuilder: xpRow,
+                      ),
+                    ),
+                    GoRoute(
+                      path: 'score',
+                      builder: (context, state) => HistoryListScreen<SxScoreEvent>(
+                        title: AppLocalizations.of(context).progressHistoryScore,
+                        provider: scoreHistoryProvider,
+                        rowBuilder: scoreRow,
+                      ),
+                    ),
+                    GoRoute(
+                      path: 'coins',
+                      builder: (context, state) => HistoryListScreen<CoinTransaction>(
+                        title: AppLocalizations.of(context).progressHistoryCoins,
+                        provider: coinHistoryProvider,
+                        rowBuilder: coinRow,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ]),
         ],

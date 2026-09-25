@@ -71,6 +71,7 @@ class HomeScreen extends ConsumerWidget {
                 ListTile(title: Text(t.title), onTap: () => onGoTo('/tournaments/${t.id}')),
               Padding(padding: const EdgeInsets.all(16), child: Text(l10n.homeTopPlayersHeading)),
               for (final p in summary.leaderboardTeaser) ListTile(title: Text(p.displayName ?? p.username ?? '—')),
+              ListTile(key: const Key('home-link-players'), title: Text(l10n.playersTitle), trailing: const Icon(Icons.chevron_right), onTap: () => onGoTo('/players')),
             ],
           ),
         ),

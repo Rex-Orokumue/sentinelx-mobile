@@ -100,6 +100,23 @@ void main() {
     await tester.pumpAndSettle();
     expect(goneTo, isNull);
   });
+
+  testWidgets('Home has a Players entry', (tester) async {
+    final visited = <String>[];
+    await tester.pumpWidget(ProviderScope(
+      retry: (_, _) => null,
+      overrides: [homeRepositoryProvider.overrideWithValue(_FakeHomeRepository(_summary()))],
+      child: MaterialApp(
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: HomeScreen(onGoTo: visited.add),
+      ),
+    ));
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(find.byKey(const Key('home-link-players')), 200, scrollable: find.byType(Scrollable).first);
+    await tester.tap(find.byKey(const Key('home-link-players')));
+    expect(visited, ['/players']);
+  });
 }
 
 class _CountingRepository implements HomeRepository {

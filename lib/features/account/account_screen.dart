@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/auth/auth_providers.dart';
+import '../../core/l10n/gen/app_localizations.dart';
 import '../../core/providers.dart';
 import '../../shared/widgets/sx_tab_app_bar.dart';
 
 class AccountScreen extends ConsumerWidget {
-  const AccountScreen({super.key, required this.onLogIn, required this.onSignUp, required this.onLogoTap});
+  const AccountScreen({super.key, required this.onLogIn, required this.onSignUp, required this.onLogoTap, required this.onOpenProgress});
 
   final VoidCallback onLogIn;
   final VoidCallback onSignUp;
   final VoidCallback onLogoTap;
+  final VoidCallback onOpenProgress;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -32,6 +34,12 @@ class AccountScreen extends ConsumerWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(me.profile?.displayName ?? me.profile?.username ?? me.email ?? ''),
+                    ListTile(
+                      key: const Key('account-progress'),
+                      title: Text(AppLocalizations.of(context).accountMyProgress),
+                      trailing: const Icon(Icons.chevron_right),
+                      onTap: onOpenProgress,
+                    ),
                     TextButton(
                       key: const Key('account-sign-out'),
                       onPressed: () => ref.read(authRepositoryProvider).signOut(),

@@ -12,6 +12,15 @@ String? resolveWebLink(String input) {
   if (segments.isNotEmpty && _locales.contains(segments.first)) segments.removeAt(0);
 
   if (segments.isEmpty) return '/';
+  if (segments.first == 'players') {
+    if (segments.length == 1) return '/players';
+    final username = Uri.encodeComponent(segments[1]);
+    if (segments.length == 2) return '/players/$username';
+    if (segments.length == 3 && (segments[2] == 'followers' || segments[2] == 'following')) {
+      return '/players/$username/${segments[2]}';
+    }
+    return null;
+  }
   switch (segments.join('/')) {
     case 'tournaments':
       return '/tournaments';

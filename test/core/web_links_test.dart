@@ -32,4 +32,21 @@ void main() {
     expect(resolveWebLink('https://sentinelxesports.com.ng/tournaments/some-slug'), isNull);
     expect(resolveWebLink('not a url at all ::'), isNull);
   });
+
+  test('maps player web paths (with and without a locale), keeps usernames intact and is idempotent', () {
+    expect(resolveWebLink('https://sentinelxesports.com.ng/players'), '/players');
+    expect(resolveWebLink('https://sentinelxesports.com.ng/players/ada'), '/players/ada');
+    expect(resolveWebLink('https://sentinelxesports.com.ng/fr/players/ada'), '/players/ada');
+    expect(resolveWebLink('https://sentinelxesports.com.ng/players/ada/followers'), '/players/ada/followers');
+    expect(resolveWebLink('https://sentinelxesports.com.ng/en/players/ada/following?x=1'), '/players/ada/following');
+    expect(resolveWebLink('https://sentinelxesports.com.ng/players/a%20b'), '/players/a%20b');
+    expect(resolveWebLink('https://sentinelxesports.com.ng/players/ada/unknown'), isNull);
+    expect(resolveWebLink('https://evil.example/players/ada'), isNull);
+    // idempotent: the router redirect must never loop
+    for (final p in ['/players', '/players/ada', '/players/ada/followers', '/players/a%20b']) {
+      expect(resolveWebLink(p), p);
+    }
+    // in-app paths of this phase pass through untouched (null = no redirect)
+    expect(resolveWebLink('/account/progress'), isNull);
+  });
 }
