@@ -1087,6 +1087,216 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Questions about these Terms? Email us at <email>sentinelxesports@gmail.com</email> or message us on WhatsApp: <whatsapp>+234 903 239 5685</whatsapp>.'**
   String get termsS15P1;
+
+  /// No description provided for @commonDeletedPlayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Deleted player'**
+  String get commonDeletedPlayer;
+
+  /// No description provided for @rankingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Leaderboards'**
+  String get rankingsTitle;
+
+  /// No description provided for @rankingsRankByScore.
+  ///
+  /// In en, this message translates to:
+  /// **'Ranked by SX Score'**
+  String get rankingsRankByScore;
+
+  /// No description provided for @rankingsRankByWins.
+  ///
+  /// In en, this message translates to:
+  /// **'Ranked by wins'**
+  String get rankingsRankByWins;
+
+  /// No description provided for @rankingsAllGames.
+  ///
+  /// In en, this message translates to:
+  /// **'All games'**
+  String get rankingsAllGames;
+
+  /// No description provided for @rankingsAllRegions.
+  ///
+  /// In en, this message translates to:
+  /// **'All regions'**
+  String get rankingsAllRegions;
+
+  /// No description provided for @rankingsYourRank.
+  ///
+  /// In en, this message translates to:
+  /// **'Your rank'**
+  String get rankingsYourRank;
+
+  /// No description provided for @rankingsPrev.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous'**
+  String get rankingsPrev;
+
+  /// No description provided for @rankingsNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get rankingsNext;
+
+  /// No description provided for @rankingsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No ranked players yet.'**
+  String get rankingsEmpty;
+
+  /// No description provided for @rankingsErrorRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load. Tap to retry.'**
+  String get rankingsErrorRetry;
+
+  /// No description provided for @rankingsTrendNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New'**
+  String get rankingsTrendNew;
+
+  /// No description provided for @seasonsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Seasons'**
+  String get seasonsTitle;
+
+  /// No description provided for @seasonsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No seasons yet.'**
+  String get seasonsEmpty;
+
+  /// No description provided for @seasonsProvisional.
+  ///
+  /// In en, this message translates to:
+  /// **'Provisional'**
+  String get seasonsProvisional;
+
+  /// No description provided for @seasonsProvisionalNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Points can still change while tournaments are in progress.'**
+  String get seasonsProvisionalNote;
+
+  /// No description provided for @seasonsTournaments.
+  ///
+  /// In en, this message translates to:
+  /// **'Tournaments'**
+  String get seasonsTournaments;
+
+  /// No description provided for @seasonsInviteOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite only'**
+  String get seasonsInviteOnly;
+
+  /// No description provided for @seasonsYou.
+  ///
+  /// In en, this message translates to:
+  /// **'You'**
+  String get seasonsYou;
+
+  /// No description provided for @hallOfFameTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hall of Fame'**
+  String get hallOfFameTitle;
+
+  /// No description provided for @hallOfFameMvp.
+  ///
+  /// In en, this message translates to:
+  /// **'All-Time MVP'**
+  String get hallOfFameMvp;
+
+  /// No description provided for @hallOfFameGoldenBoot.
+  ///
+  /// In en, this message translates to:
+  /// **'Golden Boot'**
+  String get hallOfFameGoldenBoot;
+
+  /// No description provided for @hallOfFameChampionsCup.
+  ///
+  /// In en, this message translates to:
+  /// **'Champions Cup'**
+  String get hallOfFameChampionsCup;
+
+  /// No description provided for @hallOfFameMasters.
+  ///
+  /// In en, this message translates to:
+  /// **'Masters'**
+  String get hallOfFameMasters;
+
+  /// No description provided for @hallOfFameCommunityClub.
+  ///
+  /// In en, this message translates to:
+  /// **'Community Club'**
+  String get hallOfFameCommunityClub;
+
+  /// No description provided for @hallOfFameOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open tournaments'**
+  String get hallOfFameOpen;
+
+  /// No description provided for @hallOfFameBronze.
+  ///
+  /// In en, this message translates to:
+  /// **'Bronze finishes'**
+  String get hallOfFameBronze;
+
+  /// No description provided for @hallOfFameEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing here yet.'**
+  String get hallOfFameEmpty;
+
+  /// No description provided for @rankingsWinsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{wins} wins'**
+  String rankingsWinsCount(int wins);
+
+  /// No description provided for @rankingsMatchesCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{matches} matches'**
+  String rankingsMatchesCount(int matches);
+
+  /// No description provided for @rankingsStreakValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{n}-win streak'**
+  String rankingsStreakValue(int n);
+
+  /// No description provided for @rankingsPageOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Page {page} of {total}'**
+  String rankingsPageOf(int page, int total);
+
+  /// No description provided for @rankingsPlayersRanked.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} players ranked'**
+  String rankingsPlayersRanked(int n);
+
+  /// No description provided for @seasonsPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} pts'**
+  String seasonsPoints(int n);
+
+  /// No description provided for @hallOfFameRunnerUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Runner-up: {name}'**
+  String hallOfFameRunnerUp(String name);
 }
 
 class _AppLocalizationsDelegate
