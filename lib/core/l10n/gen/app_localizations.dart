@@ -1885,6 +1885,654 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Runner-up: {name}'**
   String hallOfFameRunnerUp(String name);
+
+  /// No description provided for @commonLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load. Tap to retry.'**
+  String get commonLoadError;
+
+  /// No description provided for @playersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Players'**
+  String get playersTitle;
+
+  /// No description provided for @playersSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search players'**
+  String get playersSearchHint;
+
+  /// No description provided for @playersEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No players found.'**
+  String get playersEmpty;
+
+  /// No description provided for @playersNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Player not found.'**
+  String get playersNotFound;
+
+  /// No description provided for @profileFollow.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow'**
+  String get profileFollow;
+
+  /// No description provided for @profileFollowing.
+  ///
+  /// In en, this message translates to:
+  /// **'Following'**
+  String get profileFollowing;
+
+  /// No description provided for @profileFollowsYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Follows you'**
+  String get profileFollowsYou;
+
+  /// No description provided for @profileFollowersCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} followers'**
+  String profileFollowersCount(int n);
+
+  /// No description provided for @profileFollowingCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} following'**
+  String profileFollowingCount(int n);
+
+  /// No description provided for @profileStatMatches.
+  ///
+  /// In en, this message translates to:
+  /// **'Matches'**
+  String get profileStatMatches;
+
+  /// No description provided for @profileStatWins.
+  ///
+  /// In en, this message translates to:
+  /// **'Wins'**
+  String get profileStatWins;
+
+  /// No description provided for @profileStatLosses.
+  ///
+  /// In en, this message translates to:
+  /// **'Losses'**
+  String get profileStatLosses;
+
+  /// No description provided for @profileStatGoalsFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Goals for'**
+  String get profileStatGoalsFor;
+
+  /// No description provided for @profileStatGoalsAgainst.
+  ///
+  /// In en, this message translates to:
+  /// **'Goals against'**
+  String get profileStatGoalsAgainst;
+
+  /// No description provided for @profileStatTitles.
+  ///
+  /// In en, this message translates to:
+  /// **'Titles'**
+  String get profileStatTitles;
+
+  /// No description provided for @profileStatTournaments.
+  ///
+  /// In en, this message translates to:
+  /// **'Tournaments'**
+  String get profileStatTournaments;
+
+  /// No description provided for @profileStatStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Win streak'**
+  String get profileStatStreak;
+
+  /// No description provided for @profileStatRank.
+  ///
+  /// In en, this message translates to:
+  /// **'Global rank'**
+  String get profileStatRank;
+
+  /// No description provided for @profileRankOf.
+  ///
+  /// In en, this message translates to:
+  /// **'#{rank} of {total}'**
+  String profileRankOf(int rank, int total);
+
+  /// No description provided for @profileRankUnranked.
+  ///
+  /// In en, this message translates to:
+  /// **'Unranked'**
+  String get profileRankUnranked;
+
+  /// No description provided for @profileSxScore.
+  ///
+  /// In en, this message translates to:
+  /// **'SX Score {n}'**
+  String profileSxScore(int n);
+
+  /// No description provided for @profileCategoryStats.
+  ///
+  /// In en, this message translates to:
+  /// **'Goals by category'**
+  String get profileCategoryStats;
+
+  /// No description provided for @profileTitlesHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Titles'**
+  String get profileTitlesHeading;
+
+  /// No description provided for @profileNoTitles.
+  ///
+  /// In en, this message translates to:
+  /// **'No titles yet.'**
+  String get profileNoTitles;
+
+  /// No description provided for @profileRecentMatches.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent matches'**
+  String get profileRecentMatches;
+
+  /// No description provided for @profileNoMatches.
+  ///
+  /// In en, this message translates to:
+  /// **'No matches yet.'**
+  String get profileNoMatches;
+
+  /// No description provided for @profileOutcomeWin.
+  ///
+  /// In en, this message translates to:
+  /// **'Win'**
+  String get profileOutcomeWin;
+
+  /// No description provided for @profileOutcomeLoss.
+  ///
+  /// In en, this message translates to:
+  /// **'Loss'**
+  String get profileOutcomeLoss;
+
+  /// No description provided for @profileOutcomeDraw.
+  ///
+  /// In en, this message translates to:
+  /// **'Draw'**
+  String get profileOutcomeDraw;
+
+  /// No description provided for @profileAchievements.
+  ///
+  /// In en, this message translates to:
+  /// **'Achievements'**
+  String get profileAchievements;
+
+  /// No description provided for @profileAchievementsProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{unlocked}/{total} unlocked'**
+  String profileAchievementsProgress(int unlocked, int total);
+
+  /// No description provided for @profileAchievementLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Locked'**
+  String get profileAchievementLocked;
+
+  /// No description provided for @profilePosts.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent posts'**
+  String get profilePosts;
+
+  /// No description provided for @profileGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Gallery'**
+  String get profileGallery;
+
+  /// No description provided for @followErrorSelf.
+  ///
+  /// In en, this message translates to:
+  /// **'You can\'t follow yourself.'**
+  String get followErrorSelf;
+
+  /// No description provided for @followErrorBlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'You can\'t follow this player.'**
+  String get followErrorBlocked;
+
+  /// No description provided for @followErrorNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'This player no longer exists.'**
+  String get followErrorNotFound;
+
+  /// No description provided for @followErrorGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t update. Please try again.'**
+  String get followErrorGeneric;
+
+  /// No description provided for @followersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Followers'**
+  String get followersTitle;
+
+  /// No description provided for @followingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Following'**
+  String get followingTitle;
+
+  /// No description provided for @followersEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No followers yet.'**
+  String get followersEmpty;
+
+  /// No description provided for @followingEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Not following anyone yet.'**
+  String get followingEmpty;
+
+  /// No description provided for @accountMyProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'My progress'**
+  String get accountMyProgress;
+
+  /// No description provided for @progressTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My progress'**
+  String get progressTitle;
+
+  /// No description provided for @progressSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to see your progress.'**
+  String get progressSignIn;
+
+  /// No description provided for @progressXpHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'XP'**
+  String get progressXpHeading;
+
+  /// No description provided for @progressXpToNext.
+  ///
+  /// In en, this message translates to:
+  /// **'{into} / {needed} XP to {tier}'**
+  String progressXpToNext(int into, int needed, String tier);
+
+  /// No description provided for @progressMaxTier.
+  ///
+  /// In en, this message translates to:
+  /// **'Max tier reached'**
+  String get progressMaxTier;
+
+  /// No description provided for @progressSxScore.
+  ///
+  /// In en, this message translates to:
+  /// **'SX Score'**
+  String get progressSxScore;
+
+  /// No description provided for @progressCoins.
+  ///
+  /// In en, this message translates to:
+  /// **'Coins'**
+  String get progressCoins;
+
+  /// No description provided for @progressSeasonHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Season standing'**
+  String get progressSeasonHeading;
+
+  /// No description provided for @progressSeasonRank.
+  ///
+  /// In en, this message translates to:
+  /// **'Rank #{rank}'**
+  String progressSeasonRank(int rank);
+
+  /// No description provided for @progressSeasonUnranked.
+  ///
+  /// In en, this message translates to:
+  /// **'Unranked'**
+  String get progressSeasonUnranked;
+
+  /// No description provided for @progressSeasonMonthly.
+  ///
+  /// In en, this message translates to:
+  /// **'This month'**
+  String get progressSeasonMonthly;
+
+  /// No description provided for @progressSeasonNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No active season.'**
+  String get progressSeasonNone;
+
+  /// No description provided for @progressToRankSixteen.
+  ///
+  /// In en, this message translates to:
+  /// **'Rank 16 has {n} pts'**
+  String progressToRankSixteen(int n);
+
+  /// No description provided for @progressHistoryXp.
+  ///
+  /// In en, this message translates to:
+  /// **'XP history'**
+  String get progressHistoryXp;
+
+  /// No description provided for @progressHistoryScore.
+  ///
+  /// In en, this message translates to:
+  /// **'SX Score history'**
+  String get progressHistoryScore;
+
+  /// No description provided for @progressHistoryCoins.
+  ///
+  /// In en, this message translates to:
+  /// **'Coin history'**
+  String get progressHistoryCoins;
+
+  /// No description provided for @historyEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No activity yet.'**
+  String get historyEmpty;
+
+  /// No description provided for @historyLoadMoreError.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load more. Tap to retry.'**
+  String get historyLoadMoreError;
+
+  /// No description provided for @historyBalanceAfter.
+  ///
+  /// In en, this message translates to:
+  /// **'Balance {n}'**
+  String historyBalanceAfter(int n);
+
+  /// No description provided for @tierRecruit.
+  ///
+  /// In en, this message translates to:
+  /// **'Recruit'**
+  String get tierRecruit;
+
+  /// No description provided for @tierGuardian.
+  ///
+  /// In en, this message translates to:
+  /// **'Guardian'**
+  String get tierGuardian;
+
+  /// No description provided for @tierElite.
+  ///
+  /// In en, this message translates to:
+  /// **'Elite'**
+  String get tierElite;
+
+  /// No description provided for @tierSentinel.
+  ///
+  /// In en, this message translates to:
+  /// **'Sentinel'**
+  String get tierSentinel;
+
+  /// No description provided for @tierLegend.
+  ///
+  /// In en, this message translates to:
+  /// **'Legend'**
+  String get tierLegend;
+
+  /// No description provided for @xpSourceMatchPlayed.
+  ///
+  /// In en, this message translates to:
+  /// **'Match played'**
+  String get xpSourceMatchPlayed;
+
+  /// No description provided for @xpSourceMatchWon.
+  ///
+  /// In en, this message translates to:
+  /// **'Match won'**
+  String get xpSourceMatchWon;
+
+  /// No description provided for @xpSourceTournamentEntered.
+  ///
+  /// In en, this message translates to:
+  /// **'Tournament entered'**
+  String get xpSourceTournamentEntered;
+
+  /// No description provided for @xpSourceTournamentCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Tournament completed'**
+  String get xpSourceTournamentCompleted;
+
+  /// No description provided for @xpSourceTournamentPlacement.
+  ///
+  /// In en, this message translates to:
+  /// **'Tournament placement'**
+  String get xpSourceTournamentPlacement;
+
+  /// No description provided for @xpSourceAchievementUnlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Achievement unlocked'**
+  String get xpSourceAchievementUnlocked;
+
+  /// No description provided for @xpSourceDailyLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily login'**
+  String get xpSourceDailyLogin;
+
+  /// No description provided for @xpSourceLoginStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Login streak'**
+  String get xpSourceLoginStreak;
+
+  /// No description provided for @xpSourceCommunityActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Community activity'**
+  String get xpSourceCommunityActivity;
+
+  /// No description provided for @xpSourceAdminGrant.
+  ///
+  /// In en, this message translates to:
+  /// **'Admin grant'**
+  String get xpSourceAdminGrant;
+
+  /// No description provided for @scoreEventMatchCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Match completed'**
+  String get scoreEventMatchCompleted;
+
+  /// No description provided for @scoreEventNoShow.
+  ///
+  /// In en, this message translates to:
+  /// **'No-show'**
+  String get scoreEventNoShow;
+
+  /// No description provided for @scoreEventRageQuit.
+  ///
+  /// In en, this message translates to:
+  /// **'Left a match early'**
+  String get scoreEventRageQuit;
+
+  /// No description provided for @scoreEventDisputeLost.
+  ///
+  /// In en, this message translates to:
+  /// **'Dispute lost'**
+  String get scoreEventDisputeLost;
+
+  /// No description provided for @scoreEventRatingReceived.
+  ///
+  /// In en, this message translates to:
+  /// **'Rating received'**
+  String get scoreEventRatingReceived;
+
+  /// No description provided for @scoreEventAdminFlagConduct.
+  ///
+  /// In en, this message translates to:
+  /// **'Conduct flag'**
+  String get scoreEventAdminFlagConduct;
+
+  /// No description provided for @scoreEventAdminFlagCheat.
+  ///
+  /// In en, this message translates to:
+  /// **'Cheat flag'**
+  String get scoreEventAdminFlagCheat;
+
+  /// No description provided for @coinSourceMatchPlayed.
+  ///
+  /// In en, this message translates to:
+  /// **'Match played'**
+  String get coinSourceMatchPlayed;
+
+  /// No description provided for @coinSourceMatchWon.
+  ///
+  /// In en, this message translates to:
+  /// **'Match won'**
+  String get coinSourceMatchWon;
+
+  /// No description provided for @coinSourceTournamentPlacement.
+  ///
+  /// In en, this message translates to:
+  /// **'Tournament placement'**
+  String get coinSourceTournamentPlacement;
+
+  /// No description provided for @coinSourceDailyLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily login'**
+  String get coinSourceDailyLogin;
+
+  /// No description provided for @coinSourceLoginStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Login streak'**
+  String get coinSourceLoginStreak;
+
+  /// No description provided for @coinSourceAchievementUnlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Achievement unlocked'**
+  String get coinSourceAchievementUnlocked;
+
+  /// No description provided for @coinSourceStorePurchase.
+  ///
+  /// In en, this message translates to:
+  /// **'Store purchase'**
+  String get coinSourceStorePurchase;
+
+  /// No description provided for @coinSourceCommunityActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Community activity'**
+  String get coinSourceCommunityActivity;
+
+  /// No description provided for @coinSourceAdminGrant.
+  ///
+  /// In en, this message translates to:
+  /// **'Admin grant'**
+  String get coinSourceAdminGrant;
+
+  /// No description provided for @coinSourceAdminDeduct.
+  ///
+  /// In en, this message translates to:
+  /// **'Admin deduction'**
+  String get coinSourceAdminDeduct;
+
+  /// No description provided for @coinSourceWeeklyChallenge.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly challenge'**
+  String get coinSourceWeeklyChallenge;
+
+  /// No description provided for @coinSourceBestPlayWinner.
+  ///
+  /// In en, this message translates to:
+  /// **'Best Play winner'**
+  String get coinSourceBestPlayWinner;
+
+  /// No description provided for @coinSourceBestPlayRunnerUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Best Play runner-up'**
+  String get coinSourceBestPlayRunnerUp;
+
+  /// No description provided for @coinSourceEntryDiscount.
+  ///
+  /// In en, this message translates to:
+  /// **'Entry discount'**
+  String get coinSourceEntryDiscount;
+
+  /// No description provided for @coinSourceEntryDiscountRefund.
+  ///
+  /// In en, this message translates to:
+  /// **'Entry discount refund'**
+  String get coinSourceEntryDiscountRefund;
+
+  /// No description provided for @coinSourceWagerStake.
+  ///
+  /// In en, this message translates to:
+  /// **'Wager stake'**
+  String get coinSourceWagerStake;
+
+  /// No description provided for @coinSourceWagerWon.
+  ///
+  /// In en, this message translates to:
+  /// **'Wager won'**
+  String get coinSourceWagerWon;
+
+  /// No description provided for @coinSourceWagerRefund.
+  ///
+  /// In en, this message translates to:
+  /// **'Wager refund'**
+  String get coinSourceWagerRefund;
+
+  /// No description provided for @coinSourcePostBoost.
+  ///
+  /// In en, this message translates to:
+  /// **'Post boost'**
+  String get coinSourcePostBoost;
+
+  /// No description provided for @coinSourceReferralReward.
+  ///
+  /// In en, this message translates to:
+  /// **'Referral reward'**
+  String get coinSourceReferralReward;
+
+  /// No description provided for @coinSourceReferralMilestone.
+  ///
+  /// In en, this message translates to:
+  /// **'Referral milestone'**
+  String get coinSourceReferralMilestone;
+
+  /// No description provided for @coinSourceFriendlyStake.
+  ///
+  /// In en, this message translates to:
+  /// **'Friendly stake'**
+  String get coinSourceFriendlyStake;
+
+  /// No description provided for @coinSourceFriendlyStakePayout.
+  ///
+  /// In en, this message translates to:
+  /// **'Friendly payout'**
+  String get coinSourceFriendlyStakePayout;
 }
 
 class _AppLocalizationsDelegate

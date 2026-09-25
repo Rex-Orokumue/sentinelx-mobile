@@ -999,4 +999,346 @@ class AppLocalizationsEn extends AppLocalizations {
   String hallOfFameRunnerUp(String name) {
     return 'Runner-up: $name';
   }
+
+  @override
+  String get commonLoadError => 'Couldn\'t load. Tap to retry.';
+
+  @override
+  String get playersTitle => 'Players';
+
+  @override
+  String get playersSearchHint => 'Search players';
+
+  @override
+  String get playersEmpty => 'No players found.';
+
+  @override
+  String get playersNotFound => 'Player not found.';
+
+  @override
+  String get profileFollow => 'Follow';
+
+  @override
+  String get profileFollowing => 'Following';
+
+  @override
+  String get profileFollowsYou => 'Follows you';
+
+  @override
+  String profileFollowersCount(int n) {
+    return '$n followers';
+  }
+
+  @override
+  String profileFollowingCount(int n) {
+    return '$n following';
+  }
+
+  @override
+  String get profileStatMatches => 'Matches';
+
+  @override
+  String get profileStatWins => 'Wins';
+
+  @override
+  String get profileStatLosses => 'Losses';
+
+  @override
+  String get profileStatGoalsFor => 'Goals for';
+
+  @override
+  String get profileStatGoalsAgainst => 'Goals against';
+
+  @override
+  String get profileStatTitles => 'Titles';
+
+  @override
+  String get profileStatTournaments => 'Tournaments';
+
+  @override
+  String get profileStatStreak => 'Win streak';
+
+  @override
+  String get profileStatRank => 'Global rank';
+
+  @override
+  String profileRankOf(int rank, int total) {
+    return '#$rank of $total';
+  }
+
+  @override
+  String get profileRankUnranked => 'Unranked';
+
+  @override
+  String profileSxScore(int n) {
+    return 'SX Score $n';
+  }
+
+  @override
+  String get profileCategoryStats => 'Goals by category';
+
+  @override
+  String get profileTitlesHeading => 'Titles';
+
+  @override
+  String get profileNoTitles => 'No titles yet.';
+
+  @override
+  String get profileRecentMatches => 'Recent matches';
+
+  @override
+  String get profileNoMatches => 'No matches yet.';
+
+  @override
+  String get profileOutcomeWin => 'Win';
+
+  @override
+  String get profileOutcomeLoss => 'Loss';
+
+  @override
+  String get profileOutcomeDraw => 'Draw';
+
+  @override
+  String get profileAchievements => 'Achievements';
+
+  @override
+  String profileAchievementsProgress(int unlocked, int total) {
+    return '$unlocked/$total unlocked';
+  }
+
+  @override
+  String get profileAchievementLocked => 'Locked';
+
+  @override
+  String get profilePosts => 'Recent posts';
+
+  @override
+  String get profileGallery => 'Gallery';
+
+  @override
+  String get followErrorSelf => 'You can\'t follow yourself.';
+
+  @override
+  String get followErrorBlocked => 'You can\'t follow this player.';
+
+  @override
+  String get followErrorNotFound => 'This player no longer exists.';
+
+  @override
+  String get followErrorGeneric => 'Couldn\'t update. Please try again.';
+
+  @override
+  String get followersTitle => 'Followers';
+
+  @override
+  String get followingTitle => 'Following';
+
+  @override
+  String get followersEmpty => 'No followers yet.';
+
+  @override
+  String get followingEmpty => 'Not following anyone yet.';
+
+  @override
+  String get accountMyProgress => 'My progress';
+
+  @override
+  String get progressTitle => 'My progress';
+
+  @override
+  String get progressSignIn => 'Log in to see your progress.';
+
+  @override
+  String get progressXpHeading => 'XP';
+
+  @override
+  String progressXpToNext(int into, int needed, String tier) {
+    return '$into / $needed XP to $tier';
+  }
+
+  @override
+  String get progressMaxTier => 'Max tier reached';
+
+  @override
+  String get progressSxScore => 'SX Score';
+
+  @override
+  String get progressCoins => 'Coins';
+
+  @override
+  String get progressSeasonHeading => 'Season standing';
+
+  @override
+  String progressSeasonRank(int rank) {
+    return 'Rank #$rank';
+  }
+
+  @override
+  String get progressSeasonUnranked => 'Unranked';
+
+  @override
+  String get progressSeasonMonthly => 'This month';
+
+  @override
+  String get progressSeasonNone => 'No active season.';
+
+  @override
+  String progressToRankSixteen(int n) {
+    return 'Rank 16 has $n pts';
+  }
+
+  @override
+  String get progressHistoryXp => 'XP history';
+
+  @override
+  String get progressHistoryScore => 'SX Score history';
+
+  @override
+  String get progressHistoryCoins => 'Coin history';
+
+  @override
+  String get historyEmpty => 'No activity yet.';
+
+  @override
+  String get historyLoadMoreError => 'Couldn\'t load more. Tap to retry.';
+
+  @override
+  String historyBalanceAfter(int n) {
+    return 'Balance $n';
+  }
+
+  @override
+  String get tierRecruit => 'Recruit';
+
+  @override
+  String get tierGuardian => 'Guardian';
+
+  @override
+  String get tierElite => 'Elite';
+
+  @override
+  String get tierSentinel => 'Sentinel';
+
+  @override
+  String get tierLegend => 'Legend';
+
+  @override
+  String get xpSourceMatchPlayed => 'Match played';
+
+  @override
+  String get xpSourceMatchWon => 'Match won';
+
+  @override
+  String get xpSourceTournamentEntered => 'Tournament entered';
+
+  @override
+  String get xpSourceTournamentCompleted => 'Tournament completed';
+
+  @override
+  String get xpSourceTournamentPlacement => 'Tournament placement';
+
+  @override
+  String get xpSourceAchievementUnlocked => 'Achievement unlocked';
+
+  @override
+  String get xpSourceDailyLogin => 'Daily login';
+
+  @override
+  String get xpSourceLoginStreak => 'Login streak';
+
+  @override
+  String get xpSourceCommunityActivity => 'Community activity';
+
+  @override
+  String get xpSourceAdminGrant => 'Admin grant';
+
+  @override
+  String get scoreEventMatchCompleted => 'Match completed';
+
+  @override
+  String get scoreEventNoShow => 'No-show';
+
+  @override
+  String get scoreEventRageQuit => 'Left a match early';
+
+  @override
+  String get scoreEventDisputeLost => 'Dispute lost';
+
+  @override
+  String get scoreEventRatingReceived => 'Rating received';
+
+  @override
+  String get scoreEventAdminFlagConduct => 'Conduct flag';
+
+  @override
+  String get scoreEventAdminFlagCheat => 'Cheat flag';
+
+  @override
+  String get coinSourceMatchPlayed => 'Match played';
+
+  @override
+  String get coinSourceMatchWon => 'Match won';
+
+  @override
+  String get coinSourceTournamentPlacement => 'Tournament placement';
+
+  @override
+  String get coinSourceDailyLogin => 'Daily login';
+
+  @override
+  String get coinSourceLoginStreak => 'Login streak';
+
+  @override
+  String get coinSourceAchievementUnlocked => 'Achievement unlocked';
+
+  @override
+  String get coinSourceStorePurchase => 'Store purchase';
+
+  @override
+  String get coinSourceCommunityActivity => 'Community activity';
+
+  @override
+  String get coinSourceAdminGrant => 'Admin grant';
+
+  @override
+  String get coinSourceAdminDeduct => 'Admin deduction';
+
+  @override
+  String get coinSourceWeeklyChallenge => 'Weekly challenge';
+
+  @override
+  String get coinSourceBestPlayWinner => 'Best Play winner';
+
+  @override
+  String get coinSourceBestPlayRunnerUp => 'Best Play runner-up';
+
+  @override
+  String get coinSourceEntryDiscount => 'Entry discount';
+
+  @override
+  String get coinSourceEntryDiscountRefund => 'Entry discount refund';
+
+  @override
+  String get coinSourceWagerStake => 'Wager stake';
+
+  @override
+  String get coinSourceWagerWon => 'Wager won';
+
+  @override
+  String get coinSourceWagerRefund => 'Wager refund';
+
+  @override
+  String get coinSourcePostBoost => 'Post boost';
+
+  @override
+  String get coinSourceReferralReward => 'Referral reward';
+
+  @override
+  String get coinSourceReferralMilestone => 'Referral milestone';
+
+  @override
+  String get coinSourceFriendlyStake => 'Friendly stake';
+
+  @override
+  String get coinSourceFriendlyStakePayout => 'Friendly payout';
 }
