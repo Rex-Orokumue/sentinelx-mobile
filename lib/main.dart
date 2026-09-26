@@ -9,6 +9,8 @@ import 'core/config/app_config.dart';
 import 'core/providers.dart';
 import 'core/routing/incoming_links.dart';
 import 'core/session/session_lifecycle.dart';
+import 'features/compete/paystack_checkout.dart';
+import 'features/compete/registration_flow.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +21,10 @@ Future<void> main() async {
 
   final container = ProviderContainer(
     retry: (_, _) => null,
-    overrides: [installedVersionProvider.overrideWithValue(info.version)],
+    overrides: [
+      installedVersionProvider.overrideWithValue(info.version),
+      paystackLauncherProvider.overrideWith(paystackLauncherFromRouter),
+    ],
   );
   final reporter = container.read(errorReporterProvider);
 
