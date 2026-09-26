@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 
 import '../config/remote_config.dart';
 import 'compete_models.dart';
+import 'match_models.dart';
 import 'models.dart';
 import 'players_models.dart';
 import 'progress_models.dart';
@@ -69,6 +70,18 @@ class ApiClient {
     'getMyXpEvents': 'get /api/mobile/v1/me/xp-events',
     'getMySxScoreEvents': 'get /api/mobile/v1/me/sx-score-events',
     'getMyCoinTransactions': 'get /api/mobile/v1/me/coin-transactions',
+    'getTournamentBracket': 'get /api/mobile/v1/tournaments/{id}/bracket',
+    'getTournamentStandings': 'get /api/mobile/v1/tournaments/{id}/standings',
+    'getTournamentResults': 'get /api/mobile/v1/tournaments/{id}/results',
+    'getMatchCentre': 'get /api/mobile/v1/matches/{id}/centre',
+    'postMatchCheckIn': 'post /api/mobile/v1/matches/{id}/check-in',
+    'postMatchResult': 'post /api/mobile/v1/matches/{id}/result',
+    'postMatchRating': 'post /api/mobile/v1/matches/{id}/rating',
+    'postMatchWager': 'post /api/mobile/v1/matches/{id}/wager',
+    'postLobbyResult': 'post /api/mobile/v1/lobbies/{id}/result',
+    'postSquads': 'post /api/mobile/v1/squads',
+    'getSquadLookup': 'get /api/mobile/v1/squads/lookup',
+    'getMeSummary': 'get /api/mobile/v1/me/summary',
   };
 
   static const _base = '/api/mobile/v1';
@@ -409,4 +422,103 @@ class ApiClient {
         _withQuery('/me/coin-transactions', {'cursor': cursor}),
         (d) => HistoryPage.parse(d! as Map<String, dynamic>, CoinTransaction.fromJson),
       );
+
+  // Phase 2b: bracket, match centre, results, squads, dashboard summary.
+  Future<BracketView> getTournamentBracket(String tournamentId) => _send(
+        'GET',
+        '/tournaments/${Uri.encodeComponent(tournamentId)}/bracket',
+        (d) => BracketView.fromJson(d! as Map<String, dynamic>),
+      );
+
+  Future<List<PointsStandingRow>> getTournamentStandings(String tournamentId, String stageId) => _send(
+        'GET',
+        _withQuery('/tournaments/${Uri.encodeComponent(tournamentId)}/standings', {'stage': stageId}),
+        (d) => ((d! as Map<String, dynamic>)['rows'] as List<dynamic>)
+            .map((e) => PointsStandingRow.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      );
+
+  Future<TournamentResults> getTournamentResults(String tournamentId) => _send(
+        'GET',
+        '/tournaments/${Uri.encodeComponent(tournamentId)}/results',
+        (d) => TournamentResults.fromJson(d! as Map<String, dynamic>),
+      );
+
+  Future<MatchCentre> getMatchCentre(String matchId) => _send(
+        'GET',
+        '/matches/${Uri.encodeComponent(matchId)}/centre',
+        (d) => MatchCentre.fromJson(d! as Map<String, dynamic>),
+      );
+
+  Future<void> postMatchCheckIn(String matchId) =>
+      _send('POST', '/matches/${Uri.encodeComponent(matchId)}/check-in', (_) {});
+
+  Future<void> postMatchResult(
+    String matchId, {
+    required int scoreA,
+    required int scoreB,
+    String recordingUrl = '',
+    required String screenshotPath,
+    required String idempotencyKey,
+  }) =>
+      _send(
+        'POST',
+        '/matches/${Uri.encodeComponent(matchId)}/result',
+        (_) {},
+        body: {'scoreA': scoreA, 'scoreB': scoreB, 'recordingUrl': recordingUrl, 'screenshotPath': screenshotPath},
+        headers: {'Idempotency-Key': idempotencyKey},
+      );
+
+  Future<void> postMatchRating(String matchId, {required int stars, required String idempotencyKey}) => _send(
+        'POST',
+        '/matches/${Uri.encodeComponent(matchId)}/rating',
+        (_) {},
+        body: {'stars': stars},
+        headers: {'Idempotency-Key': idempotencyKey},
+      );
+
+  Future<void> postMatchWager(
+    String matchId, {
+    required String pickPlayerId,
+    required int stakeCoins,
+    required String idempotencyKey,
+  }) =>
+      _send(
+        'POST',
+        '/matches/${Uri.encodeComponent(matchId)}/wager',
+        (_) {},
+        body: {'pickPlayerId': pickPlayerId, 'stakeCoins': stakeCoins},
+        headers: {'Idempotency-Key': idempotencyKey},
+      );
+
+  Future<void> postLobbyResult(
+    String lobbyId, {
+    required int placement,
+    required int kills,
+    required String screenshotPath,
+    required String idempotencyKey,
+  }) =>
+      _send(
+        'POST',
+        '/lobbies/${Uri.encodeComponent(lobbyId)}/result',
+        (_) {},
+        body: {'placement': placement, 'kills': kills, 'screenshotPath': screenshotPath},
+        headers: {'Idempotency-Key': idempotencyKey},
+      );
+
+  Future<CreatedSquad> postSquads({required String tournamentId, required String name, required String idempotencyKey}) => _send(
+        'POST',
+        '/squads',
+        (d) => CreatedSquad.fromJson(d! as Map<String, dynamic>),
+        body: {'tournamentId': tournamentId, 'name': name},
+        headers: {'Idempotency-Key': idempotencyKey},
+      );
+
+  Future<SquadPreview> getSquadLookup({required String tournamentId, required String code}) => _send(
+        'GET',
+        _withQuery('/squads/lookup', {'tournamentId': tournamentId, 'code': code}),
+        (d) => SquadPreview.fromJson((d! as Map<String, dynamic>)['squad'] as Map<String, dynamic>),
+      );
+
+  Future<MeSummary> getMeSummary() => _send('GET', '/me/summary', (d) => MeSummary.fromJson(d! as Map<String, dynamic>));
 }
