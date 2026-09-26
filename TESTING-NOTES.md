@@ -24,3 +24,12 @@ Manual check on a physical phone (Samsung SM-S9010, Android 16), debug build aga
 | 5 | Offline login and Google sign-in show readable localized text, no raw exception | Passed. Login's generic fallback reads "…creating your account", which is signup wording (deferred) |
 
 Test account: created by Google sign-in during check 1 — needs `anonymise_account` cleanup (not yet done).
+
+## 2026-09-26 — Phase 3a progress screens (`phase3a/screens`)
+
+- `flutter gen-l10n`: passed.
+- `flutter analyze`: no issues.
+- `flutter test`: 163 tests passed.
+- Added widget coverage for rankings rows/wins expansion, seasons list and empty detail, Hall of Fame sections, Home entry points, and localized web-link routing.
+- No production writes were made; Phase 3a endpoints and verification are read-only.
+- Live staging/device interaction was not run because the Vercel preview hostname remained unavailable through Windows DNS and the in-app browser rejected its sandbox metadata. The web preview itself reported ready; this limitation was also recorded on the web API PR.

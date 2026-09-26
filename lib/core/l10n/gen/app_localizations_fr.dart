@@ -573,4 +573,125 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get termsS15P1 =>
       'Des questions sur ces Conditions ? Écrivez-nous à <email>sentinelxesports@gmail.com</email> ou contactez-nous sur WhatsApp : <whatsapp>+234 903 239 5685</whatsapp>.';
+
+  @override
+  String get commonDeletedPlayer => 'Joueur supprimé';
+
+  @override
+  String get rankingsTitle => 'Classements';
+
+  @override
+  String get rankingsRankByScore => 'Classé par score SX';
+
+  @override
+  String get rankingsRankByWins => 'Classé par victoires';
+
+  @override
+  String get rankingsAllGames => 'Tous les jeux';
+
+  @override
+  String get rankingsAllRegions => 'Toutes les régions';
+
+  @override
+  String get rankingsYourRank => 'Votre rang';
+
+  @override
+  String get rankingsPrev => 'Précédent';
+
+  @override
+  String get rankingsNext => 'Suivant';
+
+  @override
+  String get rankingsEmpty => 'Aucun joueur classé pour le moment.';
+
+  @override
+  String get rankingsErrorRetry =>
+      'Chargement impossible. Touchez pour réessayer.';
+
+  @override
+  String get rankingsTrendNew => 'Nouveau';
+
+  @override
+  String get seasonsTitle => 'Saisons';
+
+  @override
+  String get seasonsEmpty => 'Aucune saison pour le moment.';
+
+  @override
+  String get seasonsProvisional => 'Provisoire';
+
+  @override
+  String get seasonsProvisionalNote =>
+      'Les points peuvent encore changer tant que les tournois sont en cours.';
+
+  @override
+  String get seasonsTournaments => 'Tournois';
+
+  @override
+  String get seasonsInviteOnly => 'Sur invitation';
+
+  @override
+  String get seasonsYou => 'Vous';
+
+  @override
+  String get hallOfFameTitle => 'Temple de la renommée';
+
+  @override
+  String get hallOfFameMvp => 'MVP de tous les temps';
+
+  @override
+  String get hallOfFameGoldenBoot => 'Soulier d’or';
+
+  @override
+  String get hallOfFameChampionsCup => 'Coupe des champions';
+
+  @override
+  String get hallOfFameMasters => 'Masters';
+
+  @override
+  String get hallOfFameCommunityClub => 'Club communautaire';
+
+  @override
+  String get hallOfFameOpen => 'Tournois ouverts';
+
+  @override
+  String get hallOfFameBronze => 'Places de bronze';
+
+  @override
+  String get hallOfFameEmpty => 'Rien ici pour le moment.';
+
+  @override
+  String rankingsWinsCount(int wins) {
+    return '$wins victoires';
+  }
+
+  @override
+  String rankingsMatchesCount(int matches) {
+    return '$matches matchs';
+  }
+
+  @override
+  String rankingsStreakValue(int n) {
+    return '$n victoires de suite';
+  }
+
+  @override
+  String rankingsPageOf(int page, int total) {
+    return 'Page $page sur $total';
+  }
+
+  @override
+  String rankingsPlayersRanked(int n) {
+    return '$n joueurs classés';
+  }
+
+  @override
+  String seasonsPoints(int n) {
+    return '$n pts';
+  }
+
+  @override
+  String hallOfFameRunnerUp(String name) {
+    return 'Finaliste : $name';
+  }
 }
