@@ -2533,6 +2533,672 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Friendly payout'**
   String get coinSourceFriendlyStakePayout;
+
+  /// No description provided for @mtcBracketTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bracket'**
+  String get mtcBracketTitle;
+
+  /// No description provided for @mtcTabGroups.
+  ///
+  /// In en, this message translates to:
+  /// **'Groups'**
+  String get mtcTabGroups;
+
+  /// No description provided for @mtcTabFixtures.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixtures'**
+  String get mtcTabFixtures;
+
+  /// No description provided for @mtcTabKnockout.
+  ///
+  /// In en, this message translates to:
+  /// **'Knockout'**
+  String get mtcTabKnockout;
+
+  /// No description provided for @mtcNoDrawYet.
+  ///
+  /// In en, this message translates to:
+  /// **'The draw hasn\'t been made yet.'**
+  String get mtcNoDrawYet;
+
+  /// No description provided for @mtcChampion.
+  ///
+  /// In en, this message translates to:
+  /// **'Champion'**
+  String get mtcChampion;
+
+  /// No description provided for @mtcThirdPlace.
+  ///
+  /// In en, this message translates to:
+  /// **'Third place'**
+  String get mtcThirdPlace;
+
+  /// No description provided for @mtcNoWinner.
+  ///
+  /// In en, this message translates to:
+  /// **'This tournament closed without a winner.'**
+  String get mtcNoWinner;
+
+  /// No description provided for @mtcGroupCol.
+  ///
+  /// In en, this message translates to:
+  /// **'{group}'**
+  String mtcGroupCol(String group);
+
+  /// No description provided for @mtcColPlayed.
+  ///
+  /// In en, this message translates to:
+  /// **'P'**
+  String get mtcColPlayed;
+
+  /// No description provided for @mtcColWins.
+  ///
+  /// In en, this message translates to:
+  /// **'W'**
+  String get mtcColWins;
+
+  /// No description provided for @mtcColDraws.
+  ///
+  /// In en, this message translates to:
+  /// **'D'**
+  String get mtcColDraws;
+
+  /// No description provided for @mtcColLosses.
+  ///
+  /// In en, this message translates to:
+  /// **'L'**
+  String get mtcColLosses;
+
+  /// No description provided for @mtcColGoalDiff.
+  ///
+  /// In en, this message translates to:
+  /// **'GD'**
+  String get mtcColGoalDiff;
+
+  /// No description provided for @mtcColPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Pts'**
+  String get mtcColPoints;
+
+  /// No description provided for @mtcAdvancing.
+  ///
+  /// In en, this message translates to:
+  /// **'Advancing'**
+  String get mtcAdvancing;
+
+  /// No description provided for @mtcFixtLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Live'**
+  String get mtcFixtLive;
+
+  /// No description provided for @mtcFixtUpcoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming'**
+  String get mtcFixtUpcoming;
+
+  /// No description provided for @mtcFixtCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get mtcFixtCompleted;
+
+  /// No description provided for @mtcFixtDisputed.
+  ///
+  /// In en, this message translates to:
+  /// **'Disputed or cancelled'**
+  String get mtcFixtDisputed;
+
+  /// No description provided for @mtcProjectedMatches.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} matches to come'**
+  String mtcProjectedMatches(int count);
+
+  /// No description provided for @mtcTbd.
+  ///
+  /// In en, this message translates to:
+  /// **'To be announced'**
+  String get mtcTbd;
+
+  /// No description provided for @mtcVs.
+  ///
+  /// In en, this message translates to:
+  /// **'vs'**
+  String get mtcVs;
+
+  /// No description provided for @mtcStages.
+  ///
+  /// In en, this message translates to:
+  /// **'Stages'**
+  String get mtcStages;
+
+  /// No description provided for @mtcStageStandingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Standings'**
+  String get mtcStageStandingsTitle;
+
+  /// No description provided for @mtcColRank.
+  ///
+  /// In en, this message translates to:
+  /// **'#'**
+  String get mtcColRank;
+
+  /// No description provided for @mtcColKills.
+  ///
+  /// In en, this message translates to:
+  /// **'Kills'**
+  String get mtcColKills;
+
+  /// No description provided for @mtcTieUnresolved.
+  ///
+  /// In en, this message translates to:
+  /// **'Tied — awaiting tiebreak'**
+  String get mtcTieUnresolved;
+
+  /// No description provided for @mtcMatchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Match'**
+  String get mtcMatchTitle;
+
+  /// No description provided for @mtcStatusScheduled.
+  ///
+  /// In en, this message translates to:
+  /// **'Scheduled'**
+  String get mtcStatusScheduled;
+
+  /// No description provided for @mtcStatusLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Live'**
+  String get mtcStatusLive;
+
+  /// No description provided for @mtcStatusCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get mtcStatusCompleted;
+
+  /// No description provided for @mtcStatusDisputed.
+  ///
+  /// In en, this message translates to:
+  /// **'Under review'**
+  String get mtcStatusDisputed;
+
+  /// No description provided for @mtcStatusCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get mtcStatusCancelled;
+
+  /// No description provided for @mtcStatusBye.
+  ///
+  /// In en, this message translates to:
+  /// **'Bye'**
+  String get mtcStatusBye;
+
+  /// No description provided for @mtcStatusForfeited.
+  ///
+  /// In en, this message translates to:
+  /// **'Forfeited'**
+  String get mtcStatusForfeited;
+
+  /// No description provided for @mtcWatchLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch live'**
+  String get mtcWatchLive;
+
+  /// No description provided for @mtcWatchReplay.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch replay'**
+  String get mtcWatchReplay;
+
+  /// No description provided for @mtcCheckIn.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m here — check in'**
+  String get mtcCheckIn;
+
+  /// No description provided for @mtcCheckedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Checked in'**
+  String get mtcCheckedIn;
+
+  /// No description provided for @mtcNotCheckedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Not checked in'**
+  String get mtcNotCheckedIn;
+
+  /// No description provided for @mtcCheckInSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re checked in.'**
+  String get mtcCheckInSuccess;
+
+  /// No description provided for @mtcSubmitResult.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit result'**
+  String get mtcSubmitResult;
+
+  /// No description provided for @mtcResultSubmitted.
+  ///
+  /// In en, this message translates to:
+  /// **'Result submitted — awaiting confirmation.'**
+  String get mtcResultSubmitted;
+
+  /// No description provided for @mtcRateOpponent.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate your opponent'**
+  String get mtcRateOpponent;
+
+  /// No description provided for @mtcRated.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks for rating!'**
+  String get mtcRated;
+
+  /// No description provided for @mtcWagerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Wager'**
+  String get mtcWagerTitle;
+
+  /// No description provided for @mtcWagerLoginPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to place a wager.'**
+  String get mtcWagerLoginPrompt;
+
+  /// No description provided for @mtcWagerClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'Wagering is closed for this match.'**
+  String get mtcWagerClosed;
+
+  /// No description provided for @mtcWagerPool.
+  ///
+  /// In en, this message translates to:
+  /// **'Pool: {a} vs {b} coins'**
+  String mtcWagerPool(int a, int b);
+
+  /// No description provided for @mtcWagerFee.
+  ///
+  /// In en, this message translates to:
+  /// **'House fee {percent}%'**
+  String mtcWagerFee(String percent);
+
+  /// No description provided for @mtcWagerYourPick.
+  ///
+  /// In en, this message translates to:
+  /// **'Your wager: {coins} coins on {name}'**
+  String mtcWagerYourPick(int coins, String name);
+
+  /// No description provided for @mtcWagerPlace.
+  ///
+  /// In en, this message translates to:
+  /// **'Place wager'**
+  String get mtcWagerPlace;
+
+  /// No description provided for @mtcWagerChange.
+  ///
+  /// In en, this message translates to:
+  /// **'Change wager'**
+  String get mtcWagerChange;
+
+  /// No description provided for @mtcWagerStake.
+  ///
+  /// In en, this message translates to:
+  /// **'Stake (coins)'**
+  String get mtcWagerStake;
+
+  /// No description provided for @mtcWagerStakeRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Between {min} and {max} coins.'**
+  String mtcWagerStakeRange(int min, int max);
+
+  /// No description provided for @mtcWagerPlaced.
+  ///
+  /// In en, this message translates to:
+  /// **'Wager placed.'**
+  String get mtcWagerPlaced;
+
+  /// No description provided for @mtcWagerEstimate.
+  ///
+  /// In en, this message translates to:
+  /// **'A 100-coin wager on the first player would pay about {payout} coins.'**
+  String mtcWagerEstimate(String payout);
+
+  /// No description provided for @mtcNoShowInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'This match is eligible for no-show handling by the organizers.'**
+  String get mtcNoShowInfo;
+
+  /// No description provided for @mtcScoreA.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} score'**
+  String mtcScoreA(String name);
+
+  /// No description provided for @mtcRecordingUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Recording link (optional)'**
+  String get mtcRecordingUrl;
+
+  /// No description provided for @mtcPickScreenshot.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose screenshot'**
+  String get mtcPickScreenshot;
+
+  /// No description provided for @mtcChangeScreenshot.
+  ///
+  /// In en, this message translates to:
+  /// **'Change screenshot'**
+  String get mtcChangeScreenshot;
+
+  /// No description provided for @mtcScreenshotRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'A screenshot is required.'**
+  String get mtcScreenshotRequired;
+
+  /// No description provided for @mtcUploading.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading screenshot…'**
+  String get mtcUploading;
+
+  /// No description provided for @mtcSubmitting.
+  ///
+  /// In en, this message translates to:
+  /// **'Submitting…'**
+  String get mtcSubmitting;
+
+  /// No description provided for @mtcValScore.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a whole number from 0 to 99.'**
+  String get mtcValScore;
+
+  /// No description provided for @mtcLobbyResultTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Lobby result'**
+  String get mtcLobbyResultTitle;
+
+  /// No description provided for @mtcPlacement.
+  ///
+  /// In en, this message translates to:
+  /// **'Placement'**
+  String get mtcPlacement;
+
+  /// No description provided for @mtcKills.
+  ///
+  /// In en, this message translates to:
+  /// **'Kills'**
+  String get mtcKills;
+
+  /// No description provided for @mtcValPlacement.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a whole number from 1 to 100.'**
+  String get mtcValPlacement;
+
+  /// No description provided for @mtcValKills.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a whole number from 0 to 100.'**
+  String get mtcValKills;
+
+  /// No description provided for @mtcFixturesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your fixtures'**
+  String get mtcFixturesTitle;
+
+  /// No description provided for @mtcNextMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Next match'**
+  String get mtcNextMatch;
+
+  /// No description provided for @mtcNextLobby.
+  ///
+  /// In en, this message translates to:
+  /// **'Next lobby'**
+  String get mtcNextLobby;
+
+  /// No description provided for @mtcSubmitPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'You have a match awaiting your result.'**
+  String get mtcSubmitPrompt;
+
+  /// No description provided for @mtcLobbySubmitted.
+  ///
+  /// In en, this message translates to:
+  /// **'Result submitted'**
+  String get mtcLobbySubmitted;
+
+  /// No description provided for @mtcRoomCodeReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Room details are ready'**
+  String get mtcRoomCodeReady;
+
+  /// No description provided for @mtcBannerQualified.
+  ///
+  /// In en, this message translates to:
+  /// **'You qualified in {title} ({round}).'**
+  String mtcBannerQualified(String title, String round);
+
+  /// No description provided for @mtcBannerAwaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for your opponent.'**
+  String get mtcBannerAwaiting;
+
+  /// No description provided for @mtcBannerEliminated.
+  ///
+  /// In en, this message translates to:
+  /// **'You were eliminated from {title} ({round}).'**
+  String mtcBannerEliminated(String title, String round);
+
+  /// No description provided for @mtcRegistrationsHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Your registrations'**
+  String get mtcRegistrationsHeading;
+
+  /// No description provided for @mtcPaymentPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment pending'**
+  String get mtcPaymentPending;
+
+  /// No description provided for @mtcPaymentPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid'**
+  String get mtcPaymentPaid;
+
+  /// No description provided for @mtcEcGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get mtcEcGeneric;
+
+  /// No description provided for @mtcEcNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'No connection. Check your internet and try again.'**
+  String get mtcEcNetwork;
+
+  /// No description provided for @mtcEcSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Your session expired. Please log in again.'**
+  String get mtcEcSession;
+
+  /// No description provided for @mtcEcInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Still processing your request. Please wait a moment and try again.'**
+  String get mtcEcInProgress;
+
+  /// No description provided for @mtcEcUploadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Screenshot upload failed. Please try again.'**
+  String get mtcEcUploadFailed;
+
+  /// No description provided for @mtcEcMatchNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Match not found.'**
+  String get mtcEcMatchNotFound;
+
+  /// No description provided for @mtcEcNotParticipant.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re not playing in this match.'**
+  String get mtcEcNotParticipant;
+
+  /// No description provided for @mtcEcNotMatchDay.
+  ///
+  /// In en, this message translates to:
+  /// **'You can check in once it\'s match day.'**
+  String get mtcEcNotMatchDay;
+
+  /// No description provided for @mtcEcCheckInClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'This match is no longer open for check-in.'**
+  String get mtcEcCheckInClosed;
+
+  /// No description provided for @mtcEcBye.
+  ///
+  /// In en, this message translates to:
+  /// **'This is a bye — there is no result to submit.'**
+  String get mtcEcBye;
+
+  /// No description provided for @mtcEcCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'This match was cancelled.'**
+  String get mtcEcCancelled;
+
+  /// No description provided for @mtcEcAlreadyConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'This result is already confirmed.'**
+  String get mtcEcAlreadyConfirmed;
+
+  /// No description provided for @mtcEcSubmissionLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Your submission is under review and can no longer be edited.'**
+  String get mtcEcSubmissionLocked;
+
+  /// No description provided for @mtcEcValidation.
+  ///
+  /// In en, this message translates to:
+  /// **'Please check what you entered.'**
+  String get mtcEcValidation;
+
+  /// No description provided for @mtcEcResultNotConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'You can rate your opponent once the result is confirmed.'**
+  String get mtcEcResultNotConfirmed;
+
+  /// No description provided for @mtcEcCannotRateSelf.
+  ///
+  /// In en, this message translates to:
+  /// **'You can\'t rate yourself.'**
+  String get mtcEcCannotRateSelf;
+
+  /// No description provided for @mtcEcNotRatable.
+  ///
+  /// In en, this message translates to:
+  /// **'This match can\'t be rated.'**
+  String get mtcEcNotRatable;
+
+  /// No description provided for @mtcEcAlreadyRated.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve already rated this match.'**
+  String get mtcEcAlreadyRated;
+
+  /// No description provided for @mtcEcPendingDeletion.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is pending deletion.'**
+  String get mtcEcPendingDeletion;
+
+  /// No description provided for @mtcEcOwnMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'You can\'t wager on your own match.'**
+  String get mtcEcOwnMatch;
+
+  /// No description provided for @mtcEcInvalidPick.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick one of the two players in this match.'**
+  String get mtcEcInvalidPick;
+
+  /// No description provided for @mtcEcWindowClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'Wagering is closed for this match.'**
+  String get mtcEcWindowClosed;
+
+  /// No description provided for @mtcEcInsufficientCoins.
+  ///
+  /// In en, this message translates to:
+  /// **'Not enough SX Coins for this stake.'**
+  String get mtcEcInsufficientCoins;
+
+  /// No description provided for @mtcEcNotInLobby.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re not in this lobby.'**
+  String get mtcEcNotInLobby;
+
+  /// No description provided for @mtcEcLobbyConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'This lobby is confirmed and can no longer be edited.'**
+  String get mtcEcLobbyConfirmed;
+
+  /// No description provided for @mtcEcResultConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Your result is confirmed and can no longer be edited.'**
+  String get mtcEcResultConfirmed;
+
+  /// No description provided for @mtcHomeFixtures.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixtures'**
+  String get mtcHomeFixtures;
 }
 
 class _AppLocalizationsDelegate
