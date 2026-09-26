@@ -18,6 +18,10 @@ import '../features/auth/reset_password_screen.dart';
 import '../features/auth/signup_screen.dart';
 import '../features/debug/debug_sign_in_screen.dart';
 import '../features/home/home_screen.dart';
+import '../features/rankings/rankings_screen.dart';
+import '../features/seasons/seasons_list_screen.dart';
+import '../features/seasons/season_detail_screen.dart';
+import '../features/hall_of_fame/hall_of_fame_screen.dart';
 import '../features/onboarding/onboarding_username_screen.dart';
 import '../features/tournaments/bracket_screen.dart';
 import '../shared/widgets/coming_soon_screen.dart';
@@ -46,16 +50,24 @@ GoRouter buildAppRouter({
       return null;
     },
     routes: [
-      GoRoute(path: '/', builder: (context, state) => HomeScreen(onGoTo: (path) => context.go(path))),
-      GoRoute(path: '/login', builder: (context, state) => LoginScreen(
-            onLoggedIn: () => context.go('/'),
-            onForgotPassword: () => context.push('/forgot-password'),
-            onCreateAccount: () => context.push('/signup'),
-          )),
+      GoRoute(
+        path: '/',
+        builder: (context, state) =>
+            HomeScreen(onGoTo: (path) => context.go(path)),
+      ),
+      GoRoute(
+        path: '/login',
+        builder: (context, state) => LoginScreen(
+          onLoggedIn: () => context.go('/'),
+          onForgotPassword: () => context.push('/forgot-password'),
+          onCreateAccount: () => context.push('/signup'),
+        ),
+      ),
       GoRoute(
         path: '/signup',
         builder: (context, state) => SignupScreen(
-          onSignedUp: (email) => context.push('/signup/check-email', extra: email),
+          onSignedUp: (email) =>
+              context.push('/signup/check-email', extra: email),
           onLogIn: () => context.push('/login'),
           onGoogleSignedIn: () => context.go('/'),
           initialRef: state.uri.queryParameters['ref'],
@@ -63,13 +75,24 @@ GoRouter buildAppRouter({
       ),
       GoRoute(
         path: '/signup/check-email',
-        builder: (context, state) => CheckEmailScreen(email: state.extra as String? ?? '', onGoToLogin: () => context.go('/login')),
+        builder: (context, state) => CheckEmailScreen(
+          email: state.extra as String? ?? '',
+          onGoToLogin: () => context.go('/login'),
+        ),
       ),
-      GoRoute(path: '/forgot-password', builder: (context, state) => const ForgotPasswordScreen()),
-      GoRoute(path: '/reset-password', builder: (context, state) => ResetPasswordScreen(onDone: () => context.go('/'))),
+      GoRoute(
+        path: '/forgot-password',
+        builder: (context, state) => const ForgotPasswordScreen(),
+      ),
+      GoRoute(
+        path: '/reset-password',
+        builder: (context, state) =>
+            ResetPasswordScreen(onDone: () => context.go('/')),
+      ),
       GoRoute(
         path: '/onboarding/username',
-        builder: (context, state) => OnboardingUsernameScreen(onClaimed: () => context.go('/')),
+        builder: (context, state) =>
+            OnboardingUsernameScreen(onClaimed: () => context.go('/')),
       ),
       GoRoute(path: '/invitations', builder: (context, state) => const InvitationsScreen()),
       GoRoute(path: '/games', builder: (context, state) => const GamesScreen()),
@@ -80,11 +103,26 @@ GoRouter buildAppRouter({
             selectedIndex: shell.currentIndex,
             onDestinationSelected: shell.goBranch,
             destinations: const [
-              NavigationDestination(icon: Icon(Icons.emoji_events_outlined), label: 'Compete'),
-              NavigationDestination(icon: Icon(Icons.live_tv_outlined), label: 'Watch'),
-              NavigationDestination(icon: Icon(Icons.groups_outlined), label: 'Community'),
-              NavigationDestination(icon: Icon(Icons.storefront_outlined), label: 'Trade'),
-              NavigationDestination(icon: Icon(Icons.person_outline), label: 'Account'),
+              NavigationDestination(
+                icon: Icon(Icons.emoji_events_outlined),
+                label: 'Compete',
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.live_tv_outlined),
+                label: 'Watch',
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.groups_outlined),
+                label: 'Community',
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.storefront_outlined),
+                label: 'Trade',
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.person_outline),
+                label: 'Account',
+              ),
             ],
           ),
         ),
@@ -112,6 +150,28 @@ GoRouter buildAppRouter({
                 ),
               ],
             ),
+              GoRoute(
+                path: '/rankings',
+                builder: (context, state) =>
+                    RankingsScreen(onGoTo: (path) => context.push(path)),
+              ),
+              GoRoute(
+                path: '/seasons',
+                builder: (context, state) => SeasonsListScreen(
+                  onSeasonTap: (s) => context.push('/seasons/${s.slug}'),
+                ),
+                routes: [
+                  GoRoute(
+                    path: ':slug',
+                    builder: (context, state) =>
+                        SeasonDetailScreen(slug: state.pathParameters['slug']!),
+                  ),
+                ],
+              ),
+              GoRoute(
+                path: '/hall-of-fame',
+                builder: (context, state) => const HallOfFameScreen(),
+              ),
           ]),
           StatefulShellBranch(routes: [
             GoRoute(path: '/tv', builder: (context, state) => ComingSoonScreen(title: 'Watch', onLogoTap: () => context.go('/'))),
@@ -137,7 +197,10 @@ GoRouter buildAppRouter({
         ],
       ),
       if (debugTools)
-        GoRoute(path: '/debug', builder: (context, state) => const DebugSignInScreen()),
+        GoRoute(
+          path: '/debug',
+          builder: (context, state) => const DebugSignInScreen(),
+        ),
     ],
   );
 }
@@ -149,8 +212,10 @@ final routerProvider = Provider<GoRouter>((ref) {
   final router = buildAppRouter(
     debugTools: ref.watch(appConfigProvider).debugTools,
     authGate: () => AuthGateSnapshot(
-      isLoading: ref.read(sessionProvider).isLoading ||
-          (ref.read(sessionProvider).value != null && ref.read(meProvider).isLoading),
+      isLoading:
+          ref.read(sessionProvider).isLoading ||
+          (ref.read(sessionProvider).value != null &&
+              ref.read(meProvider).isLoading),
       isSignedIn: ref.read(meProvider).asData?.value != null,
       onboardingGate: ref.read(onboardingGateProvider),
     ),

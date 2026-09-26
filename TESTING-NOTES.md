@@ -46,3 +46,12 @@ Not run yet: the owner chose to build all phases first and test on the phone tog
 | 10 | Games list; edit profile (name, bio, country, one-time username change; a second change shows the locked message); an existing bio survives a name-only edit | pending |
 | 11 | 375px: no overflow on any of the above | pending |
 | 12 | The Paystack WebView intercepts `/api/paystack/callback` on the real host AND on the LAN dev host | pending |
+
+## 2026-09-26 — Phase 3a progress screens (`phase3a/screens`)
+
+- `flutter gen-l10n`: passed.
+- `flutter analyze`: no issues.
+- `flutter test`: 163 tests passed.
+- Added widget coverage for rankings rows/wins expansion, seasons list and empty detail, Hall of Fame sections, Home entry points, and localized web-link routing.
+- No production writes were made; Phase 3a endpoints and verification are read-only.
+- Live staging/device interaction was not run because the Vercel preview hostname remained unavailable through Windows DNS and the in-app browser rejected its sandbox metadata. The web preview itself reported ready; this limitation was also recorded on the web API PR.
