@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sentinelx_mobile/core/api/compete_models.dart';
+import 'package:sentinelx_mobile/core/api/match_models.dart';
 import 'package:sentinelx_mobile/features/compete/compete_detail_screen.dart';
 import 'package:sentinelx_mobile/features/compete/compete_models.dart';
 import 'package:sentinelx_mobile/features/compete/compete_providers.dart';
 import 'package:sentinelx_mobile/features/compete/registration_flow.dart';
+import 'package:sentinelx_mobile/features/match/match_providers.dart';
 
 import '../../fakes/fake_compete_reads.dart';
+import '../../fakes/fake_match_repositories.dart';
 import '../../fakes/fake_registration_repository.dart';
 import '../../support/compete_fixtures.dart';
 import '../../support/pump_compete.dart';
@@ -15,6 +18,7 @@ class _Env {
   _Env(this.reads, this.repo);
   final FakeCompeteReads reads;
   final FakeRegistrationRepository repo;
+  final matchRepo = FakeMatchRepository();
   int logins = 0;
   int invitations = 0;
   final brackets = <String>[];
@@ -36,6 +40,8 @@ Future<_Env> _pump(
   bool signedOut = false,
   bool readsFail = false,
   String tournamentId = 't1',
+  TournamentResults? results,
+  bool resultsFail = false,
 }) async {
   final reads = FakeCompeteReads(
     tournaments: [CompeteTournament.fromJson(row ?? tournamentRow())],
@@ -44,6 +50,8 @@ Future<_Env> _pump(
   );
   final repo = FakeRegistrationRepository()..stateResult = state ?? _state(RegView.canRegister);
   final env = _Env(reads, repo);
+  if (results != null) env.matchRepo.resultsView = results;
+  if (resultsFail) env.matchRepo.resultsError = Exception('boom');
   await pumpCompete(
     tester,
     CompeteDetailScreen(
@@ -57,6 +65,7 @@ Future<_Env> _pump(
       ...competeBaseOverrides(signedOut: signedOut),
       competeReadsRepositoryProvider.overrideWithValue(reads),
       registrationRepositoryProvider.overrideWithValue(repo),
+      matchRepositoryProvider.overrideWithValue(env.matchRepo),
       paystackLauncherProvider.overrideWithValue((_) async => true),
       pollDelayProvider.overrideWithValue((_) async {}),
     ],
@@ -214,5 +223,54 @@ void main() {
   testWidgets('a 300-character description fits 375px without overflow', (tester) async {
     await _pump(tester, row: tournamentRow(description: 'D' * 300));
     expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('a completed tournament with a champion shows the champion card', (tester) async {
+    await _pump(
+      tester,
+      row: tournamentRow(status: 'completed'),
+      results: TournamentResults.fromJson({
+        'champion': {
+          'tournamentId': 't1',
+          'slug': 'fc-mobile-cup',
+          'title': 'FC Mobile Cup',
+          'tournamentType': 'open',
+          'gameId': 'g1',
+          'gameName': 'FC Mobile',
+          'date': null,
+          'prizePool': 8000,
+          'champion': {'id': 'p1', 'name': 'Ada'},
+          'runnerUp': {'id': 'p2', 'name': 'Bola'},
+          'championAvatarUrl': null,
+          'seasonName': null,
+        },
+        'noWinner': false,
+      }),
+    );
+    expect(find.byKey(const Key('champion-card')), findsOneWidget);
+    expect(find.descendant(of: find.byKey(const Key('champion-card')), matching: find.text('Ada')), findsOneWidget);
+    expect(find.descendant(of: find.byKey(const Key('champion-card')), matching: find.textContaining('Bola')), findsOneWidget);
+  });
+
+  testWidgets('a completed tournament closed without a winner says so', (tester) async {
+    await _pump(
+      tester,
+      row: tournamentRow(status: 'completed'),
+      results: const TournamentResults(champion: null, noWinner: true),
+    );
+    expect(find.text('This tournament closed without a winner.'), findsOneWidget);
+    expect(find.byKey(const Key('champion-card')), findsNothing);
+  });
+
+  testWidgets('a results failure never blocks the page', (tester) async {
+    await _pump(tester, row: tournamentRow(status: 'completed'), resultsFail: true);
+    expect(find.text('FC Mobile Cup'), findsOneWidget);
+    expect(find.byKey(const Key('champion-card')), findsNothing);
+    expect(find.textContaining('Exception'), findsNothing);
+  });
+
+  testWidgets('the results endpoint is not called for a tournament that is not completed', (tester) async {
+    final env = await _pump(tester);
+    expect(env.matchRepo.resultsCalls, 0);
   });
 }
