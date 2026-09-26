@@ -44,11 +44,14 @@ class HomeScreen extends ConsumerWidget {
                   key: const Key('home-featured'),
                   title: Text(summary.featuredTournament!.title),
                   subtitle: Text(summary.featuredTournament!.status),
-                  onTap: () => onGoTo('/tournaments/${summary.featuredTournament!.id}'),
+                  onTap: () =>
+                      onGoTo('/tournaments/${summary.featuredTournament!.id}'),
                 ),
               Padding(
                 padding: const EdgeInsets.all(16),
-                child: Text('${summary.stats.playerCount} players · ${summary.stats.tournamentCount} tournaments'),
+                child: Text(
+                  '${summary.stats.playerCount} players · ${summary.stats.tournamentCount} tournaments',
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -56,14 +59,42 @@ class HomeScreen extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(l10n.homeUpcomingHeading),
-                    TextButton(onPressed: () => onGoTo('/tournaments'), child: Text(l10n.homeFullRankingsLink)),
+                    TextButton(
+                      onPressed: () => onGoTo('/tournaments'),
+                      child: Text(l10n.homeFullRankingsLink),
+                    ),
                   ],
                 ),
               ),
               for (final t in summary.upcomingTournaments)
-                ListTile(title: Text(t.title), onTap: () => onGoTo('/tournaments/${t.id}')),
-              Padding(padding: const EdgeInsets.all(16), child: Text(l10n.homeTopPlayersHeading)),
-              for (final p in summary.leaderboardTeaser) ListTile(title: Text(p.displayName ?? p.username ?? '—')),
+                ListTile(
+                  title: Text(t.title),
+                  onTap: () => onGoTo('/tournaments/${t.id}'),
+                ),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Text(l10n.homeTopPlayersHeading),
+              ),
+              for (final p in summary.leaderboardTeaser)
+                ListTile(title: Text(p.displayName ?? p.username ?? '—')),
+              ListTile(
+                key: const Key('home-link-rankings'),
+                title: Text(l10n.homeFullRankingsLink),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => onGoTo('/rankings'),
+              ),
+              ListTile(
+                key: const Key('home-link-seasons'),
+                title: Text(l10n.seasonsTitle),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => onGoTo('/seasons'),
+              ),
+              ListTile(
+                key: const Key('home-link-hall-of-fame'),
+                title: Text(l10n.hallOfFameTitle),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => onGoTo('/hall-of-fame'),
+              ),
             ],
           ),
         ),
