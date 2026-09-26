@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 
 import '../config/remote_config.dart';
+import 'compete_models.dart';
 import 'models.dart';
 
 class ApiException implements Exception {
@@ -37,6 +38,13 @@ class ApiClient {
     'postSessionStart': 'post /api/mobile/v1/session/start',
     'postOnboardingUsername': 'post /api/mobile/v1/onboarding/username',
     'getHome': 'get /api/mobile/v1/home',
+    'getTournamentRegistrationState': 'get /api/mobile/v1/tournaments/{id}/registration-state',
+    'postTournamentRegister': 'post /api/mobile/v1/tournaments/{id}/register',
+    'postTournamentWaitlist': 'post /api/mobile/v1/tournaments/{id}/waitlist',
+    'postInvitationAccept': 'post /api/mobile/v1/invitations/{id}/accept',
+    'postInvitationDecline': 'post /api/mobile/v1/invitations/{id}/decline',
+    'getPaymentStatus': 'get /api/mobile/v1/payments/{reference}',
+    'patchMeProfile': 'patch /api/mobile/v1/me/profile',
   };
 
   static const _base = '/api/mobile/v1';
@@ -65,13 +73,14 @@ class ApiClient {
     return ApiClient(dio: dio);
   }
 
-  Future<T> _send<T>(String method, String path, T Function(Object? data) parse, {Object? body}) async {
+  Future<T> _send<T>(String method, String path, T Function(Object? data) parse,
+      {Object? body, Map<String, String>? headers}) async {
     final Response<dynamic> res;
     try {
       res = await _dio.request<dynamic>(
         '$_base$path',
         data: body,
-        options: Options(method: method, responseType: ResponseType.json),
+        options: Options(method: method, responseType: ResponseType.json, headers: headers),
       );
     } on DioException catch (e) {
       throw ApiException(status: 0, code: 'network', message: e.message ?? 'Network error');
@@ -158,4 +167,49 @@ class ApiClient {
       );
 
   Future<HomeSummary> getHome() => _send('GET', '/home', (d) => HomeSummary.fromJson(d! as Map<String, dynamic>));
+
+  Future<RegistrationState> getTournamentRegistrationState(String tournamentId) => _send(
+        'GET',
+        '/tournaments/${Uri.encodeComponent(tournamentId)}/registration-state',
+        (d) => RegistrationState.fromJson(d! as Map<String, dynamic>),
+      );
+
+  Future<RegisterOutcome> postTournamentRegister(
+    String tournamentId, {
+    required RegistrationDetails details,
+    required int coinsUsed,
+    required String idempotencyKey,
+  }) =>
+      _send(
+        'POST',
+        '/tournaments/${Uri.encodeComponent(tournamentId)}/register',
+        parseRegisterOutcome,
+        body: {...details.toJson(), 'coinsUsed': coinsUsed},
+        headers: {'Idempotency-Key': idempotencyKey},
+      );
+
+  Future<void> postTournamentWaitlist(String tournamentId, {required RegistrationDetails details}) => _send(
+        'POST',
+        '/tournaments/${Uri.encodeComponent(tournamentId)}/waitlist',
+        (_) {},
+        body: details.toJson(),
+      );
+
+  Future<RegisterOutcome> postInvitationAccept(String invitationId, {required String idempotencyKey}) => _send(
+        'POST',
+        '/invitations/${Uri.encodeComponent(invitationId)}/accept',
+        parseRegisterOutcome,
+        headers: {'Idempotency-Key': idempotencyKey},
+      );
+
+  Future<void> postInvitationDecline(String invitationId) =>
+      _send('POST', '/invitations/${Uri.encodeComponent(invitationId)}/decline', (_) {});
+
+  Future<PaymentStatus> getPaymentStatus(String reference) => _send(
+        'GET',
+        '/payments/${Uri.encodeComponent(reference)}',
+        (d) => parsePaymentStatus((d! as Map<String, dynamic>)['status'] as String),
+      );
+
+  Future<void> patchMeProfile(ProfileEdit edit) => _send('PATCH', '/me/profile', (_) {}, body: edit.toJson());
 }
