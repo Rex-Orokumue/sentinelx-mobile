@@ -565,4 +565,295 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get termsS15P1 =>
       'Questions about these Terms? Email us at <email>sentinelxesports@gmail.com</email> or message us on WhatsApp: <whatsapp>+234 903 239 5685</whatsapp>.';
+
+  @override
+  String get cmpTabAll => 'All';
+
+  @override
+  String get cmpTabLive => 'Live';
+
+  @override
+  String get cmpTabUpcoming => 'Upcoming';
+
+  @override
+  String get cmpTabCompleted => 'Completed';
+
+  @override
+  String get cmpAllGames => 'All games';
+
+  @override
+  String get cmpEmpty => 'No tournaments here yet.';
+
+  @override
+  String get cmpLoadError =>
+      'Couldn\'t load this. Check your connection and try again.';
+
+  @override
+  String get cmpRetry => 'Try again';
+
+  @override
+  String get cmpLoadMore => 'Load more';
+
+  @override
+  String get cmpEntryFee => 'Entry fee';
+
+  @override
+  String get cmpFree => 'Free';
+
+  @override
+  String get cmpPrizePool => 'Prize pool';
+
+  @override
+  String get cmpSecondPlace => '2nd place';
+
+  @override
+  String get cmpThirdPlace => '3rd place';
+
+  @override
+  String cmpMaxPlayers(int count) {
+    return '$count players max';
+  }
+
+  @override
+  String get cmpRules => 'Rules';
+
+  @override
+  String get cmpViewBracket => 'View bracket';
+
+  @override
+  String get cmpShareWhatsapp => 'Share on WhatsApp';
+
+  @override
+  String cmpShareText(String title, String url) {
+    return 'Join $title on Sentinel X: $url';
+  }
+
+  @override
+  String get cmpCtaRegister => 'Register';
+
+  @override
+  String get cmpCtaResume => 'Resume payment';
+
+  @override
+  String get cmpCtaLogin => 'Log in to register';
+
+  @override
+  String get cmpCtaJoinWaitlist => 'Join waitlist';
+
+  @override
+  String get cmpViewInvitations => 'View my invitations';
+
+  @override
+  String get cmpStateRegistered => 'You\'re registered.';
+
+  @override
+  String get cmpStateWaitlisted => 'You\'re on the waitlist.';
+
+  @override
+  String get cmpStateFull => 'This tournament is full.';
+
+  @override
+  String get cmpStateEnded => 'This tournament has ended.';
+
+  @override
+  String get cmpStateInvitationOnly => 'This tournament is invitation-only.';
+
+  @override
+  String get cmpFeeWaived => 'Free entry — waiver applied';
+
+  @override
+  String get cmpFieldDisplayName => 'Display name';
+
+  @override
+  String get cmpFieldWhatsapp => 'WhatsApp number';
+
+  @override
+  String get cmpFieldClub => 'Club name';
+
+  @override
+  String get cmpFieldIgn => 'In-game tag (optional)';
+
+  @override
+  String get cmpAgreeRules => 'I have read and agree to the rules';
+
+  @override
+  String get cmpCoinsTitle => 'Use SX Coins';
+
+  @override
+  String get cmpCoinsNone => 'Don\'t use coins';
+
+  @override
+  String cmpCoinsOption(int coins, String naira) {
+    return '$coins coins (−₦$naira)';
+  }
+
+  @override
+  String get cmpSubmitRegister => 'Continue';
+
+  @override
+  String get cmpSubmitWaitlist => 'Join waitlist';
+
+  @override
+  String get cmpSubmitting => 'Working…';
+
+  @override
+  String get cmpValDisplayName => 'Enter a name (1–60 characters).';
+
+  @override
+  String get cmpValWhatsapp => 'Enter a valid WhatsApp number.';
+
+  @override
+  String get cmpValClub => 'Enter your club (1–60 characters).';
+
+  @override
+  String get cmpValIgn => 'Tag is too long (60 max).';
+
+  @override
+  String get cmpValRules => 'Please agree to the rules.';
+
+  @override
+  String get cmpPayConfirming => 'Confirming your payment…';
+
+  @override
+  String get cmpPaySuccess => 'You\'re in! Payment confirmed.';
+
+  @override
+  String get cmpPayNotConfirmed =>
+      'We haven\'t seen your payment yet. If you were charged it will confirm shortly — check back in a minute.';
+
+  @override
+  String get cmpPayCancelled =>
+      'Payment window closed. You can resume from the tournament page.';
+
+  @override
+  String get cmpConfirmedFree => 'You\'re registered!';
+
+  @override
+  String get cmpWaitlistJoined => 'You\'re on the waitlist.';
+
+  @override
+  String get cmpInvTitle => 'My invitations';
+
+  @override
+  String get cmpInvEmpty => 'No pending invitations.';
+
+  @override
+  String get cmpInvAccept => 'Accept';
+
+  @override
+  String get cmpInvDecline => 'Decline';
+
+  @override
+  String cmpInvExpires(String date) {
+    return 'Expires $date';
+  }
+
+  @override
+  String get cmpInvDeclined => 'Invitation declined.';
+
+  @override
+  String get cmpGamesTitle => 'Games';
+
+  @override
+  String get cmpGamesEmpty => 'No games yet.';
+
+  @override
+  String get cmpEditProfile => 'Edit profile';
+
+  @override
+  String get cmpFieldBio => 'Bio';
+
+  @override
+  String get cmpFieldCountry => 'Country';
+
+  @override
+  String get cmpFieldUsername => 'Username (can be changed once)';
+
+  @override
+  String get cmpSave => 'Save';
+
+  @override
+  String get cmpSaved => 'Profile saved.';
+
+  @override
+  String get cmpValBio => 'Bio must be 280 characters or fewer.';
+
+  @override
+  String get cmpValCountry => 'Country is too long (60 max).';
+
+  @override
+  String get cmpEcGeneric => 'Something went wrong. Please try again.';
+
+  @override
+  String get cmpEcNetwork =>
+      'No connection. Check your internet and try again.';
+
+  @override
+  String get cmpEcSession => 'Your session expired. Please log in again.';
+
+  @override
+  String get cmpEcTournamentNotFound => 'Tournament not found.';
+
+  @override
+  String get cmpEcRulesRequired => 'Please confirm you agree to the rules.';
+
+  @override
+  String get cmpEcAlreadyRegistered =>
+      'You\'re already registered for this tournament.';
+
+  @override
+  String get cmpEcTournamentFull => 'This tournament is full.';
+
+  @override
+  String get cmpEcInvitationOnly => 'This tournament is invitation-only.';
+
+  @override
+  String get cmpEcRegistrationClosed => 'Registration is closed.';
+
+  @override
+  String get cmpEcInsufficientCoins => 'Not enough SX Coins for this discount.';
+
+  @override
+  String get cmpEcPaymentInit =>
+      'Payment couldn\'t be started. Please try again.';
+
+  @override
+  String get cmpEcWaitlistNotOpen =>
+      'The waitlist opens once registration closes.';
+
+  @override
+  String get cmpEcAlreadyWaitlisted => 'You\'re already on the waitlist.';
+
+  @override
+  String get cmpEcInProgress =>
+      'Still processing your request. Please wait a moment and try again.';
+
+  @override
+  String get cmpEcInvitationNotFound => 'Invitation not found.';
+
+  @override
+  String get cmpEcInvitationGone => 'This invitation is no longer available.';
+
+  @override
+  String get cmpEcInvitationExpired => 'This invitation has expired.';
+
+  @override
+  String get cmpEcUsernameTaken => 'That username is already taken.';
+
+  @override
+  String get cmpEcUsernameLocked =>
+      'Your username has already been changed once.';
+
+  @override
+  String get cmpEcSaveFailed =>
+      'Couldn\'t save your profile. Please try again.';
+
+  @override
+  String get cmpHomeGamesTile => 'Games';
+
+  @override
+  String get cmpHomeInvitationsTile => 'My invitations';
+
+  @override
+  String get cmpAccountEditProfile => 'Edit profile';
 }

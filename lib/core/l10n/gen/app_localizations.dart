@@ -1087,6 +1087,552 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Questions about these Terms? Email us at <email>sentinelxesports@gmail.com</email> or message us on WhatsApp: <whatsapp>+234 903 239 5685</whatsapp>.'**
   String get termsS15P1;
+
+  /// No description provided for @cmpTabAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get cmpTabAll;
+
+  /// No description provided for @cmpTabLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Live'**
+  String get cmpTabLive;
+
+  /// No description provided for @cmpTabUpcoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming'**
+  String get cmpTabUpcoming;
+
+  /// No description provided for @cmpTabCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get cmpTabCompleted;
+
+  /// No description provided for @cmpAllGames.
+  ///
+  /// In en, this message translates to:
+  /// **'All games'**
+  String get cmpAllGames;
+
+  /// No description provided for @cmpEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No tournaments here yet.'**
+  String get cmpEmpty;
+
+  /// No description provided for @cmpLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load this. Check your connection and try again.'**
+  String get cmpLoadError;
+
+  /// No description provided for @cmpRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get cmpRetry;
+
+  /// No description provided for @cmpLoadMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Load more'**
+  String get cmpLoadMore;
+
+  /// No description provided for @cmpEntryFee.
+  ///
+  /// In en, this message translates to:
+  /// **'Entry fee'**
+  String get cmpEntryFee;
+
+  /// No description provided for @cmpFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Free'**
+  String get cmpFree;
+
+  /// No description provided for @cmpPrizePool.
+  ///
+  /// In en, this message translates to:
+  /// **'Prize pool'**
+  String get cmpPrizePool;
+
+  /// No description provided for @cmpSecondPlace.
+  ///
+  /// In en, this message translates to:
+  /// **'2nd place'**
+  String get cmpSecondPlace;
+
+  /// No description provided for @cmpThirdPlace.
+  ///
+  /// In en, this message translates to:
+  /// **'3rd place'**
+  String get cmpThirdPlace;
+
+  /// No description provided for @cmpMaxPlayers.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} players max'**
+  String cmpMaxPlayers(int count);
+
+  /// No description provided for @cmpRules.
+  ///
+  /// In en, this message translates to:
+  /// **'Rules'**
+  String get cmpRules;
+
+  /// No description provided for @cmpViewBracket.
+  ///
+  /// In en, this message translates to:
+  /// **'View bracket'**
+  String get cmpViewBracket;
+
+  /// No description provided for @cmpShareWhatsapp.
+  ///
+  /// In en, this message translates to:
+  /// **'Share on WhatsApp'**
+  String get cmpShareWhatsapp;
+
+  /// No description provided for @cmpShareText.
+  ///
+  /// In en, this message translates to:
+  /// **'Join {title} on Sentinel X: {url}'**
+  String cmpShareText(String title, String url);
+
+  /// No description provided for @cmpCtaRegister.
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get cmpCtaRegister;
+
+  /// No description provided for @cmpCtaResume.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume payment'**
+  String get cmpCtaResume;
+
+  /// No description provided for @cmpCtaLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to register'**
+  String get cmpCtaLogin;
+
+  /// No description provided for @cmpCtaJoinWaitlist.
+  ///
+  /// In en, this message translates to:
+  /// **'Join waitlist'**
+  String get cmpCtaJoinWaitlist;
+
+  /// No description provided for @cmpViewInvitations.
+  ///
+  /// In en, this message translates to:
+  /// **'View my invitations'**
+  String get cmpViewInvitations;
+
+  /// No description provided for @cmpStateRegistered.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re registered.'**
+  String get cmpStateRegistered;
+
+  /// No description provided for @cmpStateWaitlisted.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re on the waitlist.'**
+  String get cmpStateWaitlisted;
+
+  /// No description provided for @cmpStateFull.
+  ///
+  /// In en, this message translates to:
+  /// **'This tournament is full.'**
+  String get cmpStateFull;
+
+  /// No description provided for @cmpStateEnded.
+  ///
+  /// In en, this message translates to:
+  /// **'This tournament has ended.'**
+  String get cmpStateEnded;
+
+  /// No description provided for @cmpStateInvitationOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'This tournament is invitation-only.'**
+  String get cmpStateInvitationOnly;
+
+  /// No description provided for @cmpFeeWaived.
+  ///
+  /// In en, this message translates to:
+  /// **'Free entry — waiver applied'**
+  String get cmpFeeWaived;
+
+  /// No description provided for @cmpFieldDisplayName.
+  ///
+  /// In en, this message translates to:
+  /// **'Display name'**
+  String get cmpFieldDisplayName;
+
+  /// No description provided for @cmpFieldWhatsapp.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp number'**
+  String get cmpFieldWhatsapp;
+
+  /// No description provided for @cmpFieldClub.
+  ///
+  /// In en, this message translates to:
+  /// **'Club name'**
+  String get cmpFieldClub;
+
+  /// No description provided for @cmpFieldIgn.
+  ///
+  /// In en, this message translates to:
+  /// **'In-game tag (optional)'**
+  String get cmpFieldIgn;
+
+  /// No description provided for @cmpAgreeRules.
+  ///
+  /// In en, this message translates to:
+  /// **'I have read and agree to the rules'**
+  String get cmpAgreeRules;
+
+  /// No description provided for @cmpCoinsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Use SX Coins'**
+  String get cmpCoinsTitle;
+
+  /// No description provided for @cmpCoinsNone.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t use coins'**
+  String get cmpCoinsNone;
+
+  /// No description provided for @cmpCoinsOption.
+  ///
+  /// In en, this message translates to:
+  /// **'{coins} coins (−₦{naira})'**
+  String cmpCoinsOption(int coins, String naira);
+
+  /// No description provided for @cmpSubmitRegister.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get cmpSubmitRegister;
+
+  /// No description provided for @cmpSubmitWaitlist.
+  ///
+  /// In en, this message translates to:
+  /// **'Join waitlist'**
+  String get cmpSubmitWaitlist;
+
+  /// No description provided for @cmpSubmitting.
+  ///
+  /// In en, this message translates to:
+  /// **'Working…'**
+  String get cmpSubmitting;
+
+  /// No description provided for @cmpValDisplayName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a name (1–60 characters).'**
+  String get cmpValDisplayName;
+
+  /// No description provided for @cmpValWhatsapp.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid WhatsApp number.'**
+  String get cmpValWhatsapp;
+
+  /// No description provided for @cmpValClub.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your club (1–60 characters).'**
+  String get cmpValClub;
+
+  /// No description provided for @cmpValIgn.
+  ///
+  /// In en, this message translates to:
+  /// **'Tag is too long (60 max).'**
+  String get cmpValIgn;
+
+  /// No description provided for @cmpValRules.
+  ///
+  /// In en, this message translates to:
+  /// **'Please agree to the rules.'**
+  String get cmpValRules;
+
+  /// No description provided for @cmpPayConfirming.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirming your payment…'**
+  String get cmpPayConfirming;
+
+  /// No description provided for @cmpPaySuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re in! Payment confirmed.'**
+  String get cmpPaySuccess;
+
+  /// No description provided for @cmpPayNotConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'We haven\'t seen your payment yet. If you were charged it will confirm shortly — check back in a minute.'**
+  String get cmpPayNotConfirmed;
+
+  /// No description provided for @cmpPayCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment window closed. You can resume from the tournament page.'**
+  String get cmpPayCancelled;
+
+  /// No description provided for @cmpConfirmedFree.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re registered!'**
+  String get cmpConfirmedFree;
+
+  /// No description provided for @cmpWaitlistJoined.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re on the waitlist.'**
+  String get cmpWaitlistJoined;
+
+  /// No description provided for @cmpInvTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My invitations'**
+  String get cmpInvTitle;
+
+  /// No description provided for @cmpInvEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No pending invitations.'**
+  String get cmpInvEmpty;
+
+  /// No description provided for @cmpInvAccept.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept'**
+  String get cmpInvAccept;
+
+  /// No description provided for @cmpInvDecline.
+  ///
+  /// In en, this message translates to:
+  /// **'Decline'**
+  String get cmpInvDecline;
+
+  /// No description provided for @cmpInvExpires.
+  ///
+  /// In en, this message translates to:
+  /// **'Expires {date}'**
+  String cmpInvExpires(String date);
+
+  /// No description provided for @cmpInvDeclined.
+  ///
+  /// In en, this message translates to:
+  /// **'Invitation declined.'**
+  String get cmpInvDeclined;
+
+  /// No description provided for @cmpGamesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Games'**
+  String get cmpGamesTitle;
+
+  /// No description provided for @cmpGamesEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No games yet.'**
+  String get cmpGamesEmpty;
+
+  /// No description provided for @cmpEditProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit profile'**
+  String get cmpEditProfile;
+
+  /// No description provided for @cmpFieldBio.
+  ///
+  /// In en, this message translates to:
+  /// **'Bio'**
+  String get cmpFieldBio;
+
+  /// No description provided for @cmpFieldCountry.
+  ///
+  /// In en, this message translates to:
+  /// **'Country'**
+  String get cmpFieldCountry;
+
+  /// No description provided for @cmpFieldUsername.
+  ///
+  /// In en, this message translates to:
+  /// **'Username (can be changed once)'**
+  String get cmpFieldUsername;
+
+  /// No description provided for @cmpSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get cmpSave;
+
+  /// No description provided for @cmpSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile saved.'**
+  String get cmpSaved;
+
+  /// No description provided for @cmpValBio.
+  ///
+  /// In en, this message translates to:
+  /// **'Bio must be 280 characters or fewer.'**
+  String get cmpValBio;
+
+  /// No description provided for @cmpValCountry.
+  ///
+  /// In en, this message translates to:
+  /// **'Country is too long (60 max).'**
+  String get cmpValCountry;
+
+  /// No description provided for @cmpEcGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get cmpEcGeneric;
+
+  /// No description provided for @cmpEcNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'No connection. Check your internet and try again.'**
+  String get cmpEcNetwork;
+
+  /// No description provided for @cmpEcSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Your session expired. Please log in again.'**
+  String get cmpEcSession;
+
+  /// No description provided for @cmpEcTournamentNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Tournament not found.'**
+  String get cmpEcTournamentNotFound;
+
+  /// No description provided for @cmpEcRulesRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please confirm you agree to the rules.'**
+  String get cmpEcRulesRequired;
+
+  /// No description provided for @cmpEcAlreadyRegistered.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re already registered for this tournament.'**
+  String get cmpEcAlreadyRegistered;
+
+  /// No description provided for @cmpEcTournamentFull.
+  ///
+  /// In en, this message translates to:
+  /// **'This tournament is full.'**
+  String get cmpEcTournamentFull;
+
+  /// No description provided for @cmpEcInvitationOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'This tournament is invitation-only.'**
+  String get cmpEcInvitationOnly;
+
+  /// No description provided for @cmpEcRegistrationClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration is closed.'**
+  String get cmpEcRegistrationClosed;
+
+  /// No description provided for @cmpEcInsufficientCoins.
+  ///
+  /// In en, this message translates to:
+  /// **'Not enough SX Coins for this discount.'**
+  String get cmpEcInsufficientCoins;
+
+  /// No description provided for @cmpEcPaymentInit.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment couldn\'t be started. Please try again.'**
+  String get cmpEcPaymentInit;
+
+  /// No description provided for @cmpEcWaitlistNotOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'The waitlist opens once registration closes.'**
+  String get cmpEcWaitlistNotOpen;
+
+  /// No description provided for @cmpEcAlreadyWaitlisted.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re already on the waitlist.'**
+  String get cmpEcAlreadyWaitlisted;
+
+  /// No description provided for @cmpEcInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Still processing your request. Please wait a moment and try again.'**
+  String get cmpEcInProgress;
+
+  /// No description provided for @cmpEcInvitationNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Invitation not found.'**
+  String get cmpEcInvitationNotFound;
+
+  /// No description provided for @cmpEcInvitationGone.
+  ///
+  /// In en, this message translates to:
+  /// **'This invitation is no longer available.'**
+  String get cmpEcInvitationGone;
+
+  /// No description provided for @cmpEcInvitationExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'This invitation has expired.'**
+  String get cmpEcInvitationExpired;
+
+  /// No description provided for @cmpEcUsernameTaken.
+  ///
+  /// In en, this message translates to:
+  /// **'That username is already taken.'**
+  String get cmpEcUsernameTaken;
+
+  /// No description provided for @cmpEcUsernameLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Your username has already been changed once.'**
+  String get cmpEcUsernameLocked;
+
+  /// No description provided for @cmpEcSaveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t save your profile. Please try again.'**
+  String get cmpEcSaveFailed;
+
+  /// No description provided for @cmpHomeGamesTile.
+  ///
+  /// In en, this message translates to:
+  /// **'Games'**
+  String get cmpHomeGamesTile;
+
+  /// No description provided for @cmpHomeInvitationsTile.
+  ///
+  /// In en, this message translates to:
+  /// **'My invitations'**
+  String get cmpHomeInvitationsTile;
+
+  /// No description provided for @cmpAccountEditProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit profile'**
+  String get cmpAccountEditProfile;
 }
 
 class _AppLocalizationsDelegate

@@ -185,5 +185,130 @@
   "termsS14Heading": "14. Governing Law",
   "termsS14P1": "These Terms are governed by the laws of the Federal Republic of Nigeria. Any disputes shall be subject to the jurisdiction of Nigerian courts.",
   "termsS15Heading": "15. Contact",
-  "termsS15P1": "Questions about these Terms? Email us at <email>sentinelxesports@gmail.com</email> or message us on WhatsApp: <whatsapp>+234 903 239 5685</whatsapp>."
+  "termsS15P1": "Questions about these Terms? Email us at <email>sentinelxesports@gmail.com</email> or message us on WhatsApp: <whatsapp>+234 903 239 5685</whatsapp>.",
+  "cmpTabAll": "All",
+  "cmpTabLive": "Live",
+  "cmpTabUpcoming": "Upcoming",
+  "cmpTabCompleted": "Completed",
+  "cmpAllGames": "All games",
+  "cmpEmpty": "No tournaments here yet.",
+  "cmpLoadError": "Couldn't load this. Check your connection and try again.",
+  "cmpRetry": "Try again",
+  "cmpLoadMore": "Load more",
+  "cmpEntryFee": "Entry fee",
+  "cmpFree": "Free",
+  "cmpPrizePool": "Prize pool",
+  "cmpSecondPlace": "2nd place",
+  "cmpThirdPlace": "3rd place",
+  "cmpMaxPlayers": "{count} players max",
+  "@cmpMaxPlayers": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cmpRules": "Rules",
+  "cmpViewBracket": "View bracket",
+  "cmpShareWhatsapp": "Share on WhatsApp",
+  "cmpShareText": "Join {title} on Sentinel X: {url}",
+  "@cmpShareText": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "cmpCtaRegister": "Register",
+  "cmpCtaResume": "Resume payment",
+  "cmpCtaLogin": "Log in to register",
+  "cmpCtaJoinWaitlist": "Join waitlist",
+  "cmpViewInvitations": "View my invitations",
+  "cmpStateRegistered": "You're registered.",
+  "cmpStateWaitlisted": "You're on the waitlist.",
+  "cmpStateFull": "This tournament is full.",
+  "cmpStateEnded": "This tournament has ended.",
+  "cmpStateInvitationOnly": "This tournament is invitation-only.",
+  "cmpFeeWaived": "Free entry — waiver applied",
+  "cmpFieldDisplayName": "Display name",
+  "cmpFieldWhatsapp": "WhatsApp number",
+  "cmpFieldClub": "Club name",
+  "cmpFieldIgn": "In-game tag (optional)",
+  "cmpAgreeRules": "I have read and agree to the rules",
+  "cmpCoinsTitle": "Use SX Coins",
+  "cmpCoinsNone": "Don't use coins",
+  "cmpCoinsOption": "{coins} coins (−₦{naira})",
+  "@cmpCoinsOption": {
+    "placeholders": {
+      "coins": {
+        "type": "int"
+      },
+      "naira": {
+        "type": "String"
+      }
+    }
+  },
+  "cmpSubmitRegister": "Continue",
+  "cmpSubmitWaitlist": "Join waitlist",
+  "cmpSubmitting": "Working…",
+  "cmpValDisplayName": "Enter a name (1–60 characters).",
+  "cmpValWhatsapp": "Enter a valid WhatsApp number.",
+  "cmpValClub": "Enter your club (1–60 characters).",
+  "cmpValIgn": "Tag is too long (60 max).",
+  "cmpValRules": "Please agree to the rules.",
+  "cmpPayConfirming": "Confirming your payment…",
+  "cmpPaySuccess": "You're in! Payment confirmed.",
+  "cmpPayNotConfirmed": "We haven't seen your payment yet. If you were charged it will confirm shortly — check back in a minute.",
+  "cmpPayCancelled": "Payment window closed. You can resume from the tournament page.",
+  "cmpConfirmedFree": "You're registered!",
+  "cmpWaitlistJoined": "You're on the waitlist.",
+  "cmpInvTitle": "My invitations",
+  "cmpInvEmpty": "No pending invitations.",
+  "cmpInvAccept": "Accept",
+  "cmpInvDecline": "Decline",
+  "cmpInvExpires": "Expires {date}",
+  "@cmpInvExpires": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "cmpInvDeclined": "Invitation declined.",
+  "cmpGamesTitle": "Games",
+  "cmpGamesEmpty": "No games yet.",
+  "cmpEditProfile": "Edit profile",
+  "cmpFieldBio": "Bio",
+  "cmpFieldCountry": "Country",
+  "cmpFieldUsername": "Username (can be changed once)",
+  "cmpSave": "Save",
+  "cmpSaved": "Profile saved.",
+  "cmpValBio": "Bio must be 280 characters or fewer.",
+  "cmpValCountry": "Country is too long (60 max).",
+  "cmpEcGeneric": "Something went wrong. Please try again.",
+  "cmpEcNetwork": "No connection. Check your internet and try again.",
+  "cmpEcSession": "Your session expired. Please log in again.",
+  "cmpEcTournamentNotFound": "Tournament not found.",
+  "cmpEcRulesRequired": "Please confirm you agree to the rules.",
+  "cmpEcAlreadyRegistered": "You're already registered for this tournament.",
+  "cmpEcTournamentFull": "This tournament is full.",
+  "cmpEcInvitationOnly": "This tournament is invitation-only.",
+  "cmpEcRegistrationClosed": "Registration is closed.",
+  "cmpEcInsufficientCoins": "Not enough SX Coins for this discount.",
+  "cmpEcPaymentInit": "Payment couldn't be started. Please try again.",
+  "cmpEcWaitlistNotOpen": "The waitlist opens once registration closes.",
+  "cmpEcAlreadyWaitlisted": "You're already on the waitlist.",
+  "cmpEcInProgress": "Still processing your request. Please wait a moment and try again.",
+  "cmpEcInvitationNotFound": "Invitation not found.",
+  "cmpEcInvitationGone": "This invitation is no longer available.",
+  "cmpEcInvitationExpired": "This invitation has expired.",
+  "cmpEcUsernameTaken": "That username is already taken.",
+  "cmpEcUsernameLocked": "Your username has already been changed once.",
+  "cmpEcSaveFailed": "Couldn't save your profile. Please try again.",
+  "cmpHomeGamesTile": "Games",
+  "cmpHomeInvitationsTile": "My invitations",
+  "cmpAccountEditProfile": "Edit profile"
 }
