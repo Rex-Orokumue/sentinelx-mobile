@@ -50,6 +50,26 @@ void main() {
     expect(find.byKey(const Key('account-sign-out')), findsOneWidget);
   });
 
+  testWidgets('signed in with onEditProfile: shows the Edit profile tile and reports the tap', (tester) async {
+    var tapped = false;
+    await tester.pumpWidget(_app(
+      [meProvider.overrideWith((ref) async => _me())],
+      AccountScreen(onLogIn: () {}, onSignUp: () {}, onLogoTap: () {}, onEditProfile: () => tapped = true),
+    ));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('account-edit-profile')));
+    expect(tapped, isTrue);
+  });
+
+  testWidgets('signed out: no Edit profile tile even if a handler is supplied', (tester) async {
+    await tester.pumpWidget(_app(
+      [meProvider.overrideWith((ref) async => null)],
+      AccountScreen(onLogIn: () {}, onSignUp: () {}, onLogoTap: () {}, onEditProfile: () {}),
+    ));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('account-edit-profile')), findsNothing);
+  });
+
   testWidgets('sign-out failure shows an error and re-enables the button', (tester) async {
     await tester.pumpWidget(_app(
       [

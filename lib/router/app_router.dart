@@ -6,6 +6,11 @@ import '../core/auth/auth_providers.dart';
 import '../core/providers.dart';
 import '../core/routing/web_links.dart';
 import '../features/account/account_screen.dart';
+import '../features/account/edit_profile_screen.dart';
+import '../features/compete/compete_detail_screen.dart';
+import '../features/compete/compete_list_screen.dart';
+import '../features/compete/games_screen.dart';
+import '../features/compete/invitations_screen.dart';
 import '../features/auth/check_email_screen.dart';
 import '../features/auth/forgot_password_screen.dart';
 import '../features/auth/login_screen.dart';
@@ -15,8 +20,6 @@ import '../features/debug/debug_sign_in_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/onboarding/onboarding_username_screen.dart';
 import '../features/tournaments/bracket_screen.dart';
-import '../features/tournaments/tournament_detail_screen.dart';
-import '../features/tournaments/tournament_list_screen.dart';
 import '../shared/widgets/coming_soon_screen.dart';
 import 'auth_redirect.dart';
 
@@ -68,6 +71,8 @@ GoRouter buildAppRouter({
         path: '/onboarding/username',
         builder: (context, state) => OnboardingUsernameScreen(onClaimed: () => context.go('/')),
       ),
+      GoRoute(path: '/invitations', builder: (context, state) => const InvitationsScreen()),
+      GoRoute(path: '/games', builder: (context, state) => const GamesScreen()),
       StatefulShellRoute.indexedStack(
         builder: (context, state, shell) => Scaffold(
           body: shell,
@@ -87,7 +92,7 @@ GoRouter buildAppRouter({
           StatefulShellBranch(routes: [
             GoRoute(
               path: '/tournaments',
-              builder: (context, state) => TournamentListScreen(
+              builder: (context, state) => CompeteListScreen(
                 onTournamentTap: (tournament) => context.push('/tournaments/${tournament.id}'),
               ),
               routes: [
@@ -95,7 +100,13 @@ GoRouter buildAppRouter({
                   path: ':id',
                   builder: (context, state) {
                     final id = state.pathParameters['id']!;
-                    return TournamentDetailScreen(tournamentId: id, onViewBracket: () => context.push('/tournaments/$id/bracket'));
+                    return CompeteDetailScreen(
+                      tournamentId: id,
+                      onViewBracket: (tournamentId) => context.push('/tournaments/$tournamentId/bracket'),
+                      onLogin: () => context.push('/login'),
+                      onNeedsUsername: () => context.push('/onboarding/username'),
+                      onViewInvitations: () => context.push('/invitations'),
+                    );
                   },
                   routes: [GoRoute(path: 'bracket', builder: (context, state) => BracketScreen(tournamentId: state.pathParameters['id']!))],
                 ),
@@ -118,7 +129,9 @@ GoRouter buildAppRouter({
                 onLogIn: () => context.push('/login'),
                 onSignUp: () => context.push('/signup'),
                 onLogoTap: () => context.go('/'),
+                onEditProfile: () => context.push('/account/profile'),
               ),
+              routes: [GoRoute(path: 'profile', builder: (context, state) => const EditProfileScreen())],
             ),
           ]),
         ],

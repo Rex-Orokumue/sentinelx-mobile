@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sentinelx_mobile/core/api/models.dart';
 import 'package:sentinelx_mobile/core/l10n/gen/app_localizations.dart';
+import 'package:sentinelx_mobile/core/providers.dart';
 import 'package:sentinelx_mobile/features/home/home_providers.dart';
 import 'package:sentinelx_mobile/features/home/home_repository.dart';
 import 'package:sentinelx_mobile/features/home/home_screen.dart';
@@ -13,6 +14,14 @@ class _FakeHomeRepository implements HomeRepository {
   @override
   Future<HomeSummary> fetchHome() async => _summary;
 }
+
+MeResponse _me() => const MeResponse(
+      id: 'u1', email: 'a@b.com', roles: [], isStaff: false, isAdmin: false,
+      profile: MeProfile(
+        username: 'ada', displayName: 'Ada', avatarUrl: null, whatsappNumber: null, country: null,
+        locale: 'en', membershipTier: null, kycVerified: false, deletionRequestedAt: null,
+      ),
+    );
 
 HomeSummary _summary({List<HomeTournamentCard> upcoming = const []}) => HomeSummary(
       banner: null,
@@ -61,6 +70,37 @@ void main() {
     await tester.fling(find.byType(RefreshIndicator), const Offset(0, 300), 1000);
     await tester.pumpAndSettle();
     expect(calls, greaterThan(1));
+  });
+
+  testWidgets('a Games tile is always offered; My invitations only when signed in', (tester) async {
+    final targets = <String>[];
+    Future<void> pump({required bool signedIn}) async {
+      await tester.pumpWidget(ProviderScope(
+        key: UniqueKey(),
+        retry: (_, _) => null,
+        overrides: [
+          homeRepositoryProvider.overrideWithValue(_FakeHomeRepository(_summary())),
+          meProvider.overrideWith((ref) async => signedIn ? _me() : null),
+        ],
+        child: MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: HomeScreen(onGoTo: targets.add),
+        ),
+      ));
+      await tester.pumpAndSettle();
+    }
+
+    await pump(signedIn: false);
+    await tester.scrollUntilVisible(find.byKey(const Key('home-games')), 200);
+    expect(find.byKey(const Key('home-invitations')), findsNothing);
+    await tester.tap(find.byKey(const Key('home-games')));
+    expect(targets, ['/games']);
+
+    await pump(signedIn: true);
+    await tester.scrollUntilVisible(find.byKey(const Key('home-invitations')), 200);
+    await tester.tap(find.byKey(const Key('home-invitations')));
+    expect(targets.last, '/invitations');
   });
 
   testWidgets('a load failure shows generic localized text, not the raw exception', (tester) async {

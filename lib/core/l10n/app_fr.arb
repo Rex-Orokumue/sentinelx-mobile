@@ -171,5 +171,137 @@
   "termsS14Heading": "14. Droit applicable",
   "termsS14P1": "Les présentes Conditions sont régies par les lois de la République fédérale du Nigeria. Tout litige relève de la compétence des tribunaux nigérians.",
   "termsS15Heading": "15. Contact",
-  "termsS15P1": "Des questions sur ces Conditions ? Écrivez-nous à <email>sentinelxesports@gmail.com</email> ou contactez-nous sur WhatsApp : <whatsapp>+234 903 239 5685</whatsapp>."
+  "termsS15P1": "Des questions sur ces Conditions ? Écrivez-nous à <email>sentinelxesports@gmail.com</email> ou contactez-nous sur WhatsApp : <whatsapp>+234 903 239 5685</whatsapp>.",
+  "cmpTabAll": "Tous",
+  "cmpTabLive": "En direct",
+  "cmpTabUpcoming": "À venir",
+  "cmpTabCompleted": "Terminés",
+  "cmpAllGames": "Tous les jeux",
+  "cmpEmpty": "Aucun tournoi pour le moment.",
+  "cmpLoadError": "Chargement impossible. Vérifiez votre connexion et réessayez.",
+  "cmpRetry": "Réessayer",
+  "cmpLoadMore": "Charger plus",
+  "cmpEntryFee": "Frais d'inscription",
+  "cmpFree": "Gratuit",
+  "cmpPrizePool": "Cagnotte",
+  "cmpSecondPlace": "2e place",
+  "cmpThirdPlace": "3e place",
+  "cmpMaxPlayers": "{count} joueurs maximum",
+  "@cmpMaxPlayers": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cmpRules": "Règlement",
+  "cmpViewBracket": "Voir le tableau",
+  "cmpShareWhatsapp": "Partager sur WhatsApp",
+  "cmpShareText": "Rejoignez {title} sur Sentinel X : {url}",
+  "@cmpShareText": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "cmpCtaRegister": "S'inscrire",
+  "cmpCtaResume": "Reprendre le paiement",
+  "cmpCtaLogin": "Connectez-vous pour vous inscrire",
+  "cmpCtaJoinWaitlist": "Rejoindre la liste d'attente",
+  "cmpViewInvitations": "Voir mes invitations",
+  "cmpStateRegistered": "Vous êtes inscrit.",
+  "cmpStateWaitlisted": "Vous êtes sur la liste d'attente.",
+  "cmpStateFull": "Ce tournoi est complet.",
+  "cmpStateEnded": "Ce tournoi est terminé.",
+  "cmpStateInvitationOnly": "Ce tournoi est sur invitation uniquement.",
+  "cmpFeeWaived": "Entrée gratuite — dispense appliquée",
+  "cmpFieldDisplayName": "Nom affiché",
+  "cmpFieldWhatsapp": "Numéro WhatsApp",
+  "cmpFieldClub": "Nom du club",
+  "cmpFieldIgn": "Pseudo en jeu (facultatif)",
+  "cmpAgreeRules": "J'ai lu et j'accepte le règlement",
+  "cmpCoinsTitle": "Utiliser des SX Coins",
+  "cmpCoinsNone": "Ne pas utiliser de pièces",
+  "cmpCoinsOption": "{coins} pièces (−{naira} ₦)",
+  "@cmpCoinsOption": {
+    "placeholders": {
+      "coins": {
+        "type": "int"
+      },
+      "naira": {
+        "type": "String"
+      }
+    }
+  },
+  "cmpSubmitRegister": "Continuer",
+  "cmpSubmitWaitlist": "Rejoindre la liste d'attente",
+  "cmpSubmitting": "En cours…",
+  "cmpValDisplayName": "Saisissez un nom (1 à 60 caractères).",
+  "cmpValWhatsapp": "Saisissez un numéro WhatsApp valide.",
+  "cmpValClub": "Saisissez votre club (1 à 60 caractères).",
+  "cmpValIgn": "Pseudo trop long (60 max).",
+  "cmpValRules": "Veuillez accepter le règlement.",
+  "cmpPayConfirming": "Confirmation du paiement…",
+  "cmpPaySuccess": "C'est fait ! Paiement confirmé.",
+  "cmpPayNotConfirmed": "Nous n'avons pas encore reçu votre paiement. Si vous avez été débité, il sera confirmé sous peu — revenez dans une minute.",
+  "cmpPayCancelled": "Fenêtre de paiement fermée. Vous pouvez reprendre depuis la page du tournoi.",
+  "cmpConfirmedFree": "Vous êtes inscrit !",
+  "cmpWaitlistJoined": "Vous êtes sur la liste d'attente.",
+  "cmpInvTitle": "Mes invitations",
+  "cmpInvEmpty": "Aucune invitation en attente.",
+  "cmpInvAccept": "Accepter",
+  "cmpInvDecline": "Refuser",
+  "cmpInvExpires": "Expire le {date}",
+  "@cmpInvExpires": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "cmpInvDeclined": "Invitation refusée.",
+  "cmpGamesTitle": "Jeux",
+  "cmpGamesEmpty": "Aucun jeu pour le moment.",
+  "cmpEditProfile": "Modifier le profil",
+  "cmpFieldBio": "Bio",
+  "cmpFieldCountry": "Pays",
+  "cmpFieldUsername": "Nom d'utilisateur (modifiable une fois)",
+  "cmpSave": "Enregistrer",
+  "cmpSaved": "Profil enregistré.",
+  "cmpValBio": "La bio doit faire 280 caractères maximum.",
+  "cmpValCountry": "Pays trop long (60 max).",
+  "cmpEcGeneric": "Une erreur est survenue. Veuillez réessayer.",
+  "cmpEcNetwork": "Pas de connexion. Vérifiez votre internet et réessayez.",
+  "cmpEcSession": "Votre session a expiré. Reconnectez-vous.",
+  "cmpEcTournamentNotFound": "Tournoi introuvable.",
+  "cmpEcRulesRequired": "Veuillez confirmer que vous acceptez le règlement.",
+  "cmpEcAlreadyRegistered": "Vous êtes déjà inscrit à ce tournoi.",
+  "cmpEcTournamentFull": "Ce tournoi est complet.",
+  "cmpEcInvitationOnly": "Ce tournoi est sur invitation uniquement.",
+  "cmpEcRegistrationClosed": "Les inscriptions sont fermées.",
+  "cmpEcInsufficientCoins": "Pas assez de SX Coins pour cette réduction.",
+  "cmpEcPaymentInit": "Le paiement n'a pas pu démarrer. Réessayez.",
+  "cmpEcWaitlistNotOpen": "La liste d'attente ouvre à la fin des inscriptions.",
+  "cmpEcAlreadyWaitlisted": "Vous êtes déjà sur la liste d'attente.",
+  "cmpEcInProgress": "Traitement en cours. Patientez un instant puis réessayez.",
+  "cmpEcInvitationNotFound": "Invitation introuvable.",
+  "cmpEcInvitationGone": "Cette invitation n'est plus disponible.",
+  "cmpEcInvitationExpired": "Cette invitation a expiré.",
+  "cmpEcUsernameTaken": "Ce nom d'utilisateur est déjà pris.",
+  "cmpEcUsernameLocked": "Votre nom d'utilisateur a déjà été modifié une fois.",
+  "cmpEcSaveFailed": "Impossible d'enregistrer votre profil. Réessayez.",
+  "cmpHomeGamesTile": "Jeux",
+  "cmpHomeInvitationsTile": "Mes invitations",
+  "cmpAccountEditProfile": "Modifier le profil",
+  "cmpStatusRegistrationOpen": "Inscriptions ouvertes",
+  "cmpStatusRegistrationClosed": "Inscriptions fermées",
+  "cmpStatusActive": "En direct",
+  "cmpStatusCompleted": "Terminé",
+  "cmpPayCheckAgain": "Vérifier le paiement",
+  "cmpInvPayCancelled": "Fenêtre de paiement fermée. Si vous avez été débité, ce sera confirmé sous peu.",
+  "cmpValUsername": "Le nom d'utilisateur doit contenir 3 à 20 lettres, chiffres ou tirets bas."
 }

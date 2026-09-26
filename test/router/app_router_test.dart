@@ -4,12 +4,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sentinelx_mobile/core/auth/onboarding_gate.dart';
 import 'package:sentinelx_mobile/core/l10n/gen/app_localizations.dart';
+import 'package:sentinelx_mobile/features/compete/compete_models.dart';
 import 'package:sentinelx_mobile/features/tournaments/tournaments_providers.dart';
 import 'package:sentinelx_mobile/models/tournament.dart';
 import 'package:sentinelx_mobile/router/app_router.dart';
 import 'package:sentinelx_mobile/router/auth_redirect.dart';
 
+import '../fakes/fake_compete_reads.dart';
 import '../fakes/fake_tournaments_repository.dart';
+import '../support/compete_fixtures.dart';
 import '../support/pump_app.dart';
 
 Tournament _tournament() {
@@ -46,7 +49,10 @@ void main() {
       matchesByTournament: const {},
     );
 
-    await pumpRouterWithRepo(tester, repository);
+    final reads = FakeCompeteReads(
+      tournaments: [CompeteTournament.fromJson(tournamentRow(id: 't1', title: 'FC Mobile Premier League'))],
+    );
+    await pumpRouterWithRepo(tester, repository, reads: reads);
     await tester.pumpAndSettle();
 
     expect(find.text('FC Mobile Premier League'), findsOneWidget);
@@ -54,6 +60,7 @@ void main() {
     await tester.tap(find.byKey(const Key('tournament-tile-t1')));
     await tester.pumpAndSettle();
 
+    await tester.ensureVisible(find.byKey(const Key('view-bracket-button')));
     expect(find.byKey(const Key('view-bracket-button')), findsOneWidget);
 
     await tester.tap(find.byKey(const Key('view-bracket-button')));
@@ -65,6 +72,25 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.byKey(const Key('view-bracket-button')), findsOneWidget);
+  });
+
+  testWidgets('/games, /invitations and /account/profile resolve to their screens', (tester) async {
+    final repository = FakeTournamentsRepository(tournaments: const []);
+    for (final c in [('/games', 'No games yet.'), ('/invitations', 'No pending invitations.'), ('/account/profile', 'Edit profile')]) {
+      await pumpRouterWithRepo(tester, repository, initialLocation: c.$1);
+      await tester.pumpAndSettle();
+      expect(find.text(c.$2), findsOneWidget, reason: c.$1);
+      await tester.pumpWidget(const SizedBox());
+    }
+  });
+
+  testWidgets('a tournament web link (slug) opens the detail screen', (tester) async {
+    final repository = FakeTournamentsRepository(tournaments: const []);
+    final reads = FakeCompeteReads(tournaments: [CompeteTournament.fromJson(tournamentRow(title: 'Slug Cup'))]);
+    await pumpRouterWithRepo(tester, repository, reads: reads, initialLocation: 'https://sentinelxesports.com.ng/tournaments/fc-mobile-cup');
+    await tester.pumpAndSettle();
+    expect(find.text('Slug Cup'), findsOneWidget);
+    expect(find.byKey(const Key('reg-cta')), findsOneWidget);
   });
 
   testWidgets('the tab bar has all five destinations and Home lives outside it', (tester) async {

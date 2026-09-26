@@ -573,4 +573,320 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get termsS15P1 =>
       'Des questions sur ces Conditions ? Écrivez-nous à <email>sentinelxesports@gmail.com</email> ou contactez-nous sur WhatsApp : <whatsapp>+234 903 239 5685</whatsapp>.';
+
+  @override
+  String get cmpTabAll => 'Tous';
+
+  @override
+  String get cmpTabLive => 'En direct';
+
+  @override
+  String get cmpTabUpcoming => 'À venir';
+
+  @override
+  String get cmpTabCompleted => 'Terminés';
+
+  @override
+  String get cmpAllGames => 'Tous les jeux';
+
+  @override
+  String get cmpEmpty => 'Aucun tournoi pour le moment.';
+
+  @override
+  String get cmpLoadError =>
+      'Chargement impossible. Vérifiez votre connexion et réessayez.';
+
+  @override
+  String get cmpRetry => 'Réessayer';
+
+  @override
+  String get cmpLoadMore => 'Charger plus';
+
+  @override
+  String get cmpEntryFee => 'Frais d\'inscription';
+
+  @override
+  String get cmpFree => 'Gratuit';
+
+  @override
+  String get cmpPrizePool => 'Cagnotte';
+
+  @override
+  String get cmpSecondPlace => '2e place';
+
+  @override
+  String get cmpThirdPlace => '3e place';
+
+  @override
+  String cmpMaxPlayers(int count) {
+    return '$count joueurs maximum';
+  }
+
+  @override
+  String get cmpRules => 'Règlement';
+
+  @override
+  String get cmpViewBracket => 'Voir le tableau';
+
+  @override
+  String get cmpShareWhatsapp => 'Partager sur WhatsApp';
+
+  @override
+  String cmpShareText(String title, String url) {
+    return 'Rejoignez $title sur Sentinel X : $url';
+  }
+
+  @override
+  String get cmpCtaRegister => 'S\'inscrire';
+
+  @override
+  String get cmpCtaResume => 'Reprendre le paiement';
+
+  @override
+  String get cmpCtaLogin => 'Connectez-vous pour vous inscrire';
+
+  @override
+  String get cmpCtaJoinWaitlist => 'Rejoindre la liste d\'attente';
+
+  @override
+  String get cmpViewInvitations => 'Voir mes invitations';
+
+  @override
+  String get cmpStateRegistered => 'Vous êtes inscrit.';
+
+  @override
+  String get cmpStateWaitlisted => 'Vous êtes sur la liste d\'attente.';
+
+  @override
+  String get cmpStateFull => 'Ce tournoi est complet.';
+
+  @override
+  String get cmpStateEnded => 'Ce tournoi est terminé.';
+
+  @override
+  String get cmpStateInvitationOnly =>
+      'Ce tournoi est sur invitation uniquement.';
+
+  @override
+  String get cmpFeeWaived => 'Entrée gratuite — dispense appliquée';
+
+  @override
+  String get cmpFieldDisplayName => 'Nom affiché';
+
+  @override
+  String get cmpFieldWhatsapp => 'Numéro WhatsApp';
+
+  @override
+  String get cmpFieldClub => 'Nom du club';
+
+  @override
+  String get cmpFieldIgn => 'Pseudo en jeu (facultatif)';
+
+  @override
+  String get cmpAgreeRules => 'J\'ai lu et j\'accepte le règlement';
+
+  @override
+  String get cmpCoinsTitle => 'Utiliser des SX Coins';
+
+  @override
+  String get cmpCoinsNone => 'Ne pas utiliser de pièces';
+
+  @override
+  String cmpCoinsOption(int coins, String naira) {
+    return '$coins pièces (−$naira ₦)';
+  }
+
+  @override
+  String get cmpSubmitRegister => 'Continuer';
+
+  @override
+  String get cmpSubmitWaitlist => 'Rejoindre la liste d\'attente';
+
+  @override
+  String get cmpSubmitting => 'En cours…';
+
+  @override
+  String get cmpValDisplayName => 'Saisissez un nom (1 à 60 caractères).';
+
+  @override
+  String get cmpValWhatsapp => 'Saisissez un numéro WhatsApp valide.';
+
+  @override
+  String get cmpValClub => 'Saisissez votre club (1 à 60 caractères).';
+
+  @override
+  String get cmpValIgn => 'Pseudo trop long (60 max).';
+
+  @override
+  String get cmpValRules => 'Veuillez accepter le règlement.';
+
+  @override
+  String get cmpPayConfirming => 'Confirmation du paiement…';
+
+  @override
+  String get cmpPaySuccess => 'C\'est fait ! Paiement confirmé.';
+
+  @override
+  String get cmpPayNotConfirmed =>
+      'Nous n\'avons pas encore reçu votre paiement. Si vous avez été débité, il sera confirmé sous peu — revenez dans une minute.';
+
+  @override
+  String get cmpPayCancelled =>
+      'Fenêtre de paiement fermée. Vous pouvez reprendre depuis la page du tournoi.';
+
+  @override
+  String get cmpConfirmedFree => 'Vous êtes inscrit !';
+
+  @override
+  String get cmpWaitlistJoined => 'Vous êtes sur la liste d\'attente.';
+
+  @override
+  String get cmpInvTitle => 'Mes invitations';
+
+  @override
+  String get cmpInvEmpty => 'Aucune invitation en attente.';
+
+  @override
+  String get cmpInvAccept => 'Accepter';
+
+  @override
+  String get cmpInvDecline => 'Refuser';
+
+  @override
+  String cmpInvExpires(String date) {
+    return 'Expire le $date';
+  }
+
+  @override
+  String get cmpInvDeclined => 'Invitation refusée.';
+
+  @override
+  String get cmpGamesTitle => 'Jeux';
+
+  @override
+  String get cmpGamesEmpty => 'Aucun jeu pour le moment.';
+
+  @override
+  String get cmpEditProfile => 'Modifier le profil';
+
+  @override
+  String get cmpFieldBio => 'Bio';
+
+  @override
+  String get cmpFieldCountry => 'Pays';
+
+  @override
+  String get cmpFieldUsername => 'Nom d\'utilisateur (modifiable une fois)';
+
+  @override
+  String get cmpSave => 'Enregistrer';
+
+  @override
+  String get cmpSaved => 'Profil enregistré.';
+
+  @override
+  String get cmpValBio => 'La bio doit faire 280 caractères maximum.';
+
+  @override
+  String get cmpValCountry => 'Pays trop long (60 max).';
+
+  @override
+  String get cmpEcGeneric => 'Une erreur est survenue. Veuillez réessayer.';
+
+  @override
+  String get cmpEcNetwork =>
+      'Pas de connexion. Vérifiez votre internet et réessayez.';
+
+  @override
+  String get cmpEcSession => 'Votre session a expiré. Reconnectez-vous.';
+
+  @override
+  String get cmpEcTournamentNotFound => 'Tournoi introuvable.';
+
+  @override
+  String get cmpEcRulesRequired =>
+      'Veuillez confirmer que vous acceptez le règlement.';
+
+  @override
+  String get cmpEcAlreadyRegistered => 'Vous êtes déjà inscrit à ce tournoi.';
+
+  @override
+  String get cmpEcTournamentFull => 'Ce tournoi est complet.';
+
+  @override
+  String get cmpEcInvitationOnly => 'Ce tournoi est sur invitation uniquement.';
+
+  @override
+  String get cmpEcRegistrationClosed => 'Les inscriptions sont fermées.';
+
+  @override
+  String get cmpEcInsufficientCoins =>
+      'Pas assez de SX Coins pour cette réduction.';
+
+  @override
+  String get cmpEcPaymentInit => 'Le paiement n\'a pas pu démarrer. Réessayez.';
+
+  @override
+  String get cmpEcWaitlistNotOpen =>
+      'La liste d\'attente ouvre à la fin des inscriptions.';
+
+  @override
+  String get cmpEcAlreadyWaitlisted =>
+      'Vous êtes déjà sur la liste d\'attente.';
+
+  @override
+  String get cmpEcInProgress =>
+      'Traitement en cours. Patientez un instant puis réessayez.';
+
+  @override
+  String get cmpEcInvitationNotFound => 'Invitation introuvable.';
+
+  @override
+  String get cmpEcInvitationGone => 'Cette invitation n\'est plus disponible.';
+
+  @override
+  String get cmpEcInvitationExpired => 'Cette invitation a expiré.';
+
+  @override
+  String get cmpEcUsernameTaken => 'Ce nom d\'utilisateur est déjà pris.';
+
+  @override
+  String get cmpEcUsernameLocked =>
+      'Votre nom d\'utilisateur a déjà été modifié une fois.';
+
+  @override
+  String get cmpEcSaveFailed =>
+      'Impossible d\'enregistrer votre profil. Réessayez.';
+
+  @override
+  String get cmpHomeGamesTile => 'Jeux';
+
+  @override
+  String get cmpHomeInvitationsTile => 'Mes invitations';
+
+  @override
+  String get cmpAccountEditProfile => 'Modifier le profil';
+
+  @override
+  String get cmpStatusRegistrationOpen => 'Inscriptions ouvertes';
+
+  @override
+  String get cmpStatusRegistrationClosed => 'Inscriptions fermées';
+
+  @override
+  String get cmpStatusActive => 'En direct';
+
+  @override
+  String get cmpStatusCompleted => 'Terminé';
+
+  @override
+  String get cmpPayCheckAgain => 'Vérifier le paiement';
+
+  @override
+  String get cmpInvPayCancelled =>
+      'Fenêtre de paiement fermée. Si vous avez été débité, ce sera confirmé sous peu.';
+
+  @override
+  String get cmpValUsername =>
+      'Le nom d\'utilisateur doit contenir 3 à 20 lettres, chiffres ou tirets bas.';
 }

@@ -11,6 +11,12 @@ void main() {
     expect(resolveWebLink('https://sentinelxesports.com.ng/tournaments'), '/tournaments');
   });
 
+  test('maps a tournament web link (slug) to the in-app detail route, and /games to the games list', () {
+    expect(resolveWebLink('https://sentinelxesports.com.ng/tournaments/fc-mobile-cup'), '/tournaments/fc-mobile-cup');
+    expect(resolveWebLink('https://sentinelxesports.com.ng/fr/tournaments/fc-mobile-cup?paid=1'), '/tournaments/fc-mobile-cup');
+    expect(resolveWebLink('https://sentinelxesports.com.ng/games'), '/games');
+  });
+
   test('maps tv, community and exchange to their branch roots', () {
     expect(resolveWebLink('https://sentinelxesports.com.ng/tv'), '/tv');
     expect(resolveWebLink('https://sentinelxesports.com.ng/community'), '/community');
@@ -29,7 +35,8 @@ void main() {
 
   test('returns null for other hosts and for paths the app has no screen for yet', () {
     expect(resolveWebLink('https://evil.example/tournaments'), isNull);
-    expect(resolveWebLink('https://sentinelxesports.com.ng/tournaments/some-slug'), isNull);
+    expect(resolveWebLink('https://sentinelxesports.com.ng/tournaments/some-slug/bracket'), isNull);
+    expect(resolveWebLink('https://sentinelxesports.com.ng/tournaments/a/b/c'), isNull);
     expect(resolveWebLink('not a url at all ::'), isNull);
   });
 }
