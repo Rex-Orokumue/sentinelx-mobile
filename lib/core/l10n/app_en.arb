@@ -310,5 +310,9 @@
   "cmpEcSaveFailed": "Couldn't save your profile. Please try again.",
   "cmpHomeGamesTile": "Games",
   "cmpHomeInvitationsTile": "My invitations",
-  "cmpAccountEditProfile": "Edit profile"
+  "cmpAccountEditProfile": "Edit profile",
+  "cmpStatusRegistrationOpen": "Registration open",
+  "cmpStatusRegistrationClosed": "Registration closed",
+  "cmpStatusActive": "Live",
+  "cmpStatusCompleted": "Completed"
 }

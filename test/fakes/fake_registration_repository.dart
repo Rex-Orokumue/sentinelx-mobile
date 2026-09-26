@@ -8,6 +8,7 @@ class FakeRegistrationRepository implements RegistrationRepository {
   final paymentChecks = <String>[];
   final registerCoins = <int>[];
   final declined = <String>[];
+  int stateCalls = 0;
 
   /// Queue of results for register(); each entry is a RegisterOutcome or an Exception to throw.
   /// The last entry repeats once the queue is down to one.
@@ -25,6 +26,7 @@ class FakeRegistrationRepository implements RegistrationRepository {
 
   @override
   Future<RegistrationState> registrationState(String tournamentId) async {
+    stateCalls++;
     final r = stateResult;
     if (r is Exception) throw r;
     return (r as RegistrationState?) ??

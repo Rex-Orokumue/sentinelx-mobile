@@ -1633,6 +1633,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Edit profile'**
   String get cmpAccountEditProfile;
+
+  /// No description provided for @cmpStatusRegistrationOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration open'**
+  String get cmpStatusRegistrationOpen;
+
+  /// No description provided for @cmpStatusRegistrationClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration closed'**
+  String get cmpStatusRegistrationClosed;
+
+  /// No description provided for @cmpStatusActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Live'**
+  String get cmpStatusActive;
+
+  /// No description provided for @cmpStatusCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get cmpStatusCompleted;
 }
 
 class _AppLocalizationsDelegate

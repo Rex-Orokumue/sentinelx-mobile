@@ -296,5 +296,9 @@
   "cmpEcSaveFailed": "Impossible d'enregistrer votre profil. Réessayez.",
   "cmpHomeGamesTile": "Jeux",
   "cmpHomeInvitationsTile": "Mes invitations",
-  "cmpAccountEditProfile": "Modifier le profil"
+  "cmpAccountEditProfile": "Modifier le profil",
+  "cmpStatusRegistrationOpen": "Inscriptions ouvertes",
+  "cmpStatusRegistrationClosed": "Inscriptions fermées",
+  "cmpStatusActive": "En direct",
+  "cmpStatusCompleted": "Terminé"
 }

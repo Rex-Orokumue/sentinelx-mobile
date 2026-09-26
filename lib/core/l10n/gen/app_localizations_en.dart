@@ -856,4 +856,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cmpAccountEditProfile => 'Edit profile';
+
+  @override
+  String get cmpStatusRegistrationOpen => 'Registration open';
+
+  @override
+  String get cmpStatusRegistrationClosed => 'Registration closed';
+
+  @override
+  String get cmpStatusActive => 'Live';
+
+  @override
+  String get cmpStatusCompleted => 'Completed';
 }
