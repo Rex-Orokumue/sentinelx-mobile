@@ -7,11 +7,18 @@ import '../../core/providers.dart';
 import '../../shared/widgets/sx_tab_app_bar.dart';
 
 class AccountScreen extends ConsumerStatefulWidget {
-  const AccountScreen({super.key, required this.onLogIn, required this.onSignUp, required this.onLogoTap});
+  const AccountScreen({
+    super.key,
+    required this.onLogIn,
+    required this.onSignUp,
+    required this.onLogoTap,
+    this.onEditProfile,
+  });
 
   final VoidCallback onLogIn;
   final VoidCallback onSignUp;
   final VoidCallback onLogoTap;
+  final VoidCallback? onEditProfile;
 
   @override
   ConsumerState<AccountScreen> createState() => _AccountScreenState();
@@ -56,6 +63,12 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(me.profile?.displayName ?? me.profile?.username ?? me.email ?? ''),
+                    if (widget.onEditProfile != null)
+                      TextButton(
+                        key: const Key('account-edit-profile'),
+                        onPressed: widget.onEditProfile,
+                        child: Text(l10n.cmpAccountEditProfile),
+                      ),
                     TextButton(
                       key: const Key('account-sign-out'),
                       onPressed: _signingOut ? null : _signOut,

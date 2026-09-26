@@ -12,9 +12,15 @@ String? resolveWebLink(String input) {
   if (segments.isNotEmpty && _locales.contains(segments.first)) segments.removeAt(0);
 
   if (segments.isEmpty) return '/';
+  // Web tournament links carry the slug; the detail screen accepts an id or a slug.
+  if (segments.length == 2 && segments.first == 'tournaments') {
+    return '/tournaments/${Uri.encodeComponent(segments[1])}';
+  }
   switch (segments.join('/')) {
     case 'tournaments':
       return '/tournaments';
+    case 'games':
+      return '/games';
     case 'tv':
       return '/tv';
     case 'community':
