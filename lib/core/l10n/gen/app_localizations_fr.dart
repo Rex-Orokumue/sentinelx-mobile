@@ -878,4 +878,15 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get cmpStatusCompleted => 'Terminé';
+
+  @override
+  String get cmpPayCheckAgain => 'Vérifier le paiement';
+
+  @override
+  String get cmpInvPayCancelled =>
+      'Fenêtre de paiement fermée. Si vous avez été débité, ce sera confirmé sous peu.';
+
+  @override
+  String get cmpValUsername =>
+      'Le nom d\'utilisateur doit contenir 3 à 20 lettres, chiffres ou tirets bas.';
 }

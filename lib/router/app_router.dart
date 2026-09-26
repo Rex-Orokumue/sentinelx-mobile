@@ -102,7 +102,7 @@ GoRouter buildAppRouter({
                     final id = state.pathParameters['id']!;
                     return CompeteDetailScreen(
                       tournamentId: id,
-                      onViewBracket: () => context.push('/tournaments/$id/bracket'),
+                      onViewBracket: (tournamentId) => context.push('/tournaments/$tournamentId/bracket'),
                       onLogin: () => context.push('/login'),
                       onNeedsUsername: () => context.push('/onboarding/username'),
                       onViewInvitations: () => context.push('/invitations'),

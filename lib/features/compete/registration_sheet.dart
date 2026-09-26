@@ -175,7 +175,7 @@ class _RegistrationSheetState extends ConsumerState<RegistrationSheet> {
                   key: const Key('reg-display-name'),
                   controller: _name,
                   enabled: !busy,
-                  decoration: InputDecoration(labelText: l10n.cmpFieldDisplayName, errorText: flow.fieldErrors['displayName']),
+                  decoration: InputDecoration(labelText: l10n.cmpFieldDisplayName, errorText: flow.fieldErrors.containsKey('displayName') ? l10n.cmpValDisplayName : null),
                   validator: (v) => RegistrationValidators.displayName(v ?? '') ? null : l10n.cmpValDisplayName,
                 ),
                 TextFormField(
@@ -183,21 +183,21 @@ class _RegistrationSheetState extends ConsumerState<RegistrationSheet> {
                   controller: _whatsapp,
                   enabled: !busy,
                   keyboardType: TextInputType.phone,
-                  decoration: InputDecoration(labelText: l10n.cmpFieldWhatsapp, errorText: flow.fieldErrors['whatsapp']),
+                  decoration: InputDecoration(labelText: l10n.cmpFieldWhatsapp, errorText: flow.fieldErrors.containsKey('whatsapp') ? l10n.cmpValWhatsapp : null),
                   validator: (v) => RegistrationValidators.whatsapp(v ?? '') ? null : l10n.cmpValWhatsapp,
                 ),
                 TextFormField(
                   key: const Key('reg-club'),
                   controller: _club,
                   enabled: !busy,
-                  decoration: InputDecoration(labelText: l10n.cmpFieldClub, errorText: flow.fieldErrors['clubName']),
+                  decoration: InputDecoration(labelText: l10n.cmpFieldClub, errorText: flow.fieldErrors.containsKey('clubName') ? l10n.cmpValClub : null),
                   validator: (v) => RegistrationValidators.club(v ?? '') ? null : l10n.cmpValClub,
                 ),
                 TextFormField(
                   key: const Key('reg-ign'),
                   controller: _ign,
                   enabled: !busy,
-                  decoration: InputDecoration(labelText: l10n.cmpFieldIgn, errorText: flow.fieldErrors['ignTag']),
+                  decoration: InputDecoration(labelText: l10n.cmpFieldIgn, errorText: flow.fieldErrors.containsKey('ignTag') ? l10n.cmpValIgn : null),
                   validator: (v) => RegistrationValidators.ign(v ?? '') ? null : l10n.cmpValIgn,
                 ),
                 if (rules != null && rules.isNotEmpty)
@@ -240,11 +240,19 @@ class _RegistrationSheetState extends ConsumerState<RegistrationSheet> {
                   ),
                 ],
                 const SizedBox(height: 16),
-                FilledButton(
-                  key: const Key('reg-submit'),
-                  onPressed: busy ? null : () => _submit(coinsVisible),
-                  child: Text(busy ? l10n.cmpSubmitting : (_isRegister ? l10n.cmpSubmitRegister : l10n.cmpSubmitWaitlist)),
-                ),
+                if (flow.paymentUnresolved)
+                  // Registering again would overwrite the stored payment reference; only re-check it.
+                  FilledButton(
+                    key: const Key('reg-recheck'),
+                    onPressed: busy ? null : () => ref.read(registrationFlowProvider(id).notifier).recheckPayment(),
+                    child: Text(busy ? l10n.cmpSubmitting : l10n.cmpPayCheckAgain),
+                  )
+                else
+                  FilledButton(
+                    key: const Key('reg-submit'),
+                    onPressed: busy ? null : () => _submit(coinsVisible),
+                    child: Text(busy ? l10n.cmpSubmitting : (_isRegister ? l10n.cmpSubmitRegister : l10n.cmpSubmitWaitlist)),
+                  ),
                 const SizedBox(height: 12),
                 _Status(flow: flow),
               ],

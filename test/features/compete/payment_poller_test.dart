@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sentinelx_mobile/core/api/compete_models.dart';
 import 'package:sentinelx_mobile/features/compete/payment_poller.dart';
@@ -47,6 +49,18 @@ void main() {
       return PaymentStatus.confirmed;
     }, delay: fakeDelay);
     expect(r, PollResult.paid);
+  });
+
+  test('the budget is wall-clock: a check that never answers cannot hold the poll open', () async {
+    final sw = Stopwatch()..start();
+    final r = await pollPayment(
+      () => Completer<PaymentStatus>().future, // never completes
+      budget: const Duration(milliseconds: 300),
+      checkTimeout: const Duration(milliseconds: 60),
+      backoff: const [Duration(milliseconds: 10)],
+    );
+    expect(r, PollResult.notConfirmed);
+    expect(sw.elapsed, lessThan(const Duration(seconds: 3)));
   });
 
   test('not_found for the whole budget is notConfirmed', () async {

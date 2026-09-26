@@ -31,6 +31,7 @@ Future<_Env> _pump(
   required SheetMode mode,
   required RegistrationState state,
   VoidCallback? onNeedsUsername,
+  bool launcherReturns = true,
 }) async {
   final env = _Env(FakeRegistrationRepository());
   final tournament = CompeteTournament.fromJson(tournamentRow());
@@ -56,7 +57,7 @@ Future<_Env> _pump(
       registrationRepositoryProvider.overrideWithValue(env.repo),
       paystackLauncherProvider.overrideWithValue((url) async {
         env.launched.add(url);
-        return true;
+        return launcherReturns;
       }),
       pollDelayProvider.overrideWithValue((_) async {}),
     ],
@@ -161,13 +162,40 @@ void main() {
     expect(tester.widget<FilledButton>(find.byKey(const Key('reg-submit'))).onPressed, isNotNull);
   });
 
+  testWidgets('a closed payment window replaces Continue with Check payment status; it never registers again', (tester) async {
+    final env = await _pump(tester, mode: SheetMode.register, state: _canRegister(), launcherReturns: false);
+    env.repo.registerResults.add(const RegisterPending(authorizationUrl: 'https://pay.test/a', reference: 'r1'));
+    env.repo.paymentResults.addAll([PaymentStatus.notSuccessful, PaymentStatus.confirmed]);
+    await _fill(tester);
+    await _submit(tester);
+    expect(find.textContaining('Payment window closed'), findsOneWidget);
+    expect(find.byKey(const Key('reg-submit')), findsNothing);
+    await tester.ensureVisible(find.byKey(const Key('reg-recheck')));
+    await tester.tap(find.byKey(const Key('reg-recheck')));
+    await tester.pumpAndSettle();
+    expect(env.repo.registerKeys.length, 1);
+    expect(env.repo.paymentChecks, ['r1', 'r1']);
+    expect(find.text("You're in! Payment confirmed."), findsOneWidget);
+  });
+
+  testWidgets('an unconfirmed payment also offers Check payment status instead of re-submitting', (tester) async {
+    final env = await _pump(tester, mode: SheetMode.register, state: _canRegister());
+    env.repo.registerResults.add(const RegisterPending(authorizationUrl: 'https://pay.test/a', reference: 'r1'));
+    env.repo.paymentResults.add(PaymentStatus.notSuccessful);
+    await _fill(tester);
+    await _submit(tester);
+    expect(find.byKey(const Key('reg-submit')), findsNothing);
+    expect(find.byKey(const Key('reg-recheck')), findsOneWidget);
+  });
+
   testWidgets('server field errors appear under the matching field', (tester) async {
     final env = await _pump(tester, mode: SheetMode.register, state: _canRegister());
     env.repo.registerResults
         .add(const ApiException(status: 400, code: 'validation_failed', message: 'x', fields: {'clubName': 'Club is required'}));
     await _fill(tester);
     await _submit(tester);
-    expect(find.text('Club is required'), findsOneWidget);
+    expect(find.text('Enter your club (1–60 characters).'), findsOneWidget);
+    expect(find.text('Club is required'), findsNothing);
   });
 
   testWidgets('needs_username closes the sheet and calls onNeedsUsername', (tester) async {

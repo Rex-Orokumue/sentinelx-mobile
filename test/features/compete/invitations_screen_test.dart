@@ -118,6 +118,16 @@ void main() {
     expect(find.text('This invitation is no longer available.'), findsOneWidget);
   });
 
+  testWidgets('a closed payment window refreshes the list (the invitation is already claimed) and does not promise an in-app resume', (tester) async {
+    final env = await _pump(tester, [_inv('a')]);
+    env.repo.acceptResults.add(const RegisterPending(authorizationUrl: 'https://pay.test/i', reference: 'ri'));
+    env.repo.paymentResults.add(PaymentStatus.notSuccessful);
+    env.reads.invitations = [];
+    await _tap(tester, 'inv-accept-a');
+    expect(find.text('Masters a'), findsNothing);
+    expect(find.textContaining('resume'), findsNothing);
+  });
+
   testWidgets('a double tap on Accept sends one request', (tester) async {
     final env = await _pump(tester, [_inv('a')]);
     final gate = Completer<void>();

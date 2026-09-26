@@ -61,6 +61,7 @@ class _EditFormState extends ConsumerState<_EditForm> {
   late final String _originalUsername;
   bool _saving = false;
   String? _errorCode;
+  Map<String, String> _serverFields = const {};
 
   @override
   void initState() {
@@ -93,6 +94,7 @@ class _EditFormState extends ConsumerState<_EditForm> {
     setState(() {
       _saving = true;
       _errorCode = null;
+      _serverFields = const {};
     });
     try {
       await ref.read(profileEditorProvider)(ProfileEdit(
@@ -110,7 +112,10 @@ class _EditFormState extends ConsumerState<_EditForm> {
       if (navigator.canPop()) navigator.pop();
     } catch (e) {
       if (!mounted) return;
-      setState(() => _errorCode = e is ApiException ? (e.isUnauthorized ? 'unauthorized' : e.code) : 'network');
+      setState(() {
+        _errorCode = e is ApiException ? (e.isUnauthorized ? 'unauthorized' : e.code) : 'network';
+        _serverFields = e is ApiException ? e.fields : const {};
+      });
     } finally {
       if (mounted) setState(() => _saving = false);
     }
@@ -135,7 +140,10 @@ class _EditFormState extends ConsumerState<_EditForm> {
             key: const Key('profile-username'),
             controller: _username,
             enabled: !_saving,
-            decoration: InputDecoration(labelText: l10n.cmpFieldUsername),
+            decoration: InputDecoration(
+              labelText: l10n.cmpFieldUsername,
+              errorText: _serverFields.containsKey('username') ? l10n.cmpValUsername : null,
+            ),
           ),
           TextFormField(
             key: const Key('profile-whatsapp'),
@@ -170,7 +178,7 @@ class _EditFormState extends ConsumerState<_EditForm> {
             onPressed: _saving ? null : _save,
             child: Text(_saving ? l10n.cmpSubmitting : l10n.cmpSave),
           ),
-          if (_errorCode != null)
+          if (_errorCode != null && !(_errorCode == 'validation_failed' && _serverFields.isNotEmpty))
             Padding(
               padding: const EdgeInsets.only(top: 12),
               child: Text(errorCopy(l10n, _errorCode!), style: TextStyle(color: Theme.of(context).colorScheme.error)),

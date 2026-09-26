@@ -17,7 +17,7 @@ class _Env {
   final FakeRegistrationRepository repo;
   int logins = 0;
   int invitations = 0;
-  int brackets = 0;
+  final brackets = <String>[];
 }
 
 RegistrationState _state(RegView v, {bool waiver = false, int fee = 500}) => RegistrationState(
@@ -35,6 +35,7 @@ Future<_Env> _pump(
   String? pendingReference,
   bool signedOut = false,
   bool readsFail = false,
+  String tournamentId = 't1',
 }) async {
   final reads = FakeCompeteReads(
     tournaments: [CompeteTournament.fromJson(row ?? tournamentRow())],
@@ -46,8 +47,8 @@ Future<_Env> _pump(
   await pumpCompete(
     tester,
     CompeteDetailScreen(
-      tournamentId: 't1',
-      onViewBracket: () => env.brackets++,
+      tournamentId: tournamentId,
+      onViewBracket: env.brackets.add,
       onLogin: () => env.logins++,
       onNeedsUsername: () {},
       onViewInvitations: () => env.invitations++,
@@ -200,7 +201,14 @@ void main() {
     final env = await _pump(tester);
     await tester.ensureVisible(find.byKey(const Key('view-bracket-button')));
     await tester.tap(find.byKey(const Key('view-bracket-button')));
-    expect(env.brackets, 1);
+    expect(env.brackets, ['t1']);
+  });
+
+  testWidgets('opened by web slug, the bracket button still passes the resolved tournament id', (tester) async {
+    final env = await _pump(tester, tournamentId: 'fc-mobile-cup');
+    await tester.ensureVisible(find.byKey(const Key('view-bracket-button')));
+    await tester.tap(find.byKey(const Key('view-bracket-button')));
+    expect(env.brackets, ['t1']);
   });
 
   testWidgets('a 300-character description fits 375px without overflow', (tester) async {

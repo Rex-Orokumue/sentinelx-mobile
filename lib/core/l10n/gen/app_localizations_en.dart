@@ -868,4 +868,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cmpStatusCompleted => 'Completed';
+
+  @override
+  String get cmpPayCheckAgain => 'Check payment status';
+
+  @override
+  String get cmpInvPayCancelled =>
+      'Payment window closed. If you were charged, it will confirm shortly.';
+
+  @override
+  String get cmpValUsername =>
+      'Usernames are 3–20 letters, numbers or underscores.';
 }

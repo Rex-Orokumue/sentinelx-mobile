@@ -9,11 +9,18 @@ import 'payment_poller.dart';
 enum FlowPhase { idle, submitting, awaitingPayment, confirming, confirmed, waitlisted, notConfirmed, cancelled, failed }
 
 class FlowState {
-  const FlowState({this.phase = FlowPhase.idle, this.errorCode, this.fieldErrors = const {}});
+  const FlowState({this.phase = FlowPhase.idle, this.errorCode, this.fieldErrors = const {}, this.reference});
 
   final FlowPhase phase;
   final String? errorCode;
   final Map<String, String> fieldErrors;
+
+  /// The Paystack reference of an in-progress or unresolved payment. While it is set and the phase is
+  /// `cancelled`/`notConfirmed`, the player must re-check it, never register again: a second
+  /// `POST /register` overwrites the stored reference and can orphan a payment that is still landing.
+  final String? reference;
+
+  bool get paymentUnresolved => reference != null && (phase == FlowPhase.cancelled || phase == FlowPhase.notConfirmed);
 
   bool get needsUsername => errorCode == 'needs_username';
   bool get busy => phase == FlowPhase.submitting || phase == FlowPhase.awaitingPayment || phase == FlowPhase.confirming;
@@ -89,7 +96,9 @@ class RegistrationFlow extends Notifier<FlowState> {
       if (!ref.mounted) return;
       // Same key only when the request may not have been processed; every real response, error or
       // not, is stored server-side under the key and would be replayed.
-      final keepKey = e is! ApiException || e.code == 'network' || e.code == 'idempotency_in_progress';
+      // `bad_response` is a gateway/HTML/unparseable reply: the server may well have processed it.
+      final keepKey =
+          e is! ApiException || e.code == 'network' || e.code == 'idempotency_in_progress' || e.code == 'bad_response';
       if (!keepKey) _key = null;
       state = _failure(e);
       return;
@@ -105,8 +114,28 @@ class RegistrationFlow extends Notifier<FlowState> {
     }
   }
 
+  /// Re-checks the unresolved payment's stored reference once. Never registers again.
+  Future<void> recheckPayment() async {
+    final reference = state.reference;
+    if (state.busy || !state.paymentUnresolved || reference == null) return;
+    final previous = state;
+    state = FlowState(phase: FlowPhase.confirming, reference: reference);
+    PaymentStatus? status;
+    try {
+      status = await ref.read(registrationRepositoryProvider).paymentStatus(reference).timeout(_checkTimeout);
+    } catch (_) {}
+    if (!ref.mounted) return;
+    if (status != null && status.isPaid) {
+      _finishConfirmed();
+    } else {
+      state = previous;
+    }
+  }
+
+  static const _checkTimeout = Duration(seconds: 15);
+
   Future<void> _pay(String url, String reference) async {
-    state = const FlowState(phase: FlowPhase.awaitingPayment);
+    state = FlowState(phase: FlowPhase.awaitingPayment, reference: reference);
     final repo = ref.read(registrationRepositoryProvider);
     final reachedCallback = await ref.read(paystackLauncherProvider)(url);
     if (!ref.mounted) return;
@@ -115,24 +144,25 @@ class RegistrationFlow extends Notifier<FlowState> {
       // Closed early: they may still have paid. One check, no polling.
       PaymentStatus? status;
       try {
-        status = await repo.paymentStatus(reference);
+        status = await repo.paymentStatus(reference).timeout(_checkTimeout);
       } catch (_) {}
       if (!ref.mounted) return;
       if (status != null && status.isPaid) {
         _finishConfirmed();
       } else {
-        state = const FlowState(phase: FlowPhase.cancelled);
+        state = FlowState(phase: FlowPhase.cancelled, reference: reference);
+        ref.invalidate(registrationStateProvider(tournamentId)); // now `complete_payment`
       }
       return;
     }
 
-    state = const FlowState(phase: FlowPhase.confirming);
+    state = FlowState(phase: FlowPhase.confirming, reference: reference);
     final result = await pollPayment(() => repo.paymentStatus(reference), delay: ref.read(pollDelayProvider));
     if (!ref.mounted) return;
     if (result == PollResult.paid) {
       _finishConfirmed();
     } else {
-      state = const FlowState(phase: FlowPhase.notConfirmed);
+      state = FlowState(phase: FlowPhase.notConfirmed, reference: reference);
       ref.invalidate(registrationStateProvider(tournamentId));
     }
   }

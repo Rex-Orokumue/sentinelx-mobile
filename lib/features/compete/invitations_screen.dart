@@ -86,12 +86,17 @@ class _InvitationTileState extends ConsumerState<_InvitationTile> {
           final paid = prev?.phase == FlowPhase.confirming || prev?.phase == FlowPhase.awaitingPayment;
           message = paid ? l10n.cmpPaySuccess : l10n.cmpConfirmedFree;
           ref.invalidate(myInvitationsProvider);
+        // The invitation is claimed server-side before payment starts, so after any of these the
+        // list must be re-read, and no copy may promise an in-app resume (there is none).
         case FlowPhase.notConfirmed:
           message = l10n.cmpPayNotConfirmed;
+          ref.invalidate(myInvitationsProvider);
         case FlowPhase.cancelled:
-          message = l10n.cmpPayCancelled;
+          message = l10n.cmpInvPayCancelled;
+          ref.invalidate(myInvitationsProvider);
         case FlowPhase.failed:
           message = errorCopy(l10n, next.errorCode ?? '');
+          ref.invalidate(myInvitationsProvider);
         default:
       }
       if (message != null) messenger.showSnackBar(SnackBar(content: Text(message)));

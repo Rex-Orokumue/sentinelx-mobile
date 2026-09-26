@@ -1657,6 +1657,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Completed'**
   String get cmpStatusCompleted;
+
+  /// No description provided for @cmpPayCheckAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Check payment status'**
+  String get cmpPayCheckAgain;
+
+  /// No description provided for @cmpInvPayCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment window closed. If you were charged, it will confirm shortly.'**
+  String get cmpInvPayCancelled;
+
+  /// No description provided for @cmpValUsername.
+  ///
+  /// In en, this message translates to:
+  /// **'Usernames are 3–20 letters, numbers or underscores.'**
+  String get cmpValUsername;
 }
 
 class _AppLocalizationsDelegate

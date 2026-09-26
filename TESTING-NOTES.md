@@ -38,7 +38,7 @@ Not run yet: the owner chose to build all phases first and test on the phone tog
 | 2 | Register at full price → Paystack test card → WebView closes on callback → "Payment confirmed" → state shows registered | pending |
 | 3 | Register with coin discount (half and full) → correct fee in Paystack / confirmed when discounted to zero | pending |
 | 4 | Register with a fee waiver (create one on staging) → confirmed with no WebView | pending |
-| 5 | Close the WebView mid-payment → "Payment window closed" → tournament shows Resume payment → resume works | pending |
+| 5 | Close the WebView mid-payment → "Payment window closed" + a **Check payment status** button (no Continue) → after paying elsewhere it confirms; the tournament shows Resume payment; resume re-runs the form (fresh reference — web's behavior) | pending |
 | 6 | Airplane-mode toggle during submit, retry: exactly one `api_idempotency_keys` row and one registration row on staging | pending |
 | 7 | Signed out shows Log in to register. Account without a username is routed to onboarding, then registration succeeds with a NEW key | pending |
 | 8 | Full tournament: no waitlist button. Closed tournament: waitlist join works; a second join says already on the waitlist | pending |

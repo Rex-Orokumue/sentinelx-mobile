@@ -147,6 +147,15 @@ void main() {
     expect(find.text('RAW'), findsNothing);
   });
 
+  testWidgets('a server validation_failed on the username shows a localized username hint', (tester) async {
+    final rig = await _pump(tester);
+    rig.result = const ApiException(status: 400, code: 'validation_failed', message: 'RAW', fields: {'username': 'username_too_short'});
+    await tester.enterText(find.byKey(const Key('profile-username')), 'ab');
+    await _save(tester);
+    expect(find.text('Usernames are 3–20 letters, numbers or underscores.'), findsOneWidget);
+    expect(find.text('username_too_short'), findsNothing);
+  });
+
   testWidgets('save is disabled while in flight, so a double tap saves once', (tester) async {
     final rig = await _pump(tester);
     rig.gate = Completer<void>();

@@ -22,7 +22,8 @@ class CompeteDetailScreen extends ConsumerWidget {
 
   /// A tournament id (in-app routes) or slug (web links).
   final String tournamentId;
-  final VoidCallback onViewBracket;
+  /// Receives the RESOLVED tournament id (the route param may be a web slug).
+  final void Function(String tournamentId) onViewBracket;
   final VoidCallback onLogin;
   final VoidCallback onNeedsUsername;
   final VoidCallback onViewInvitations;
@@ -58,7 +59,7 @@ class _Body extends ConsumerWidget {
   });
 
   final CompeteTournament tournament;
-  final VoidCallback onViewBracket;
+  final void Function(String tournamentId) onViewBracket;
   final VoidCallback onLogin;
   final VoidCallback onNeedsUsername;
   final VoidCallback onViewInvitations;
@@ -118,7 +119,7 @@ class _Body extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 16),
-        OutlinedButton(key: const Key('view-bracket-button'), onPressed: onViewBracket, child: Text(l10n.cmpViewBracket)),
+        OutlinedButton(key: const Key('view-bracket-button'), onPressed: () => onViewBracket(t.id), child: Text(l10n.cmpViewBracket)),
         if (siteUrl != null)
           TextButton.icon(
             key: const Key('share-whatsapp'),

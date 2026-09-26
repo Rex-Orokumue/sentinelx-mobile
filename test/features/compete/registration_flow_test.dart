@@ -27,6 +27,7 @@ class _Rig {
     ]);
     // autoDispose provider: keep it alive for the whole test, like a mounted screen would.
     container.listen(registrationFlowProvider('t1'), (_, _) {});
+    container.listen(registrationStateProvider('t1'), (_, _) {});
   }
   final FakeRegistrationRepository repo;
   late final ProviderContainer container;
@@ -136,6 +137,64 @@ void main() {
       r.flow.reset();
       await r.flow.submitRegister(_details);
       expect(r.repo.registerKeys[0], isNot(r.repo.registerKeys[1]));
+    });
+  });
+
+  test('a gateway/HTML response (bad_response) keeps the key: the server may have processed it', () async {
+    final r = _Rig();
+    addTearDown(r.container.dispose);
+    r.repo.registerResults.addAll([_err(504, 'bad_response'), const RegisterConfirmed()]);
+    await r.flow.submitRegister(_details);
+    await r.flow.submitRegister(_details);
+    expect(r.repo.registerKeys[0], r.repo.registerKeys[1]);
+  });
+
+  group('a payment left unresolved', () {
+    test('cancelled keeps the reference and refreshes the registration state', () async {
+      final r = _Rig(launcherReturns: false);
+      addTearDown(r.container.dispose);
+      await r.container.read(registrationStateProvider('t1').future);
+      final before = r.repo.stateCalls;
+      r.repo.registerResults.add(_pending);
+      r.repo.paymentResults.add(PaymentStatus.notSuccessful);
+      await r.flow.submitRegister(_details);
+      await r.container.read(registrationStateProvider('t1').future);
+      expect(r.state.phase, FlowPhase.cancelled);
+      expect(r.state.reference, 'ref-1');
+      expect(r.repo.stateCalls, greaterThan(before));
+    });
+
+    test('recheckPayment re-checks the SAME reference and confirms without registering again', () async {
+      final r = _Rig(launcherReturns: false);
+      addTearDown(r.container.dispose);
+      r.repo.registerResults.add(_pending);
+      r.repo.paymentResults.addAll([PaymentStatus.notSuccessful, PaymentStatus.alreadyPaid]);
+      await r.flow.submitRegister(_details);
+      expect(r.state.phase, FlowPhase.cancelled);
+      await r.flow.recheckPayment();
+      expect(r.state.phase, FlowPhase.confirmed);
+      expect(r.repo.paymentChecks, ['ref-1', 'ref-1']);
+      expect(r.repo.registerKeys.length, 1);
+    });
+
+    test('recheckPayment that is still unpaid leaves the phase and reference intact', () async {
+      final r = _Rig();
+      addTearDown(r.container.dispose);
+      r.repo.registerResults.add(_pending);
+      r.repo.paymentResults.add(PaymentStatus.notSuccessful);
+      await r.flow.submitRegister(_details);
+      expect(r.state.phase, FlowPhase.notConfirmed);
+      await r.flow.recheckPayment();
+      expect(r.state.phase, FlowPhase.notConfirmed);
+      expect(r.state.reference, 'ref-1');
+    });
+
+    test('recheckPayment does nothing when there is no unresolved payment', () async {
+      final r = _Rig();
+      addTearDown(r.container.dispose);
+      await r.flow.recheckPayment();
+      expect(r.repo.paymentChecks, isEmpty);
+      expect(r.state.phase, FlowPhase.idle);
     });
   });
 

@@ -300,5 +300,8 @@
   "cmpStatusRegistrationOpen": "Inscriptions ouvertes",
   "cmpStatusRegistrationClosed": "Inscriptions fermées",
   "cmpStatusActive": "En direct",
-  "cmpStatusCompleted": "Terminé"
+  "cmpStatusCompleted": "Terminé",
+  "cmpPayCheckAgain": "Vérifier le paiement",
+  "cmpInvPayCancelled": "Fenêtre de paiement fermée. Si vous avez été débité, ce sera confirmé sous peu.",
+  "cmpValUsername": "Le nom d'utilisateur doit contenir 3 à 20 lettres, chiffres ou tirets bas."
 }
