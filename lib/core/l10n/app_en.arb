@@ -783,5 +783,6 @@
   "mtcEcNotInLobby": "You're not in this lobby.",
   "mtcEcLobbyConfirmed": "This lobby is confirmed and can no longer be edited.",
   "mtcEcResultConfirmed": "Your result is confirmed and can no longer be edited.",
-  "mtcHomeFixtures": "Fixtures"
+  "mtcHomeFixtures": "Fixtures",
+  "mtcDone": "Done"
 }

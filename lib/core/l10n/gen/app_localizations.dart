@@ -3199,6 +3199,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Fixtures'**
   String get mtcHomeFixtures;
+
+  /// No description provided for @mtcDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get mtcDone;
 }
 
 class _AppLocalizationsDelegate

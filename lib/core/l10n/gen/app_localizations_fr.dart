@@ -1719,4 +1719,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get mtcHomeFixtures => 'Matchs';
+
+  @override
+  String get mtcDone => 'Terminé';
 }

@@ -642,5 +642,6 @@
   "mtcEcNotInLobby": "Vous n'êtes pas dans ce lobby.",
   "mtcEcLobbyConfirmed": "Ce lobby est confirmé et ne peut plus être modifié.",
   "mtcEcResultConfirmed": "Votre résultat est confirmé et ne peut plus être modifié.",
-  "mtcHomeFixtures": "Matchs"
+  "mtcHomeFixtures": "Matchs",
+  "mtcDone": "Terminé"
 }

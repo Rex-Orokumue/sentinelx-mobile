@@ -1701,4 +1701,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get mtcHomeFixtures => 'Fixtures';
+
+  @override
+  String get mtcDone => 'Done';
 }
