@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/api/match_models.dart' show NextLobby;
 import '../../core/l10n/gen/app_localizations.dart';
 import '../../core/providers.dart';
+import '../match/fixtures_card.dart';
 import 'home_providers.dart';
 
 class HomeScreen extends ConsumerWidget {
-  const HomeScreen({super.key, required this.onGoTo});
+  const HomeScreen({super.key, required this.onGoTo, this.onOpenLobby});
 
   final void Function(String path) onGoTo;
+  final void Function(String lobbyId, NextLobby lobby)? onOpenLobby;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -47,6 +50,7 @@ class HomeScreen extends ConsumerWidget {
                   onTap: () =>
                       onGoTo('/tournaments/${summary.featuredTournament!.id}'),
                 ),
+              FixturesCard(onGoTo: onGoTo, onOpenLobby: (id, lobby) => onOpenLobby?.call(id, lobby)),
               Padding(
                 padding: const EdgeInsets.all(16),
                 child: Text(
