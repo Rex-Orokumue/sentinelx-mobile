@@ -79,6 +79,69 @@ HallOfFame _emptyHall({
   'bronze': [],
 });
 
+HallOfFame _bleedFixture(String? selectedGame) => HallOfFame.fromJson({
+  'games': [
+    {'id': 'g1', 'slug': 'dls', 'name': 'DLS', 'category': 'football'},
+  ],
+  'selectedGame': selectedGame,
+  'awards': {
+    'mvp': null,
+    // Golden Boot only exists unfiltered; selecting the "dls" chip removes
+    // it entirely, so the category award below shifts up into its slot.
+    'goldenBoot': selectedGame == null
+        ? [
+            {
+              'gameId': null,
+              'gameLabel': 'All goals',
+              'winner': _player('p1', 'Ada'),
+              'metricValue': 20,
+            },
+            {
+              'gameId': 'g1',
+              'gameLabel': 'DLS',
+              'winner': _player('p2', 'Bola'),
+              'metricValue': 12,
+            },
+          ]
+        : [],
+    // Fastest Driver survives filtering in both states with its own
+    // independent option list.
+    'categories': [
+      {
+        'category': 'racing',
+        'label': 'Fastest Driver',
+        'metricLabel': 'Wins',
+        'options': [
+          {
+            'gameId': 'g1',
+            'gameLabel': 'DLS',
+            'winner': _player('p3', 'Chidi'),
+            'metricValue': 8,
+          },
+          {
+            'gameId': 'g2',
+            'gameLabel': 'Other',
+            'winner': _player('p4', 'Dara'),
+            'metricValue': 5,
+          },
+        ],
+      },
+    ],
+  },
+  'champions': {
+    'championsCup': [],
+    'masters': [],
+    'communityClub': [],
+    'open': [],
+  },
+  'bronze': [],
+});
+
+class _BleedRepo implements HallOfFameRepository {
+  @override
+  Future<HallOfFame> fetch({String? game}) async => _bleedFixture(game);
+}
+
 class _Repo implements HallOfFameRepository {
   _Repo({
     this.fail = false,
@@ -105,7 +168,7 @@ class _Repo implements HallOfFameRepository {
   }
 }
 
-Widget _app(_Repo repo) => ProviderScope(
+Widget _app(HallOfFameRepository repo) => ProviderScope(
   retry: (_, _) => null,
   overrides: [hallOfFameRepositoryProvider.overrideWithValue(repo)],
   child: const MaterialApp(
@@ -175,6 +238,30 @@ void main() {
     await tester.pumpAndSettle();
     expect(repo.calls, 2);
   });
+
+  testWidgets(
+    "an award that shifts into a hidden award's list slot does not inherit "
+    'its selected option',
+    (tester) async {
+      await tester.pumpWidget(_app(_BleedRepo()));
+      await tester.pumpAndSettle();
+
+      // Select the non-default (index 1) Golden Boot option.
+      await tester.tap(find.byKey(const Key('award-option-Golden Boot-DLS')));
+      await tester.pumpAndSettle();
+      expect(find.text('Bola'), findsOneWidget);
+
+      // Filtering to "dls" removes Golden Boot entirely; Fastest Driver
+      // (never touched) shifts up into its old list slot.
+      await tester.tap(find.byKey(const Key('hof-chip-dls')));
+      await tester.pumpAndSettle();
+
+      // Fastest Driver must show its own default (index 0), not Golden
+      // Boot's stale selected index.
+      expect(find.text('Chidi'), findsOneWidget);
+      expect(find.text('Dara'), findsNothing);
+    },
+  );
 
   testWidgets('hall of fame supports pull to refresh', (tester) async {
     final repo = _Repo();

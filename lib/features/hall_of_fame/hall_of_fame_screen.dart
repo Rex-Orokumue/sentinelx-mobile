@@ -65,6 +65,7 @@ class HallOfFameScreen extends ConsumerWidget {
                       ),
                     if (h.awards.goldenBoot.isNotEmpty)
                       _Award(
+                        key: const ValueKey('award-goldenBoot'),
                         title: l.hallOfFameGoldenBoot,
                         options: h.awards.goldenBoot,
                         siteUrl: siteUrl,
@@ -72,6 +73,7 @@ class HallOfFameScreen extends ConsumerWidget {
                     for (final a in h.awards.categories)
                       if (a.options.isNotEmpty)
                         _Award(
+                          key: ValueKey('award-${a.category}'),
                           title: a.label,
                           options: a.options,
                           siteUrl: siteUrl,
@@ -165,6 +167,7 @@ class _Person extends StatelessWidget {
 
 class _Award extends StatefulWidget {
   const _Award({
+    super.key,
     required this.title,
     required this.options,
     required this.siteUrl,

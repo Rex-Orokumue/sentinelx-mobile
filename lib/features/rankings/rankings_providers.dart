@@ -23,14 +23,32 @@ final rankingsQueryProvider =
       RankingsQueryNotifier.new,
     );
 
-RankingsQuery _cacheKey(RankingsQuery query) => query.copyWith(page: 1);
+RankingsQuery rankingsCacheKey(RankingsQuery query) => query.copyWith(page: 1);
+
+// The filter domain (game/region/metric/tabGame) is small and finite, but
+// cap the cache defensively so it can never grow unbounded across a long
+// session.
+const _rankingsCacheCap = 8;
 
 class RankingsCacheNotifier
     extends Notifier<Map<RankingsQuery, RankingsPage>> {
   @override
   Map<RankingsQuery, RankingsPage> build() => {};
-  void store(RankingsQuery query, RankingsPage page) =>
-      state = {...state, _cacheKey(query): page};
+  void store(RankingsQuery query, RankingsPage page) {
+    final next = {...state, rankingsCacheKey(query): page};
+    if (next.length <= _rankingsCacheCap) {
+      state = next;
+      return;
+    }
+    // Insertion order is preserved by the map's spread above (re-storing an
+    // existing key updates its value without moving it), so the oldest
+    // untouched entries sit first and are evicted first.
+    final trimmed = Map.of(next);
+    while (trimmed.length > _rankingsCacheCap) {
+      trimmed.remove(trimmed.keys.first);
+    }
+    state = trimmed;
+  }
 }
 
 final rankingsCacheProvider =
