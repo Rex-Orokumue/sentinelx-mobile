@@ -1362,4 +1362,371 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get coinSourceFriendlyStakePayout => 'Gain amical';
+
+  @override
+  String get mtcBracketTitle => 'Tableau';
+
+  @override
+  String get mtcTabGroups => 'Groupes';
+
+  @override
+  String get mtcTabFixtures => 'Matchs';
+
+  @override
+  String get mtcTabKnockout => 'Phase finale';
+
+  @override
+  String get mtcNoDrawYet => 'Le tirage n\'a pas encore été fait.';
+
+  @override
+  String get mtcChampion => 'Champion';
+
+  @override
+  String get mtcThirdPlace => '3e place';
+
+  @override
+  String get mtcNoWinner => 'Ce tournoi s\'est terminé sans vainqueur.';
+
+  @override
+  String mtcGroupCol(String group) {
+    return '$group';
+  }
+
+  @override
+  String get mtcColPlayed => 'J';
+
+  @override
+  String get mtcColWins => 'V';
+
+  @override
+  String get mtcColDraws => 'N';
+
+  @override
+  String get mtcColLosses => 'D';
+
+  @override
+  String get mtcColGoalDiff => 'DB';
+
+  @override
+  String get mtcColPoints => 'Pts';
+
+  @override
+  String get mtcAdvancing => 'Qualifié';
+
+  @override
+  String get mtcFixtLive => 'En direct';
+
+  @override
+  String get mtcFixtUpcoming => 'À venir';
+
+  @override
+  String get mtcFixtCompleted => 'Terminés';
+
+  @override
+  String get mtcFixtDisputed => 'Litigieux ou annulés';
+
+  @override
+  String mtcProjectedMatches(int count) {
+    return '$count matchs à venir';
+  }
+
+  @override
+  String get mtcTbd => 'À confirmer';
+
+  @override
+  String get mtcVs => 'contre';
+
+  @override
+  String get mtcStages => 'Phases';
+
+  @override
+  String get mtcStageStandingsTitle => 'Classement';
+
+  @override
+  String get mtcColRank => '#';
+
+  @override
+  String get mtcColKills => 'Éliminations';
+
+  @override
+  String get mtcTieUnresolved => 'Égalité — départage en attente';
+
+  @override
+  String get mtcMatchTitle => 'Match';
+
+  @override
+  String get mtcStatusScheduled => 'Programmé';
+
+  @override
+  String get mtcStatusLive => 'En direct';
+
+  @override
+  String get mtcStatusCompleted => 'Terminé';
+
+  @override
+  String get mtcStatusDisputed => 'En cours d\'examen';
+
+  @override
+  String get mtcStatusCancelled => 'Annulé';
+
+  @override
+  String get mtcStatusBye => 'Exempt';
+
+  @override
+  String get mtcStatusForfeited => 'Forfait';
+
+  @override
+  String get mtcWatchLive => 'Regarder en direct';
+
+  @override
+  String get mtcWatchReplay => 'Voir le replay';
+
+  @override
+  String get mtcCheckIn => 'Je suis là — pointer';
+
+  @override
+  String get mtcCheckedIn => 'Pointé';
+
+  @override
+  String get mtcNotCheckedIn => 'Non pointé';
+
+  @override
+  String get mtcCheckInSuccess => 'Vous êtes pointé.';
+
+  @override
+  String get mtcSubmitResult => 'Soumettre le résultat';
+
+  @override
+  String get mtcResultSubmitted =>
+      'Résultat soumis — en attente de confirmation.';
+
+  @override
+  String get mtcRateOpponent => 'Noter votre adversaire';
+
+  @override
+  String get mtcRated => 'Merci pour votre note !';
+
+  @override
+  String get mtcWagerTitle => 'Pari';
+
+  @override
+  String get mtcWagerLoginPrompt => 'Connectez-vous pour parier.';
+
+  @override
+  String get mtcWagerClosed => 'Les paris sont fermés pour ce match.';
+
+  @override
+  String mtcWagerPool(int a, int b) {
+    return 'Cagnotte : $a contre $b pièces';
+  }
+
+  @override
+  String mtcWagerFee(String percent) {
+    return 'Frais $percent %';
+  }
+
+  @override
+  String mtcWagerYourPick(int coins, String name) {
+    return 'Votre pari : $coins pièces sur $name';
+  }
+
+  @override
+  String get mtcWagerPlace => 'Parier';
+
+  @override
+  String get mtcWagerChange => 'Modifier le pari';
+
+  @override
+  String get mtcWagerStake => 'Mise (pièces)';
+
+  @override
+  String mtcWagerStakeRange(int min, int max) {
+    return 'Entre $min et $max pièces.';
+  }
+
+  @override
+  String get mtcWagerPlaced => 'Pari enregistré.';
+
+  @override
+  String mtcWagerEstimate(String payout) {
+    return 'Un pari de 100 pièces sur le premier joueur rapporterait environ $payout pièces.';
+  }
+
+  @override
+  String get mtcNoShowInfo =>
+      'Ce match peut être traité comme forfait par les organisateurs.';
+
+  @override
+  String mtcScoreA(String name) {
+    return 'Score de $name';
+  }
+
+  @override
+  String get mtcRecordingUrl => 'Lien de l\'enregistrement (facultatif)';
+
+  @override
+  String get mtcPickScreenshot => 'Choisir une capture';
+
+  @override
+  String get mtcChangeScreenshot => 'Changer la capture';
+
+  @override
+  String get mtcScreenshotRequired => 'Une capture d\'écran est requise.';
+
+  @override
+  String get mtcUploading => 'Envoi de la capture…';
+
+  @override
+  String get mtcSubmitting => 'Envoi…';
+
+  @override
+  String get mtcValScore => 'Saisissez un entier de 0 à 99.';
+
+  @override
+  String get mtcLobbyResultTitle => 'Résultat du lobby';
+
+  @override
+  String get mtcPlacement => 'Classement';
+
+  @override
+  String get mtcKills => 'Éliminations';
+
+  @override
+  String get mtcValPlacement => 'Saisissez un entier de 1 à 100.';
+
+  @override
+  String get mtcValKills => 'Saisissez un entier de 0 à 100.';
+
+  @override
+  String get mtcFixturesTitle => 'Vos matchs';
+
+  @override
+  String get mtcNextMatch => 'Prochain match';
+
+  @override
+  String get mtcNextLobby => 'Prochain lobby';
+
+  @override
+  String get mtcSubmitPrompt => 'Un match attend votre résultat.';
+
+  @override
+  String get mtcLobbySubmitted => 'Résultat soumis';
+
+  @override
+  String get mtcRoomCodeReady => 'Les détails de la salle sont prêts';
+
+  @override
+  String mtcBannerQualified(String title, String round) {
+    return 'Vous êtes qualifié dans $title ($round).';
+  }
+
+  @override
+  String get mtcBannerAwaiting => 'En attente de votre adversaire.';
+
+  @override
+  String mtcBannerEliminated(String title, String round) {
+    return 'Vous avez été éliminé de $title ($round).';
+  }
+
+  @override
+  String get mtcRegistrationsHeading => 'Vos inscriptions';
+
+  @override
+  String get mtcPaymentPending => 'Paiement en attente';
+
+  @override
+  String get mtcPaymentPaid => 'Payé';
+
+  @override
+  String get mtcEcGeneric => 'Une erreur est survenue. Veuillez réessayer.';
+
+  @override
+  String get mtcEcNetwork =>
+      'Pas de connexion. Vérifiez votre internet et réessayez.';
+
+  @override
+  String get mtcEcSession => 'Votre session a expiré. Reconnectez-vous.';
+
+  @override
+  String get mtcEcInProgress =>
+      'Traitement en cours. Patientez un instant puis réessayez.';
+
+  @override
+  String get mtcEcUploadFailed => 'L\'envoi de la capture a échoué. Réessayez.';
+
+  @override
+  String get mtcEcMatchNotFound => 'Match introuvable.';
+
+  @override
+  String get mtcEcNotParticipant => 'Vous ne jouez pas dans ce match.';
+
+  @override
+  String get mtcEcNotMatchDay => 'Vous pourrez pointer le jour du match.';
+
+  @override
+  String get mtcEcCheckInClosed => 'Le pointage est fermé pour ce match.';
+
+  @override
+  String get mtcEcBye => 'Match exempt — aucun résultat à soumettre.';
+
+  @override
+  String get mtcEcCancelled => 'Ce match a été annulé.';
+
+  @override
+  String get mtcEcAlreadyConfirmed => 'Ce résultat est déjà confirmé.';
+
+  @override
+  String get mtcEcSubmissionLocked =>
+      'Votre soumission est en cours d\'examen et ne peut plus être modifiée.';
+
+  @override
+  String get mtcEcValidation => 'Vérifiez votre saisie.';
+
+  @override
+  String get mtcEcResultNotConfirmed =>
+      'Vous pourrez noter votre adversaire une fois le résultat confirmé.';
+
+  @override
+  String get mtcEcCannotRateSelf => 'Vous ne pouvez pas vous noter.';
+
+  @override
+  String get mtcEcNotRatable => 'Ce match ne peut pas être noté.';
+
+  @override
+  String get mtcEcAlreadyRated => 'Vous avez déjà noté ce match.';
+
+  @override
+  String get mtcEcPendingDeletion =>
+      'Votre compte est en cours de suppression.';
+
+  @override
+  String get mtcEcOwnMatch =>
+      'Vous ne pouvez pas parier sur votre propre match.';
+
+  @override
+  String get mtcEcInvalidPick =>
+      'Choisissez l\'un des deux joueurs de ce match.';
+
+  @override
+  String get mtcEcWindowClosed => 'Les paris sont fermés pour ce match.';
+
+  @override
+  String get mtcEcInsufficientCoins => 'Pas assez de SX Coins pour cette mise.';
+
+  @override
+  String get mtcEcNotInLobby => 'Vous n\'êtes pas dans ce lobby.';
+
+  @override
+  String get mtcEcLobbyConfirmed =>
+      'Ce lobby est confirmé et ne peut plus être modifié.';
+
+  @override
+  String get mtcEcResultConfirmed =>
+      'Votre résultat est confirmé et ne peut plus être modifié.';
+
+  @override
+  String get mtcHomeFixtures => 'Matchs';
+
+  @override
+  String get mtcDone => 'Terminé';
 }

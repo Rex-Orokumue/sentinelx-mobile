@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:sentinelx_mobile/core/api/match_models.dart';
 import 'package:sentinelx_mobile/core/api/models.dart';
 import 'package:sentinelx_mobile/core/l10n/gen/app_localizations.dart';
 import 'package:sentinelx_mobile/core/providers.dart';
 import 'package:sentinelx_mobile/features/home/home_providers.dart';
 import 'package:sentinelx_mobile/features/home/home_repository.dart';
 import 'package:sentinelx_mobile/features/home/home_screen.dart';
+import 'package:sentinelx_mobile/features/match/match_providers.dart';
+
+import '../fakes/fake_match_repositories.dart';
+import '../support/match_fixtures.dart';
 
 class _FakeHomeRepository implements HomeRepository {
   _FakeHomeRepository(this._summary);
@@ -217,6 +222,45 @@ void main() {
     await tester.scrollUntilVisible(find.byKey(const Key('home-link-players')), 200, scrollable: find.byType(Scrollable).first);
     await tester.tap(find.byKey(const Key('home-link-players')));
     expect(visited, ['/players']);
+  });
+
+  testWidgets('Home renders the FixturesCard: a next match shows Next match', (tester) async {
+    final repo = FakeMatchRepository()..summaryView = MeSummary.fromJson(summaryJson(nextMatch: nextMatchJson()));
+    await tester.pumpWidget(ProviderScope(
+      retry: (_, _) => null,
+      overrides: [
+        homeRepositoryProvider.overrideWithValue(_FakeHomeRepository(_summary())),
+        meProvider.overrideWith((ref) async => _me()),
+        matchRepositoryProvider.overrideWithValue(repo),
+      ],
+      child: MaterialApp(
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: HomeScreen(onGoTo: (_) {}),
+      ),
+    ));
+    await tester.pumpAndSettle();
+    expect(find.text('Next match'), findsOneWidget);
+  });
+
+  testWidgets('Home still renders when the fixtures summary errors', (tester) async {
+    final repo = FakeMatchRepository()..summaryError = Exception('boom');
+    await tester.pumpWidget(ProviderScope(
+      retry: (_, _) => null,
+      overrides: [
+        homeRepositoryProvider.overrideWithValue(_FakeHomeRepository(_summary())),
+        meProvider.overrideWith((ref) async => _me()),
+        matchRepositoryProvider.overrideWithValue(repo),
+      ],
+      child: MaterialApp(
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: HomeScreen(onGoTo: (_) {}),
+      ),
+    ));
+    await tester.pumpAndSettle();
+    expect(find.text('FC Mobile Cup'), findsOneWidget);
+    expect(find.textContaining('Exception'), findsNothing);
   });
 }
 

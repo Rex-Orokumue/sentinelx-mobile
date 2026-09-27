@@ -448,5 +448,202 @@
   "coinSourceReferralReward": "Récompense de parrainage",
   "coinSourceReferralMilestone": "Palier de parrainage",
   "coinSourceFriendlyStake": "Mise amicale",
-  "coinSourceFriendlyStakePayout": "Gain amical"
+  "coinSourceFriendlyStakePayout": "Gain amical",
+  "mtcBracketTitle": "Tableau",
+  "mtcTabGroups": "Groupes",
+  "mtcTabFixtures": "Matchs",
+  "mtcTabKnockout": "Phase finale",
+  "mtcNoDrawYet": "Le tirage n'a pas encore été fait.",
+  "mtcChampion": "Champion",
+  "mtcThirdPlace": "3e place",
+  "mtcNoWinner": "Ce tournoi s'est terminé sans vainqueur.",
+  "mtcGroupCol": "{group}",
+  "@mtcGroupCol": {
+    "placeholders": {
+      "group": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcColPlayed": "J",
+  "mtcColWins": "V",
+  "mtcColDraws": "N",
+  "mtcColLosses": "D",
+  "mtcColGoalDiff": "DB",
+  "mtcColPoints": "Pts",
+  "mtcAdvancing": "Qualifié",
+  "mtcFixtLive": "En direct",
+  "mtcFixtUpcoming": "À venir",
+  "mtcFixtCompleted": "Terminés",
+  "mtcFixtDisputed": "Litigieux ou annulés",
+  "mtcProjectedMatches": "{count} matchs à venir",
+  "@mtcProjectedMatches": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "mtcTbd": "À confirmer",
+  "mtcVs": "contre",
+  "mtcStages": "Phases",
+  "mtcStageStandingsTitle": "Classement",
+  "mtcColRank": "#",
+  "mtcColKills": "Éliminations",
+  "mtcTieUnresolved": "Égalité — départage en attente",
+  "mtcMatchTitle": "Match",
+  "mtcStatusScheduled": "Programmé",
+  "mtcStatusLive": "En direct",
+  "mtcStatusCompleted": "Terminé",
+  "mtcStatusDisputed": "En cours d'examen",
+  "mtcStatusCancelled": "Annulé",
+  "mtcStatusBye": "Exempt",
+  "mtcStatusForfeited": "Forfait",
+  "mtcWatchLive": "Regarder en direct",
+  "mtcWatchReplay": "Voir le replay",
+  "mtcCheckIn": "Je suis là — pointer",
+  "mtcCheckedIn": "Pointé",
+  "mtcNotCheckedIn": "Non pointé",
+  "mtcCheckInSuccess": "Vous êtes pointé.",
+  "mtcSubmitResult": "Soumettre le résultat",
+  "mtcResultSubmitted": "Résultat soumis — en attente de confirmation.",
+  "mtcRateOpponent": "Noter votre adversaire",
+  "mtcRated": "Merci pour votre note !",
+  "mtcWagerTitle": "Pari",
+  "mtcWagerLoginPrompt": "Connectez-vous pour parier.",
+  "mtcWagerClosed": "Les paris sont fermés pour ce match.",
+  "mtcWagerPool": "Cagnotte : {a} contre {b} pièces",
+  "@mtcWagerPool": {
+    "placeholders": {
+      "a": {
+        "type": "int"
+      },
+      "b": {
+        "type": "int"
+      }
+    }
+  },
+  "mtcWagerFee": "Frais {percent} %",
+  "@mtcWagerFee": {
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcWagerYourPick": "Votre pari : {coins} pièces sur {name}",
+  "@mtcWagerYourPick": {
+    "placeholders": {
+      "coins": {
+        "type": "int"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcWagerPlace": "Parier",
+  "mtcWagerChange": "Modifier le pari",
+  "mtcWagerStake": "Mise (pièces)",
+  "mtcWagerStakeRange": "Entre {min} et {max} pièces.",
+  "@mtcWagerStakeRange": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "mtcWagerPlaced": "Pari enregistré.",
+  "mtcWagerEstimate": "Un pari de 100 pièces sur le premier joueur rapporterait environ {payout} pièces.",
+  "@mtcWagerEstimate": {
+    "placeholders": {
+      "payout": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcNoShowInfo": "Ce match peut être traité comme forfait par les organisateurs.",
+  "mtcScoreA": "Score de {name}",
+  "@mtcScoreA": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcRecordingUrl": "Lien de l'enregistrement (facultatif)",
+  "mtcPickScreenshot": "Choisir une capture",
+  "mtcChangeScreenshot": "Changer la capture",
+  "mtcScreenshotRequired": "Une capture d'écran est requise.",
+  "mtcUploading": "Envoi de la capture…",
+  "mtcSubmitting": "Envoi…",
+  "mtcValScore": "Saisissez un entier de 0 à 99.",
+  "mtcLobbyResultTitle": "Résultat du lobby",
+  "mtcPlacement": "Classement",
+  "mtcKills": "Éliminations",
+  "mtcValPlacement": "Saisissez un entier de 1 à 100.",
+  "mtcValKills": "Saisissez un entier de 0 à 100.",
+  "mtcFixturesTitle": "Vos matchs",
+  "mtcNextMatch": "Prochain match",
+  "mtcNextLobby": "Prochain lobby",
+  "mtcSubmitPrompt": "Un match attend votre résultat.",
+  "mtcLobbySubmitted": "Résultat soumis",
+  "mtcRoomCodeReady": "Les détails de la salle sont prêts",
+  "mtcBannerQualified": "Vous êtes qualifié dans {title} ({round}).",
+  "@mtcBannerQualified": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "round": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcBannerAwaiting": "En attente de votre adversaire.",
+  "mtcBannerEliminated": "Vous avez été éliminé de {title} ({round}).",
+  "@mtcBannerEliminated": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "round": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcRegistrationsHeading": "Vos inscriptions",
+  "mtcPaymentPending": "Paiement en attente",
+  "mtcPaymentPaid": "Payé",
+  "mtcEcGeneric": "Une erreur est survenue. Veuillez réessayer.",
+  "mtcEcNetwork": "Pas de connexion. Vérifiez votre internet et réessayez.",
+  "mtcEcSession": "Votre session a expiré. Reconnectez-vous.",
+  "mtcEcInProgress": "Traitement en cours. Patientez un instant puis réessayez.",
+  "mtcEcUploadFailed": "L'envoi de la capture a échoué. Réessayez.",
+  "mtcEcMatchNotFound": "Match introuvable.",
+  "mtcEcNotParticipant": "Vous ne jouez pas dans ce match.",
+  "mtcEcNotMatchDay": "Vous pourrez pointer le jour du match.",
+  "mtcEcCheckInClosed": "Le pointage est fermé pour ce match.",
+  "mtcEcBye": "Match exempt — aucun résultat à soumettre.",
+  "mtcEcCancelled": "Ce match a été annulé.",
+  "mtcEcAlreadyConfirmed": "Ce résultat est déjà confirmé.",
+  "mtcEcSubmissionLocked": "Votre soumission est en cours d'examen et ne peut plus être modifiée.",
+  "mtcEcValidation": "Vérifiez votre saisie.",
+  "mtcEcResultNotConfirmed": "Vous pourrez noter votre adversaire une fois le résultat confirmé.",
+  "mtcEcCannotRateSelf": "Vous ne pouvez pas vous noter.",
+  "mtcEcNotRatable": "Ce match ne peut pas être noté.",
+  "mtcEcAlreadyRated": "Vous avez déjà noté ce match.",
+  "mtcEcPendingDeletion": "Votre compte est en cours de suppression.",
+  "mtcEcOwnMatch": "Vous ne pouvez pas parier sur votre propre match.",
+  "mtcEcInvalidPick": "Choisissez l'un des deux joueurs de ce match.",
+  "mtcEcWindowClosed": "Les paris sont fermés pour ce match.",
+  "mtcEcInsufficientCoins": "Pas assez de SX Coins pour cette mise.",
+  "mtcEcNotInLobby": "Vous n'êtes pas dans ce lobby.",
+  "mtcEcLobbyConfirmed": "Ce lobby est confirmé et ne peut plus être modifié.",
+  "mtcEcResultConfirmed": "Votre résultat est confirmé et ne peut plus être modifié.",
+  "mtcHomeFixtures": "Matchs",
+  "mtcDone": "Terminé"
 }

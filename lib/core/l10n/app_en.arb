@@ -589,5 +589,202 @@
   "coinSourceReferralReward": "Referral reward",
   "coinSourceReferralMilestone": "Referral milestone",
   "coinSourceFriendlyStake": "Friendly stake",
-  "coinSourceFriendlyStakePayout": "Friendly payout"
+  "coinSourceFriendlyStakePayout": "Friendly payout",
+  "mtcBracketTitle": "Bracket",
+  "mtcTabGroups": "Groups",
+  "mtcTabFixtures": "Fixtures",
+  "mtcTabKnockout": "Knockout",
+  "mtcNoDrawYet": "The draw hasn't been made yet.",
+  "mtcChampion": "Champion",
+  "mtcThirdPlace": "Third place",
+  "mtcNoWinner": "This tournament closed without a winner.",
+  "mtcGroupCol": "{group}",
+  "@mtcGroupCol": {
+    "placeholders": {
+      "group": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcColPlayed": "P",
+  "mtcColWins": "W",
+  "mtcColDraws": "D",
+  "mtcColLosses": "L",
+  "mtcColGoalDiff": "GD",
+  "mtcColPoints": "Pts",
+  "mtcAdvancing": "Advancing",
+  "mtcFixtLive": "Live",
+  "mtcFixtUpcoming": "Upcoming",
+  "mtcFixtCompleted": "Completed",
+  "mtcFixtDisputed": "Disputed or cancelled",
+  "mtcProjectedMatches": "{count} matches to come",
+  "@mtcProjectedMatches": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "mtcTbd": "To be announced",
+  "mtcVs": "vs",
+  "mtcStages": "Stages",
+  "mtcStageStandingsTitle": "Standings",
+  "mtcColRank": "#",
+  "mtcColKills": "Kills",
+  "mtcTieUnresolved": "Tied — awaiting tiebreak",
+  "mtcMatchTitle": "Match",
+  "mtcStatusScheduled": "Scheduled",
+  "mtcStatusLive": "Live",
+  "mtcStatusCompleted": "Completed",
+  "mtcStatusDisputed": "Under review",
+  "mtcStatusCancelled": "Cancelled",
+  "mtcStatusBye": "Bye",
+  "mtcStatusForfeited": "Forfeited",
+  "mtcWatchLive": "Watch live",
+  "mtcWatchReplay": "Watch replay",
+  "mtcCheckIn": "I'm here — check in",
+  "mtcCheckedIn": "Checked in",
+  "mtcNotCheckedIn": "Not checked in",
+  "mtcCheckInSuccess": "You're checked in.",
+  "mtcSubmitResult": "Submit result",
+  "mtcResultSubmitted": "Result submitted — awaiting confirmation.",
+  "mtcRateOpponent": "Rate your opponent",
+  "mtcRated": "Thanks for rating!",
+  "mtcWagerTitle": "Wager",
+  "mtcWagerLoginPrompt": "Log in to place a wager.",
+  "mtcWagerClosed": "Wagering is closed for this match.",
+  "mtcWagerPool": "Pool: {a} vs {b} coins",
+  "@mtcWagerPool": {
+    "placeholders": {
+      "a": {
+        "type": "int"
+      },
+      "b": {
+        "type": "int"
+      }
+    }
+  },
+  "mtcWagerFee": "House fee {percent}%",
+  "@mtcWagerFee": {
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcWagerYourPick": "Your wager: {coins} coins on {name}",
+  "@mtcWagerYourPick": {
+    "placeholders": {
+      "coins": {
+        "type": "int"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcWagerPlace": "Place wager",
+  "mtcWagerChange": "Change wager",
+  "mtcWagerStake": "Stake (coins)",
+  "mtcWagerStakeRange": "Between {min} and {max} coins.",
+  "@mtcWagerStakeRange": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "mtcWagerPlaced": "Wager placed.",
+  "mtcWagerEstimate": "A 100-coin wager on the first player would pay about {payout} coins.",
+  "@mtcWagerEstimate": {
+    "placeholders": {
+      "payout": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcNoShowInfo": "This match is eligible for no-show handling by the organizers.",
+  "mtcScoreA": "{name} score",
+  "@mtcScoreA": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcRecordingUrl": "Recording link (optional)",
+  "mtcPickScreenshot": "Choose screenshot",
+  "mtcChangeScreenshot": "Change screenshot",
+  "mtcScreenshotRequired": "A screenshot is required.",
+  "mtcUploading": "Uploading screenshot…",
+  "mtcSubmitting": "Submitting…",
+  "mtcValScore": "Enter a whole number from 0 to 99.",
+  "mtcLobbyResultTitle": "Lobby result",
+  "mtcPlacement": "Placement",
+  "mtcKills": "Kills",
+  "mtcValPlacement": "Enter a whole number from 1 to 100.",
+  "mtcValKills": "Enter a whole number from 0 to 100.",
+  "mtcFixturesTitle": "Your fixtures",
+  "mtcNextMatch": "Next match",
+  "mtcNextLobby": "Next lobby",
+  "mtcSubmitPrompt": "You have a match awaiting your result.",
+  "mtcLobbySubmitted": "Result submitted",
+  "mtcRoomCodeReady": "Room details are ready",
+  "mtcBannerQualified": "You qualified in {title} ({round}).",
+  "@mtcBannerQualified": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "round": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcBannerAwaiting": "Waiting for your opponent.",
+  "mtcBannerEliminated": "You were eliminated from {title} ({round}).",
+  "@mtcBannerEliminated": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "round": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcRegistrationsHeading": "Your registrations",
+  "mtcPaymentPending": "Payment pending",
+  "mtcPaymentPaid": "Paid",
+  "mtcEcGeneric": "Something went wrong. Please try again.",
+  "mtcEcNetwork": "No connection. Check your internet and try again.",
+  "mtcEcSession": "Your session expired. Please log in again.",
+  "mtcEcInProgress": "Still processing your request. Please wait a moment and try again.",
+  "mtcEcUploadFailed": "Screenshot upload failed. Please try again.",
+  "mtcEcMatchNotFound": "Match not found.",
+  "mtcEcNotParticipant": "You're not playing in this match.",
+  "mtcEcNotMatchDay": "You can check in once it's match day.",
+  "mtcEcCheckInClosed": "This match is no longer open for check-in.",
+  "mtcEcBye": "This is a bye — there is no result to submit.",
+  "mtcEcCancelled": "This match was cancelled.",
+  "mtcEcAlreadyConfirmed": "This result is already confirmed.",
+  "mtcEcSubmissionLocked": "Your submission is under review and can no longer be edited.",
+  "mtcEcValidation": "Please check what you entered.",
+  "mtcEcResultNotConfirmed": "You can rate your opponent once the result is confirmed.",
+  "mtcEcCannotRateSelf": "You can't rate yourself.",
+  "mtcEcNotRatable": "This match can't be rated.",
+  "mtcEcAlreadyRated": "You've already rated this match.",
+  "mtcEcPendingDeletion": "Your account is pending deletion.",
+  "mtcEcOwnMatch": "You can't wager on your own match.",
+  "mtcEcInvalidPick": "Pick one of the two players in this match.",
+  "mtcEcWindowClosed": "Wagering is closed for this match.",
+  "mtcEcInsufficientCoins": "Not enough SX Coins for this stake.",
+  "mtcEcNotInLobby": "You're not in this lobby.",
+  "mtcEcLobbyConfirmed": "This lobby is confirmed and can no longer be edited.",
+  "mtcEcResultConfirmed": "Your result is confirmed and can no longer be edited.",
+  "mtcHomeFixtures": "Fixtures",
+  "mtcDone": "Done"
 }

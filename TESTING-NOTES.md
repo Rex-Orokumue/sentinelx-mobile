@@ -55,3 +55,35 @@ Not run yet: the owner chose to build all phases first and test on the phone tog
 - Added widget coverage for rankings rows/wins expansion, seasons list and empty detail, Hall of Fame sections, Home entry points, and localized web-link routing.
 - No production writes were made; Phase 3a endpoints and verification are read-only.
 - Live staging/device interaction was not run because the Vercel preview hostname remained unavailable through Windows DNS and the in-app browser rejected its sandbox metadata. The web preview itself reported ready; this limitation was also recorded on the web API PR.
+
+## 2026-09-27 — Phase 2b (bracket, Match Centre, check-in, result/rating/wager, lobby result) — device checks PENDING
+
+Not run yet: nothing here can run against a real server today (the web repo's twelve Phase 2b endpoints live on
+an unmerged branch). **Staging only** once the web endpoints are live (Supabase `ofxmoxpvwbemfouaowoa`, web dev
+server on that branch — launch command in `docs/agent-handoffs/2026-09-25-mobile-phase3b-flutter-session-notes.md`).
+`config/dev.json` alone points at PRODUCTION, so always pass the `--dart-define` overrides. Check-in, result, rating,
+wager and lobby-result are writes (wager spends coins) — never run them against production. Use two staging
+`zzqa_` test players plus an admin session on the web to confirm results, and log accounts below.
+
+| # | Check | Result |
+|---|---|---|
+| 1 | Bracket for a group+knockout tournament: standings tables, fixtures buckets, knockout rounds; compare group tables and the champion against the web page for 3 tournaments | pending |
+| 2 | A points-race tournament: Stages → standings table matches the web | pending |
+| 3 | Match Centre as a guest, as a participant, as a non-participant (each control set as specified) | pending |
+| 4 | Check-in on match day; before match day shows the localized "match day" message; double-tap sends one request | pending |
+| 5 | Submit a result with a screenshot: file appears in `match-evidence/<uid>/<matchId>/…` on staging; the web admin review page shows the pending result; app shows "awaiting confirmation" only | pending |
+| 6 | Airplane-mode toggle during submit, retry: exactly one `api_idempotency_keys` row, one `match_results` row, one storage object | pending |
+| 7 | Admin confirms on web → pull-to-refresh: score appears, Rate button appears; rate 5★ → `+20` SX Score event exists once; rate again → "already rated" | pending |
+| 8 | Wager as a third player: place, change, insufficient coins, window closed; coin ledger correct | pending |
+| 9 | Lobby result from the Home card; second submit after admin confirm shows the locked message | pending |
+| 10 | Home fixtures card: next match, submit prompt, banners, pending payment row | pending |
+| 11 | Deep link `/matches/<id>` from a browser opens the Match Centre | pending |
+| 12 | 375px: no overflow on any screen above | pending |
+
+- `flutter gen-l10n`: passed (French copy is machine-written and flagged for native review — see PR/handoff note).
+- `flutter analyze`: no issues.
+- `flutter test`: 496 tests passed.
+- No production writes were made; nothing in this phase has run against a real server (staging or production) — the
+  API models were verified only against the Phase 2b endpoint definitions (zod schemas) on the web branch.
+- The screenshot upload path (`SupabaseEvidenceUploader` → private bucket `match-evidence`) is exercised only by fakes
+  in widget tests; it has not run against the real staging bucket.

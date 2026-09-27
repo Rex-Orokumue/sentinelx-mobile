@@ -5,6 +5,8 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../core/api/compete_models.dart';
 import '../../core/l10n/gen/app_localizations.dart';
 import '../../core/providers.dart';
+import '../../core/theme/sx_colors.dart';
+import '../match/match_providers.dart';
 import 'compete_list_screen.dart' show statusLabel;
 import 'compete_models.dart';
 import 'compete_providers.dart';
@@ -90,6 +92,7 @@ class _Body extends ConsumerWidget {
         Text(t.title, style: Theme.of(context).textTheme.headlineSmall),
         if (t.gameName != null) Padding(padding: const EdgeInsets.only(top: 4), child: Text(t.gameName!)),
         if (status != null) Padding(padding: const EdgeInsets.only(top: 8), child: Chip(label: Text(status))),
+        if (t.status == 'completed') _ChampionCard(tournamentId: t.id),
         const SizedBox(height: 12),
         Text('${l10n.cmpPrizePool}: ₦${t.prizePool}'),
         if (t.prizeSecond != null) Text('${l10n.cmpSecondPlace}: ₦${t.prizeSecond}'),
@@ -222,5 +225,42 @@ class _RetryMessage extends StatelessWidget {
       OutlinedButton(onPressed: onRetry, child: Text(l10n.cmpRetry)),
     ]);
     return compact ? content : Center(child: Padding(padding: const EdgeInsets.all(24), child: content));
+  }
+}
+
+/// Champion (or "closed without a winner") for a completed tournament. A failed read shows nothing:
+/// this card must never block the page.
+class _ChampionCard extends ConsumerWidget {
+  const _ChampionCard({required this.tournamentId});
+  final String tournamentId;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final results = ref.watch(tournamentResultsProvider(tournamentId)).asData?.value;
+    if (results == null) return const SizedBox.shrink();
+    final c = results.champion;
+    if (c == null) {
+      return results.noWinner ? Padding(padding: const EdgeInsets.only(top: 12), child: Text(l10n.mtcNoWinner)) : const SizedBox.shrink();
+    }
+    return Card(
+      key: const Key('champion-card'),
+      margin: const EdgeInsets.only(top: 12),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Row(children: [
+          const Icon(Icons.emoji_events, color: SxColors.warning),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(l10n.mtcChampion, style: Theme.of(context).textTheme.labelSmall),
+              Text(c.champion.name, style: Theme.of(context).textTheme.titleMedium, maxLines: 2, overflow: TextOverflow.ellipsis),
+              if (c.runnerUp != null) Text('${l10n.cmpSecondPlace}: ${c.runnerUp!.name}', maxLines: 2, overflow: TextOverflow.ellipsis),
+              if (c.prizePool != null) Text('${l10n.cmpPrizePool}: ₦${c.prizePool}'),
+            ]),
+          ),
+        ]),
+      ),
+    );
   }
 }

@@ -32,7 +32,15 @@ import '../features/players/players_providers.dart';
 import '../features/progress/history_list_screen.dart';
 import '../features/progress/my_progress_screen.dart';
 import '../features/progress/progress_providers.dart';
-import '../features/tournaments/bracket_screen.dart';
+import '../core/api/match_models.dart';
+import '../features/bracket/bracket_screen.dart';
+import '../features/bracket/stage_standings_screen.dart';
+import '../features/match/lobby_result_screen.dart';
+import '../features/match/match_centre_screen.dart';
+import '../features/match/match_providers.dart';
+import '../features/match/match_reads_repository.dart';
+import '../features/match/rating_sheet.dart';
+import '../features/match/result_submission_screen.dart';
 import '../shared/widgets/coming_soon_screen.dart';
 import 'auth_redirect.dart';
 
@@ -61,8 +69,10 @@ GoRouter buildAppRouter({
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) =>
-            HomeScreen(onGoTo: (path) => context.go(path)),
+        builder: (context, state) => HomeScreen(
+          onGoTo: (path) => context.go(path),
+          onOpenLobby: (id, lobby) => context.push('/lobbies/$id/result', extra: lobby),
+        ),
       ),
       GoRoute(
         path: '/login',
@@ -105,6 +115,11 @@ GoRouter buildAppRouter({
       ),
       GoRoute(path: '/invitations', builder: (context, state) => const InvitationsScreen()),
       GoRoute(path: '/games', builder: (context, state) => const GamesScreen()),
+      GoRoute(
+        path: '/lobbies/:id/result',
+        builder: (context, state) =>
+            LobbyResultScreen(lobbyId: state.pathParameters['id']!, lobby: state.extra as NextLobby?),
+      ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, shell) => Scaffold(
           body: shell,
@@ -155,7 +170,51 @@ GoRouter buildAppRouter({
                       onViewInvitations: () => context.push('/invitations'),
                     );
                   },
-                  routes: [GoRoute(path: 'bracket', builder: (context, state) => BracketScreen(tournamentId: state.pathParameters['id']!))],
+                  routes: [
+                    GoRoute(
+                      path: 'bracket',
+                      builder: (context, state) {
+                        final id = state.pathParameters['id']!;
+                        return BracketScreen(
+                          tournamentId: id,
+                          onMatchTap: (matchId) => context.push('/matches/$matchId'),
+                          onStageTap: (stage) => context.push('/tournaments/$id/stages/${stage.id}', extra: stage),
+                        );
+                      },
+                    ),
+                    GoRoute(
+                      path: 'stages/:stageId',
+                      builder: (context, state) {
+                        final id = state.pathParameters['id']!;
+                        final stageId = state.pathParameters['stageId']!;
+                        final stage = state.extra as StageInfo? ??
+                            StageInfo(id: stageId, seq: 0, name: AppLocalizations.of(context).mtcStages, status: '');
+                        return StageStandingsScreen(tournamentId: id, stage: stage);
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            GoRoute(
+              path: '/matches/:id',
+              builder: (context, state) {
+                final id = state.pathParameters['id']!;
+                return MatchCentreScreen(
+                  matchId: id,
+                  onLogin: () => context.push('/login'),
+                  onSubmitResult: (m) => context.push('/matches/${m.id}/result', extra: m),
+                  onRate: (m) => showRatingSheet(context, match: m),
+                );
+              },
+              routes: [
+                GoRoute(
+                  path: 'result',
+                  builder: (context, state) {
+                    final extra = state.extra as MatchInfo?;
+                    if (extra != null) return ResultSubmissionScreen(match: extra);
+                    return _ResultRouteGate(matchId: state.pathParameters['id']!);
+                  },
                 ),
               ],
             ),
@@ -305,4 +364,35 @@ final routerProvider = Provider<GoRouter>((ref) {
 
 class _RouterRefresh extends ChangeNotifier {
   void ping() => notifyListeners();
+}
+
+/// A cold `/matches/:id/result` deep link carries no `extra` MatchInfo (nothing pushed it), so this loads
+/// the match first and renders ResultSubmissionScreen once it resolves.
+class _ResultRouteGate extends ConsumerWidget {
+  const _ResultRouteGate({required this.matchId});
+  final String matchId;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final async = ref.watch(matchInfoProvider(matchId));
+    return async.when(
+      loading: () => const Scaffold(body: Center(child: CircularProgressIndicator())),
+      error: (_, _) => Scaffold(
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
+              Text(AppLocalizations.of(context).cmpLoadError),
+              const SizedBox(height: 12),
+              OutlinedButton(
+                onPressed: () => ref.invalidate(matchInfoProvider(matchId)),
+                child: Text(AppLocalizations.of(context).cmpRetry),
+              ),
+            ]),
+          ),
+        ),
+      ),
+      data: (match) => ResultSubmissionScreen(match: match),
+    );
+  }
 }

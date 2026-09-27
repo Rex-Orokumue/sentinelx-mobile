@@ -21,6 +21,9 @@ String? resolveWebLink(String input) {
   if (segments.length == 2 && segments.first == 'seasons') {
     return '/seasons/${segments[1]}';
   }
+  if (segments.length == 2 && segments.first == 'matches') {
+    return '/matches/${Uri.encodeComponent(segments[1])}';
+  }
   if (segments.first == 'players') {
     if (segments.length == 1) return '/players';
     final username = Uri.encodeComponent(segments[1]);
