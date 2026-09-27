@@ -646,6 +646,1082 @@
         }
       }
     },
+    "/api/mobile/v1/hall-of-fame": {
+      "get": {
+        "operationId": "getHallOfFame",
+        "summary": "Public Hall of Fame awards, champions by tier, and bronze finishes with optional game filter.",
+        "security": [],
+        "parameters": [
+          {
+            "name": "game",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "games": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "slug": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "category": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "slug",
+                              "name",
+                              "category"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "selectedGame": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "awards": {
+                          "type": "object",
+                          "properties": {
+                            "mvp": {
+                              "anyOf": [
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "string"
+                                    },
+                                    "username": {
+                                      "anyOf": [
+                                        {
+                                          "type": "string"
+                                        },
+                                        {
+                                          "type": "null"
+                                        }
+                                      ]
+                                    },
+                                    "displayName": {
+                                      "anyOf": [
+                                        {
+                                          "type": "string"
+                                        },
+                                        {
+                                          "type": "null"
+                                        }
+                                      ]
+                                    },
+                                    "avatarUrl": {
+                                      "anyOf": [
+                                        {
+                                          "type": "string"
+                                        },
+                                        {
+                                          "type": "null"
+                                        }
+                                      ]
+                                    },
+                                    "frameUrl": {
+                                      "anyOf": [
+                                        {
+                                          "type": "string"
+                                        },
+                                        {
+                                          "type": "null"
+                                        }
+                                      ]
+                                    },
+                                    "country": {
+                                      "anyOf": [
+                                        {
+                                          "type": "string"
+                                        },
+                                        {
+                                          "type": "null"
+                                        }
+                                      ]
+                                    },
+                                    "sxScore": {
+                                      "type": "number"
+                                    },
+                                    "sentinelTier": {
+                                      "anyOf": [
+                                        {
+                                          "type": "string"
+                                        },
+                                        {
+                                          "type": "null"
+                                        }
+                                      ]
+                                    },
+                                    "membershipTier": {
+                                      "type": "string"
+                                    },
+                                    "kycVerified": {
+                                      "type": "boolean"
+                                    },
+                                    "isDeleted": {
+                                      "type": "boolean"
+                                    }
+                                  },
+                                  "required": [
+                                    "id",
+                                    "username",
+                                    "displayName",
+                                    "avatarUrl",
+                                    "frameUrl",
+                                    "country",
+                                    "sxScore",
+                                    "sentinelTier",
+                                    "membershipTier",
+                                    "kycVerified",
+                                    "isDeleted"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            },
+                            "goldenBoot": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "gameId": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "gameLabel": {
+                                    "type": "string"
+                                  },
+                                  "winner": {
+                                    "anyOf": [
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "id": {
+                                            "type": "string"
+                                          },
+                                          "username": {
+                                            "anyOf": [
+                                              {
+                                                "type": "string"
+                                              },
+                                              {
+                                                "type": "null"
+                                              }
+                                            ]
+                                          },
+                                          "displayName": {
+                                            "anyOf": [
+                                              {
+                                                "type": "string"
+                                              },
+                                              {
+                                                "type": "null"
+                                              }
+                                            ]
+                                          },
+                                          "avatarUrl": {
+                                            "anyOf": [
+                                              {
+                                                "type": "string"
+                                              },
+                                              {
+                                                "type": "null"
+                                              }
+                                            ]
+                                          },
+                                          "frameUrl": {
+                                            "anyOf": [
+                                              {
+                                                "type": "string"
+                                              },
+                                              {
+                                                "type": "null"
+                                              }
+                                            ]
+                                          },
+                                          "country": {
+                                            "anyOf": [
+                                              {
+                                                "type": "string"
+                                              },
+                                              {
+                                                "type": "null"
+                                              }
+                                            ]
+                                          },
+                                          "sxScore": {
+                                            "type": "number"
+                                          },
+                                          "sentinelTier": {
+                                            "anyOf": [
+                                              {
+                                                "type": "string"
+                                              },
+                                              {
+                                                "type": "null"
+                                              }
+                                            ]
+                                          },
+                                          "membershipTier": {
+                                            "type": "string"
+                                          },
+                                          "kycVerified": {
+                                            "type": "boolean"
+                                          },
+                                          "isDeleted": {
+                                            "type": "boolean"
+                                          }
+                                        },
+                                        "required": [
+                                          "id",
+                                          "username",
+                                          "displayName",
+                                          "avatarUrl",
+                                          "frameUrl",
+                                          "country",
+                                          "sxScore",
+                                          "sentinelTier",
+                                          "membershipTier",
+                                          "kycVerified",
+                                          "isDeleted"
+                                        ],
+                                        "additionalProperties": false
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "metricValue": {
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "gameId",
+                                  "gameLabel",
+                                  "winner",
+                                  "metricValue"
+                                ],
+                                "additionalProperties": false
+                              }
+                            },
+                            "categories": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "category": {
+                                    "type": "string"
+                                  },
+                                  "label": {
+                                    "type": "string"
+                                  },
+                                  "metricLabel": {
+                                    "type": "string"
+                                  },
+                                  "options": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "gameId": {
+                                          "anyOf": [
+                                            {
+                                              "type": "string"
+                                            },
+                                            {
+                                              "type": "null"
+                                            }
+                                          ]
+                                        },
+                                        "gameLabel": {
+                                          "type": "string"
+                                        },
+                                        "winner": {
+                                          "anyOf": [
+                                            {
+                                              "type": "object",
+                                              "properties": {
+                                                "id": {
+                                                  "type": "string"
+                                                },
+                                                "username": {
+                                                  "anyOf": [
+                                                    {
+                                                      "type": "string"
+                                                    },
+                                                    {
+                                                      "type": "null"
+                                                    }
+                                                  ]
+                                                },
+                                                "displayName": {
+                                                  "anyOf": [
+                                                    {
+                                                      "type": "string"
+                                                    },
+                                                    {
+                                                      "type": "null"
+                                                    }
+                                                  ]
+                                                },
+                                                "avatarUrl": {
+                                                  "anyOf": [
+                                                    {
+                                                      "type": "string"
+                                                    },
+                                                    {
+                                                      "type": "null"
+                                                    }
+                                                  ]
+                                                },
+                                                "frameUrl": {
+                                                  "anyOf": [
+                                                    {
+                                                      "type": "string"
+                                                    },
+                                                    {
+                                                      "type": "null"
+                                                    }
+                                                  ]
+                                                },
+                                                "country": {
+                                                  "anyOf": [
+                                                    {
+                                                      "type": "string"
+                                                    },
+                                                    {
+                                                      "type": "null"
+                                                    }
+                                                  ]
+                                                },
+                                                "sxScore": {
+                                                  "type": "number"
+                                                },
+                                                "sentinelTier": {
+                                                  "anyOf": [
+                                                    {
+                                                      "type": "string"
+                                                    },
+                                                    {
+                                                      "type": "null"
+                                                    }
+                                                  ]
+                                                },
+                                                "membershipTier": {
+                                                  "type": "string"
+                                                },
+                                                "kycVerified": {
+                                                  "type": "boolean"
+                                                },
+                                                "isDeleted": {
+                                                  "type": "boolean"
+                                                }
+                                              },
+                                              "required": [
+                                                "id",
+                                                "username",
+                                                "displayName",
+                                                "avatarUrl",
+                                                "frameUrl",
+                                                "country",
+                                                "sxScore",
+                                                "sentinelTier",
+                                                "membershipTier",
+                                                "kycVerified",
+                                                "isDeleted"
+                                              ],
+                                              "additionalProperties": false
+                                            },
+                                            {
+                                              "type": "null"
+                                            }
+                                          ]
+                                        },
+                                        "metricValue": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "gameId",
+                                        "gameLabel",
+                                        "winner",
+                                        "metricValue"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  }
+                                },
+                                "required": [
+                                  "category",
+                                  "label",
+                                  "metricLabel",
+                                  "options"
+                                ],
+                                "additionalProperties": false
+                              }
+                            }
+                          },
+                          "required": [
+                            "mvp",
+                            "goldenBoot",
+                            "categories"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "champions": {
+                          "type": "object",
+                          "properties": {
+                            "championsCup": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "tournamentId": {
+                                    "type": "string"
+                                  },
+                                  "slug": {
+                                    "type": "string"
+                                  },
+                                  "title": {
+                                    "type": "string"
+                                  },
+                                  "tournamentType": {
+                                    "type": "string",
+                                    "enum": [
+                                      "champions_cup",
+                                      "masters",
+                                      "community_club",
+                                      "open"
+                                    ]
+                                  },
+                                  "gameId": {
+                                    "type": "string"
+                                  },
+                                  "gameName": {
+                                    "type": "string"
+                                  },
+                                  "date": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "prizePool": {
+                                    "anyOf": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "champion": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "name": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "id",
+                                      "name"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  "runnerUp": {
+                                    "anyOf": [
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "id": {
+                                            "type": "string"
+                                          },
+                                          "name": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "id",
+                                          "name"
+                                        ],
+                                        "additionalProperties": false
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "championAvatarUrl": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "seasonName": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "tournamentId",
+                                  "slug",
+                                  "title",
+                                  "tournamentType",
+                                  "gameId",
+                                  "gameName",
+                                  "date",
+                                  "prizePool",
+                                  "champion",
+                                  "runnerUp",
+                                  "championAvatarUrl",
+                                  "seasonName"
+                                ],
+                                "additionalProperties": false
+                              }
+                            },
+                            "masters": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "tournamentId": {
+                                    "type": "string"
+                                  },
+                                  "slug": {
+                                    "type": "string"
+                                  },
+                                  "title": {
+                                    "type": "string"
+                                  },
+                                  "tournamentType": {
+                                    "type": "string",
+                                    "enum": [
+                                      "champions_cup",
+                                      "masters",
+                                      "community_club",
+                                      "open"
+                                    ]
+                                  },
+                                  "gameId": {
+                                    "type": "string"
+                                  },
+                                  "gameName": {
+                                    "type": "string"
+                                  },
+                                  "date": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "prizePool": {
+                                    "anyOf": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "champion": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "name": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "id",
+                                      "name"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  "runnerUp": {
+                                    "anyOf": [
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "id": {
+                                            "type": "string"
+                                          },
+                                          "name": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "id",
+                                          "name"
+                                        ],
+                                        "additionalProperties": false
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "championAvatarUrl": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "seasonName": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "tournamentId",
+                                  "slug",
+                                  "title",
+                                  "tournamentType",
+                                  "gameId",
+                                  "gameName",
+                                  "date",
+                                  "prizePool",
+                                  "champion",
+                                  "runnerUp",
+                                  "championAvatarUrl",
+                                  "seasonName"
+                                ],
+                                "additionalProperties": false
+                              }
+                            },
+                            "communityClub": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "tournamentId": {
+                                    "type": "string"
+                                  },
+                                  "slug": {
+                                    "type": "string"
+                                  },
+                                  "title": {
+                                    "type": "string"
+                                  },
+                                  "tournamentType": {
+                                    "type": "string",
+                                    "enum": [
+                                      "champions_cup",
+                                      "masters",
+                                      "community_club",
+                                      "open"
+                                    ]
+                                  },
+                                  "gameId": {
+                                    "type": "string"
+                                  },
+                                  "gameName": {
+                                    "type": "string"
+                                  },
+                                  "date": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "prizePool": {
+                                    "anyOf": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "champion": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "name": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "id",
+                                      "name"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  "runnerUp": {
+                                    "anyOf": [
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "id": {
+                                            "type": "string"
+                                          },
+                                          "name": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "id",
+                                          "name"
+                                        ],
+                                        "additionalProperties": false
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "championAvatarUrl": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "seasonName": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "tournamentId",
+                                  "slug",
+                                  "title",
+                                  "tournamentType",
+                                  "gameId",
+                                  "gameName",
+                                  "date",
+                                  "prizePool",
+                                  "champion",
+                                  "runnerUp",
+                                  "championAvatarUrl",
+                                  "seasonName"
+                                ],
+                                "additionalProperties": false
+                              }
+                            },
+                            "open": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "tournamentId": {
+                                    "type": "string"
+                                  },
+                                  "slug": {
+                                    "type": "string"
+                                  },
+                                  "title": {
+                                    "type": "string"
+                                  },
+                                  "tournamentType": {
+                                    "type": "string",
+                                    "enum": [
+                                      "champions_cup",
+                                      "masters",
+                                      "community_club",
+                                      "open"
+                                    ]
+                                  },
+                                  "gameId": {
+                                    "type": "string"
+                                  },
+                                  "gameName": {
+                                    "type": "string"
+                                  },
+                                  "date": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "prizePool": {
+                                    "anyOf": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "champion": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "name": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "id",
+                                      "name"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  "runnerUp": {
+                                    "anyOf": [
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "id": {
+                                            "type": "string"
+                                          },
+                                          "name": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "id",
+                                          "name"
+                                        ],
+                                        "additionalProperties": false
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "championAvatarUrl": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "seasonName": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "tournamentId",
+                                  "slug",
+                                  "title",
+                                  "tournamentType",
+                                  "gameId",
+                                  "gameName",
+                                  "date",
+                                  "prizePool",
+                                  "champion",
+                                  "runnerUp",
+                                  "championAvatarUrl",
+                                  "seasonName"
+                                ],
+                                "additionalProperties": false
+                              }
+                            }
+                          },
+                          "required": [
+                            "championsCup",
+                            "masters",
+                            "communityClub",
+                            "open"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "bronze": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "tournamentId": {
+                                "type": "string"
+                              },
+                              "slug": {
+                                "type": "string"
+                              },
+                              "title": {
+                                "type": "string"
+                              },
+                              "gameName": {
+                                "anyOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "date": {
+                                "anyOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "player": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "id",
+                                  "name"
+                                ],
+                                "additionalProperties": false
+                              }
+                            },
+                            "required": [
+                              "tournamentId",
+                              "slug",
+                              "title",
+                              "gameName",
+                              "date",
+                              "player"
+                            ],
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "required": [
+                        "games",
+                        "selectedGame",
+                        "awards",
+                        "champions",
+                        "bronze"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationFailed"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "426": {
+            "$ref": "#/components/responses/UpgradeRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/Internal"
+          }
+        }
+      }
+    },
     "/api/mobile/v1/home": {
       "get": {
         "operationId": "getHome",
