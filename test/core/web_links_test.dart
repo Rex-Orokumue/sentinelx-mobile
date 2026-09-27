@@ -96,4 +96,12 @@ void main() {
     // in-app paths of this phase pass through untouched (null = no redirect)
     expect(resolveWebLink('/account/progress'), isNull);
   });
+
+  test('maps a match web link to the Match Centre, with and without a locale prefix', () {
+    expect(resolveWebLink('https://sentinelxesports.com.ng/matches/abc'), '/matches/abc');
+    expect(resolveWebLink('https://sentinelxesports.com.ng/fr/matches/abc?x=1'), '/matches/abc');
+    expect(resolveWebLink('https://sentinelxesports.com.ng/matches'), isNull);
+    // the bracket API needs an id, not the slug carried by this web path — never mapped
+    expect(resolveWebLink('https://sentinelxesports.com.ng/tournaments/some-slug/bracket'), isNull);
+  });
 }

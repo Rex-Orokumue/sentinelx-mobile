@@ -2,38 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sentinelx_mobile/core/l10n/gen/app_localizations.dart';
-import 'package:sentinelx_mobile/data/tournaments_repository.dart';
 import 'package:sentinelx_mobile/features/compete/compete_providers.dart';
 import 'package:sentinelx_mobile/features/compete/compete_reads_repository.dart';
-import 'package:sentinelx_mobile/features/tournaments/tournaments_providers.dart';
+import 'package:sentinelx_mobile/features/match/evidence.dart';
+import 'package:sentinelx_mobile/features/match/match_providers.dart';
 import 'package:sentinelx_mobile/router/app_router.dart';
 
 import '../fakes/fake_compete_reads.dart';
+import '../fakes/fake_evidence.dart';
+import '../fakes/fake_match_repositories.dart';
 import '../fakes/fake_registration_repository.dart';
 import 'pump_compete.dart';
 
-Future<void> pumpWithRepo(WidgetTester tester, TournamentsRepository repository, Widget home) {
-  return tester.pumpWidget(ProviderScope(
-    retry: (_, _) => null,
-    overrides: [tournamentsRepositoryProvider.overrideWithValue(repository)],
-    child: MaterialApp(home: home),
-  ));
-}
-
-/// Pumps the real router. The bracket still reads through the old [TournamentsRepository] (Phase 2b
-/// replaces it); the Compete list/detail read through [reads].
+/// Pumps the real router. The Compete list/detail read through [reads]; the bracket, Match Centre and
+/// dashboard fixtures read through [matchRepo] (the Phase 2b API-backed repository) and, for the match
+/// row itself, [matchReads] (the T1 Supabase read).
 Future<void> pumpRouterWithRepo(
-  WidgetTester tester,
-  TournamentsRepository repository, {
+  WidgetTester tester, {
   CompeteReadsRepository? reads,
+  FakeMatchRepository? matchRepo,
+  FakeMatchReads? matchReads,
   String initialLocation = '/tournaments',
 }) {
   return tester.pumpWidget(ProviderScope(
     retry: (_, _) => null,
     overrides: [
-      tournamentsRepositoryProvider.overrideWithValue(repository),
       competeReadsRepositoryProvider.overrideWithValue(reads ?? FakeCompeteReads()),
       registrationRepositoryProvider.overrideWithValue(FakeRegistrationRepository()),
+      matchRepositoryProvider.overrideWithValue(matchRepo ?? FakeMatchRepository()),
+      matchReadsRepositoryProvider.overrideWithValue(matchReads ?? FakeMatchReads()),
+      evidenceUploaderProvider.overrideWithValue(FakeUploader()),
+      imagePickerProvider.overrideWithValue(FakePicker()),
       ...competeBaseOverrides(),
     ],
     child: MaterialApp.router(
