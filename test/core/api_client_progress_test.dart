@@ -71,6 +71,67 @@ const _emptyPage = {
 };
 
 void main() {
+  test(
+    'public progress calls omit bearer while rankings me includes it',
+    () async {
+      final adapter = _FakeAdapter((o) {
+        if (o.uri.path.endsWith('/rankings/me')) {
+          return _json(200, {
+            'data': {'row': null},
+          });
+        }
+        if (o.uri.path.endsWith('/rankings')) {
+          return _json(200, {'data': _emptyPage});
+        }
+        if (o.uri.path.endsWith('/seasons/season-1')) {
+          return _json(200, {
+            'data': {
+              'season': {
+                'id': 's1',
+                'slug': 'season-1',
+                'name': 'Season 1',
+                'startDate': '2026-08-01',
+                'endDate': '2026-10-31',
+              },
+              'games': [],
+            },
+          });
+        }
+        if (o.uri.path.endsWith('/seasons')) {
+          return _json(200, {
+            'data': {'seasons': []},
+          });
+        }
+        return _json(200, {
+          'data': {
+            'games': [],
+            'selectedGame': null,
+            'awards': {'mvp': null, 'goldenBoot': [], 'categories': []},
+            'champions': {
+              'championsCup': [],
+              'masters': [],
+              'communityClub': [],
+              'open': [],
+            },
+            'bronze': [],
+          },
+        });
+      });
+      final api = _client(adapter);
+
+      await api.getRankings();
+      await api.getSeasons();
+      await api.getSeasonDetail('season-1');
+      await api.getHallOfFame();
+      await api.getRankingsMe();
+
+      for (final request in adapter.requests.take(4)) {
+        expect(request.headers, isNot(contains('Authorization')));
+      }
+      expect(adapter.requests.last.headers['Authorization'], 'Bearer tok');
+    },
+  );
+
   test('getRankings sends only the set query params', () async {
     final adapter = _FakeAdapter((_) => _json(200, {'data': _emptyPage}));
     final page = await _client(

@@ -902,6 +902,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get rankingsYourRank => 'Your rank';
 
   @override
+  String get rankingsYou => '(you)';
+
+  @override
   String get rankingsPrev => 'Previous';
 
   @override
@@ -921,6 +924,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get seasonsEmpty => 'No seasons yet.';
+
+  @override
+  String get seasonsLeaderboardEmpty => 'No season points awarded yet.';
 
   @override
   String get seasonsProvisional => 'Provisional';

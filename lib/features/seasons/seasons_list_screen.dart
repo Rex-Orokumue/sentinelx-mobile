@@ -16,20 +16,31 @@ class SeasonsListScreen extends ConsumerWidget {
           .watch(seasonsProvider)
           .when(
             loading: () => const Center(child: CircularProgressIndicator()),
-            error: (error, stackTrace) =>
-                Center(child: Text(l.rankingsErrorRetry)),
-            data: (xs) => xs.isEmpty
-                ? Center(child: Text(l.seasonsEmpty))
-                : ListView(
-                    children: [
-                      for (final s in xs)
-                        ListTile(
-                          title: Text(s.name),
-                          subtitle: Text('${s.startDate} – ${s.endDate}'),
-                          onTap: () => onSeasonTap(s),
-                        ),
-                    ],
-                  ),
+            error: (error, stackTrace) => Center(
+              child: InkWell(
+                onTap: () => r.invalidate(seasonsProvider),
+                child: Text(l.rankingsErrorRetry),
+              ),
+            ),
+            data: (xs) => RefreshIndicator(
+              onRefresh: () => r.refresh(seasonsProvider.future),
+              child: ListView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                children: [
+                  if (xs.isEmpty)
+                    Padding(
+                      padding: const EdgeInsets.all(32),
+                      child: Center(child: Text(l.seasonsEmpty)),
+                    ),
+                  for (final s in xs)
+                    ListTile(
+                      title: Text(s.name),
+                      subtitle: Text('${s.startDate} – ${s.endDate}'),
+                      onTap: () => onSeasonTap(s),
+                    ),
+                ],
+              ),
+            ),
           ),
     );
   }
