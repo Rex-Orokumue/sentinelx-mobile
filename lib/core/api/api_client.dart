@@ -74,7 +74,7 @@ class ApiClient {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) async {
-          final token = await accessToken();
+          final token = options.extra['public'] == true ? null : await accessToken();
           if (token != null) options.headers['Authorization'] = 'Bearer $token';
           handler.next(options);
         },
@@ -88,13 +88,14 @@ class ApiClient {
     String path,
     T Function(Object? data) parse, {
     Object? body,
+    bool publicRequest = false,
   }) async {
     final Response<dynamic> res;
     try {
       res = await _dio.request<dynamic>(
         '$_base$path',
         data: body,
-        options: Options(method: method, responseType: ResponseType.json),
+        options: Options(method: method, responseType: ResponseType.json, extra: {'public': publicRequest}),
       );
     } on DioException catch (e) {
       throw ApiException(
@@ -260,6 +261,7 @@ class ApiClient {
       'tabGame': tabGame,
     }),
     (d) => RankingsPage.fromJson(d! as Map<String, dynamic>),
+    publicRequest: true,
   );
 
   Future<RankingsMe> getRankingsMe({
@@ -284,17 +286,20 @@ class ApiClient {
     (d) => ((d! as Map<String, dynamic>)['seasons'] as List<dynamic>)
         .map((e) => SeasonSummary.fromJson(e as Map<String, dynamic>))
         .toList(),
+    publicRequest: true,
   );
 
   Future<SeasonDetail> getSeasonDetail(String slug) => _send(
     'GET',
     '/seasons/${Uri.encodeComponent(slug)}',
     (d) => SeasonDetail.fromJson(d! as Map<String, dynamic>),
+    publicRequest: true,
   );
 
   Future<HallOfFame> getHallOfFame({String? game}) => _send(
     'GET',
     _withQuery('/hall-of-fame', {'game': game}),
     (d) => HallOfFame.fromJson(d! as Map<String, dynamic>),
+    publicRequest: true,
   );
 }

@@ -107,7 +107,7 @@ class _RankingsRepo implements RankingsRepository {
         'wins': 7,
         'losses': 1,
         'totalMatches': 8,
-        'winRate': 87.5,
+        'winRate': 0.875,
         'goalsScored': 12,
         'goalsConceded': 3,
         'goalDiff': 9,

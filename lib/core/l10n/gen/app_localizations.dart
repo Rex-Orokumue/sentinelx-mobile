@@ -1130,6 +1130,12 @@ abstract class AppLocalizations {
   /// **'Your rank'**
   String get rankingsYourRank;
 
+  /// No description provided for @rankingsYou.
+  ///
+  /// In en, this message translates to:
+  /// **'(you)'**
+  String get rankingsYou;
+
   /// No description provided for @rankingsPrev.
   ///
   /// In en, this message translates to:
@@ -1171,6 +1177,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No seasons yet.'**
   String get seasonsEmpty;
+
+  /// No description provided for @seasonsLeaderboardEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No season points awarded yet.'**
+  String get seasonsLeaderboardEmpty;
 
   /// No description provided for @seasonsProvisional.
   ///

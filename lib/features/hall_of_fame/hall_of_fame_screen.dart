@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/api/progress_models.dart';
 import '../../core/l10n/gen/app_localizations.dart';
+import '../../core/providers.dart';
 import '../../shared/widgets/player_avatar.dart';
 import 'hall_of_fame_providers.dart';
 
@@ -10,79 +11,100 @@ class HallOfFameScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext c, WidgetRef r) {
     final l = AppLocalizations.of(c);
+    final siteUrl = r.watch(appConfigProvider).apiBaseUrl;
     return Scaffold(
       appBar: AppBar(title: Text(l.hallOfFameTitle)),
       body: r
           .watch(hallOfFameProvider)
           .when(
             loading: () => const Center(child: CircularProgressIndicator()),
-            error: (_, stack) => Center(child: Text(l.rankingsErrorRetry)),
+            error: (_, stack) => Center(
+              child: InkWell(
+                onTap: () => r.invalidate(hallOfFameProvider),
+                child: Text(l.rankingsErrorRetry),
+              ),
+            ),
             data: (h) {
               final empty = h.selectedGame == null;
-              return ListView(
-                padding: const EdgeInsets.all(12),
-                children: [
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        ChoiceChip(
-                          key: const Key('hof-chip-all'),
-                          label: Text(l.rankingsAllGames),
-                          selected: h.selectedGame == null,
-                          onSelected: (_) => r
-                              .read(hallOfFameGameProvider.notifier)
-                              .setGame(null),
-                        ),
-                        for (final g in h.games)
+              return RefreshIndicator(
+                onRefresh: () => r.refresh(hallOfFameProvider.future),
+                child: ListView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  padding: const EdgeInsets.all(12),
+                  children: [
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
                           ChoiceChip(
-                            key: Key('hof-chip-${g.slug}'),
-                            label: Text(g.name),
-                            selected: h.selectedGame == g.slug,
+                            key: const Key('hof-chip-all'),
+                            label: Text(l.rankingsAllGames),
+                            selected: h.selectedGame == null,
                             onSelected: (_) => r
                                 .read(hallOfFameGameProvider.notifier)
-                                .setGame(g.slug),
+                                .setGame(null),
                           ),
-                      ],
+                          for (final g in h.games)
+                            ChoiceChip(
+                              key: Key('hof-chip-${g.slug}'),
+                              label: Text(g.name),
+                              selected: h.selectedGame == g.slug,
+                              onSelected: (_) => r
+                                  .read(hallOfFameGameProvider.notifier)
+                                  .setGame(g.slug),
+                            ),
+                        ],
+                      ),
                     ),
-                  ),
-                  if (h.awards.mvp != null)
-                    _Person(
-                      title: l.hallOfFameMvp,
-                      p: h.awards.mvp!,
-                      value: '${h.awards.mvp!.sxScore}',
+                    if (h.awards.mvp != null)
+                      _Person(
+                        title: l.hallOfFameMvp,
+                        p: h.awards.mvp!,
+                        value: '${h.awards.mvp!.sxScore}',
+                        siteUrl: siteUrl,
+                      ),
+                    if (h.awards.goldenBoot.isNotEmpty)
+                      _Award(
+                        title: l.hallOfFameGoldenBoot,
+                        options: h.awards.goldenBoot,
+                        siteUrl: siteUrl,
+                      ),
+                    for (final a in h.awards.categories)
+                      _Award(
+                        title: a.label,
+                        options: a.options,
+                        siteUrl: siteUrl,
+                      ),
+                    _section(
+                      l.hallOfFameChampionsCup,
+                      h.champions.championsCup,
+                      empty,
+                      l,
                     ),
-                  if (h.awards.goldenBoot.isNotEmpty)
-                    _Award(
-                      title: l.hallOfFameGoldenBoot,
-                      options: h.awards.goldenBoot,
+                    _section(
+                      l.hallOfFameMasters,
+                      h.champions.masters,
+                      empty,
+                      l,
                     ),
-                  for (final a in h.awards.categories)
-                    _Award(title: a.label, options: a.options),
-                  _section(
-                    l.hallOfFameChampionsCup,
-                    h.champions.championsCup,
-                    empty,
-                    l,
-                  ),
-                  _section(l.hallOfFameMasters, h.champions.masters, empty, l),
-                  _section(
-                    l.hallOfFameCommunityClub,
-                    h.champions.communityClub,
-                    empty,
-                    l,
-                  ),
-                  _section(l.hallOfFameOpen, h.champions.open, empty, l),
-                  Text(
-                    l.hallOfFameBronze,
-                    style: Theme.of(c).textTheme.titleLarge,
-                  ),
-                  for (final b in h.bronze)
-                    ListTile(
-                      title: Text(b.player.name),
-                      subtitle: Text(b.title),
+                    _section(
+                      l.hallOfFameCommunityClub,
+                      h.champions.communityClub,
+                      empty,
+                      l,
                     ),
-                ],
+                    _section(l.hallOfFameOpen, h.champions.open, empty, l),
+                    Text(
+                      l.hallOfFameBronze,
+                      style: Theme.of(c).textTheme.titleLarge,
+                    ),
+                    for (final b in h.bronze)
+                      ListTile(
+                        title: Text(b.player.name),
+                        subtitle: Text(b.title),
+                      ),
+                  ],
+                ),
               );
             },
           ),
@@ -117,15 +139,20 @@ class HallOfFameScreen extends ConsumerWidget {
 }
 
 class _Person extends StatelessWidget {
-  const _Person({required this.title, required this.p, required this.value});
-  final String title, value;
+  const _Person({
+    required this.title,
+    required this.p,
+    required this.value,
+    required this.siteUrl,
+  });
+  final String title, value, siteUrl;
   final PlayerCard p;
   @override
   Widget build(BuildContext c) => Card(
     child: ListTile(
       leading: PlayerAvatar(
         avatarUrl: p.avatarUrl,
-        frameUrl: p.frameUrl,
+        frameUrl: resolveAsset(p.frameUrl, siteUrl),
         isDeleted: p.isDeleted,
       ),
       title: Text(title),
@@ -136,9 +163,14 @@ class _Person extends StatelessWidget {
 }
 
 class _Award extends StatefulWidget {
-  const _Award({required this.title, required this.options});
+  const _Award({
+    required this.title,
+    required this.options,
+    required this.siteUrl,
+  });
   final String title;
   final List<AwardOption> options;
+  final String siteUrl;
   @override
   State<_Award> createState() => _AwardState();
 }
@@ -147,6 +179,7 @@ class _AwardState extends State<_Award> {
   int selected = 0;
   @override
   Widget build(BuildContext c) {
+    selected = selected.clamp(0, widget.options.length - 1);
     final o = widget.options[selected];
     return Column(
       children: [
@@ -165,7 +198,12 @@ class _AwardState extends State<_Award> {
             ],
           ),
         if (o.winner != null)
-          _Person(title: widget.title, p: o.winner!, value: '${o.metricValue}'),
+          _Person(
+            title: widget.title,
+            p: o.winner!,
+            value: '${o.metricValue}',
+            siteUrl: widget.siteUrl,
+          ),
       ],
     );
   }

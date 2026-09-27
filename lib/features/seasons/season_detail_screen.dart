@@ -14,14 +14,35 @@ class SeasonDetailScreen extends ConsumerWidget {
     return r
         .watch(seasonDetailProvider(slug))
         .when(
-          loading: () =>
-              const Scaffold(body: Center(child: CircularProgressIndicator())),
-          error: (error, stackTrace) =>
-              Scaffold(body: Center(child: Text(l.rankingsErrorRetry))),
+          loading: () => Scaffold(
+            appBar: AppBar(),
+            body: const Center(child: CircularProgressIndicator()),
+          ),
+          error: (error, stackTrace) => Scaffold(
+            appBar: AppBar(),
+            body: Center(
+              child: InkWell(
+                onTap: () => r.invalidate(seasonDetailProvider(slug)),
+                child: Text(l.rankingsErrorRetry),
+              ),
+            ),
+          ),
           data: (d) => d.games.isEmpty
               ? Scaffold(
                   appBar: AppBar(title: Text(d.season.name)),
-                  body: Center(child: Text(l.hallOfFameEmpty)),
+                  body: RefreshIndicator(
+                    onRefresh: () =>
+                        r.refresh(seasonDetailProvider(slug).future),
+                    child: ListView(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(32),
+                          child: Center(child: Text(l.hallOfFameEmpty)),
+                        ),
+                      ],
+                    ),
+                  ),
                 )
               : DefaultTabController(
                   length: d.games.length,
@@ -40,6 +61,8 @@ class SeasonDetailScreen extends ConsumerWidget {
                             game: g,
                             myId: r.watch(meProvider).asData?.value?.id,
                             l: l,
+                            onRefresh: () =>
+                                r.refresh(seasonDetailProvider(slug).future),
                           ),
                       ],
                     ),
@@ -50,58 +73,72 @@ class SeasonDetailScreen extends ConsumerWidget {
 }
 
 class _Game extends StatelessWidget {
-  const _Game({required this.game, required this.myId, required this.l});
+  const _Game({
+    required this.game,
+    required this.myId,
+    required this.l,
+    required this.onRefresh,
+  });
   final SeasonGame game;
   final String? myId;
   final AppLocalizations l;
+  final Future<void> Function() onRefresh;
   @override
   Widget build(BuildContext c) {
-    if (game.leaderboard.isEmpty && game.tournaments.isEmpty) {
-      return Center(child: Text(l.hallOfFameEmpty));
-    }
     final provisional = game.leaderboard.any((x) => x.isProvisional);
-    return ListView(
-      padding: const EdgeInsets.all(12),
-      children: [
-        Text(game.tierLabels.qualificationNote),
-        for (var i = 0; i < game.leaderboard.length; i++)
-          Container(
-            key: game.leaderboard[i].playerId == myId
-                ? const Key('season-row-me')
-                : null,
-            color: game.leaderboard[i].playerId == myId
-                ? Theme.of(c).colorScheme.primary.withValues(alpha: .12)
-                : null,
-            child: ListTile(
-              leading: Text('#${i + 1}'),
-              title: Text(
-                game.leaderboard[i].displayName ??
-                    game.leaderboard[i].username ??
-                    l.commonDeletedPlayer,
-              ),
-              subtitle: game.leaderboard[i].isProvisional
-                  ? Text(l.seasonsProvisional)
+    return RefreshIndicator(
+      onRefresh: onRefresh,
+      child: ListView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        padding: const EdgeInsets.all(12),
+        children: [
+          Text(game.tierLabels.qualificationNote),
+          if (game.leaderboard.isEmpty) Text(l.seasonsLeaderboardEmpty),
+          for (var i = 0; i < game.leaderboard.take(50).length; i++)
+            Container(
+              key: game.leaderboard[i].playerId == myId
+                  ? const Key('season-row-me')
                   : null,
-              trailing: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(l.seasonsPoints(game.leaderboard[i].points)),
-                  if (game.leaderboard[i].playerId == myId) Text(l.seasonsYou),
-                ],
+              color: game.leaderboard[i].playerId == myId
+                  ? Theme.of(c).colorScheme.primary.withValues(alpha: .12)
+                  : null,
+              child: ListTile(
+                leading: Text(switch (i) {
+                  0 => '🥇',
+                  1 => '🥈',
+                  2 => '🥉',
+                  _ => '#${i + 1}',
+                }),
+                title: Text(
+                  game.leaderboard[i].displayName ??
+                      game.leaderboard[i].username ??
+                      l.commonDeletedPlayer,
+                ),
+                subtitle: game.leaderboard[i].isProvisional
+                    ? Text(l.seasonsProvisional)
+                    : null,
+                trailing: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(l.seasonsPoints(game.leaderboard[i].points)),
+                    if (game.leaderboard[i].playerId == myId)
+                      Text(l.seasonsYou),
+                  ],
+                ),
               ),
             ),
-          ),
-        if (provisional) Text(l.seasonsProvisionalNote),
-        const SizedBox(height: 12),
-        Text(l.seasonsTournaments),
-        for (final t in game.tournaments)
-          ListTile(
-            title: Text(t.title),
-            trailing: t.invitationOnly
-                ? Chip(label: Text(l.seasonsInviteOnly))
-                : null,
-          ),
-      ],
+          if (provisional) Text(l.seasonsProvisionalNote),
+          const SizedBox(height: 12),
+          Text(l.seasonsTournaments),
+          for (final t in game.tournaments)
+            ListTile(
+              title: Text(t.title),
+              trailing: t.invitationOnly
+                  ? Chip(label: Text(l.seasonsInviteOnly))
+                  : null,
+            ),
+        ],
+      ),
     );
   }
 }
