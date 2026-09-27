@@ -72,23 +72,31 @@ class ResultSubmitter {
   PickedImage? _uploadedImage;
   String? _uploadedPath;
 
+  /// [fingerprint] identifies the non-image fields of this attempt's payload (e.g. `'2:1:'` for
+  /// scoreA:scoreB:recordingUrl). Combined with the picked image's identity, it lets [flow] tell a
+  /// retry of the same submission from an edited one, so an edited retry after a kept key never
+  /// replays the server's response to the old values.
   Future<bool> submit({
     required WriteFlow flow,
     required PickedImage image,
     required Future<void> Function(String screenshotPath, String idempotencyKey) send,
+    Object? fingerprint,
   }) =>
-      flow.run((key) async {
-        var path = identical(image, _uploadedImage) ? _uploadedPath : null;
-        if (path == null) {
-          try {
-            path = await uploader.upload(userId: userId, scopeId: scopeId, image: image);
-          } catch (_) {
-            // Nothing was sent, so WriteFlow mints a new key for this; the screen shows upload-failed copy.
-            throw const ApiException(status: 0, code: 'upload_failed', message: 'Screenshot upload failed.');
+      flow.run(
+        (key) async {
+          var path = identical(image, _uploadedImage) ? _uploadedPath : null;
+          if (path == null) {
+            try {
+              path = await uploader.upload(userId: userId, scopeId: scopeId, image: image);
+            } catch (_) {
+              // Nothing was sent, so WriteFlow mints a new key for this; the screen shows upload-failed copy.
+              throw const ApiException(status: 0, code: 'upload_failed', message: 'Screenshot upload failed.');
+            }
+            _uploadedImage = image;
+            _uploadedPath = path;
           }
-          _uploadedImage = image;
-          _uploadedPath = path;
-        }
-        await send(path, key);
-      });
+          await send(path, key);
+        },
+        fingerprint: fingerprint == null ? null : '$fingerprint:${identityHashCode(image)}',
+      );
 }

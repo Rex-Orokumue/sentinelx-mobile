@@ -115,6 +115,21 @@ void main() {
     expect(repo.wagerCalls[1].key, repo.wagerCalls[0].key);
   });
 
+  testWidgets('a network failure, then editing the stake before retrying mints a new key (the payload changed)', (tester) async {
+    final repo = await _pump(tester);
+    repo.wagerResults.add(_apiEx('network', status: 0));
+    await _pick(tester, 'Ada');
+    await tester.enterText(find.byKey(const Key('wager-stake')), '50');
+    await tester.tap(find.text('Place wager'));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byKey(const Key('wager-stake')), '75');
+    await tester.tap(find.text('Place wager'));
+    await tester.pumpAndSettle();
+    expect(repo.wagerCalls, hasLength(2));
+    expect(repo.wagerCalls[1].stakeCoins, 75);
+    expect(repo.wagerCalls[1].key, isNot(repo.wagerCalls[0].key));
+  });
+
   testWidgets('insufficient_coins shows its copy and the next tap uses a new key', (tester) async {
     final repo = await _pump(tester);
     repo.wagerResults.add(_apiEx('insufficient_coins'));
@@ -152,6 +167,19 @@ void main() {
     await tester.tap(find.text('Place wager'));
     await tester.pump();
     expect(find.text('Place wager'), findsOneWidget); // still open mid-flight
+    await tester.pumpAndSettle();
+  });
+
+  testWidgets('the sheet cannot be dragged closed mid-flight (drag bypasses PopScope)', (tester) async {
+    final repo = await _pump(tester);
+    repo.wagerGate = Future.delayed(const Duration(milliseconds: 200));
+    await _pick(tester, 'Ada');
+    await tester.enterText(find.byKey(const Key('wager-stake')), '50');
+    await tester.tap(find.text('Place wager'));
+    await tester.pump();
+    await tester.fling(find.byType(BottomSheet), const Offset(0, 400), 1000);
+    await tester.pump();
+    expect(find.text('Place wager'), findsOneWidget);
     await tester.pumpAndSettle();
   });
 }

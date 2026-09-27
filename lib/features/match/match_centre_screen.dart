@@ -52,16 +52,17 @@ class MatchCentreScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final matchAsync = ref.watch(matchInfoProvider(matchId));
     final centreAsync = ref.watch(matchCentreProvider(matchId));
-    final error = matchAsync.hasError || centreAsync.hasError;
-    final loading = matchAsync.isLoading || centreAsync.isLoading;
-    final match = matchAsync.asData?.value;
-    final centre = centreAsync.asData?.value;
+    // .value (not .isLoading/asData) so a refresh — pull-to-refresh, a check-in, a placed wager — keeps
+    // showing the page instead of blanking to a spinner while the previous value is still good.
+    final match = matchAsync.value;
+    final centre = centreAsync.value;
+    final error = (match == null && matchAsync.hasError) || (centre == null && centreAsync.hasError);
 
     return Scaffold(
       appBar: AppBar(title: Text(l10n.mtcMatchTitle)),
       body: error
           ? LoadError(onRetry: () => _refresh(ref))
-          : loading || match == null || centre == null
+          : match == null || centre == null
               ? const Center(child: CircularProgressIndicator())
               : RefreshIndicator(
                   onRefresh: () => _refresh(ref),
@@ -251,16 +252,18 @@ class _WagerCard extends StatelessWidget {
           Text(l10n.mtcWagerTitle, style: Theme.of(context).textTheme.titleMedium),
           const SizedBox(height: 4),
           Text(l10n.mtcWagerPool(w.poolA, w.poolB)),
+          // Shown regardless of the window: a bettor most wants to see their pick right before and
+          // during the match, which is exactly when the window is closed.
+          if (w.myStakeCoins != null)
+            Padding(
+              padding: const EdgeInsets.only(top: 4),
+              child: Text(l10n.mtcWagerYourPick(w.myStakeCoins!, w.myPickPlayerId == match.playerAId ? match.nameA : match.nameB)),
+            ),
           if (noPicks || !w.windowOpen)
             Padding(padding: const EdgeInsets.only(top: 8), child: Text(l10n.mtcWagerClosed))
           else ...[
             Text(l10n.mtcWagerFee(_pct(w.feeRate))),
             Text(l10n.mtcWagerEstimate(_num(w.estimatedPayoutIfIStakeA100))),
-            if (w.myStakeCoins != null)
-              Padding(
-                padding: const EdgeInsets.only(top: 4),
-                child: Text(l10n.mtcWagerYourPick(w.myStakeCoins!, w.myPickPlayerId == match.playerAId ? match.nameA : match.nameB)),
-              ),
             Padding(
               padding: const EdgeInsets.only(top: 8),
               child: OutlinedButton(

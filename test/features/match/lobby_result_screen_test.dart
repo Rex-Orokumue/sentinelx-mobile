@@ -122,6 +122,18 @@ void main() {
     expect(env.repo.lobbyCalls[1].key, env.repo.lobbyCalls[0].key);
   });
 
+  testWidgets('network error, then editing the placement before retrying mints a new key', (tester) async {
+    final env = await _pump(tester);
+    env.repo.lobbyResults.add(_apiEx('network', status: 0));
+    await _fillValid(tester, env);
+    await _submit(tester);
+    await tester.enterText(find.byKey(const Key('placement')), '5');
+    await _submit(tester);
+    expect(env.uploader.calls, hasLength(1));
+    expect(env.repo.lobbyCalls[1].placement, 5);
+    expect(env.repo.lobbyCalls[1].key, isNot(env.repo.lobbyCalls[0].key));
+  });
+
   testWidgets('upload failure shows its message and never calls the repo', (tester) async {
     final env = await _pump(tester);
     env.uploader.failWith = Exception('down');

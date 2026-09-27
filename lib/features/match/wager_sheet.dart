@@ -13,6 +13,10 @@ Future<void> showWagerSheet(BuildContext context, {required MatchInfo match, req
     context: context,
     isScrollControlled: true,
     isDismissible: true, // narrowed to !busy inside via PopScope
+    // Dragging would bypass PopScope and orphan an in-flight wager; disabled unconditionally
+    // (matches registration_sheet.dart) rather than only while busy, since a mid-drag can start
+    // before the busy flag is set.
+    enableDrag: false,
     builder: (_) => _WagerSheetBody(match: match, centre: centre),
   );
 }
@@ -70,6 +74,7 @@ class _WagerSheetBodyState extends ConsumerState<_WagerSheetBody> {
       final navigator = Navigator.of(context);
       final ok = await ref.read(writeFlowProvider(scope).notifier).run(
             (key) => ref.read(matchRepositoryProvider).wager(match.id, pickPlayerId: pick, stakeCoins: stake, idempotencyKey: key),
+            fingerprint: '$pick:$stake',
           );
       if (!mounted) return;
       if (ok) {

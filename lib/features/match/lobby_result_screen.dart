@@ -75,6 +75,7 @@ class _LobbyResultScreenState extends ConsumerState<LobbyResultScreen> {
     final ok = await _submitter!.submit(
       flow: flow,
       image: image,
+      fingerprint: '$placement:$kills',
       send: (path, key) => ref.read(matchRepositoryProvider).submitLobbyResult(
             widget.lobbyId,
             placement: placement,

@@ -37,9 +37,10 @@ class _Rig {
   WriteFlow get flow => container.read(writeFlowProvider('result:m1').notifier);
   WriteState get state => container.read(writeFlowProvider('result:m1'));
 
-  Future<bool> submit(PickedImage image, {Object? sendError}) => submitter.submit(
+  Future<bool> submit(PickedImage image, {Object? sendError, Object? fingerprint}) => submitter.submit(
         flow: flow,
         image: image,
+        fingerprint: fingerprint,
         send: (path, key) async {
           paths.add(path);
           keys.add(key);
@@ -96,6 +97,25 @@ void main() {
     await r.submit(_img('a.png'));
     expect(r.uploader.calls, hasLength(2));
     expect(r.paths[1], isNot(r.paths[0]));
+  });
+
+  test('network failure then an edited retry (changed fingerprint) mints a new key, same upload', () async {
+    final r = _Rig();
+    addTearDown(r.container.dispose);
+    final image = _img('a.png');
+    await r.submit(image, sendError: _err(0, 'network'), fingerprint: '2:1:');
+    await r.submit(image, fingerprint: '3:1:');
+    expect(r.uploader.calls, hasLength(1)); // same image, uploaded once
+    expect(r.keys[1], isNot(r.keys[0])); // different scores must not replay the old key's stored response
+  });
+
+  test('network failure then an unchanged retry (same fingerprint) reuses the key', () async {
+    final r = _Rig();
+    addTearDown(r.container.dispose);
+    final image = _img('a.png');
+    await r.submit(image, sendError: _err(0, 'network'), fingerprint: '2:1:');
+    await r.submit(image, fingerprint: '2:1:');
+    expect(r.keys[1], r.keys[0]);
   });
 
   test('upload failure reports upload_failed, sends nothing, and the next attempt uses a new key', () async {

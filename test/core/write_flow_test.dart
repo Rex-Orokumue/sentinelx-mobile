@@ -24,6 +24,15 @@ class _Rig {
         keys.add(key);
         if (error != null) throw error;
       });
+
+  /// Same, but carries a payload fingerprint (the value the caller is submitting this attempt).
+  Future<bool> attemptWith(Object fingerprint, [Object? error]) => flow.run(
+        (key) async {
+          keys.add(key);
+          if (error != null) throw error;
+        },
+        fingerprint: fingerprint,
+      );
 }
 
 void main() {
@@ -114,6 +123,30 @@ void main() {
     addTearDown(r.container.dispose);
     await r.attempt();
     await r.attempt();
+    expect(r.keys[1], isNot(r.keys[0]));
+  });
+
+  test('a network failure keeps the key when the retried payload is unchanged', () async {
+    final r = _Rig();
+    addTearDown(r.container.dispose);
+    await r.attemptWith('stake:50', _err(0, 'network'));
+    await r.attemptWith('stake:50');
+    expect(r.keys[1], r.keys[0]);
+  });
+
+  test('a network failure mints a new key when the retried payload changed', () async {
+    final r = _Rig();
+    addTearDown(r.container.dispose);
+    await r.attemptWith('stake:50', _err(0, 'network'));
+    await r.attemptWith('stake:75');
+    expect(r.keys[1], isNot(r.keys[0]));
+  });
+
+  test('a bad_response failure also mints a new key when the payload changed on retry', () async {
+    final r = _Rig();
+    addTearDown(r.container.dispose);
+    await r.attemptWith('stars:3', _err(504, 'bad_response'));
+    await r.attemptWith('stars:4');
     expect(r.keys[1], isNot(r.keys[0]));
   });
 

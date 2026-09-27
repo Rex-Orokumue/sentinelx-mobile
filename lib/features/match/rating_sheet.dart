@@ -12,6 +12,9 @@ Future<void> showRatingSheet(BuildContext context, {required MatchInfo match}) {
   return showModalBottomSheet<void>(
     context: context,
     isScrollControlled: true,
+    // Dragging would bypass PopScope and orphan an in-flight rating; disabled unconditionally
+    // (matches registration_sheet.dart / wager_sheet.dart).
+    enableDrag: false,
     builder: (_) => _RatingSheetBody(match: match),
   );
 }
@@ -42,6 +45,7 @@ class _RatingSheetBodyState extends ConsumerState<_RatingSheetBody> {
       final navigator = Navigator.of(context);
       final ok = await ref.read(writeFlowProvider(scope).notifier).run(
             (key) => ref.read(matchRepositoryProvider).rate(widget.match.id, stars: stars, idempotencyKey: key),
+            fingerprint: stars,
           );
       if (!mounted) return;
       if (ok) {

@@ -179,6 +179,16 @@ void main() {
     expect(find.byKey(const Key('rate-button')), findsNothing);
   });
 
+  testWidgets('an existing wager stays visible after the window closes, even though the button and fee hide', (tester) async {
+    await _pump(
+      tester,
+      centre: MatchCentre.fromJson(centreJson(isParticipant: false, windowOpen: false, myPick: 'p1', myStake: 40)),
+    );
+    expect(find.text('Your wager: 40 coins on Ada'), findsOneWidget);
+    expect(find.text('Wagering is closed for this match.'), findsOneWidget);
+    expect(find.text('Change wager'), findsNothing);
+  });
+
   testWidgets('noShowEligible shows the info text', (tester) async {
     final json = centreJson(isParticipant: true)..['noShowEligible'] = true;
     await _pump(tester, centre: MatchCentre.fromJson(json));
@@ -214,6 +224,23 @@ void main() {
     await tester.fling(find.byType(RefreshIndicator), const Offset(0, 300), 1000);
     await tester.pumpAndSettle();
     expect(env.repo.centreCalls, greaterThan(before));
+  });
+
+  testWidgets('check-in success keeps the page visible while the centre refetches, instead of blanking to a spinner', (tester) async {
+    final env = await _pump(
+      tester,
+      match: _match(status: 'scheduled', scoreA: 2, scoreB: 1),
+      centre: MatchCentre.fromJson(centreJson(isParticipant: true, canCheckIn: true, status: 'scheduled')),
+    );
+    final gate = Completer<void>();
+    env.repo.centreGate = gate.future; // the post-check-in refetch blocks here
+    await tester.tap(find.byKey(const Key('check-in-button')));
+    await tester.pump();
+    await tester.pump();
+    expect(find.text('Ada'), findsOneWidget); // still on the same page, not replaced by a spinner
+    expect(find.byType(CircularProgressIndicator), findsNothing);
+    gate.complete();
+    await tester.pumpAndSettle();
   });
 
   testWidgets('a team match (no player ids) renders names and hides the wager form', (tester) async {

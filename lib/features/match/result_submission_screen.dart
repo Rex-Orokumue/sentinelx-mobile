@@ -66,14 +66,16 @@ class _ResultSubmissionScreenState extends ConsumerState<ResultSubmissionScreen>
     final scope = 'result:$matchId';
     final flow = ref.read(writeFlowProvider(scope).notifier);
     final submitter = _submitter!;
+    final recordingUrl = _recordingUrl.text.trim();
     await submitter.submit(
       flow: flow,
       image: image,
+      fingerprint: '$a:$b:$recordingUrl',
       send: (path, key) => ref.read(matchRepositoryProvider).submitResult(
             matchId,
             scoreA: a,
             scoreB: b,
-            recordingUrl: _recordingUrl.text.trim(),
+            recordingUrl: recordingUrl,
             screenshotPath: path,
             idempotencyKey: key,
           ),

@@ -77,6 +77,22 @@ void main() {
     expect(repo.ratingCalls[1].key, repo.ratingCalls[0].key);
   });
 
+  testWidgets('a network failure, then choosing a different star before retrying mints a new key', (tester) async {
+    final repo = await _pump(tester);
+    repo.ratingResults.add(_apiEx('network', status: 0));
+    await tester.tap(find.byKey(const Key('star-3')));
+    await tester.pump();
+    await tester.tap(find.byKey(const Key('rating-submit')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('star-5')));
+    await tester.pump();
+    await tester.tap(find.byKey(const Key('rating-submit')));
+    await tester.pumpAndSettle();
+    expect(repo.ratingCalls, hasLength(2));
+    expect(repo.ratingCalls[1].stars, 5);
+    expect(repo.ratingCalls[1].key, isNot(repo.ratingCalls[0].key));
+  });
+
   testWidgets('a server error then retry uses a new key', (tester) async {
     final repo = await _pump(tester);
     repo.ratingResults.add(_apiEx('already_rated'));
@@ -95,6 +111,19 @@ void main() {
     await tester.tap(find.byKey(const Key('star-5')));
     await tester.pump();
     await tester.tap(find.byKey(const Key('rating-submit')));
+    await tester.pump();
+    expect(find.byType(BottomSheet), findsOneWidget);
+    await tester.pumpAndSettle();
+  });
+
+  testWidgets('the sheet cannot be dragged closed mid-flight (drag bypasses PopScope)', (tester) async {
+    final repo = await _pump(tester);
+    repo.ratingGate = Future.delayed(const Duration(milliseconds: 200));
+    await tester.tap(find.byKey(const Key('star-5')));
+    await tester.pump();
+    await tester.tap(find.byKey(const Key('rating-submit')));
+    await tester.pump();
+    await tester.fling(find.byType(BottomSheet), const Offset(0, 400), 1000);
     await tester.pump();
     expect(find.byType(BottomSheet), findsOneWidget);
     await tester.pumpAndSettle();

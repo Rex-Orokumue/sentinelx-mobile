@@ -131,6 +131,18 @@ void main() {
     expect(env.repo.resultCalls[1].key, env.repo.resultCalls[0].key);
   });
 
+  testWidgets('network error, then editing a score before retrying mints a new key (the payload changed)', (tester) async {
+    final env = await _pump(tester);
+    env.repo.resultResults.add(_apiEx('network', status: 0));
+    await _fillValid(tester, env);
+    await _submit(tester);
+    await tester.enterText(find.byKey(const Key('score-a')), '3');
+    await _submit(tester);
+    expect(env.uploader.calls, hasLength(1));
+    expect(env.repo.resultCalls[1].scoreA, 3);
+    expect(env.repo.resultCalls[1].key, isNot(env.repo.resultCalls[0].key));
+  });
+
   testWidgets('upload failure shows the upload-failed message and never calls the repo', (tester) async {
     final env = await _pump(tester);
     env.uploader.failWith = Exception('storage down');

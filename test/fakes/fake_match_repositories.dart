@@ -70,6 +70,10 @@ class FakeMatchRepository implements MatchRepository {
   /// When set, the write awaits it before answering (holds a request in flight).
   Future<void>? checkInGate, resultGate, ratingGate, wagerGate, lobbyGate;
 
+  /// When set, a `centre()` call awaits it before answering (holds a refetch in flight, to test that
+  /// a refresh keeps showing the previous data instead of blanking to a spinner).
+  Future<void>? centreGate;
+
   Object? _next(List<Object?> q) => q.isEmpty ? null : (q.length > 1 ? q.removeAt(0) : q.first);
 
   @override
@@ -99,6 +103,7 @@ class FakeMatchRepository implements MatchRepository {
   @override
   Future<MatchCentre> centre(String matchId) async {
     centreCalls++;
+    if (centreGate != null) await centreGate;
     final e = centreError;
     if (e != null) throw e;
     return centreView;
