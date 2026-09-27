@@ -20,6 +20,7 @@ class _RankingsRepo implements RankingsRepository {
     this.empty = false,
     this.includeScoreTab = false,
     this.includeSubGames = false,
+    this.includeGameFilter = false,
   });
 
   final String trendDirection;
@@ -31,11 +32,12 @@ class _RankingsRepo implements RankingsRepository {
   final bool empty;
   final bool includeScoreTab;
   final bool includeSubGames;
+  final bool includeGameFilter;
 
   @override
   Future<RankingsPage> fetch(RankingsQuery q) async => RankingsPage.fromJson({
     'scope': {
-      'game': null,
+      'game': q.game,
       'region': null,
       'serverMetric': 'wins',
       'metric': 'wins',
@@ -91,7 +93,11 @@ class _RankingsRepo implements RankingsRepository {
       'total': totalPages,
       'perPage': 10,
     },
-    'games': [],
+    'games': includeGameFilter
+        ? [
+            {'id': 'g1', 'slug': 'dls', 'name': 'DLS', 'category': 'football'},
+          ]
+        : [],
     'regions': <String>[],
     'stats': {
       'playersRanked': 1,
@@ -162,6 +168,16 @@ class _FailingRepo extends _RankingsRepo {
 class _AlwaysFailingRepo extends _RankingsRepo {
   @override
   Future<RankingsPage> fetch(RankingsQuery q) => throw Exception('failed');
+}
+
+class _FilterFailingRepo extends _RankingsRepo {
+  _FilterFailingRepo() : super(includeGameFilter: true);
+
+  @override
+  Future<RankingsPage> fetch(RankingsQuery q) {
+    if (q.game == 'dls') throw Exception('filter failed');
+    return super.fetch(q);
+  }
 }
 
 void main() {
@@ -367,6 +383,34 @@ void main() {
 
     expect(find.text('Ada'), findsOneWidget);
     expect(find.byKey(const Key('chip-game-all')), findsOneWidget);
+    expect(find.text("Couldn't load. Tap to retry."), findsOneWidget);
+  });
+
+  testWidgets('filter load error does not show rows from another query', (
+    tester,
+  ) async {
+    final repo = _FilterFailingRepo();
+    await tester.pumpWidget(
+      ProviderScope(
+        retry: (_, _) => null,
+        overrides: [
+          rankingsRepositoryProvider.overrideWithValue(repo),
+          meProvider.overrideWith((_) async => null),
+        ],
+        child: MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: RankingsScreen(onGoTo: (_) {}),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('Ada'), findsOneWidget);
+
+    await tester.tap(find.byKey(const Key('chip-game-dls')));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Ada'), findsNothing);
     expect(find.text("Couldn't load. Tap to retry."), findsOneWidget);
   });
 

@@ -14,7 +14,13 @@ class RankingsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l = AppLocalizations.of(context);
     final value = ref.watch(rankingsProvider);
-    final p = value.asData?.value ?? ref.watch(rankingsCacheProvider);
+    final query = ref.watch(rankingsQueryProvider);
+    final cached = ref.watch(
+      rankingsCacheProvider.select(
+        (cache) => cache[query.copyWith(page: 1)],
+      ),
+    );
+    final p = value.asData?.value ?? cached;
     final myId = ref.watch(meProvider).asData?.value?.id;
     final siteUrl = ref.watch(appConfigProvider).apiBaseUrl;
     return Scaffold(

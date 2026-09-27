@@ -70,11 +70,12 @@ class HallOfFameScreen extends ConsumerWidget {
                         siteUrl: siteUrl,
                       ),
                     for (final a in h.awards.categories)
-                      _Award(
-                        title: a.label,
-                        options: a.options,
-                        siteUrl: siteUrl,
-                      ),
+                      if (a.options.isNotEmpty)
+                        _Award(
+                          title: a.label,
+                          options: a.options,
+                          siteUrl: siteUrl,
+                        ),
                     _section(
                       l.hallOfFameChampionsCup,
                       h.champions.championsCup,

@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/api/progress_models.dart';
@@ -86,6 +88,7 @@ class _Game extends StatelessWidget {
   @override
   Widget build(BuildContext c) {
     final provisional = game.leaderboard.any((x) => x.isProvisional);
+    final cap = math.min(50, game.leaderboard.length);
     return RefreshIndicator(
       onRefresh: onRefresh,
       child: ListView(
@@ -94,7 +97,7 @@ class _Game extends StatelessWidget {
         children: [
           Text(game.tierLabels.qualificationNote),
           if (game.leaderboard.isEmpty) Text(l.seasonsLeaderboardEmpty),
-          for (var i = 0; i < game.leaderboard.take(50).length; i++)
+          for (var i = 0; i < cap; i++)
             Container(
               key: game.leaderboard[i].playerId == myId
                   ? const Key('season-row-me')

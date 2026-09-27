@@ -23,21 +23,26 @@ final rankingsQueryProvider =
       RankingsQueryNotifier.new,
     );
 
-class RankingsCacheNotifier extends Notifier<RankingsPage?> {
+RankingsQuery _cacheKey(RankingsQuery query) => query.copyWith(page: 1);
+
+class RankingsCacheNotifier
+    extends Notifier<Map<RankingsQuery, RankingsPage>> {
   @override
-  RankingsPage? build() => null;
-  void store(RankingsPage page) => state = page;
+  Map<RankingsQuery, RankingsPage> build() => {};
+  void store(RankingsQuery query, RankingsPage page) =>
+      state = {...state, _cacheKey(query): page};
 }
 
 final rankingsCacheProvider =
-    NotifierProvider<RankingsCacheNotifier, RankingsPage?>(
+    NotifierProvider<RankingsCacheNotifier, Map<RankingsQuery, RankingsPage>>(
       RankingsCacheNotifier.new,
     );
 final rankingsProvider = FutureProvider.autoDispose<RankingsPage>((ref) async {
+  final query = ref.watch(rankingsQueryProvider);
   final page = await ref
       .watch(rankingsRepositoryProvider)
-      .fetch(ref.watch(rankingsQueryProvider));
-  ref.read(rankingsCacheProvider.notifier).store(page);
+      .fetch(query);
+  ref.read(rankingsCacheProvider.notifier).store(query, page);
   return page;
 });
 final rankingsMeProvider = FutureProvider.autoDispose<RankingRow?>((ref) async {

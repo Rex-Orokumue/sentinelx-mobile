@@ -25,6 +25,7 @@ HallOfFame _emptyHall({
   String? selectedGame,
   bool awards = false,
   bool shrinkAwards = false,
+  bool emptyFilteredCategory = false,
 }) => HallOfFame.fromJson({
   'games': [
     {'id': 'g1', 'slug': 'dls', 'name': 'DLS', 'category': 'football'},
@@ -49,7 +50,25 @@ HallOfFame _emptyHall({
               },
           ]
         : [],
-    'categories': [],
+    'categories': emptyFilteredCategory
+        ? [
+            {
+              'category': 'racing',
+              'label': 'Fastest Driver',
+              'metricLabel': 'Wins',
+              'options': selectedGame == null
+                  ? [
+                      {
+                        'gameId': 'g1',
+                        'gameLabel': 'DLS',
+                        'winner': _player('p1', 'Ada'),
+                        'metricValue': 8,
+                      },
+                    ]
+                  : [],
+            },
+          ]
+        : [],
   },
   'champions': {
     'championsCup': [],
@@ -61,10 +80,16 @@ HallOfFame _emptyHall({
 });
 
 class _Repo implements HallOfFameRepository {
-  _Repo({this.fail = false, this.awards = false, this.shrinkAwards = false});
+  _Repo({
+    this.fail = false,
+    this.awards = false,
+    this.shrinkAwards = false,
+    this.emptyFilteredCategory = false,
+  });
   final bool fail;
   final bool awards;
   final bool shrinkAwards;
+  final bool emptyFilteredCategory;
   int calls = 0;
 
   @override
@@ -75,6 +100,7 @@ class _Repo implements HallOfFameRepository {
       selectedGame: game,
       awards: awards,
       shrinkAwards: shrinkAwards,
+      emptyFilteredCategory: emptyFilteredCategory,
     );
   }
 }
@@ -90,6 +116,19 @@ Widget _app(_Repo repo) => ProviderScope(
 );
 
 void main() {
+  testWidgets('game filter hides category awards with no options', (
+    tester,
+  ) async {
+    await tester.pumpWidget(_app(_Repo(emptyFilteredCategory: true)));
+    await tester.pumpAndSettle();
+    expect(find.text('Fastest Driver'), findsOneWidget);
+
+    await tester.tap(find.byKey(const Key('hof-chip-dls')));
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+    expect(find.text('Fastest Driver'), findsNothing);
+  });
+
   testWidgets('award selection clamps when filtering shrinks options', (
     tester,
   ) async {
