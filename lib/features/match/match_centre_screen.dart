@@ -90,7 +90,11 @@ class _Body extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
-    final me = ref.watch(meProvider).asData?.value;
+    // Signed-in/guest is decided from the session token, not from `/me`'s own
+    // success: `/me` can still be loading or can fail while the caller is
+    // genuinely signed in (the server-side centre/wager reads already know
+    // the caller's identity from the bearer token regardless of `/me`).
+    final signedIn = ref.watch(sessionProvider).asData?.value != null;
     final statusText = matchStatusText(l10n, match.status);
     final hasScore = match.status == 'completed' && match.scoreA != null && match.scoreB != null;
 
@@ -117,7 +121,7 @@ class _Body extends ConsumerWidget {
           TextButton(onPressed: () => launchUrl(Uri.parse(match.replayUrl!), mode: LaunchMode.externalApplication), child: Text(l10n.mtcWatchReplay)),
       ]),
       const SizedBox(height: 8),
-      if (me == null)
+      if (!signedIn)
         _GuestWagerPrompt(onLogin: onLogin)
       else if (centre.isParticipant)
         _ParticipantSection(

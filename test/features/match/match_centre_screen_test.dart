@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sentinelx_mobile/core/api/api_client.dart';
 import 'package:sentinelx_mobile/core/api/match_models.dart';
+import 'package:sentinelx_mobile/core/api/models.dart';
+import 'package:sentinelx_mobile/core/providers.dart';
 import 'package:sentinelx_mobile/features/match/match_centre_screen.dart';
 import 'package:sentinelx_mobile/features/match/match_providers.dart';
 import 'package:sentinelx_mobile/features/match/match_reads_repository.dart';
@@ -59,6 +61,7 @@ Future<_Env> _pump(
   bool signedOut = false,
   bool matchFails = false,
   bool centreFails = false,
+  bool meFails = false,
 }) async {
   final env = _Env();
   env.reads.matches['m1'] = match ?? _match();
@@ -74,7 +77,7 @@ Future<_Env> _pump(
       onRate: env.rates.add,
     ),
     overrides: [
-      ...competeBaseOverrides(signedOut: signedOut),
+      ...competeBaseOverrides(signedOut: signedOut, meFails: meFails),
       matchReadsRepositoryProvider.overrideWithValue(env.reads),
       matchRepositoryProvider.overrideWithValue(env.repo),
     ],
@@ -177,6 +180,35 @@ void main() {
     expect(find.byKey(const Key('check-in-button')), findsNothing);
     expect(find.byKey(const Key('submit-result-button')), findsNothing);
     expect(find.byKey(const Key('rate-button')), findsNothing);
+  });
+
+  testWidgets('a signed-in user whose /me call fails still sees the wager card, not the guest prompt', (tester) async {
+    await _pump(tester, meFails: true, centre: MatchCentre.fromJson(centreJson(isParticipant: false)));
+    expect(find.text('Wager'), findsOneWidget);
+    expect(find.text('Log in to place a wager.'), findsNothing);
+  });
+
+  testWidgets('a signed-in user whose /me call is still loading sees participant controls, not the guest prompt', (tester) async {
+    final env = _Env();
+    env.reads.matches['m1'] = _match();
+    env.repo.centreView = MatchCentre.fromJson(centreJson(isParticipant: true, canCheckIn: true));
+    final completer = Completer<MeResponse?>();
+    await pumpCompete(
+      tester,
+      MatchCentreScreen(matchId: 'm1', onLogin: () => env.logins++, onSubmitResult: env.submits.add, onRate: env.rates.add),
+      overrides: [
+        remoteConfigProvider.overrideWith((ref) async => testRemoteConfig()),
+        sessionProvider.overrideWith((ref) => Stream.value(testSession())),
+        meProvider.overrideWith((ref) => completer.future),
+        matchReadsRepositoryProvider.overrideWithValue(env.reads),
+        matchRepositoryProvider.overrideWithValue(env.repo),
+      ],
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('Log in to place a wager.'), findsNothing);
+    expect(find.byKey(const Key('check-in-button')), findsOneWidget);
+    completer.complete(testMe());
+    await tester.pumpAndSettle();
   });
 
   testWidgets('an existing wager stays visible after the window closes, even though the button and fee hide', (tester) async {

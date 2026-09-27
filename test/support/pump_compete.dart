@@ -6,6 +6,7 @@ import 'package:sentinelx_mobile/core/api/models.dart';
 import 'package:sentinelx_mobile/core/config/remote_config.dart';
 import 'package:sentinelx_mobile/core/l10n/gen/app_localizations.dart';
 import 'package:sentinelx_mobile/core/providers.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 RemoteConfig testRemoteConfig() => RemoteConfig.fromJson(const {
       'minSupportedAppVersion': '1.0.0',
@@ -37,10 +38,33 @@ MeResponse testMe({String? displayName = 'Ada', String? whatsapp = '+23480123456
       ),
     );
 
+/// A real (fake-data) Supabase session, since [Session]/[User] have ordinary
+/// constructors — no need to round-trip through `fromJson`.
+Session testSession() => Session(
+      accessToken: 'test-access-token',
+      tokenType: 'bearer',
+      user: const User(
+        id: 'u1',
+        appMetadata: {},
+        userMetadata: {},
+        aud: 'authenticated',
+        createdAt: '2024-01-01T00:00:00Z',
+      ),
+    );
+
 /// Signed-in + remote-config overrides shared by the Compete widget tests.
-List<Override> competeBaseOverrides({MeResponse? me, bool signedOut = false}) => [
+///
+/// [sessionProvider] and [meProvider] are overridden independently (not
+/// derived from one another, matching production) so a test can simulate
+/// `/me` failing or still loading while the session says signed-in.
+List<Override> competeBaseOverrides({MeResponse? me, bool signedOut = false, bool meFails = false}) => [
       remoteConfigProvider.overrideWith((ref) async => testRemoteConfig()),
-      meProvider.overrideWith((ref) async => signedOut ? null : (me ?? testMe())),
+      sessionProvider.overrideWith((ref) => Stream.value(signedOut ? null : testSession())),
+      meProvider.overrideWith((ref) async {
+        if (signedOut) return null;
+        if (meFails) throw Exception('me failed');
+        return me ?? testMe();
+      }),
     ];
 
 Future<void> pumpCompete(
