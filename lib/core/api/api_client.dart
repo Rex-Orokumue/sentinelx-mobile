@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 
 import '../config/remote_config.dart';
+import 'community_models.dart';
 import 'compete_models.dart';
 import 'match_models.dart';
 import 'models.dart';
@@ -84,6 +85,30 @@ class ApiClient {
     'getSquadLookup': 'get /api/mobile/v1/squads/lookup',
     'getMeSummary': 'get /api/mobile/v1/me/summary',
     'getTournamentRegistrationFields': 'get /api/mobile/v1/tournaments/{id}/registration-fields',
+    'getCommunityFeed': 'get /api/mobile/v1/community/feed',
+    'getCommunityPost': 'get /api/mobile/v1/community/posts/{id}',
+    'getCommunityPostComments': 'get /api/mobile/v1/community/posts/{id}/comments',
+    'getCommunityChallenges': 'get /api/mobile/v1/community/challenges',
+    'getCommunityBestPlay': 'get /api/mobile/v1/community/best-play',
+    'getCommunityStatuses': 'get /api/mobile/v1/community/statuses',
+    'getCommunityStatusViewers': 'get /api/mobile/v1/community/statuses/{id}/viewers',
+    'getCommunityTopMembers': 'get /api/mobile/v1/community/top-members',
+    'getCommunityUpcomingEvents': 'get /api/mobile/v1/community/upcoming-events',
+    'getCommunityGallery': 'get /api/mobile/v1/community/gallery',
+    'getCommunityStats': 'get /api/mobile/v1/community/stats',
+    'postCommunityPost': 'post /api/mobile/v1/community/posts',
+    'deleteCommunityPost': 'delete /api/mobile/v1/community/posts/{id}',
+    'postCommunityPostBoost': 'post /api/mobile/v1/community/posts/{id}/boost',
+    'putCommunityPostReaction': 'put /api/mobile/v1/community/posts/{id}/reaction',
+    'deleteCommunityPostReaction': 'delete /api/mobile/v1/community/posts/{id}/reaction',
+    'postCommunityComment': 'post /api/mobile/v1/community/posts/{id}/comments',
+    'deleteCommunityComment': 'delete /api/mobile/v1/community/comments/{id}',
+    'postCommunityStatus': 'post /api/mobile/v1/community/statuses',
+    'deleteCommunityStatus': 'delete /api/mobile/v1/community/statuses/{id}',
+    'postCommunityStatusView': 'post /api/mobile/v1/community/statuses/{id}/view',
+    'postCommunityBestPlayVote': 'post /api/mobile/v1/community/best-play/{nominationId}/vote',
+    'postCommunityPostReport': 'post /api/mobile/v1/community/posts/{id}/report',
+    'postCommunityCommentReport': 'post /api/mobile/v1/community/comments/{id}/report',
   };
 
   static const _base = '/api/mobile/v1';
@@ -547,4 +572,161 @@ class ApiClient {
       );
 
   Future<MeSummary> getMeSummary() => _send('GET', '/me/summary', (d) => MeSummary.fromJson(d! as Map<String, dynamic>));
+
+  // Phase 4: Community feed, posts, reactions, comments, statuses, challenges, best-play,
+  // top members, upcoming events, gallery, stats. Every read here is publicRequest: true
+  // except getCommunityChallenges/getCommunityStatusViewers, which need the caller's own
+  // progress/viewer identity. Every idempotent write takes an Idempotency-Key header.
+  Future<CommunityFeedPage> getCommunityFeed({int offset = 0, int limit = 20}) => _send(
+        'GET',
+        offset == 0 && limit == 20
+            ? '/community/feed'
+            : _withQuery('/community/feed', {'offset': offset, 'limit': limit}),
+        (d) => CommunityFeedPage.fromJson(d! as Map<String, dynamic>),
+        publicRequest: true,
+      );
+
+  Future<CommunityPostDetail> getCommunityPost(String id) => _send(
+        'GET',
+        '/community/posts/${Uri.encodeComponent(id)}',
+        (d) => CommunityPostDetail.fromJson(d! as Map<String, dynamic>),
+        publicRequest: true,
+      );
+
+  Future<List<CommentView>> getCommunityPostComments(String id) => _send(
+        'GET',
+        '/community/posts/${Uri.encodeComponent(id)}/comments',
+        (d) => (d! as List<dynamic>).map((e) => CommentView.fromJson(e as Map<String, dynamic>)).toList(),
+        publicRequest: true,
+      );
+
+  Future<ChallengesWidget?> getCommunityChallenges() => _send(
+        'GET',
+        '/community/challenges',
+        (d) => d == null ? null : ChallengesWidget.fromJson(d as Map<String, dynamic>),
+      );
+
+  Future<BestPlayBanner?> getCommunityBestPlay() => _send(
+        'GET',
+        '/community/best-play',
+        (d) => d == null ? null : BestPlayBanner.fromJson(d as Map<String, dynamic>),
+        publicRequest: true,
+      );
+
+  Future<List<StatusRing>> getCommunityStatuses() => _send(
+        'GET',
+        '/community/statuses',
+        (d) => (d! as List<dynamic>).map((e) => StatusRing.fromJson(e as Map<String, dynamic>)).toList(),
+        publicRequest: true,
+      );
+
+  Future<List<StatusViewer>> getCommunityStatusViewers(String id) => _send(
+        'GET',
+        '/community/statuses/${Uri.encodeComponent(id)}/viewers',
+        (d) => (d! as List<dynamic>).map((e) => StatusViewer.fromJson(e as Map<String, dynamic>)).toList(),
+      );
+
+  Future<List<TopMember>> getCommunityTopMembers() => _send(
+        'GET',
+        '/community/top-members',
+        (d) => (d! as List<dynamic>).map((e) => TopMember.fromJson(e as Map<String, dynamic>)).toList(),
+        publicRequest: true,
+      );
+
+  Future<List<UpcomingEvent>> getCommunityUpcomingEvents() => _send(
+        'GET',
+        '/community/upcoming-events',
+        (d) => (d! as List<dynamic>).map((e) => UpcomingEvent.fromJson(e as Map<String, dynamic>)).toList(),
+        publicRequest: true,
+      );
+
+  Future<CommunityGalleryPage> getCommunityGallery({int offset = 0, int limit = 8}) => _send(
+        'GET',
+        offset == 0 && limit == 8
+            ? '/community/gallery'
+            : _withQuery('/community/gallery', {'offset': offset, 'limit': limit}),
+        (d) => CommunityGalleryPage.fromJson(d! as Map<String, dynamic>),
+        publicRequest: true,
+      );
+
+  Future<CommunityStats> getCommunityStats() => _send(
+        'GET',
+        '/community/stats',
+        (d) => CommunityStats.fromJson(d! as Map<String, dynamic>),
+        publicRequest: true,
+      );
+
+  Future<String> postCommunityPost({required String content, required List<String> imageUrls, required String idempotencyKey}) => _send(
+        'POST',
+        '/community/posts',
+        (d) => (d! as Map<String, dynamic>)['id'] as String,
+        body: {'content': content, 'imageUrls': imageUrls},
+        headers: {'Idempotency-Key': idempotencyKey},
+      );
+
+  Future<void> deleteCommunityPost(String id) => _send('DELETE', '/community/posts/${Uri.encodeComponent(id)}', (_) {});
+
+  Future<void> postCommunityPostBoost(String id, {required String idempotencyKey}) => _send(
+        'POST',
+        '/community/posts/${Uri.encodeComponent(id)}/boost',
+        (_) {},
+        headers: {'Idempotency-Key': idempotencyKey},
+      );
+
+  Future<ReactionType> putCommunityPostReaction(String id, {required ReactionType reaction, required String idempotencyKey}) => _send(
+        'PUT',
+        '/community/posts/${Uri.encodeComponent(id)}/reaction',
+        (d) => reactionTypeFromJson((d! as Map<String, dynamic>)['reaction'] as String),
+        body: {'reaction': reaction.wireName},
+        headers: {'Idempotency-Key': idempotencyKey},
+      );
+
+  Future<void> deleteCommunityPostReaction(String id) =>
+      _send('DELETE', '/community/posts/${Uri.encodeComponent(id)}/reaction', (_) {});
+
+  Future<String> postCommunityComment(String postId, {required String content, required String idempotencyKey}) => _send(
+        'POST',
+        '/community/posts/${Uri.encodeComponent(postId)}/comments',
+        (d) => (d! as Map<String, dynamic>)['id'] as String,
+        body: {'content': content},
+        headers: {'Idempotency-Key': idempotencyKey},
+      );
+
+  Future<void> deleteCommunityComment(String id) => _send('DELETE', '/community/comments/${Uri.encodeComponent(id)}', (_) {});
+
+  Future<String> postCommunityStatus({String? imageUrl, String? caption, required String idempotencyKey}) => _send(
+        'POST',
+        '/community/statuses',
+        (d) => (d! as Map<String, dynamic>)['id'] as String,
+        body: {'imageUrl': ?imageUrl, 'caption': ?caption},
+        headers: {'Idempotency-Key': idempotencyKey},
+      );
+
+  Future<void> deleteCommunityStatus(String id) => _send('DELETE', '/community/statuses/${Uri.encodeComponent(id)}', (_) {});
+
+  Future<void> postCommunityStatusView(String id) =>
+      _send('POST', '/community/statuses/${Uri.encodeComponent(id)}/view', (_) {});
+
+  Future<void> postCommunityBestPlayVote(String nominationId, {required String idempotencyKey}) => _send(
+        'POST',
+        '/community/best-play/${Uri.encodeComponent(nominationId)}/vote',
+        (_) {},
+        headers: {'Idempotency-Key': idempotencyKey},
+      );
+
+  Future<void> postCommunityPostReport(String id, {required ReportReasonCode reasonCode, String? note, required String idempotencyKey}) => _send(
+        'POST',
+        '/community/posts/${Uri.encodeComponent(id)}/report',
+        (_) {},
+        body: {'reasonCode': reasonCode.wireName, 'note': ?note},
+        headers: {'Idempotency-Key': idempotencyKey},
+      );
+
+  Future<void> postCommunityCommentReport(String id, {required ReportReasonCode reasonCode, String? note, required String idempotencyKey}) => _send(
+        'POST',
+        '/community/comments/${Uri.encodeComponent(id)}/report',
+        (_) {},
+        body: {'reasonCode': reasonCode.wireName, 'note': ?note},
+        headers: {'Idempotency-Key': idempotencyKey},
+      );
 }
