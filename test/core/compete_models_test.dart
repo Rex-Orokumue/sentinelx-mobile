@@ -41,11 +41,9 @@ void main() {
     expect(() => parsePaymentStatus('??'), throwsFormatException);
   });
 
-  test('RegistrationDetails omits a blank ignTag and trims nothing itself', () {
-    const d = RegistrationDetails(displayName: 'Ada', whatsapp: '+2348012345678', clubName: 'FC', ignTag: '', agreedToRules: true);
-    expect(d.toJson(), {'displayName': 'Ada', 'whatsapp': '+2348012345678', 'clubName': 'FC', 'agreedToRules': true});
-    const d2 = RegistrationDetails(displayName: 'Ada', whatsapp: '+2348012345678', clubName: 'FC', ignTag: 'ada_10', agreedToRules: true);
-    expect(d2.toJson()['ignTag'], 'ada_10');
+  test('RegistrationDetails emits the dynamic registrationDetails map', () {
+    const d = RegistrationDetails(displayName: 'Ada', whatsapp: '+2348012345678', registrationDetails: {'club_name': 'FC'}, agreedToRules: true);
+    expect(d.toJson(), {'displayName': 'Ada', 'whatsapp': '+2348012345678', 'registrationDetails': {'club_name': 'FC'}, 'agreedToRules': true});
   });
 
   test('ProfileEdit sends every field, empty string for blanks', () {

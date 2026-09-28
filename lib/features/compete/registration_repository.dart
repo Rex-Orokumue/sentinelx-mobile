@@ -1,8 +1,10 @@
 import '../../core/api/api_client.dart';
 import '../../core/api/compete_models.dart';
+import '../../core/api/registration_fields_models.dart';
 
 abstract class RegistrationRepository {
   Future<RegistrationState> registrationState(String tournamentId);
+  Future<List<RegistrationField>> registrationFields(String tournamentId);
   Future<RegisterOutcome> register(String tournamentId,
       {required RegistrationDetails details, required int coinsUsed, required String idempotencyKey});
   Future<void> joinWaitlist(String tournamentId, {required RegistrationDetails details});
@@ -17,6 +19,9 @@ class ApiRegistrationRepository implements RegistrationRepository {
 
   @override
   Future<RegistrationState> registrationState(String id) => _api.getTournamentRegistrationState(id);
+
+  @override
+  Future<List<RegistrationField>> registrationFields(String id) => _api.getTournamentRegistrationFields(id);
 
   @override
   Future<RegisterOutcome> register(String id,

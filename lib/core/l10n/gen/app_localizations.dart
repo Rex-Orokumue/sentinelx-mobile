@@ -1280,18 +1280,6 @@ abstract class AppLocalizations {
   /// **'WhatsApp number'**
   String get cmpFieldWhatsapp;
 
-  /// No description provided for @cmpFieldClub.
-  ///
-  /// In en, this message translates to:
-  /// **'Club name'**
-  String get cmpFieldClub;
-
-  /// No description provided for @cmpFieldIgn.
-  ///
-  /// In en, this message translates to:
-  /// **'In-game tag (optional)'**
-  String get cmpFieldIgn;
-
   /// No description provided for @cmpAgreeRules.
   ///
   /// In en, this message translates to:
@@ -1345,18 +1333,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter a valid WhatsApp number.'**
   String get cmpValWhatsapp;
-
-  /// No description provided for @cmpValClub.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your club (1–60 characters).'**
-  String get cmpValClub;
-
-  /// No description provided for @cmpValIgn.
-  ///
-  /// In en, this message translates to:
-  /// **'Tag is too long (60 max).'**
-  String get cmpValIgn;
 
   /// No description provided for @cmpValRules.
   ///

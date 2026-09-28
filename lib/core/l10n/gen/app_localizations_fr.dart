@@ -677,12 +677,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get cmpFieldWhatsapp => 'Numéro WhatsApp';
 
   @override
-  String get cmpFieldClub => 'Nom du club';
-
-  @override
-  String get cmpFieldIgn => 'Pseudo en jeu (facultatif)';
-
-  @override
   String get cmpAgreeRules => 'J\'ai lu et j\'accepte le règlement';
 
   @override
@@ -710,12 +704,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get cmpValWhatsapp => 'Saisissez un numéro WhatsApp valide.';
-
-  @override
-  String get cmpValClub => 'Saisissez votre club (1 à 60 caractères).';
-
-  @override
-  String get cmpValIgn => 'Pseudo trop long (60 max).';
 
   @override
   String get cmpValRules => 'Veuillez accepter le règlement.';

@@ -41,22 +41,19 @@ class RegistrationDetails {
   const RegistrationDetails({
     required this.displayName,
     required this.whatsapp,
-    required this.clubName,
-    this.ignTag,
+    required this.registrationDetails,
     required this.agreedToRules,
   });
 
   final String displayName;
   final String whatsapp;
-  final String clubName;
-  final String? ignTag;
+  final Map<String, String> registrationDetails;
   final bool agreedToRules;
 
   Map<String, Object?> toJson() => {
         'displayName': displayName,
         'whatsapp': whatsapp,
-        'clubName': clubName,
-        if (ignTag != null && ignTag!.isNotEmpty) 'ignTag': ignTag,
+        'registrationDetails': registrationDetails,
         'agreedToRules': agreedToRules,
       };
 }

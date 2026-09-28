@@ -6,6 +6,7 @@ import 'match_models.dart';
 import 'models.dart';
 import 'players_models.dart';
 import 'progress_models.dart';
+import 'registration_fields_models.dart';
 
 class ApiException implements Exception {
   const ApiException({
@@ -82,6 +83,7 @@ class ApiClient {
     'postSquads': 'post /api/mobile/v1/squads',
     'getSquadLookup': 'get /api/mobile/v1/squads/lookup',
     'getMeSummary': 'get /api/mobile/v1/me/summary',
+    'getTournamentRegistrationFields': 'get /api/mobile/v1/tournaments/{id}/registration-fields',
   };
 
   static const _base = '/api/mobile/v1';
@@ -276,6 +278,15 @@ class ApiClient {
         'GET',
         '/tournaments/${Uri.encodeComponent(tournamentId)}/registration-state',
         (d) => RegistrationState.fromJson(d! as Map<String, dynamic>),
+      );
+
+  Future<List<RegistrationField>> getTournamentRegistrationFields(String tournamentId) => _send(
+        'GET',
+        '/tournaments/${Uri.encodeComponent(tournamentId)}/registration-fields',
+        (d) => ((d! as Map<String, dynamic>)['fields'] as List<dynamic>)
+            .map((e) => RegistrationField.fromJson(e as Map<String, dynamic>))
+            .toList(),
+        publicRequest: true,
       );
 
   Future<RegisterOutcome> postTournamentRegister(

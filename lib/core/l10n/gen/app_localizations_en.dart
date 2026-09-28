@@ -668,12 +668,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cmpFieldWhatsapp => 'WhatsApp number';
 
   @override
-  String get cmpFieldClub => 'Club name';
-
-  @override
-  String get cmpFieldIgn => 'In-game tag (optional)';
-
-  @override
   String get cmpAgreeRules => 'I have read and agree to the rules';
 
   @override
@@ -701,12 +695,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cmpValWhatsapp => 'Enter a valid WhatsApp number.';
-
-  @override
-  String get cmpValClub => 'Enter your club (1–60 characters).';
-
-  @override
-  String get cmpValIgn => 'Tag is too long (60 max).';
 
   @override
   String get cmpValRules => 'Please agree to the rules.';

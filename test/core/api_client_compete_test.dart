@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sentinelx_mobile/core/api/api_client.dart';
 import 'package:sentinelx_mobile/core/api/compete_models.dart';
+import 'package:sentinelx_mobile/core/api/registration_fields_models.dart';
 
 class _FakeAdapter implements HttpClientAdapter {
   _FakeAdapter(this.respond);
@@ -27,9 +28,20 @@ ResponseBody _json(int status, Object body) => ResponseBody.fromString(jsonEncod
 ApiClient _client(_FakeAdapter a) => ApiClient.create(
     baseUrl: 'https://api.test', appVersion: '1.0.0', platform: 'android', accessToken: () async => 'tok', adapter: a);
 
-const _details = RegistrationDetails(displayName: 'Ada', whatsapp: '+2348012345678', clubName: 'FC Ada', agreedToRules: true);
+const _details = RegistrationDetails(displayName: 'Ada', whatsapp: '+2348012345678', registrationDetails: {'club_name': 'FC Ada'}, agreedToRules: true);
 
 void main() {
+  test('getTournamentRegistrationFields is public and parses the ordered catalogue', () async {
+    final a = _FakeAdapter((_) => _json(200, {'data': {'fields': [
+      {'fieldKey': 'uid', 'label': 'UID', 'placeholder': '123', 'inputType': 'number', 'required': true,
+       'validationPattern': r'^\d+$', 'validationMessage': 'Digits only'}
+    ]}}));
+    final fields = await _client(a).getTournamentRegistrationFields('t 1');
+    expect(a.requests.single.path, '/api/mobile/v1/tournaments/t%201/registration-fields');
+    expect(a.requests.single.headers.containsKey('Authorization'), isFalse);
+    expect(fields.single.inputType, RegistrationFieldInputType.number);
+  });
+
   test('getTournamentRegistrationState hits the right path and parses', () async {
     final a = _FakeAdapter((_) => _json(200, {
           'data': {'view': 'can_register', 'feeNaira': 500, 'hasWaiver': false, 'coinDiscountEligible': true, 'agreementRequired': true}
@@ -51,6 +63,8 @@ void main() {
     expect(req.headers['Idempotency-Key'], 'key-1');
     expect((req.data as Map)['coinsUsed'], 500);
     expect((req.data as Map)['agreedToRules'], true);
+    expect((req.data as Map)['registrationDetails'], {'club_name': 'FC Ada'});
+    expect((req.data as Map).containsKey('clubName'), isFalse);
     expect(out, isA<RegisterPending>());
   });
 

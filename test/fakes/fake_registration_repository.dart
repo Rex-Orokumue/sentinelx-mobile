@@ -1,4 +1,5 @@
 import 'package:sentinelx_mobile/core/api/compete_models.dart';
+import 'package:sentinelx_mobile/core/api/registration_fields_models.dart';
 import 'package:sentinelx_mobile/features/compete/registration_repository.dart';
 
 class FakeRegistrationRepository implements RegistrationRepository {
@@ -7,6 +8,7 @@ class FakeRegistrationRepository implements RegistrationRepository {
   final waitlistCalls = <RegistrationDetails>[];
   final paymentChecks = <String>[];
   final registerCoins = <int>[];
+  final registerDetails = <RegistrationDetails>[];
   final declined = <String>[];
   int stateCalls = 0;
 
@@ -18,6 +20,11 @@ class FakeRegistrationRepository implements RegistrationRepository {
   Object? declineResult;
   final paymentResults = <Object>[]; // PaymentStatus or Exception; last one repeats
   Object? stateResult;
+  Object fieldsResult = const <RegistrationField>[
+    RegistrationField(fieldKey: 'club_name', label: 'Club name', placeholder: null,
+      inputType: RegistrationFieldInputType.text, required: true, validationPattern: null, validationMessage: null),
+  ];
+  int fieldsCalls = 0;
   Future<void>? registerGate; // when set, register() awaits it (to hold a request in flight)
   Future<void>? acceptGate;
   Future<void>? declineGate;
@@ -34,10 +41,19 @@ class FakeRegistrationRepository implements RegistrationRepository {
   }
 
   @override
+  Future<List<RegistrationField>> registrationFields(String tournamentId) async {
+    fieldsCalls++;
+    final result = fieldsResult;
+    if (result is Exception) throw result;
+    return result as List<RegistrationField>;
+  }
+
+  @override
   Future<RegisterOutcome> register(String tournamentId,
       {required RegistrationDetails details, required int coinsUsed, required String idempotencyKey}) async {
     registerKeys.add(idempotencyKey);
     registerCoins.add(coinsUsed);
+    registerDetails.add(details);
     if (registerGate != null) await registerGate;
     final r = _next(registerResults);
     if (r is Exception) throw r;

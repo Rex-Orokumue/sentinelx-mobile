@@ -9,7 +9,7 @@ import 'package:sentinelx_mobile/features/compete/registration_flow.dart';
 
 import '../../fakes/fake_registration_repository.dart';
 
-const _details = RegistrationDetails(displayName: 'Ada', whatsapp: '+2348012345678', clubName: 'FC Ada', agreedToRules: true);
+const _details = RegistrationDetails(displayName: 'Ada', whatsapp: '+2348012345678', registrationDetails: {'club_name': 'FC Ada'}, agreedToRules: true);
 const _pending = RegisterPending(authorizationUrl: 'https://pay.test/a', reference: 'ref-1');
 
 ApiException _err(int status, String code, {Map<String, String> fields = const {}}) =>
