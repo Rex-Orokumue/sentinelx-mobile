@@ -33,6 +33,16 @@ void main() {
     expect(requiredField.validate(' 12345 '), isNull);
   });
 
+  test('accepts 120 trimmed characters and rejects 121', () {
+    const field = RegistrationField(
+      fieldKey: 'bio', label: 'Player ID', placeholder: null,
+      inputType: RegistrationFieldInputType.text, required: false,
+      validationPattern: null, validationMessage: null,
+    );
+    expect(field.validate(' ${'a' * 120} '), isNull);
+    expect(field.validate('a' * 121), 'Player ID is too long');
+  });
+
   test(
     'uses a generic pattern message and ignores invalid catalogue regex',
     () {

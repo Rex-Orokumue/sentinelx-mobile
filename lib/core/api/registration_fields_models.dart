@@ -40,6 +40,7 @@ class RegistrationField {
   String? validate(String value) {
     final trimmed = value.trim();
     if (required && trimmed.isEmpty) return '$label is required';
+    if (trimmed.length > 120) return '$label is too long';
     if (trimmed.isEmpty || validationPattern == null) return null;
     try {
       if (!RegExp(validationPattern!).hasMatch(trimmed)) {
