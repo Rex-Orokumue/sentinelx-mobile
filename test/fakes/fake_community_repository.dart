@@ -59,6 +59,11 @@ class FakeCommunityRepository implements CommunityRepository {
   /// that back navigation is blocked while a post is being created).
   Completer<void>? createPostGate;
 
+  /// Held open while `boostPost` is awaited, to simulate a request still in flight (e.g. to test
+  /// that the boost sheet blocks close/drag mid-flight, or that a second tap while busy sends no
+  /// second request).
+  Completer<void>? boostGate;
+
   /// Errors to throw for a write, keyed by method name (e.g. `'createPost'`). Consumed once.
   final Map<String, Object> writeErrors = {};
 
@@ -152,6 +157,7 @@ class FakeCommunityRepository implements CommunityRepository {
   @override
   Future<void> boostPost(String id, {required String idempotencyKey}) async {
     calls.add('boostPost:$id:$idempotencyKey');
+    if (boostGate != null) await boostGate!.future;
     _maybeThrow('boostPost');
   }
 
