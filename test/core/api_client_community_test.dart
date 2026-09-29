@@ -56,10 +56,49 @@ void main() {
     expect(detail.post.id, 'p1');
     expect(detail.comments.single.id, 'c1');
 
-    a = _ok([commentViewJson(id: 'c2')]);
+    a = _ok({
+      'comments': [commentViewJson(id: 'c2')],
+    });
     final comments = await _client(a).getCommunityPostComments('p1');
     expect(a.requests.single.uri.path, '/api/mobile/v1/community/posts/p1/comments');
     expect(comments.single.id, 'c2');
+  });
+
+  test('getCommunityStatuses hits the right path and unwraps the rings key', () async {
+    final a = _ok({
+      'rings': [statusRingJson(playerId: 'u1')],
+    });
+    final rings = await _client(a).getCommunityStatuses();
+    expect(a.requests.single.uri.path, '/api/mobile/v1/community/statuses');
+    expect(rings.single.playerId, 'u1');
+  });
+
+  test('getCommunityStatusViewers hits the right path and unwraps the viewers key', () async {
+    final a = _ok({
+      'viewers': [statusViewerJson(viewerId: 'u2')],
+    });
+    final viewers = await _client(a).getCommunityStatusViewers('s1');
+    expect(a.requests.single.uri.path, '/api/mobile/v1/community/statuses/s1/viewers');
+    expect(viewers.single.viewerId, 'u2');
+  });
+
+  test('getCommunityTopMembers hits the right path and unwraps the members key', () async {
+    final a = _ok({
+      'members': [topMemberJson(id: 'u1', rank: 1)],
+    });
+    final members = await _client(a).getCommunityTopMembers();
+    expect(a.requests.single.uri.path, '/api/mobile/v1/community/top-members');
+    expect(members.single.id, 'u1');
+    expect(members.single.rank, 1);
+  });
+
+  test('getCommunityUpcomingEvents hits the right path and unwraps the events key', () async {
+    final a = _ok({
+      'events': [upcomingEventJson(id: 'e1')],
+    });
+    final events = await _client(a).getCommunityUpcomingEvents();
+    expect(a.requests.single.uri.path, '/api/mobile/v1/community/upcoming-events');
+    expect(events.single.id, 'e1');
   });
 
   test('getCommunityChallenges returns null for a null data envelope and the widget otherwise', () async {

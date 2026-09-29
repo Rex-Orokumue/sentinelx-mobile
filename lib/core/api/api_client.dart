@@ -596,7 +596,9 @@ class ApiClient {
   Future<List<CommentView>> getCommunityPostComments(String id) => _send(
         'GET',
         '/community/posts/${Uri.encodeComponent(id)}/comments',
-        (d) => (d! as List<dynamic>).map((e) => CommentView.fromJson(e as Map<String, dynamic>)).toList(),
+        (d) => ((d! as Map<String, dynamic>)['comments'] as List<dynamic>)
+            .map((e) => CommentView.fromJson(e as Map<String, dynamic>))
+            .toList(),
         publicRequest: true,
       );
 
@@ -616,27 +618,35 @@ class ApiClient {
   Future<List<StatusRing>> getCommunityStatuses() => _send(
         'GET',
         '/community/statuses',
-        (d) => (d! as List<dynamic>).map((e) => StatusRing.fromJson(e as Map<String, dynamic>)).toList(),
+        (d) => ((d! as Map<String, dynamic>)['rings'] as List<dynamic>)
+            .map((e) => StatusRing.fromJson(e as Map<String, dynamic>))
+            .toList(),
         publicRequest: true,
       );
 
   Future<List<StatusViewer>> getCommunityStatusViewers(String id) => _send(
         'GET',
         '/community/statuses/${Uri.encodeComponent(id)}/viewers',
-        (d) => (d! as List<dynamic>).map((e) => StatusViewer.fromJson(e as Map<String, dynamic>)).toList(),
+        (d) => ((d! as Map<String, dynamic>)['viewers'] as List<dynamic>)
+            .map((e) => StatusViewer.fromJson(e as Map<String, dynamic>))
+            .toList(),
       );
 
   Future<List<TopMember>> getCommunityTopMembers() => _send(
         'GET',
         '/community/top-members',
-        (d) => (d! as List<dynamic>).map((e) => TopMember.fromJson(e as Map<String, dynamic>)).toList(),
+        (d) => ((d! as Map<String, dynamic>)['members'] as List<dynamic>)
+            .map((e) => TopMember.fromJson(e as Map<String, dynamic>))
+            .toList(),
         publicRequest: true,
       );
 
   Future<List<UpcomingEvent>> getCommunityUpcomingEvents() => _send(
         'GET',
         '/community/upcoming-events',
-        (d) => (d! as List<dynamic>).map((e) => UpcomingEvent.fromJson(e as Map<String, dynamic>)).toList(),
+        (d) => ((d! as Map<String, dynamic>)['events'] as List<dynamic>)
+            .map((e) => UpcomingEvent.fromJson(e as Map<String, dynamic>))
+            .toList(),
         publicRequest: true,
       );
 
