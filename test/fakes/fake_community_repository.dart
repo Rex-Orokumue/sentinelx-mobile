@@ -50,6 +50,11 @@ class FakeCommunityRepository implements CommunityRepository {
   Object? feedError;
   Object? postDetailError;
 
+  /// Held open while `setReaction`/`removeReaction` is awaited, to simulate a request still in
+  /// flight (e.g. to test a busy-guarded second tap, or that an optimistic update is visible
+  /// before the request resolves).
+  Completer<void>? reactionGate;
+
   /// Errors to throw for a write, keyed by method name (e.g. `'createPost'`). Consumed once.
   final Map<String, Object> writeErrors = {};
 
@@ -148,6 +153,7 @@ class FakeCommunityRepository implements CommunityRepository {
   @override
   Future<ReactionType> setReaction(String postId, ReactionType reaction, {required String idempotencyKey}) async {
     calls.add('setReaction:$postId:${reaction.wireName}:$idempotencyKey');
+    if (reactionGate != null) await reactionGate!.future;
     _maybeThrow('setReaction');
     return reaction;
   }
@@ -155,6 +161,7 @@ class FakeCommunityRepository implements CommunityRepository {
   @override
   Future<void> removeReaction(String postId) async {
     calls.add('removeReaction:$postId');
+    if (reactionGate != null) await reactionGate!.future;
     _maybeThrow('removeReaction');
   }
 
