@@ -55,6 +55,10 @@ class FakeCommunityRepository implements CommunityRepository {
   /// before the request resolves).
   Completer<void>? reactionGate;
 
+  /// Held open while `createPost` is awaited, to simulate a request still in flight (e.g. to test
+  /// that back navigation is blocked while a post is being created).
+  Completer<void>? createPostGate;
+
   /// Errors to throw for a write, keyed by method name (e.g. `'createPost'`). Consumed once.
   final Map<String, Object> writeErrors = {};
 
@@ -134,6 +138,7 @@ class FakeCommunityRepository implements CommunityRepository {
   @override
   Future<String> createPost({required String content, required List<String> imageUrls, required String idempotencyKey}) async {
     calls.add('createPost:$content:${imageUrls.join(",")}:$idempotencyKey');
+    if (createPostGate != null) await createPostGate!.future;
     _maybeThrow('createPost');
     return newPostId;
   }
