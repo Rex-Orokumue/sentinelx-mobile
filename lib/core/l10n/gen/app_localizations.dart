@@ -3193,6 +3193,600 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Done'**
   String get mtcDone;
+
+  /// No description provided for @cmtTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Community'**
+  String get cmtTitle;
+
+  /// No description provided for @cmtFeedEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No posts yet. Be the first to share something!'**
+  String get cmtFeedEmpty;
+
+  /// No description provided for @cmtFeedLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load the feed.'**
+  String get cmtFeedLoadError;
+
+  /// No description provided for @cmtRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get cmtRetry;
+
+  /// No description provided for @cmtLoadMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Load more'**
+  String get cmtLoadMore;
+
+  /// No description provided for @cmtPinnedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Pinned'**
+  String get cmtPinnedLabel;
+
+  /// No description provided for @cmtBoostedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Boosted'**
+  String get cmtBoostedLabel;
+
+  /// No description provided for @cmtComposeFab.
+  ///
+  /// In en, this message translates to:
+  /// **'New post'**
+  String get cmtComposeFab;
+
+  /// No description provided for @cmtSignInToPost.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to post'**
+  String get cmtSignInToPost;
+
+  /// No description provided for @cmtSignInToReact.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to react'**
+  String get cmtSignInToReact;
+
+  /// No description provided for @cmtSignInToComment.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to comment'**
+  String get cmtSignInToComment;
+
+  /// No description provided for @cmtSignInToVote.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to vote'**
+  String get cmtSignInToVote;
+
+  /// No description provided for @cmtSignInToReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to report'**
+  String get cmtSignInToReport;
+
+  /// No description provided for @cmtCommentCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} comments'**
+  String cmtCommentCount(int count);
+
+  /// No description provided for @cmtReactFire.
+  ///
+  /// In en, this message translates to:
+  /// **'Fire'**
+  String get cmtReactFire;
+
+  /// No description provided for @cmtReactCrown.
+  ///
+  /// In en, this message translates to:
+  /// **'Crown'**
+  String get cmtReactCrown;
+
+  /// No description provided for @cmtReactStrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Strong'**
+  String get cmtReactStrong;
+
+  /// No description provided for @cmtReactWow.
+  ///
+  /// In en, this message translates to:
+  /// **'Wow'**
+  String get cmtReactWow;
+
+  /// No description provided for @cmtMatchResultLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Match result'**
+  String get cmtMatchResultLabel;
+
+  /// No description provided for @cmtAchievementLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Achievement'**
+  String get cmtAchievementLabel;
+
+  /// No description provided for @cmtAnnouncementLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Announcement'**
+  String get cmtAnnouncementLabel;
+
+  /// No description provided for @cmtComposeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New post'**
+  String get cmtComposeTitle;
+
+  /// No description provided for @cmtComposeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s happening in the SentinelX community?'**
+  String get cmtComposeHint;
+
+  /// No description provided for @cmtComposeAddImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Add photo'**
+  String get cmtComposeAddImage;
+
+  /// No description provided for @cmtComposeImagesCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}/5'**
+  String cmtComposeImagesCount(int count);
+
+  /// No description provided for @cmtComposePost.
+  ///
+  /// In en, this message translates to:
+  /// **'Post'**
+  String get cmtComposePost;
+
+  /// No description provided for @cmtComposePosting.
+  ///
+  /// In en, this message translates to:
+  /// **'Posting…'**
+  String get cmtComposePosting;
+
+  /// No description provided for @cmtComposeCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cmtComposeCancel;
+
+  /// No description provided for @cmtComposeValidation.
+  ///
+  /// In en, this message translates to:
+  /// **'Write something or add a photo first.'**
+  String get cmtComposeValidation;
+
+  /// No description provided for @cmtComposeRemoveImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove image'**
+  String get cmtComposeRemoveImage;
+
+  /// No description provided for @cmtPostDetailTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Post'**
+  String get cmtPostDetailTitle;
+
+  /// No description provided for @cmtCommentsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Comments'**
+  String get cmtCommentsTitle;
+
+  /// No description provided for @cmtCommentsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No comments yet.'**
+  String get cmtCommentsEmpty;
+
+  /// No description provided for @cmtCommentsCapNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Showing the first 50 comments.'**
+  String get cmtCommentsCapNotice;
+
+  /// No description provided for @cmtCommentHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a comment…'**
+  String get cmtCommentHint;
+
+  /// No description provided for @cmtCommentSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get cmtCommentSend;
+
+  /// No description provided for @cmtDeletePost.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete post'**
+  String get cmtDeletePost;
+
+  /// No description provided for @cmtDeletePostConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this post? This can\'t be undone.'**
+  String get cmtDeletePostConfirm;
+
+  /// No description provided for @cmtDeleteComment.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete comment'**
+  String get cmtDeleteComment;
+
+  /// No description provided for @cmtDeleteCommentConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this comment?'**
+  String get cmtDeleteCommentConfirm;
+
+  /// No description provided for @cmtDeleteConfirmYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get cmtDeleteConfirmYes;
+
+  /// No description provided for @cmtDeleteConfirmCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cmtDeleteConfirmCancel;
+
+  /// No description provided for @cmtBoostAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Boost (200 coins)'**
+  String get cmtBoostAction;
+
+  /// No description provided for @cmtBoostConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Boost this post?'**
+  String get cmtBoostConfirmTitle;
+
+  /// No description provided for @cmtBoostConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your post will be pinned to the top of the feed for 24 hours for 200 SX Coins.'**
+  String get cmtBoostConfirmBody;
+
+  /// No description provided for @cmtBoostConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Boost'**
+  String get cmtBoostConfirm;
+
+  /// No description provided for @cmtBoostSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Post boosted!'**
+  String get cmtBoostSuccess;
+
+  /// No description provided for @cmtStatusesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories'**
+  String get cmtStatusesTitle;
+
+  /// No description provided for @cmtStatusAddYours.
+  ///
+  /// In en, this message translates to:
+  /// **'Your story'**
+  String get cmtStatusAddYours;
+
+  /// No description provided for @cmtStatusPost.
+  ///
+  /// In en, this message translates to:
+  /// **'Post story'**
+  String get cmtStatusPost;
+
+  /// No description provided for @cmtStatusCaptionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a caption (optional)'**
+  String get cmtStatusCaptionHint;
+
+  /// No description provided for @cmtStatusEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No stories yet.'**
+  String get cmtStatusEmpty;
+
+  /// No description provided for @cmtStatusViewersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Viewers'**
+  String get cmtStatusViewersTitle;
+
+  /// No description provided for @cmtStatusViewersEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No one has viewed this yet.'**
+  String get cmtStatusViewersEmpty;
+
+  /// No description provided for @cmtStatusDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete story'**
+  String get cmtStatusDelete;
+
+  /// No description provided for @cmtStatusDeleteConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this story?'**
+  String get cmtStatusDeleteConfirm;
+
+  /// No description provided for @cmtStatusValidation.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a photo or a caption.'**
+  String get cmtStatusValidation;
+
+  /// No description provided for @cmtChallengesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly challenges'**
+  String get cmtChallengesTitle;
+
+  /// No description provided for @cmtChallengesSignedOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to track weekly challenges.'**
+  String get cmtChallengesSignedOut;
+
+  /// No description provided for @cmtChallengeCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get cmtChallengeCompleted;
+
+  /// No description provided for @cmtChallengeProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{progress}/{goal}'**
+  String cmtChallengeProgress(int progress, int goal);
+
+  /// No description provided for @cmtBestPlayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Best Play of the Week'**
+  String get cmtBestPlayTitle;
+
+  /// No description provided for @cmtBestPlayEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No nominations this week.'**
+  String get cmtBestPlayEmpty;
+
+  /// No description provided for @cmtBestPlayVote.
+  ///
+  /// In en, this message translates to:
+  /// **'Vote'**
+  String get cmtBestPlayVote;
+
+  /// No description provided for @cmtBestPlayVoted.
+  ///
+  /// In en, this message translates to:
+  /// **'Voted'**
+  String get cmtBestPlayVoted;
+
+  /// No description provided for @cmtBestPlayVoteSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Vote recorded!'**
+  String get cmtBestPlayVoteSuccess;
+
+  /// No description provided for @cmtTopMembersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Top members'**
+  String get cmtTopMembersTitle;
+
+  /// No description provided for @cmtUpcomingEventsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming events'**
+  String get cmtUpcomingEventsTitle;
+
+  /// No description provided for @cmtGalleryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gallery'**
+  String get cmtGalleryTitle;
+
+  /// No description provided for @cmtStatsMembers.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} members'**
+  String cmtStatsMembers(int count);
+
+  /// No description provided for @cmtStatsCountries.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} countries'**
+  String cmtStatsCountries(int count);
+
+  /// No description provided for @cmtStatsTournaments.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} tournaments'**
+  String cmtStatsTournaments(int count);
+
+  /// No description provided for @cmtReportPost.
+  ///
+  /// In en, this message translates to:
+  /// **'Report post'**
+  String get cmtReportPost;
+
+  /// No description provided for @cmtReportComment.
+  ///
+  /// In en, this message translates to:
+  /// **'Report comment'**
+  String get cmtReportComment;
+
+  /// No description provided for @cmtReportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Report content'**
+  String get cmtReportTitle;
+
+  /// No description provided for @cmtReportReasonSpam.
+  ///
+  /// In en, this message translates to:
+  /// **'Spam'**
+  String get cmtReportReasonSpam;
+
+  /// No description provided for @cmtReportReasonHarassment.
+  ///
+  /// In en, this message translates to:
+  /// **'Harassment'**
+  String get cmtReportReasonHarassment;
+
+  /// No description provided for @cmtReportReasonHateSpeech.
+  ///
+  /// In en, this message translates to:
+  /// **'Hate speech'**
+  String get cmtReportReasonHateSpeech;
+
+  /// No description provided for @cmtReportReasonNudity.
+  ///
+  /// In en, this message translates to:
+  /// **'Nudity or sexual content'**
+  String get cmtReportReasonNudity;
+
+  /// No description provided for @cmtReportReasonViolence.
+  ///
+  /// In en, this message translates to:
+  /// **'Violence'**
+  String get cmtReportReasonViolence;
+
+  /// No description provided for @cmtReportReasonMisinformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Misinformation'**
+  String get cmtReportReasonMisinformation;
+
+  /// No description provided for @cmtReportReasonOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get cmtReportReasonOther;
+
+  /// No description provided for @cmtReportNoteHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add details (optional)'**
+  String get cmtReportNoteHint;
+
+  /// No description provided for @cmtReportSubmit.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit report'**
+  String get cmtReportSubmit;
+
+  /// No description provided for @cmtReportSubmitted.
+  ///
+  /// In en, this message translates to:
+  /// **'Report submitted. Thank you.'**
+  String get cmtReportSubmitted;
+
+  /// No description provided for @cmtEcGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get cmtEcGeneric;
+
+  /// No description provided for @cmtEcNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'No connection. Check your internet and try again.'**
+  String get cmtEcNetwork;
+
+  /// No description provided for @cmtEcSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Your session expired. Please log in again.'**
+  String get cmtEcSession;
+
+  /// No description provided for @cmtEcInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Still processing your request. Please wait a moment and try again.'**
+  String get cmtEcInProgress;
+
+  /// No description provided for @cmtEcValidation.
+  ///
+  /// In en, this message translates to:
+  /// **'Write something or add a photo first.'**
+  String get cmtEcValidation;
+
+  /// No description provided for @cmtEcNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'This content is no longer available.'**
+  String get cmtEcNotFound;
+
+  /// No description provided for @cmtEcForbidden.
+  ///
+  /// In en, this message translates to:
+  /// **'You can only do this for your own content.'**
+  String get cmtEcForbidden;
+
+  /// No description provided for @cmtEcAlreadyBoosted.
+  ///
+  /// In en, this message translates to:
+  /// **'This post is already boosted.'**
+  String get cmtEcAlreadyBoosted;
+
+  /// No description provided for @cmtEcActiveBoostExists.
+  ///
+  /// In en, this message translates to:
+  /// **'You already have an active boost on another post.'**
+  String get cmtEcActiveBoostExists;
+
+  /// No description provided for @cmtEcInsufficientCoins.
+  ///
+  /// In en, this message translates to:
+  /// **'Not enough SX Coins to boost.'**
+  String get cmtEcInsufficientCoins;
+
+  /// No description provided for @cmtEcVotingClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'Voting is closed right now.'**
+  String get cmtEcVotingClosed;
+
+  /// No description provided for @cmtEcAlreadyVoted.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve already voted this week.'**
+  String get cmtEcAlreadyVoted;
+
+  /// No description provided for @cmtEcAlreadyReported.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve already reported this.'**
+  String get cmtEcAlreadyReported;
+
+  /// No description provided for @cmtEcUploadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Image upload failed. Please try again.'**
+  String get cmtEcUploadFailed;
 }
 
 class _AppLocalizationsDelegate

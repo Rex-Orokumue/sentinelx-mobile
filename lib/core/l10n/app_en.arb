@@ -782,5 +782,149 @@
   "mtcEcLobbyConfirmed": "This lobby is confirmed and can no longer be edited.",
   "mtcEcResultConfirmed": "Your result is confirmed and can no longer be edited.",
   "mtcHomeFixtures": "Fixtures",
-  "mtcDone": "Done"
+  "mtcDone": "Done",
+  "cmtTitle": "Community",
+  "cmtFeedEmpty": "No posts yet. Be the first to share something!",
+  "cmtFeedLoadError": "Couldn't load the feed.",
+  "cmtRetry": "Try again",
+  "cmtLoadMore": "Load more",
+  "cmtPinnedLabel": "Pinned",
+  "cmtBoostedLabel": "Boosted",
+  "cmtComposeFab": "New post",
+  "cmtSignInToPost": "Log in to post",
+  "cmtSignInToReact": "Log in to react",
+  "cmtSignInToComment": "Log in to comment",
+  "cmtSignInToVote": "Log in to vote",
+  "cmtSignInToReport": "Log in to report",
+  "cmtCommentCount": "{count} comments",
+  "@cmtCommentCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cmtReactFire": "Fire",
+  "cmtReactCrown": "Crown",
+  "cmtReactStrong": "Strong",
+  "cmtReactWow": "Wow",
+  "cmtMatchResultLabel": "Match result",
+  "cmtAchievementLabel": "Achievement",
+  "cmtAnnouncementLabel": "Announcement",
+  "cmtComposeTitle": "New post",
+  "cmtComposeHint": "What's happening in the SentinelX community?",
+  "cmtComposeAddImage": "Add photo",
+  "cmtComposeImagesCount": "{count}/5",
+  "@cmtComposeImagesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cmtComposePost": "Post",
+  "cmtComposePosting": "Posting…",
+  "cmtComposeCancel": "Cancel",
+  "cmtComposeValidation": "Write something or add a photo first.",
+  "cmtComposeRemoveImage": "Remove image",
+  "cmtPostDetailTitle": "Post",
+  "cmtCommentsTitle": "Comments",
+  "cmtCommentsEmpty": "No comments yet.",
+  "cmtCommentsCapNotice": "Showing the first 50 comments.",
+  "cmtCommentHint": "Add a comment…",
+  "cmtCommentSend": "Send",
+  "cmtDeletePost": "Delete post",
+  "cmtDeletePostConfirm": "Delete this post? This can't be undone.",
+  "cmtDeleteComment": "Delete comment",
+  "cmtDeleteCommentConfirm": "Delete this comment?",
+  "cmtDeleteConfirmYes": "Delete",
+  "cmtDeleteConfirmCancel": "Cancel",
+  "cmtBoostAction": "Boost (200 coins)",
+  "cmtBoostConfirmTitle": "Boost this post?",
+  "cmtBoostConfirmBody": "Your post will be pinned to the top of the feed for 24 hours for 200 SX Coins.",
+  "cmtBoostConfirm": "Boost",
+  "cmtBoostSuccess": "Post boosted!",
+  "cmtStatusesTitle": "Stories",
+  "cmtStatusAddYours": "Your story",
+  "cmtStatusPost": "Post story",
+  "cmtStatusCaptionHint": "Add a caption (optional)",
+  "cmtStatusEmpty": "No stories yet.",
+  "cmtStatusViewersTitle": "Viewers",
+  "cmtStatusViewersEmpty": "No one has viewed this yet.",
+  "cmtStatusDelete": "Delete story",
+  "cmtStatusDeleteConfirm": "Delete this story?",
+  "cmtStatusValidation": "Add a photo or a caption.",
+  "cmtChallengesTitle": "Weekly challenges",
+  "cmtChallengesSignedOut": "Log in to track weekly challenges.",
+  "cmtChallengeCompleted": "Completed",
+  "cmtChallengeProgress": "{progress}/{goal}",
+  "@cmtChallengeProgress": {
+    "placeholders": {
+      "progress": {
+        "type": "int"
+      },
+      "goal": {
+        "type": "int"
+      }
+    }
+  },
+  "cmtBestPlayTitle": "Best Play of the Week",
+  "cmtBestPlayEmpty": "No nominations this week.",
+  "cmtBestPlayVote": "Vote",
+  "cmtBestPlayVoted": "Voted",
+  "cmtBestPlayVoteSuccess": "Vote recorded!",
+  "cmtTopMembersTitle": "Top members",
+  "cmtUpcomingEventsTitle": "Upcoming events",
+  "cmtGalleryTitle": "Gallery",
+  "cmtStatsMembers": "{count} members",
+  "@cmtStatsMembers": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cmtStatsCountries": "{count} countries",
+  "@cmtStatsCountries": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cmtStatsTournaments": "{count} tournaments",
+  "@cmtStatsTournaments": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cmtReportPost": "Report post",
+  "cmtReportComment": "Report comment",
+  "cmtReportTitle": "Report content",
+  "cmtReportReasonSpam": "Spam",
+  "cmtReportReasonHarassment": "Harassment",
+  "cmtReportReasonHateSpeech": "Hate speech",
+  "cmtReportReasonNudity": "Nudity or sexual content",
+  "cmtReportReasonViolence": "Violence",
+  "cmtReportReasonMisinformation": "Misinformation",
+  "cmtReportReasonOther": "Other",
+  "cmtReportNoteHint": "Add details (optional)",
+  "cmtReportSubmit": "Submit report",
+  "cmtReportSubmitted": "Report submitted. Thank you.",
+  "cmtEcGeneric": "Something went wrong. Please try again.",
+  "cmtEcNetwork": "No connection. Check your internet and try again.",
+  "cmtEcSession": "Your session expired. Please log in again.",
+  "cmtEcInProgress": "Still processing your request. Please wait a moment and try again.",
+  "cmtEcValidation": "Write something or add a photo first.",
+  "cmtEcNotFound": "This content is no longer available.",
+  "cmtEcForbidden": "You can only do this for your own content.",
+  "cmtEcAlreadyBoosted": "This post is already boosted.",
+  "cmtEcActiveBoostExists": "You already have an active boost on another post.",
+  "cmtEcInsufficientCoins": "Not enough SX Coins to boost.",
+  "cmtEcVotingClosed": "Voting is closed right now.",
+  "cmtEcAlreadyVoted": "You've already voted this week.",
+  "cmtEcAlreadyReported": "You've already reported this.",
+  "cmtEcUploadFailed": "Image upload failed. Please try again."
 }

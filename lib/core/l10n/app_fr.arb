@@ -641,5 +641,149 @@
   "mtcEcLobbyConfirmed": "Ce lobby est confirmé et ne peut plus être modifié.",
   "mtcEcResultConfirmed": "Votre résultat est confirmé et ne peut plus être modifié.",
   "mtcHomeFixtures": "Matchs",
-  "mtcDone": "Terminé"
+  "mtcDone": "Terminé",
+  "cmtTitle": "Communauté",
+  "cmtFeedEmpty": "Aucune publication pour l'instant. Soyez le premier à partager quelque chose !",
+  "cmtFeedLoadError": "Impossible de charger le fil.",
+  "cmtRetry": "Réessayer",
+  "cmtLoadMore": "Charger plus",
+  "cmtPinnedLabel": "Épinglé",
+  "cmtBoostedLabel": "Boosté",
+  "cmtComposeFab": "Nouvelle publication",
+  "cmtSignInToPost": "Connectez-vous pour publier",
+  "cmtSignInToReact": "Connectez-vous pour réagir",
+  "cmtSignInToComment": "Connectez-vous pour commenter",
+  "cmtSignInToVote": "Connectez-vous pour voter",
+  "cmtSignInToReport": "Connectez-vous pour signaler",
+  "cmtCommentCount": "{count} commentaires",
+  "@cmtCommentCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cmtReactFire": "Feu",
+  "cmtReactCrown": "Couronne",
+  "cmtReactStrong": "Fort",
+  "cmtReactWow": "Wow",
+  "cmtMatchResultLabel": "Résultat du match",
+  "cmtAchievementLabel": "Succès",
+  "cmtAnnouncementLabel": "Annonce",
+  "cmtComposeTitle": "Nouvelle publication",
+  "cmtComposeHint": "Que se passe-t-il dans la communauté SentinelX ?",
+  "cmtComposeAddImage": "Ajouter une photo",
+  "cmtComposeImagesCount": "{count}/5",
+  "@cmtComposeImagesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cmtComposePost": "Publier",
+  "cmtComposePosting": "Publication…",
+  "cmtComposeCancel": "Annuler",
+  "cmtComposeValidation": "Écrivez quelque chose ou ajoutez une photo.",
+  "cmtComposeRemoveImage": "Retirer l'image",
+  "cmtPostDetailTitle": "Publication",
+  "cmtCommentsTitle": "Commentaires",
+  "cmtCommentsEmpty": "Aucun commentaire pour l'instant.",
+  "cmtCommentsCapNotice": "Affichage des 50 premiers commentaires.",
+  "cmtCommentHint": "Ajouter un commentaire…",
+  "cmtCommentSend": "Envoyer",
+  "cmtDeletePost": "Supprimer la publication",
+  "cmtDeletePostConfirm": "Supprimer cette publication ? Cette action est irréversible.",
+  "cmtDeleteComment": "Supprimer le commentaire",
+  "cmtDeleteCommentConfirm": "Supprimer ce commentaire ?",
+  "cmtDeleteConfirmYes": "Supprimer",
+  "cmtDeleteConfirmCancel": "Annuler",
+  "cmtBoostAction": "Booster (200 pièces)",
+  "cmtBoostConfirmTitle": "Booster cette publication ?",
+  "cmtBoostConfirmBody": "Votre publication sera épinglée en haut du fil pendant 24 heures pour 200 SX Coins.",
+  "cmtBoostConfirm": "Booster",
+  "cmtBoostSuccess": "Publication boostée !",
+  "cmtStatusesTitle": "Stories",
+  "cmtStatusAddYours": "Votre story",
+  "cmtStatusPost": "Publier la story",
+  "cmtStatusCaptionHint": "Ajouter une légende (facultatif)",
+  "cmtStatusEmpty": "Aucune story pour l'instant.",
+  "cmtStatusViewersTitle": "Vues",
+  "cmtStatusViewersEmpty": "Personne n'a encore vu ceci.",
+  "cmtStatusDelete": "Supprimer la story",
+  "cmtStatusDeleteConfirm": "Supprimer cette story ?",
+  "cmtStatusValidation": "Ajoutez une photo ou une légende.",
+  "cmtChallengesTitle": "Défis hebdomadaires",
+  "cmtChallengesSignedOut": "Connectez-vous pour suivre les défis hebdomadaires.",
+  "cmtChallengeCompleted": "Terminé",
+  "cmtChallengeProgress": "{progress}/{goal}",
+  "@cmtChallengeProgress": {
+    "placeholders": {
+      "progress": {
+        "type": "int"
+      },
+      "goal": {
+        "type": "int"
+      }
+    }
+  },
+  "cmtBestPlayTitle": "Meilleure action de la semaine",
+  "cmtBestPlayEmpty": "Aucune nomination cette semaine.",
+  "cmtBestPlayVote": "Voter",
+  "cmtBestPlayVoted": "Voté",
+  "cmtBestPlayVoteSuccess": "Vote enregistré !",
+  "cmtTopMembersTitle": "Meilleurs membres",
+  "cmtUpcomingEventsTitle": "Événements à venir",
+  "cmtGalleryTitle": "Galerie",
+  "cmtStatsMembers": "{count} membres",
+  "@cmtStatsMembers": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cmtStatsCountries": "{count} pays",
+  "@cmtStatsCountries": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cmtStatsTournaments": "{count} tournois",
+  "@cmtStatsTournaments": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cmtReportPost": "Signaler la publication",
+  "cmtReportComment": "Signaler le commentaire",
+  "cmtReportTitle": "Signaler ce contenu",
+  "cmtReportReasonSpam": "Spam",
+  "cmtReportReasonHarassment": "Harcèlement",
+  "cmtReportReasonHateSpeech": "Discours de haine",
+  "cmtReportReasonNudity": "Nudité ou contenu sexuel",
+  "cmtReportReasonViolence": "Violence",
+  "cmtReportReasonMisinformation": "Désinformation",
+  "cmtReportReasonOther": "Autre",
+  "cmtReportNoteHint": "Ajouter des détails (facultatif)",
+  "cmtReportSubmit": "Envoyer le signalement",
+  "cmtReportSubmitted": "Signalement envoyé. Merci.",
+  "cmtEcGeneric": "Une erreur est survenue. Veuillez réessayer.",
+  "cmtEcNetwork": "Pas de connexion. Vérifiez votre internet et réessayez.",
+  "cmtEcSession": "Votre session a expiré. Reconnectez-vous.",
+  "cmtEcInProgress": "Traitement en cours. Patientez un instant puis réessayez.",
+  "cmtEcValidation": "Écrivez quelque chose ou ajoutez une photo.",
+  "cmtEcNotFound": "Ce contenu n'est plus disponible.",
+  "cmtEcForbidden": "Vous ne pouvez faire cela que pour votre propre contenu.",
+  "cmtEcAlreadyBoosted": "Cette publication est déjà boostée.",
+  "cmtEcActiveBoostExists": "Vous avez déjà un boost actif sur une autre publication.",
+  "cmtEcInsufficientCoins": "Pas assez de SX Coins pour booster.",
+  "cmtEcVotingClosed": "Les votes sont fermés en ce moment.",
+  "cmtEcAlreadyVoted": "Vous avez déjà voté cette semaine.",
+  "cmtEcAlreadyReported": "Vous avez déjà signalé ceci.",
+  "cmtEcUploadFailed": "L'envoi de l'image a échoué. Réessayez."
 }

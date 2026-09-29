@@ -1698,4 +1698,317 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get mtcDone => 'Done';
+
+  @override
+  String get cmtTitle => 'Community';
+
+  @override
+  String get cmtFeedEmpty => 'No posts yet. Be the first to share something!';
+
+  @override
+  String get cmtFeedLoadError => 'Couldn\'t load the feed.';
+
+  @override
+  String get cmtRetry => 'Try again';
+
+  @override
+  String get cmtLoadMore => 'Load more';
+
+  @override
+  String get cmtPinnedLabel => 'Pinned';
+
+  @override
+  String get cmtBoostedLabel => 'Boosted';
+
+  @override
+  String get cmtComposeFab => 'New post';
+
+  @override
+  String get cmtSignInToPost => 'Log in to post';
+
+  @override
+  String get cmtSignInToReact => 'Log in to react';
+
+  @override
+  String get cmtSignInToComment => 'Log in to comment';
+
+  @override
+  String get cmtSignInToVote => 'Log in to vote';
+
+  @override
+  String get cmtSignInToReport => 'Log in to report';
+
+  @override
+  String cmtCommentCount(int count) {
+    return '$count comments';
+  }
+
+  @override
+  String get cmtReactFire => 'Fire';
+
+  @override
+  String get cmtReactCrown => 'Crown';
+
+  @override
+  String get cmtReactStrong => 'Strong';
+
+  @override
+  String get cmtReactWow => 'Wow';
+
+  @override
+  String get cmtMatchResultLabel => 'Match result';
+
+  @override
+  String get cmtAchievementLabel => 'Achievement';
+
+  @override
+  String get cmtAnnouncementLabel => 'Announcement';
+
+  @override
+  String get cmtComposeTitle => 'New post';
+
+  @override
+  String get cmtComposeHint => 'What\'s happening in the SentinelX community?';
+
+  @override
+  String get cmtComposeAddImage => 'Add photo';
+
+  @override
+  String cmtComposeImagesCount(int count) {
+    return '$count/5';
+  }
+
+  @override
+  String get cmtComposePost => 'Post';
+
+  @override
+  String get cmtComposePosting => 'Posting…';
+
+  @override
+  String get cmtComposeCancel => 'Cancel';
+
+  @override
+  String get cmtComposeValidation => 'Write something or add a photo first.';
+
+  @override
+  String get cmtComposeRemoveImage => 'Remove image';
+
+  @override
+  String get cmtPostDetailTitle => 'Post';
+
+  @override
+  String get cmtCommentsTitle => 'Comments';
+
+  @override
+  String get cmtCommentsEmpty => 'No comments yet.';
+
+  @override
+  String get cmtCommentsCapNotice => 'Showing the first 50 comments.';
+
+  @override
+  String get cmtCommentHint => 'Add a comment…';
+
+  @override
+  String get cmtCommentSend => 'Send';
+
+  @override
+  String get cmtDeletePost => 'Delete post';
+
+  @override
+  String get cmtDeletePostConfirm => 'Delete this post? This can\'t be undone.';
+
+  @override
+  String get cmtDeleteComment => 'Delete comment';
+
+  @override
+  String get cmtDeleteCommentConfirm => 'Delete this comment?';
+
+  @override
+  String get cmtDeleteConfirmYes => 'Delete';
+
+  @override
+  String get cmtDeleteConfirmCancel => 'Cancel';
+
+  @override
+  String get cmtBoostAction => 'Boost (200 coins)';
+
+  @override
+  String get cmtBoostConfirmTitle => 'Boost this post?';
+
+  @override
+  String get cmtBoostConfirmBody =>
+      'Your post will be pinned to the top of the feed for 24 hours for 200 SX Coins.';
+
+  @override
+  String get cmtBoostConfirm => 'Boost';
+
+  @override
+  String get cmtBoostSuccess => 'Post boosted!';
+
+  @override
+  String get cmtStatusesTitle => 'Stories';
+
+  @override
+  String get cmtStatusAddYours => 'Your story';
+
+  @override
+  String get cmtStatusPost => 'Post story';
+
+  @override
+  String get cmtStatusCaptionHint => 'Add a caption (optional)';
+
+  @override
+  String get cmtStatusEmpty => 'No stories yet.';
+
+  @override
+  String get cmtStatusViewersTitle => 'Viewers';
+
+  @override
+  String get cmtStatusViewersEmpty => 'No one has viewed this yet.';
+
+  @override
+  String get cmtStatusDelete => 'Delete story';
+
+  @override
+  String get cmtStatusDeleteConfirm => 'Delete this story?';
+
+  @override
+  String get cmtStatusValidation => 'Add a photo or a caption.';
+
+  @override
+  String get cmtChallengesTitle => 'Weekly challenges';
+
+  @override
+  String get cmtChallengesSignedOut => 'Log in to track weekly challenges.';
+
+  @override
+  String get cmtChallengeCompleted => 'Completed';
+
+  @override
+  String cmtChallengeProgress(int progress, int goal) {
+    return '$progress/$goal';
+  }
+
+  @override
+  String get cmtBestPlayTitle => 'Best Play of the Week';
+
+  @override
+  String get cmtBestPlayEmpty => 'No nominations this week.';
+
+  @override
+  String get cmtBestPlayVote => 'Vote';
+
+  @override
+  String get cmtBestPlayVoted => 'Voted';
+
+  @override
+  String get cmtBestPlayVoteSuccess => 'Vote recorded!';
+
+  @override
+  String get cmtTopMembersTitle => 'Top members';
+
+  @override
+  String get cmtUpcomingEventsTitle => 'Upcoming events';
+
+  @override
+  String get cmtGalleryTitle => 'Gallery';
+
+  @override
+  String cmtStatsMembers(int count) {
+    return '$count members';
+  }
+
+  @override
+  String cmtStatsCountries(int count) {
+    return '$count countries';
+  }
+
+  @override
+  String cmtStatsTournaments(int count) {
+    return '$count tournaments';
+  }
+
+  @override
+  String get cmtReportPost => 'Report post';
+
+  @override
+  String get cmtReportComment => 'Report comment';
+
+  @override
+  String get cmtReportTitle => 'Report content';
+
+  @override
+  String get cmtReportReasonSpam => 'Spam';
+
+  @override
+  String get cmtReportReasonHarassment => 'Harassment';
+
+  @override
+  String get cmtReportReasonHateSpeech => 'Hate speech';
+
+  @override
+  String get cmtReportReasonNudity => 'Nudity or sexual content';
+
+  @override
+  String get cmtReportReasonViolence => 'Violence';
+
+  @override
+  String get cmtReportReasonMisinformation => 'Misinformation';
+
+  @override
+  String get cmtReportReasonOther => 'Other';
+
+  @override
+  String get cmtReportNoteHint => 'Add details (optional)';
+
+  @override
+  String get cmtReportSubmit => 'Submit report';
+
+  @override
+  String get cmtReportSubmitted => 'Report submitted. Thank you.';
+
+  @override
+  String get cmtEcGeneric => 'Something went wrong. Please try again.';
+
+  @override
+  String get cmtEcNetwork =>
+      'No connection. Check your internet and try again.';
+
+  @override
+  String get cmtEcSession => 'Your session expired. Please log in again.';
+
+  @override
+  String get cmtEcInProgress =>
+      'Still processing your request. Please wait a moment and try again.';
+
+  @override
+  String get cmtEcValidation => 'Write something or add a photo first.';
+
+  @override
+  String get cmtEcNotFound => 'This content is no longer available.';
+
+  @override
+  String get cmtEcForbidden => 'You can only do this for your own content.';
+
+  @override
+  String get cmtEcAlreadyBoosted => 'This post is already boosted.';
+
+  @override
+  String get cmtEcActiveBoostExists =>
+      'You already have an active boost on another post.';
+
+  @override
+  String get cmtEcInsufficientCoins => 'Not enough SX Coins to boost.';
+
+  @override
+  String get cmtEcVotingClosed => 'Voting is closed right now.';
+
+  @override
+  String get cmtEcAlreadyVoted => 'You\'ve already voted this week.';
+
+  @override
+  String get cmtEcAlreadyReported => 'You\'ve already reported this.';
+
+  @override
+  String get cmtEcUploadFailed => 'Image upload failed. Please try again.';
 }
