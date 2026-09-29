@@ -174,7 +174,9 @@ void main() {
       expect(find.text('This content is no longer available.'), findsOneWidget);
     });
 
-    testWidgets('two rapid taps on the same emoji before the first resolves send exactly one API call', (tester) async {
+    testWidgets(
+        'two rapid taps on the same emoji before the first resolves send exactly one API call, '
+        'end up applied (not rolled back), and show no error', (tester) async {
       final repo = FakeCommunityRepository()..reactionGate = Completer<void>();
       final ctx = await _pumpBar(tester, initial: _post(), repo: repo);
 
@@ -186,6 +188,12 @@ void main() {
 
       repo.reactionGate!.complete();
       await tester.pumpAndSettle();
+
+      // The absorbed second tap is a true no-op: no rollback of the first tap's (successful)
+      // optimistic update, and no spurious error toast for a request that was never sent.
+      expect(ctx.applied.last.reactionCounts.fire, 1);
+      expect(ctx.applied.last.myReaction, ReactionType.fire);
+      expect(find.text('No connection. Check your internet and try again.'), findsNothing);
     });
   });
 }

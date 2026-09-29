@@ -48,8 +48,17 @@ class ReactionBar extends ConsumerWidget {
   final void Function(PostView Function(PostView) transform) onUpdate;
   final VoidCallback onSignInRequired;
 
-  Future<void> _tap(BuildContext context, WidgetRef ref, ReactionType tapped) async {
-    if (ref.read(meProvider).asData?.value == null) {
+  Future<void> _tap(BuildContext context, WidgetRef ref, ReactionType tapped, {required bool signedIn}) async {
+    final scope = 'react:${post.id}';
+    // A tap that arrives while a write is already in flight for this post is a true no-op: the
+    // `IconButton.onPressed: busy ? null : ...` guard only takes effect after a rebuild, so two
+    // taps fired back-to-back (no pump in between) can both reach here first. Without this check,
+    // the second tap would re-apply the optimistic update, have `run()` reject it via its own
+    // busy guard (correctly sending no second request), then treat that rejection as a failure —
+    // rolling back the first tap's still-in-flight (and likely succeeding) update and showing a
+    // spurious error toast.
+    if (ref.read(writeFlowProvider(scope)).busy) return;
+    if (!signedIn) {
       onSignInRequired();
       return;
     }
@@ -59,7 +68,6 @@ class ReactionBar extends ConsumerWidget {
     final before = post;
     onUpdate((_) => before.withMyReaction(next));
     final repo = ref.read(communityRepositoryProvider);
-    final scope = 'react:${post.id}';
     final ok = await ref.read(writeFlowProvider(scope).notifier).run(
           (key) => next == null ? repo.removeReaction(post.id) : repo.setReaction(post.id, next, idempotencyKey: key),
           fingerprint: next?.wireName ?? 'remove',
@@ -76,7 +84,7 @@ class ReactionBar extends ConsumerWidget {
     // Watched (not just read-on-tap) so `meProvider` is already resolved by tap time — a bare
     // `ref.read` in `_tap` would otherwise instantiate it fresh on the first tap and see
     // `AsyncLoading`, which reads as "signed out" and wrongly skips the write.
-    ref.watch(meProvider);
+    final signedIn = ref.watch(meProvider).asData?.value != null;
     final l10n = AppLocalizations.of(context);
     final scope = 'react:${post.id}';
     final busy = ref.watch(writeFlowProvider(scope)).busy;
@@ -88,7 +96,7 @@ class ReactionBar extends ConsumerWidget {
             label: _labelFor(l10n, type),
             child: IconButton(
               key: Key('react-${type.wireName}'),
-              onPressed: busy ? null : () => _tap(context, ref, type),
+              onPressed: busy ? null : () => _tap(context, ref, type, signedIn: signedIn),
               icon: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
