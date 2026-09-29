@@ -64,6 +64,14 @@ class FakeCommunityRepository implements CommunityRepository {
   /// second request).
   Completer<void>? boostGate;
 
+  /// Held open while `postStatus` is awaited, to simulate a request still in flight (e.g. to test
+  /// that the status compose screen blocks back navigation while a story is being posted).
+  Completer<void>? postStatusGate;
+
+  /// Held open while `statusViewers` is awaited (e.g. to test the loading state).
+  Completer<void>? statusViewersGate;
+  Object? statusViewersError;
+
   /// Errors to throw for a write, keyed by method name (e.g. `'createPost'`). Consumed once.
   final Map<String, Object> writeErrors = {};
 
@@ -113,6 +121,8 @@ class FakeCommunityRepository implements CommunityRepository {
   @override
   Future<List<StatusViewer>> statusViewers(String statusId) async {
     calls.add('statusViewers:$statusId');
+    if (statusViewersGate != null) await statusViewersGate!.future;
+    if (statusViewersError != null) throw statusViewersError!;
     return statusViewersList;
   }
 
@@ -192,6 +202,7 @@ class FakeCommunityRepository implements CommunityRepository {
   @override
   Future<String> postStatus({String? imageUrl, String? caption, required String idempotencyKey}) async {
     calls.add('postStatus:$imageUrl:$caption:$idempotencyKey');
+    if (postStatusGate != null) await postStatusGate!.future;
     _maybeThrow('postStatus');
     return newStatusId;
   }
