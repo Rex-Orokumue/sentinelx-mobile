@@ -56,14 +56,17 @@ class FakeNotificationsRepository implements NotificationsRepository {
   @override
   Future<List<BellNotification>> page({required int offset, required int limit}) async {
     pageCalls.add((offset: offset, limit: limit));
+    // The query reads the table when it is issued; a held call only delays the response (so rows inserted
+    // while it is in flight are NOT in it - the realistic case the realtime refresh has to cover).
+    final failing = pageFails;
+    final result = offset >= store.length ? const <BellNotification>[] : store.sublist(offset, (offset + limit).clamp(0, store.length));
     final gate = holdNextPage;
     if (gate != null) {
       holdNextPage = null;
       await gate.future;
     }
-    if (pageFails) throw StateError('page failed');
-    if (offset >= store.length) return const [];
-    return store.sublist(offset, (offset + limit).clamp(0, store.length));
+    if (failing || pageFails) throw StateError('page failed');
+    return result;
   }
 
   @override

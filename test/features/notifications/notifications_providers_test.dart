@@ -4,6 +4,8 @@ import 'package:fake_async/fake_async.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sentinelx_mobile/core/api/notifications_models.dart';
+import 'package:sentinelx_mobile/core/providers.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:sentinelx_mobile/features/notifications/notification_models.dart';
 import 'package:sentinelx_mobile/features/notifications/notifications_providers.dart';
 import 'package:sentinelx_mobile/features/notifications/notifications_realtime.dart';
@@ -184,6 +186,71 @@ void main() {
       expect(ids, hasLength(30));
       expect(ids, containsAll(['new', 'n0', 'n28']));
       expect(r.state!.hasMore, isTrue);
+    });
+  });
+
+  group('review fixes', () {
+    test('pull-to-refresh during loadMore is coordinated: no rows go missing', () async {
+      final repo = FakeNotificationsRepository(rows: _rows(45));
+      final r = _Rig(repo);
+      addTearDown(r.dispose);
+      await r.loaded;
+      await r.notifier.loadMore(); // 40 loaded
+      final gate = repo.holdNextPage = Completer<void>();
+      final more = r.notifier.loadMore(); // offset 40, held
+      await pumpEventQueue();
+      final refreshed = r.notifier.refresh(); // the user pulls to refresh meanwhile
+      gate.complete();
+      await Future.wait([more, refreshed]);
+      await pumpEventQueue();
+      final ids = r.state!.items.map((n) => n.id).toList();
+      expect(ids.toSet().length, ids.length, reason: 'no duplicates');
+      expect(ids, [for (var i = 0; i < ids.length; i++) 'n$i'], reason: 'a contiguous prefix: nothing between rows 20 and 39 is missing');
+      expect(ids.length, greaterThanOrEqualTo(20));
+    });
+
+    test('a realtime event during the very first page load is not dropped', () async {
+      final repo = FakeNotificationsRepository(rows: _rows(3));
+      final gate = repo.holdNextPage = Completer<void>();
+      final r = _Rig(repo);
+      addTearDown(r.dispose);
+      await pumpEventQueue(); // the notifier is now waiting on its first page
+      repo.store = [bell('inserted-meanwhile'), ...repo.store];
+      await r.tick();
+      gate.complete();
+      await r.loaded;
+      await pumpEventQueue();
+      expect(r.state!.items.first.id, 'inserted-meanwhile');
+    });
+
+    test('the real viewer provider: a token-refreshed Session for the same user does not refetch; a different user does', () async {
+      final repo = FakeNotificationsRepository(rows: _rows(3));
+      final session = StreamController<Session?>.broadcast();
+      addTearDown(session.close);
+      var seq = 0;
+      Session sessionFor(String id) => Session(
+            accessToken: 'tok-$id-${seq++}',
+            tokenType: 'bearer',
+            user: User(id: id, appMetadata: const {}, userMetadata: const {}, aud: '', createdAt: ''),
+          );
+      final c = ProviderContainer(retry: (_, _) => null, overrides: [
+        notificationsRepositoryProvider.overrideWithValue(repo),
+        sessionProvider.overrideWith((ref) => session.stream),
+        notificationsRealtimeProvider.overrideWith((ref) => const Stream<int>.empty()),
+      ]);
+      addTearDown(c.dispose);
+      c.listen(sessionProvider, (_, _) {});
+      c.listen(notificationsProvider, (_, _) {});
+      await pumpEventQueue();
+      session.add(sessionFor('u1'));
+      await pumpEventQueue();
+      expect(repo.pageCalls, hasLength(1));
+      session.add(sessionFor('u1')); // token refresh: same user, new Session
+      await pumpEventQueue();
+      expect(repo.pageCalls, hasLength(1), reason: 'keyed on the user id, not the token');
+      session.add(sessionFor('u2'));
+      await pumpEventQueue();
+      expect(repo.pageCalls, hasLength(2));
     });
   });
 

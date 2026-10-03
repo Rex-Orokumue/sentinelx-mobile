@@ -15,8 +15,16 @@ const _pageSize = 20;
 /// watches it, so login/logout/account switch refetches while a token refresh for the same user does not
 /// (keyed on the user id, not the token). Same pattern as `communityViewerIdProvider`; consolidating the
 /// two is deferred. Awaits the session's first value so a signed-in cold start doesn't fetch as a guest.
-final notificationsViewerIdProvider =
-    FutureProvider.autoDispose<String?>((ref) async => (await ref.watch(sessionProvider.future))?.user.id);
+///
+/// It selects the user id out of the session instead of watching the session itself: Supabase re-emits a
+/// brand-new `Session` on every access-token refresh, and depending on that would recompute this provider
+/// (and refetch everything downstream) for the same user.
+final notificationsViewerIdProvider = FutureProvider.autoDispose<String?>((ref) async {
+  final key = ref.watch(sessionProvider.select((s) => (loading: s.isLoading && !s.hasValue, id: s.asData?.value?.user.id)));
+  // First value not in yet: wait for it once (read, not watch - the select above re-runs us when it lands).
+  if (key.loading) return (await ref.read(sessionProvider.future))?.user.id;
+  return key.id;
+});
 
 class BellState {
   const BellState({required this.items, required this.hasMore, this.loadingMore = false});
@@ -38,18 +46,32 @@ class NotificationsNotifier extends AsyncNotifier<BellState> {
   bool _inFlight = false;
   bool _refreshQueued = false;
 
+  // A realtime event that fired while the very first page was still loading: there was no list to refresh
+  // yet, and that page may already have been read before the change.
+  bool _eventDuringFirstLoad = false;
+
   // Rows whose mark-read call is still in flight. A refresh that lands meanwhile re-reads them as unread
   // (the server has not processed the call yet); keep them read so the dot doesn't flicker back.
   final _pendingRead = <String>{};
 
   @override
   Future<BellState> build() async {
+    _eventDuringFirstLoad = false;
     final viewer = await ref.watch(notificationsViewerIdProvider.future);
     if (viewer == null) return BellState.empty;
     ref.listen(notificationsRealtimeProvider, (_, next) {
-      if (next.hasValue) unawaited(refreshInPlace());
+      if (!next.hasValue) return;
+      if (state.value == null) {
+        _eventDuringFirstLoad = true;
+      } else {
+        unawaited(refreshInPlace());
+      }
     });
     final items = await ref.read(notificationsRepositoryProvider).page(offset: 0, limit: _pageSize);
+    if (_eventDuringFirstLoad) {
+      _eventDuringFirstLoad = false;
+      Future<void>(refreshInPlace); // after this build's state lands
+    }
     return BellState(items: items, hasMore: items.length >= _pageSize);
   }
 
@@ -120,7 +142,15 @@ class NotificationsNotifier extends AsyncNotifier<BellState> {
   /// returns false so the screen can say so.
   Future<bool> refresh() async {
     if (!ref.mounted) return false;
+    // Never overlaps loadMore / a background refresh: a reset to page one landing between a loadMore's
+    // request and response would leave a gap in the list. While one is running, queue an in-place refresh
+    // instead; it picks up fresh data as soon as the running one finishes.
+    if (_inFlight) {
+      _refreshQueued = true;
+      return true;
+    }
     final repo = ref.read(notificationsRepositoryProvider);
+    _inFlight = true;
     try {
       final items = await repo.page(offset: 0, limit: _pageSize);
       if (!ref.mounted) return true;
@@ -128,6 +158,12 @@ class NotificationsNotifier extends AsyncNotifier<BellState> {
       return true;
     } catch (_) {
       return false;
+    } finally {
+      _inFlight = false;
+      if (_refreshQueued && ref.mounted) {
+        _refreshQueued = false;
+        unawaited(refreshInPlace());
+      }
     }
   }
 
