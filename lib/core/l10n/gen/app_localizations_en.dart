@@ -2035,4 +2035,80 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cmtEcUploadFailed => 'Image upload failed. Please try again.';
+
+  @override
+  String get authMetaProfile => 'Complete your profile · SentinelX Esports';
+
+  @override
+  String get authProfileStepTitle => 'Complete your profile';
+
+  @override
+  String get authProfileStepSubtitle =>
+      'Tell us where you play and which games you\'re into — we\'ll only reach out about tournaments you actually care about.';
+
+  @override
+  String get profileCountryLabel => 'Country';
+
+  @override
+  String get profileCountryPlaceholder => 'Select your country';
+
+  @override
+  String get profileWhatsappLabel => 'WhatsApp number';
+
+  @override
+  String get profileWhatsappHint => '+2348012345678';
+
+  @override
+  String get profileGamesLabel => 'Which games are you interested in?';
+
+  @override
+  String get profileGamesLoading => 'Loading games…';
+
+  @override
+  String get profileGamesRetry => 'Couldn\'t load games. Try again';
+
+  @override
+  String get profileConsentLabel => 'Receive tournament updates on WhatsApp?';
+
+  @override
+  String get profileConsentYes => 'Yes';
+
+  @override
+  String get profileConsentNo => 'No';
+
+  @override
+  String get profileCountryRequired => 'Select your country.';
+
+  @override
+  String get profileWhatsappRequired => 'Enter your WhatsApp number.';
+
+  @override
+  String get profileWhatsappInvalid =>
+      'Enter a valid WhatsApp number for the selected country.';
+
+  @override
+  String get profileGamesRequired => 'Choose at least one game.';
+
+  @override
+  String get profileConsentRequired => 'Choose yes or no.';
+
+  @override
+  String get profileCountryInvalid => 'Select a country from the list.';
+
+  @override
+  String get profileGameUnavailable =>
+      'One of the games you picked is no longer available. Reload and try again.';
+
+  @override
+  String get profileContinue => 'Continue';
+
+  @override
+  String get profileSaving => 'Saving…';
+
+  @override
+  String get profileSaveFailed =>
+      'Could not save your profile. Please try again.';
+
+  @override
+  String get profileSaved => 'Profile saved.';
 }
