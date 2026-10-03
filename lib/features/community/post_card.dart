@@ -23,12 +23,11 @@ bool _isBoosted(PostView post) {
 /// A single post in the feed. Delete/boost entries are driven solely by the server's
 /// [PostView.canDelete]/[PostView.canBoost] (never inferred from `postType`) and are absent, not
 /// disabled, when not allowed. Report is offered to any signed-in player (own posts included — the
-/// spec imposes no self-report block). [compact] strips the interactive footer and menu for the gallery grid.
+/// spec imposes no self-report block).
 class PostCard extends ConsumerWidget {
-  const PostCard({super.key, required this.post, required this.onTap, required this.onSignInRequired, this.compact = false});
+  const PostCard({super.key, required this.post, required this.onTap, required this.onSignInRequired});
   final PostView post;
   final VoidCallback onTap, onSignInRequired;
-  final bool compact;
 
   Future<void> _confirmDelete(BuildContext context, WidgetRef ref) async {
     final l10n = AppLocalizations.of(context);
@@ -63,7 +62,7 @@ class PostCard extends ConsumerWidget {
     final when = created == null ? post.createdAt : DateFormat.yMMMd(l10n.localeName).add_Hm().format(created);
     final boosted = _isBoosted(post);
     final signedIn = ref.watch(meProvider).asData?.value != null;
-    final hasMenu = !compact && (post.canDelete || post.canBoost || signedIn);
+    final hasMenu = post.canDelete || post.canBoost || signedIn;
     final extraImages = post.imageUrls.where((u) => u != post.imageUrl).toList();
 
     return Card(
@@ -111,7 +110,7 @@ class PostCard extends ConsumerWidget {
                 padding: const EdgeInsets.only(top: 8),
                 child: Image.network(post.imageUrl!, key: const Key('post-image'), errorBuilder: (_, _, _) => const SizedBox.shrink()),
               ),
-            if (!compact && extraImages.isNotEmpty)
+            if (extraImages.isNotEmpty)
               Padding(
                 padding: const EdgeInsets.only(top: 8),
                 child: SizedBox(
@@ -124,8 +123,7 @@ class PostCard extends ConsumerWidget {
                   ),
                 ),
               ),
-            if (!compact)
-              Wrap(alignment: WrapAlignment.spaceBetween, crossAxisAlignment: WrapCrossAlignment.center, children: [
+            Wrap(alignment: WrapAlignment.spaceBetween, crossAxisAlignment: WrapCrossAlignment.center, children: [
                 ReactionBar(
                   post: post,
                   onUpdate: (transform) => ref.read(communityFeedProvider.notifier).updatePost(post.id, transform),

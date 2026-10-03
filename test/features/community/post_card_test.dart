@@ -38,14 +38,13 @@ class _Capture {
   var signInRequired = 0;
 }
 
-Future<_Capture> _pump(WidgetTester tester, PostView post, {bool compact = false, bool signedOut = false, FakeCommunityRepository? repo}) async {
+Future<_Capture> _pump(WidgetTester tester, PostView post, {bool signedOut = false, FakeCommunityRepository? repo}) async {
   final capture = _Capture();
   await pumpCompete(
     tester,
     SingleChildScrollView(
       child: PostCard(
         post: post,
-        compact: compact,
         onTap: () => capture.tapped++,
         onSignInRequired: () => capture.signInRequired++,
       ),
@@ -149,22 +148,13 @@ void main() {
     expect(find.byKey(const Key('post-image')), findsNothing);
   });
 
-  testWidgets('extra images render as a thumbnail strip on the full card only', (tester) async {
+  testWidgets('extra images render as a thumbnail strip', (tester) async {
     final post = _post(imageUrl: 'https://x/a.png', imageUrls: ['https://x/a.png', 'https://x/b.png', 'https://x/c.png']);
     await _pump(tester, post);
     expect(find.byKey(const Key('post-thumb-0')), findsOneWidget);
     expect(find.byKey(const Key('post-thumb-1')), findsOneWidget);
     expect(find.byKey(const Key('post-thumb-2')), findsNothing);
 
-    await _pump(tester, post, compact: true);
-    expect(find.byKey(const Key('post-thumb-0')), findsNothing);
-  });
-
-  testWidgets('compact renders no reaction bar, comment count or menu', (tester) async {
-    await _pump(tester, _post(canDelete: true, canBoost: true), compact: true);
-    expect(find.byType(ReactionBar), findsNothing);
-    expect(find.text('3 comments'), findsNothing);
-    expect(find.byKey(const Key('post-menu-p1')), findsNothing);
   });
 
   testWidgets('tapping the card body calls onTap', (tester) async {

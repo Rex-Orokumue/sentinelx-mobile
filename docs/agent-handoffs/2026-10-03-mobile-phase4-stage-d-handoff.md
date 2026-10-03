@@ -69,13 +69,18 @@ Rulings from Tasks 0-6, 9 and 10 were made in earlier sessions and live in their
 ## Known gaps and honest caveats
 
 - **No device or end-to-end pass has been run.** Everything above is verified against fakes. Report
-  submission and `community_posts` INSERT realtime are now *unblocked* (migration applied) but not
-  *verified live*. There is no staging database; a live pass writes to production, so use `zzqa_`
-  accounts and log them in `TESTING-NOTES.md` per CLAUDE.md, and clean up (`anonymise_account`;
-  also delete any `community_content_reports` rows the pass creates).
+  submission and `community_posts` INSERT realtime are now *unblocked* but not *verified live*.
+  **A staging database exists** (`sentinelx-staging`, `ofxmoxpvwbemfouaowoa`, behind the web repo's
+  staging preview deployment; see `AGENTS.md`) and is the place for write-path testing. Read-only check
+  on 2026-10-03: it already has `community_content_reports`, `community_posts` is in its
+  `supabase_realtime` publication, latest migration `20261003133937`, 0 posts, 10 profiles. This note
+  originally (wrongly) said no staging database exists, following CLAUDE.md's older wording. The app's
+  defaults point at production; running against staging needs `SUPABASE_URL`,
+  `SUPABASE_PUBLISHABLE_KEY` and `API_BASE_URL` (the preview deployment) via `--dart-define`; there is
+  no committed `config/staging.json`. Never run the write-path pass against production.
 - **The plan's fresh-context review pass was not done.** Recommend running it before relying on this.
-- `PostCard.compact` exists per the plan but nothing uses it: the gallery renders `GalleryItem`
-  (not `PostView`), so it draws plain thumbnails. Dead code until a caller needs it.
+- `PostCard.compact` (in the plan) was removed as dead code: the gallery renders `GalleryItem` (not
+  `PostView`), so it draws plain thumbnails and nothing ever used it.
 - Not built, by design (spec): all staff moderation and the report review queue (Phase 8), threaded
   comments (no `parent_comment_id`), a player "submit challenge progress" action (none exists), and
   editing posts/comments (no endpoint).
