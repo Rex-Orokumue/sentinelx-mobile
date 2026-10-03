@@ -3787,6 +3787,150 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Image upload failed. Please try again.'**
   String get cmtEcUploadFailed;
+
+  /// No description provided for @authMetaProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete your profile · SentinelX Esports'**
+  String get authMetaProfile;
+
+  /// No description provided for @authProfileStepTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete your profile'**
+  String get authProfileStepTitle;
+
+  /// No description provided for @authProfileStepSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us where you play and which games you\'re into — we\'ll only reach out about tournaments you actually care about.'**
+  String get authProfileStepSubtitle;
+
+  /// No description provided for @profileCountryLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Country'**
+  String get profileCountryLabel;
+
+  /// No description provided for @profileCountryPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Select your country'**
+  String get profileCountryPlaceholder;
+
+  /// No description provided for @profileWhatsappLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp number'**
+  String get profileWhatsappLabel;
+
+  /// No description provided for @profileWhatsappHint.
+  ///
+  /// In en, this message translates to:
+  /// **'+2348012345678'**
+  String get profileWhatsappHint;
+
+  /// No description provided for @profileGamesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Which games are you interested in?'**
+  String get profileGamesLabel;
+
+  /// No description provided for @profileGamesLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading games…'**
+  String get profileGamesLoading;
+
+  /// No description provided for @profileGamesRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load games. Try again'**
+  String get profileGamesRetry;
+
+  /// No description provided for @profileConsentLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Receive tournament updates on WhatsApp?'**
+  String get profileConsentLabel;
+
+  /// No description provided for @profileConsentYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get profileConsentYes;
+
+  /// No description provided for @profileConsentNo.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get profileConsentNo;
+
+  /// No description provided for @profileCountryRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Select your country.'**
+  String get profileCountryRequired;
+
+  /// No description provided for @profileWhatsappRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your WhatsApp number.'**
+  String get profileWhatsappRequired;
+
+  /// No description provided for @profileWhatsappInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid WhatsApp number for the selected country.'**
+  String get profileWhatsappInvalid;
+
+  /// No description provided for @profileGamesRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose at least one game.'**
+  String get profileGamesRequired;
+
+  /// No description provided for @profileConsentRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose yes or no.'**
+  String get profileConsentRequired;
+
+  /// No description provided for @profileCountryInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a country from the list.'**
+  String get profileCountryInvalid;
+
+  /// No description provided for @profileGameUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'One of the games you picked is no longer available. Reload and try again.'**
+  String get profileGameUnavailable;
+
+  /// No description provided for @profileContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get profileContinue;
+
+  /// No description provided for @profileSaving.
+  ///
+  /// In en, this message translates to:
+  /// **'Saving…'**
+  String get profileSaving;
+
+  /// No description provided for @profileSaveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not save your profile. Please try again.'**
+  String get profileSaveFailed;
+
+  /// No description provided for @profileSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile saved.'**
+  String get profileSaved;
 }
 
 class _AppLocalizationsDelegate

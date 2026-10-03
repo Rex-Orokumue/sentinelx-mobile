@@ -2060,4 +2060,81 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get cmtEcUploadFailed => 'L\'envoi de l\'image a échoué. Réessayez.';
+
+  @override
+  String get authMetaProfile => 'Complétez votre profil · SentinelX Esports';
+
+  @override
+  String get authProfileStepTitle => 'Complétez votre profil';
+
+  @override
+  String get authProfileStepSubtitle =>
+      'Dites-nous où vous jouez et quels jeux vous intéressent — nous ne vous contacterons qu\'au sujet des tournois qui vous concernent vraiment.';
+
+  @override
+  String get profileCountryLabel => 'Pays';
+
+  @override
+  String get profileCountryPlaceholder => 'Sélectionnez votre pays';
+
+  @override
+  String get profileWhatsappLabel => 'Numéro WhatsApp';
+
+  @override
+  String get profileWhatsappHint => '+2348012345678';
+
+  @override
+  String get profileGamesLabel => 'Quels jeux vous intéressent ?';
+
+  @override
+  String get profileGamesLoading => 'Chargement des jeux…';
+
+  @override
+  String get profileGamesRetry => 'Impossible de charger les jeux. Réessayer';
+
+  @override
+  String get profileConsentLabel =>
+      'Recevoir les actualités des tournois sur WhatsApp ?';
+
+  @override
+  String get profileConsentYes => 'Oui';
+
+  @override
+  String get profileConsentNo => 'Non';
+
+  @override
+  String get profileCountryRequired => 'Sélectionnez votre pays.';
+
+  @override
+  String get profileWhatsappRequired => 'Saisissez votre numéro WhatsApp.';
+
+  @override
+  String get profileWhatsappInvalid =>
+      'Saisissez un numéro WhatsApp valide pour le pays sélectionné.';
+
+  @override
+  String get profileGamesRequired => 'Choisissez au moins un jeu.';
+
+  @override
+  String get profileConsentRequired => 'Choisissez oui ou non.';
+
+  @override
+  String get profileCountryInvalid => 'Sélectionnez un pays dans la liste.';
+
+  @override
+  String get profileGameUnavailable =>
+      'L\'un des jeux choisis n\'est plus disponible. Rechargez et réessayez.';
+
+  @override
+  String get profileContinue => 'Continuer';
+
+  @override
+  String get profileSaving => 'Enregistrement…';
+
+  @override
+  String get profileSaveFailed =>
+      'Impossible d\'enregistrer votre profil. Réessayez.';
+
+  @override
+  String get profileSaved => 'Profil enregistré.';
 }
