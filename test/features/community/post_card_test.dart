@@ -38,7 +38,7 @@ class _Capture {
   var signInRequired = 0;
 }
 
-Future<_Capture> _pump(WidgetTester tester, PostView post, {bool compact = false, FakeCommunityRepository? repo}) async {
+Future<_Capture> _pump(WidgetTester tester, PostView post, {bool compact = false, bool signedOut = false, FakeCommunityRepository? repo}) async {
   final capture = _Capture();
   await pumpCompete(
     tester,
@@ -51,7 +51,7 @@ Future<_Capture> _pump(WidgetTester tester, PostView post, {bool compact = false
       ),
     ),
     overrides: [
-      ...competeBaseOverrides(),
+      ...competeBaseOverrides(signedOut: signedOut),
       communityRepositoryProvider.overrideWithValue(repo ?? FakeCommunityRepository()),
     ],
   );
@@ -91,9 +91,40 @@ void main() {
     expect(find.text('Boosted'), findsNothing);
   });
 
-  testWidgets('canDelete and canBoost both false render no menu at all', (tester) async {
-    await _pump(tester, _post(canDelete: false, canBoost: false));
+  testWidgets('signed out with no permissions renders no menu at all', (tester) async {
+    await _pump(tester, _post(canDelete: false, canBoost: false), signedOut: true);
     expect(find.byKey(const Key('post-menu-p1')), findsNothing);
+  });
+
+  testWidgets('signed in with no permissions still offers report, and only report', (tester) async {
+    await _pump(tester, _post(canDelete: false, canBoost: false));
+    await tester.tap(find.byKey(const Key('post-menu-p1')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('post-report-p1')), findsOneWidget);
+    expect(find.byKey(const Key('post-delete-p1')), findsNothing);
+    expect(find.byKey(const Key('post-boost-p1')), findsNothing);
+  });
+
+  testWidgets('signed out never offers report even with other entries', (tester) async {
+    await _pump(tester, _post(canDelete: true), signedOut: true);
+    await tester.tap(find.byKey(const Key('post-menu-p1')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('post-report-p1')), findsNothing);
+  });
+
+  testWidgets('choosing report opens the sheet and submits a post report', (tester) async {
+    final repo = FakeCommunityRepository();
+    await _pump(tester, _post(), repo: repo);
+    await tester.tap(find.byKey(const Key('post-menu-p1')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('post-report-p1')));
+    await tester.pumpAndSettle();
+    expect(find.text('Report content'), findsOneWidget);
+    await tester.tap(find.byKey(const Key('report-reason-spam')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('report-submit')));
+    await tester.pumpAndSettle();
+    expect(repo.calls.where((c) => c.startsWith('reportPost:p1:spam')), hasLength(1));
   });
 
   testWidgets('delete-only post offers delete and no boost', (tester) async {

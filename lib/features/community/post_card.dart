@@ -4,14 +4,16 @@ import 'package:intl/intl.dart';
 
 import '../../core/api/community_models.dart';
 import '../../core/l10n/gen/app_localizations.dart';
+import '../../core/providers.dart';
 import '../../core/utils/write_flow.dart';
 import '../../shared/widgets/player_avatar.dart';
 import 'boost_sheet.dart';
 import 'community_error_copy.dart';
 import 'community_providers.dart';
 import 'reaction_bar.dart';
+import 'report_sheet.dart';
 
-enum _PostAction { boost, delete }
+enum _PostAction { boost, delete, report }
 
 bool _isBoosted(PostView post) {
   final until = post.boostedUntil == null ? null : DateTime.tryParse(post.boostedUntil!);
@@ -20,7 +22,8 @@ bool _isBoosted(PostView post) {
 
 /// A single post in the feed. Delete/boost entries are driven solely by the server's
 /// [PostView.canDelete]/[PostView.canBoost] (never inferred from `postType`) and are absent, not
-/// disabled, when not allowed. [compact] strips the interactive footer and menu for the gallery grid.
+/// disabled, when not allowed. Report is offered to any signed-in player (own posts included — the
+/// spec imposes no self-report block). [compact] strips the interactive footer and menu for the gallery grid.
 class PostCard extends ConsumerWidget {
   const PostCard({super.key, required this.post, required this.onTap, required this.onSignInRequired, this.compact = false});
   final PostView post;
@@ -59,7 +62,8 @@ class PostCard extends ConsumerWidget {
     final created = DateTime.tryParse(post.createdAt)?.toLocal();
     final when = created == null ? post.createdAt : DateFormat.yMMMd(l10n.localeName).add_Hm().format(created);
     final boosted = _isBoosted(post);
-    final hasMenu = !compact && (post.canDelete || post.canBoost);
+    final signedIn = ref.watch(meProvider).asData?.value != null;
+    final hasMenu = !compact && (post.canDelete || post.canBoost || signedIn);
     final extraImages = post.imageUrls.where((u) => u != post.imageUrl).toList();
 
     return Card(
@@ -84,10 +88,12 @@ class PostCard extends ConsumerWidget {
                   onSelected: (action) => switch (action) {
                     _PostAction.boost => showBoostSheet(context, post: post),
                     _PostAction.delete => _confirmDelete(context, ref),
+                    _PostAction.report => showReportSheet(context, target: ReportTarget.post(post.id)),
                   },
                   itemBuilder: (_) => [
                     if (post.canBoost) PopupMenuItem(key: Key('post-boost-${post.id}'), value: _PostAction.boost, child: Text(l10n.cmtBoostAction)),
                     if (post.canDelete) PopupMenuItem(key: Key('post-delete-${post.id}'), value: _PostAction.delete, child: Text(l10n.cmtDeletePost)),
+                    if (signedIn) PopupMenuItem(key: Key('post-report-${post.id}'), value: _PostAction.report, child: Text(l10n.cmtReportPost)),
                   ],
                 ),
             ]),
