@@ -23,6 +23,15 @@ void main() {
     expect(evaluateAuthRedirect(gate(onboardingGate: OnboardingGate.username), '/onboarding/username'), isNull);
   });
 
+  test('a signed-in user who needs a profile is sent to profile onboarding without a loop', () {
+    expect(evaluateAuthRedirect(gate(onboardingGate: OnboardingGate.profile), '/account'), '/onboarding/profile');
+    expect(evaluateAuthRedirect(gate(onboardingGate: OnboardingGate.profile), '/onboarding/profile'), isNull);
+  });
+
+  test('username onboarding stays reachable while the later profile gate is open', () {
+    expect(evaluateAuthRedirect(gate(onboardingGate: OnboardingGate.profile), '/onboarding/username'), isNull);
+  });
+
   test('exempt routes stay reachable even when the gate says username is needed', () {
     expect(evaluateAuthRedirect(gate(onboardingGate: OnboardingGate.username), '/debug'), isNull);
     expect(evaluateAuthRedirect(gate(onboardingGate: OnboardingGate.username), '/reset-password'), isNull);
@@ -30,6 +39,7 @@ void main() {
 
   test('an already-onboarded user is redirected away from the onboarding screen', () {
     expect(evaluateAuthRedirect(gate(), '/onboarding/username'), '/');
+    expect(evaluateAuthRedirect(gate(), '/onboarding/profile'), '/');
   });
 
   test('an already-onboarded user browsing anywhere else is left alone', () {

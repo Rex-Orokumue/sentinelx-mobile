@@ -13,18 +13,23 @@ class AuthGateSnapshot {
 // - /debug (dev sign-in tool, exists only when debugTools is true)
 // - /reset-password (a recovery link establishes a session locally via
 //   verifyOtp before the user has necessarily finished onboarding)
-const _onboardingExempt = {'/onboarding/username', '/debug', '/reset-password'};
+const _alwaysGateExempt = {'/debug', '/reset-password'};
+const _onboardingRoutes = {'/onboarding/username', '/onboarding/profile'};
 
 /// The single place the router's onboarding enforcement is decided. Pure and
 /// synchronous so it is unit-testable without GoRouter or Riverpod; see
 /// buildAppRouter's `authGate` param for how a live snapshot is supplied.
 String? evaluateAuthRedirect(AuthGateSnapshot gate, String location) {
   if (gate.isLoading || !gate.isSignedIn) return null;
-  final onOnboarding = location == '/onboarding/username';
+  if (_alwaysGateExempt.contains(location)) return null;
   if (gate.onboardingGate == OnboardingGate.username) {
-    if (onOnboarding || _onboardingExempt.contains(location)) return null;
+    if (location == '/onboarding/username') return null;
     return '/onboarding/username';
   }
-  if (onOnboarding) return '/';
+  if (gate.onboardingGate == OnboardingGate.profile) {
+    if (_onboardingRoutes.contains(location)) return null;
+    return '/onboarding/profile';
+  }
+  if (_onboardingRoutes.contains(location)) return '/';
   return null;
 }
