@@ -9,6 +9,9 @@ class MeProfile {
     required this.membershipTier,
     required this.kycVerified,
     required this.deletionRequestedAt,
+    this.profileCompletedAt,
+    this.consentWhatsappUpdates = false,
+    this.gameInterests = const [],
   });
 
   factory MeProfile.fromJson(Map<String, dynamic> j) => MeProfile(
@@ -21,6 +24,9 @@ class MeProfile {
         membershipTier: j['membershipTier'] as String?,
         kycVerified: j['kycVerified'] as bool,
         deletionRequestedAt: j['deletionRequestedAt'] as String?,
+        profileCompletedAt: j['profileCompletedAt'] as String?,
+        consentWhatsappUpdates: j['consentWhatsappUpdates'] as bool,
+        gameInterests: (j['gameInterests'] as List<dynamic>).cast<String>(),
       );
 
   final String? username;
@@ -32,6 +38,9 @@ class MeProfile {
   final String? membershipTier;
   final bool kycVerified;
   final String? deletionRequestedAt;
+  final String? profileCompletedAt;
+  final bool consentWhatsappUpdates;
+  final List<String> gameInterests;
 }
 
 class MeResponse {

@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sentinelx_mobile/core/api/api_client.dart';
+import 'package:sentinelx_mobile/core/api/profile_onboarding_models.dart';
 
 class _FakeAdapter implements HttpClientAdapter {
   _FakeAdapter(this.respond);
@@ -111,6 +112,7 @@ void main() {
             'profile': {
               'username': 'ada', 'displayName': 'Ada', 'avatarUrl': null, 'whatsappNumber': null, 'country': 'NG',
               'locale': 'en', 'membershipTier': 'guardian', 'kycVerified': false, 'deletionRequestedAt': null,
+              'profileCompletedAt': null, 'consentWhatsappUpdates': false, 'gameInterests': <String>[],
             },
           },
         }));
@@ -119,6 +121,27 @@ void main() {
     expect(me.isAdmin, isFalse);
     expect(me.roles, ['moderator']);
     expect(me.profile?.username, 'ada');
+    expect(me.profile?.profileCompletedAt, isNull);
+    expect(me.profile?.consentWhatsappUpdates, isFalse);
+    expect(me.profile?.gameInterests, isEmpty);
+  });
+
+  test('postOnboardingProfile sends the required body and parses completion', () async {
+    final adapter = _FakeAdapter((_) => _json(200, {
+          'data': {'profileCompletedAt': '2026-10-03T15:47:47.857216+00:00'},
+        }));
+    final result = await _client(adapter).postOnboardingProfile(const ProfileOnboardingInput(
+      country: 'Nigeria', whatsapp: '0801 234 5678', consentWhatsappUpdates: false,
+      gameInterests: ['74db07fa-e711-4e78-a982-2863a45137f1'],
+    ));
+    final request = adapter.requests.single;
+    expect(request.method, 'POST');
+    expect(request.path, '/api/mobile/v1/onboarding/profile');
+    expect(request.data, {
+      'country': 'Nigeria', 'whatsapp': '0801 234 5678', 'consentWhatsappUpdates': false,
+      'gameInterests': ['74db07fa-e711-4e78-a982-2863a45137f1'],
+    });
+    expect(result.profileCompletedAt, '2026-10-03T15:47:47.857216+00:00');
   });
 
   test('postClientError sends the documented body', () async {

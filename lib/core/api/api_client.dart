@@ -6,6 +6,7 @@ import 'compete_models.dart';
 import 'match_models.dart';
 import 'models.dart';
 import 'players_models.dart';
+import 'profile_onboarding_models.dart';
 import 'progress_models.dart';
 import 'registration_fields_models.dart';
 
@@ -48,6 +49,7 @@ class ApiClient {
     'postAuthRequestReset': 'post /api/mobile/v1/auth/request-reset',
     'postSessionStart': 'post /api/mobile/v1/session/start',
     'postOnboardingUsername': 'post /api/mobile/v1/onboarding/username',
+    'postOnboardingProfile': 'post /api/mobile/v1/onboarding/profile',
     'getHome': 'get /api/mobile/v1/home',
     'getTournamentRegistrationState': 'get /api/mobile/v1/tournaments/{id}/registration-state',
     'postTournamentRegister': 'post /api/mobile/v1/tournaments/{id}/register',
@@ -219,6 +221,13 @@ class ApiClient {
     '/me',
     (d) => MeResponse.fromJson(d! as Map<String, dynamic>),
   );
+
+  Future<ProfileOnboardingResult> postOnboardingProfile(ProfileOnboardingInput input) => _send(
+        'POST',
+        '/onboarding/profile',
+        (d) => ProfileOnboardingResult.fromJson(d! as Map<String, dynamic>),
+        body: input.toJson(),
+      );
 
   Future<void> postClientError({
     required String message,
