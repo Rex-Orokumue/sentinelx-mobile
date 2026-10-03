@@ -64,6 +64,9 @@ class FakeCommunityRepository implements CommunityRepository {
   /// second request).
   Completer<void>? boostGate;
 
+  /// Held open while `reportPost`/`reportComment` is awaited, to simulate a request in flight.
+  Completer<void>? reportGate;
+
   /// Held open while `postStatus` is awaited, to simulate a request still in flight (e.g. to test
   /// that the status compose screen blocks back navigation while a story is being posted).
   Completer<void>? postStatusGate;
@@ -228,12 +231,14 @@ class FakeCommunityRepository implements CommunityRepository {
   @override
   Future<void> reportPost(String id, {required ReportReasonCode reasonCode, String? note, required String idempotencyKey}) async {
     calls.add('reportPost:$id:${reasonCode.wireName}:$note:$idempotencyKey');
+    if (reportGate != null) await reportGate!.future;
     _maybeThrow('reportPost');
   }
 
   @override
   Future<void> reportComment(String id, {required ReportReasonCode reasonCode, String? note, required String idempotencyKey}) async {
     calls.add('reportComment:$id:${reasonCode.wireName}:$note:$idempotencyKey');
+    if (reportGate != null) await reportGate!.future;
     _maybeThrow('reportComment');
   }
 }
