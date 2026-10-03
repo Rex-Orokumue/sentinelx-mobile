@@ -32,6 +32,7 @@ import '../features/rankings/rankings_screen.dart';
 import '../features/seasons/seasons_list_screen.dart';
 import '../features/seasons/season_detail_screen.dart';
 import '../features/hall_of_fame/hall_of_fame_screen.dart';
+import '../features/notifications/notifications_screen.dart';
 import '../features/onboarding/onboarding_username_screen.dart';
 import '../features/players/follow_list_screen.dart';
 import '../features/players/player_profile_screen.dart';
@@ -130,6 +131,7 @@ GoRouter buildAppRouter({
       ),
       GoRoute(path: '/invitations', builder: (context, state) => const InvitationsScreen()),
       GoRoute(path: '/games', builder: (context, state) => const GamesScreen()),
+      GoRoute(path: '/notifications', builder: (context, state) => const NotificationsScreen()),
       GoRoute(
         path: '/lobbies/:id/result',
         builder: (context, state) =>
