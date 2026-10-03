@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sentinelx_mobile/core/api/api_client.dart';
 import 'package:sentinelx_mobile/core/api/community_models.dart';
+import 'package:sentinelx_mobile/core/providers.dart';
 import 'package:sentinelx_mobile/features/community/boost_sheet.dart';
 import 'package:sentinelx_mobile/features/community/community_providers.dart';
 
@@ -31,6 +32,7 @@ Future<FakeCommunityRepository> _pump(WidgetTester tester, {FakeCommunityReposit
     }),
     overrides: [
       communityRepositoryProvider.overrideWithValue(fake),
+      sessionProvider.overrideWith((ref) => Stream.value(null)),
     ],
   );
   await tester.pumpAndSettle();

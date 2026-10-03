@@ -196,4 +196,46 @@ void main() {
       throwsA(isA<ApiException>().having((e) => e.code, 'code', 'insufficient_coins').having((e) => e.status, 'status', 400)),
     );
   });
+
+  // The web handlers for these five read `ctx?.userId` (optional auth) to fill caller-specific
+  // fields: myReaction, canDelete/canBoost, isSelf/hasUnseen, myVoteNominationId. Dropping the
+  // bearer token silently turns every one of those into the anonymous answer.
+  test('viewer-specific community reads send the bearer token', () async {
+    final a = _FakeAdapter((_) => _json(200, {'data': <String, dynamic>{}}));
+    final api = _client(a);
+    Future<void> call(Future<Object?> f) async {
+      try {
+        await f;
+      } catch (_) {/* shape is irrelevant here; only the request headers are under test */}
+    }
+
+    await call(api.getCommunityFeed());
+    await call(api.getCommunityPost('p1'));
+    await call(api.getCommunityPostComments('p1'));
+    await call(api.getCommunityStatuses());
+    await call(api.getCommunityBestPlay());
+    expect(a.requests, hasLength(5));
+    for (final r in a.requests) {
+      expect(r.headers['Authorization'], 'Bearer tok', reason: r.uri.path);
+    }
+  });
+
+  test('caller-independent community reads stay anonymous', () async {
+    final a = _FakeAdapter((_) => _json(200, {'data': <String, dynamic>{}}));
+    final api = _client(a);
+    Future<void> call(Future<Object?> f) async {
+      try {
+        await f;
+      } catch (_) {/* shape is irrelevant here */}
+    }
+
+    await call(api.getCommunityGallery());
+    await call(api.getCommunityStats());
+    await call(api.getCommunityTopMembers());
+    await call(api.getCommunityUpcomingEvents());
+    expect(a.requests, hasLength(4));
+    for (final r in a.requests) {
+      expect(r.headers.containsKey('Authorization'), isFalse, reason: r.uri.path);
+    }
+  });
 }

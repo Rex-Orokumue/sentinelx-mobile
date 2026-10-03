@@ -574,23 +574,23 @@ class ApiClient {
   Future<MeSummary> getMeSummary() => _send('GET', '/me/summary', (d) => MeSummary.fromJson(d! as Map<String, dynamic>));
 
   // Phase 4: Community feed, posts, reactions, comments, statuses, challenges, best-play,
-  // top members, upcoming events, gallery, stats. Every read here is publicRequest: true
-  // except getCommunityChallenges/getCommunityStatusViewers, which need the caller's own
-  // progress/viewer identity. Every idempotent write takes an Idempotency-Key header.
+  // top members, upcoming events, gallery, stats. The reads whose handlers fill caller-specific fields
+  // (feed, post, comments, statuses, best-play: myReaction, canDelete/canBoost, isSelf/hasUnseen,
+  // myVoteNominationId) send the bearer token like any authenticated call; the web handlers treat it
+  // as optional. Only the caller-independent reads (top members, events, gallery, stats) are
+  // publicRequest: true. Every idempotent write takes an Idempotency-Key header.
   Future<CommunityFeedPage> getCommunityFeed({int offset = 0, int limit = 20}) => _send(
         'GET',
         offset == 0 && limit == 20
             ? '/community/feed'
             : _withQuery('/community/feed', {'offset': offset, 'limit': limit}),
         (d) => CommunityFeedPage.fromJson(d! as Map<String, dynamic>),
-        publicRequest: true,
       );
 
   Future<CommunityPostDetail> getCommunityPost(String id) => _send(
         'GET',
         '/community/posts/${Uri.encodeComponent(id)}',
         (d) => CommunityPostDetail.fromJson(d! as Map<String, dynamic>),
-        publicRequest: true,
       );
 
   Future<List<CommentView>> getCommunityPostComments(String id) => _send(
@@ -599,7 +599,6 @@ class ApiClient {
         (d) => ((d! as Map<String, dynamic>)['comments'] as List<dynamic>)
             .map((e) => CommentView.fromJson(e as Map<String, dynamic>))
             .toList(),
-        publicRequest: true,
       );
 
   Future<ChallengesWidget?> getCommunityChallenges() => _send(
@@ -612,7 +611,6 @@ class ApiClient {
         'GET',
         '/community/best-play',
         (d) => d == null ? null : BestPlayBanner.fromJson(d as Map<String, dynamic>),
-        publicRequest: true,
       );
 
   Future<List<StatusRing>> getCommunityStatuses() => _send(
@@ -621,7 +619,6 @@ class ApiClient {
         (d) => ((d! as Map<String, dynamic>)['rings'] as List<dynamic>)
             .map((e) => StatusRing.fromJson(e as Map<String, dynamic>))
             .toList(),
-        publicRequest: true,
       );
 
   Future<List<StatusViewer>> getCommunityStatusViewers(String id) => _send(

@@ -6,6 +6,14 @@ import 'community_repository.dart';
 
 const _pageSize = 20;
 
+/// Who is looking: the signed-in user's id, or null for a guest. The feed, post detail, status rings
+/// and best-play answers carry caller-specific fields (myReaction, canDelete/canBoost, isSelf/hasUnseen,
+/// myVoteNominationId), so each of those providers watches this and rebuilds on login/logout instead of
+/// serving the previous viewer's answer. Keyed on the user id, not the token, so a token refresh for
+/// the same user does not refetch. Awaits the session's first value so a signed-in cold start doesn't
+/// fetch once as a guest and again as the user.
+final communityViewerIdProvider = FutureProvider.autoDispose<String?>((ref) async => (await ref.watch(sessionProvider.future))?.user.id);
+
 class CommunityFeedState {
   const CommunityFeedState({required this.pinned, required this.posts, required this.hasMore, this.loadingMore = false});
   final List<PostView> pinned, posts;
@@ -19,6 +27,7 @@ class CommunityFeedNotifier extends AsyncNotifier<CommunityFeedState> {
 
   @override
   Future<CommunityFeedState> build() async {
+    await ref.watch(communityViewerIdProvider.future);
     final page = await ref.watch(communityRepositoryProvider).feed(offset: 0, limit: _pageSize);
     return CommunityFeedState(pinned: page.pinned, posts: page.posts, hasMore: page.hasMore);
   }
@@ -81,7 +90,10 @@ class CommunityPostDetailNotifier extends AsyncNotifier<CommunityPostDetail> {
   final String postId;
 
   @override
-  Future<CommunityPostDetail> build() => ref.watch(communityRepositoryProvider).postDetail(postId);
+  Future<CommunityPostDetail> build() async {
+    await ref.watch(communityViewerIdProvider.future);
+    return ref.watch(communityRepositoryProvider).postDetail(postId);
+  }
 
   void updatePost(PostView Function(PostView) transform) {
     final current = state.value;
@@ -121,9 +133,15 @@ final communityChallengesProvider = FutureProvider.autoDispose<ChallengesWidget?
   return ref.watch(communityRepositoryProvider).challenges();
 });
 
-final communityBestPlayProvider = FutureProvider.autoDispose<BestPlayBanner?>((ref) => ref.watch(communityRepositoryProvider).bestPlay());
+final communityBestPlayProvider = FutureProvider.autoDispose<BestPlayBanner?>((ref) async {
+  await ref.watch(communityViewerIdProvider.future);
+  return ref.watch(communityRepositoryProvider).bestPlay();
+});
 
-final communityStatusRingsProvider = FutureProvider.autoDispose<List<StatusRing>>((ref) => ref.watch(communityRepositoryProvider).statuses());
+final communityStatusRingsProvider = FutureProvider.autoDispose<List<StatusRing>>((ref) async {
+  await ref.watch(communityViewerIdProvider.future);
+  return ref.watch(communityRepositoryProvider).statuses();
+});
 
 final communityStatusViewersProvider = FutureProvider.autoDispose.family<List<StatusViewer>, String>(
   (ref, id) => ref.watch(communityRepositoryProvider).statusViewers(id),

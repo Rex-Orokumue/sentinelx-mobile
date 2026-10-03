@@ -6,9 +6,11 @@ import 'package:sentinelx_mobile/core/api/community_models.dart';
 import 'package:sentinelx_mobile/core/api/models.dart';
 import 'package:sentinelx_mobile/core/providers.dart';
 import 'package:sentinelx_mobile/features/community/community_providers.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../fakes/fake_community_repository.dart';
 import '../../support/community_fixtures.dart';
+import '../../support/pump_compete.dart' show testSession;
 
 PostView _post(String id, {bool isPinned = false, int commentCount = 0}) =>
     PostView.fromJson(postViewJson(id: id, isPinned: isPinned, commentCount: commentCount));
@@ -23,14 +25,16 @@ CommunityPostDetail _detail(PostView post, {List<CommentView> comments = const [
 
 /// Keeps an autoDispose provider alive for the test, like a mounted screen would.
 class _Rig {
-  factory _Rig({FakeCommunityRepository? repo, MeResponse? me}) => _Rig._(repo ?? FakeCommunityRepository(), me);
+  factory _Rig({FakeCommunityRepository? repo, MeResponse? me, Stream<Session?>? session}) =>
+      _Rig._(repo ?? FakeCommunityRepository(), me, session ?? Stream.value(null));
 
-  _Rig._(this.repo, MeResponse? me)
+  _Rig._(this.repo, MeResponse? me, Stream<Session?> session)
       : container = ProviderContainer(
           retry: (_, _) => null,
           overrides: [
             communityRepositoryProvider.overrideWithValue(repo),
             meProvider.overrideWith((ref) async => me),
+            sessionProvider.overrideWith((ref) => session),
           ],
         );
 
@@ -226,6 +230,53 @@ void main() {
 
       expect(result, isNotNull);
       expect(repo.calls, ['challenges']);
+    });
+  });
+
+  group('viewer-specific providers follow the signed-in user', () {
+    test('login and logout each refetch feed, post detail, status rings and best play', () async {
+      final repo = FakeCommunityRepository(
+        feedPage: _page(posts: [_post('p1')]),
+        postDetails: {'p1': _detail(_post('p1'))},
+      );
+      final session = StreamController<Session?>();
+      addTearDown(session.close);
+      final r = _Rig(repo: repo, session: session.stream);
+      addTearDown(r.container.dispose);
+      r.container.listen(communityFeedProvider, (_, _) {});
+      r.container.listen(communityPostDetailProvider('p1'), (_, _) {});
+      r.container.listen(communityStatusRingsProvider, (_, _) {});
+      r.container.listen(communityBestPlayProvider, (_, _) {});
+
+      int count(String prefix) => repo.calls.where((c) => c.startsWith(prefix)).length;
+      Future<void> settle() => Future<void>.delayed(const Duration(milliseconds: 20));
+
+      session.add(null); // a guest opens Community
+      await settle();
+      final before = [count('feed:'), count('postDetail:'), count('statuses'), count('bestPlay')];
+      expect(before, [1, 1, 1, 1]);
+
+      session.add(testSession()); // ...then logs in: the guest's answer (no myReaction, no canDelete) is stale
+      await settle();
+      expect([count('feed:'), count('postDetail:'), count('statuses'), count('bestPlay')], [2, 2, 2, 2]);
+
+      session.add(null); // ...and logs out: the previous user's flags must not linger
+      await settle();
+      expect([count('feed:'), count('postDetail:'), count('statuses'), count('bestPlay')], [3, 3, 3, 3]);
+    });
+
+    test('a token refresh for the same user does not refetch', () async {
+      final repo = FakeCommunityRepository(feedPage: _page(posts: [_post('p1')]));
+      final session = StreamController<Session?>();
+      addTearDown(session.close);
+      final r = _Rig(repo: repo, session: session.stream);
+      addTearDown(r.container.dispose);
+      r.container.listen(communityFeedProvider, (_, _) {});
+      session.add(testSession());
+      await Future<void>.delayed(const Duration(milliseconds: 20));
+      session.add(testSession()); // same user id, e.g. an access-token refresh
+      await Future<void>.delayed(const Duration(milliseconds: 20));
+      expect(repo.calls.where((c) => c.startsWith('feed:')), hasLength(1));
     });
   });
 }
