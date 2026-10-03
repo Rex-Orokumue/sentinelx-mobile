@@ -9,6 +9,14 @@ logged here.
 |---|---|---|---|
 | zzqa_p1a | 2026-09-21 | not created: signup blocked, Supabase Auth returned 500 (Resend 550, sentinelxesports.com.ng sender domain not verified); nothing to clean up | n/a |
 | zzqa_p1a | 2026-09-22 | created + confirmed after the Resend DNS fix: signup returned 200, confirmation email delivered, App Link tap → `verifyOtp` → landed on Home signed in | Yes |
+| zzqa_mobile_profile | 2026-10-03 | staging-only account created and email-confirmed for physical-device profile-onboarding verification; auth user `aeaffd10-35e7-4952-8e9b-a0acb0762537` | Pending |
+
+Profile-onboarding device result: the first deliberate submit returned HTTP 200 and refreshed `/me`, but the UI
+remained/returned to the onboarding screen. A second deliberate submit produced a second HTTP 200 and then exited
+onboarding. No application exception was logged. Investigation found that profile onboarding invalidated `meProvider`
+and navigated before the refreshed `/me` future completed, allowing the router to observe the old profile gate. Commit
+`4a1f4cf` now waits for that refresh before navigation, with a regression test that holds `/me` pending and verifies
+that completion does not fire early. A physical-device staging retest of a successful first submit is still pending.
 
 ## 2026-09-25 — Phase 1 auth/lifecycle hardening (`fix/phase1-auth-lifecycle`)
 
