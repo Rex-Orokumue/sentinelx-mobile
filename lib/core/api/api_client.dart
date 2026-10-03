@@ -5,6 +5,7 @@ import 'community_models.dart';
 import 'compete_models.dart';
 import 'match_models.dart';
 import 'models.dart';
+import 'notifications_models.dart';
 import 'players_models.dart';
 import 'profile_onboarding_models.dart';
 import 'progress_models.dart';
@@ -111,6 +112,14 @@ class ApiClient {
     'postCommunityBestPlayVote': 'post /api/mobile/v1/community/best-play/{nominationId}/vote',
     'postCommunityPostReport': 'post /api/mobile/v1/community/posts/{id}/report',
     'postCommunityCommentReport': 'post /api/mobile/v1/community/comments/{id}/report',
+    'getNotificationPrefs': 'get /api/mobile/v1/notifications/prefs',
+    'patchNotificationPrefs': 'patch /api/mobile/v1/notifications/prefs',
+    'getNotificationMutes': 'get /api/mobile/v1/notifications/mutes',
+    'postNotificationMute': 'post /api/mobile/v1/notifications/mutes',
+    'deleteNotificationMute': 'delete /api/mobile/v1/notifications/mutes',
+    'postNotificationRead': 'post /api/mobile/v1/notifications/{id}/read',
+    'postNotificationsReadAll': 'post /api/mobile/v1/notifications/read-all',
+    'postTestPush': 'post /api/mobile/v1/notifications/test-push',
   };
 
   static const _base = '/api/mobile/v1';
@@ -745,4 +754,42 @@ class ApiClient {
         body: {'reasonCode': reasonCode.wireName, 'note': ?note},
         headers: {'Idempotency-Key': idempotencyKey},
       );
+
+  // --- Phase 5a notifications. All auth: 'user' (never publicRequest), none idempotent. ---
+
+  Future<NotificationPrefs> getNotificationPrefs() =>
+      _send('GET', '/notifications/prefs', (d) => NotificationPrefs.fromJson(d! as Map<String, dynamic>));
+
+  Future<NotificationPrefs> patchNotificationPrefs(PrefSection section, Map<String, bool> values) => _send(
+        'PATCH',
+        '/notifications/prefs',
+        (d) => NotificationPrefs.fromJson(d! as Map<String, dynamic>),
+        body: {section.wire: values},
+      );
+
+  Future<NotificationMutes> getNotificationMutes() =>
+      _send('GET', '/notifications/mutes', (d) => NotificationMutes.fromJson(d! as Map<String, dynamic>));
+
+  Future<void> muteNotificationType(String type, MuteDuration duration) =>
+      _send('POST', '/notifications/mutes', (_) {}, body: {'scope': 'type', 'type': type, 'duration': duration.wire});
+
+  Future<void> muteNotificationPost(String postId, MuteDuration duration) =>
+      _send('POST', '/notifications/mutes', (_) {}, body: {'scope': 'post', 'postId': postId, 'duration': duration.wire});
+
+  Future<void> unmuteNotificationType(String type) =>
+      _send('DELETE', '/notifications/mutes', (_) {}, body: {'scope': 'type', 'type': type});
+
+  Future<void> unmuteNotificationPost(String postId) =>
+      _send('DELETE', '/notifications/mutes', (_) {}, body: {'scope': 'post', 'postId': postId});
+
+  Future<void> markNotificationRead(String id) =>
+      _send('POST', '/notifications/${Uri.encodeComponent(id)}/read', (_) {});
+
+  Future<int> markAllNotificationsRead() => _send(
+        'POST',
+        '/notifications/read-all',
+        (d) => ((d! as Map<String, dynamic>)['updated'] as num).toInt(),
+      );
+
+  Future<void> sendTestPush() => _send('POST', '/notifications/test-push', (_) {});
 }
