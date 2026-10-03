@@ -1760,7 +1760,13 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String cmtCommentCount(int count) {
-    return '$count commentaires';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count commentaires',
+      one: '$count commentaire',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -1939,17 +1945,35 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String cmtStatsMembers(int count) {
-    return '$count membres';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count membres',
+      one: '$count membre',
+    );
+    return '$_temp0';
   }
 
   @override
   String cmtStatsCountries(int count) {
-    return '$count pays';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count pays',
+      one: '$count pays',
+    );
+    return '$_temp0';
   }
 
   @override
   String cmtStatsTournaments(int count) {
-    return '$count tournois';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count tournois',
+      one: '$count tournoi',
+    );
+    return '$_temp0';
   }
 
   @override

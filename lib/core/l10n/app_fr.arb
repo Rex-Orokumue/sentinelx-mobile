@@ -655,7 +655,7 @@
   "cmtSignInToComment": "Connectez-vous pour commenter",
   "cmtSignInToVote": "Connectez-vous pour voter",
   "cmtSignInToReport": "Connectez-vous pour signaler",
-  "cmtCommentCount": "{count} commentaires",
+  "cmtCommentCount": "{count, plural, one{{count} commentaire} other{{count} commentaires}}",
   "@cmtCommentCount": {
     "placeholders": {
       "count": {
@@ -735,7 +735,7 @@
   "cmtTopMembersTitle": "Meilleurs membres",
   "cmtUpcomingEventsTitle": "Événements à venir",
   "cmtGalleryTitle": "Galerie",
-  "cmtStatsMembers": "{count} membres",
+  "cmtStatsMembers": "{count, plural, one{{count} membre} other{{count} membres}}",
   "@cmtStatsMembers": {
     "placeholders": {
       "count": {
@@ -743,7 +743,7 @@
       }
     }
   },
-  "cmtStatsCountries": "{count} pays",
+  "cmtStatsCountries": "{count, plural, one{{count} pays} other{{count} pays}}",
   "@cmtStatsCountries": {
     "placeholders": {
       "count": {
@@ -751,7 +751,7 @@
       }
     }
   },
-  "cmtStatsTournaments": "{count} tournois",
+  "cmtStatsTournaments": "{count, plural, one{{count} tournoi} other{{count} tournois}}",
   "@cmtStatsTournaments": {
     "placeholders": {
       "count": {

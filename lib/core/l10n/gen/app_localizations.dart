@@ -3275,7 +3275,7 @@ abstract class AppLocalizations {
   /// No description provided for @cmtCommentCount.
   ///
   /// In en, this message translates to:
-  /// **'{count} comments'**
+  /// **'{count, plural, one{{count} comment} other{{count} comments}}'**
   String cmtCommentCount(int count);
 
   /// No description provided for @cmtReactFire.
@@ -3611,19 +3611,19 @@ abstract class AppLocalizations {
   /// No description provided for @cmtStatsMembers.
   ///
   /// In en, this message translates to:
-  /// **'{count} members'**
+  /// **'{count, plural, one{{count} member} other{{count} members}}'**
   String cmtStatsMembers(int count);
 
   /// No description provided for @cmtStatsCountries.
   ///
   /// In en, this message translates to:
-  /// **'{count} countries'**
+  /// **'{count, plural, one{{count} country} other{{count} countries}}'**
   String cmtStatsCountries(int count);
 
   /// No description provided for @cmtStatsTournaments.
   ///
   /// In en, this message translates to:
-  /// **'{count} tournaments'**
+  /// **'{count, plural, one{{count} tournament} other{{count} tournaments}}'**
   String cmtStatsTournaments(int count);
 
   /// No description provided for @cmtReportPost.

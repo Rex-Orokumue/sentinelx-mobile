@@ -136,7 +136,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(repo.calls.where((c) => c.startsWith('createComment:p1:Great game:')), hasLength(1));
     expect(find.text('Great game'), findsOneWidget);
-    expect(find.text('1 comments'), findsOneWidget);
+    expect(find.text('1 comment'), findsOneWidget);
     expect(tester.widget<TextField>(find.byKey(const Key('comment-input'))).controller!.text, isEmpty);
   });
 
@@ -175,7 +175,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(repo.calls, contains('deleteComment:c1'));
     expect(find.text('mine'), findsNothing);
-    expect(find.text('1 comments'), findsOneWidget);
+    expect(find.text('1 comment'), findsOneWidget);
   });
 
   testWidgets('cancelling comment deletion sends nothing', (tester) async {

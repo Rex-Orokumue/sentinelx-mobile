@@ -796,7 +796,7 @@
   "cmtSignInToComment": "Log in to comment",
   "cmtSignInToVote": "Log in to vote",
   "cmtSignInToReport": "Log in to report",
-  "cmtCommentCount": "{count} comments",
+  "cmtCommentCount": "{count, plural, one{{count} comment} other{{count} comments}}",
   "@cmtCommentCount": {
     "placeholders": {
       "count": {
@@ -876,7 +876,7 @@
   "cmtTopMembersTitle": "Top members",
   "cmtUpcomingEventsTitle": "Upcoming events",
   "cmtGalleryTitle": "Gallery",
-  "cmtStatsMembers": "{count} members",
+  "cmtStatsMembers": "{count, plural, one{{count} member} other{{count} members}}",
   "@cmtStatsMembers": {
     "placeholders": {
       "count": {
@@ -884,7 +884,7 @@
       }
     }
   },
-  "cmtStatsCountries": "{count} countries",
+  "cmtStatsCountries": "{count, plural, one{{count} country} other{{count} countries}}",
   "@cmtStatsCountries": {
     "placeholders": {
       "count": {
@@ -892,7 +892,7 @@
       }
     }
   },
-  "cmtStatsTournaments": "{count} tournaments",
+  "cmtStatsTournaments": "{count, plural, one{{count} tournament} other{{count} tournaments}}",
   "@cmtStatsTournaments": {
     "placeholders": {
       "count": {
