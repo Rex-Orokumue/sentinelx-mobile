@@ -155,11 +155,23 @@ review and green.
 - Write a handoff note per stage in the relevant repo's `docs/agent-handoffs/` (dated, descriptive name;
   separate verified facts from recommendations; record verification limits and whether code changed).
 
-## Owner-side prerequisite (not yours)
+## Owner-side prerequisite — DONE (2026-10-03)
 
-For live push the owner registers the Android app `ng.com.sentinelxesports.app` in the **web's existing
-Firebase project** and places `google-services.json` in `android/app`. Do not create a Firebase project
-and do not ask for the file before the plan needs it. Until it exists, everything is built and tested
-against fakes and the live exit criteria stay explicitly *unverified* in your reports. The owner runs the
-device pass on staging afterwards: test push in foreground, background and terminated; tap routing from
-each including a cold start while signed in; an account switch on one phone; a real fixture assignment.
+The owner registered the Android app `ng.com.sentinelxesports.app` in the web's existing Firebase project
+(`sentinelx-f061e`, matching the web's `NEXT_PUBLIC_FIREBASE_PROJECT_ID`) and placed
+`google-services.json` at `C:\Users\gorok\sentinelx_mobile\android\app\google-services.json`. Verified:
+the package name inside matches. Things you must know:
+
+- The file is **untracked and excluded locally** (`.git/info/exclude` in the main checkout, which
+  worktrees share). **A new worktree does not contain untracked files** — copy the file from the main
+  checkout into `<your worktree>\android\app\` before building. Don't commit it and don't remove the
+  exclude entry; whether it should ever be tracked is a decision for the plan (it holds project ids and a
+  restricted API key, not a service-account secret, but that call is the owner's).
+- Because the file now exists, the live path can be exercised on a device. You still must keep the
+  **no-file path working** (build, boot and tests green without it): that is what CI and a fresh clone
+  will hit. Test it by building with the file temporarily moved aside.
+- Do not create a Firebase project. Live delivery, Doze behaviour and tap routing from a killed app
+  remain **unverified until the owner's device pass**; say so in your reports. The owner runs that pass
+  on staging: test push in foreground, background and terminated; tap routing from each including a cold
+  start while signed in; an account switch on one phone; a real fixture assignment. Open item still to
+  confirm: the staging web deployment must send with this same Firebase project's credentials.
