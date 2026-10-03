@@ -124,4 +124,24 @@ void main() {
     // the bracket API needs an id, not the slug carried by this web path — never mapped
     expect(resolveWebLink('https://sentinelxesports.com.ng/tournaments/some-slug/bracket'), isNull);
   });
+
+  test('the web settings page maps to in-app notification settings (the test push url)', () {
+    expect(resolveWebLink('/dashboard/settings'), '/account/notifications');
+    expect(resolveWebLink('https://sentinelxesports.com.ng/en/dashboard/settings'), '/account/notifications');
+    expect(resolveWebLink('https://sentinelxesports.com.ng/fr/dashboard/settings?x=1'), '/account/notifications');
+  });
+
+  test('web destinations the app has no screen for stay unmapped (a push tap then falls back to the bell)', () {
+    expect(resolveWebLink('/dashboard/settings/extra'), isNull);
+    expect(resolveWebLink('/dashboard/wallet'), isNull);
+    expect(resolveWebLink('/messages/abc'), isNull);
+    expect(resolveWebLink('/admin/matches/1/review'), isNull);
+    expect(resolveWebLink('/exchange/abc'), isNull);
+  });
+
+  test('in-app notification paths pass through the redirect untouched (lesson 8)', () {
+    expect(resolveWebLink('/notifications'), isNull);
+    expect(resolveWebLink('/account/notifications'), isNull);
+    expect(resolveWebLink('/account'), isNull);
+  });
 }

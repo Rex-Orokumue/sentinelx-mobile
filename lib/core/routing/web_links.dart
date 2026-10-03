@@ -59,6 +59,10 @@ String? resolveWebLink(String input) {
       return '/seasons';
     case 'hall-of-fame':
       return '/hall-of-fame';
+    // The web settings page (the test push's url) holds the notification preferences; the app's
+    // equivalent is Settings -> Notifications.
+    case 'dashboard/settings':
+      return '/account/notifications';
   }
   return null;
 }
