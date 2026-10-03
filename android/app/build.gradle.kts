@@ -5,12 +5,20 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+// Applied only when the Firebase config is present, so a fresh clone / CI without google-services.json
+// still builds (push is then disabled at runtime; see FirebasePushGateway.tryInitialize).
+if (file("google-services.json").exists()) {
+    apply(plugin = "com.google.gms.google-services")
+}
+
 android {
     namespace = "ng.com.sentinelxesports.app"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
+        // Required by flutter_local_notifications (>= 10), even when scheduling is unused.
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
@@ -40,4 +48,8 @@ android {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
 }
