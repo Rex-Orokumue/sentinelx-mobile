@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sentinelx_mobile/core/api/api_client.dart';
 import 'package:sentinelx_mobile/core/api/compete_models.dart';
+import 'package:sentinelx_mobile/core/notifications/push/push_permission.dart';
 import 'package:sentinelx_mobile/features/compete/compete_providers.dart';
 import 'package:sentinelx_mobile/features/compete/registration_flow.dart';
 
@@ -15,9 +16,20 @@ const _pending = RegisterPending(authorizationUrl: 'https://pay.test/a', referen
 ApiException _err(int status, String code, {Map<String, String> fields = const {}}) =>
     ApiException(status: status, code: code, message: 'x', fields: fields);
 
+class _FakePrompter implements PushPermissionPrompter {
+  int stakes = 0;
+
+  @override
+  Future<void> onStake() async => stakes++;
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
 class _Rig {
   _Rig({bool launcherReturns = true}) : repo = FakeRegistrationRepository() {
     container = ProviderContainer(retry: (_, _) => null, overrides: [
+      pushPermissionPrompterProvider.overrideWithValue(prompter),
       registrationRepositoryProvider.overrideWithValue(repo),
       paystackLauncherProvider.overrideWithValue((url) async {
         launched.add(url);
@@ -30,6 +42,7 @@ class _Rig {
     container.listen(registrationStateProvider('t1'), (_, _) {});
   }
   final FakeRegistrationRepository repo;
+  final prompter = _FakePrompter();
   late final ProviderContainer container;
   final launched = <String>[];
   RegistrationFlow get flow => container.read(registrationFlowProvider('t1').notifier);
@@ -84,6 +97,76 @@ void main() {
     r.repo.paymentResults.add(PaymentStatus.alreadyPaid);
     await r.flow.submitRegister(_details);
     expect(r.state.phase, FlowPhase.confirmed);
+  });
+
+  group('push permission trigger (first confirmed stake)', () {
+    test('a confirmed registration asks once', () async {
+      final r = _Rig();
+      addTearDown(r.container.dispose);
+      r.repo.registerResults.add(const RegisterConfirmed());
+      await r.flow.submitRegister(_details);
+      expect(r.prompter.stakes, 1);
+    });
+
+    test('a payment confirmed after polling asks once', () async {
+      final r = _Rig();
+      addTearDown(r.container.dispose);
+      r.repo.registerResults.add(_pending);
+      r.repo.paymentResults.add(PaymentStatus.confirmed);
+      await r.flow.submitRegister(_details);
+      expect(r.prompter.stakes, 1);
+    });
+
+    test('a waitlist join asks once', () async {
+      final r = _Rig();
+      addTearDown(r.container.dispose);
+      await r.flow.submitWaitlist(_details);
+      expect(r.state.phase, FlowPhase.waitlisted);
+      expect(r.prompter.stakes, 1);
+    });
+
+    test('a confirmed invitation accept asks once', () async {
+      final r = _Rig();
+      addTearDown(r.container.dispose);
+      r.repo.acceptResults.add(const RegisterConfirmed());
+      await r.flow.submitInvitationAccept('inv-1');
+      expect(r.state.phase, FlowPhase.confirmed);
+      expect(r.prompter.stakes, 1);
+    });
+
+    test('never on a failure, a closed checkout or an unconfirmed payment', () async {
+      var r = _Rig();
+      addTearDown(r.container.dispose);
+      r.repo.registerResults.add(_err(409, 'tournament_full'));
+      await r.flow.submitRegister(_details);
+      expect(r.state.phase, FlowPhase.failed);
+      expect(r.prompter.stakes, 0);
+
+      r = _Rig(launcherReturns: false);
+      addTearDown(r.container.dispose);
+      r.repo.registerResults.add(_pending);
+      r.repo.paymentResults.add(PaymentStatus.notSuccessful);
+      await r.flow.submitRegister(_details);
+      expect(r.state.phase, FlowPhase.cancelled);
+      expect(r.prompter.stakes, 0);
+
+      r = _Rig();
+      addTearDown(r.container.dispose);
+      r.repo.registerResults.add(_pending);
+      r.repo.paymentResults.add(PaymentStatus.notSuccessful);
+      await r.flow.submitRegister(_details);
+      expect(r.state.phase, FlowPhase.notConfirmed);
+      expect(r.prompter.stakes, 0);
+    });
+
+    test('a failed waitlist join does not ask', () async {
+      final r = _Rig();
+      addTearDown(r.container.dispose);
+      r.repo.waitlistResult = _err(409, 'tournament_full');
+      await r.flow.submitWaitlist(_details);
+      expect(r.state.phase, FlowPhase.failed);
+      expect(r.prompter.stakes, 0);
+    });
   });
 
   group('Idempotency-Key policy', () {

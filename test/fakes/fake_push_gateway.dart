@@ -21,6 +21,9 @@ class FakePushGateway implements PushGateway {
   PushPermission? requestResult;
   PushMessage? initialMessage;
 
+  /// When set, requestPermission waits on it (to model a dialog still on screen).
+  Completer<void>? requestGate;
+
   int requestPermissionCalls = 0;
   int openSettingsCalls = 0;
   List<PushChannelSpec>? createdChannels;
@@ -49,6 +52,7 @@ class FakePushGateway implements PushGateway {
   @override
   Future<PushPermission> requestPermission() async {
     requestPermissionCalls++;
+    if (requestGate != null) await requestGate!.future;
     permissionResult = requestResult ?? PushPermission.authorized;
     return permissionResult;
   }

@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/api/api_client.dart';
 import '../../core/api/compete_models.dart';
+import '../../core/notifications/push/push_permission.dart';
 import '../../core/utils/idempotency_key.dart';
 import 'compete_providers.dart';
 import 'payment_poller.dart';
@@ -80,6 +83,7 @@ class RegistrationFlow extends Notifier<FlowState> {
       if (!ref.mounted) return;
       state = const FlowState(phase: FlowPhase.waitlisted);
       ref.invalidate(registrationStateProvider(tournamentId));
+      unawaited(ref.read(pushPermissionPrompterProvider).onStake()); // first stake: ask for notifications
     } catch (e) {
       if (!ref.mounted) return;
       state = _failure(e);
@@ -170,6 +174,7 @@ class RegistrationFlow extends Notifier<FlowState> {
   void _finishConfirmed() {
     state = const FlowState(phase: FlowPhase.confirmed);
     ref.invalidate(registrationStateProvider(tournamentId));
+    unawaited(ref.read(pushPermissionPrompterProvider).onStake()); // first stake: ask for notifications
   }
 
   FlowState _failure(Object e) {
