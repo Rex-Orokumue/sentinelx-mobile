@@ -23,6 +23,12 @@ void main() {
     expect(resolveWebLink('https://sentinelxesports.com.ng/games'), '/games');
   });
 
+  test('a community post link resolves to the post, not the feed', () {
+    expect(resolveWebLink('https://sentinelxesports.com.ng/community/abc123'), '/community/abc123');
+    expect(resolveWebLink('https://sentinelxesports.com.ng/fr/community/abc123'), '/community/abc123');
+    expect(resolveWebLink('https://sentinelxesports.com.ng/community/a b'), '/community/a%20b');
+  });
+
   test('maps tv, community and exchange to their branch roots', () {
     expect(resolveWebLink('https://sentinelxesports.com.ng/tv'), '/tv');
     expect(

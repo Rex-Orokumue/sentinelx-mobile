@@ -9,6 +9,13 @@ import '../core/l10n/gen/app_localizations.dart';
 import '../core/routing/web_links.dart';
 import '../features/account/account_screen.dart';
 import '../features/account/edit_profile_screen.dart';
+import '../core/api/community_models.dart';
+import '../features/community/community_feed_screen.dart';
+import '../features/community/compose_screen.dart';
+import '../features/community/post_detail_screen.dart';
+import '../features/community/status_compose_screen.dart';
+import '../features/community/status_viewer_screen.dart';
+import '../features/community/status_viewers_screen.dart';
 import '../features/compete/compete_detail_screen.dart';
 import '../features/compete/compete_list_screen.dart';
 import '../features/compete/games_screen.dart';
@@ -278,7 +285,47 @@ GoRouter buildAppRouter({
             GoRoute(path: '/tv', builder: (context, state) => ComingSoonScreen(title: 'Watch', onLogoTap: () => context.go('/'))),
           ]),
           StatefulShellBranch(routes: [
-            GoRoute(path: '/community', builder: (context, state) => ComingSoonScreen(title: 'Community', onLogoTap: () => context.go('/'))),
+            GoRoute(
+              path: '/community',
+              builder: (context, state) => CommunityFeedScreen(
+                onCompose: () => context.push('/community/compose'),
+                onPostTap: (post) => context.push('/community/${Uri.encodeComponent(post.id)}'),
+                onLogin: () => context.push('/login'),
+                onStatusTap: (ring) => context.push('/community/statuses/${Uri.encodeComponent(ring.playerId)}', extra: ring),
+                onAddStatus: () => context.push('/community/statuses/compose'),
+                onEventTap: (event) {
+                  final path = resolveWebLink(event.ctaHref);
+                  if (path != null) context.push(path);
+                },
+              ),
+              routes: [
+                GoRoute(path: 'compose', builder: (context, state) => const ComposeScreen()),
+                GoRoute(path: 'statuses/compose', builder: (context, state) => const StatusComposeScreen()),
+                GoRoute(
+                  path: 'statuses/:playerId',
+                  builder: (context, state) {
+                    final ring = state.extra as StatusRing?;
+                    if (ring == null) return const _StatusRouteGate();
+                    return StatusViewerScreen(
+                      ring: ring,
+                      onOpenViewers: (id) => context.push('/community/statuses/${Uri.encodeComponent(id)}/viewers'),
+                    );
+                  },
+                ),
+                GoRoute(
+                  path: 'statuses/:statusId/viewers',
+                  builder: (context, state) => StatusViewersScreen(statusId: state.pathParameters['statusId']!),
+                ),
+                GoRoute(
+                  path: ':id',
+                  builder: (context, state) => PostDetailScreen(
+                    postId: state.pathParameters['id']!,
+                    onLogin: () => context.push('/login'),
+                    onDeleted: () => context.pop(),
+                  ),
+                ),
+              ],
+            ),
           ]),
           StatefulShellBranch(routes: [
             GoRoute(path: '/exchange', builder: (context, state) => ComingSoonScreen(title: 'Trade', onLogoTap: () => context.go('/'))),
@@ -364,6 +411,21 @@ final routerProvider = Provider<GoRouter>((ref) {
 
 class _RouterRefresh extends ChangeNotifier {
   void ping() => notifyListeners();
+}
+
+/// A cold `/community/statuses/:playerId` link carries no ring, and no endpoint hydrates one by id —
+/// so there is nothing to load. A ring tapped in the app always arrives with `extra`; only a
+/// hand-typed or externally built URL lands here, and it goes back to the feed rather than crashing.
+class _StatusRouteGate extends StatelessWidget {
+  const _StatusRouteGate();
+
+  @override
+  Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (context.mounted) context.go('/community');
+    });
+    return const Scaffold(body: SizedBox.shrink());
+  }
 }
 
 /// A cold `/matches/:id/result` deep link carries no `extra` MatchInfo (nothing pushed it), so this loads

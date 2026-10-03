@@ -22,7 +22,7 @@ bool _isBoosted(PostView post) {
 
 /// A single post in the feed. Delete/boost entries are driven solely by the server's
 /// [PostView.canDelete]/[PostView.canBoost] (never inferred from `postType`) and are absent, not
-/// disabled, when not allowed. Report is offered to any signed-in player (own posts included — the
+/// disabled, when not allowed. Report is offered to any signed-in player (own posts included â€” the
 /// spec imposes no self-report block). [compact] strips the interactive footer and menu for the gallery grid.
 class PostCard extends ConsumerWidget {
   const PostCard({super.key, required this.post, required this.onTap, required this.onSignInRequired, this.compact = false});

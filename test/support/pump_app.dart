@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/misc.dart' show Override;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sentinelx_mobile/core/l10n/gen/app_localizations.dart';
 import 'package:sentinelx_mobile/features/compete/compete_providers.dart';
@@ -23,6 +24,7 @@ Future<void> pumpRouterWithRepo(
   FakeMatchRepository? matchRepo,
   FakeMatchReads? matchReads,
   String initialLocation = '/tournaments',
+  List<Override> overrides = const [],
 }) {
   return tester.pumpWidget(ProviderScope(
     retry: (_, _) => null,
@@ -34,6 +36,7 @@ Future<void> pumpRouterWithRepo(
       evidenceUploaderProvider.overrideWithValue(FakeUploader()),
       imagePickerProvider.overrideWithValue(FakePicker()),
       ...competeBaseOverrides(),
+      ...overrides,
     ],
     child: MaterialApp.router(
       localizationsDelegates: AppLocalizations.localizationsDelegates,
