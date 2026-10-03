@@ -809,5 +809,115 @@
   "profileContinue": "Continuer",
   "profileSaving": "Enregistrement…",
   "profileSaveFailed": "Impossible d'enregistrer votre profil. Réessayez.",
-  "profileSaved": "Profil enregistré."
+  "profileSaved": "Profil enregistré.",
+  "ntfTitle": "Notifications",
+  "ntfMarkAllRead": "Tout marquer comme lu",
+  "ntfMuteThread": "Mettre ce fil en sourdine",
+  "ntfUnmuteThread": "Réactiver ce fil",
+  "ntfMuteType": "Mettre ce type en sourdine",
+  "ntfUnmuteType": "Réactiver ce type",
+  "ntfMuteFor1h": "Pendant 1 heure",
+  "ntfMuteFor1w": "Pendant 1 semaine",
+  "ntfMuteAlways": "Toujours",
+  "ntfMuted": "Mis en sourdine",
+  "ntfUnmuted": "Réactivé",
+  "ntfEmptyTitle": "Vous êtes à jour",
+  "ntfEmptyBody": "Les affectations de matchs, les résultats et les gains apparaissent ici.",
+  "ntfLoadError": "Impossible de charger vos notifications.",
+  "ntfRetry": "Réessayer",
+  "ntfSignedOut": "Connectez-vous pour voir vos notifications.",
+  "ntfLogIn": "Se connecter",
+  "ntfActionFailed": "Ça n'a pas marché. Réessayez.",
+  "ntfUnreadCount": "{count, plural, one{{count} notification non lue} other{{count} notifications non lues}}",
+  "@ntfUnreadCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ntfTimeNow": "À l'instant",
+  "ntfTimeMinutes": "{count, plural, one{il y a {count} minute} other{il y a {count} minutes}}",
+  "@ntfTimeMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ntfTimeHours": "{count, plural, one{il y a {count} heure} other{il y a {count} heures}}",
+  "@ntfTimeHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ntfTimeDays": "{count, plural, one{il y a {count} jour} other{il y a {count} jours}}",
+  "@ntfTimeDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ntfPermTitle": "Activer les notifications",
+  "ntfPermBody": "Recevez vos affectations de matchs et rappels sur ce téléphone.",
+  "ntfPermEnable": "Activer",
+  "ntfPermOpenSettings": "Ouvrir les paramètres du système",
+  "ntfPermOn": "Les notifications sont activées sur ce téléphone.",
+  "ntfPermBlocked": "Les notifications sont désactivées pour cette application dans les paramètres du téléphone.",
+  "ntfSettingsTitle": "Paramètres de notification",
+  "ntfSettingsEntry": "Notifications",
+  "ntfSectionPush": "Notifications push",
+  "ntfSectionWhatsapp": "WhatsApp",
+  "ntfSectionSharing": "Partager les succès avec la communauté",
+  "ntfSaveFailed": "Impossible d'enregistrer ce changement.",
+  "ntfTestAction": "Envoyer une notification de test",
+  "ntfTestSent": "Test envoyé — il devrait arriver dans un instant.",
+  "ntfTestNoDevice": "Ce téléphone n'est pas encore enregistré pour les notifications.",
+  "ntfTestFailed": "La notification de test n'a pas pu être livrée.",
+  "ntfPushMatchReminder": "Rappels de match",
+  "ntfPushResultConfirmed": "Résultat confirmé",
+  "ntfPushAchievementUnlocked": "Succès débloqué",
+  "ntfPushChallengeCompleted": "Défi hebdomadaire terminé",
+  "ntfPushNewAnnouncement": "Annonces de la communauté",
+  "ntfPushTournamentAnnounced": "Nouveaux tournois",
+  "ntfPushWagerSettled": "Pari réglé",
+  "ntfPushReferralConverted": "Parrainage converti",
+  "ntfPushPostComment": "Commentaires sur vos publications",
+  "ntfPushPostReaction": "Réactions à vos publications",
+  "ntfPushBracketReleased": "Tableau publié",
+  "ntfPushMatchAssigned": "Nouveau match assigné",
+  "ntfPushPrizeCredited": "Gain crédité",
+  "ntfPushStatusFromFriend": "Un ami publie un statut",
+  "ntfPushStatusViewed": "Quelqu'un voit votre statut",
+  "ntfPushNewFollower": "Quelqu'un vous suit",
+  "ntfPushDirectMessage": "Messages privés",
+  "ntfWaMatchReminder": "Rappels de match (1 h avant le coup d'envoi)",
+  "ntfWaResultConfirmed": "Résultat confirmé",
+  "ntfWaPrizeCredited": "Gain crédité au portefeuille",
+  "ntfWaChallengeCompleted": "Défi hebdomadaire terminé",
+  "ntfWaAchievementUnlocked": "Succès débloqué",
+  "ntfWaRegistrationConfirmed": "Inscription confirmée",
+  "ntfShareTournament": "Victoires en tournoi",
+  "ntfShareMilestone": "Succès d'étape (100 matchs, etc.)",
+  "ntfShareStreak": "Succès de série",
+  "ntfShareSocial": "Succès sociaux (réactions, publications)",
+  "ntfShareOther": "Tous les autres succès",
+  "ntfChannelMatches": "Matchs",
+  "ntfChannelMatchesDesc": "Affectations, rappels et résultats",
+  "ntfChannelSocial": "Communauté",
+  "ntfChannelSocialDesc": "Commentaires, réactions, abonnés et succès",
+  "ntfChannelMessages": "Messages",
+  "ntfChannelMessagesDesc": "Messages privés",
+  "ntfChannelMoney": "Argent",
+  "ntfChannelMoneyDesc": "Gains et récompenses de parrainage",
+  "ntfChannelAdmin": "Alertes admin",
+  "ntfChannelAdminDesc": "Alertes réservées au personnel",
+  "ntfErrValidation": "Cette valeur n'est pas valide.",
+  "ntfErrNotFound": "Cette notification n'existe plus.",
+  "ntfErrNetwork": "Vérifiez votre connexion et réessayez.",
+  "ntfErrGeneric": "Une erreur est survenue.",
+  "ntfBannerOpen": "Ouvrir"
 }

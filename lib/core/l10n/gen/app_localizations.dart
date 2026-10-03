@@ -3931,6 +3931,498 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Profile saved.'**
   String get profileSaved;
+
+  /// No description provided for @ntfTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get ntfTitle;
+
+  /// No description provided for @ntfMarkAllRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark all read'**
+  String get ntfMarkAllRead;
+
+  /// No description provided for @ntfMuteThread.
+  ///
+  /// In en, this message translates to:
+  /// **'Mute this thread'**
+  String get ntfMuteThread;
+
+  /// No description provided for @ntfUnmuteThread.
+  ///
+  /// In en, this message translates to:
+  /// **'Unmute this thread'**
+  String get ntfUnmuteThread;
+
+  /// No description provided for @ntfMuteType.
+  ///
+  /// In en, this message translates to:
+  /// **'Mute this type'**
+  String get ntfMuteType;
+
+  /// No description provided for @ntfUnmuteType.
+  ///
+  /// In en, this message translates to:
+  /// **'Unmute this type'**
+  String get ntfUnmuteType;
+
+  /// No description provided for @ntfMuteFor1h.
+  ///
+  /// In en, this message translates to:
+  /// **'For 1 hour'**
+  String get ntfMuteFor1h;
+
+  /// No description provided for @ntfMuteFor1w.
+  ///
+  /// In en, this message translates to:
+  /// **'For 1 week'**
+  String get ntfMuteFor1w;
+
+  /// No description provided for @ntfMuteAlways.
+  ///
+  /// In en, this message translates to:
+  /// **'Always'**
+  String get ntfMuteAlways;
+
+  /// No description provided for @ntfMuted.
+  ///
+  /// In en, this message translates to:
+  /// **'Muted'**
+  String get ntfMuted;
+
+  /// No description provided for @ntfUnmuted.
+  ///
+  /// In en, this message translates to:
+  /// **'Unmuted'**
+  String get ntfUnmuted;
+
+  /// No description provided for @ntfEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re all caught up'**
+  String get ntfEmptyTitle;
+
+  /// No description provided for @ntfEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixture assignments, results and prizes show up here.'**
+  String get ntfEmptyBody;
+
+  /// No description provided for @ntfLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your notifications.'**
+  String get ntfLoadError;
+
+  /// No description provided for @ntfRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get ntfRetry;
+
+  /// No description provided for @ntfSignedOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to see your notifications.'**
+  String get ntfSignedOut;
+
+  /// No description provided for @ntfLogIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in'**
+  String get ntfLogIn;
+
+  /// No description provided for @ntfActionFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'That didn\'t work. Try again.'**
+  String get ntfActionFailed;
+
+  /// No description provided for @ntfUnreadCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{{count} unread notification} other{{count} unread notifications}}'**
+  String ntfUnreadCount(int count);
+
+  /// No description provided for @ntfTimeNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Just now'**
+  String get ntfTimeNow;
+
+  /// No description provided for @ntfTimeMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{{count} minute ago} other{{count} minutes ago}}'**
+  String ntfTimeMinutes(int count);
+
+  /// No description provided for @ntfTimeHours.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{{count} hour ago} other{{count} hours ago}}'**
+  String ntfTimeHours(int count);
+
+  /// No description provided for @ntfTimeDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{{count} day ago} other{{count} days ago}}'**
+  String ntfTimeDays(int count);
+
+  /// No description provided for @ntfPermTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on notifications'**
+  String get ntfPermTitle;
+
+  /// No description provided for @ntfPermBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Get fixture assignments and match reminders on this phone.'**
+  String get ntfPermBody;
+
+  /// No description provided for @ntfPermEnable.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on'**
+  String get ntfPermEnable;
+
+  /// No description provided for @ntfPermOpenSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open system settings'**
+  String get ntfPermOpenSettings;
+
+  /// No description provided for @ntfPermOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications are on for this phone.'**
+  String get ntfPermOn;
+
+  /// No description provided for @ntfPermBlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications are turned off for this app in your phone settings.'**
+  String get ntfPermBlocked;
+
+  /// No description provided for @ntfSettingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification settings'**
+  String get ntfSettingsTitle;
+
+  /// No description provided for @ntfSettingsEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get ntfSettingsEntry;
+
+  /// No description provided for @ntfSectionPush.
+  ///
+  /// In en, this message translates to:
+  /// **'Push notifications'**
+  String get ntfSectionPush;
+
+  /// No description provided for @ntfSectionWhatsapp.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp'**
+  String get ntfSectionWhatsapp;
+
+  /// No description provided for @ntfSectionSharing.
+  ///
+  /// In en, this message translates to:
+  /// **'Share achievements to the community'**
+  String get ntfSectionSharing;
+
+  /// No description provided for @ntfSaveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t save that change.'**
+  String get ntfSaveFailed;
+
+  /// No description provided for @ntfTestAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a test notification'**
+  String get ntfTestAction;
+
+  /// No description provided for @ntfTestSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Test sent — it should arrive in a moment.'**
+  String get ntfTestSent;
+
+  /// No description provided for @ntfTestNoDevice.
+  ///
+  /// In en, this message translates to:
+  /// **'This phone isn\'t registered for notifications yet.'**
+  String get ntfTestNoDevice;
+
+  /// No description provided for @ntfTestFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'The test notification couldn\'t be delivered.'**
+  String get ntfTestFailed;
+
+  /// No description provided for @ntfPushMatchReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Match reminders'**
+  String get ntfPushMatchReminder;
+
+  /// No description provided for @ntfPushResultConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Result confirmed'**
+  String get ntfPushResultConfirmed;
+
+  /// No description provided for @ntfPushAchievementUnlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Achievement unlocked'**
+  String get ntfPushAchievementUnlocked;
+
+  /// No description provided for @ntfPushChallengeCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly challenge completed'**
+  String get ntfPushChallengeCompleted;
+
+  /// No description provided for @ntfPushNewAnnouncement.
+  ///
+  /// In en, this message translates to:
+  /// **'Community announcements'**
+  String get ntfPushNewAnnouncement;
+
+  /// No description provided for @ntfPushTournamentAnnounced.
+  ///
+  /// In en, this message translates to:
+  /// **'New tournaments'**
+  String get ntfPushTournamentAnnounced;
+
+  /// No description provided for @ntfPushWagerSettled.
+  ///
+  /// In en, this message translates to:
+  /// **'Wager settled'**
+  String get ntfPushWagerSettled;
+
+  /// No description provided for @ntfPushReferralConverted.
+  ///
+  /// In en, this message translates to:
+  /// **'Referral converted'**
+  String get ntfPushReferralConverted;
+
+  /// No description provided for @ntfPushPostComment.
+  ///
+  /// In en, this message translates to:
+  /// **'Comments on your posts'**
+  String get ntfPushPostComment;
+
+  /// No description provided for @ntfPushPostReaction.
+  ///
+  /// In en, this message translates to:
+  /// **'Reactions on your posts'**
+  String get ntfPushPostReaction;
+
+  /// No description provided for @ntfPushBracketReleased.
+  ///
+  /// In en, this message translates to:
+  /// **'Bracket released'**
+  String get ntfPushBracketReleased;
+
+  /// No description provided for @ntfPushMatchAssigned.
+  ///
+  /// In en, this message translates to:
+  /// **'New fixture assigned'**
+  String get ntfPushMatchAssigned;
+
+  /// No description provided for @ntfPushPrizeCredited.
+  ///
+  /// In en, this message translates to:
+  /// **'Prize credited'**
+  String get ntfPushPrizeCredited;
+
+  /// No description provided for @ntfPushStatusFromFriend.
+  ///
+  /// In en, this message translates to:
+  /// **'A friend posts a status'**
+  String get ntfPushStatusFromFriend;
+
+  /// No description provided for @ntfPushStatusViewed.
+  ///
+  /// In en, this message translates to:
+  /// **'Someone views your status'**
+  String get ntfPushStatusViewed;
+
+  /// No description provided for @ntfPushNewFollower.
+  ///
+  /// In en, this message translates to:
+  /// **'Someone follows you'**
+  String get ntfPushNewFollower;
+
+  /// No description provided for @ntfPushDirectMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct messages'**
+  String get ntfPushDirectMessage;
+
+  /// No description provided for @ntfWaMatchReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Match reminders (1h before kickoff)'**
+  String get ntfWaMatchReminder;
+
+  /// No description provided for @ntfWaResultConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Result confirmed'**
+  String get ntfWaResultConfirmed;
+
+  /// No description provided for @ntfWaPrizeCredited.
+  ///
+  /// In en, this message translates to:
+  /// **'Prize credited to wallet'**
+  String get ntfWaPrizeCredited;
+
+  /// No description provided for @ntfWaChallengeCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly challenge completed'**
+  String get ntfWaChallengeCompleted;
+
+  /// No description provided for @ntfWaAchievementUnlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Achievement unlocked'**
+  String get ntfWaAchievementUnlocked;
+
+  /// No description provided for @ntfWaRegistrationConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration confirmed'**
+  String get ntfWaRegistrationConfirmed;
+
+  /// No description provided for @ntfShareTournament.
+  ///
+  /// In en, this message translates to:
+  /// **'Tournament wins'**
+  String get ntfShareTournament;
+
+  /// No description provided for @ntfShareMilestone.
+  ///
+  /// In en, this message translates to:
+  /// **'Milestone achievements (100 matches, etc.)'**
+  String get ntfShareMilestone;
+
+  /// No description provided for @ntfShareStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Streak achievements'**
+  String get ntfShareStreak;
+
+  /// No description provided for @ntfShareSocial.
+  ///
+  /// In en, this message translates to:
+  /// **'Social achievements (reactions, posts)'**
+  String get ntfShareSocial;
+
+  /// No description provided for @ntfShareOther.
+  ///
+  /// In en, this message translates to:
+  /// **'All other achievements'**
+  String get ntfShareOther;
+
+  /// No description provided for @ntfChannelMatches.
+  ///
+  /// In en, this message translates to:
+  /// **'Matches'**
+  String get ntfChannelMatches;
+
+  /// No description provided for @ntfChannelMatchesDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixtures, reminders and results'**
+  String get ntfChannelMatchesDesc;
+
+  /// No description provided for @ntfChannelSocial.
+  ///
+  /// In en, this message translates to:
+  /// **'Community'**
+  String get ntfChannelSocial;
+
+  /// No description provided for @ntfChannelSocialDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Comments, reactions, followers and achievements'**
+  String get ntfChannelSocialDesc;
+
+  /// No description provided for @ntfChannelMessages.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages'**
+  String get ntfChannelMessages;
+
+  /// No description provided for @ntfChannelMessagesDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct messages'**
+  String get ntfChannelMessagesDesc;
+
+  /// No description provided for @ntfChannelMoney.
+  ///
+  /// In en, this message translates to:
+  /// **'Money'**
+  String get ntfChannelMoney;
+
+  /// No description provided for @ntfChannelMoneyDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Prizes and referral rewards'**
+  String get ntfChannelMoneyDesc;
+
+  /// No description provided for @ntfChannelAdmin.
+  ///
+  /// In en, this message translates to:
+  /// **'Admin alerts'**
+  String get ntfChannelAdmin;
+
+  /// No description provided for @ntfChannelAdminDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Staff-only alerts'**
+  String get ntfChannelAdminDesc;
+
+  /// No description provided for @ntfErrValidation.
+  ///
+  /// In en, this message translates to:
+  /// **'That value isn\'t valid.'**
+  String get ntfErrValidation;
+
+  /// No description provided for @ntfErrNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'That notification no longer exists.'**
+  String get ntfErrNotFound;
+
+  /// No description provided for @ntfErrNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your connection and try again.'**
+  String get ntfErrNetwork;
+
+  /// No description provided for @ntfErrGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong.'**
+  String get ntfErrGeneric;
+
+  /// No description provided for @ntfBannerOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get ntfBannerOpen;
 }
 
 class _AppLocalizationsDelegate

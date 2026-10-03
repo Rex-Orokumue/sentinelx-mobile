@@ -950,5 +950,115 @@
   "profileContinue": "Continue",
   "profileSaving": "Saving…",
   "profileSaveFailed": "Could not save your profile. Please try again.",
-  "profileSaved": "Profile saved."
+  "profileSaved": "Profile saved.",
+  "ntfTitle": "Notifications",
+  "ntfMarkAllRead": "Mark all read",
+  "ntfMuteThread": "Mute this thread",
+  "ntfUnmuteThread": "Unmute this thread",
+  "ntfMuteType": "Mute this type",
+  "ntfUnmuteType": "Unmute this type",
+  "ntfMuteFor1h": "For 1 hour",
+  "ntfMuteFor1w": "For 1 week",
+  "ntfMuteAlways": "Always",
+  "ntfMuted": "Muted",
+  "ntfUnmuted": "Unmuted",
+  "ntfEmptyTitle": "You're all caught up",
+  "ntfEmptyBody": "Fixture assignments, results and prizes show up here.",
+  "ntfLoadError": "Couldn't load your notifications.",
+  "ntfRetry": "Try again",
+  "ntfSignedOut": "Log in to see your notifications.",
+  "ntfLogIn": "Log in",
+  "ntfActionFailed": "That didn't work. Try again.",
+  "ntfUnreadCount": "{count, plural, one{{count} unread notification} other{{count} unread notifications}}",
+  "@ntfUnreadCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ntfTimeNow": "Just now",
+  "ntfTimeMinutes": "{count, plural, one{{count} minute ago} other{{count} minutes ago}}",
+  "@ntfTimeMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ntfTimeHours": "{count, plural, one{{count} hour ago} other{{count} hours ago}}",
+  "@ntfTimeHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ntfTimeDays": "{count, plural, one{{count} day ago} other{{count} days ago}}",
+  "@ntfTimeDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ntfPermTitle": "Turn on notifications",
+  "ntfPermBody": "Get fixture assignments and match reminders on this phone.",
+  "ntfPermEnable": "Turn on",
+  "ntfPermOpenSettings": "Open system settings",
+  "ntfPermOn": "Notifications are on for this phone.",
+  "ntfPermBlocked": "Notifications are turned off for this app in your phone settings.",
+  "ntfSettingsTitle": "Notification settings",
+  "ntfSettingsEntry": "Notifications",
+  "ntfSectionPush": "Push notifications",
+  "ntfSectionWhatsapp": "WhatsApp",
+  "ntfSectionSharing": "Share achievements to the community",
+  "ntfSaveFailed": "Couldn't save that change.",
+  "ntfTestAction": "Send a test notification",
+  "ntfTestSent": "Test sent — it should arrive in a moment.",
+  "ntfTestNoDevice": "This phone isn't registered for notifications yet.",
+  "ntfTestFailed": "The test notification couldn't be delivered.",
+  "ntfPushMatchReminder": "Match reminders",
+  "ntfPushResultConfirmed": "Result confirmed",
+  "ntfPushAchievementUnlocked": "Achievement unlocked",
+  "ntfPushChallengeCompleted": "Weekly challenge completed",
+  "ntfPushNewAnnouncement": "Community announcements",
+  "ntfPushTournamentAnnounced": "New tournaments",
+  "ntfPushWagerSettled": "Wager settled",
+  "ntfPushReferralConverted": "Referral converted",
+  "ntfPushPostComment": "Comments on your posts",
+  "ntfPushPostReaction": "Reactions on your posts",
+  "ntfPushBracketReleased": "Bracket released",
+  "ntfPushMatchAssigned": "New fixture assigned",
+  "ntfPushPrizeCredited": "Prize credited",
+  "ntfPushStatusFromFriend": "A friend posts a status",
+  "ntfPushStatusViewed": "Someone views your status",
+  "ntfPushNewFollower": "Someone follows you",
+  "ntfPushDirectMessage": "Direct messages",
+  "ntfWaMatchReminder": "Match reminders (1h before kickoff)",
+  "ntfWaResultConfirmed": "Result confirmed",
+  "ntfWaPrizeCredited": "Prize credited to wallet",
+  "ntfWaChallengeCompleted": "Weekly challenge completed",
+  "ntfWaAchievementUnlocked": "Achievement unlocked",
+  "ntfWaRegistrationConfirmed": "Registration confirmed",
+  "ntfShareTournament": "Tournament wins",
+  "ntfShareMilestone": "Milestone achievements (100 matches, etc.)",
+  "ntfShareStreak": "Streak achievements",
+  "ntfShareSocial": "Social achievements (reactions, posts)",
+  "ntfShareOther": "All other achievements",
+  "ntfChannelMatches": "Matches",
+  "ntfChannelMatchesDesc": "Fixtures, reminders and results",
+  "ntfChannelSocial": "Community",
+  "ntfChannelSocialDesc": "Comments, reactions, followers and achievements",
+  "ntfChannelMessages": "Messages",
+  "ntfChannelMessagesDesc": "Direct messages",
+  "ntfChannelMoney": "Money",
+  "ntfChannelMoneyDesc": "Prizes and referral rewards",
+  "ntfChannelAdmin": "Admin alerts",
+  "ntfChannelAdminDesc": "Staff-only alerts",
+  "ntfErrValidation": "That value isn't valid.",
+  "ntfErrNotFound": "That notification no longer exists.",
+  "ntfErrNetwork": "Check your connection and try again.",
+  "ntfErrGeneric": "Something went wrong.",
+  "ntfBannerOpen": "Open"
 }

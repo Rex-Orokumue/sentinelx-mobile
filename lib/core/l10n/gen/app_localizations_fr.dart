@@ -2137,4 +2137,289 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get profileSaved => 'Profil enregistré.';
+
+  @override
+  String get ntfTitle => 'Notifications';
+
+  @override
+  String get ntfMarkAllRead => 'Tout marquer comme lu';
+
+  @override
+  String get ntfMuteThread => 'Mettre ce fil en sourdine';
+
+  @override
+  String get ntfUnmuteThread => 'Réactiver ce fil';
+
+  @override
+  String get ntfMuteType => 'Mettre ce type en sourdine';
+
+  @override
+  String get ntfUnmuteType => 'Réactiver ce type';
+
+  @override
+  String get ntfMuteFor1h => 'Pendant 1 heure';
+
+  @override
+  String get ntfMuteFor1w => 'Pendant 1 semaine';
+
+  @override
+  String get ntfMuteAlways => 'Toujours';
+
+  @override
+  String get ntfMuted => 'Mis en sourdine';
+
+  @override
+  String get ntfUnmuted => 'Réactivé';
+
+  @override
+  String get ntfEmptyTitle => 'Vous êtes à jour';
+
+  @override
+  String get ntfEmptyBody =>
+      'Les affectations de matchs, les résultats et les gains apparaissent ici.';
+
+  @override
+  String get ntfLoadError => 'Impossible de charger vos notifications.';
+
+  @override
+  String get ntfRetry => 'Réessayer';
+
+  @override
+  String get ntfSignedOut => 'Connectez-vous pour voir vos notifications.';
+
+  @override
+  String get ntfLogIn => 'Se connecter';
+
+  @override
+  String get ntfActionFailed => 'Ça n\'a pas marché. Réessayez.';
+
+  @override
+  String ntfUnreadCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count notifications non lues',
+      one: '$count notification non lue',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ntfTimeNow => 'À l\'instant';
+
+  @override
+  String ntfTimeMinutes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'il y a $count minutes',
+      one: 'il y a $count minute',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String ntfTimeHours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'il y a $count heures',
+      one: 'il y a $count heure',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String ntfTimeDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'il y a $count jours',
+      one: 'il y a $count jour',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ntfPermTitle => 'Activer les notifications';
+
+  @override
+  String get ntfPermBody =>
+      'Recevez vos affectations de matchs et rappels sur ce téléphone.';
+
+  @override
+  String get ntfPermEnable => 'Activer';
+
+  @override
+  String get ntfPermOpenSettings => 'Ouvrir les paramètres du système';
+
+  @override
+  String get ntfPermOn => 'Les notifications sont activées sur ce téléphone.';
+
+  @override
+  String get ntfPermBlocked =>
+      'Les notifications sont désactivées pour cette application dans les paramètres du téléphone.';
+
+  @override
+  String get ntfSettingsTitle => 'Paramètres de notification';
+
+  @override
+  String get ntfSettingsEntry => 'Notifications';
+
+  @override
+  String get ntfSectionPush => 'Notifications push';
+
+  @override
+  String get ntfSectionWhatsapp => 'WhatsApp';
+
+  @override
+  String get ntfSectionSharing => 'Partager les succès avec la communauté';
+
+  @override
+  String get ntfSaveFailed => 'Impossible d\'enregistrer ce changement.';
+
+  @override
+  String get ntfTestAction => 'Envoyer une notification de test';
+
+  @override
+  String get ntfTestSent => 'Test envoyé — il devrait arriver dans un instant.';
+
+  @override
+  String get ntfTestNoDevice =>
+      'Ce téléphone n\'est pas encore enregistré pour les notifications.';
+
+  @override
+  String get ntfTestFailed =>
+      'La notification de test n\'a pas pu être livrée.';
+
+  @override
+  String get ntfPushMatchReminder => 'Rappels de match';
+
+  @override
+  String get ntfPushResultConfirmed => 'Résultat confirmé';
+
+  @override
+  String get ntfPushAchievementUnlocked => 'Succès débloqué';
+
+  @override
+  String get ntfPushChallengeCompleted => 'Défi hebdomadaire terminé';
+
+  @override
+  String get ntfPushNewAnnouncement => 'Annonces de la communauté';
+
+  @override
+  String get ntfPushTournamentAnnounced => 'Nouveaux tournois';
+
+  @override
+  String get ntfPushWagerSettled => 'Pari réglé';
+
+  @override
+  String get ntfPushReferralConverted => 'Parrainage converti';
+
+  @override
+  String get ntfPushPostComment => 'Commentaires sur vos publications';
+
+  @override
+  String get ntfPushPostReaction => 'Réactions à vos publications';
+
+  @override
+  String get ntfPushBracketReleased => 'Tableau publié';
+
+  @override
+  String get ntfPushMatchAssigned => 'Nouveau match assigné';
+
+  @override
+  String get ntfPushPrizeCredited => 'Gain crédité';
+
+  @override
+  String get ntfPushStatusFromFriend => 'Un ami publie un statut';
+
+  @override
+  String get ntfPushStatusViewed => 'Quelqu\'un voit votre statut';
+
+  @override
+  String get ntfPushNewFollower => 'Quelqu\'un vous suit';
+
+  @override
+  String get ntfPushDirectMessage => 'Messages privés';
+
+  @override
+  String get ntfWaMatchReminder =>
+      'Rappels de match (1 h avant le coup d\'envoi)';
+
+  @override
+  String get ntfWaResultConfirmed => 'Résultat confirmé';
+
+  @override
+  String get ntfWaPrizeCredited => 'Gain crédité au portefeuille';
+
+  @override
+  String get ntfWaChallengeCompleted => 'Défi hebdomadaire terminé';
+
+  @override
+  String get ntfWaAchievementUnlocked => 'Succès débloqué';
+
+  @override
+  String get ntfWaRegistrationConfirmed => 'Inscription confirmée';
+
+  @override
+  String get ntfShareTournament => 'Victoires en tournoi';
+
+  @override
+  String get ntfShareMilestone => 'Succès d\'étape (100 matchs, etc.)';
+
+  @override
+  String get ntfShareStreak => 'Succès de série';
+
+  @override
+  String get ntfShareSocial => 'Succès sociaux (réactions, publications)';
+
+  @override
+  String get ntfShareOther => 'Tous les autres succès';
+
+  @override
+  String get ntfChannelMatches => 'Matchs';
+
+  @override
+  String get ntfChannelMatchesDesc => 'Affectations, rappels et résultats';
+
+  @override
+  String get ntfChannelSocial => 'Communauté';
+
+  @override
+  String get ntfChannelSocialDesc =>
+      'Commentaires, réactions, abonnés et succès';
+
+  @override
+  String get ntfChannelMessages => 'Messages';
+
+  @override
+  String get ntfChannelMessagesDesc => 'Messages privés';
+
+  @override
+  String get ntfChannelMoney => 'Argent';
+
+  @override
+  String get ntfChannelMoneyDesc => 'Gains et récompenses de parrainage';
+
+  @override
+  String get ntfChannelAdmin => 'Alertes admin';
+
+  @override
+  String get ntfChannelAdminDesc => 'Alertes réservées au personnel';
+
+  @override
+  String get ntfErrValidation => 'Cette valeur n\'est pas valide.';
+
+  @override
+  String get ntfErrNotFound => 'Cette notification n\'existe plus.';
+
+  @override
+  String get ntfErrNetwork => 'Vérifiez votre connexion et réessayez.';
+
+  @override
+  String get ntfErrGeneric => 'Une erreur est survenue.';
+
+  @override
+  String get ntfBannerOpen => 'Ouvrir';
 }

@@ -2111,4 +2111,287 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profileSaved => 'Profile saved.';
+
+  @override
+  String get ntfTitle => 'Notifications';
+
+  @override
+  String get ntfMarkAllRead => 'Mark all read';
+
+  @override
+  String get ntfMuteThread => 'Mute this thread';
+
+  @override
+  String get ntfUnmuteThread => 'Unmute this thread';
+
+  @override
+  String get ntfMuteType => 'Mute this type';
+
+  @override
+  String get ntfUnmuteType => 'Unmute this type';
+
+  @override
+  String get ntfMuteFor1h => 'For 1 hour';
+
+  @override
+  String get ntfMuteFor1w => 'For 1 week';
+
+  @override
+  String get ntfMuteAlways => 'Always';
+
+  @override
+  String get ntfMuted => 'Muted';
+
+  @override
+  String get ntfUnmuted => 'Unmuted';
+
+  @override
+  String get ntfEmptyTitle => 'You\'re all caught up';
+
+  @override
+  String get ntfEmptyBody =>
+      'Fixture assignments, results and prizes show up here.';
+
+  @override
+  String get ntfLoadError => 'Couldn\'t load your notifications.';
+
+  @override
+  String get ntfRetry => 'Try again';
+
+  @override
+  String get ntfSignedOut => 'Log in to see your notifications.';
+
+  @override
+  String get ntfLogIn => 'Log in';
+
+  @override
+  String get ntfActionFailed => 'That didn\'t work. Try again.';
+
+  @override
+  String ntfUnreadCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count unread notifications',
+      one: '$count unread notification',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ntfTimeNow => 'Just now';
+
+  @override
+  String ntfTimeMinutes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count minutes ago',
+      one: '$count minute ago',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String ntfTimeHours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count hours ago',
+      one: '$count hour ago',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String ntfTimeDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days ago',
+      one: '$count day ago',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ntfPermTitle => 'Turn on notifications';
+
+  @override
+  String get ntfPermBody =>
+      'Get fixture assignments and match reminders on this phone.';
+
+  @override
+  String get ntfPermEnable => 'Turn on';
+
+  @override
+  String get ntfPermOpenSettings => 'Open system settings';
+
+  @override
+  String get ntfPermOn => 'Notifications are on for this phone.';
+
+  @override
+  String get ntfPermBlocked =>
+      'Notifications are turned off for this app in your phone settings.';
+
+  @override
+  String get ntfSettingsTitle => 'Notification settings';
+
+  @override
+  String get ntfSettingsEntry => 'Notifications';
+
+  @override
+  String get ntfSectionPush => 'Push notifications';
+
+  @override
+  String get ntfSectionWhatsapp => 'WhatsApp';
+
+  @override
+  String get ntfSectionSharing => 'Share achievements to the community';
+
+  @override
+  String get ntfSaveFailed => 'Couldn\'t save that change.';
+
+  @override
+  String get ntfTestAction => 'Send a test notification';
+
+  @override
+  String get ntfTestSent => 'Test sent — it should arrive in a moment.';
+
+  @override
+  String get ntfTestNoDevice =>
+      'This phone isn\'t registered for notifications yet.';
+
+  @override
+  String get ntfTestFailed => 'The test notification couldn\'t be delivered.';
+
+  @override
+  String get ntfPushMatchReminder => 'Match reminders';
+
+  @override
+  String get ntfPushResultConfirmed => 'Result confirmed';
+
+  @override
+  String get ntfPushAchievementUnlocked => 'Achievement unlocked';
+
+  @override
+  String get ntfPushChallengeCompleted => 'Weekly challenge completed';
+
+  @override
+  String get ntfPushNewAnnouncement => 'Community announcements';
+
+  @override
+  String get ntfPushTournamentAnnounced => 'New tournaments';
+
+  @override
+  String get ntfPushWagerSettled => 'Wager settled';
+
+  @override
+  String get ntfPushReferralConverted => 'Referral converted';
+
+  @override
+  String get ntfPushPostComment => 'Comments on your posts';
+
+  @override
+  String get ntfPushPostReaction => 'Reactions on your posts';
+
+  @override
+  String get ntfPushBracketReleased => 'Bracket released';
+
+  @override
+  String get ntfPushMatchAssigned => 'New fixture assigned';
+
+  @override
+  String get ntfPushPrizeCredited => 'Prize credited';
+
+  @override
+  String get ntfPushStatusFromFriend => 'A friend posts a status';
+
+  @override
+  String get ntfPushStatusViewed => 'Someone views your status';
+
+  @override
+  String get ntfPushNewFollower => 'Someone follows you';
+
+  @override
+  String get ntfPushDirectMessage => 'Direct messages';
+
+  @override
+  String get ntfWaMatchReminder => 'Match reminders (1h before kickoff)';
+
+  @override
+  String get ntfWaResultConfirmed => 'Result confirmed';
+
+  @override
+  String get ntfWaPrizeCredited => 'Prize credited to wallet';
+
+  @override
+  String get ntfWaChallengeCompleted => 'Weekly challenge completed';
+
+  @override
+  String get ntfWaAchievementUnlocked => 'Achievement unlocked';
+
+  @override
+  String get ntfWaRegistrationConfirmed => 'Registration confirmed';
+
+  @override
+  String get ntfShareTournament => 'Tournament wins';
+
+  @override
+  String get ntfShareMilestone => 'Milestone achievements (100 matches, etc.)';
+
+  @override
+  String get ntfShareStreak => 'Streak achievements';
+
+  @override
+  String get ntfShareSocial => 'Social achievements (reactions, posts)';
+
+  @override
+  String get ntfShareOther => 'All other achievements';
+
+  @override
+  String get ntfChannelMatches => 'Matches';
+
+  @override
+  String get ntfChannelMatchesDesc => 'Fixtures, reminders and results';
+
+  @override
+  String get ntfChannelSocial => 'Community';
+
+  @override
+  String get ntfChannelSocialDesc =>
+      'Comments, reactions, followers and achievements';
+
+  @override
+  String get ntfChannelMessages => 'Messages';
+
+  @override
+  String get ntfChannelMessagesDesc => 'Direct messages';
+
+  @override
+  String get ntfChannelMoney => 'Money';
+
+  @override
+  String get ntfChannelMoneyDesc => 'Prizes and referral rewards';
+
+  @override
+  String get ntfChannelAdmin => 'Admin alerts';
+
+  @override
+  String get ntfChannelAdminDesc => 'Staff-only alerts';
+
+  @override
+  String get ntfErrValidation => 'That value isn\'t valid.';
+
+  @override
+  String get ntfErrNotFound => 'That notification no longer exists.';
+
+  @override
+  String get ntfErrNetwork => 'Check your connection and try again.';
+
+  @override
+  String get ntfErrGeneric => 'Something went wrong.';
+
+  @override
+  String get ntfBannerOpen => 'Open';
 }
