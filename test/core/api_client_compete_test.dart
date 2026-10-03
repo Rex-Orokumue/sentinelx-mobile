@@ -105,9 +105,14 @@ void main() {
 
   test('patchMeProfile PATCHes /me/profile with every field', () async {
     final a = _FakeAdapter((_) => _json(200, {'data': {'ok': true}}));
-    await _client(a).patchMeProfile(const ProfileEdit(displayName: 'Ada', username: '', whatsapp: '', country: 'NG', bio: 'hi'));
+    await _client(a).patchMeProfile(const ProfileEdit(
+      displayName: 'Ada', username: '', whatsapp: '', country: 'Nigeria', bio: 'hi',
+      gameInterests: ['74db07fa-e711-4e78-a982-2863a45137f1'], consentWhatsappUpdates: false,
+    ));
     expect(a.requests.single.method, 'PATCH');
     expect(a.requests.single.path, '/api/mobile/v1/me/profile');
-    expect((a.requests.single.data as Map)['country'], 'NG');
+    expect((a.requests.single.data as Map)['country'], 'Nigeria');
+    expect((a.requests.single.data as Map)['gameInterests'], ['74db07fa-e711-4e78-a982-2863a45137f1']);
+    expect((a.requests.single.data as Map)['consentWhatsappUpdates'], isFalse);
   });
 }

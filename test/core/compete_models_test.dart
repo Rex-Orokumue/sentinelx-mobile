@@ -50,4 +50,16 @@ void main() {
     const e = ProfileEdit(displayName: 'Ada', username: '', whatsapp: '', country: '', bio: '');
     expect(e.toJson(), {'displayName': 'Ada', 'username': '', 'whatsapp': '', 'country': '', 'bio': ''});
   });
+
+  test('ProfileEdit omits new optional fields for old-client compatibility and preserves false when supplied', () {
+    const old = ProfileEdit(displayName: 'Ada', username: '', whatsapp: '', country: '', bio: '');
+    expect(old.toJson().containsKey('gameInterests'), isFalse);
+    expect(old.toJson().containsKey('consentWhatsappUpdates'), isFalse);
+    const current = ProfileEdit(
+      displayName: 'Ada', username: '', whatsapp: '+2348012345678', country: 'Nigeria', bio: '',
+      gameInterests: ['74db07fa-e711-4e78-a982-2863a45137f1'], consentWhatsappUpdates: false,
+    );
+    expect(current.toJson()['gameInterests'], ['74db07fa-e711-4e78-a982-2863a45137f1']);
+    expect(current.toJson()['consentWhatsappUpdates'], isFalse);
+  });
 }
