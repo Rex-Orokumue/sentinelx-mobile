@@ -57,4 +57,18 @@ void main() {
       a.close();
     });
   });
+
+  test('tickSignal emits a distinct value per event so Riverpod notifies on every one', () async {
+    final source = StreamController<void>();
+    final ticks = <int>[];
+    final sub = tickSignal(source.stream).listen(ticks.add);
+    source
+      ..add(null)
+      ..add(null)
+      ..add(null);
+    await Future<void>.delayed(Duration.zero);
+    expect(ticks, [1, 2, 3]);
+    await sub.cancel();
+    await source.close();
+  });
 }

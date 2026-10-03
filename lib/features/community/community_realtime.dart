@@ -77,6 +77,13 @@ Stream<void> postDetailChangeSignal(SupabaseClient client, String postId) => deb
           filter: PostgresChangeFilter(type: PostgresChangeFilterType.eq, column: 'post_id', value: postId)),
     ]);
 
-final communityFeedRealtimeProvider = StreamProvider.autoDispose<void>((ref) => feedChangeSignal(ref.watch(supabaseClientProvider)));
+/// Numbers each event. `StreamProvider<void>` can't be used directly: every `null` is equal to the
+/// last, so Riverpod would notify listeners for the first event only and silently drop the rest.
+Stream<int> tickSignal(Stream<void> source) {
+  var tick = 0;
+  return source.map((_) => ++tick);
+}
+
+final communityFeedRealtimeProvider = StreamProvider.autoDispose<int>((ref) => tickSignal(feedChangeSignal(ref.watch(supabaseClientProvider))));
 final communityPostDetailRealtimeProvider =
-    StreamProvider.autoDispose.family<void, String>((ref, postId) => postDetailChangeSignal(ref.watch(supabaseClientProvider), postId));
+    StreamProvider.autoDispose.family<int, String>((ref, postId) => tickSignal(postDetailChangeSignal(ref.watch(supabaseClientProvider), postId)));
