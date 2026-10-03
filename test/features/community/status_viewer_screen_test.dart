@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sentinelx_mobile/core/api/community_models.dart';
 import 'package:sentinelx_mobile/features/community/community_providers.dart';
@@ -166,5 +167,111 @@ void main() {
     expect(find.text('third'), findsOneWidget);
     expect(find.text('expired'), findsNothing);
     expect(repo.calls.where((c) => c.startsWith('viewStatus:')).toList(), ['viewStatus:s1', 'viewStatus:s3']);
+  });
+
+  group('author actions and tray freshness', () {
+    // Wraps the viewer in a Consumer that watches the rings provider, as a mounted tray would, so
+    // an invalidation shows up as a refetch.
+    Future<FakeCommunityRepository> pumpWatching(WidgetTester tester, StatusRing ring, {FakeCommunityRepository? repo}) async {
+      final fake = repo ?? FakeCommunityRepository();
+      await pumpCompete(
+        tester,
+        Navigator(
+          onGenerateRoute: (_) => MaterialPageRoute<void>(
+            builder: (_) => Consumer(builder: (context, ref, _) {
+              ref.watch(communityStatusRingsProvider);
+              return StatusViewerScreen(ring: ring, onOpenViewers: (_) {});
+            }),
+          ),
+        ),
+        overrides: [...competeBaseOverrides(), communityRepositoryProvider.overrideWithValue(fake)],
+      );
+      await tester.pumpAndSettle();
+      return fake;
+    }
+
+    int ringFetches(FakeCommunityRepository repo) => repo.calls.where((c) => c == 'statuses').length;
+
+    testWidgets('recording a view refreshes the tray so its ring stops reading as unseen', (tester) async {
+      final ring = _ring(statuses: [_row(id: 's1', caption: 'one')]);
+      final repo = await pumpWatching(tester, ring);
+      expect(repo.calls, contains('viewStatus:s1'));
+      expect(ringFetches(repo), 2, reason: 'initial tray read + the refetch after the view landed');
+    });
+
+    testWidgets('a failed view does not refresh the tray (nothing changed server-side)', (tester) async {
+      final repo = FakeCommunityRepository()..writeErrors['viewStatus'] = Exception('offline');
+      final ring = _ring(statuses: [_row(id: 's1', caption: 'one')]);
+      await pumpWatching(tester, ring, repo: repo);
+      expect(ringFetches(repo), 1);
+    });
+
+    testWidgets("someone else's story has no delete control", (tester) async {
+      await _pump(tester, ring: _ring(statuses: [_row(id: 's1', caption: 'one')]));
+      expect(find.byKey(const Key('status-delete')), findsNothing);
+    });
+
+    testWidgets('cancelling the confirm sends nothing', (tester) async {
+      final repo = FakeCommunityRepository();
+      await _pump(tester, ring: _ring(isSelf: true, statuses: [_row(id: 's1', caption: 'one')]), repo: repo);
+      await tester.tap(find.byKey(const Key('status-delete')));
+      await tester.pumpAndSettle();
+      expect(find.text('Delete this story?'), findsOneWidget);
+      await tester.tap(find.byKey(const Key('status-delete-cancel')));
+      await tester.pumpAndSettle();
+      expect(repo.calls.where((c) => c.startsWith('deleteStatus')), isEmpty);
+      expect(find.text('one'), findsOneWidget);
+    });
+
+    testWidgets('deleting one of several stories removes it, shows the next, and refreshes the tray', (tester) async {
+      final ring = _ring(isSelf: true, statuses: [_row(id: 's1', caption: 'one'), _row(id: 's2', caption: 'two')]);
+      final repo = await pumpWatching(tester, ring);
+      final before = ringFetches(repo);
+      await tester.tap(find.byKey(const Key('status-delete')));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('status-delete-confirm')));
+      await tester.pumpAndSettle();
+      expect(repo.calls, contains('deleteStatus:s1'));
+      expect(find.text('one'), findsNothing);
+      expect(find.text('two'), findsOneWidget);
+      expect(ringFetches(repo), greaterThan(before));
+    });
+
+    testWidgets('deleting the only story closes the viewer', (tester) async {
+      final repo = FakeCommunityRepository();
+      final ring = _ring(isSelf: true, statuses: [_row(id: 's1', caption: 'one')]);
+      await pumpCompete(
+        tester,
+        Builder(
+          builder: (context) => ElevatedButton(
+            onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => StatusViewerScreen(ring: ring, onOpenViewers: (_) {}))),
+            child: const Text('open'),
+          ),
+        ),
+        overrides: [...competeBaseOverrides(), communityRepositoryProvider.overrideWithValue(repo)],
+      );
+      await tester.tap(find.text('open'));
+      await tester.pumpAndSettle();
+      expect(find.byType(StatusViewerScreen), findsOneWidget);
+      await tester.tap(find.byKey(const Key('status-delete')));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('status-delete-confirm')));
+      await tester.pumpAndSettle();
+      expect(repo.calls, contains('deleteStatus:s1'));
+      expect(find.byType(StatusViewerScreen), findsNothing);
+      expect(find.text('open'), findsOneWidget);
+    });
+
+    testWidgets('a failed delete keeps the story and shows the error', (tester) async {
+      final repo = FakeCommunityRepository()..writeErrors['deleteStatus'] = Exception('boom');
+      await _pump(tester, ring: _ring(isSelf: true, statuses: [_row(id: 's1', caption: 'one')]), repo: repo);
+      await tester.tap(find.byKey(const Key('status-delete')));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('status-delete-confirm')));
+      await tester.pumpAndSettle();
+      expect(find.byType(StatusViewerScreen), findsOneWidget);
+      expect(find.text('one'), findsOneWidget);
+      expect(find.byType(SnackBar), findsOneWidget);
+    });
   });
 }

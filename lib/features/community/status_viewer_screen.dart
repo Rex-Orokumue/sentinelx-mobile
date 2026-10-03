@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/api/community_models.dart';
+import '../../core/l10n/gen/app_localizations.dart';
+import '../../core/utils/write_flow.dart';
+import 'community_error_copy.dart';
 import 'community_providers.dart';
 
 /// Full-screen, one ring's statuses in order, tap-to-advance (right half next, left half back),
@@ -29,6 +32,10 @@ class StatusViewerScreen extends ConsumerStatefulWidget {
 class _StatusViewerScreenState extends ConsumerState<StatusViewerScreen> {
   int _index = 0;
   final _viewedIds = <String>{};
+  final _deletedIds = <String>{};
+
+  /// The ring's statuses minus any the author has deleted from inside this viewer.
+  List<StatusRow> get _statuses => [for (final s in widget.ring.statuses) if (!_deletedIds.contains(s.id)) s];
 
   bool _isExpired(StatusRow status) => DateTime.parse(status.expiresAt).isBefore(DateTime.now());
 
@@ -43,7 +50,7 @@ class _StatusViewerScreenState extends ConsumerState<StatusViewerScreen> {
   /// viewed exactly once.
   void _settle() {
     if (!mounted) return;
-    final statuses = widget.ring.statuses;
+    final statuses = _statuses;
     if (_index < 0 || _index >= statuses.length) {
       Navigator.of(context).maybePop();
       return;
@@ -60,11 +67,49 @@ class _StatusViewerScreenState extends ConsumerState<StatusViewerScreen> {
   }
 
   Future<void> _recordView(String id) async {
+    // Captured up front: the viewer can be closed before the request lands, and the tray should
+    // still learn that this ring has now been seen.
+    final container = ProviderScope.containerOf(context, listen: false);
     try {
-      await ref.read(communityRepositoryProvider).viewStatus(id);
+      await container.read(communityRepositoryProvider).viewStatus(id);
     } catch (_) {
-      // Best-effort per spec — never surfaces as an error.
+      // Best-effort per spec — never surfaces as an error, and nothing changed server-side.
+      return;
     }
+    container.invalidate(communityStatusRingsProvider);
+  }
+
+  Future<void> _deleteCurrent(StatusRow status) async {
+    final l10n = AppLocalizations.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    final container = ProviderScope.containerOf(context, listen: false);
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        content: Text(l10n.cmtStatusDeleteConfirm),
+        actions: [
+          TextButton(key: const Key('status-delete-cancel'), onPressed: () => Navigator.pop(ctx, false), child: Text(l10n.cmtDeleteConfirmCancel)),
+          TextButton(key: const Key('status-delete-confirm'), onPressed: () => Navigator.pop(ctx, true), child: Text(l10n.cmtDeleteConfirmYes)),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) return;
+    final scope = 'delete-status:${status.id}';
+    final ok = await ref.read(writeFlowProvider(scope).notifier).run((_) => ref.read(communityRepositoryProvider).deleteStatus(status.id));
+    if (!mounted) return;
+    if (!ok) {
+      final code = ref.read(writeFlowProvider(scope)).errorCode ?? 'network';
+      messenger.showSnackBar(SnackBar(content: Text(communityErrorCopy(l10n, code))));
+      return;
+    }
+    container.invalidate(communityStatusRingsProvider);
+    setState(() {
+      _deletedIds.add(status.id);
+      final remaining = _statuses.length;
+      if (remaining > 0 && _index >= remaining) _index = remaining - 1;
+    });
+    // Closes the viewer when that was the last story; otherwise settles on the one now showing.
+    WidgetsBinding.instance.addPostFrameCallback((_) => _settle());
   }
 
   void _goNext() {
@@ -80,7 +125,7 @@ class _StatusViewerScreenState extends ConsumerState<StatusViewerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final statuses = widget.ring.statuses;
+    final statuses = _statuses;
     if (_index < 0 || _index >= statuses.length) {
       // Out of range mid-pop (post-frame callback already scheduled by `_settle`) — render nothing
       // rather than index out of bounds.
@@ -129,6 +174,13 @@ class _StatusViewerScreenState extends ConsumerState<StatusViewerScreen> {
             Expanded(
               child: Text(widget.ring.authorName, style: const TextStyle(color: Colors.white), overflow: TextOverflow.ellipsis),
             ),
+            if (widget.ring.isSelf)
+              IconButton(
+                key: const Key('status-delete'),
+                tooltip: AppLocalizations.of(context).cmtStatusDelete,
+                onPressed: () => _deleteCurrent(status),
+                icon: const Icon(Icons.delete_outline, color: Colors.white),
+              ),
             if (widget.ring.isSelf)
               IconButton(
                 key: const Key('status-open-viewers'),

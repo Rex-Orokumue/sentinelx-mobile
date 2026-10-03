@@ -99,4 +99,33 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byType(CommunityFeedScreen), findsOneWidget);
   });
+
+  Future<void> deleteViewedPost(WidgetTester tester) async {
+    await tester.tap(find.byKey(const Key('detail-menu')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('detail-delete')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('post-delete-confirm')));
+    await tester.pumpAndSettle();
+  }
+
+  testWidgets('deleting a post opened from a cold web link lands on the feed instead of popping an empty stack', (tester) async {
+    await _pump(tester, 'https://sentinelxesports.com.ng/community/p1');
+    await tester.pumpAndSettle();
+    expect(find.byType(PostDetailScreen), findsOneWidget);
+    await deleteViewedPost(tester);
+    expect(tester.takeException(), isNull);
+    expect(find.byType(PostDetailScreen), findsNothing);
+    expect(find.byType(CommunityFeedScreen), findsOneWidget);
+  });
+
+  testWidgets('deleting a post opened from the feed returns to the feed', (tester) async {
+    await _pump(tester, '/community');
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Hello feed'));
+    await tester.pumpAndSettle();
+    await deleteViewedPost(tester);
+    expect(find.byType(PostDetailScreen), findsNothing);
+    expect(find.byType(CommunityFeedScreen), findsOneWidget);
+  });
 }
