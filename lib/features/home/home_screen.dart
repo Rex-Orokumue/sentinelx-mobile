@@ -26,7 +26,7 @@ class HomeScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sentinel X'),
+        title: const Text('SentinelX Esports'),
         actions: [
           IconButton(
             key: const Key('home-account'),

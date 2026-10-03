@@ -26,14 +26,27 @@ ReactionType reactionTypeFromJson(String s) => switch (s) {
       _ => throw FormatException('Unknown reaction: $s'),
     };
 
-enum PostType { manual, matchResult, achievement, announcement }
+/// Null for a reaction this app version doesn't know: used for the viewer's own `myReaction`, where an
+/// unrecognised value should read as "no highlight", not fail the page. The strict
+/// [reactionTypeFromJson] stays for write echoes, where the server returns what we sent.
+ReactionType? tryReactionTypeFromJson(String s) => switch (s) {
+      'fire' => ReactionType.fire,
+      'crown' => ReactionType.crown,
+      'strong' => ReactionType.strong,
+      'wow' => ReactionType.wow,
+      _ => null,
+    };
+
+/// [unknown] is a post type this app version has never heard of (the web added one later). It renders
+/// as a generic post — one unrecognised row must never fail the whole feed for older installs.
+enum PostType { manual, matchResult, achievement, announcement, unknown }
 
 PostType postTypeFromJson(String s) => switch (s) {
       'manual' => PostType.manual,
       'match_result' => PostType.matchResult,
       'achievement' => PostType.achievement,
       'announcement' => PostType.announcement,
-      _ => throw FormatException('Unknown post type: $s'),
+      _ => PostType.unknown,
     };
 
 enum ReportReasonCode { spam, harassment, hateSpeech, nudityOrSexualContent, violence, misinformation, other }
@@ -135,7 +148,7 @@ class PostView {
       canDelete: j['canDelete'] as bool,
       canBoost: j['canBoost'] as bool,
       reactionCounts: ReactionCounts.fromJson(j['reactionCounts'] as Map<String, dynamic>),
-      myReaction: myReaction == null ? null : reactionTypeFromJson(myReaction as String),
+      myReaction: myReaction == null ? null : tryReactionTypeFromJson(myReaction as String),
       commentCount: _int(j['commentCount']),
       matchResult: mr == null ? null : MatchResultDetail.fromJson(mr),
       mutedByViewer: j['mutedByViewer'] as bool,

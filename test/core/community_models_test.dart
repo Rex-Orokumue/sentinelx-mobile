@@ -58,12 +58,25 @@ void main() {
     expect(withMatch.matchResult!.playerB!.username, 'bola');
   });
 
-  test('postType parses all four wire values and throws on unknown', () {
+  test('postType parses all four wire values; an unrecognised one becomes unknown instead of throwing', () {
     expect(postTypeFromJson('manual'), PostType.manual);
     expect(postTypeFromJson('match_result'), PostType.matchResult);
     expect(postTypeFromJson('achievement'), PostType.achievement);
     expect(postTypeFromJson('announcement'), PostType.announcement);
-    expect(() => postTypeFromJson('bogus'), throwsFormatException);
+    expect(postTypeFromJson('poll'), PostType.unknown);
+  });
+
+  test('a post type or reaction added server-side later does not break parsing the feed', () {
+    // An older installed app must keep loading the whole Community tab when the web adds a
+    // post type or reaction it has never heard of.
+    final page = CommunityFeedPage.fromJson(feedPageJson(posts: [
+      postViewJson(id: 'p1', content: 'known'),
+      postViewJson(id: 'p2', content: 'future', postType: 'poll', myReaction: 'heart'),
+    ]));
+    expect(page.posts.map((p) => p.id), ['p1', 'p2']);
+    expect(page.posts[1].postType, PostType.unknown);
+    expect(page.posts[1].myReaction, isNull);
+    expect(page.posts[1].content, 'future');
   });
 
   test('reactionTypeFromJson parses all four values and throws on unknown', () {
