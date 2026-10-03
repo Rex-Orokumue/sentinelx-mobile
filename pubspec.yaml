@@ -47,6 +47,7 @@ dependencies:
   app_links: ^7.0.0
   webview_flutter: ^4.14.1
   image_picker: ^1.2.3
+  country_picker: 2.0.28
 
 dev_dependencies:
   flutter_test:
