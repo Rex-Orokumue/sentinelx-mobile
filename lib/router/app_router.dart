@@ -9,6 +9,7 @@ import '../core/l10n/gen/app_localizations.dart';
 import '../core/routing/web_links.dart';
 import '../features/account/account_screen.dart';
 import '../features/account/edit_profile_screen.dart';
+import '../features/account/profile_onboarding_screen.dart';
 import '../core/api/community_models.dart';
 import '../features/community/community_feed_screen.dart';
 import '../features/community/compose_screen.dart';
@@ -119,6 +120,13 @@ GoRouter buildAppRouter({
         path: '/onboarding/username',
         builder: (context, state) =>
             OnboardingUsernameScreen(onClaimed: () => context.go('/')),
+      ),
+      GoRoute(
+        path: '/onboarding/profile',
+        builder: (context, state) => ProfileOnboardingScreen(
+          onCompleted: () => context.go('/'),
+          onUnauthorized: () => context.go('/login'),
+        ),
       ),
       GoRoute(path: '/invitations', builder: (context, state) => const InvitationsScreen()),
       GoRoute(path: '/games', builder: (context, state) => const GamesScreen()),
