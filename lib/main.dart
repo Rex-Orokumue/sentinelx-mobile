@@ -6,6 +6,10 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'app.dart';
 import 'core/config/app_config.dart';
+import 'core/notifications/push/firebase_push_gateway.dart';
+import 'core/notifications/push/push_bootstrap.dart';
+import 'core/notifications/push/push_gateway.dart';
+import 'core/notifications/push/push_registration.dart';
 import 'core/providers.dart';
 import 'core/routing/incoming_links.dart';
 import 'core/session/session_lifecycle.dart';
@@ -18,11 +22,14 @@ Future<void> main() async {
   const config = AppConfig.fromEnvironment();
   final info = await PackageInfo.fromPlatform();
   await Supabase.initialize(url: config.supabaseUrl, publishableKey: config.supabasePublishableKey);
+  // Never throws: without a Firebase config the app starts normally with push off.
+  final pushGateway = await FirebasePushGateway.tryInitialize();
 
   final container = ProviderContainer(
     retry: (_, _) => null,
     overrides: [
       installedVersionProvider.overrideWithValue(info.version),
+      pushGatewayProvider.overrideWithValue(pushGateway),
       paystackLauncherProvider.overrideWith(paystackLauncherFromRouter),
     ],
   );
@@ -43,4 +50,6 @@ Future<void> main() async {
   // while nothing is listening to that provider, so a bare read would never fire.
   container.listen(sessionLifecycleProvider, (_, _) {});
   container.read(incomingLinkListenerProvider);
+  container.listen(pushRegistrationProvider, (_, _) {});
+  container.listen(pushBootstrapProvider, (_, _) {});
 }

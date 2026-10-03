@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/gate/app_gate.dart';
 import 'core/l10n/gen/app_localizations.dart';
+import 'core/notifications/push/push_banner_host.dart';
 import 'core/theme/theme.dart';
 import 'router/app_router.dart';
 
@@ -23,7 +24,7 @@ class SentinelXApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      builder: (context, child) => AppGate(child: child ?? const SizedBox.shrink()),
+      builder: (context, child) => AppGate(child: PushBannerHost(child: child ?? const SizedBox.shrink())),
     );
   }
 }
