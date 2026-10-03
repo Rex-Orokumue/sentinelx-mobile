@@ -148,6 +148,18 @@ void main() {
     expect(_feedCalls(repo), before + 1);
   });
 
+  testWidgets('pull to refresh while offline keeps the posts and says so instead of throwing', (tester) async {
+    final repo = FakeCommunityRepository(feedPage: CommunityFeedPage(pinned: const [], posts: [_post('a', 'still here')], hasMore: false));
+    await _pump(tester, repo);
+    await tester.pumpAndSettle();
+    repo.feedError = Exception('offline');
+    await tester.drag(find.byType(CustomScrollView), const Offset(0, 1500));
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+    expect(find.text('still here'), findsOneWidget);
+    expect(find.byType(SnackBar), findsOneWidget);
+  });
+
   testWidgets('signed out: FAB asks to log in, challenges rail shows the prompt and never calls the API', (tester) async {
     final repo = FakeCommunityRepository();
     final h = await _pump(tester, repo, signedOut: true);

@@ -279,4 +279,113 @@ void main() {
       expect(repo.calls.where((c) => c.startsWith('feed:')), hasLength(1));
     });
   });
+
+  group('communityFeedProvider refresh', () {
+    List<PostView> posts(String prefix, int count) => [for (var i = 0; i < count; i++) _post('$prefix$i')];
+    List<String> feedCalls(FakeCommunityRepository repo) => repo.calls.where((c) => c.startsWith('feed:')).toList();
+
+    test('refreshInPlace re-reads the whole loaded window, not just page one', () async {
+      final repo = FakeCommunityRepository(feedPages: [
+        _page(posts: posts('a', 20), hasMore: true),
+        _page(posts: posts('b', 10)),
+        _page(posts: [...posts('a', 20), ...posts('b', 10)]), // what the server returns for the 30-post window
+      ]);
+      final r = _Rig(repo: repo);
+      addTearDown(r.container.dispose);
+      r.keepFeedAlive();
+      await r.container.read(communityFeedProvider.future);
+      await r.feedNotifier.loadMore();
+      expect(r.feedState.posts, hasLength(30));
+
+      await r.feedNotifier.refreshInPlace();
+      expect(feedCalls(repo).last, 'feed:0:30');
+      expect(r.feedState.posts, hasLength(30));
+      expect(r.feedState.hasMore, isFalse);
+    });
+
+    test('a window over the 50-row API limit is re-read in chunks', () async {
+      final repo = FakeCommunityRepository(feedPages: [
+        _page(posts: posts('a', 20), hasMore: true),
+        _page(posts: posts('b', 50), hasMore: true),
+        _page(posts: posts('c', 50), hasMore: true),
+        _page(posts: posts('a', 50), hasMore: true), // refresh chunk 1 (offset 0, limit 50)
+        _page(posts: posts('b', 50), hasMore: true), // chunk 2 (offset 50, limit 50)
+        _page(posts: posts('c', 20), hasMore: true), // chunk 3 (offset 100, limit 20)
+      ]);
+      final r = _Rig(repo: repo);
+      addTearDown(r.container.dispose);
+      r.keepFeedAlive();
+      await r.container.read(communityFeedProvider.future);
+      await r.feedNotifier.loadMore();
+      await r.feedNotifier.loadMore();
+      expect(r.feedState.posts, hasLength(120));
+
+      await r.feedNotifier.refreshInPlace();
+      expect(feedCalls(repo).skip(3), ['feed:0:50', 'feed:50:50', 'feed:100:20']);
+      expect(r.feedState.posts, hasLength(120));
+      expect(r.feedState.hasMore, isTrue);
+    });
+
+    test('a refresh requested during loadMore runs afterwards and nothing is duplicated', () async {
+      final repo = FakeCommunityRepository(feedPages: [
+        _page(posts: [_post('a'), _post('b')], hasMore: true),
+        _page(posts: [_post('c')]),
+        _page(posts: [_post('a'), _post('b'), _post('c')]),
+      ]);
+      final r = _Rig(repo: repo);
+      addTearDown(r.container.dispose);
+      r.keepFeedAlive();
+      await r.container.read(communityFeedProvider.future);
+
+      final gate = Completer<void>();
+      repo.feedGate = gate;
+      final more = r.feedNotifier.loadMore();
+      await r.feedNotifier.refreshInPlace(); // arrives mid-flight: must queue, not race
+      expect(feedCalls(repo), hasLength(2), reason: 'only build + loadMore so far');
+      gate.complete();
+      await more;
+      await Future<void>.delayed(const Duration(milliseconds: 20));
+
+      expect(feedCalls(repo), hasLength(3));
+      expect(r.feedState.posts.map((p) => p.id), ['a', 'b', 'c']);
+    });
+
+    test('loadMore does not append a post that is already in the list', () async {
+      final repo = FakeCommunityRepository(feedPages: [
+        _page(posts: [_post('a'), _post('b')], hasMore: true),
+        _page(posts: [_post('b'), _post('c')]), // b slid across the page boundary
+      ]);
+      final r = _Rig(repo: repo);
+      addTearDown(r.container.dispose);
+      r.keepFeedAlive();
+      await r.container.read(communityFeedProvider.future);
+      await r.feedNotifier.loadMore();
+      expect(r.feedState.posts.map((p) => p.id), ['a', 'b', 'c']);
+    });
+
+    test('refresh returns false and keeps the last good feed when the request fails', () async {
+      final repo = FakeCommunityRepository(feedPage: _page(posts: [_post('a')]));
+      final r = _Rig(repo: repo);
+      addTearDown(r.container.dispose);
+      r.keepFeedAlive();
+      await r.container.read(communityFeedProvider.future);
+      repo.feedError = Exception('offline');
+
+      expect(await r.feedNotifier.refresh(), isFalse);
+      expect(r.feedState.posts.map((p) => p.id), ['a']);
+      repo.feedError = null;
+      expect(await r.feedNotifier.refresh(), isTrue);
+    });
+
+    test('a failed background refresh keeps the loaded feed silently', () async {
+      final repo = FakeCommunityRepository(feedPage: _page(posts: [_post('a')]));
+      final r = _Rig(repo: repo);
+      addTearDown(r.container.dispose);
+      r.keepFeedAlive();
+      await r.container.read(communityFeedProvider.future);
+      repo.feedError = Exception('offline');
+      await r.feedNotifier.refreshInPlace();
+      expect(r.feedState.posts.map((p) => p.id), ['a']);
+    });
+  });
 }

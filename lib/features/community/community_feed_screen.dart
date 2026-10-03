@@ -31,7 +31,7 @@ class CommunityFeedScreen extends ConsumerWidget {
   final void Function(StatusRing ring) onStatusTap;
   final void Function(UpcomingEvent event)? onEventTap;
 
-  Future<void> _refresh(WidgetRef ref) async {
+  Future<void> _refresh(BuildContext context, WidgetRef ref) async {
     ref.invalidate(communityStatusRingsProvider);
     ref.invalidate(communityChallengesProvider);
     ref.invalidate(communityBestPlayProvider);
@@ -39,7 +39,10 @@ class CommunityFeedScreen extends ConsumerWidget {
     ref.invalidate(communityUpcomingEventsProvider);
     ref.invalidate(communityGalleryProvider);
     ref.invalidate(communityStatsProvider);
-    await ref.read(communityFeedProvider.notifier).refresh();
+    final ok = await ref.read(communityFeedProvider.notifier).refresh();
+    if (ok || !context.mounted) return;
+    // The list stays as it was; say why the pull did nothing instead of ending the spinner silently.
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).cmtEcNetwork)));
   }
 
   @override
@@ -50,7 +53,9 @@ class CommunityFeedScreen extends ConsumerWidget {
 
     ref.listen(communityFeedRealtimeProvider, (_, next) {
       if (!next.hasValue) return;
-      ref.invalidate(communityFeedProvider);
+      // Re-read what's already loaded in place — invalidating would drop the player back to page one
+      // (and race an in-flight "load more") every time anyone reacts or comments.
+      ref.read(communityFeedProvider.notifier).refreshInPlace();
       ref.invalidate(communityStatusRingsProvider);
     });
 
@@ -109,7 +114,7 @@ class CommunityFeedScreen extends ConsumerWidget {
         child: const Icon(Icons.add),
       ),
       body: RefreshIndicator(
-        onRefresh: () => _refresh(ref),
+        onRefresh: () => _refresh(context, ref),
         child: CustomScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           slivers: [
