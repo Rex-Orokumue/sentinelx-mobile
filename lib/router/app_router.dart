@@ -32,6 +32,7 @@ import '../features/rankings/rankings_screen.dart';
 import '../features/seasons/seasons_list_screen.dart';
 import '../features/seasons/season_detail_screen.dart';
 import '../features/hall_of_fame/hall_of_fame_screen.dart';
+import '../features/notifications/notification_settings_screen.dart';
 import '../features/notifications/notifications_screen.dart';
 import '../features/onboarding/onboarding_username_screen.dart';
 import '../features/players/follow_list_screen.dart';
@@ -349,9 +350,11 @@ GoRouter buildAppRouter({
                 onLogoTap: () => context.go('/'),
                 onEditProfile: () => context.push('/account/profile'),
                 onOpenProgress: () => context.push('/account/progress'),
+                onOpenNotifications: () => context.push('/account/notifications'),
               ),
               routes: [
                 GoRoute(path: 'profile', builder: (context, state) => const EditProfileScreen()),
+                GoRoute(path: 'notifications', builder: (context, state) => const NotificationSettingsScreen()),
                 GoRoute(
                   path: 'progress',
                   builder: (context, state) => MyProgressScreen(onGoTo: (p) => context.push(p), onLogIn: () => context.push('/login')),

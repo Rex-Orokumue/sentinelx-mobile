@@ -42,6 +42,7 @@ class FakeNotificationsRepository implements NotificationsRepository {
   bool markReadFails = false;
   bool markAllFails = false;
   Object? testPushError;
+  Completer<void>? holdTestPush;
 
   NotificationMutes mutesResult = NotificationMutes.empty;
   late NotificationPrefs prefsResult = const NotificationPrefs(push: {}, whatsapp: {}, achievementSharing: {});
@@ -118,6 +119,7 @@ class FakeNotificationsRepository implements NotificationsRepository {
   @override
   Future<void> sendTestPush() async {
     testPushCalls++;
+    if (holdTestPush != null) await holdTestPush!.future;
     if (testPushError != null) throw testPushError!;
   }
 }

@@ -148,6 +148,26 @@ void main() {
     expect(opened, 1);
   });
 
+  testWidgets('signed in: the Notifications tile opens notification settings', (tester) async {
+    var opened = 0;
+    await tester.pumpWidget(_app(
+      [meProvider.overrideWith((ref) async => _me())],
+      AccountScreen(onLogIn: () {}, onSignUp: () {}, onLogoTap: () {}, onOpenNotifications: () => opened++),
+    ));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('account-notifications')));
+    expect(opened, 1);
+  });
+
+  testWidgets('signed out: there is no Notifications tile', (tester) async {
+    await tester.pumpWidget(_app(
+      [meProvider.overrideWith((ref) async => null)],
+      AccountScreen(onLogIn: () {}, onSignUp: () {}, onLogoTap: () {}, onOpenNotifications: () {}),
+    ));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('account-notifications')), findsNothing);
+  });
+
   testWidgets('signed out: there is no My progress tile', (tester) async {
     await tester.pumpWidget(_app(
       [meProvider.overrideWith((ref) async => null)],

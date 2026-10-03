@@ -42,6 +42,20 @@ void main() {
     expect(find.byKey(const Key('ntf-mark-all')), findsNothing);
   });
 
+  testWidgets('/account/notifications renders Settings -> Notifications', (tester) async {
+    await _pump(tester, '/account/notifications');
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('ntf-push-post_reaction')), findsOneWidget);
+  });
+
+  testWidgets('the Account tile opens Settings -> Notifications', (tester) async {
+    await _pump(tester, '/account');
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('account-notifications')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('ntf-push-post_reaction')), findsOneWidget);
+  });
+
   testWidgets('the messages bell still goes to coming-soon until 5b', (tester) async {
     await _pump(tester, '/account');
     await tester.pumpAndSettle();
