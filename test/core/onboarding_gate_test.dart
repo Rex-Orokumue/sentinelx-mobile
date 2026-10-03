@@ -3,7 +3,7 @@ import 'package:sentinelx_mobile/core/api/models.dart';
 import 'package:sentinelx_mobile/core/auth/onboarding_gate.dart';
 import 'package:sentinelx_mobile/core/config/remote_config.dart';
 
-MeResponse _me({String? username}) => MeResponse(
+MeResponse _me({String? username, String? profileCompletedAt}) => MeResponse(
       id: 'u',
       email: 'a@b.com',
       roles: const [],
@@ -21,6 +21,7 @@ MeResponse _me({String? username}) => MeResponse(
               membershipTier: null,
               kycVerified: false,
               deletionRequestedAt: null,
+              profileCompletedAt: profileCompletedAt,
             ),
     );
 
@@ -42,13 +43,19 @@ void main() {
   test('no username yet: username gate', () {
     expect(resolveOnboardingGate(_me(username: null), _config()), OnboardingGate.username);
   });
-  test('has a username, phone gate off: no gate', () {
-    expect(resolveOnboardingGate(_me(username: 'ada'), _config()), OnboardingGate.none);
+  test('has a username, phone gate off, incomplete profile: profile gate', () {
+    expect(resolveOnboardingGate(_me(username: 'ada'), _config()), OnboardingGate.profile);
   });
   test('has a username, phone gate on: phone gate', () {
     expect(resolveOnboardingGate(_me(username: 'ada'), _config(enforcePhone: true)), OnboardingGate.phone);
   });
   test('config not loaded yet: never demands phone (open by default, matches AppGate’s own null-config fail-open)', () {
-    expect(resolveOnboardingGate(_me(username: 'ada'), null), OnboardingGate.none);
+    expect(resolveOnboardingGate(_me(username: 'ada'), null), OnboardingGate.profile);
+  });
+  test('completed profile clears the final gate', () {
+    expect(
+      resolveOnboardingGate(_me(username: 'ada', profileCompletedAt: '2026-10-03T15:47:47Z'), _config()),
+      OnboardingGate.none,
+    );
   });
 }
