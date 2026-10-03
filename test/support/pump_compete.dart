@@ -19,7 +19,14 @@ RemoteConfig testRemoteConfig() => RemoteConfig.fromJson(const {
       'features': {'wagering': true},
     });
 
-MeResponse testMe({String? displayName = 'Ada', String? whatsapp = '+2348012345678', String? username = 'ada'}) => MeResponse(
+MeResponse testMe({
+  String? displayName = 'Ada',
+  String? whatsapp = '+2348012345678',
+  String? username = 'ada',
+  String? country,
+  List<String> gameInterests = const [],
+  bool consentWhatsappUpdates = false,
+}) => MeResponse(
       id: 'u1',
       email: 'ada@test.dev',
       roles: const [],
@@ -30,11 +37,13 @@ MeResponse testMe({String? displayName = 'Ada', String? whatsapp = '+23480123456
         displayName: displayName,
         avatarUrl: null,
         whatsappNumber: whatsapp,
-        country: null,
+        country: country,
         locale: 'en',
         membershipTier: null,
         kycVerified: false,
         deletionRequestedAt: null,
+        gameInterests: gameInterests,
+        consentWhatsappUpdates: consentWhatsappUpdates,
       ),
     );
 

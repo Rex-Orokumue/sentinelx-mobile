@@ -8,6 +8,8 @@ import 'package:sentinelx_mobile/core/api/compete_models.dart';
 import 'package:sentinelx_mobile/core/providers.dart';
 import 'package:sentinelx_mobile/features/account/edit_profile_screen.dart';
 import 'package:sentinelx_mobile/features/account/profile_providers.dart';
+import 'package:sentinelx_mobile/features/compete/compete_models.dart';
+import 'package:sentinelx_mobile/features/compete/compete_providers.dart';
 
 import '../../support/pump_compete.dart';
 
@@ -28,8 +30,12 @@ class _Rig {
         }),
         meProvider.overrideWith((ref) async {
           meBuilds++;
-          return signedOut ? null : testMe();
+          return signedOut ? null : testMe(country: 'Nigeria', gameInterests: const ['g1']);
         }),
+        gamesProvider.overrideWith((ref) async => const [
+              GameSummary(id: 'g1', name: 'COD Mobile', slug: 'codm', iconUrl: null),
+              GameSummary(id: 'g2', name: 'EA Sports FC', slug: 'fc', iconUrl: null),
+            ]),
         profileEditorProvider.overrideWithValue((edit) async {
           saved.add(edit);
           if (gate != null) await gate!.future;
@@ -62,7 +68,10 @@ Future<_Rig> _pump(WidgetTester tester, {bool signedOut = false, bool pushed = f
 }
 
 Future<void> _save(WidgetTester tester) async {
+  tester.testTextInput.hide();
+  await tester.pumpAndSettle();
   await tester.ensureVisible(find.byKey(const Key('profile-save')));
+  await tester.pumpAndSettle();
   await tester.tap(find.byKey(const Key('profile-save')));
   await tester.pumpAndSettle();
 }
@@ -81,6 +90,9 @@ void main() {
     await tester.enterText(find.byKey(const Key('profile-display-name')), 'Ada B');
     await _save(tester);
     expect(rig.saved.single.bio, 'Hello there');
+    expect(rig.saved.single.country, 'Nigeria');
+    expect(rig.saved.single.gameInterests, ['g1']);
+    expect(rig.saved.single.consentWhatsappUpdates, isFalse);
   });
 
   testWidgets('if the bio cannot be loaded the form is not offered (saving would erase it) and retry is', (tester) async {
@@ -137,6 +149,14 @@ void main() {
     await tester.enterText(find.byKey(const Key('profile-whatsapp')), '');
     await _save(tester);
     expect(rig.saved.single.whatsapp, '');
+  });
+
+  testWidgets('at least one game interest is required', (tester) async {
+    final rig = await _pump(tester);
+    await tester.tap(find.byKey(const Key('game-interest-g1')));
+    await _save(tester);
+    expect(rig.saved, isEmpty);
+    expect(find.text('Choose at least one game.'), findsOneWidget);
   });
 
   testWidgets('username_taken and username_locked show their own copy, not server text', (tester) async {
