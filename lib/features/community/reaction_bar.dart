@@ -39,7 +39,8 @@ String _labelFor(AppLocalizations l10n, ReactionType type) => switch (type) {
 
 /// A 4-emoji reaction bar for a community post. Applies same-turn optimistic updates via
 /// [onUpdate] (wired to the owning feed/detail notifier's `updatePost`) and rolls back on
-/// failure. Gated on sign-in: signed-out taps never call the API and only invoke
+/// failure. [onUpdate] may be called after this widget is gone (the write outlives a card that
+/// scrolled away), so it must not depend on this widget's `ref` or `context`. Gated on sign-in: signed-out taps never call the API and only invoke
 /// [onSignInRequired]. Writes are idempotent and busy-guarded through [writeFlowProvider], scoped
 /// per post so concurrent reactions on different posts never block each other.
 class ReactionBar extends ConsumerWidget {
@@ -65,15 +66,19 @@ class ReactionBar extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final messenger = ScaffoldMessenger.of(context);
     final next = post.myReaction == tapped ? null : tapped;
-    final before = post;
-    onUpdate((_) => before.withMyReaction(next));
+    final before = post.myReaction;
+    // Both the optimistic update and its rollback are applied to whatever the post looks like *now*,
+    // touching only this viewer's own slot (a +/-1 on their reaction). Restoring a snapshot taken at
+    // tap time would overwrite any fresher counts a realtime refetch landed while the write was in
+    // flight.
+    onUpdate((p) => p.withMyReaction(next));
     final repo = ref.read(communityRepositoryProvider);
     final ok = await ref.read(writeFlowProvider(scope).notifier).run(
           (key) => next == null ? repo.removeReaction(post.id) : repo.setReaction(post.id, next, idempotencyKey: key),
           fingerprint: next?.wireName ?? 'remove',
         );
     if (ok) return;
-    onUpdate((_) => before);
+    onUpdate((p) => p.withMyReaction(before));
     if (!context.mounted) return;
     final code = ref.read(writeFlowProvider(scope)).errorCode ?? 'network';
     messenger.showSnackBar(SnackBar(content: Text(communityErrorCopy(l10n, code))));

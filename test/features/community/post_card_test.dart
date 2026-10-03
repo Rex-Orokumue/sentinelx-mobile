@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sentinelx_mobile/core/api/api_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sentinelx_mobile/core/api/community_models.dart';
 import 'package:sentinelx_mobile/features/community/community_providers.dart';
@@ -193,5 +197,47 @@ void main() {
     await tester.tap(find.byKey(const Key('post-delete-cancel')));
     await tester.pumpAndSettle();
     expect(repo.calls.where((c) => c.startsWith('deletePost')), isEmpty);
+  });
+
+  testWidgets('a reaction that fails after its card scrolled away still rolls back, without touching the dead widget', (tester) async {
+    final post = PostView.fromJson(postViewJson(id: 'p1', content: 'Hello community', reactionCounts: reactionCountsJson(fire: 2)));
+    final repo = FakeCommunityRepository(feedPage: CommunityFeedPage(pinned: const [], posts: [post], hasMore: false))
+      ..reactionGate = Completer<void>()
+      ..writeErrors['setReaction'] = const ApiException(status: 0, code: 'network', message: 'offline');
+    final showCard = ValueNotifier(true);
+    addTearDown(showCard.dispose);
+    late WidgetRef feedRef;
+    await pumpCompete(
+      tester,
+      Consumer(builder: (context, ref, _) {
+        feedRef = ref;
+        final feed = ref.watch(communityFeedProvider); // a mounted feed screen keeps this alive
+        if (!feed.hasValue) return const SizedBox.shrink();
+        return ValueListenableBuilder<bool>(
+          valueListenable: showCard,
+          builder: (_, visible, _) => visible
+              ? SingleChildScrollView(child: PostCard(post: feed.requireValue.posts.single, onTap: () {}, onSignInRequired: () {}))
+              : const SizedBox.shrink(),
+        );
+      }),
+      overrides: [...competeBaseOverrides(), communityRepositoryProvider.overrideWithValue(repo)],
+    );
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byKey(const Key('react-fire')));
+    await tester.pump();
+    expect(feedRef.read(communityFeedProvider).requireValue.posts.single.myReaction, ReactionType.fire); // optimistic
+
+    showCard.value = false; // the card scrolls out of the list while the request is in flight
+    await tester.pump();
+    expect(find.byType(PostCard), findsNothing);
+
+    repo.reactionGate!.complete();
+    await tester.pumpAndSettle();
+
+    expect(tester.takeException(), isNull);
+    final after = feedRef.read(communityFeedProvider).requireValue.posts.single;
+    expect(after.myReaction, isNull);
+    expect(after.reactionCounts.fire, 2);
   });
 }

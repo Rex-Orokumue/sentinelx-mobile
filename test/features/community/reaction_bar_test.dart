@@ -39,7 +39,7 @@ PostView _post({
 /// applies the transform to the held [PostView] and triggers a rebuild, and every applied result
 /// is recorded in [onApplied] in order.
 class _Harness extends StatefulWidget {
-  const _Harness({required this.initial, required this.onApplied, required this.onSignIn});
+  const _Harness({super.key, required this.initial, required this.onApplied, required this.onSignIn});
   final PostView initial;
   final void Function(PostView) onApplied;
   final VoidCallback onSignIn;
@@ -50,6 +50,9 @@ class _Harness extends StatefulWidget {
 
 class _HarnessState extends State<_Harness> {
   late PostView _post = widget.initial;
+
+  /// Simulates something other than the tap changing the post (a realtime refetch landing).
+  void external(PostView Function(PostView) transform) => setState(() => _post = transform(_post));
 
   @override
   Widget build(BuildContext context) => ReactionBar(
@@ -63,10 +66,11 @@ class _HarnessState extends State<_Harness> {
 }
 
 class _Ctx {
-  _Ctx(this.repo, this.applied, this.signIns);
+  _Ctx(this.repo, this.applied, this.signIns, this.harness);
   final FakeCommunityRepository repo;
   final List<PostView> applied;
   final List<void> signIns;
+  final GlobalKey<_HarnessState> harness;
 }
 
 Future<_Ctx> _pumpBar(
@@ -78,13 +82,14 @@ Future<_Ctx> _pumpBar(
   final fake = repo ?? FakeCommunityRepository();
   final applied = <PostView>[];
   final signIns = <void>[];
+  final harness = GlobalKey<_HarnessState>();
   await pumpCompete(
     tester,
-    _Harness(initial: initial, onApplied: applied.add, onSignIn: () => signIns.add(null)),
+    _Harness(key: harness, initial: initial, onApplied: applied.add, onSignIn: () => signIns.add(null)),
     overrides: [...competeBaseOverrides(signedOut: signedOut), communityRepositoryProvider.overrideWithValue(fake)],
   );
   await tester.pumpAndSettle();
-  return _Ctx(fake, applied, signIns);
+  return _Ctx(fake, applied, signIns, harness);
 }
 
 void main() {
@@ -155,6 +160,36 @@ void main() {
       expect(ctx.repo.calls.single, 'removeReaction:p1');
       expect(ctx.applied.last.reactionCounts.fire, 0);
       expect(ctx.applied.last.myReaction, isNull);
+    });
+
+    testWidgets('a failure rolls back only the own-reaction slot, keeping counts that landed while the request was in flight', (tester) async {
+      final repo = FakeCommunityRepository()
+        ..reactionGate = Completer<void>()
+        ..writeErrors['setReaction'] = const ApiException(status: 0, code: 'network', message: 'offline');
+      final ctx = await _pumpBar(
+        tester,
+        initial: _post(counts: const ReactionCounts(fire: 5, crown: 0, strong: 0, wow: 0)),
+        repo: repo,
+      );
+
+      await tester.tap(find.byKey(const Key('react-crown')));
+      await tester.pump();
+      expect(ctx.applied.last.reactionCounts.crown, 1); // optimistic
+
+      // Meanwhile a realtime refetch lands: others reacted, and the server doesn't have our tap.
+      ctx.harness.currentState!.external((p) => p.copyWith(
+            reactionCounts: const ReactionCounts(fire: 7, crown: 4, strong: 0, wow: 0),
+            clearMyReaction: true,
+          ));
+      await tester.pump();
+
+      repo.reactionGate!.complete();
+      await tester.pumpAndSettle();
+
+      final shown = tester.widget<ReactionBar>(find.byType(ReactionBar)).post;
+      expect(shown.myReaction, isNull);
+      expect(shown.reactionCounts.fire, 7, reason: 'the refetched count must survive the rollback');
+      expect(shown.reactionCounts.crown, 4, reason: 'the rollback must not restore the pre-tap snapshot');
     });
 
     testWidgets('a failed setReaction rolls back to the exact pre-tap post and shows the error copy', (tester) async {

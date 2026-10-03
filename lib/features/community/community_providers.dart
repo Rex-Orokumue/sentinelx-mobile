@@ -113,6 +113,7 @@ class CommunityFeedNotifier extends AsyncNotifier<CommunityFeedState> {
   }
 
   void updatePost(String id, PostView Function(PostView) transform) {
+    if (!ref.mounted) return; // a write finishing after the feed was left
     final current = state.value;
     if (current == null) return;
     var changed = false;
@@ -130,6 +131,7 @@ class CommunityFeedNotifier extends AsyncNotifier<CommunityFeedState> {
   }
 
   void removePost(String id) {
+    if (!ref.mounted) return;
     final current = state.value;
     if (current == null) return;
     state = AsyncData(current.copyWith(
@@ -152,12 +154,14 @@ class CommunityPostDetailNotifier extends AsyncNotifier<CommunityPostDetail> {
   }
 
   void updatePost(PostView Function(PostView) transform) {
+    if (!ref.mounted) return;
     final current = state.value;
     if (current == null) return;
     state = AsyncData(CommunityPostDetail(post: transform(current.post), comments: current.comments));
   }
 
   void addComment(CommentView comment) {
+    if (!ref.mounted) return;
     final current = state.value;
     if (current == null) return;
     state = AsyncData(CommunityPostDetail(
@@ -167,6 +171,7 @@ class CommunityPostDetailNotifier extends AsyncNotifier<CommunityPostDetail> {
   }
 
   void removeComment(String commentId) {
+    if (!ref.mounted) return;
     final current = state.value;
     if (current == null) return;
     if (!current.comments.any((c) => c.id == commentId)) return;

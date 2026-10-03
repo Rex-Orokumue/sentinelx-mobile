@@ -62,6 +62,9 @@ class PostCard extends ConsumerWidget {
     final when = created == null ? post.createdAt : DateFormat.yMMMd(l10n.localeName).add_Hm().format(created);
     final boosted = _isBoosted(post);
     final signedIn = ref.watch(meProvider).asData?.value != null;
+    // Resolved now, not inside the callback: a reaction write can finish after this card has scrolled
+    // out of the list, and its rollback must not read a disposed `ref`.
+    final feed = ref.read(communityFeedProvider.notifier);
     final hasMenu = post.canDelete || post.canBoost || signedIn;
     final extraImages = post.imageUrls.where((u) => u != post.imageUrl).toList();
 
@@ -126,7 +129,7 @@ class PostCard extends ConsumerWidget {
             Wrap(alignment: WrapAlignment.spaceBetween, crossAxisAlignment: WrapCrossAlignment.center, children: [
                 ReactionBar(
                   post: post,
-                  onUpdate: (transform) => ref.read(communityFeedProvider.notifier).updatePost(post.id, transform),
+                  onUpdate: (transform) => feed.updatePost(post.id, transform),
                   onSignInRequired: onSignInRequired,
                 ),
                 TextButton(onPressed: onTap, child: Text(l10n.cmtCommentCount(post.commentCount))),
