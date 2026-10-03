@@ -53,3 +53,22 @@ flutter test
 ```
 
 If the contract test fails, the client and the web contract have drifted — fix `ApiClient` to match.
+
+## Push notifications (Phase 5a)
+
+Push uses Firebase Cloud Messaging through one interface, `PushGateway` (`lib/core/notifications/push/`); only
+`firebase_push_gateway.dart` imports Firebase. Everything else, and every test, uses a fake.
+
+- **Config file:** `android/app/google-services.json` (Firebase project `sentinelx-f061e`, the web's existing
+  project). It is **untracked and excluded locally** (`.git/info/exclude`) on purpose: it holds project ids and a
+  restricted API key, and whether it is ever committed is the owner's call. A new git worktree does not contain
+  untracked files - copy it from the main checkout into `android/app/` before a live-path build.
+- **No file, no problem:** `android/app/build.gradle.kts` applies the `com.google.gms.google-services` Gradle plugin
+  only when that file exists, and `Firebase.initializeApp()` failing at runtime yields a disabled gateway (the app
+  starts normally with push off). CI and fresh clones build and pass tests without the file.
+  Verify both paths with `flutter build apk --debug` (once with the file, once with it temporarily moved aside).
+- **Staging:** the defaults point at production. To exercise push (and any write) against staging, run with
+  `--dart-define=SUPABASE_URL=... --dart-define=SUPABASE_PUBLISHABLE_KEY=... --dart-define=API_BASE_URL=...` for the
+  staging project (`ofxmoxpvwbemfouaowoa`) and its web preview deployment. Do not commit keys.
+- **Channels** (created at startup, versioned): `matches_v1`, `social_v1`, `messages_v1`, `money_v1`, `admin_v1`. The
+  web sender's table (`lib/notifications/channels.ts`) must list the same ids; a change needs a new id, never an edit.

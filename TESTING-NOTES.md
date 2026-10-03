@@ -95,3 +95,27 @@ wager and lobby-result are writes (wager spends coins) — never run them agains
   API models were verified only against the Phase 2b endpoint definitions (zod schemas) on the web branch.
 - The screenshot upload path (`SupabaseEvidenceUploader` → private bucket `match-evidence`) is exercised only by fakes
   in widget tests; it has not run against the real staging bucket.
+
+## Phase 5a - notifications and push (device pass, owner)
+
+Not verifiable in unit tests: FCM delivery, Doze / OEM battery behavior, channel behavior and the Android 13+
+permission dialog on a real device, a tap from a killed app, and iOS (payload shape only; no iOS build until
+Phase 10). Run on **staging**, with `android/app/google-services.json` in place and the staging web deployment
+sending with Firebase project `sentinelx-f061e` credentials (**open item: unconfirmed** - without it tokens
+registered from the staging app are unreachable).
+
+| # | Check | Result |
+|---|---|---|
+| 1 | Sign in; confirm `fcm_tokens` has a row for this phone with `platform = android` (POST /devices ran) | pending |
+| 2 | Settings -> Notifications -> "Send a test notification" with the app in the **foreground**: in-app banner; tap opens Settings -> Notifications | pending |
+| 3 | Same test with the app in the **background**: a system notification on the right channel; tap opens the destination | pending |
+| 4 | Same test with the app **killed**: it still arrives (notification block); tap cold-starts straight to the destination, no login/onboarding bounce | pending |
+| 5 | Android 13+: the permission dialog appears **once**, after the first confirmed stake (register / waitlist / invitation accept), not at launch; deny it and confirm it is never re-asked and the passive rows show "Open system settings" | pending |
+| 6 | Turn notifications on in system settings, return to the app: the passive row disappears (resume refresh) | pending |
+| 7 | A real fixture assignment arrives, on the Matches channel; tap opens the match | pending |
+| 8 | Bell: unread badge updates live; mark read, mark all read; mute a type for 1h and "always"; mute a post thread; unmute | pending |
+| 9 | Settings toggles edit the same preferences as the website; flip one on each and see it on the other | pending |
+| 10 | Account switch on one phone: sign out (token unregistered), sign in as another user (token registered to them); a push for the first user no longer arrives | pending |
+| 11 | Sign out with the network off: sign-out still completes | pending |
+| 12 | 375px: no overflow on the bell, the mute sheet, the settings screen (also in French) | pending |
+| 13 | Tap a push whose link has no screen yet (e.g. a wallet notification): opens the bell, does nothing else | pending |
