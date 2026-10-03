@@ -1,5 +1,6 @@
 const _hosts = {'sentinelxesports.com.ng', 'www.sentinelxesports.com.ng'};
 const _locales = {'en', 'fr', 'pcm'};
+final _postId = RegExp(r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$', caseSensitive: false);
 
 /// Web `link` values (push payloads, bell items, App Links) are web route paths. This is the single
 /// place that turns one into an in-app go_router location. Extend the switch as each phase adds screens.
@@ -22,7 +23,12 @@ String? resolveWebLink(String input) {
     return '/seasons/${segments[1]}';
   }
   if (segments.length == 2 && segments.first == 'community') {
-    return '/community/${Uri.encodeComponent(segments[1])}';
+    // Web post pages are /community/<post uuid>. This also runs as the router's redirect on every
+    // in-app location, so a non-post path such as /community/compose must pass through untouched
+    // (null), while an *external* web page under /community (e.g. /community/rules) has no screen
+    // and lands on the community tab rather than a "couldn't load" post.
+    if (_postId.hasMatch(segments[1])) return '/community/${segments[1]}';
+    return uri.hasAuthority ? '/community' : null;
   }
   if (segments.length == 2 && segments.first == 'matches') {
     return '/matches/${Uri.encodeComponent(segments[1])}';

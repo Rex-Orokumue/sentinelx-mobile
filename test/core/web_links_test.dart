@@ -24,9 +24,23 @@ void main() {
   });
 
   test('a community post link resolves to the post, not the feed', () {
-    expect(resolveWebLink('https://sentinelxesports.com.ng/community/abc123'), '/community/abc123');
-    expect(resolveWebLink('https://sentinelxesports.com.ng/fr/community/abc123'), '/community/abc123');
-    expect(resolveWebLink('https://sentinelxesports.com.ng/community/a b'), '/community/a%20b');
+    const id = '3f2b8c1e-9d4a-4b7e-8a61-5c0d2e7f9a10';
+    expect(resolveWebLink('https://sentinelxesports.com.ng/community/$id'), '/community/$id');
+    expect(resolveWebLink('https://sentinelxesports.com.ng/fr/community/$id'), '/community/$id');
+    expect(resolveWebLink('https://sentinelxesports.com.ng/community/${id.toUpperCase()}'), '/community/${id.toUpperCase()}');
+    expect(resolveWebLink('/community/$id'), '/community/$id');
+  });
+
+  test('a web page under /community that is not a post lands on the community tab, not a broken post screen', () {
+    expect(resolveWebLink('https://sentinelxesports.com.ng/community/rules'), '/community');
+    expect(resolveWebLink('https://sentinelxesports.com.ng/en/community/guidelines'), '/community');
+  });
+
+  test('in-app community paths are left for the router (the redirect runs on every location)', () {
+    expect(resolveWebLink('/community/compose'), isNull);
+    expect(resolveWebLink('/community/statuses'), isNull);
+    expect(resolveWebLink('/community/statuses/compose'), isNull);
+    expect(resolveWebLink('/community/p1'), isNull);
   });
 
   test('maps tv, community and exchange to their branch roots', () {

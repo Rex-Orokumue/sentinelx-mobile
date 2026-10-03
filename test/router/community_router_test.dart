@@ -15,6 +15,8 @@ import '../fakes/fake_community_repository.dart';
 import '../support/community_fixtures.dart';
 import '../support/pump_app.dart';
 
+const _linkedId = '3f2b8c1e-9d4a-4b7e-8a61-5c0d2e7f9a10';
+
 FakeCommunityRepository _repo() => FakeCommunityRepository(
       feedPage: CommunityFeedPage(
         pinned: const [],
@@ -23,7 +25,7 @@ FakeCommunityRepository _repo() => FakeCommunityRepository(
       ),
       postDetails: {
         'p1': CommunityPostDetail(post: PostView.fromJson(postViewJson(id: 'p1', content: 'Hello feed')), comments: const []),
-        'abc123': CommunityPostDetail(post: PostView.fromJson(postViewJson(id: 'abc123', content: 'Linked post')), comments: const []),
+        _linkedId: CommunityPostDetail(post: PostView.fromJson(postViewJson(id: _linkedId, content: 'Linked post')), comments: const []),
       },
     )..statusRings = [
         StatusRing.fromJson(statusRingJson(
@@ -40,7 +42,7 @@ Future<void> _pump(WidgetTester tester, String location) => pumpRouterWithRepo(
         communityRepositoryProvider.overrideWithValue(_repo()),
         communityFeedRealtimeProvider.overrideWith((ref) => const Stream<int>.empty()),
         communityPostDetailRealtimeProvider('p1').overrideWith((ref) => const Stream<int>.empty()),
-        communityPostDetailRealtimeProvider('abc123').overrideWith((ref) => const Stream<int>.empty()),
+        communityPostDetailRealtimeProvider(_linkedId).overrideWith((ref) => const Stream<int>.empty()),
       ],
     );
 
@@ -88,7 +90,7 @@ void main() {
   });
 
   testWidgets('a community web link with a post id opens that post', (tester) async {
-    await _pump(tester, 'https://sentinelxesports.com.ng/community/abc123');
+    await _pump(tester, 'https://sentinelxesports.com.ng/community/$_linkedId');
     await tester.pumpAndSettle();
     expect(find.byType(PostDetailScreen), findsOneWidget);
     expect(find.text('Linked post'), findsOneWidget);
@@ -110,7 +112,7 @@ void main() {
   }
 
   testWidgets('deleting a post opened from a cold web link lands on the feed instead of popping an empty stack', (tester) async {
-    await _pump(tester, 'https://sentinelxesports.com.ng/community/p1');
+    await _pump(tester, 'https://sentinelxesports.com.ng/community/$_linkedId');
     await tester.pumpAndSettle();
     expect(find.byType(PostDetailScreen), findsOneWidget);
     await deleteViewedPost(tester);
@@ -127,5 +129,12 @@ void main() {
     await deleteViewedPost(tester);
     expect(find.byType(PostDetailScreen), findsNothing);
     expect(find.byType(CommunityFeedScreen), findsOneWidget);
+  });
+
+  testWidgets('an external web page under /community that is not a post lands on the feed, not a broken post screen', (tester) async {
+    await _pump(tester, 'https://sentinelxesports.com.ng/community/rules');
+    await tester.pumpAndSettle();
+    expect(find.byType(CommunityFeedScreen), findsOneWidget);
+    expect(find.byType(PostDetailScreen), findsNothing);
   });
 }
