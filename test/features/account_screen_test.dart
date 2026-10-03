@@ -6,6 +6,7 @@ import 'package:sentinelx_mobile/core/api/models.dart';
 import 'package:sentinelx_mobile/core/auth/auth_providers.dart';
 import 'package:sentinelx_mobile/core/auth/auth_repository.dart';
 import 'package:sentinelx_mobile/core/l10n/gen/app_localizations.dart';
+import 'package:sentinelx_mobile/core/notifications/push/push_registration.dart';
 import 'package:sentinelx_mobile/core/providers.dart';
 import 'package:sentinelx_mobile/features/account/account_screen.dart';
 
@@ -86,6 +87,56 @@ void main() {
     expect(tester.widget<TextButton>(find.byKey(const Key('account-sign-out'))).onPressed, isNotNull);
   });
 
+  testWidgets('sign-out unregisters this device BEFORE clearing the session', (tester) async {
+    final log = <String>[];
+    await tester.pumpWidget(_app(
+      [
+        meProvider.overrideWith((ref) async => _me()),
+        authRepositoryProvider.overrideWithValue(_RecordingSignOutRepository(log)),
+        pushRegistrationProvider.overrideWithValue(_FakePushRegistration(log)),
+      ],
+      AccountScreen(onLogIn: () {}, onSignUp: () {}, onLogoTap: () {}),
+    ));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('account-sign-out')));
+    await tester.pumpAndSettle();
+    expect(log, ['unregister', 'signOut']);
+  });
+
+  testWidgets('a failing device unregister never blocks sign-out and shows no error', (tester) async {
+    final log = <String>[];
+    await tester.pumpWidget(_app(
+      [
+        meProvider.overrideWith((ref) async => _me()),
+        authRepositoryProvider.overrideWithValue(_RecordingSignOutRepository(log)),
+        pushRegistrationProvider.overrideWithValue(_FakePushRegistration(log, throwOnUnregister: true)),
+      ],
+      AccountScreen(onLogIn: () {}, onSignUp: () {}, onLogoTap: () {}),
+    ));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('account-sign-out')));
+    await tester.pumpAndSettle();
+    expect(log, ['unregister', 'signOut']);
+    expect(find.text('Could not sign out. Please try again.'), findsNothing);
+  });
+
+  testWidgets('when sign-out itself fails the device is registered again', (tester) async {
+    final log = <String>[];
+    await tester.pumpWidget(_app(
+      [
+        meProvider.overrideWith((ref) async => _me()),
+        authRepositoryProvider.overrideWithValue(_RecordingSignOutRepository(log, fail: true)),
+        pushRegistrationProvider.overrideWithValue(_FakePushRegistration(log)),
+      ],
+      AccountScreen(onLogIn: () {}, onSignUp: () {}, onLogoTap: () {}),
+    ));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('account-sign-out')));
+    await tester.pumpAndSettle();
+    expect(log, ['unregister', 'signOut', 'reregister']);
+    expect(find.text('Could not sign out. Please try again.'), findsOneWidget);
+  });
+
   testWidgets('signed in: the My progress tile opens progress', (tester) async {
     var opened = 0;
     await tester.pumpWidget(_app(
@@ -105,6 +156,36 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('account-progress')), findsNothing);
   });
+}
+
+class _FakePushRegistration implements PushRegistration {
+  _FakePushRegistration(this.log, {this.throwOnUnregister = false});
+  final List<String> log;
+  final bool throwOnUnregister;
+
+  @override
+  Future<void> unregister() async {
+    log.add('unregister');
+    if (throwOnUnregister) throw StateError('device call blew up');
+  }
+
+  @override
+  Future<void> reregister() async => log.add('reregister');
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
+class _RecordingSignOutRepository extends _FailingSignOutRepository {
+  _RecordingSignOutRepository(this.log, {this.fail = false});
+  final List<String> log;
+  final bool fail;
+
+  @override
+  Future<void> signOut() async {
+    log.add('signOut');
+    if (fail) throw Exception('boom');
+  }
 }
 
 class _FailingSignOutRepository implements AuthRepository {

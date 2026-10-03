@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/auth/auth_providers.dart';
 import '../../core/l10n/gen/app_localizations.dart';
+import '../../core/notifications/push/push_registration.dart';
 import '../../core/providers.dart';
 import '../../shared/widgets/sx_tab_app_bar.dart';
 
@@ -36,8 +37,17 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
       _signOutFailed = false;
     });
     try {
+      // Stop pushes to this phone before the session goes. Best-effort: push trouble must never block
+      // signing out, so any failure (including push being unavailable) is swallowed.
+      try {
+        await ref.read(pushRegistrationProvider).unregister();
+      } catch (_) {}
       await ref.read(authRepositoryProvider).signOut();
     } catch (_) {
+      // Still signed in: put the device registration back.
+      try {
+        await ref.read(pushRegistrationProvider).reregister();
+      } catch (_) {}
       if (mounted) setState(() => _signOutFailed = true);
     } finally {
       if (mounted) setState(() => _signingOut = false);
