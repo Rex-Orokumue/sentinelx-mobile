@@ -49,6 +49,9 @@ class FakeNotificationsRepository implements NotificationsRepository {
   Completer<void>? holdPatch;
   final failPatchKeys = <String>{};
 
+  /// The next N patch calls fail, whatever the key.
+  int failNextPatches = 0;
+
   @override
   Future<List<BellNotification>> page({required int offset, required int limit}) async {
     pageCalls.add((offset: offset, limit: limit));
@@ -101,6 +104,10 @@ class FakeNotificationsRepository implements NotificationsRepository {
   Future<NotificationPrefs> patchPrefs(PrefSection section, Map<String, bool> values) async {
     patchCalls.add((section: section, values: values));
     if (holdPatch != null) await holdPatch!.future;
+    if (failNextPatches > 0) {
+      failNextPatches--;
+      throw StateError('patch failed');
+    }
     if (values.keys.any(failPatchKeys.contains)) throw StateError('patch failed');
     for (final e in values.entries) {
       prefsResult = prefsResult.withValue(section, e.key, e.value);
