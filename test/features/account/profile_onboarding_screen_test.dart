@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:sentinelx_mobile/core/api/models.dart';
 import 'package:sentinelx_mobile/core/api/profile_onboarding_models.dart';
 import 'package:sentinelx_mobile/core/providers.dart';
 import 'package:sentinelx_mobile/features/account/profile_onboarding_providers.dart';
@@ -84,6 +88,86 @@ void main() {
       'consentWhatsappUpdates': false,
       'gameInterests': ['game-1'],
     });
+    expect(completed, isTrue);
+  });
+
+  testWidgets('waits for refreshed /me before leaving the onboarding gate', (
+    tester,
+  ) async {
+    final refreshedMe = Completer<MeResponse?>();
+    var meFetches = 0;
+    var completed = false;
+    await pumpCompete(
+      tester,
+      Consumer(
+        builder: (context, ref, _) {
+          ref.watch(meProvider);
+          return ProfileOnboardingScreen(
+            onCompleted: () => completed = true,
+            onUnauthorized: () {},
+          );
+        },
+      ),
+      overrides: [
+        meProvider.overrideWith((ref) {
+          meFetches++;
+          return meFetches == 1 ? Future.value(null) : refreshedMe.future;
+        }),
+        gamesProvider.overrideWith((ref) async => _games),
+        profileOnboardingSubmitterProvider.overrideWithValue(
+          (input) async => const ProfileOnboardingResult(
+            profileCompletedAt: '2026-10-03T12:00:00Z',
+          ),
+        ),
+      ],
+    );
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byKey(const Key('country-field')));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(EditableText).last, 'Nigeria');
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Nigeria').last);
+    await tester.enterText(
+      find.byKey(const Key('profile-onboarding-whatsapp')),
+      '+2348012345678',
+    );
+    await tester.tap(find.byKey(const Key('game-interest-game-1')));
+    await tester.ensureVisible(find.byKey(const Key('profile-consent-no')));
+    await tester.tap(find.byKey(const Key('profile-consent-no')));
+    await tester.ensureVisible(
+      find.byKey(const Key('profile-onboarding-submit')),
+    );
+    await tester.tap(find.byKey(const Key('profile-onboarding-submit')));
+    await tester.pump();
+
+    expect(meFetches, 2);
+    expect(completed, isFalse);
+
+    refreshedMe.complete(
+      const MeResponse(
+        id: 'player-1',
+        email: null,
+        roles: [],
+        isStaff: false,
+        isAdmin: false,
+        profile: MeProfile(
+          username: 'player',
+          displayName: null,
+          avatarUrl: null,
+          whatsappNumber: '+2348012345678',
+          country: 'Nigeria',
+          locale: 'en',
+          membershipTier: null,
+          kycVerified: false,
+          deletionRequestedAt: null,
+          profileCompletedAt: '2026-10-03T12:00:00Z',
+          consentWhatsappUpdates: false,
+          gameInterests: ['game-1'],
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
     expect(completed, isTrue);
   });
 }

@@ -78,7 +78,12 @@ class _ProfileOnboardingScreenState
       );
       if (!mounted) return;
       ref.invalidate(meProvider);
-      widget.onCompleted();
+      try {
+        await ref.read(meProvider.future);
+      } catch (_) {
+        // A failed refresh must not undo a successful profile submission.
+      }
+      if (mounted) widget.onCompleted();
     } catch (error) {
       if (!mounted) return;
       if (error is ApiException && error.isUnauthorized) {
