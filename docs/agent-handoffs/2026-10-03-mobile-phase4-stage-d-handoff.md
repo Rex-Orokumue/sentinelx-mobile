@@ -7,9 +7,8 @@
 
 ## Verified
 
-- `flutter test`: **726 tests, all passing** (last full run, before a comment-only byte repair
-  described below; the router, web-link and community suites were re-run after it and passed).
-  Baseline before Phase 4 was 555.
+- `flutter test`: **753 tests, all passing** (full run after the review fixes below; was 726 at the first
+  merge, 555 before Phase 4).
 - `dart analyze`: no issues, on a cold analyzer cache.
 - The Stage B migration is **already applied to production** (`itxubrkbropttfdackmi`), recorded as
   version `20261003133843` / `community_content_reports` (the web repo's file is named
@@ -96,3 +95,37 @@ Rulings from Tasks 0-6, 9 and 10 were made in earlier sessions and live in their
 - The shared Dart analyzer cache (`%LOCALAPPDATA%\.dartServer\.analysis-driver`) was reset during
   diagnosis and has been rebuilt; this was not the cause.
 - No code changed in this handoff commit; docs only.
+
+## Code review (run 2026-10-03 over `f28928a..HEAD`) and what was done
+
+Ten findings; each verified against the code before acting. Nine were real and are fixed (with tests
+written first); one was a false positive.
+
+| # | Finding | Outcome |
+|---|---|---|
+| 1 | Viewer-specific reads (feed, post, comments, statuses, best-play) sent with `publicRequest: true`, which strips the bearer token. The web handlers read `ctx?.userId` (optional auth) for `myReaction`, `canDelete`/`canBoost`, `isSelf`/`hasUnseen`, `myVoteNominationId`. | **Real, most serious.** A signed-in player would never have seen Delete/Boost or their own reaction. Fixed: token now sent on those five; the four caller-independent reads stay anonymous. Both pinned by tests. Untestable against fakes before; first live pass should confirm. |
+| 2 | Feed/detail/rings/best-play providers didn't depend on the session, so login/logout left the previous viewer's answer on screen. | **Real.** New `communityViewerIdProvider` (user id, not token) watched by all four; a token refresh for the same user does not refetch. |
+| 3 | Every realtime tick invalidated the feed, resetting a scrolled-through list to page one and racing an in-flight load-more. | **Real.** `refreshInPlace()` re-reads the loaded window in chunks of at most 50 (the contract max); refresh and load-more never overlap (a refresh during load-more is queued); load-more dedupes by id. |
+| 4 | `context.pop()` after deleting a post fails on a cold deep link. | **False positive.** go_router stacks the parent `/community` page under the nested child route, so the pop lands on the feed. Regression tests added for both entry paths. |
+| 5 | A viewed story's ring never refreshed; `deleteStatus` had no UI. | **Real.** Authors can delete their own story from the viewer; view/delete refresh the tray. |
+| 6 | Unknown post type / reaction threw and failed the whole feed page. | **Real.** `PostType.unknown`; unrecognised `myReaction` reads as no highlight. |
+| 7 | Reaction rollback used a disposed card's `ref` and restored a stale snapshot over fresher counts. | **Real.** Rollback now reverts only the viewer's own slot on the current post; the card resolves the feed notifier at build time; notifier mutators no-op once unmounted. |
+| 8 | Count strings had no plural ("1 comments"). | **Real.** ICU plurals in en and fr, generated output committed. |
+| 9 | Pull-to-refresh threw on a network error. | **Real.** `refresh()` returns a bool, keeps the list, and the screen says so. |
+| 10 | Any `/community/<x>` web link opened the post screen. | **Real.** Only a post UUID does; an external non-post page lands on the tab; in-app paths (compose, statuses) pass through the router redirect untouched. Care needed here: `resolveWebLink` is the router's redirect for every location. |
+
+Residual risk for the first live pass: sending the bearer token to optional-auth reads means an
+expired/invalid token could be rejected rather than treated as anonymous. supabase_flutter refreshes
+tokens, so this should not arise, but it is the thing to watch.
+
+## Branding (same session)
+
+App name is **SentinelX Esports** (Android label, iOS display/bundle name, app title, Home app bar).
+Launcher icons come from the web repo's `public/logo.png` using the web icons' proportions (mark on
+`#0B0B0F`; 80% of canvas for the full icon, adaptive foreground matching the web maskable icon).
+`logo-icon.png` is deliberately not used (it has "ICON ONLY" baked into its pixels). Regenerate with
+`python tool/gen_app_icons.py` then `dart run flutter_launcher_icons`; **revert the
+`ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS` change the tool makes to
+`ios/Runner.xcodeproj/project.pbxproj`** (it writes an invalid value). The source logo is only
+412x384 px, so the 1024px iOS icon is an upscale; a higher-resolution master would be sharper. A debug
+APK builds with the new resources; iOS was not built (no macOS here).
