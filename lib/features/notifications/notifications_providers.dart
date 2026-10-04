@@ -11,20 +11,9 @@ import 'notifications_repository.dart';
 
 const _pageSize = 20;
 
-/// Who is looking: the signed-in user's id, or null when signed out. Everything caller-specific here
-/// watches it, so login/logout/account switch refetches while a token refresh for the same user does not
-/// (keyed on the user id, not the token). Same pattern as `communityViewerIdProvider`; consolidating the
-/// two is deferred. Awaits the session's first value so a signed-in cold start doesn't fetch as a guest.
-///
-/// It selects the user id out of the session instead of watching the session itself: Supabase re-emits a
-/// brand-new `Session` on every access-token refresh, and depending on that would recompute this provider
-/// (and refetch everything downstream) for the same user.
-final notificationsViewerIdProvider = FutureProvider.autoDispose<String?>((ref) async {
-  final key = ref.watch(sessionProvider.select((s) => (loading: s.isLoading && !s.hasValue, id: s.asData?.value?.user.id)));
-  // First value not in yet: wait for it once (read, not watch - the select above re-runs us when it lands).
-  if (key.loading) return (await ref.read(sessionProvider.future))?.user.id;
-  return key.id;
-});
+/// The notifications feature's name for the shared viewer id (`viewerIdProvider`, keyed on the user id so a
+/// token refresh doesn't refetch). Kept as its own name so screens and tests can override it per feature.
+final notificationsViewerIdProvider = viewerIdProvider;
 
 class BellState {
   const BellState({required this.items, required this.hasMore, this.loadingMore = false});

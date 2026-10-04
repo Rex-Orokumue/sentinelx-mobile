@@ -71,6 +71,9 @@ class FakeCommunityRepository implements CommunityRepository {
   /// that the status compose screen blocks back navigation while a story is being posted).
   Completer<void>? postStatusGate;
 
+  /// Held open while `viewStatus` is awaited, so a test can let the tray's first read land before the view does.
+  Completer<void>? viewStatusGate;
+
   /// Held open while `statusViewers` is awaited (e.g. to test the loading state).
   Completer<void>? statusViewersGate;
   Object? statusViewersError;
@@ -219,6 +222,7 @@ class FakeCommunityRepository implements CommunityRepository {
   @override
   Future<void> viewStatus(String id) async {
     calls.add('viewStatus:$id');
+    await viewStatusGate?.future;
     _maybeThrow('viewStatus');
   }
 

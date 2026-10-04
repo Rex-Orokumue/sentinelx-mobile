@@ -30,9 +30,15 @@ class _FakeApi implements ApiClient {
   int failRegisterTimes = 0;
   Object? unregisterError;
   Completer<void>? unregisterGate;
+  Completer<void>? registerGate;
+
+  /// Order in which the server saw the calls ("register:TOKEN" / "unregister:TOKEN").
+  final log = <String>[];
 
   @override
   Future<void> registerDevice({required String token, required String platform, required String appVersion}) async {
+    if (registerGate != null) await registerGate!.future;
+    log.add('register:$token');
     if (failRegisterTimes > 0) {
       failRegisterTimes--;
       throw ApiException(status: 500, code: 'internal', message: 'x');
@@ -42,6 +48,7 @@ class _FakeApi implements ApiClient {
 
   @override
   Future<void> unregisterDevice(String token) async {
+    log.add('unregister:$token');
     unregistered.add(token);
     if (unregisterGate != null) await unregisterGate!.future;
     if (unregisterError != null) throw unregisterError!;
@@ -158,6 +165,49 @@ void main() {
     await h.start();
     await h.emit(_sessionFor('u1'));
     expect(h.api.registered, isEmpty);
+  });
+
+
+  test('an unregister never overtakes a registration still in flight', () async {
+    final api = _FakeApi()..registerGate = Completer<void>();
+    final h = _Harness(api: api);
+    addTearDown(h.dispose);
+    await h.start();
+    await h.emit(_sessionFor('u1')); // the POST is now held open
+    final done = h.container.read(pushRegistrationProvider).unregister();
+    await pumpEventQueue();
+    api.registerGate!.complete();
+    await done;
+    expect(api.log, ['register:tok-1', 'unregister:tok-1'], reason: 'a late POST must not resurrect the device after the DELETE');
+  });
+
+  group('a session that ends without our sign-out', () {
+    test('drops the FCM token on the device so the previous user stops receiving pushes', () async {
+      final h = _Harness();
+      addTearDown(h.dispose);
+      await h.start();
+      await h.emit(_sessionFor('u1'));
+      await h.emit(null); // e.g. server-side session expiry; no unregister() was called
+      expect(h.gateway.deletedTokens, ['tok-1']);
+    });
+
+    test('the next sign-in registers the freshly minted token', () async {
+      final h = _Harness();
+      addTearDown(h.dispose);
+      await h.start();
+      await h.emit(_sessionFor('u1'));
+      await h.emit(null);
+      await h.emit(_sessionFor('u2'));
+      expect(h.api.registered.map((r) => r.token), ['tok-1', 'tok-fresh-1']);
+    });
+
+    test('never signed in: nothing to drop', () async {
+      final h = _Harness();
+      addTearDown(h.dispose);
+      await h.start();
+      await h.emit(null);
+      expect(h.gateway.deletedTokens, isEmpty);
+    });
   });
 
   group('unregister', () {

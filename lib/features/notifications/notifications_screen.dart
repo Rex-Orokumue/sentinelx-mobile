@@ -63,7 +63,14 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
     final link = n.link;
     final destination = link == null ? null : resolveWebLink(link);
     final pending = notifier.markRead(n.id);
-    if (destination != null) unawaited(router.push<void>(destination));
+    if (destination != null) {
+      // Tab roots are switched to, like a push tap does; anything deeper stacks so Back returns to the bell.
+      if (tabRootLocations.contains(destination)) {
+        router.go(destination);
+      } else {
+        unawaited(router.push<void>(destination));
+      }
+    }
     if (!await pending) _say(messenger, failed);
   }
 

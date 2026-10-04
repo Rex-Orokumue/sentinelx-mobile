@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -194,8 +195,11 @@ void main() {
 
     testWidgets('recording a view refreshes the tray so its ring stops reading as unseen', (tester) async {
       final ring = _ring(statuses: [_row(id: 's1', caption: 'one')]);
-      final repo = await pumpWatching(tester, ring);
-      expect(repo.calls, contains('viewStatus:s1'));
+      final gate = Completer<void>();
+      final repo = await pumpWatching(tester, ring, repo: FakeCommunityRepository()..viewStatusGate = gate);
+      expect(ringFetches(repo), 1, reason: 'the tray read before the view landed');
+      gate.complete();
+      await tester.pumpAndSettle();
       expect(ringFetches(repo), 2, reason: 'initial tray read + the refetch after the view landed');
     });
 

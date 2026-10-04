@@ -10,6 +10,9 @@ abstract class PushGateway {
   bool get isAvailable;
 
   Future<String?> getToken();
+
+  /// Invalidates this install's FCM token (the next [getToken] mints a new one). Best-effort: never throws.
+  Future<void> deleteToken();
   Stream<String> get onTokenRefresh;
 
   Future<PushPermission> permission();
@@ -35,6 +38,8 @@ class DisabledPushGateway implements PushGateway {
   bool get isAvailable => false;
   @override
   Future<String?> getToken() async => null;
+  @override
+  Future<void> deleteToken() async {}
   @override
   Stream<String> get onTokenRefresh => const Stream.empty();
   @override

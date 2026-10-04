@@ -15,7 +15,7 @@ const _maxLimit = 50; // the feed endpoint's contract maximum
 /// serving the previous viewer's answer. Keyed on the user id, not the token, so a token refresh for
 /// the same user does not refetch. Awaits the session's first value so a signed-in cold start doesn't
 /// fetch once as a guest and again as the user.
-final communityViewerIdProvider = FutureProvider.autoDispose<String?>((ref) async => (await ref.watch(sessionProvider.future))?.user.id);
+final communityViewerIdProvider = viewerIdProvider;
 
 class CommunityFeedState {
   const CommunityFeedState({required this.pinned, required this.posts, required this.hasMore, this.loadingMore = false});

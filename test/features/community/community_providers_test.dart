@@ -274,7 +274,8 @@ void main() {
       r.container.listen(communityFeedProvider, (_, _) {});
       session.add(testSession());
       await Future<void>.delayed(const Duration(milliseconds: 20));
-      session.add(testSession()); // same user id, e.g. an access-token refresh
+      // Same user id, brand-new Session with a different access token: what Supabase emits on a refresh.
+      session.add(Session(accessToken: 'refreshed-token', tokenType: 'bearer', user: testSession().user));
       await Future<void>.delayed(const Duration(milliseconds: 20));
       expect(repo.calls.where((c) => c.startsWith('feed:')), hasLength(1));
     });

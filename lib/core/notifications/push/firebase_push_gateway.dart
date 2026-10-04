@@ -46,6 +46,15 @@ class FirebasePushGateway implements PushGateway {
   }
 
   @override
+  Future<void> deleteToken() async {
+    try {
+      await _messaging.deleteToken();
+    } catch (_) {
+      // best-effort: a token that survives is still unregistered server-side or cleaned up when FCM rejects it
+    }
+  }
+
+  @override
   Stream<String> get onTokenRefresh => _messaging.onTokenRefresh;
 
   PushPermission _map(AuthorizationStatus s) => switch (s) {

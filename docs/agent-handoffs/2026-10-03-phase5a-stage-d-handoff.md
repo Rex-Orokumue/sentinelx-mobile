@@ -47,3 +47,11 @@ Live FCM delivery, Doze / OEM battery behavior, channel behavior on a real devic
 ## Context from another session
 
 The web profile-onboarding work (separate feature) is live on production: `POST /onboarding/profile`, and `GET /me` now reports `profileCompletedAt: null` for all existing profiles. Not part of this branch.
+
+## Follow-up: gaps closed (2026-10-04, branch `fix/phase5a-gaps`)
+
+- **Viewer id** is now one shared `viewerIdProvider` (`lib/core/providers.dart`); `communityViewerIdProvider` and `notificationsViewerIdProvider` are aliases. The community feed no longer refetches on a token refresh (the old test only passed because its two sessions were equal; it now emits a real refreshed token). The status-viewer tray test was timing-dependent and now gates `viewStatus`.
+- **Register/unregister race:** every device call in `PushRegistration` runs through one queue, with the user/suppressed checks made when the turn comes. The 5 s unregister timeout covers the wait behind an in-flight POST.
+- **Other sign-out paths:** when a session ends without `unregister()` (expiry, revoked), `PushRegistration` drops the FCM token on the device (`PushGateway.deleteToken`), so the previous user's pushes stop arriving; the next sign-in mints and registers a fresh token. The server-side DELETE still needs a live session and is not attempted.
+- **Bell taps to a tab** (`/tournaments`, `/tv`, `/community`, `/exchange`, `/account`) now `go` like push taps (`tabRootLocations`); deeper destinations still `push`, so Back returns to the bell. Real-router tests cover both, plus a push tap through the real redirect with no `/login`/`/onboarding` hop.
+- **Still open:** everything under "Not verified" (device pass), the staging Firebase credentials, row id in push `data`, and the plan-listed non-goals.

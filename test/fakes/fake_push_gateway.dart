@@ -40,6 +40,16 @@ class FakePushGateway implements PushGateway {
   @override
   Future<String?> getToken() async => token;
 
+  /// Tokens dropped on the device; the next [getToken] mints a new one, like FCM does.
+  final deletedTokens = <String>[];
+
+  @override
+  Future<void> deleteToken() async {
+    final old = token;
+    if (old != null) deletedTokens.add(old);
+    token = 'tok-fresh-${deletedTokens.length}';
+  }
+
   @override
   Stream<String> get onTokenRefresh => tokenRefresh.stream;
 

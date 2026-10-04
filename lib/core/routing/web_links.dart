@@ -66,3 +66,7 @@ String? resolveWebLink(String input) {
   }
   return null;
 }
+
+/// The five bottom-tab roots. Reaching one is a tab switch (`go`), not a screen stacked on top (`push`):
+/// a pushed tab page keeps the tab bar but has no Back control to return with.
+const tabRootLocations = {'/tournaments', '/tv', '/community', '/exchange', '/account'};
