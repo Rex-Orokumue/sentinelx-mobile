@@ -22,6 +22,18 @@
 
 The mobile code is ready for integration, but the live write path must remain inactive until the web profile-contract branch is merged/deployed and both required database migrations are applied to production. Any end-to-end write-path test before that point must target `sentinelx-staging` through the web staging preview; never test it against the production Supabase project.
 
+## Device follow-up: first successful submit did not leave the gate
+
+Physical-device staging run on 2026-10-03 using Samsung SM-S9010 (Android 16):
+
+- The player tapped profile onboarding submit once.
+- The server returned `POST /api/mobile/v1/onboarding/profile 200`, followed by `GET /api/mobile/v1/me 200` and `GET /api/mobile/v1/home 200`.
+- Despite those successful responses, the app returned to or remained on the profile onboarding screen.
+- The player tapped submit once more. A second `POST /api/mobile/v1/onboarding/profile 200` was recorded, followed again by successful `/me` and Home requests; the player then left onboarding.
+- No Flutter/Dart exception, Dio/API exception, or fatal Android application error appeared in the captured logs.
+
+This is unresolved. Revisit the success sequence around `ref.invalidate(meProvider)`, `onCompleted()`, the router refresh listener, and the gate's observation of the refreshed `/me`. Add instrumentation or a regression test for a successful first submit being redirected back to `/onboarding/profile`. Do not dismiss this as a double-tap: the player confirmed one tap per request.
+
 ## Source checkpoints
 
 - Mobile branch: `feat/profile-onboarding`

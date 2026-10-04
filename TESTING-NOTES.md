@@ -9,6 +9,9 @@ logged here.
 |---|---|---|---|
 | zzqa_p1a | 2026-09-21 | not created: signup blocked, Supabase Auth returned 500 (Resend 550, sentinelxesports.com.ng sender domain not verified); nothing to clean up | n/a |
 | zzqa_p1a | 2026-09-22 | created + confirmed after the Resend DNS fix: signup returned 200, confirmation email delivered, App Link tap → `verifyOtp` → landed on Home signed in | Yes |
+| zzqa_mobile_profile | 2026-10-03 | staging-only account created and email-confirmed for physical-device profile-onboarding verification; auth user `aeaffd10-35e7-4952-8e9b-a0acb0762537` | Pending |
+
+Profile-onboarding device result: first submit returned HTTP 200 and refreshed `/me`, but the UI remained/returned to the onboarding screen. A second deliberate tap produced a second HTTP 200 and then exited onboarding. No application exception was logged. See `docs/agent-handoffs/2026-10-03-mobile-profile-onboarding-handoff.md` for the follow-up investigation note.
 
 ## 2026-09-25 — Phase 1 auth/lifecycle hardening (`fix/phase1-auth-lifecycle`)
 
