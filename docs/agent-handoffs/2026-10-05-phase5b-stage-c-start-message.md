@@ -15,7 +15,9 @@ evidence**, and write the plan the next session will execute. Stop at the plan f
 - **Web** (`github.com/Rex-Orokumue/sentinelx`, `main` = `da3ab5c`, deployed to production by Vercel): the DM API, typing and
   message requests are merged. Both migrations are applied to **staging** (`ofxmoxpvwbemfouaowoa`) **and production**
   (`itxubrkbropttfdackmi`). The web checkout is at `C:\Users\gorok\Videos\sentinelx` (dirty/behind: do not use it); the work
-  lives in the worktree `C:\Users\gorok\Videos\sentinelx-p5b-spec`.
+  is on `origin/main`; the build worktree has been removed. Read web files read-only with
+  `git -C C:\Users\gorok\Videos\sentinelx fetch origin` then `git -C C:\Users\gorok\Videos\sentinelx show origin/main:<path>`
+  (never edit or check out in that dirty checkout).
 - **Mobile**: `master` = `origin/master` = `8cc0056` (`flutter analyze` clean, `flutter test` 965 passing at `204f928`).
   5a (bell, Settings → Notifications, FCM push, tap routing) is merged but **has not had its device pass**
   (`TESTING-NOTES.md` checklist). If the owner reports a 5a failure, stop and fix it before building on it.
@@ -29,7 +31,7 @@ evidence**, and write the plan the next session will execute. Stop at the plan f
    Where it says "no spec yet" or lists web ground truth, this message and the web spec supersede it.
 3. **The binding spec** (web repo): `docs/superpowers/specs/2026-10-04-mobile-phase5b-direct-messages-design.md`, and the
    handoff `docs/agent-handoffs/2026-10-05-phase5b-stage-b-web-handoff.md` (verified vs not verified, rulings). Read them from
-   `C:\Users\gorok\Videos\sentinelx-p5b-spec\` (or `git show origin/main:<path>` in any web clone after `git fetch`).
+   `origin/main` with `git -C C:\Users\gorok\Videos\sentinelx show origin/main:<path>` after a `fetch` (any web clone works).
 4. The web plan for how the endpoints are built:
    `docs/superpowers/plans/2026-10-04-mobile-phase5b-direct-messages-web.md`.
 5. Mobile master spec §8.10, §6.3 (realtime), §6.5 (media), and the Phase 4 / 5a plans as the **plan template**:
@@ -44,7 +46,8 @@ evidence**, and write the plan the next session will execute. Stop at the plan f
 ## Step 1: take the contract
 
 Copy the regenerated `openapi/mobile-v1.json` from web `main` over `api/openapi.json` **(copy, never hand-edit)**, e.g.
-`git -C C:\Users\gorok\Videos\sentinelx-p5b-spec show origin/main:openapi/mobile-v1.json > api\openapi.json` after `git fetch`.
+`git -C C:\Users\gorok\Videos\sentinelx show origin/main:openapi/mobile-v1.json > api\openapi.json` after
+`git -C C:\Users\gorok\Videos\sentinelx fetch origin` (a read-only `show`; the main checkout's working tree is not touched).
 Confirm the new operations are present, then follow the repo's existing `usedOperations` convention (each `ApiClient` method must be
 listed). Commit the copy on its own.
 
