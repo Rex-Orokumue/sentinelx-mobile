@@ -2777,4 +2777,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dmVoiceLimitReached => 'Maximum length reached';
+
+  @override
+  String get avatarChangePhoto => 'Change photo';
+
+  @override
+  String get avatarFromGallery => 'Choose from gallery';
+
+  @override
+  String get avatarFromCamera => 'Take a photo';
+
+  @override
+  String get avatarUploading => 'Uploading photo…';
+
+  @override
+  String get avatarUploadFailed => 'Couldn\'t upload your photo. Try again.';
+
+  @override
+  String get avatarTooLarge => 'That photo is too large. Pick a smaller one.';
+
+  @override
+  String get avatarNotImage => 'That file isn\'t a photo we can use.';
 }

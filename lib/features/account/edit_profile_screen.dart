@@ -9,6 +9,7 @@ import '../../core/providers.dart';
 import '../compete/error_copy.dart';
 import '../compete/compete_providers.dart';
 import '../compete/registration_sheet.dart' show RegistrationValidators;
+import 'avatar_field.dart';
 import 'country_field.dart';
 import 'game_interests_field.dart';
 import 'profile_providers.dart';
@@ -62,6 +63,8 @@ class _EditFormState extends ConsumerState<_EditForm> {
   String? _country;
   late Set<String> _gameInterests;
   late bool _consentWhatsappUpdates;
+  String? _avatarUrl;
+  bool _avatarChanged = false;
   late final TextEditingController _bio;
   late final String _originalUsername;
   bool _saving = false;
@@ -79,6 +82,7 @@ class _EditFormState extends ConsumerState<_EditForm> {
     _country = p?.country;
     _gameInterests = {...?p?.gameInterests};
     _consentWhatsappUpdates = p?.consentWhatsappUpdates ?? false;
+    _avatarUrl = p?.avatarUrl;
     _bio = TextEditingController(text: widget.bio);
   }
 
@@ -116,6 +120,7 @@ class _EditFormState extends ConsumerState<_EditForm> {
         bio: _bio.text.trim(),
         gameInterests: _gameInterests.toList(),
         consentWhatsappUpdates: _consentWhatsappUpdates,
+        avatarUrl: _avatarChanged ? _avatarUrl : null,
       ));
       if (!mounted) return;
       ref.invalidate(meProvider);
@@ -142,6 +147,14 @@ class _EditFormState extends ConsumerState<_EditForm> {
       child: Form(
         key: _formKey,
         child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          AvatarField(
+            url: _avatarUrl,
+            enabled: !_saving,
+            onChanged: (u) => setState(() {
+              _avatarUrl = u;
+              _avatarChanged = true;
+            }),
+          ),
           TextFormField(
             key: const Key('profile-display-name'),
             controller: _name,

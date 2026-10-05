@@ -1233,5 +1233,12 @@
   "dmMicTryAgain": "Try again",
   "dmMicOpenSettings": "Open settings",
   "dmVoicePlaybackError": "Couldn't play this voice message.",
-  "dmVoiceLimitReached": "Maximum length reached"
+  "dmVoiceLimitReached": "Maximum length reached",
+  "avatarChangePhoto": "Change photo",
+  "avatarFromGallery": "Choose from gallery",
+  "avatarFromCamera": "Take a photo",
+  "avatarUploading": "Uploading photo…",
+  "avatarUploadFailed": "Couldn't upload your photo. Try again.",
+  "avatarTooLarge": "That photo is too large. Pick a smaller one.",
+  "avatarNotImage": "That file isn't a photo we can use."
 }

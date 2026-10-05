@@ -1029,5 +1029,12 @@
   "dmMicTryAgain": "Réessayer",
   "dmMicOpenSettings": "Ouvrir les réglages",
   "dmVoicePlaybackError": "Impossible de lire ce message vocal.",
-  "dmVoiceLimitReached": "Durée maximale atteinte"
+  "dmVoiceLimitReached": "Durée maximale atteinte",
+  "avatarChangePhoto": "Changer la photo",
+  "avatarFromGallery": "Choisir dans la galerie",
+  "avatarFromCamera": "Prendre une photo",
+  "avatarUploading": "Envoi de la photo…",
+  "avatarUploadFailed": "Impossible d'envoyer votre photo. Réessayez.",
+  "avatarTooLarge": "Cette photo est trop volumineuse. Choisissez-en une plus petite.",
+  "avatarNotImage": "Ce fichier n'est pas une photo utilisable."
 }

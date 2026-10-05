@@ -6,11 +6,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:sentinelx_mobile/core/api/api_client.dart';
 import 'package:sentinelx_mobile/core/api/compete_models.dart';
 import 'package:sentinelx_mobile/core/providers.dart';
+import 'package:sentinelx_mobile/features/account/avatar_pipeline.dart';
+import 'package:sentinelx_mobile/features/account/avatar_uploader.dart';
 import 'package:sentinelx_mobile/features/account/edit_profile_screen.dart';
 import 'package:sentinelx_mobile/features/account/profile_providers.dart';
 import 'package:sentinelx_mobile/features/compete/compete_models.dart';
 import 'package:sentinelx_mobile/features/compete/compete_providers.dart';
 
+import '../../fakes/fake_avatar.dart';
 import '../../support/pump_compete.dart';
 
 class _Rig {
@@ -24,6 +27,9 @@ class _Rig {
 
   List<Override> overrides({bool signedOut = false}) => [
         remoteConfigProviderStub,
+        avatarPickerProvider.overrideWithValue(FakeAvatarPicker(jpegWithExif(800, 800))),
+        avatarSanitizerProvider.overrideWithValue((b) async => sanitizeAvatar(b)),
+        avatarUploaderProvider.overrideWithValue(FakeAvatarUploader()),
         ownBioProvider.overrideWith((ref) async {
           if (bioFails) throw Exception('offline');
           return bio;
@@ -77,6 +83,21 @@ Future<void> _save(WidgetTester tester) async {
 }
 
 void main() {
+  testWidgets('saving after a photo change sends avatarUrl; saving without one omits it', (tester) async {
+    final rig = await _pump(tester);
+    await _save(tester);
+    expect(rig.saved.single.avatarUrl, isNull);
+    await tester.ensureVisible(find.byKey(const Key('avatar-change')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('avatar-change')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('avatar-source-gallery')));
+    await tester.pumpAndSettle();
+    await _save(tester);
+    expect(rig.saved.length, 2);
+    expect(rig.saved.last.avatarUrl, contains('/avatars/u1/'));
+  });
+
   testWidgets('prefills from the signed-in profile', (tester) async {
     await _pump(tester);
     expect(find.widgetWithText(TextFormField, 'Ada'), findsOneWidget);

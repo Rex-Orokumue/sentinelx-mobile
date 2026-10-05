@@ -5083,6 +5083,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Maximum length reached'**
   String get dmVoiceLimitReached;
+
+  /// No description provided for @avatarChangePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Change photo'**
+  String get avatarChangePhoto;
+
+  /// No description provided for @avatarFromGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from gallery'**
+  String get avatarFromGallery;
+
+  /// No description provided for @avatarFromCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo'**
+  String get avatarFromCamera;
+
+  /// No description provided for @avatarUploading.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading photo…'**
+  String get avatarUploading;
+
+  /// No description provided for @avatarUploadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t upload your photo. Try again.'**
+  String get avatarUploadFailed;
+
+  /// No description provided for @avatarTooLarge.
+  ///
+  /// In en, this message translates to:
+  /// **'That photo is too large. Pick a smaller one.'**
+  String get avatarTooLarge;
+
+  /// No description provided for @avatarNotImage.
+  ///
+  /// In en, this message translates to:
+  /// **'That file isn\'t a photo we can use.'**
+  String get avatarNotImage;
 }
 
 class _AppLocalizationsDelegate

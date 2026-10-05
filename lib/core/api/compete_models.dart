@@ -107,6 +107,7 @@ class ProfileEdit {
     required this.bio,
     this.gameInterests,
     this.consentWhatsappUpdates,
+    this.avatarUrl,
   });
 
   final String displayName;
@@ -116,6 +117,7 @@ class ProfileEdit {
   final String bio;
   final List<String>? gameInterests;
   final bool? consentWhatsappUpdates;
+  final String? avatarUrl;
 
   Map<String, Object?> toJson() => {
         'displayName': displayName,
@@ -125,5 +127,6 @@ class ProfileEdit {
         'bio': bio,
         if (gameInterests != null) 'gameInterests': gameInterests,
         if (consentWhatsappUpdates != null) 'consentWhatsappUpdates': consentWhatsappUpdates,
+        if (avatarUrl != null) 'avatarUrl': avatarUrl,
       };
 }
