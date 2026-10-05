@@ -140,12 +140,6 @@ class ApiClient {
     'reportThread': 'post /api/mobile/v1/messages/threads/{id}/report',
     'acceptMessageRequest': 'post /api/mobile/v1/messages/threads/{id}/accept',
     'declineMessageRequest': 'post /api/mobile/v1/messages/threads/{id}/decline',
-  };
-
-  /// Phase 5c operations written against the spec before the web Stage B contract exists. NOT checked by
-  /// `api_contract_test.dart`; when `api/openapi.json` is re-copied from the web repo, fold these into
-  /// [usedOperations] so the drift check covers them.
-  static const pendingContractOperations = <String, String>{
     'getGuideQuests': 'get /api/mobile/v1/guide/quests',
     'claimGuideBadge': 'post /api/mobile/v1/guide/badge',
     'postChatMessage': 'post /api/mobile/v1/chat/messages',
