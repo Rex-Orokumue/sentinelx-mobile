@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -241,7 +242,7 @@ class ThreadNotifier extends AsyncNotifier<ThreadView> {
 
   /// Optimistic: the bubble shows at once, then the send runs through the thread's serial queue with this
   /// item's idempotency key (generated once; every retry reuses it).
-  Future<void> send(SendDraft draft, {Future<SendDraft> Function(SendDraft draft)? prepare}) async {
+  Future<void> send(SendDraft draft, {Future<SendDraft> Function(SendDraft draft)? prepare, Uint8List? localImage}) async {
     if (!ref.mounted || state.value == null) return;
     final item = PendingItem(
       clientKey: newIdempotencyKey(),
@@ -250,6 +251,7 @@ class ThreadNotifier extends AsyncNotifier<ThreadView> {
       status: PendingStatus.sending,
       queuedAt: ref.read(dmClockProvider)(),
       prepare: prepare,
+      localImage: localImage,
     );
     _setPending([..._pending, item]);
     await _attempt(item.localId);

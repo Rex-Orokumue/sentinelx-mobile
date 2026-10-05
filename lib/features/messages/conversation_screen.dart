@@ -4,18 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart' show ImageSource;
 
 import '../../core/api/api_client.dart';
 import '../../core/api/messages_models.dart';
 import '../../core/l10n/gen/app_localizations.dart';
 import '../../core/theme/sx_colors.dart';
+import '../../core/utils/idempotency_key.dart';
 import '../../shared/widgets/player_avatar.dart';
 import 'composer.dart';
+import 'dm_image_pipeline.dart';
+import 'dm_media_uploader.dart';
 import 'forward_sheet.dart';
 import 'inbox_providers.dart';
 import 'message_actions_sheet.dart';
 import 'message_bubble.dart';
 import 'message_error_copy.dart';
+import 'message_media.dart';
 import 'sticker_picker.dart';
 import 'messages_repository.dart';
 import 'thread_providers.dart';
@@ -161,6 +166,59 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
     } finally {
       _forwarding = false;
     }
+  }
+
+  Future<void> _attachPhoto() async {
+    final source = await showModalBottomSheet<ImageSource>(
+      context: context,
+      builder: (sheet) {
+        final l10n = AppLocalizations.of(sheet);
+        return SafeArea(
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            ListTile(key: const Key('dm-photo-library'), leading: const Icon(Icons.photo_library_outlined), title: Text(l10n.dmPhotoLibrary), onTap: () => Navigator.pop(sheet, ImageSource.gallery)),
+            ListTile(key: const Key('dm-photo-camera'), leading: const Icon(Icons.photo_camera_outlined), title: Text(l10n.dmPhotoCamera), onTap: () => Navigator.pop(sheet, ImageSource.camera)),
+          ]),
+        );
+      },
+    );
+    if (source == null || !mounted) return;
+    final l10n = AppLocalizations.of(context);
+    final picker = ref.read(dmImagePickerProvider);
+    final sanitize = ref.read(dmImageSanitizerProvider);
+    final uploader = ref.read(dmMediaUploaderProvider);
+    final notifier = ref.read(threadProvider(widget.threadId).notifier);
+    final viewer = ref.read(dmViewerIdProvider).asData?.value;
+    if (viewer == null) return;
+    final picked = await picker.pick(source);
+    if (picked == null || !mounted) return;
+    if (picked.bytes.length > kMaxPickedBytes) {
+      _say(l10n.dmErrorImageTooLarge);
+      return;
+    }
+    final Uint8List jpeg;
+    try {
+      jpeg = await sanitize(picked.bytes);
+    } on FormatException {
+      if (mounted) _say(l10n.dmErrorGeneric);
+      return;
+    }
+    if (!mounted) return;
+    if (jpeg.length > kMaxSanitizedBytes) {
+      _say(l10n.dmErrorImageTooLarge);
+      return;
+    }
+    // One storage path per compose action: every retry reuses it, and the upload runs once it has succeeded.
+    final pathId = newIdempotencyKey();
+    String? uploaded;
+    unawaited(notifier.send(
+      const SendDraft(),
+      localImage: jpeg,
+      prepare: (draft) async {
+        uploaded ??= await uploader.uploadImage(userId: viewer, jpeg: jpeg, pathId: pathId);
+        return draft.copyWith(imagePath: uploaded);
+      },
+    ));
+    if (_scroll.hasClients) _scroll.jumpTo(0);
   }
 
   Future<void> _pickSticker() async {
@@ -310,6 +368,12 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
       onSubmitEdit: _submitEdit,
       trailing: [
         IconButton(
+          key: const Key('dm-photo-button'),
+          tooltip: l10n.dmAttachPhoto,
+          icon: const Icon(Icons.photo_outlined),
+          onPressed: _attachPhoto,
+        ),
+        IconButton(
           key: const Key('dm-sticker-button'),
           tooltip: l10n.dmStickers,
           icon: const Icon(Icons.emoji_emotions_outlined),
@@ -326,6 +390,12 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
       for (final p in view.pending.reversed)
         PendingBubble(
           item: p,
+          mediaBuilder: (context, item) => item.localImage == null
+              ? null
+              : ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.memory(item.localImage!, key: Key('dm-pending-image-${item.localId}'), width: 200, fit: BoxFit.cover),
+                ),
           onRetry: () => unawaited(notifier.retry(p.localId)),
           onDiscard: () => notifier.discard(p.localId),
         ),
@@ -355,7 +425,15 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
     );
   }
 
-  Widget? _media(BuildContext context, AppLocalizations l10n, DmMessage m) => null;
+  Widget? _media(BuildContext context, AppLocalizations l10n, DmMessage m) {
+    if (m.kind == MessageKind.image) {
+      return ImageBubble(
+        url: m.imageUrl ?? '',
+        onError: () => unawaited(ref.read(threadProvider(widget.threadId).notifier).requestMediaRefresh()),
+      );
+    }
+    return null;
+  }
 
   DateTime _day(DateTime t) {
     final l = t.toLocal();

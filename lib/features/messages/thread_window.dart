@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import '../../core/api/api_client.dart';
 import '../../core/api/messages_models.dart';
 import 'messages_repository.dart';
@@ -25,6 +27,7 @@ class PendingItem {
     required this.queuedAt,
     this.error,
     this.prepare,
+    this.localImage,
   });
 
   final String clientKey;
@@ -36,6 +39,9 @@ class PendingItem {
 
   /// Optional step run before each send attempt (media upload). It must be idempotent: a retry calls it again.
   final Future<SendDraft> Function(SendDraft draft)? prepare;
+
+  /// The sanitized photo bytes shown in the bubble while it uploads (never the remote URL).
+  final Uint8List? localImage;
 
   bool get canRetry {
     final e = error;
@@ -50,6 +56,7 @@ class PendingItem {
         queuedAt: queuedAt,
         error: clearError ? null : (error ?? this.error),
         prepare: prepare,
+        localImage: localImage,
       );
 }
 
