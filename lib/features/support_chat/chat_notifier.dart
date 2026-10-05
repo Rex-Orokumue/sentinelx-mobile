@@ -141,9 +141,12 @@ class ChatNotifier extends Notifier<ChatState> {
     }
   }
 
+  bool _loadingOlder = false;
+
   Future<void> loadOlder() async {
     final before = state.nextBefore;
-    if (!state.signedIn || before == null) return;
+    if (!state.signedIn || before == null || _loadingOlder) return;
+    _loadingOlder = true;
     try {
       final page = await ref.read(chatRepositoryProvider).history(before: before);
       if (!ref.mounted) return;
@@ -152,7 +155,10 @@ class ChatNotifier extends Notifier<ChatState> {
         bubbles: [...hist, ...state.bubbles], phase: state.phase, errorCode: state.errorCode, retryAfterSeconds: state.retryAfterSeconds,
         actions: state.actions, checkingAccount: state.checkingAccount, historyLoaded: true, signedIn: state.signedIn, nextBefore: page.nextBefore,
       );
-    } catch (_) {}
+    } catch (_) {
+    } finally {
+      _loadingOlder = false;
+    }
   }
 
   Future<void> send(String raw, {required String locale}) async {

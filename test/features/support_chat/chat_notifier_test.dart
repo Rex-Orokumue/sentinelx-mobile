@@ -258,4 +258,20 @@ void main() {
     await c.read(viewerIdProvider.future);
     expect(c.read(chatProvider).bubbles, isEmpty);
   });
+
+  test('loadOlder twice in a row fetches the page once (no duplicated bubbles)', () async {
+    final s = _setup();
+    s.repo.historyPage = ChatHistoryPage(
+      messages: [ChatHistoryItem(id: 'a', role: 'user', content: 'newer', createdAt: DateTime.utc(2026, 2))],
+      nextBefore: 'cur',
+    );
+    await s.c.read(viewerIdProvider.future);
+    final n = s.c.read(chatProvider.notifier);
+    await n.loadHistory();
+    final calls = s.repo.historyCalls;
+    s.repo.historyPage = ChatHistoryPage(messages: [ChatHistoryItem(id: 'z', role: 'user', content: 'older', createdAt: DateTime.utc(2026))]);
+    await Future.wait([n.loadOlder(), n.loadOlder()]);
+    expect(s.repo.historyCalls, calls + 1);
+    expect(s.c.read(chatProvider).bubbles.map((b) => b.text), ['older', 'newer']);
+  });
 }
