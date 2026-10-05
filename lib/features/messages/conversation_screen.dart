@@ -12,6 +12,7 @@ import '../../core/l10n/gen/app_localizations.dart';
 import '../../core/theme/sx_colors.dart';
 import '../../core/utils/idempotency_key.dart';
 import '../../shared/widgets/player_avatar.dart';
+import 'block_report.dart';
 import 'composer.dart';
 import 'dm_image_pipeline.dart';
 import 'dm_media_uploader.dart';
@@ -120,7 +121,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
       !_windowClosed.contains(m.id) && ref.read(dmClockProvider)().difference(m.createdAt) < _editWindow;
 
   Future<void> _showActions(DmMessage m, String viewerId) async {
-    final actions = availableActions(m, mine: m.isMine(viewerId), withinWindow: _withinWindow(m), canForward: true);
+    final actions = availableActions(m, mine: m.isMine(viewerId), withinWindow: _withinWindow(m), canForward: true, canReport: true);
     if (actions.isEmpty) return;
     final picked = await showModalBottomSheet<MessageAction>(
       context: context,
@@ -146,7 +147,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
       case MessageAction.forward:
         await _forward(m);
       case MessageAction.report:
-        break; // wired by its own task
+        await reportFlow(context, ref, threadId: widget.threadId, messageId: m.id);
     }
   }
 
@@ -301,12 +302,35 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
                   Expanded(child: Text(h.other.displayName, maxLines: 1, overflow: TextOverflow.ellipsis)),
                 ]),
               ),
+        actions: [if (h != null) _menu(l10n, h)],
       ),
       body: notFound
           ? Center(key: const Key('dm-not-found'), child: Padding(padding: const EdgeInsets.all(24), child: Text(l10n.dmConversationNotFound, textAlign: TextAlign.center)))
           : _body(context, l10n, thread, h, viewer),
     );
   }
+
+  Widget _menu(AppLocalizations l10n, ThreadHeader h) => PopupMenuButton<String>(
+        key: const Key('dm-menu'),
+        tooltip: l10n.dmMore,
+        onSelected: (choice) {
+          switch (choice) {
+            case 'block':
+              unawaited(confirmAndBlock(context, ref, threadId: widget.threadId, other: h.other));
+            case 'unblock':
+              unawaited(unblockPlayer(context, ref, threadId: widget.threadId, other: h.other));
+            case 'report':
+              unawaited(reportFlow(context, ref, threadId: widget.threadId));
+          }
+        },
+        itemBuilder: (_) => [
+          if (h.blockedByMe)
+            PopupMenuItem(key: const Key('dm-menu-unblock'), value: 'unblock', child: Text(l10n.dmUnblock))
+          else
+            PopupMenuItem(key: const Key('dm-menu-block'), value: 'block', child: Text(l10n.dmBlock)),
+          PopupMenuItem(key: const Key('dm-menu-report'), value: 'report', child: Text(l10n.dmReport)),
+        ],
+      );
 
   bool _isNotFound(Object? e) => e is ApiException && e.code == 'not_found';
 
@@ -354,7 +378,15 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
           width: double.infinity,
           color: SxColors.surface,
           padding: const EdgeInsets.all(16),
-          child: Text(text, textAlign: TextAlign.center),
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            Text(text, textAlign: TextAlign.center),
+            if (h.blockedByMe)
+              TextButton(
+                key: const Key('dm-unblock'),
+                onPressed: () => unawaited(unblockPlayer(context, ref, threadId: widget.threadId, other: h.other)),
+                child: Text(l10n.dmUnblock),
+              ),
+          ]),
         ),
       );
     }
