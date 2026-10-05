@@ -12,6 +12,7 @@ class MeProfile {
     this.profileCompletedAt,
     this.consentWhatsappUpdates = false,
     this.gameInterests = const [],
+    this.bubbleSkinUrl,
   });
 
   factory MeProfile.fromJson(Map<String, dynamic> j) => MeProfile(
@@ -27,6 +28,7 @@ class MeProfile {
         profileCompletedAt: j['profileCompletedAt'] as String?,
         consentWhatsappUpdates: j['consentWhatsappUpdates'] as bool,
         gameInterests: (j['gameInterests'] as List<dynamic>).cast<String>(),
+        bubbleSkinUrl: j['bubbleSkinUrl'] as String?,
       );
 
   final String? username;
@@ -41,6 +43,9 @@ class MeProfile {
   final String? profileCompletedAt;
   final bool consentWhatsappUpdates;
   final List<String> gameInterests;
+
+  /// Equipped chat-bubble skin (relative URL on the web origin), or null.
+  final String? bubbleSkinUrl;
 }
 
 class MeResponse {
