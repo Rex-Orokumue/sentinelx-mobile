@@ -2942,4 +2942,65 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get tourCreateAccount => 'Créer un compte';
+
+  @override
+  String get coachFixturesTitle => 'Vos matchs';
+
+  @override
+  String get coachFixturesBody =>
+      'Vos prochains matchs apparaissent ici. Confirmez votre présence le moment venu.';
+
+  @override
+  String get coachQuestTitle => 'Quête Prêt au combat';
+
+  @override
+  String get coachQuestBody =>
+      'Terminez trois étapes pour gagner un badge et des récompenses.';
+
+  @override
+  String get coachGuideTitle => 'Guide et assistant';
+
+  @override
+  String get coachGuideBody =>
+      'Les quêtes, une visite rapide et un assistant de discussion se trouvent ici.';
+
+  @override
+  String get coachAccountTitle => 'Votre compte';
+
+  @override
+  String get coachAccountBody => 'Modifiez votre profil et vos paramètres.';
+
+  @override
+  String get coachTabsTitle => 'Cinq onglets';
+
+  @override
+  String get coachTabsBody =>
+      'Compétition, Regarder, Communauté, Échanger et votre compte.';
+
+  @override
+  String get coachBellTitle => 'Notifications';
+
+  @override
+  String get coachBellBody =>
+      'Les mises à jour de match et les récompenses apparaissent ici.';
+
+  @override
+  String get coachMessagesTitle => 'Messages';
+
+  @override
+  String get coachMessagesBody => 'Messages privés avec d\'autres joueurs.';
+
+  @override
+  String get coachNext => 'Suivant';
+
+  @override
+  String get coachDone => 'Terminé';
+
+  @override
+  String get coachSkip => 'Passer';
+
+  @override
+  String coachStepOf(int current, int total) {
+    return '$current sur $total';
+  }
 }

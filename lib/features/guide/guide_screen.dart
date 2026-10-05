@@ -6,6 +6,7 @@ import '../../core/api/guide_models.dart';
 import '../../core/l10n/gen/app_localizations.dart';
 import '../../core/providers.dart';
 import '../../core/theme/sx_colors.dart';
+import 'coach/coach_controller.dart';
 import 'guide_mascot.dart';
 import 'guide_providers.dart';
 import 'guide_steps.dart';
@@ -86,6 +87,15 @@ class _SignedIn extends ConsumerWidget {
         _QuestChecklist(quest: quest),
       const SizedBox(height: 8),
       const _AskTile(),
+      ListTile(
+        key: const Key('guide-replay-tour'),
+        leading: const Icon(Icons.replay),
+        title: Text(l10n.guideReplayTour),
+        onTap: () async {
+          await ref.read(coachControllerProvider.notifier).resetAll();
+          if (context.mounted) context.go('/');
+        },
+      ),
     ]);
   }
 }

@@ -7,6 +7,9 @@ import '../core/providers.dart';
 import '../core/api/players_models.dart';
 import '../core/l10n/gen/app_localizations.dart';
 import '../core/routing/web_links.dart';
+import '../features/guide/coach/coach_host.dart';
+import '../features/guide/coach/coach_registry.dart';
+import '../features/guide/coach/coach_tours.dart';
 import '../features/guide/guide_screen.dart';
 import '../features/account/account_screen.dart';
 import '../features/account/edit_profile_screen.dart';
@@ -148,9 +151,11 @@ GoRouter buildAppRouter({
             LobbyResultScreen(lobbyId: state.pathParameters['id']!, lobby: state.extra as NextLobby?),
       ),
       StatefulShellRoute.indexedStack(
-        builder: (context, state, shell) => Scaffold(
+        builder: (context, state, shell) => CoachHost(
+          tour: shellTour,
+          child: Scaffold(
           body: shell,
-          bottomNavigationBar: NavigationBar(
+          bottomNavigationBar: CoachTarget(id: 'shell.tabs', child: NavigationBar(
             selectedIndex: shell.currentIndex,
             onDestinationSelected: shell.goBranch,
             destinations: const [
@@ -175,8 +180,8 @@ GoRouter buildAppRouter({
                 label: 'Account',
               ),
             ],
-          ),
-        ),
+          )),
+        )),
         branches: [
           StatefulShellBranch(routes: [
             GoRoute(

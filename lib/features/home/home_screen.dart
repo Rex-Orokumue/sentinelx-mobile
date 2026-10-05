@@ -5,6 +5,9 @@ import 'package:go_router/go_router.dart';
 import '../../core/api/match_models.dart' show NextLobby;
 import '../../core/l10n/gen/app_localizations.dart';
 import '../../core/providers.dart';
+import '../guide/coach/coach_host.dart';
+import '../guide/coach/coach_registry.dart';
+import '../guide/coach/coach_tours.dart';
 import '../guide/guide_mascot.dart';
 import '../guide/quest_card.dart';
 import '../match/fixtures_card.dart';
@@ -27,20 +30,28 @@ class HomeScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final isSignedIn = ref.watch(meProvider).asData?.value != null;
 
-    return Scaffold(
+    return CoachHost(
+      tour: homeTour,
+      child: Scaffold(
       appBar: AppBar(
         title: const Text('SentinelX Esports'),
         actions: [
-          IconButton(
-            key: const Key('guide-open'),
-            icon: const GuideMascot(size: 28),
-            tooltip: l10n.guideOpen,
-            onPressed: () => GoRouter.of(context).push('/guide'),
+          CoachTarget(
+            id: 'home.guide',
+            child: IconButton(
+              key: const Key('guide-open'),
+              icon: const GuideMascot(size: 28),
+              tooltip: l10n.guideOpen,
+              onPressed: () => GoRouter.of(context).push('/guide'),
+            ),
           ),
-          IconButton(
-            key: const Key('home-account'),
-            icon: Icon(isSignedIn ? Icons.person : Icons.person_outline),
-            onPressed: () => onGoTo(isSignedIn ? '/account' : '/login'),
+          CoachTarget(
+            id: 'home.account',
+            child: IconButton(
+              key: const Key('home-account'),
+              icon: Icon(isSignedIn ? Icons.person : Icons.person_outline),
+              onPressed: () => onGoTo(isSignedIn ? '/account' : '/login'),
+            ),
           ),
         ],
       ),
@@ -59,8 +70,11 @@ class HomeScreen extends ConsumerWidget {
                   onTap: () =>
                       onGoTo('/tournaments/${summary.featuredTournament!.id}'),
                 ),
-              if (isSignedIn) const QuestCard(),
-              FixturesCard(onGoTo: onGoTo, onOpenLobby: (id, lobby) => onOpenLobby?.call(id, lobby)),
+              if (isSignedIn) const CoachTarget(id: 'home.quest', child: QuestCard()),
+              CoachTarget(
+                id: 'home.fixtures',
+                child: FixturesCard(onGoTo: onGoTo, onOpenLobby: (id, lobby) => onOpenLobby?.call(id, lobby)),
+              ),
               Padding(
                 padding: const EdgeInsets.all(16),
                 child: Text(
@@ -120,6 +134,7 @@ class HomeScreen extends ConsumerWidget {
           ),
         ),
       ),
+    ),
     );
   }
 }

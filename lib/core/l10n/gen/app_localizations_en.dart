@@ -2908,4 +2908,64 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tourCreateAccount => 'Create account';
+
+  @override
+  String get coachFixturesTitle => 'Your fixtures';
+
+  @override
+  String get coachFixturesBody =>
+      'Your next matches show up here. Check in when it\'s time.';
+
+  @override
+  String get coachQuestTitle => 'Battle Ready quest';
+
+  @override
+  String get coachQuestBody =>
+      'Finish three steps to earn a badge and rewards.';
+
+  @override
+  String get coachGuideTitle => 'Guide and assistant';
+
+  @override
+  String get coachGuideBody =>
+      'Quests, a quick tour and a chat assistant live here.';
+
+  @override
+  String get coachAccountTitle => 'Your account';
+
+  @override
+  String get coachAccountBody => 'Edit your profile and settings.';
+
+  @override
+  String get coachTabsTitle => 'Five tabs';
+
+  @override
+  String get coachTabsBody =>
+      'Compete, Watch, Community, Trade and your Account.';
+
+  @override
+  String get coachBellTitle => 'Notifications';
+
+  @override
+  String get coachBellBody => 'Match updates and rewards appear here.';
+
+  @override
+  String get coachMessagesTitle => 'Messages';
+
+  @override
+  String get coachMessagesBody => 'Direct messages with other players.';
+
+  @override
+  String get coachNext => 'Next';
+
+  @override
+  String get coachDone => 'Done';
+
+  @override
+  String get coachSkip => 'Skip';
+
+  @override
+  String coachStepOf(int current, int total) {
+    return '$current of $total';
+  }
 }

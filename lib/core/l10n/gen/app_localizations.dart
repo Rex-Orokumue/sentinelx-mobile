@@ -5323,6 +5323,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Create account'**
   String get tourCreateAccount;
+
+  /// No description provided for @coachFixturesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your fixtures'**
+  String get coachFixturesTitle;
+
+  /// No description provided for @coachFixturesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your next matches show up here. Check in when it\'s time.'**
+  String get coachFixturesBody;
+
+  /// No description provided for @coachQuestTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Battle Ready quest'**
+  String get coachQuestTitle;
+
+  /// No description provided for @coachQuestBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish three steps to earn a badge and rewards.'**
+  String get coachQuestBody;
+
+  /// No description provided for @coachGuideTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Guide and assistant'**
+  String get coachGuideTitle;
+
+  /// No description provided for @coachGuideBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Quests, a quick tour and a chat assistant live here.'**
+  String get coachGuideBody;
+
+  /// No description provided for @coachAccountTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account'**
+  String get coachAccountTitle;
+
+  /// No description provided for @coachAccountBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit your profile and settings.'**
+  String get coachAccountBody;
+
+  /// No description provided for @coachTabsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Five tabs'**
+  String get coachTabsTitle;
+
+  /// No description provided for @coachTabsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Compete, Watch, Community, Trade and your Account.'**
+  String get coachTabsBody;
+
+  /// No description provided for @coachBellTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get coachBellTitle;
+
+  /// No description provided for @coachBellBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Match updates and rewards appear here.'**
+  String get coachBellBody;
+
+  /// No description provided for @coachMessagesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages'**
+  String get coachMessagesTitle;
+
+  /// No description provided for @coachMessagesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct messages with other players.'**
+  String get coachMessagesBody;
+
+  /// No description provided for @coachNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get coachNext;
+
+  /// No description provided for @coachDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get coachDone;
+
+  /// No description provided for @coachSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get coachSkip;
+
+  /// No description provided for @coachStepOf.
+  ///
+  /// In en, this message translates to:
+  /// **'{current} of {total}'**
+  String coachStepOf(int current, int total);
 }
 
 class _AppLocalizationsDelegate

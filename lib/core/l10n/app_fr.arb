@@ -1,1100 +1,1128 @@
-{
-  "@@locale": "fr",
-  "appName": "Sentinel X",
-  "maintenanceTitle": "Nous revenons tout de suite",
-  "updateRequiredTitle": "Mise à jour requise",
-  "updateRequiredBody": "Veuillez mettre à jour Sentinel X vers la version {minVersion} ou plus récente pour continuer.",
-  "@updateRequiredBody": {
+{
+  "@@locale": "fr",
+  "appName": "Sentinel X",
+  "maintenanceTitle": "Nous revenons tout de suite",
+  "updateRequiredTitle": "Mise à jour requise",
+  "updateRequiredBody": "Veuillez mettre à jour Sentinel X vers la version {minVersion} ou plus récente pour continuer.",
+  "@updateRequiredBody": {
+    "placeholders": {
+      "minVersion": {
+        "type": "String"
+      }
+    }
+  },
+  "updateAction": "Mettre à jour",
+  "commonSiteName": "SentinelX",
+  "commonViewAll": "Voir tout",
+  "commonMenu": "Menu",
+  "commonCloseMenu": "Fermer le menu",
+  "commonJoinWhatsapp": "Rejoindre la communauté WhatsApp",
+  "commonAdmin": "Administrateur",
+  "commonModerator": "Modérateur",
+  "navHome": "Accueil",
+  "navTournaments": "Tournois",
+  "navGames": "Jeux",
+  "navRankings": "Classements",
+  "navSeasons": "Saisons",
+  "navExchange": "Échange",
+  "navStore": "Boutique",
+  "navCommunity": "Communauté",
+  "navAbout": "À propos",
+  "navTv": "TV",
+  "navMore": "Plus",
+  "homeUpcomingHeading": "À venir",
+  "homeLoadError": "Une erreur s'est produite lors du chargement de cette page.",
+  "accountTitle": "Compte",
+  "accountLogIn": "Se connecter",
+  "accountCreateAccount": "Créer un compte",
+  "accountSignOut": "Se déconnecter",
+  "accountSigningOut": "Déconnexion…",
+  "accountSignOutFailed": "Impossible de se déconnecter. Veuillez réessayer.",
+  "homeTopPlayersHeading": "Meilleurs joueurs",
+  "homeFullRankingsLink": "Classement complet",
+  "authMetaLogin": "Connexion · SentinelX Esports",
+  "authMetaSignup": "Inscription · SentinelX Esports",
+  "authMetaForgotPassword": "Mot de passe oublié · SentinelX Esports",
+  "authMetaResetPassword": "Nouveau mot de passe · SentinelX Esports",
+  "authMetaUsername": "Choisissez votre pseudo · SentinelX Esports",
+  "authMetaPhone": "Vérifiez votre téléphone · SentinelX Esports",
+  "authCommonEmail": "E-mail",
+  "authCommonPassword": "Mot de passe",
+  "authCommonUsername": "Pseudo",
+  "authCommonOr": "OU",
+  "authCommonBackToLogin": "Retour à la connexion",
+  "authCommonShowPassword": "Afficher le mot de passe",
+  "authCommonHidePassword": "Masquer le mot de passe",
+  "authCommonAtLeast8": "Au moins 8 caractères.",
+  "authCommonContinueWithGoogle": "Continuer avec Google",
+  "authCommonBack": "Retour",
+  "authLoginTitle": "Bon retour",
+  "authLoginSubtitle": "Connectez-vous à votre compte SentinelX Esports.",
+  "authLoginSubmit": "Se connecter",
+  "authLoginSubmitting": "Connexion…",
+  "authLoginResend": "Renvoyer l'e-mail de confirmation",
+  "authLoginResending": "Envoi…",
+  "authLoginResendHint": "Vous n'avez rien reçu ? Vérifiez vos spams — ou utilisez la connexion Google ci-dessous, qui évite la confirmation par e-mail.",
+  "authLoginForgot": "Mot de passe oublié ?",
+  "authLoginCreateAccount": "Créer un compte",
+  "authSignupStep1Title": "Rejoignez SentinelX Esports",
+  "authSignupStep1Subtitle": "La voie la plus rapide — aucune confirmation par e-mail :",
+  "authSignupContinueWithEmail": "Continuer avec un e-mail",
+  "authSignupHaveAccount": "Vous avez déjà un compte ?",
+  "authSignupLogIn": "Se connecter",
+  "authSignupStep2Title": "Créez votre compte",
+  "authSignupSubmit": "Créer un compte",
+  "authSignupSubmitting": "Création du compte…",
+  "authSignupCheckEmailTitle": "Consultez vos e-mails",
+  "authSignupCheckEmailBody": "Nous avons envoyé un lien de confirmation à {email}. Cliquez dessus pour activer votre compte, puis connectez-vous et choisissez votre pseudo.",
+  "authSignupNothingYet": "Toujours rien après quelques minutes ? Vérifiez vos spams, puis :",
+  "authSignupResend": "Renvoyer",
+  "authSignupResending": "Envoi…",
+  "authSignupGoogleTipBefore": "Les e-mails sont parfois retardés. S'inscrire avec Google évite complètement la confirmation — ",
+  "authSignupStartOver": "recommencez",
+  "authSignupGoogleTipAfter": " et utilisez le bouton Google.",
+  "authSignupOrSignUpWithEmail": "OU S'INSCRIRE PAR E-MAIL",
+  "authSignupSigningUpAs": "Inscription en tant que {username}.",
+  "authForgotTitle": "Réinitialisez votre mot de passe",
+  "authForgotSubtitle": "Saisissez votre e-mail et nous vous enverrons un lien de réinitialisation.",
+  "authForgotSubmit": "Envoyer le lien",
+  "authForgotSubmitting": "Envoi…",
+  "authResetTitle": "Définir un nouveau mot de passe",
+  "authResetSubtitle": "Choisissez un nouveau mot de passe pour votre compte.",
+  "authResetNewPassword": "Nouveau mot de passe",
+  "authResetSubmit": "Définir le mot de passe",
+  "authResetSubmitting": "Mise à jour…",
+  "authUsernameStepTitle": "Choisissez votre pseudo",
+  "authUsernameStepSubtitle": "C'est votre nom public sur SentinelX Esports.",
+  "authUsernameStepSubmit": "Continuer",
+  "authUsernameStepSubmitting": "Enregistrement…",
+  "authPhoneStepTitle": "Vérifiez votre téléphone",
+  "authPhoneStepSubtitle": "Nous enverrons un code à 6 chiffres sur WhatsApp afin de pouvoir vous joindre au sujet des matchs et des résultats.",
+  "authAvailabilityTaken": "Ce pseudo est déjà pris.",
+  "authAvailabilityInvalid": "3 à 20 caractères : lettres, chiffres, tirets bas.",
+  "authAvailabilityUnknown": "Vérification impossible pour l'instant — vous pouvez continuer.",
+  "authNoticesCheckEmail": "Consultez vos e-mails pour trouver le lien de confirmation.",
+  "authNoticesResendSent": "Si cette adresse doit encore être confirmée, un nouveau lien est en route. Vérifiez vos spams — et la connexion Google évite entièrement l'e-mail.",
+  "authNoticesResetSent": "Si un compte existe pour cette adresse, nous avons envoyé un lien de réinitialisation.",
+  "authErrorsInvalidEmail": "Saisissez une adresse e-mail valide.",
+  "authErrorsPasswordRequired": "Le mot de passe est requis.",
+  "authErrorsPasswordTooShort": "Le mot de passe doit contenir au moins 8 caractères.",
+  "authErrorsUsernameTooShort": "Le pseudo doit contenir au moins 3 caractères.",
+  "authErrorsUsernameTooLong": "Le pseudo ne doit pas dépasser 20 caractères.",
+  "authErrorsUsernameCharset": "Uniquement des lettres, chiffres et tirets bas.",
+  "authErrorsInvalidCredentials": "E-mail ou mot de passe incorrect.",
+  "authErrorsEmailNotConfirmed": "Votre e-mail n'est pas encore confirmé — cherchez le lien dans votre boîte de réception (et vos spams).",
+  "authErrorsBlockedDetails": "Nous n'avons pas pu créer de compte avec ces informations.",
+  "authErrorsUsernameTaken": "Ce pseudo est déjà pris — essayez-en un autre.",
+  "authErrorsUsernameTakenGoBack": "Ce pseudo est déjà pris — revenez en arrière et choisissez-en un autre.",
+  "authErrorsSignupFailed": "Un problème est survenu lors de la création de votre compte. Veuillez réessayer.",
+  "authErrorsUsernameSaveFailed": "Impossible d'enregistrer votre pseudo. Veuillez réessayer.",
+  "authErrorsLinkExpired": "Votre lien de réinitialisation a expiré. Veuillez en demander un nouveau.",
+  "authErrorsResetFailed": "Impossible de mettre à jour votre mot de passe. Veuillez réessayer.",
+  "authErrorsForgotFailed": "Impossible d'envoyer le lien de réinitialisation. Veuillez réessayer.",
+  "authErrorsResendFailed": "Impossible de renvoyer le lien de confirmation. Veuillez réessayer.",
+  "authErrorsGoogleNotConfigured": "La connexion Google n'est pas encore configurée.",
+  "authErrorsGoogleFailed": "La connexion Google a échoué. Veuillez réessayer.",
+  "termsEyebrow": "Mentions légales",
+  "termsTitle": "Conditions d'utilisation",
+  "termsSubtitle": "Les conditions qui régissent votre utilisation de la plateforme SentinelX.",
+  "termsMetaUpdated": "Dernière mise à jour : septembre 2026",
+  "termsSummary": "En résumé : vous devez avoir au moins 13 ans, un seul compte par personne, et vous jouez loyalement — des résultats réels, appuyés par des preuves. Les gains sont versés sur votre compte bancaire via Paystack après une vérification d’identité. Les SX Coins sont des points de plateforme sans valeur monétaire. Le droit nigérian s’applique. Ce résumé n’est pas le texte juridique — les sections ci-dessous le sont.",
+  "termsMetaTitle": "Conditions d'utilisation",
+  "termsMetaDescription": "Les conditions qui régissent l'utilisation de la plateforme SentinelX Esports.",
+  "termsS1Heading": "1. Qui nous sommes",
+  "termsS1P1": "SentinelX Esports est une plateforme d'esport mobile exploitée par Samuel Chinoyerem Akpoke (« nous », « notre »). Nous sommes basés au Nigeria et notre plateforme est disponible sur sentinelxesports.com.ng.",
+  "termsS1P2": "En créant un compte ou en utilisant une partie de SentinelX, vous acceptez les présentes Conditions d'utilisation. Si vous n'êtes pas d'accord, veuillez ne pas utiliser la plateforme.",
+  "termsS2Heading": "2. Admissibilité",
+  "termsS2P1": "Vous devez avoir au moins 13 ans pour créer un compte. Si vous avez moins de 18 ans, vous confirmez avoir l'autorisation d'un parent ou tuteur pour utiliser la plateforme. Les joueurs de moins de 18 ans ne peuvent pas retirer leurs gains sans le consentement vérifiable d'un parent ou tuteur.",
+  "termsS2P2": "Vous ne pouvez détenir qu'un seul compte. La création de plusieurs comptes pour obtenir un avantage déloyal est interdite et entraîne un bannissement permanent.",
+  "termsS3Heading": "3. Votre compte",
+  "termsS3P1": "Vous êtes responsable de la sécurité de vos identifiants de connexion. Ne partagez votre mot de passe avec personne. Vous êtes responsable de toute activité effectuée sous votre compte.",
+  "termsS3P2": "Si vous pensez que votre compte a été compromis, contactez-nous immédiatement à <email>sentinelxesports@gmail.com</email>.",
+  "termsS4Heading": "4. Tournois et frais d'inscription",
+  "termsS4P1": "Les frais d'inscription aux tournois sont fixés par événement et affichés clairement avant l'inscription. Le tarif standard actuel est de ₦500. En vous inscrivant et en effectuant le paiement, vous confirmez votre intention de participer.",
+  "termsS4P2": "Les frais d'inscription sont traités en toute sécurité par Paystack. Nous ne conservons pas les données de votre carte.",
+  "termsS4P3": "Les SX Coins peuvent être utilisés pour réduire ou annuler les frais d'inscription lorsque cette option est proposée. Consultez la <link>Politique de remboursement</link> pour savoir comment les annulations sont traitées.",
+  "termsS5Heading": "5. Règles de jeu et fair-play",
+  "termsS5Intro": "Tous les joueurs doivent jouer honnêtement. Les actions suivantes sont interdites :",
+  "termsS5List": "<li>Soumettre des résultats de match faux ou falsifiés</li><li>Utiliser des outils externes, scripts ou exploits pour obtenir un avantage</li><li>S'entendre avec un adversaire pour produire un résultat prédéterminé</li><li>Menacer, harceler ou insulter ses adversaires</li>",
+  "termsS5P2": "Les résultats de match doivent être soumis avec des preuves à l'appui (capture d'écran et enregistrement d'écran). Les décisions de l'administrateur sur les résultats contestés sont définitives. Le règlement complet de conduite et de match figure dans le <link>Règlement des tournois</link>.",
+  "termsS5P3": "Une absence non signalée à votre match programmé entraîne un forfait et une pénalité sur votre SX Score.",
+  "termsS6Heading": "6. Gains et retraits",
+  "termsS6P1": "Les gains sont versés sur le compte bancaire que vous liez à votre tableau de bord joueur via Paystack. Vous devez terminer la vérification d'identité avant votre premier retrait.",
+  "termsS6P2": "Nous visons à traiter les retraits approuvés sous 1 à 5 jours ouvrés. Nous ne sommes pas responsables des retards causés par votre banque.",
+  "termsS7Heading": "7. SX Coins",
+  "termsS7P1": "Les SX Coins sont une monnaie virtuelle interne à la plateforme. Ils sont gagnés en jouant et en passant du temps sur la plateforme. Les SX Coins n'ont aucune valeur monétaire et ne peuvent pas être échangés contre de l'argent. Ils peuvent être utilisés sur la plateforme pour des réductions sur les frais d'inscription, des fonctionnalités communautaires et la boutique interne. Les SX Coins peuvent aussi être misés dans les paris communautaires (voir la section 8) et peuvent être perdus si votre pari n’est pas gagnant.",
+  "termsS8Heading": "8. Paris communautaires (SX Coins)",
+  "termsS8P1": "Vous pouvez miser des SX Coins sur l’issue d’un match auquel vous ne participez pas. Le pari est facultatif et utilise uniquement des SX Coins.",
+  "termsS8List": "<li>Les paris ouvrent une fois les deux joueurs confirmés pour un match programmé et se ferment 15 minutes avant l’heure de début prévue. Pour les matchs programmés sur une journée entière, ils se ferment 24 heures après le début de cette journée.</li><li>Une commission de plateforme de 5 % est prélevée sur la cagnotte perdante. Les gains sont versés uniquement en SX Coins.</li><li>Les paris sont réglés automatiquement à partir du résultat du match confirmé par l’administrateur, et ce règlement est définitif.</li><li>Si un match est annulé ou qu’un résultat est infirmé, chaque mise est intégralement restituée.</li>",
+  "termsS8P2": "Comme les SX Coins n’ont aucune valeur monétaire et ne peuvent pas être échangés contre de l’argent, les paris communautaires ne constituent pas des paris d’argent.",
+  "termsS9Heading": "9. Gaming Exchange",
+  "termsS9P1": "Le Gaming Exchange (propulsé par l'escrow Zolarux) permet aux joueurs d'acheter et de vendre des comptes de jeu et des objets in-game. SentinelX fournit la plateforme et l'infrastructure d'escrow. Nous ne sommes pas partie à la transaction entre l'acheteur et le vendeur et ne sommes pas responsables des litiges découlant de transactions effectuées en dehors du système d'escrow de la plateforme. Consultez <link>le fonctionnement de l’escrow</link> pour le détail étape par étape.",
+  "termsS10Heading": "10. Standards communautaires",
+  "termsS10P1": "Vous acceptez de traiter tous les autres membres de la communauté SentinelX avec respect. Les discours de haine, la discrimination, les menaces et le harcèlement ne sont pas tolérés et entraîneront une suspension ou un bannissement permanent. Consultez nos <link>Règles communautaires</link> pour la liste complète des standards.",
+  "termsS11Heading": "11. Propriété intellectuelle",
+  "termsS11P1": "Toute l'image de marque, le design et le contenu original de SentinelX appartiennent à SentinelX Esports. Vous ne pouvez pas reproduire, copier ou distribuer notre contenu sans autorisation écrite. Le contenu que vous publiez (captures d'écran de match, publications communautaires) reste le vôtre, mais vous nous accordez une licence pour l'afficher sur la plateforme.",
+  "termsS12Heading": "12. Limitation de responsabilité",
+  "termsS12P1": "SentinelX Esports n'est pas responsable des pertes indirectes, accessoires ou consécutives résultant de votre utilisation de la plateforme. Notre responsabilité totale envers vous pour toute réclamation ne dépassera pas le total des frais d'inscription que vous nous avez versés au cours des 3 mois précédant la réclamation.",
+  "termsS12P2": "Nous ne garantissons pas un accès ininterrompu à la plateforme. Nous ferons des efforts raisonnables pour rétablir le service rapidement en cas d'interruption.",
+  "termsS13Heading": "13. Modifications des présentes conditions",
+  "termsS13P1": "Nous pouvons mettre à jour ces Conditions de temps à autre. Nous vous informerons via la plateforme ou par e-mail en cas de changements importants. Continuer à utiliser SentinelX après la publication des changements signifie que vous acceptez les conditions mises à jour.",
+  "termsS14Heading": "14. Droit applicable",
+  "termsS14P1": "Les présentes Conditions sont régies par les lois de la République fédérale du Nigeria. Tout litige relève de la compétence des tribunaux nigérians.",
+  "termsS15Heading": "15. Contact",
+  "termsS15P1": "Des questions sur ces Conditions ? Écrivez-nous à <email>sentinelxesports@gmail.com</email> ou contactez-nous sur WhatsApp : <whatsapp>+234 903 239 5685</whatsapp>.",
+  "cmpTabAll": "Tous",
+  "cmpTabLive": "En direct",
+  "cmpTabUpcoming": "À venir",
+  "cmpTabCompleted": "Terminés",
+  "cmpAllGames": "Tous les jeux",
+  "cmpEmpty": "Aucun tournoi pour le moment.",
+  "cmpLoadError": "Chargement impossible. Vérifiez votre connexion et réessayez.",
+  "cmpRetry": "Réessayer",
+  "cmpLoadMore": "Charger plus",
+  "cmpEntryFee": "Frais d'inscription",
+  "cmpFree": "Gratuit",
+  "cmpPrizePool": "Cagnotte",
+  "cmpSecondPlace": "2e place",
+  "cmpThirdPlace": "3e place",
+  "cmpMaxPlayers": "{count} joueurs maximum",
+  "@cmpMaxPlayers": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cmpRules": "Règlement",
+  "cmpViewBracket": "Voir le tableau",
+  "cmpShareWhatsapp": "Partager sur WhatsApp",
+  "cmpShareText": "Rejoignez {title} sur Sentinel X : {url}",
+  "@cmpShareText": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "cmpCtaRegister": "S'inscrire",
+  "cmpCtaResume": "Reprendre le paiement",
+  "cmpCtaLogin": "Connectez-vous pour vous inscrire",
+  "cmpCtaJoinWaitlist": "Rejoindre la liste d'attente",
+  "cmpViewInvitations": "Voir mes invitations",
+  "cmpStateRegistered": "Vous êtes inscrit.",
+  "cmpStateWaitlisted": "Vous êtes sur la liste d'attente.",
+  "cmpStateFull": "Ce tournoi est complet.",
+  "cmpStateEnded": "Ce tournoi est terminé.",
+  "cmpStateInvitationOnly": "Ce tournoi est sur invitation uniquement.",
+  "cmpFeeWaived": "Entrée gratuite — dispense appliquée",
+  "cmpFieldDisplayName": "Nom affiché",
+  "cmpFieldWhatsapp": "Numéro WhatsApp",
+  "cmpAgreeRules": "J'ai lu et j'accepte le règlement",
+  "cmpCoinsTitle": "Utiliser des SX Coins",
+  "cmpCoinsNone": "Ne pas utiliser de pièces",
+  "cmpCoinsOption": "{coins} pièces (−{naira} ₦)",
+  "@cmpCoinsOption": {
+    "placeholders": {
+      "coins": {
+        "type": "int"
+      },
+      "naira": {
+        "type": "String"
+      }
+    }
+  },
+  "cmpSubmitRegister": "Continuer",
+  "cmpSubmitWaitlist": "Rejoindre la liste d'attente",
+  "cmpSubmitting": "En cours…",
+  "cmpValDisplayName": "Saisissez un nom (1 à 60 caractères).",
+  "cmpValWhatsapp": "Saisissez un numéro WhatsApp valide.",
+  "cmpValRules": "Veuillez accepter le règlement.",
+  "cmpPayConfirming": "Confirmation du paiement…",
+  "cmpPaySuccess": "C'est fait ! Paiement confirmé.",
+  "cmpPayNotConfirmed": "Nous n'avons pas encore reçu votre paiement. Si vous avez été débité, il sera confirmé sous peu — revenez dans une minute.",
+  "cmpPayCancelled": "Fenêtre de paiement fermée. Vous pouvez reprendre depuis la page du tournoi.",
+  "cmpConfirmedFree": "Vous êtes inscrit !",
+  "cmpWaitlistJoined": "Vous êtes sur la liste d'attente.",
+  "cmpInvTitle": "Mes invitations",
+  "cmpInvEmpty": "Aucune invitation en attente.",
+  "cmpInvAccept": "Accepter",
+  "cmpInvDecline": "Refuser",
+  "cmpInvExpires": "Expire le {date}",
+  "@cmpInvExpires": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "cmpInvDeclined": "Invitation refusée.",
+  "cmpGamesTitle": "Jeux",
+  "cmpGamesEmpty": "Aucun jeu pour le moment.",
+  "cmpEditProfile": "Modifier le profil",
+  "cmpFieldBio": "Bio",
+  "cmpFieldCountry": "Pays",
+  "cmpFieldUsername": "Nom d'utilisateur (modifiable une fois)",
+  "cmpSave": "Enregistrer",
+  "cmpSaved": "Profil enregistré.",
+  "cmpValBio": "La bio doit faire 280 caractères maximum.",
+  "cmpValCountry": "Pays trop long (60 max).",
+  "cmpEcGeneric": "Une erreur est survenue. Veuillez réessayer.",
+  "cmpEcNetwork": "Pas de connexion. Vérifiez votre internet et réessayez.",
+  "cmpEcSession": "Votre session a expiré. Reconnectez-vous.",
+  "cmpEcTournamentNotFound": "Tournoi introuvable.",
+  "cmpEcRulesRequired": "Veuillez confirmer que vous acceptez le règlement.",
+  "cmpEcAlreadyRegistered": "Vous êtes déjà inscrit à ce tournoi.",
+  "cmpEcTournamentFull": "Ce tournoi est complet.",
+  "cmpEcInvitationOnly": "Ce tournoi est sur invitation uniquement.",
+  "cmpEcRegistrationClosed": "Les inscriptions sont fermées.",
+  "cmpEcInsufficientCoins": "Pas assez de SX Coins pour cette réduction.",
+  "cmpEcPaymentInit": "Le paiement n'a pas pu démarrer. Réessayez.",
+  "cmpEcWaitlistNotOpen": "La liste d'attente ouvre à la fin des inscriptions.",
+  "cmpEcAlreadyWaitlisted": "Vous êtes déjà sur la liste d'attente.",
+  "cmpEcInProgress": "Traitement en cours. Patientez un instant puis réessayez.",
+  "cmpEcInvitationNotFound": "Invitation introuvable.",
+  "cmpEcInvitationGone": "Cette invitation n'est plus disponible.",
+  "cmpEcInvitationExpired": "Cette invitation a expiré.",
+  "cmpEcUsernameTaken": "Ce nom d'utilisateur est déjà pris.",
+  "cmpEcUsernameLocked": "Votre nom d'utilisateur a déjà été modifié une fois.",
+  "cmpEcSaveFailed": "Impossible d'enregistrer votre profil. Réessayez.",
+  "cmpHomeGamesTile": "Jeux",
+  "cmpHomeInvitationsTile": "Mes invitations",
+  "cmpAccountEditProfile": "Modifier le profil",
+  "cmpStatusRegistrationOpen": "Inscriptions ouvertes",
+  "cmpStatusRegistrationClosed": "Inscriptions fermées",
+  "cmpStatusActive": "En direct",
+  "cmpStatusCompleted": "Terminé",
+  "cmpPayCheckAgain": "Vérifier le paiement",
+  "cmpInvPayCancelled": "Fenêtre de paiement fermée. Si vous avez été débité, ce sera confirmé sous peu.",
+  "cmpValUsername": "Le nom d'utilisateur doit contenir 3 à 20 lettres, chiffres ou tirets bas.",
+  "commonDeletedPlayer": "Joueur supprimé",
+  "rankingsTitle": "Classements",
+  "rankingsRankByScore": "Classé par score SX",
+  "rankingsRankByWins": "Classé par victoires",
+  "rankingsAllGames": "Tous les jeux",
+  "rankingsAllRegions": "Toutes les régions",
+  "rankingsYourRank": "Votre rang",
+  "rankingsYou": "(vous)",
+  "rankingsPrev": "Précédent",
+  "rankingsNext": "Suivant",
+  "rankingsEmpty": "Aucun joueur classé pour le moment.",
+  "rankingsErrorRetry": "Chargement impossible. Touchez pour réessayer.",
+  "rankingsTrendNew": "Nouveau",
+  "seasonsTitle": "Saisons",
+  "seasonsEmpty": "Aucune saison pour le moment.",
+  "seasonsLeaderboardEmpty": "Aucun point de saison attribué pour le moment.",
+  "seasonsProvisional": "Provisoire",
+  "seasonsProvisionalNote": "Les points peuvent encore changer tant que les tournois sont en cours.",
+  "seasonsTournaments": "Tournois",
+  "seasonsInviteOnly": "Sur invitation",
+  "seasonsYou": "Vous",
+  "hallOfFameTitle": "Temple de la renommée",
+  "hallOfFameMvp": "MVP de tous les temps",
+  "hallOfFameGoldenBoot": "Soulier d’or",
+  "hallOfFameChampionsCup": "Coupe des champions",
+  "hallOfFameMasters": "Masters",
+  "hallOfFameCommunityClub": "Club communautaire",
+  "hallOfFameOpen": "Tournois ouverts",
+  "hallOfFameBronze": "Places de bronze",
+  "hallOfFameEmpty": "Rien ici pour le moment.",
+  "rankingsWinsCount": "{wins} victoires",
+  "rankingsMatchesCount": "{matches} matchs",
+  "rankingsStreakValue": "{n} victoires de suite",
+  "rankingsPageOf": "Page {page} sur {total}",
+  "rankingsPlayersRanked": "{n} joueurs classés",
+  "seasonsPoints": "{n} pts",
+  "hallOfFameRunnerUp": "Finaliste : {name}",
+  "commonLoadError": "Chargement impossible. Touchez pour réessayer.",
+  "playersTitle": "Joueurs",
+  "playersSearchHint": "Rechercher des joueurs",
+  "playersEmpty": "Aucun joueur trouvé.",
+  "playersNotFound": "Joueur introuvable.",
+  "profileFollow": "Suivre",
+  "profileFollowing": "Abonné",
+  "profileFollowsYou": "Vous suit",
+  "profileFollowersCount": "{n} abonnés",
+  "profileFollowingCount": "{n} abonnements",
+  "profileStatMatches": "Matchs",
+  "profileStatWins": "Victoires",
+  "profileStatLosses": "Défaites",
+  "profileStatGoalsFor": "Buts marqués",
+  "profileStatGoalsAgainst": "Buts encaissés",
+  "profileStatTitles": "Titres",
+  "profileStatTournaments": "Tournois",
+  "profileStatStreak": "Série de victoires",
+  "profileStatRank": "Rang mondial",
+  "profileRankOf": "n° {rank} sur {total}",
+  "profileRankUnranked": "Non classé",
+  "profileSxScore": "Score SX {n}",
+  "profileCategoryStats": "Buts par catégorie",
+  "profileTitlesHeading": "Titres",
+  "profileNoTitles": "Aucun titre pour le moment.",
+  "profileRecentMatches": "Matchs récents",
+  "profileNoMatches": "Aucun match pour le moment.",
+  "profileOutcomeWin": "Victoire",
+  "profileOutcomeLoss": "Défaite",
+  "profileOutcomeDraw": "Nul",
+  "profileAchievements": "Succès",
+  "profileAchievementsProgress": "{unlocked}/{total} débloqués",
+  "profileAchievementLocked": "Verrouillé",
+  "profilePosts": "Publications récentes",
+  "profileGallery": "Galerie",
+  "followErrorSelf": "Vous ne pouvez pas vous suivre vous-même.",
+  "followErrorBlocked": "Vous ne pouvez pas suivre ce joueur.",
+  "followErrorNotFound": "Ce joueur n'existe plus.",
+  "followErrorGeneric": "Mise à jour impossible. Veuillez réessayer.",
+  "followersTitle": "Abonnés",
+  "followingTitle": "Abonnements",
+  "followersEmpty": "Aucun abonné pour le moment.",
+  "followingEmpty": "Ne suit personne pour le moment.",
+  "accountMyProgress": "Ma progression",
+  "progressTitle": "Ma progression",
+  "progressSignIn": "Connectez-vous pour voir votre progression.",
+  "progressXpHeading": "XP",
+  "progressXpToNext": "{into} / {needed} XP pour {tier}",
+  "progressMaxTier": "Niveau maximum atteint",
+  "progressSxScore": "Score SX",
+  "progressCoins": "Pièces",
+  "progressSeasonHeading": "Classement de la saison",
+  "progressSeasonRank": "Rang n° {rank}",
+  "progressSeasonUnranked": "Non classé",
+  "progressSeasonMonthly": "Ce mois-ci",
+  "progressSeasonNone": "Aucune saison en cours.",
+  "progressToRankSixteen": "Le 16e a {n} pts",
+  "progressHistoryXp": "Historique XP",
+  "progressHistoryScore": "Historique du score SX",
+  "progressHistoryCoins": "Historique des pièces",
+  "historyEmpty": "Aucune activité pour le moment.",
+  "historyLoadMoreError": "Chargement impossible. Touchez pour réessayer.",
+  "historyBalanceAfter": "Solde {n}",
+  "tierRecruit": "Recrue",
+  "tierGuardian": "Gardien",
+  "tierElite": "Élite",
+  "tierSentinel": "Sentinelle",
+  "tierLegend": "Légende",
+  "xpSourceMatchPlayed": "Match joué",
+  "xpSourceMatchWon": "Match gagné",
+  "xpSourceTournamentEntered": "Tournoi rejoint",
+  "xpSourceTournamentCompleted": "Tournoi terminé",
+  "xpSourceTournamentPlacement": "Classement du tournoi",
+  "xpSourceAchievementUnlocked": "Succès débloqué",
+  "xpSourceDailyLogin": "Connexion quotidienne",
+  "xpSourceLoginStreak": "Série de connexions",
+  "xpSourceCommunityActivity": "Activité communautaire",
+  "xpSourceAdminGrant": "Attribution admin",
+  "scoreEventMatchCompleted": "Match terminé",
+  "scoreEventNoShow": "Forfait",
+  "scoreEventRageQuit": "Match quitté en avance",
+  "scoreEventDisputeLost": "Litige perdu",
+  "scoreEventRatingReceived": "Note reçue",
+  "scoreEventAdminFlagConduct": "Signalement de conduite",
+  "scoreEventAdminFlagCheat": "Signalement de triche",
+  "coinSourceMatchPlayed": "Match joué",
+  "coinSourceMatchWon": "Match gagné",
+  "coinSourceTournamentPlacement": "Classement du tournoi",
+  "coinSourceDailyLogin": "Connexion quotidienne",
+  "coinSourceLoginStreak": "Série de connexions",
+  "coinSourceAchievementUnlocked": "Succès débloqué",
+  "coinSourceStorePurchase": "Achat en boutique",
+  "coinSourceCommunityActivity": "Activité communautaire",
+  "coinSourceAdminGrant": "Attribution admin",
+  "coinSourceAdminDeduct": "Déduction admin",
+  "coinSourceWeeklyChallenge": "Défi hebdomadaire",
+  "coinSourceBestPlayWinner": "Vainqueur Best Play",
+  "coinSourceBestPlayRunnerUp": "Finaliste Best Play",
+  "coinSourceEntryDiscount": "Réduction d'inscription",
+  "coinSourceEntryDiscountRefund": "Remboursement de réduction",
+  "coinSourceWagerStake": "Mise du pari",
+  "coinSourceWagerWon": "Pari gagné",
+  "coinSourceWagerRefund": "Pari remboursé",
+  "coinSourcePostBoost": "Boost de publication",
+  "coinSourceReferralReward": "Récompense de parrainage",
+  "coinSourceReferralMilestone": "Palier de parrainage",
+  "coinSourceFriendlyStake": "Mise amicale",
+  "coinSourceFriendlyStakePayout": "Gain amical",
+  "mtcBracketTitle": "Tableau",
+  "mtcTabGroups": "Groupes",
+  "mtcTabFixtures": "Matchs",
+  "mtcTabKnockout": "Phase finale",
+  "mtcNoDrawYet": "Le tirage n'a pas encore été fait.",
+  "mtcChampion": "Champion",
+  "mtcThirdPlace": "3e place",
+  "mtcNoWinner": "Ce tournoi s'est terminé sans vainqueur.",
+  "mtcGroupCol": "{group}",
+  "@mtcGroupCol": {
+    "placeholders": {
+      "group": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcColPlayed": "J",
+  "mtcColWins": "V",
+  "mtcColDraws": "N",
+  "mtcColLosses": "D",
+  "mtcColGoalDiff": "DB",
+  "mtcColPoints": "Pts",
+  "mtcAdvancing": "Qualifié",
+  "mtcFixtLive": "En direct",
+  "mtcFixtUpcoming": "À venir",
+  "mtcFixtCompleted": "Terminés",
+  "mtcFixtDisputed": "Litigieux ou annulés",
+  "mtcProjectedMatches": "{count} matchs à venir",
+  "@mtcProjectedMatches": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "mtcTbd": "À confirmer",
+  "mtcVs": "contre",
+  "mtcStages": "Phases",
+  "mtcStageStandingsTitle": "Classement",
+  "mtcColRank": "#",
+  "mtcColKills": "Éliminations",
+  "mtcTieUnresolved": "Égalité — départage en attente",
+  "mtcMatchTitle": "Match",
+  "mtcStatusScheduled": "Programmé",
+  "mtcStatusLive": "En direct",
+  "mtcStatusCompleted": "Terminé",
+  "mtcStatusDisputed": "En cours d'examen",
+  "mtcStatusCancelled": "Annulé",
+  "mtcStatusBye": "Exempt",
+  "mtcStatusForfeited": "Forfait",
+  "mtcWatchLive": "Regarder en direct",
+  "mtcWatchReplay": "Voir le replay",
+  "mtcCheckIn": "Je suis là — pointer",
+  "mtcCheckedIn": "Pointé",
+  "mtcNotCheckedIn": "Non pointé",
+  "mtcCheckInSuccess": "Vous êtes pointé.",
+  "mtcSubmitResult": "Soumettre le résultat",
+  "mtcResultSubmitted": "Résultat soumis — en attente de confirmation.",
+  "mtcRateOpponent": "Noter votre adversaire",
+  "mtcRated": "Merci pour votre note !",
+  "mtcWagerTitle": "Pari",
+  "mtcWagerLoginPrompt": "Connectez-vous pour parier.",
+  "mtcWagerClosed": "Les paris sont fermés pour ce match.",
+  "mtcWagerPool": "Cagnotte : {a} contre {b} pièces",
+  "@mtcWagerPool": {
+    "placeholders": {
+      "a": {
+        "type": "int"
+      },
+      "b": {
+        "type": "int"
+      }
+    }
+  },
+  "mtcWagerFee": "Frais {percent} %",
+  "@mtcWagerFee": {
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcWagerYourPick": "Votre pari : {coins} pièces sur {name}",
+  "@mtcWagerYourPick": {
+    "placeholders": {
+      "coins": {
+        "type": "int"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcWagerPlace": "Parier",
+  "mtcWagerChange": "Modifier le pari",
+  "mtcWagerStake": "Mise (pièces)",
+  "mtcWagerStakeRange": "Entre {min} et {max} pièces.",
+  "@mtcWagerStakeRange": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "mtcWagerPlaced": "Pari enregistré.",
+  "mtcWagerEstimate": "Un pari de 100 pièces sur le premier joueur rapporterait environ {payout} pièces.",
+  "@mtcWagerEstimate": {
+    "placeholders": {
+      "payout": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcNoShowInfo": "Ce match peut être traité comme forfait par les organisateurs.",
+  "mtcScoreA": "Score de {name}",
+  "@mtcScoreA": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcRecordingUrl": "Lien de l'enregistrement (facultatif)",
+  "mtcPickScreenshot": "Choisir une capture",
+  "mtcChangeScreenshot": "Changer la capture",
+  "mtcScreenshotRequired": "Une capture d'écran est requise.",
+  "mtcUploading": "Envoi de la capture…",
+  "mtcSubmitting": "Envoi…",
+  "mtcValScore": "Saisissez un entier de 0 à 99.",
+  "mtcLobbyResultTitle": "Résultat du lobby",
+  "mtcPlacement": "Classement",
+  "mtcKills": "Éliminations",
+  "mtcValPlacement": "Saisissez un entier de 1 à 100.",
+  "mtcValKills": "Saisissez un entier de 0 à 100.",
+  "mtcFixturesTitle": "Vos matchs",
+  "mtcNextMatch": "Prochain match",
+  "mtcNextLobby": "Prochain lobby",
+  "mtcSubmitPrompt": "Un match attend votre résultat.",
+  "mtcLobbySubmitted": "Résultat soumis",
+  "mtcRoomCodeReady": "Les détails de la salle sont prêts",
+  "mtcBannerQualified": "Vous êtes qualifié dans {title} ({round}).",
+  "@mtcBannerQualified": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "round": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcBannerAwaiting": "En attente de votre adversaire.",
+  "mtcBannerEliminated": "Vous avez été éliminé de {title} ({round}).",
+  "@mtcBannerEliminated": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "round": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcRegistrationsHeading": "Vos inscriptions",
+  "mtcPaymentPending": "Paiement en attente",
+  "mtcPaymentPaid": "Payé",
+  "mtcEcGeneric": "Une erreur est survenue. Veuillez réessayer.",
+  "mtcEcNetwork": "Pas de connexion. Vérifiez votre internet et réessayez.",
+  "mtcEcSession": "Votre session a expiré. Reconnectez-vous.",
+  "mtcEcInProgress": "Traitement en cours. Patientez un instant puis réessayez.",
+  "mtcEcUploadFailed": "L'envoi de la capture a échoué. Réessayez.",
+  "mtcEcMatchNotFound": "Match introuvable.",
+  "mtcEcNotParticipant": "Vous ne jouez pas dans ce match.",
+  "mtcEcNotMatchDay": "Vous pourrez pointer le jour du match.",
+  "mtcEcCheckInClosed": "Le pointage est fermé pour ce match.",
+  "mtcEcBye": "Match exempt — aucun résultat à soumettre.",
+  "mtcEcCancelled": "Ce match a été annulé.",
+  "mtcEcAlreadyConfirmed": "Ce résultat est déjà confirmé.",
+  "mtcEcSubmissionLocked": "Votre soumission est en cours d'examen et ne peut plus être modifiée.",
+  "mtcEcValidation": "Vérifiez votre saisie.",
+  "mtcEcResultNotConfirmed": "Vous pourrez noter votre adversaire une fois le résultat confirmé.",
+  "mtcEcCannotRateSelf": "Vous ne pouvez pas vous noter.",
+  "mtcEcNotRatable": "Ce match ne peut pas être noté.",
+  "mtcEcAlreadyRated": "Vous avez déjà noté ce match.",
+  "mtcEcPendingDeletion": "Votre compte est en cours de suppression.",
+  "mtcEcOwnMatch": "Vous ne pouvez pas parier sur votre propre match.",
+  "mtcEcInvalidPick": "Choisissez l'un des deux joueurs de ce match.",
+  "mtcEcWindowClosed": "Les paris sont fermés pour ce match.",
+  "mtcEcInsufficientCoins": "Pas assez de SX Coins pour cette mise.",
+  "mtcEcNotInLobby": "Vous n'êtes pas dans ce lobby.",
+  "mtcEcLobbyConfirmed": "Ce lobby est confirmé et ne peut plus être modifié.",
+  "mtcEcResultConfirmed": "Votre résultat est confirmé et ne peut plus être modifié.",
+  "mtcHomeFixtures": "Matchs",
+  "mtcDone": "Terminé",
+  "cmtTitle": "Communauté",
+  "cmtFeedEmpty": "Aucune publication pour l'instant. Soyez le premier à partager quelque chose !",
+  "cmtFeedLoadError": "Impossible de charger le fil.",
+  "cmtRetry": "Réessayer",
+  "cmtLoadMore": "Charger plus",
+  "cmtPinnedLabel": "Épinglé",
+  "cmtBoostedLabel": "Boosté",
+  "cmtComposeFab": "Nouvelle publication",
+  "cmtSignInToPost": "Connectez-vous pour publier",
+  "cmtSignInToReact": "Connectez-vous pour réagir",
+  "cmtSignInToComment": "Connectez-vous pour commenter",
+  "cmtSignInToVote": "Connectez-vous pour voter",
+  "cmtSignInToReport": "Connectez-vous pour signaler",
+  "cmtCommentCount": "{count, plural, one{{count} commentaire} other{{count} commentaires}}",
+  "@cmtCommentCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cmtReactFire": "Feu",
+  "cmtReactCrown": "Couronne",
+  "cmtReactStrong": "Fort",
+  "cmtReactWow": "Wow",
+  "cmtMatchResultLabel": "Résultat du match",
+  "cmtAchievementLabel": "Succès",
+  "cmtAnnouncementLabel": "Annonce",
+  "cmtComposeTitle": "Nouvelle publication",
+  "cmtComposeHint": "Que se passe-t-il dans la communauté SentinelX ?",
+  "cmtComposeAddImage": "Ajouter une photo",
+  "cmtComposeImagesCount": "{count}/5",
+  "@cmtComposeImagesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cmtComposePost": "Publier",
+  "cmtComposePosting": "Publication…",
+  "cmtComposeCancel": "Annuler",
+  "cmtComposeValidation": "Écrivez quelque chose ou ajoutez une photo.",
+  "cmtComposeRemoveImage": "Retirer l'image",
+  "cmtPostDetailTitle": "Publication",
+  "cmtCommentsTitle": "Commentaires",
+  "cmtCommentsEmpty": "Aucun commentaire pour l'instant.",
+  "cmtCommentsCapNotice": "Affichage des 50 premiers commentaires.",
+  "cmtCommentHint": "Ajouter un commentaire…",
+  "cmtCommentSend": "Envoyer",
+  "cmtDeletePost": "Supprimer la publication",
+  "cmtDeletePostConfirm": "Supprimer cette publication ? Cette action est irréversible.",
+  "cmtDeleteComment": "Supprimer le commentaire",
+  "cmtDeleteCommentConfirm": "Supprimer ce commentaire ?",
+  "cmtDeleteConfirmYes": "Supprimer",
+  "cmtDeleteConfirmCancel": "Annuler",
+  "cmtBoostAction": "Booster (200 pièces)",
+  "cmtBoostConfirmTitle": "Booster cette publication ?",
+  "cmtBoostConfirmBody": "Votre publication sera épinglée en haut du fil pendant 24 heures pour 200 SX Coins.",
+  "cmtBoostConfirm": "Booster",
+  "cmtBoostSuccess": "Publication boostée !",
+  "cmtStatusesTitle": "Stories",
+  "cmtStatusAddYours": "Votre story",
+  "cmtStatusPost": "Publier la story",
+  "cmtStatusCaptionHint": "Ajouter une légende (facultatif)",
+  "cmtStatusEmpty": "Aucune story pour l'instant.",
+  "cmtStatusViewersTitle": "Vues",
+  "cmtStatusViewersEmpty": "Personne n'a encore vu ceci.",
+  "cmtStatusDelete": "Supprimer la story",
+  "cmtStatusDeleteConfirm": "Supprimer cette story ?",
+  "cmtStatusValidation": "Ajoutez une photo ou une légende.",
+  "cmtChallengesTitle": "Défis hebdomadaires",
+  "cmtChallengesSignedOut": "Connectez-vous pour suivre les défis hebdomadaires.",
+  "cmtChallengeCompleted": "Terminé",
+  "cmtChallengeProgress": "{progress}/{goal}",
+  "@cmtChallengeProgress": {
+    "placeholders": {
+      "progress": {
+        "type": "int"
+      },
+      "goal": {
+        "type": "int"
+      }
+    }
+  },
+  "cmtBestPlayTitle": "Meilleure action de la semaine",
+  "cmtBestPlayEmpty": "Aucune nomination cette semaine.",
+  "cmtBestPlayVote": "Voter",
+  "cmtBestPlayVoted": "Voté",
+  "cmtBestPlayVoteSuccess": "Vote enregistré !",
+  "cmtTopMembersTitle": "Meilleurs membres",
+  "cmtUpcomingEventsTitle": "Événements à venir",
+  "cmtGalleryTitle": "Galerie",
+  "cmtStatsMembers": "{count, plural, one{{count} membre} other{{count} membres}}",
+  "@cmtStatsMembers": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cmtStatsCountries": "{count, plural, one{{count} pays} other{{count} pays}}",
+  "@cmtStatsCountries": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cmtStatsTournaments": "{count, plural, one{{count} tournoi} other{{count} tournois}}",
+  "@cmtStatsTournaments": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cmtReportPost": "Signaler la publication",
+  "cmtReportComment": "Signaler le commentaire",
+  "cmtReportTitle": "Signaler ce contenu",
+  "cmtReportReasonSpam": "Spam",
+  "cmtReportReasonHarassment": "Harcèlement",
+  "cmtReportReasonHateSpeech": "Discours de haine",
+  "cmtReportReasonNudity": "Nudité ou contenu sexuel",
+  "cmtReportReasonViolence": "Violence",
+  "cmtReportReasonMisinformation": "Désinformation",
+  "cmtReportReasonOther": "Autre",
+  "cmtReportNoteHint": "Ajouter des détails (facultatif)",
+  "cmtReportSubmit": "Envoyer le signalement",
+  "cmtReportSubmitted": "Signalement envoyé. Merci.",
+  "cmtEcGeneric": "Une erreur est survenue. Veuillez réessayer.",
+  "cmtEcNetwork": "Pas de connexion. Vérifiez votre internet et réessayez.",
+  "cmtEcSession": "Votre session a expiré. Reconnectez-vous.",
+  "cmtEcInProgress": "Traitement en cours. Patientez un instant puis réessayez.",
+  "cmtEcValidation": "Écrivez quelque chose ou ajoutez une photo.",
+  "cmtEcNotFound": "Ce contenu n'est plus disponible.",
+  "cmtEcForbidden": "Vous ne pouvez faire cela que pour votre propre contenu.",
+  "cmtEcAlreadyBoosted": "Cette publication est déjà boostée.",
+  "cmtEcActiveBoostExists": "Vous avez déjà un boost actif sur une autre publication.",
+  "cmtEcInsufficientCoins": "Pas assez de SX Coins pour booster.",
+  "cmtEcVotingClosed": "Les votes sont fermés en ce moment.",
+  "cmtEcAlreadyVoted": "Vous avez déjà voté cette semaine.",
+  "cmtEcAlreadyReported": "Vous avez déjà signalé ceci.",
+  "cmtEcUploadFailed": "L'envoi de l'image a échoué. Réessayez.",
+  "authMetaProfile": "Complétez votre profil · SentinelX Esports",
+  "authProfileStepTitle": "Complétez votre profil",
+  "authProfileStepSubtitle": "Dites-nous où vous jouez et quels jeux vous intéressent — nous ne vous contacterons qu'au sujet des tournois qui vous concernent vraiment.",
+  "profileCountryLabel": "Pays",
+  "profileCountryPlaceholder": "Sélectionnez votre pays",
+  "profileWhatsappLabel": "Numéro WhatsApp",
+  "profileWhatsappHint": "+2348012345678",
+  "profileGamesLabel": "Quels jeux vous intéressent ?",
+  "profileGamesLoading": "Chargement des jeux…",
+  "profileGamesRetry": "Impossible de charger les jeux. Réessayer",
+  "profileConsentLabel": "Recevoir les actualités des tournois sur WhatsApp ?",
+  "profileConsentYes": "Oui",
+  "profileConsentNo": "Non",
+  "profileCountryRequired": "Sélectionnez votre pays.",
+  "profileWhatsappRequired": "Saisissez votre numéro WhatsApp.",
+  "profileWhatsappInvalid": "Saisissez un numéro WhatsApp valide pour le pays sélectionné.",
+  "profileGamesRequired": "Choisissez au moins un jeu.",
+  "profileConsentRequired": "Choisissez oui ou non.",
+  "profileCountryInvalid": "Sélectionnez un pays dans la liste.",
+  "profileGameUnavailable": "L'un des jeux choisis n'est plus disponible. Rechargez et réessayez.",
+  "profileContinue": "Continuer",
+  "profileSaving": "Enregistrement…",
+  "profileSaveFailed": "Impossible d'enregistrer votre profil. Réessayez.",
+  "profileSaved": "Profil enregistré.",
+  "ntfTitle": "Notifications",
+  "ntfMarkAllRead": "Tout marquer comme lu",
+  "ntfMuteThread": "Mettre ce fil en sourdine",
+  "ntfUnmuteThread": "Réactiver ce fil",
+  "ntfMuteType": "Mettre ce type en sourdine",
+  "ntfUnmuteType": "Réactiver ce type",
+  "ntfMuteFor1h": "Pendant 1 heure",
+  "ntfMuteFor1w": "Pendant 1 semaine",
+  "ntfMuteAlways": "Toujours",
+  "ntfMuted": "Mis en sourdine",
+  "ntfUnmuted": "Réactivé",
+  "ntfEmptyTitle": "Vous êtes à jour",
+  "ntfEmptyBody": "Les affectations de matchs, les résultats et les gains apparaissent ici.",
+  "ntfLoadError": "Impossible de charger vos notifications.",
+  "ntfRetry": "Réessayer",
+  "ntfSignedOut": "Connectez-vous pour voir vos notifications.",
+  "ntfLogIn": "Se connecter",
+  "ntfActionFailed": "Ça n'a pas marché. Réessayez.",
+  "ntfUnreadCount": "{count, plural, one{{count} notification non lue} other{{count} notifications non lues}}",
+  "@ntfUnreadCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ntfTimeNow": "À l'instant",
+  "ntfTimeMinutes": "{count, plural, one{il y a {count} minute} other{il y a {count} minutes}}",
+  "@ntfTimeMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ntfTimeHours": "{count, plural, one{il y a {count} heure} other{il y a {count} heures}}",
+  "@ntfTimeHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ntfTimeDays": "{count, plural, one{il y a {count} jour} other{il y a {count} jours}}",
+  "@ntfTimeDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ntfPermTitle": "Activer les notifications",
+  "ntfPermBody": "Recevez vos affectations de matchs et rappels sur ce téléphone.",
+  "ntfPermEnable": "Activer",
+  "ntfPermOpenSettings": "Ouvrir les paramètres du système",
+  "ntfPermOn": "Les notifications sont activées sur ce téléphone.",
+  "ntfPermBlocked": "Les notifications sont désactivées pour cette application dans les paramètres du téléphone.",
+  "ntfSettingsTitle": "Paramètres de notification",
+  "ntfSettingsEntry": "Notifications",
+  "ntfSectionPush": "Notifications push",
+  "ntfSectionWhatsapp": "WhatsApp",
+  "ntfSectionSharing": "Partager les succès avec la communauté",
+  "ntfSaveFailed": "Impossible d'enregistrer ce changement.",
+  "ntfTestAction": "Envoyer une notification de test",
+  "ntfTestSent": "Test envoyé — il devrait arriver dans un instant.",
+  "ntfTestNoDevice": "Ce téléphone n'est pas encore enregistré pour les notifications.",
+  "ntfTestFailed": "La notification de test n'a pas pu être livrée.",
+  "ntfPushMatchReminder": "Rappels de match",
+  "ntfPushResultConfirmed": "Résultat confirmé",
+  "ntfPushAchievementUnlocked": "Succès débloqué",
+  "ntfPushChallengeCompleted": "Défi hebdomadaire terminé",
+  "ntfPushNewAnnouncement": "Annonces de la communauté",
+  "ntfPushTournamentAnnounced": "Nouveaux tournois",
+  "ntfPushWagerSettled": "Pari réglé",
+  "ntfPushReferralConverted": "Parrainage converti",
+  "ntfPushPostComment": "Commentaires sur vos publications",
+  "ntfPushPostReaction": "Réactions à vos publications",
+  "ntfPushBracketReleased": "Tableau publié",
+  "ntfPushMatchAssigned": "Nouveau match assigné",
+  "ntfPushPrizeCredited": "Gain crédité",
+  "ntfPushStatusFromFriend": "Un ami publie un statut",
+  "ntfPushStatusViewed": "Quelqu'un voit votre statut",
+  "ntfPushNewFollower": "Quelqu'un vous suit",
+  "ntfPushDirectMessage": "Messages privés",
+  "ntfWaMatchReminder": "Rappels de match (1 h avant le coup d'envoi)",
+  "ntfWaResultConfirmed": "Résultat confirmé",
+  "ntfWaPrizeCredited": "Gain crédité au portefeuille",
+  "ntfWaChallengeCompleted": "Défi hebdomadaire terminé",
+  "ntfWaAchievementUnlocked": "Succès débloqué",
+  "ntfWaRegistrationConfirmed": "Inscription confirmée",
+  "ntfShareTournament": "Victoires en tournoi",
+  "ntfShareMilestone": "Succès d'étape (100 matchs, etc.)",
+  "ntfShareStreak": "Succès de série",
+  "ntfShareSocial": "Succès sociaux (réactions, publications)",
+  "ntfShareOther": "Tous les autres succès",
+  "ntfChannelMatches": "Matchs",
+  "ntfChannelMatchesDesc": "Affectations, rappels et résultats",
+  "ntfChannelSocial": "Communauté",
+  "ntfChannelSocialDesc": "Commentaires, réactions, abonnés et succès",
+  "ntfChannelMessages": "Messages",
+  "ntfChannelMessagesDesc": "Messages privés",
+  "ntfChannelMoney": "Argent",
+  "ntfChannelMoneyDesc": "Gains et récompenses de parrainage",
+  "ntfChannelAdmin": "Alertes admin",
+  "ntfChannelAdminDesc": "Alertes réservées au personnel",
+  "ntfErrValidation": "Cette valeur n'est pas valide.",
+  "ntfErrNotFound": "Cette notification n'existe plus.",
+  "ntfErrNetwork": "Vérifiez votre connexion et réessayez.",
+  "ntfErrGeneric": "Une erreur est survenue.",
+  "ntfBannerOpen": "Ouvrir",
+  "dmErrorGeneric": "Un problème est survenu. Veuillez réessayer.",
+  "dmErrorBlockedByMe": "Vous avez bloqué ce joueur. Débloquez-le pour envoyer des messages.",
+  "dmErrorBlocked": "Vous ne pouvez pas écrire à ce joueur.",
+  "dmErrorRestricted": "La messagerie est actuellement restreinte sur votre compte.",
+  "dmErrorEditWindow": "Vous ne pouvez modifier ou annuler un message que dans les 10 minutes qui suivent son envoi.",
+  "dmErrorNotForwardable": "Ce message ne peut pas être transféré.",
+  "dmErrorRequestLimit": "Vous pouvez envoyer un seul message tant que votre demande n'est pas acceptée.",
+  "dmErrorRequestNoMedia": "Les photos, autocollants et messages vocaux sont disponibles une fois votre demande acceptée.",
+  "dmErrorNotFound": "Ce message ou cette conversation n'existe plus.",
+  "dmErrorSendFailed": "Votre message n'a pas pu être envoyé.",
+  "dmErrorAction": "Cela n'a pas fonctionné. Veuillez réessayer.",
+  "dmErrorValidation": "Ce message n'est pas valide.",
+  "dmErrorImageTooLarge": "Cette photo est trop volumineuse pour être envoyée.",
+  "dmInboxTitle": "Messages",
+  "dmMessagesTooltip": "Messages",
+  "dmRequestsTitle": "Demandes de message",
+  "dmRequestsRow": "{count, plural, one{Demandes de message ({count})} other{Demandes de message ({count})}}",
+  "dmRequestsCount": "{count, plural, one{{count} demande} other{{count} demandes}}",
+  "dmEmptyInbox": "Aucun message pour l'instant. Ouvrez le profil d'un joueur pour démarrer une conversation.",
+  "dmEmptyRequests": "Aucune demande de message.",
+  "dmLoadError": "Impossible de charger vos messages.",
+  "dmRetry": "Réessayer",
+  "dmSignedOut": "Connectez-vous pour voir vos messages.",
+  "dmLogIn": "Se connecter",
+  "dmUnreadCount": "{count, plural, one{{count} message non lu} other{{count} messages non lus}}",
+  "dmWaitingFor": "En attente de la réponse de {name}",
+  "dmRequestChip": "Demande",
+  "dmPreviewPhoto": "Photo",
+  "dmPreviewVoice": "Message vocal",
+  "dmPreviewRemoved": "Message supprimé",
+  "dmPreviewOther": "Message",
+  "dmTyping": "écrit…",
+  "dmOnline": "En ligne",
+  "dmVoiceSeconds": "{seconds, plural, one{{seconds} seconde} other{{seconds} secondes}}",
+  "dmMessageRemoved": "Message supprimé",
+  "dmUnsupported": "Message non pris en charge",
+  "dmForwardedLabel": "Transféré",
+  "dmEditedLabel": "modifié",
+  "dmReplyRemoved": "Message d'origine supprimé",
+  "dmReplyingTo": "Réponse à {name}",
+  "dmReplyPhoto": "Photo",
+  "dmReplySticker": "Autocollant",
+  "dmReplyVoice": "Message vocal",
+  "dmYou": "Vous",
+  "dmToday": "Aujourd'hui",
+  "dmYesterday": "Hier",
+  "dmNewMessages": "Nouveaux messages",
+  "dmReceiptSent": "Envoyé",
+  "dmReceiptDelivered": "Remis",
+  "dmReceiptRead": "Lu",
+  "dmSending": "Envoi en cours",
+  "dmRetryAction": "Réessayer",
+  "dmDiscard": "Supprimer",
+  "dmActionReply": "Répondre",
+  "dmActionCopy": "Copier",
+  "dmActionForward": "Transférer",
+  "dmActionEdit": "Modifier",
+  "dmActionUnsend": "Annuler l'envoi",
+  "dmActionReport": "Signaler",
+  "dmCopied": "Copié",
+  "dmComposerHint": "Message",
+  "dmSend": "Envoyer",
+  "dmEditingBar": "Modification du message",
+  "dmSave": "Enregistrer",
+  "dmCancel": "Annuler",
+  "dmCloseReply": "Annuler la réponse",
+  "dmConversationNotFound": "Cette conversation n'existe pas.",
+  "dmMore": "Plus d'options",
+  "dmStickers": "Autocollants",
+  "dmStickerUnknown": "Autocollant non pris en charge",
+  "dmForwardTitle": "Transférer à…",
+  "dmForwardEmpty": "Aucune conversation vers laquelle transférer.",
+  "dmForwarded": "Message transféré",
+  "dmAttachPhoto": "Envoyer une photo",
+  "dmPhotoLibrary": "Choisir dans la galerie",
+  "dmPhotoCamera": "Prendre une photo",
+  "dmImageUnavailable": "Image indisponible",
+  "dmBlock": "Bloquer",
+  "dmUnblock": "Débloquer",
+  "dmReport": "Signaler",
+  "dmBlockConfirmTitle": "Bloquer {name} ?",
+  "dmBlockConfirmBody": "Cette personne ne pourra plus vous écrire. Vous pouvez la débloquer à tout moment.",
+  "dmBlockedByMeBanner": "Vous avez bloqué {name}",
+  "dmCannotMessage": "Vous ne pouvez pas écrire à ce joueur.",
+  "dmReportTitle": "Signaler cette conversation",
+  "dmReportHint": "Que s'est-il passé ?",
+  "dmReportSubmit": "Envoyer le signalement",
+  "dmReported": "Merci. Nous examinerons votre signalement.",
+  "dmIncomingTitle": "{name} souhaite vous écrire",
+  "dmIncomingHint": "Vous seul savez que vous l'avez lu. Aucun accusé de lecture n'est envoyé tant que vous n'acceptez pas.",
+  "dmAccept": "Accepter",
+  "dmDecline": "Refuser",
+  "dmBlockAndReport": "Bloquer et signaler",
+  "dmWaitingHint": "Vous pouvez envoyer un seul message texte en attendant qu'il soit accepté.",
+  "dmMessageButton": "Message",
+  "dmVoiceMessage": "Message vocal",
+  "dmMicTooltip": "Enregistrer un message vocal",
+  "dmVoiceRecording": "Enregistrement",
+  "dmVoicePaused": "En pause",
+  "dmVoicePause": "Pause",
+  "dmVoiceResume": "Reprendre",
+  "dmVoiceStop": "Arrêter",
+  "dmVoiceDelete": "Supprimer",
+  "dmVoicePlay": "Lecture",
+  "dmVoiceTooShort": "C'était trop court. Enregistrez un peu plus longtemps.",
+  "dmMicDenied": "L'accès au microphone est nécessaire pour enregistrer des messages vocaux.",
+  "dmMicTryAgain": "Réessayer",
+  "dmMicOpenSettings": "Ouvrir les réglages",
+  "dmVoicePlaybackError": "Impossible de lire ce message vocal.",
+  "dmVoiceLimitReached": "Durée maximale atteinte",
+  "avatarChangePhoto": "Changer la photo",
+  "avatarFromGallery": "Choisir dans la galerie",
+  "avatarFromCamera": "Prendre une photo",
+  "avatarUploading": "Envoi de la photo…",
+  "avatarUploadFailed": "Impossible d'envoyer votre photo. Réessayez.",
+  "avatarTooLarge": "Cette photo est trop volumineuse. Choisissez-en une plus petite.",
+  "avatarNotImage": "Ce fichier n'est pas une photo utilisable.",
+  "guideOpen": "Guide et assistant",
+  "guideTitle": "Guide",
+  "guideHello": "Salut {name} !",
+  "@guideHello": {
     "placeholders": {
-      "minVersion": {
-        "type": "String"
-      }
-    }
-  },
-  "updateAction": "Mettre à jour",
-  "commonSiteName": "SentinelX",
-  "commonViewAll": "Voir tout",
-  "commonMenu": "Menu",
-  "commonCloseMenu": "Fermer le menu",
-  "commonJoinWhatsapp": "Rejoindre la communauté WhatsApp",
-  "commonAdmin": "Administrateur",
-  "commonModerator": "Modérateur",
-  "navHome": "Accueil",
-  "navTournaments": "Tournois",
-  "navGames": "Jeux",
-  "navRankings": "Classements",
-  "navSeasons": "Saisons",
-  "navExchange": "Échange",
-  "navStore": "Boutique",
-  "navCommunity": "Communauté",
-  "navAbout": "À propos",
-  "navTv": "TV",
-  "navMore": "Plus",
-  "homeUpcomingHeading": "À venir",
-  "homeLoadError": "Une erreur s'est produite lors du chargement de cette page.",
-  "accountTitle": "Compte",
-  "accountLogIn": "Se connecter",
-  "accountCreateAccount": "Créer un compte",
-  "accountSignOut": "Se déconnecter",
-  "accountSigningOut": "Déconnexion…",
-  "accountSignOutFailed": "Impossible de se déconnecter. Veuillez réessayer.",
-  "homeTopPlayersHeading": "Meilleurs joueurs",
-  "homeFullRankingsLink": "Classement complet",
-  "authMetaLogin": "Connexion · SentinelX Esports",
-  "authMetaSignup": "Inscription · SentinelX Esports",
-  "authMetaForgotPassword": "Mot de passe oublié · SentinelX Esports",
-  "authMetaResetPassword": "Nouveau mot de passe · SentinelX Esports",
-  "authMetaUsername": "Choisissez votre pseudo · SentinelX Esports",
-  "authMetaPhone": "Vérifiez votre téléphone · SentinelX Esports",
-  "authCommonEmail": "E-mail",
-  "authCommonPassword": "Mot de passe",
-  "authCommonUsername": "Pseudo",
-  "authCommonOr": "OU",
-  "authCommonBackToLogin": "Retour à la connexion",
-  "authCommonShowPassword": "Afficher le mot de passe",
-  "authCommonHidePassword": "Masquer le mot de passe",
-  "authCommonAtLeast8": "Au moins 8 caractères.",
-  "authCommonContinueWithGoogle": "Continuer avec Google",
-  "authCommonBack": "Retour",
-  "authLoginTitle": "Bon retour",
-  "authLoginSubtitle": "Connectez-vous à votre compte SentinelX Esports.",
-  "authLoginSubmit": "Se connecter",
-  "authLoginSubmitting": "Connexion…",
-  "authLoginResend": "Renvoyer l'e-mail de confirmation",
-  "authLoginResending": "Envoi…",
-  "authLoginResendHint": "Vous n'avez rien reçu ? Vérifiez vos spams — ou utilisez la connexion Google ci-dessous, qui évite la confirmation par e-mail.",
-  "authLoginForgot": "Mot de passe oublié ?",
-  "authLoginCreateAccount": "Créer un compte",
-  "authSignupStep1Title": "Rejoignez SentinelX Esports",
-  "authSignupStep1Subtitle": "La voie la plus rapide — aucune confirmation par e-mail :",
-  "authSignupContinueWithEmail": "Continuer avec un e-mail",
-  "authSignupHaveAccount": "Vous avez déjà un compte ?",
-  "authSignupLogIn": "Se connecter",
-  "authSignupStep2Title": "Créez votre compte",
-  "authSignupSubmit": "Créer un compte",
-  "authSignupSubmitting": "Création du compte…",
-  "authSignupCheckEmailTitle": "Consultez vos e-mails",
-  "authSignupCheckEmailBody": "Nous avons envoyé un lien de confirmation à {email}. Cliquez dessus pour activer votre compte, puis connectez-vous et choisissez votre pseudo.",
-  "authSignupNothingYet": "Toujours rien après quelques minutes ? Vérifiez vos spams, puis :",
-  "authSignupResend": "Renvoyer",
-  "authSignupResending": "Envoi…",
-  "authSignupGoogleTipBefore": "Les e-mails sont parfois retardés. S'inscrire avec Google évite complètement la confirmation — ",
-  "authSignupStartOver": "recommencez",
-  "authSignupGoogleTipAfter": " et utilisez le bouton Google.",
-  "authSignupOrSignUpWithEmail": "OU S'INSCRIRE PAR E-MAIL",
-  "authSignupSigningUpAs": "Inscription en tant que {username}.",
-  "authForgotTitle": "Réinitialisez votre mot de passe",
-  "authForgotSubtitle": "Saisissez votre e-mail et nous vous enverrons un lien de réinitialisation.",
-  "authForgotSubmit": "Envoyer le lien",
-  "authForgotSubmitting": "Envoi…",
-  "authResetTitle": "Définir un nouveau mot de passe",
-  "authResetSubtitle": "Choisissez un nouveau mot de passe pour votre compte.",
-  "authResetNewPassword": "Nouveau mot de passe",
-  "authResetSubmit": "Définir le mot de passe",
-  "authResetSubmitting": "Mise à jour…",
-  "authUsernameStepTitle": "Choisissez votre pseudo",
-  "authUsernameStepSubtitle": "C'est votre nom public sur SentinelX Esports.",
-  "authUsernameStepSubmit": "Continuer",
-  "authUsernameStepSubmitting": "Enregistrement…",
-  "authPhoneStepTitle": "Vérifiez votre téléphone",
-  "authPhoneStepSubtitle": "Nous enverrons un code à 6 chiffres sur WhatsApp afin de pouvoir vous joindre au sujet des matchs et des résultats.",
-  "authAvailabilityTaken": "Ce pseudo est déjà pris.",
-  "authAvailabilityInvalid": "3 à 20 caractères : lettres, chiffres, tirets bas.",
-  "authAvailabilityUnknown": "Vérification impossible pour l'instant — vous pouvez continuer.",
-  "authNoticesCheckEmail": "Consultez vos e-mails pour trouver le lien de confirmation.",
-  "authNoticesResendSent": "Si cette adresse doit encore être confirmée, un nouveau lien est en route. Vérifiez vos spams — et la connexion Google évite entièrement l'e-mail.",
-  "authNoticesResetSent": "Si un compte existe pour cette adresse, nous avons envoyé un lien de réinitialisation.",
-  "authErrorsInvalidEmail": "Saisissez une adresse e-mail valide.",
-  "authErrorsPasswordRequired": "Le mot de passe est requis.",
-  "authErrorsPasswordTooShort": "Le mot de passe doit contenir au moins 8 caractères.",
-  "authErrorsUsernameTooShort": "Le pseudo doit contenir au moins 3 caractères.",
-  "authErrorsUsernameTooLong": "Le pseudo ne doit pas dépasser 20 caractères.",
-  "authErrorsUsernameCharset": "Uniquement des lettres, chiffres et tirets bas.",
-  "authErrorsInvalidCredentials": "E-mail ou mot de passe incorrect.",
-  "authErrorsEmailNotConfirmed": "Votre e-mail n'est pas encore confirmé — cherchez le lien dans votre boîte de réception (et vos spams).",
-  "authErrorsBlockedDetails": "Nous n'avons pas pu créer de compte avec ces informations.",
-  "authErrorsUsernameTaken": "Ce pseudo est déjà pris — essayez-en un autre.",
-  "authErrorsUsernameTakenGoBack": "Ce pseudo est déjà pris — revenez en arrière et choisissez-en un autre.",
-  "authErrorsSignupFailed": "Un problème est survenu lors de la création de votre compte. Veuillez réessayer.",
-  "authErrorsUsernameSaveFailed": "Impossible d'enregistrer votre pseudo. Veuillez réessayer.",
-  "authErrorsLinkExpired": "Votre lien de réinitialisation a expiré. Veuillez en demander un nouveau.",
-  "authErrorsResetFailed": "Impossible de mettre à jour votre mot de passe. Veuillez réessayer.",
-  "authErrorsForgotFailed": "Impossible d'envoyer le lien de réinitialisation. Veuillez réessayer.",
-  "authErrorsResendFailed": "Impossible de renvoyer le lien de confirmation. Veuillez réessayer.",
-  "authErrorsGoogleNotConfigured": "La connexion Google n'est pas encore configurée.",
-  "authErrorsGoogleFailed": "La connexion Google a échoué. Veuillez réessayer.",
-  "termsEyebrow": "Mentions légales",
-  "termsTitle": "Conditions d'utilisation",
-  "termsSubtitle": "Les conditions qui régissent votre utilisation de la plateforme SentinelX.",
-  "termsMetaUpdated": "Dernière mise à jour : septembre 2026",
-  "termsSummary": "En résumé : vous devez avoir au moins 13 ans, un seul compte par personne, et vous jouez loyalement — des résultats réels, appuyés par des preuves. Les gains sont versés sur votre compte bancaire via Paystack après une vérification d’identité. Les SX Coins sont des points de plateforme sans valeur monétaire. Le droit nigérian s’applique. Ce résumé n’est pas le texte juridique — les sections ci-dessous le sont.",
-  "termsMetaTitle": "Conditions d'utilisation",
-  "termsMetaDescription": "Les conditions qui régissent l'utilisation de la plateforme SentinelX Esports.",
-  "termsS1Heading": "1. Qui nous sommes",
-  "termsS1P1": "SentinelX Esports est une plateforme d'esport mobile exploitée par Samuel Chinoyerem Akpoke (« nous », « notre »). Nous sommes basés au Nigeria et notre plateforme est disponible sur sentinelxesports.com.ng.",
-  "termsS1P2": "En créant un compte ou en utilisant une partie de SentinelX, vous acceptez les présentes Conditions d'utilisation. Si vous n'êtes pas d'accord, veuillez ne pas utiliser la plateforme.",
-  "termsS2Heading": "2. Admissibilité",
-  "termsS2P1": "Vous devez avoir au moins 13 ans pour créer un compte. Si vous avez moins de 18 ans, vous confirmez avoir l'autorisation d'un parent ou tuteur pour utiliser la plateforme. Les joueurs de moins de 18 ans ne peuvent pas retirer leurs gains sans le consentement vérifiable d'un parent ou tuteur.",
-  "termsS2P2": "Vous ne pouvez détenir qu'un seul compte. La création de plusieurs comptes pour obtenir un avantage déloyal est interdite et entraîne un bannissement permanent.",
-  "termsS3Heading": "3. Votre compte",
-  "termsS3P1": "Vous êtes responsable de la sécurité de vos identifiants de connexion. Ne partagez votre mot de passe avec personne. Vous êtes responsable de toute activité effectuée sous votre compte.",
-  "termsS3P2": "Si vous pensez que votre compte a été compromis, contactez-nous immédiatement à <email>sentinelxesports@gmail.com</email>.",
-  "termsS4Heading": "4. Tournois et frais d'inscription",
-  "termsS4P1": "Les frais d'inscription aux tournois sont fixés par événement et affichés clairement avant l'inscription. Le tarif standard actuel est de ₦500. En vous inscrivant et en effectuant le paiement, vous confirmez votre intention de participer.",
-  "termsS4P2": "Les frais d'inscription sont traités en toute sécurité par Paystack. Nous ne conservons pas les données de votre carte.",
-  "termsS4P3": "Les SX Coins peuvent être utilisés pour réduire ou annuler les frais d'inscription lorsque cette option est proposée. Consultez la <link>Politique de remboursement</link> pour savoir comment les annulations sont traitées.",
-  "termsS5Heading": "5. Règles de jeu et fair-play",
-  "termsS5Intro": "Tous les joueurs doivent jouer honnêtement. Les actions suivantes sont interdites :",
-  "termsS5List": "<li>Soumettre des résultats de match faux ou falsifiés</li><li>Utiliser des outils externes, scripts ou exploits pour obtenir un avantage</li><li>S'entendre avec un adversaire pour produire un résultat prédéterminé</li><li>Menacer, harceler ou insulter ses adversaires</li>",
-  "termsS5P2": "Les résultats de match doivent être soumis avec des preuves à l'appui (capture d'écran et enregistrement d'écran). Les décisions de l'administrateur sur les résultats contestés sont définitives. Le règlement complet de conduite et de match figure dans le <link>Règlement des tournois</link>.",
-  "termsS5P3": "Une absence non signalée à votre match programmé entraîne un forfait et une pénalité sur votre SX Score.",
-  "termsS6Heading": "6. Gains et retraits",
-  "termsS6P1": "Les gains sont versés sur le compte bancaire que vous liez à votre tableau de bord joueur via Paystack. Vous devez terminer la vérification d'identité avant votre premier retrait.",
-  "termsS6P2": "Nous visons à traiter les retraits approuvés sous 1 à 5 jours ouvrés. Nous ne sommes pas responsables des retards causés par votre banque.",
-  "termsS7Heading": "7. SX Coins",
-  "termsS7P1": "Les SX Coins sont une monnaie virtuelle interne à la plateforme. Ils sont gagnés en jouant et en passant du temps sur la plateforme. Les SX Coins n'ont aucune valeur monétaire et ne peuvent pas être échangés contre de l'argent. Ils peuvent être utilisés sur la plateforme pour des réductions sur les frais d'inscription, des fonctionnalités communautaires et la boutique interne. Les SX Coins peuvent aussi être misés dans les paris communautaires (voir la section 8) et peuvent être perdus si votre pari n’est pas gagnant.",
-  "termsS8Heading": "8. Paris communautaires (SX Coins)",
-  "termsS8P1": "Vous pouvez miser des SX Coins sur l’issue d’un match auquel vous ne participez pas. Le pari est facultatif et utilise uniquement des SX Coins.",
-  "termsS8List": "<li>Les paris ouvrent une fois les deux joueurs confirmés pour un match programmé et se ferment 15 minutes avant l’heure de début prévue. Pour les matchs programmés sur une journée entière, ils se ferment 24 heures après le début de cette journée.</li><li>Une commission de plateforme de 5 % est prélevée sur la cagnotte perdante. Les gains sont versés uniquement en SX Coins.</li><li>Les paris sont réglés automatiquement à partir du résultat du match confirmé par l’administrateur, et ce règlement est définitif.</li><li>Si un match est annulé ou qu’un résultat est infirmé, chaque mise est intégralement restituée.</li>",
-  "termsS8P2": "Comme les SX Coins n’ont aucune valeur monétaire et ne peuvent pas être échangés contre de l’argent, les paris communautaires ne constituent pas des paris d’argent.",
-  "termsS9Heading": "9. Gaming Exchange",
-  "termsS9P1": "Le Gaming Exchange (propulsé par l'escrow Zolarux) permet aux joueurs d'acheter et de vendre des comptes de jeu et des objets in-game. SentinelX fournit la plateforme et l'infrastructure d'escrow. Nous ne sommes pas partie à la transaction entre l'acheteur et le vendeur et ne sommes pas responsables des litiges découlant de transactions effectuées en dehors du système d'escrow de la plateforme. Consultez <link>le fonctionnement de l’escrow</link> pour le détail étape par étape.",
-  "termsS10Heading": "10. Standards communautaires",
-  "termsS10P1": "Vous acceptez de traiter tous les autres membres de la communauté SentinelX avec respect. Les discours de haine, la discrimination, les menaces et le harcèlement ne sont pas tolérés et entraîneront une suspension ou un bannissement permanent. Consultez nos <link>Règles communautaires</link> pour la liste complète des standards.",
-  "termsS11Heading": "11. Propriété intellectuelle",
-  "termsS11P1": "Toute l'image de marque, le design et le contenu original de SentinelX appartiennent à SentinelX Esports. Vous ne pouvez pas reproduire, copier ou distribuer notre contenu sans autorisation écrite. Le contenu que vous publiez (captures d'écran de match, publications communautaires) reste le vôtre, mais vous nous accordez une licence pour l'afficher sur la plateforme.",
-  "termsS12Heading": "12. Limitation de responsabilité",
-  "termsS12P1": "SentinelX Esports n'est pas responsable des pertes indirectes, accessoires ou consécutives résultant de votre utilisation de la plateforme. Notre responsabilité totale envers vous pour toute réclamation ne dépassera pas le total des frais d'inscription que vous nous avez versés au cours des 3 mois précédant la réclamation.",
-  "termsS12P2": "Nous ne garantissons pas un accès ininterrompu à la plateforme. Nous ferons des efforts raisonnables pour rétablir le service rapidement en cas d'interruption.",
-  "termsS13Heading": "13. Modifications des présentes conditions",
-  "termsS13P1": "Nous pouvons mettre à jour ces Conditions de temps à autre. Nous vous informerons via la plateforme ou par e-mail en cas de changements importants. Continuer à utiliser SentinelX après la publication des changements signifie que vous acceptez les conditions mises à jour.",
-  "termsS14Heading": "14. Droit applicable",
-  "termsS14P1": "Les présentes Conditions sont régies par les lois de la République fédérale du Nigeria. Tout litige relève de la compétence des tribunaux nigérians.",
-  "termsS15Heading": "15. Contact",
-  "termsS15P1": "Des questions sur ces Conditions ? Écrivez-nous à <email>sentinelxesports@gmail.com</email> ou contactez-nous sur WhatsApp : <whatsapp>+234 903 239 5685</whatsapp>.",
-  "cmpTabAll": "Tous",
-  "cmpTabLive": "En direct",
-  "cmpTabUpcoming": "À venir",
-  "cmpTabCompleted": "Terminés",
-  "cmpAllGames": "Tous les jeux",
-  "cmpEmpty": "Aucun tournoi pour le moment.",
-  "cmpLoadError": "Chargement impossible. Vérifiez votre connexion et réessayez.",
-  "cmpRetry": "Réessayer",
-  "cmpLoadMore": "Charger plus",
-  "cmpEntryFee": "Frais d'inscription",
-  "cmpFree": "Gratuit",
-  "cmpPrizePool": "Cagnotte",
-  "cmpSecondPlace": "2e place",
-  "cmpThirdPlace": "3e place",
-  "cmpMaxPlayers": "{count} joueurs maximum",
-  "@cmpMaxPlayers": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "cmpRules": "Règlement",
-  "cmpViewBracket": "Voir le tableau",
-  "cmpShareWhatsapp": "Partager sur WhatsApp",
-  "cmpShareText": "Rejoignez {title} sur Sentinel X : {url}",
-  "@cmpShareText": {
-    "placeholders": {
-      "title": {
-        "type": "String"
-      },
-      "url": {
-        "type": "String"
-      }
-    }
-  },
-  "cmpCtaRegister": "S'inscrire",
-  "cmpCtaResume": "Reprendre le paiement",
-  "cmpCtaLogin": "Connectez-vous pour vous inscrire",
-  "cmpCtaJoinWaitlist": "Rejoindre la liste d'attente",
-  "cmpViewInvitations": "Voir mes invitations",
-  "cmpStateRegistered": "Vous êtes inscrit.",
-  "cmpStateWaitlisted": "Vous êtes sur la liste d'attente.",
-  "cmpStateFull": "Ce tournoi est complet.",
-  "cmpStateEnded": "Ce tournoi est terminé.",
-  "cmpStateInvitationOnly": "Ce tournoi est sur invitation uniquement.",
-  "cmpFeeWaived": "Entrée gratuite — dispense appliquée",
-  "cmpFieldDisplayName": "Nom affiché",
-  "cmpFieldWhatsapp": "Numéro WhatsApp",
-  "cmpAgreeRules": "J'ai lu et j'accepte le règlement",
-  "cmpCoinsTitle": "Utiliser des SX Coins",
-  "cmpCoinsNone": "Ne pas utiliser de pièces",
-  "cmpCoinsOption": "{coins} pièces (−{naira} ₦)",
-  "@cmpCoinsOption": {
-    "placeholders": {
-      "coins": {
-        "type": "int"
-      },
-      "naira": {
-        "type": "String"
-      }
-    }
-  },
-  "cmpSubmitRegister": "Continuer",
-  "cmpSubmitWaitlist": "Rejoindre la liste d'attente",
-  "cmpSubmitting": "En cours…",
-  "cmpValDisplayName": "Saisissez un nom (1 à 60 caractères).",
-  "cmpValWhatsapp": "Saisissez un numéro WhatsApp valide.",
-  "cmpValRules": "Veuillez accepter le règlement.",
-  "cmpPayConfirming": "Confirmation du paiement…",
-  "cmpPaySuccess": "C'est fait ! Paiement confirmé.",
-  "cmpPayNotConfirmed": "Nous n'avons pas encore reçu votre paiement. Si vous avez été débité, il sera confirmé sous peu — revenez dans une minute.",
-  "cmpPayCancelled": "Fenêtre de paiement fermée. Vous pouvez reprendre depuis la page du tournoi.",
-  "cmpConfirmedFree": "Vous êtes inscrit !",
-  "cmpWaitlistJoined": "Vous êtes sur la liste d'attente.",
-  "cmpInvTitle": "Mes invitations",
-  "cmpInvEmpty": "Aucune invitation en attente.",
-  "cmpInvAccept": "Accepter",
-  "cmpInvDecline": "Refuser",
-  "cmpInvExpires": "Expire le {date}",
-  "@cmpInvExpires": {
-    "placeholders": {
-      "date": {
-        "type": "String"
-      }
-    }
-  },
-  "cmpInvDeclined": "Invitation refusée.",
-  "cmpGamesTitle": "Jeux",
-  "cmpGamesEmpty": "Aucun jeu pour le moment.",
-  "cmpEditProfile": "Modifier le profil",
-  "cmpFieldBio": "Bio",
-  "cmpFieldCountry": "Pays",
-  "cmpFieldUsername": "Nom d'utilisateur (modifiable une fois)",
-  "cmpSave": "Enregistrer",
-  "cmpSaved": "Profil enregistré.",
-  "cmpValBio": "La bio doit faire 280 caractères maximum.",
-  "cmpValCountry": "Pays trop long (60 max).",
-  "cmpEcGeneric": "Une erreur est survenue. Veuillez réessayer.",
-  "cmpEcNetwork": "Pas de connexion. Vérifiez votre internet et réessayez.",
-  "cmpEcSession": "Votre session a expiré. Reconnectez-vous.",
-  "cmpEcTournamentNotFound": "Tournoi introuvable.",
-  "cmpEcRulesRequired": "Veuillez confirmer que vous acceptez le règlement.",
-  "cmpEcAlreadyRegistered": "Vous êtes déjà inscrit à ce tournoi.",
-  "cmpEcTournamentFull": "Ce tournoi est complet.",
-  "cmpEcInvitationOnly": "Ce tournoi est sur invitation uniquement.",
-  "cmpEcRegistrationClosed": "Les inscriptions sont fermées.",
-  "cmpEcInsufficientCoins": "Pas assez de SX Coins pour cette réduction.",
-  "cmpEcPaymentInit": "Le paiement n'a pas pu démarrer. Réessayez.",
-  "cmpEcWaitlistNotOpen": "La liste d'attente ouvre à la fin des inscriptions.",
-  "cmpEcAlreadyWaitlisted": "Vous êtes déjà sur la liste d'attente.",
-  "cmpEcInProgress": "Traitement en cours. Patientez un instant puis réessayez.",
-  "cmpEcInvitationNotFound": "Invitation introuvable.",
-  "cmpEcInvitationGone": "Cette invitation n'est plus disponible.",
-  "cmpEcInvitationExpired": "Cette invitation a expiré.",
-  "cmpEcUsernameTaken": "Ce nom d'utilisateur est déjà pris.",
-  "cmpEcUsernameLocked": "Votre nom d'utilisateur a déjà été modifié une fois.",
-  "cmpEcSaveFailed": "Impossible d'enregistrer votre profil. Réessayez.",
-  "cmpHomeGamesTile": "Jeux",
-  "cmpHomeInvitationsTile": "Mes invitations",
-  "cmpAccountEditProfile": "Modifier le profil",
-  "cmpStatusRegistrationOpen": "Inscriptions ouvertes",
-  "cmpStatusRegistrationClosed": "Inscriptions fermées",
-  "cmpStatusActive": "En direct",
-  "cmpStatusCompleted": "Terminé",
-  "cmpPayCheckAgain": "Vérifier le paiement",
-  "cmpInvPayCancelled": "Fenêtre de paiement fermée. Si vous avez été débité, ce sera confirmé sous peu.",
-  "cmpValUsername": "Le nom d'utilisateur doit contenir 3 à 20 lettres, chiffres ou tirets bas.",
-  "commonDeletedPlayer": "Joueur supprimé",
-  "rankingsTitle": "Classements",
-  "rankingsRankByScore": "Classé par score SX",
-  "rankingsRankByWins": "Classé par victoires",
-  "rankingsAllGames": "Tous les jeux",
-  "rankingsAllRegions": "Toutes les régions",
-  "rankingsYourRank": "Votre rang",
-  "rankingsYou": "(vous)",
-  "rankingsPrev": "Précédent",
-  "rankingsNext": "Suivant",
-  "rankingsEmpty": "Aucun joueur classé pour le moment.",
-  "rankingsErrorRetry": "Chargement impossible. Touchez pour réessayer.",
-  "rankingsTrendNew": "Nouveau",
-  "seasonsTitle": "Saisons",
-  "seasonsEmpty": "Aucune saison pour le moment.",
-  "seasonsLeaderboardEmpty": "Aucun point de saison attribué pour le moment.",
-  "seasonsProvisional": "Provisoire",
-  "seasonsProvisionalNote": "Les points peuvent encore changer tant que les tournois sont en cours.",
-  "seasonsTournaments": "Tournois",
-  "seasonsInviteOnly": "Sur invitation",
-  "seasonsYou": "Vous",
-  "hallOfFameTitle": "Temple de la renommée",
-  "hallOfFameMvp": "MVP de tous les temps",
-  "hallOfFameGoldenBoot": "Soulier d’or",
-  "hallOfFameChampionsCup": "Coupe des champions",
-  "hallOfFameMasters": "Masters",
-  "hallOfFameCommunityClub": "Club communautaire",
-  "hallOfFameOpen": "Tournois ouverts",
-  "hallOfFameBronze": "Places de bronze",
-  "hallOfFameEmpty": "Rien ici pour le moment.",
-  "rankingsWinsCount": "{wins} victoires",
-  "rankingsMatchesCount": "{matches} matchs",
-  "rankingsStreakValue": "{n} victoires de suite",
-  "rankingsPageOf": "Page {page} sur {total}",
-  "rankingsPlayersRanked": "{n} joueurs classés",
-  "seasonsPoints": "{n} pts",
-  "hallOfFameRunnerUp": "Finaliste : {name}",
-  "commonLoadError": "Chargement impossible. Touchez pour réessayer.",
-  "playersTitle": "Joueurs",
-  "playersSearchHint": "Rechercher des joueurs",
-  "playersEmpty": "Aucun joueur trouvé.",
-  "playersNotFound": "Joueur introuvable.",
-  "profileFollow": "Suivre",
-  "profileFollowing": "Abonné",
-  "profileFollowsYou": "Vous suit",
-  "profileFollowersCount": "{n} abonnés",
-  "profileFollowingCount": "{n} abonnements",
-  "profileStatMatches": "Matchs",
-  "profileStatWins": "Victoires",
-  "profileStatLosses": "Défaites",
-  "profileStatGoalsFor": "Buts marqués",
-  "profileStatGoalsAgainst": "Buts encaissés",
-  "profileStatTitles": "Titres",
-  "profileStatTournaments": "Tournois",
-  "profileStatStreak": "Série de victoires",
-  "profileStatRank": "Rang mondial",
-  "profileRankOf": "n° {rank} sur {total}",
-  "profileRankUnranked": "Non classé",
-  "profileSxScore": "Score SX {n}",
-  "profileCategoryStats": "Buts par catégorie",
-  "profileTitlesHeading": "Titres",
-  "profileNoTitles": "Aucun titre pour le moment.",
-  "profileRecentMatches": "Matchs récents",
-  "profileNoMatches": "Aucun match pour le moment.",
-  "profileOutcomeWin": "Victoire",
-  "profileOutcomeLoss": "Défaite",
-  "profileOutcomeDraw": "Nul",
-  "profileAchievements": "Succès",
-  "profileAchievementsProgress": "{unlocked}/{total} débloqués",
-  "profileAchievementLocked": "Verrouillé",
-  "profilePosts": "Publications récentes",
-  "profileGallery": "Galerie",
-  "followErrorSelf": "Vous ne pouvez pas vous suivre vous-même.",
-  "followErrorBlocked": "Vous ne pouvez pas suivre ce joueur.",
-  "followErrorNotFound": "Ce joueur n'existe plus.",
-  "followErrorGeneric": "Mise à jour impossible. Veuillez réessayer.",
-  "followersTitle": "Abonnés",
-  "followingTitle": "Abonnements",
-  "followersEmpty": "Aucun abonné pour le moment.",
-  "followingEmpty": "Ne suit personne pour le moment.",
-  "accountMyProgress": "Ma progression",
-  "progressTitle": "Ma progression",
-  "progressSignIn": "Connectez-vous pour voir votre progression.",
-  "progressXpHeading": "XP",
-  "progressXpToNext": "{into} / {needed} XP pour {tier}",
-  "progressMaxTier": "Niveau maximum atteint",
-  "progressSxScore": "Score SX",
-  "progressCoins": "Pièces",
-  "progressSeasonHeading": "Classement de la saison",
-  "progressSeasonRank": "Rang n° {rank}",
-  "progressSeasonUnranked": "Non classé",
-  "progressSeasonMonthly": "Ce mois-ci",
-  "progressSeasonNone": "Aucune saison en cours.",
-  "progressToRankSixteen": "Le 16e a {n} pts",
-  "progressHistoryXp": "Historique XP",
-  "progressHistoryScore": "Historique du score SX",
-  "progressHistoryCoins": "Historique des pièces",
-  "historyEmpty": "Aucune activité pour le moment.",
-  "historyLoadMoreError": "Chargement impossible. Touchez pour réessayer.",
-  "historyBalanceAfter": "Solde {n}",
-  "tierRecruit": "Recrue",
-  "tierGuardian": "Gardien",
-  "tierElite": "Élite",
-  "tierSentinel": "Sentinelle",
-  "tierLegend": "Légende",
-  "xpSourceMatchPlayed": "Match joué",
-  "xpSourceMatchWon": "Match gagné",
-  "xpSourceTournamentEntered": "Tournoi rejoint",
-  "xpSourceTournamentCompleted": "Tournoi terminé",
-  "xpSourceTournamentPlacement": "Classement du tournoi",
-  "xpSourceAchievementUnlocked": "Succès débloqué",
-  "xpSourceDailyLogin": "Connexion quotidienne",
-  "xpSourceLoginStreak": "Série de connexions",
-  "xpSourceCommunityActivity": "Activité communautaire",
-  "xpSourceAdminGrant": "Attribution admin",
-  "scoreEventMatchCompleted": "Match terminé",
-  "scoreEventNoShow": "Forfait",
-  "scoreEventRageQuit": "Match quitté en avance",
-  "scoreEventDisputeLost": "Litige perdu",
-  "scoreEventRatingReceived": "Note reçue",
-  "scoreEventAdminFlagConduct": "Signalement de conduite",
-  "scoreEventAdminFlagCheat": "Signalement de triche",
-  "coinSourceMatchPlayed": "Match joué",
-  "coinSourceMatchWon": "Match gagné",
-  "coinSourceTournamentPlacement": "Classement du tournoi",
-  "coinSourceDailyLogin": "Connexion quotidienne",
-  "coinSourceLoginStreak": "Série de connexions",
-  "coinSourceAchievementUnlocked": "Succès débloqué",
-  "coinSourceStorePurchase": "Achat en boutique",
-  "coinSourceCommunityActivity": "Activité communautaire",
-  "coinSourceAdminGrant": "Attribution admin",
-  "coinSourceAdminDeduct": "Déduction admin",
-  "coinSourceWeeklyChallenge": "Défi hebdomadaire",
-  "coinSourceBestPlayWinner": "Vainqueur Best Play",
-  "coinSourceBestPlayRunnerUp": "Finaliste Best Play",
-  "coinSourceEntryDiscount": "Réduction d'inscription",
-  "coinSourceEntryDiscountRefund": "Remboursement de réduction",
-  "coinSourceWagerStake": "Mise du pari",
-  "coinSourceWagerWon": "Pari gagné",
-  "coinSourceWagerRefund": "Pari remboursé",
-  "coinSourcePostBoost": "Boost de publication",
-  "coinSourceReferralReward": "Récompense de parrainage",
-  "coinSourceReferralMilestone": "Palier de parrainage",
-  "coinSourceFriendlyStake": "Mise amicale",
-  "coinSourceFriendlyStakePayout": "Gain amical",
-  "mtcBracketTitle": "Tableau",
-  "mtcTabGroups": "Groupes",
-  "mtcTabFixtures": "Matchs",
-  "mtcTabKnockout": "Phase finale",
-  "mtcNoDrawYet": "Le tirage n'a pas encore été fait.",
-  "mtcChampion": "Champion",
-  "mtcThirdPlace": "3e place",
-  "mtcNoWinner": "Ce tournoi s'est terminé sans vainqueur.",
-  "mtcGroupCol": "{group}",
-  "@mtcGroupCol": {
-    "placeholders": {
-      "group": {
-        "type": "String"
-      }
-    }
-  },
-  "mtcColPlayed": "J",
-  "mtcColWins": "V",
-  "mtcColDraws": "N",
-  "mtcColLosses": "D",
-  "mtcColGoalDiff": "DB",
-  "mtcColPoints": "Pts",
-  "mtcAdvancing": "Qualifié",
-  "mtcFixtLive": "En direct",
-  "mtcFixtUpcoming": "À venir",
-  "mtcFixtCompleted": "Terminés",
-  "mtcFixtDisputed": "Litigieux ou annulés",
-  "mtcProjectedMatches": "{count} matchs à venir",
-  "@mtcProjectedMatches": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "mtcTbd": "À confirmer",
-  "mtcVs": "contre",
-  "mtcStages": "Phases",
-  "mtcStageStandingsTitle": "Classement",
-  "mtcColRank": "#",
-  "mtcColKills": "Éliminations",
-  "mtcTieUnresolved": "Égalité — départage en attente",
-  "mtcMatchTitle": "Match",
-  "mtcStatusScheduled": "Programmé",
-  "mtcStatusLive": "En direct",
-  "mtcStatusCompleted": "Terminé",
-  "mtcStatusDisputed": "En cours d'examen",
-  "mtcStatusCancelled": "Annulé",
-  "mtcStatusBye": "Exempt",
-  "mtcStatusForfeited": "Forfait",
-  "mtcWatchLive": "Regarder en direct",
-  "mtcWatchReplay": "Voir le replay",
-  "mtcCheckIn": "Je suis là — pointer",
-  "mtcCheckedIn": "Pointé",
-  "mtcNotCheckedIn": "Non pointé",
-  "mtcCheckInSuccess": "Vous êtes pointé.",
-  "mtcSubmitResult": "Soumettre le résultat",
-  "mtcResultSubmitted": "Résultat soumis — en attente de confirmation.",
-  "mtcRateOpponent": "Noter votre adversaire",
-  "mtcRated": "Merci pour votre note !",
-  "mtcWagerTitle": "Pari",
-  "mtcWagerLoginPrompt": "Connectez-vous pour parier.",
-  "mtcWagerClosed": "Les paris sont fermés pour ce match.",
-  "mtcWagerPool": "Cagnotte : {a} contre {b} pièces",
-  "@mtcWagerPool": {
-    "placeholders": {
-      "a": {
-        "type": "int"
-      },
-      "b": {
-        "type": "int"
-      }
-    }
-  },
-  "mtcWagerFee": "Frais {percent} %",
-  "@mtcWagerFee": {
-    "placeholders": {
-      "percent": {
-        "type": "String"
-      }
-    }
-  },
-  "mtcWagerYourPick": "Votre pari : {coins} pièces sur {name}",
-  "@mtcWagerYourPick": {
-    "placeholders": {
-      "coins": {
-        "type": "int"
-      },
       "name": {
         "type": "String"
       }
     }
   },
-  "mtcWagerPlace": "Parier",
-  "mtcWagerChange": "Modifier le pari",
-  "mtcWagerStake": "Mise (pièces)",
-  "mtcWagerStakeRange": "Entre {min} et {max} pièces.",
-  "@mtcWagerStakeRange": {
+  "guideHelloNoName": "Salut !",
+  "questBattleReadyTitle": "Quête Prêt au combat",
+  "questProgress": "{done} sur {total} terminées",
+  "@questProgress": {
     "placeholders": {
-      "min": {
+      "done": {
         "type": "int"
       },
-      "max": {
+      "total": {
         "type": "int"
       }
     }
   },
-  "mtcWagerPlaced": "Pari enregistré.",
-  "mtcWagerEstimate": "Un pari de 100 pièces sur le premier joueur rapporterait environ {payout} pièces.",
-  "@mtcWagerEstimate": {
+  "questStepProfile_complete": "Complétez votre profil",
+  "questStepFirst_tournament_entered": "Inscrivez-vous à votre premier tournoi",
+  "questStepFirst_match_completed": "Terminez votre premier match",
+  "questStepGeneric": "Terminez cette étape",
+  "questTakeMeThere": "M'y emmener",
+  "questClaim": "Réclamer votre badge",
+  "questClaiming": "Réclamation…",
+  "questBadgeEarned": "Badge obtenu",
+  "questRewardLine": "{xp} XP et {coins} pièces",
+  "@questRewardLine": {
     "placeholders": {
-      "payout": {
-        "type": "String"
-      }
-    }
-  },
-  "mtcNoShowInfo": "Ce match peut être traité comme forfait par les organisateurs.",
-  "mtcScoreA": "Score de {name}",
-  "@mtcScoreA": {
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
-  "mtcRecordingUrl": "Lien de l'enregistrement (facultatif)",
-  "mtcPickScreenshot": "Choisir une capture",
-  "mtcChangeScreenshot": "Changer la capture",
-  "mtcScreenshotRequired": "Une capture d'écran est requise.",
-  "mtcUploading": "Envoi de la capture…",
-  "mtcSubmitting": "Envoi…",
-  "mtcValScore": "Saisissez un entier de 0 à 99.",
-  "mtcLobbyResultTitle": "Résultat du lobby",
-  "mtcPlacement": "Classement",
-  "mtcKills": "Éliminations",
-  "mtcValPlacement": "Saisissez un entier de 1 à 100.",
-  "mtcValKills": "Saisissez un entier de 0 à 100.",
-  "mtcFixturesTitle": "Vos matchs",
-  "mtcNextMatch": "Prochain match",
-  "mtcNextLobby": "Prochain lobby",
-  "mtcSubmitPrompt": "Un match attend votre résultat.",
-  "mtcLobbySubmitted": "Résultat soumis",
-  "mtcRoomCodeReady": "Les détails de la salle sont prêts",
-  "mtcBannerQualified": "Vous êtes qualifié dans {title} ({round}).",
-  "@mtcBannerQualified": {
-    "placeholders": {
-      "title": {
-        "type": "String"
-      },
-      "round": {
-        "type": "String"
-      }
-    }
-  },
-  "mtcBannerAwaiting": "En attente de votre adversaire.",
-  "mtcBannerEliminated": "Vous avez été éliminé de {title} ({round}).",
-  "@mtcBannerEliminated": {
-    "placeholders": {
-      "title": {
-        "type": "String"
-      },
-      "round": {
-        "type": "String"
-      }
-    }
-  },
-  "mtcRegistrationsHeading": "Vos inscriptions",
-  "mtcPaymentPending": "Paiement en attente",
-  "mtcPaymentPaid": "Payé",
-  "mtcEcGeneric": "Une erreur est survenue. Veuillez réessayer.",
-  "mtcEcNetwork": "Pas de connexion. Vérifiez votre internet et réessayez.",
-  "mtcEcSession": "Votre session a expiré. Reconnectez-vous.",
-  "mtcEcInProgress": "Traitement en cours. Patientez un instant puis réessayez.",
-  "mtcEcUploadFailed": "L'envoi de la capture a échoué. Réessayez.",
-  "mtcEcMatchNotFound": "Match introuvable.",
-  "mtcEcNotParticipant": "Vous ne jouez pas dans ce match.",
-  "mtcEcNotMatchDay": "Vous pourrez pointer le jour du match.",
-  "mtcEcCheckInClosed": "Le pointage est fermé pour ce match.",
-  "mtcEcBye": "Match exempt — aucun résultat à soumettre.",
-  "mtcEcCancelled": "Ce match a été annulé.",
-  "mtcEcAlreadyConfirmed": "Ce résultat est déjà confirmé.",
-  "mtcEcSubmissionLocked": "Votre soumission est en cours d'examen et ne peut plus être modifiée.",
-  "mtcEcValidation": "Vérifiez votre saisie.",
-  "mtcEcResultNotConfirmed": "Vous pourrez noter votre adversaire une fois le résultat confirmé.",
-  "mtcEcCannotRateSelf": "Vous ne pouvez pas vous noter.",
-  "mtcEcNotRatable": "Ce match ne peut pas être noté.",
-  "mtcEcAlreadyRated": "Vous avez déjà noté ce match.",
-  "mtcEcPendingDeletion": "Votre compte est en cours de suppression.",
-  "mtcEcOwnMatch": "Vous ne pouvez pas parier sur votre propre match.",
-  "mtcEcInvalidPick": "Choisissez l'un des deux joueurs de ce match.",
-  "mtcEcWindowClosed": "Les paris sont fermés pour ce match.",
-  "mtcEcInsufficientCoins": "Pas assez de SX Coins pour cette mise.",
-  "mtcEcNotInLobby": "Vous n'êtes pas dans ce lobby.",
-  "mtcEcLobbyConfirmed": "Ce lobby est confirmé et ne peut plus être modifié.",
-  "mtcEcResultConfirmed": "Votre résultat est confirmé et ne peut plus être modifié.",
-  "mtcHomeFixtures": "Matchs",
-  "mtcDone": "Terminé",
-  "cmtTitle": "Communauté",
-  "cmtFeedEmpty": "Aucune publication pour l'instant. Soyez le premier à partager quelque chose !",
-  "cmtFeedLoadError": "Impossible de charger le fil.",
-  "cmtRetry": "Réessayer",
-  "cmtLoadMore": "Charger plus",
-  "cmtPinnedLabel": "Épinglé",
-  "cmtBoostedLabel": "Boosté",
-  "cmtComposeFab": "Nouvelle publication",
-  "cmtSignInToPost": "Connectez-vous pour publier",
-  "cmtSignInToReact": "Connectez-vous pour réagir",
-  "cmtSignInToComment": "Connectez-vous pour commenter",
-  "cmtSignInToVote": "Connectez-vous pour voter",
-  "cmtSignInToReport": "Connectez-vous pour signaler",
-  "cmtCommentCount": "{count, plural, one{{count} commentaire} other{{count} commentaires}}",
-  "@cmtCommentCount": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "cmtReactFire": "Feu",
-  "cmtReactCrown": "Couronne",
-  "cmtReactStrong": "Fort",
-  "cmtReactWow": "Wow",
-  "cmtMatchResultLabel": "Résultat du match",
-  "cmtAchievementLabel": "Succès",
-  "cmtAnnouncementLabel": "Annonce",
-  "cmtComposeTitle": "Nouvelle publication",
-  "cmtComposeHint": "Que se passe-t-il dans la communauté SentinelX ?",
-  "cmtComposeAddImage": "Ajouter une photo",
-  "cmtComposeImagesCount": "{count}/5",
-  "@cmtComposeImagesCount": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "cmtComposePost": "Publier",
-  "cmtComposePosting": "Publication…",
-  "cmtComposeCancel": "Annuler",
-  "cmtComposeValidation": "Écrivez quelque chose ou ajoutez une photo.",
-  "cmtComposeRemoveImage": "Retirer l'image",
-  "cmtPostDetailTitle": "Publication",
-  "cmtCommentsTitle": "Commentaires",
-  "cmtCommentsEmpty": "Aucun commentaire pour l'instant.",
-  "cmtCommentsCapNotice": "Affichage des 50 premiers commentaires.",
-  "cmtCommentHint": "Ajouter un commentaire…",
-  "cmtCommentSend": "Envoyer",
-  "cmtDeletePost": "Supprimer la publication",
-  "cmtDeletePostConfirm": "Supprimer cette publication ? Cette action est irréversible.",
-  "cmtDeleteComment": "Supprimer le commentaire",
-  "cmtDeleteCommentConfirm": "Supprimer ce commentaire ?",
-  "cmtDeleteConfirmYes": "Supprimer",
-  "cmtDeleteConfirmCancel": "Annuler",
-  "cmtBoostAction": "Booster (200 pièces)",
-  "cmtBoostConfirmTitle": "Booster cette publication ?",
-  "cmtBoostConfirmBody": "Votre publication sera épinglée en haut du fil pendant 24 heures pour 200 SX Coins.",
-  "cmtBoostConfirm": "Booster",
-  "cmtBoostSuccess": "Publication boostée !",
-  "cmtStatusesTitle": "Stories",
-  "cmtStatusAddYours": "Votre story",
-  "cmtStatusPost": "Publier la story",
-  "cmtStatusCaptionHint": "Ajouter une légende (facultatif)",
-  "cmtStatusEmpty": "Aucune story pour l'instant.",
-  "cmtStatusViewersTitle": "Vues",
-  "cmtStatusViewersEmpty": "Personne n'a encore vu ceci.",
-  "cmtStatusDelete": "Supprimer la story",
-  "cmtStatusDeleteConfirm": "Supprimer cette story ?",
-  "cmtStatusValidation": "Ajoutez une photo ou une légende.",
-  "cmtChallengesTitle": "Défis hebdomadaires",
-  "cmtChallengesSignedOut": "Connectez-vous pour suivre les défis hebdomadaires.",
-  "cmtChallengeCompleted": "Terminé",
-  "cmtChallengeProgress": "{progress}/{goal}",
-  "@cmtChallengeProgress": {
-    "placeholders": {
-      "progress": {
+      "xp": {
         "type": "int"
       },
-      "goal": {
+      "coins": {
         "type": "int"
       }
     }
   },
-  "cmtBestPlayTitle": "Meilleure action de la semaine",
-  "cmtBestPlayEmpty": "Aucune nomination cette semaine.",
-  "cmtBestPlayVote": "Voter",
-  "cmtBestPlayVoted": "Voté",
-  "cmtBestPlayVoteSuccess": "Vote enregistré !",
-  "cmtTopMembersTitle": "Meilleurs membres",
-  "cmtUpcomingEventsTitle": "Événements à venir",
-  "cmtGalleryTitle": "Galerie",
-  "cmtStatsMembers": "{count, plural, one{{count} membre} other{{count} membres}}",
-  "@cmtStatsMembers": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "cmtStatsCountries": "{count, plural, one{{count} pays} other{{count} pays}}",
-  "@cmtStatsCountries": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "cmtStatsTournaments": "{count, plural, one{{count} tournoi} other{{count} tournois}}",
-  "@cmtStatsTournaments": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "cmtReportPost": "Signaler la publication",
-  "cmtReportComment": "Signaler le commentaire",
-  "cmtReportTitle": "Signaler ce contenu",
-  "cmtReportReasonSpam": "Spam",
-  "cmtReportReasonHarassment": "Harcèlement",
-  "cmtReportReasonHateSpeech": "Discours de haine",
-  "cmtReportReasonNudity": "Nudité ou contenu sexuel",
-  "cmtReportReasonViolence": "Violence",
-  "cmtReportReasonMisinformation": "Désinformation",
-  "cmtReportReasonOther": "Autre",
-  "cmtReportNoteHint": "Ajouter des détails (facultatif)",
-  "cmtReportSubmit": "Envoyer le signalement",
-  "cmtReportSubmitted": "Signalement envoyé. Merci.",
-  "cmtEcGeneric": "Une erreur est survenue. Veuillez réessayer.",
-  "cmtEcNetwork": "Pas de connexion. Vérifiez votre internet et réessayez.",
-  "cmtEcSession": "Votre session a expiré. Reconnectez-vous.",
-  "cmtEcInProgress": "Traitement en cours. Patientez un instant puis réessayez.",
-  "cmtEcValidation": "Écrivez quelque chose ou ajoutez une photo.",
-  "cmtEcNotFound": "Ce contenu n'est plus disponible.",
-  "cmtEcForbidden": "Vous ne pouvez faire cela que pour votre propre contenu.",
-  "cmtEcAlreadyBoosted": "Cette publication est déjà boostée.",
-  "cmtEcActiveBoostExists": "Vous avez déjà un boost actif sur une autre publication.",
-  "cmtEcInsufficientCoins": "Pas assez de SX Coins pour booster.",
-  "cmtEcVotingClosed": "Les votes sont fermés en ce moment.",
-  "cmtEcAlreadyVoted": "Vous avez déjà voté cette semaine.",
-  "cmtEcAlreadyReported": "Vous avez déjà signalé ceci.",
-  "cmtEcUploadFailed": "L'envoi de l'image a échoué. Réessayez.",
-  "authMetaProfile": "Complétez votre profil · SentinelX Esports",
-  "authProfileStepTitle": "Complétez votre profil",
-  "authProfileStepSubtitle": "Dites-nous où vous jouez et quels jeux vous intéressent — nous ne vous contacterons qu'au sujet des tournois qui vous concernent vraiment.",
-  "profileCountryLabel": "Pays",
-  "profileCountryPlaceholder": "Sélectionnez votre pays",
-  "profileWhatsappLabel": "Numéro WhatsApp",
-  "profileWhatsappHint": "+2348012345678",
-  "profileGamesLabel": "Quels jeux vous intéressent ?",
-  "profileGamesLoading": "Chargement des jeux…",
-  "profileGamesRetry": "Impossible de charger les jeux. Réessayer",
-  "profileConsentLabel": "Recevoir les actualités des tournois sur WhatsApp ?",
-  "profileConsentYes": "Oui",
-  "profileConsentNo": "Non",
-  "profileCountryRequired": "Sélectionnez votre pays.",
-  "profileWhatsappRequired": "Saisissez votre numéro WhatsApp.",
-  "profileWhatsappInvalid": "Saisissez un numéro WhatsApp valide pour le pays sélectionné.",
-  "profileGamesRequired": "Choisissez au moins un jeu.",
-  "profileConsentRequired": "Choisissez oui ou non.",
-  "profileCountryInvalid": "Sélectionnez un pays dans la liste.",
-  "profileGameUnavailable": "L'un des jeux choisis n'est plus disponible. Rechargez et réessayez.",
-  "profileContinue": "Continuer",
-  "profileSaving": "Enregistrement…",
-  "profileSaveFailed": "Impossible d'enregistrer votre profil. Réessayez.",
-  "profileSaved": "Profil enregistré.",
-  "ntfTitle": "Notifications",
-  "ntfMarkAllRead": "Tout marquer comme lu",
-  "ntfMuteThread": "Mettre ce fil en sourdine",
-  "ntfUnmuteThread": "Réactiver ce fil",
-  "ntfMuteType": "Mettre ce type en sourdine",
-  "ntfUnmuteType": "Réactiver ce type",
-  "ntfMuteFor1h": "Pendant 1 heure",
-  "ntfMuteFor1w": "Pendant 1 semaine",
-  "ntfMuteAlways": "Toujours",
-  "ntfMuted": "Mis en sourdine",
-  "ntfUnmuted": "Réactivé",
-  "ntfEmptyTitle": "Vous êtes à jour",
-  "ntfEmptyBody": "Les affectations de matchs, les résultats et les gains apparaissent ici.",
-  "ntfLoadError": "Impossible de charger vos notifications.",
-  "ntfRetry": "Réessayer",
-  "ntfSignedOut": "Connectez-vous pour voir vos notifications.",
-  "ntfLogIn": "Se connecter",
-  "ntfActionFailed": "Ça n'a pas marché. Réessayez.",
-  "ntfUnreadCount": "{count, plural, one{{count} notification non lue} other{{count} notifications non lues}}",
-  "@ntfUnreadCount": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "ntfTimeNow": "À l'instant",
-  "ntfTimeMinutes": "{count, plural, one{il y a {count} minute} other{il y a {count} minutes}}",
-  "@ntfTimeMinutes": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "ntfTimeHours": "{count, plural, one{il y a {count} heure} other{il y a {count} heures}}",
-  "@ntfTimeHours": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "ntfTimeDays": "{count, plural, one{il y a {count} jour} other{il y a {count} jours}}",
-  "@ntfTimeDays": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "ntfPermTitle": "Activer les notifications",
-  "ntfPermBody": "Recevez vos affectations de matchs et rappels sur ce téléphone.",
-  "ntfPermEnable": "Activer",
-  "ntfPermOpenSettings": "Ouvrir les paramètres du système",
-  "ntfPermOn": "Les notifications sont activées sur ce téléphone.",
-  "ntfPermBlocked": "Les notifications sont désactivées pour cette application dans les paramètres du téléphone.",
-  "ntfSettingsTitle": "Paramètres de notification",
-  "ntfSettingsEntry": "Notifications",
-  "ntfSectionPush": "Notifications push",
-  "ntfSectionWhatsapp": "WhatsApp",
-  "ntfSectionSharing": "Partager les succès avec la communauté",
-  "ntfSaveFailed": "Impossible d'enregistrer ce changement.",
-  "ntfTestAction": "Envoyer une notification de test",
-  "ntfTestSent": "Test envoyé — il devrait arriver dans un instant.",
-  "ntfTestNoDevice": "Ce téléphone n'est pas encore enregistré pour les notifications.",
-  "ntfTestFailed": "La notification de test n'a pas pu être livrée.",
-  "ntfPushMatchReminder": "Rappels de match",
-  "ntfPushResultConfirmed": "Résultat confirmé",
-  "ntfPushAchievementUnlocked": "Succès débloqué",
-  "ntfPushChallengeCompleted": "Défi hebdomadaire terminé",
-  "ntfPushNewAnnouncement": "Annonces de la communauté",
-  "ntfPushTournamentAnnounced": "Nouveaux tournois",
-  "ntfPushWagerSettled": "Pari réglé",
-  "ntfPushReferralConverted": "Parrainage converti",
-  "ntfPushPostComment": "Commentaires sur vos publications",
-  "ntfPushPostReaction": "Réactions à vos publications",
-  "ntfPushBracketReleased": "Tableau publié",
-  "ntfPushMatchAssigned": "Nouveau match assigné",
-  "ntfPushPrizeCredited": "Gain crédité",
-  "ntfPushStatusFromFriend": "Un ami publie un statut",
-  "ntfPushStatusViewed": "Quelqu'un voit votre statut",
-  "ntfPushNewFollower": "Quelqu'un vous suit",
-  "ntfPushDirectMessage": "Messages privés",
-  "ntfWaMatchReminder": "Rappels de match (1 h avant le coup d'envoi)",
-  "ntfWaResultConfirmed": "Résultat confirmé",
-  "ntfWaPrizeCredited": "Gain crédité au portefeuille",
-  "ntfWaChallengeCompleted": "Défi hebdomadaire terminé",
-  "ntfWaAchievementUnlocked": "Succès débloqué",
-  "ntfWaRegistrationConfirmed": "Inscription confirmée",
-  "ntfShareTournament": "Victoires en tournoi",
-  "ntfShareMilestone": "Succès d'étape (100 matchs, etc.)",
-  "ntfShareStreak": "Succès de série",
-  "ntfShareSocial": "Succès sociaux (réactions, publications)",
-  "ntfShareOther": "Tous les autres succès",
-  "ntfChannelMatches": "Matchs",
-  "ntfChannelMatchesDesc": "Affectations, rappels et résultats",
-  "ntfChannelSocial": "Communauté",
-  "ntfChannelSocialDesc": "Commentaires, réactions, abonnés et succès",
-  "ntfChannelMessages": "Messages",
-  "ntfChannelMessagesDesc": "Messages privés",
-  "ntfChannelMoney": "Argent",
-  "ntfChannelMoneyDesc": "Gains et récompenses de parrainage",
-  "ntfChannelAdmin": "Alertes admin",
-  "ntfChannelAdminDesc": "Alertes réservées au personnel",
-  "ntfErrValidation": "Cette valeur n'est pas valide.",
-  "ntfErrNotFound": "Cette notification n'existe plus.",
-  "ntfErrNetwork": "Vérifiez votre connexion et réessayez.",
-  "ntfErrGeneric": "Une erreur est survenue.",
-  "ntfBannerOpen": "Ouvrir",
-  "dmErrorGeneric": "Un problème est survenu. Veuillez réessayer.",
-  "dmErrorBlockedByMe": "Vous avez bloqué ce joueur. Débloquez-le pour envoyer des messages.",
-  "dmErrorBlocked": "Vous ne pouvez pas écrire à ce joueur.",
-  "dmErrorRestricted": "La messagerie est actuellement restreinte sur votre compte.",
-  "dmErrorEditWindow": "Vous ne pouvez modifier ou annuler un message que dans les 10 minutes qui suivent son envoi.",
-  "dmErrorNotForwardable": "Ce message ne peut pas être transféré.",
-  "dmErrorRequestLimit": "Vous pouvez envoyer un seul message tant que votre demande n'est pas acceptée.",
-  "dmErrorRequestNoMedia": "Les photos, autocollants et messages vocaux sont disponibles une fois votre demande acceptée.",
-  "dmErrorNotFound": "Ce message ou cette conversation n'existe plus.",
-  "dmErrorSendFailed": "Votre message n'a pas pu être envoyé.",
-  "dmErrorAction": "Cela n'a pas fonctionné. Veuillez réessayer.",
-  "dmErrorValidation": "Ce message n'est pas valide.",
-  "dmErrorImageTooLarge": "Cette photo est trop volumineuse pour être envoyée.",
-  "dmInboxTitle": "Messages",
-  "dmMessagesTooltip": "Messages",
-  "dmRequestsTitle": "Demandes de message",
-  "dmRequestsRow": "{count, plural, one{Demandes de message ({count})} other{Demandes de message ({count})}}",
-  "dmRequestsCount": "{count, plural, one{{count} demande} other{{count} demandes}}",
-  "dmEmptyInbox": "Aucun message pour l'instant. Ouvrez le profil d'un joueur pour démarrer une conversation.",
-  "dmEmptyRequests": "Aucune demande de message.",
-  "dmLoadError": "Impossible de charger vos messages.",
-  "dmRetry": "Réessayer",
-  "dmSignedOut": "Connectez-vous pour voir vos messages.",
-  "dmLogIn": "Se connecter",
-  "dmUnreadCount": "{count, plural, one{{count} message non lu} other{{count} messages non lus}}",
-  "dmWaitingFor": "En attente de la réponse de {name}",
-  "dmRequestChip": "Demande",
-  "dmPreviewPhoto": "Photo",
-  "dmPreviewVoice": "Message vocal",
-  "dmPreviewRemoved": "Message supprimé",
-  "dmPreviewOther": "Message",
-  "dmTyping": "écrit…",
-  "dmOnline": "En ligne",
-  "dmVoiceSeconds": "{seconds, plural, one{{seconds} seconde} other{{seconds} secondes}}",
-  "dmMessageRemoved": "Message supprimé",
-  "dmUnsupported": "Message non pris en charge",
-  "dmForwardedLabel": "Transféré",
-  "dmEditedLabel": "modifié",
-  "dmReplyRemoved": "Message d'origine supprimé",
-  "dmReplyingTo": "Réponse à {name}",
-  "dmReplyPhoto": "Photo",
-  "dmReplySticker": "Autocollant",
-  "dmReplyVoice": "Message vocal",
-  "dmYou": "Vous",
-  "dmToday": "Aujourd'hui",
-  "dmYesterday": "Hier",
-  "dmNewMessages": "Nouveaux messages",
-  "dmReceiptSent": "Envoyé",
-  "dmReceiptDelivered": "Remis",
-  "dmReceiptRead": "Lu",
-  "dmSending": "Envoi en cours",
-  "dmRetryAction": "Réessayer",
-  "dmDiscard": "Supprimer",
-  "dmActionReply": "Répondre",
-  "dmActionCopy": "Copier",
-  "dmActionForward": "Transférer",
-  "dmActionEdit": "Modifier",
-  "dmActionUnsend": "Annuler l'envoi",
-  "dmActionReport": "Signaler",
-  "dmCopied": "Copié",
-  "dmComposerHint": "Message",
-  "dmSend": "Envoyer",
-  "dmEditingBar": "Modification du message",
-  "dmSave": "Enregistrer",
-  "dmCancel": "Annuler",
-  "dmCloseReply": "Annuler la réponse",
-  "dmConversationNotFound": "Cette conversation n'existe pas.",
-  "dmMore": "Plus d'options",
-  "dmStickers": "Autocollants",
-  "dmStickerUnknown": "Autocollant non pris en charge",
-  "dmForwardTitle": "Transférer à…",
-  "dmForwardEmpty": "Aucune conversation vers laquelle transférer.",
-  "dmForwarded": "Message transféré",
-  "dmAttachPhoto": "Envoyer une photo",
-  "dmPhotoLibrary": "Choisir dans la galerie",
-  "dmPhotoCamera": "Prendre une photo",
-  "dmImageUnavailable": "Image indisponible",
-  "dmBlock": "Bloquer",
-  "dmUnblock": "Débloquer",
-  "dmReport": "Signaler",
-  "dmBlockConfirmTitle": "Bloquer {name} ?",
-  "dmBlockConfirmBody": "Cette personne ne pourra plus vous écrire. Vous pouvez la débloquer à tout moment.",
-  "dmBlockedByMeBanner": "Vous avez bloqué {name}",
-  "dmCannotMessage": "Vous ne pouvez pas écrire à ce joueur.",
-  "dmReportTitle": "Signaler cette conversation",
-  "dmReportHint": "Que s'est-il passé ?",
-  "dmReportSubmit": "Envoyer le signalement",
-  "dmReported": "Merci. Nous examinerons votre signalement.",
-  "dmIncomingTitle": "{name} souhaite vous écrire",
-  "dmIncomingHint": "Vous seul savez que vous l'avez lu. Aucun accusé de lecture n'est envoyé tant que vous n'acceptez pas.",
-  "dmAccept": "Accepter",
-  "dmDecline": "Refuser",
-  "dmBlockAndReport": "Bloquer et signaler",
-  "dmWaitingHint": "Vous pouvez envoyer un seul message texte en attendant qu'il soit accepté.",
-  "dmMessageButton": "Message",
-  "dmVoiceMessage": "Message vocal",
-  "dmMicTooltip": "Enregistrer un message vocal",
-  "dmVoiceRecording": "Enregistrement",
-  "dmVoicePaused": "En pause",
-  "dmVoicePause": "Pause",
-  "dmVoiceResume": "Reprendre",
-  "dmVoiceStop": "Arrêter",
-  "dmVoiceDelete": "Supprimer",
-  "dmVoicePlay": "Lecture",
-  "dmVoiceTooShort": "C'était trop court. Enregistrez un peu plus longtemps.",
-  "dmMicDenied": "L'accès au microphone est nécessaire pour enregistrer des messages vocaux.",
-  "dmMicTryAgain": "Réessayer",
-  "dmMicOpenSettings": "Ouvrir les réglages",
-  "dmVoicePlaybackError": "Impossible de lire ce message vocal.",
-  "dmVoiceLimitReached": "Durée maximale atteinte",
-  "avatarChangePhoto": "Changer la photo",
-  "avatarFromGallery": "Choisir dans la galerie",
-  "avatarFromCamera": "Prendre une photo",
-  "avatarUploading": "Envoi de la photo…",
-  "avatarUploadFailed": "Impossible d'envoyer votre photo. Réessayez.",
-  "avatarTooLarge": "Cette photo est trop volumineuse. Choisissez-en une plus petite.",
-  "avatarNotImage": "Ce fichier n'est pas une photo utilisable.",
-  "guideOpen": "Guide et assistant",
-  "guideTitle": "Guide",
-  "guideHello": "Salut {name} !",
-  "@guideHello": {
+  "questErrorIncomplete": "Terminez d'abord les trois étapes.",
+  "questErrorInProgress": "Votre récompense est en cours de traitement. Réessayez dans une minute.",
+  "questErrorUnavailable": "Cette récompense n'est pas disponible pour le moment.",
+  "questErrorGeneric": "Impossible de réclamer le badge. Réessayez.",
+  "questLoadError": "Impossible de charger votre quête.",
+  "guideAskAssistant": "Interroger l'assistant",
+  "guideReplayTour": "Revoir la visite",
+  "tourSlide1Title": "Qu'est-ce que Sentinel X ?",
+  "tourSlide1Body": "Le foyer de l'esport mobile au Nigeria : participez, regardez, rejoignez la communauté et échangez du matériel.",
+  "tourSlide2Title": "Les quatre piliers",
+  "tourSlide2Body": "Participez aux tournois, regardez Sentinel X TV, rejoignez la communauté et échangez sur le Gaming Exchange.",
+  "tourSlide3Title": "Comment fonctionnent les tournois",
+  "tourSlide3Body": "Inscrivez-vous, payez les frais, jouez vos matchs et soumettez votre résultat. Un administrateur le confirme avant la mise à jour du tableau.",
+  "tourSlide4Title": "Prêt à jouer ?",
+  "tourSlide4Body": "Créez un compte pour vous inscrire à votre premier tournoi.",
+  "tourNext": "Suivant",
+  "tourBack": "Retour",
+  "tourCreateAccount": "Créer un compte",
+  "coachFixturesTitle": "Vos matchs",
+  "coachFixturesBody": "Vos prochains matchs apparaissent ici. Confirmez votre présence le moment venu.",
+  "coachQuestTitle": "Quête Prêt au combat",
+  "coachQuestBody": "Terminez trois étapes pour gagner un badge et des récompenses.",
+  "coachGuideTitle": "Guide et assistant",
+  "coachGuideBody": "Les quêtes, une visite rapide et un assistant de discussion se trouvent ici.",
+  "coachAccountTitle": "Votre compte",
+  "coachAccountBody": "Modifiez votre profil et vos paramètres.",
+  "coachTabsTitle": "Cinq onglets",
+  "coachTabsBody": "Compétition, Regarder, Communauté, Échanger et votre compte.",
+  "coachBellTitle": "Notifications",
+  "coachBellBody": "Les mises à jour de match et les récompenses apparaissent ici.",
+  "coachMessagesTitle": "Messages",
+  "coachMessagesBody": "Messages privés avec d'autres joueurs.",
+  "coachNext": "Suivant",
+  "coachDone": "Terminé",
+  "coachSkip": "Passer",
+  "coachStepOf": "{current} sur {total}",
+  "@coachStepOf": {
     "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
-  "guideHelloNoName": "Salut !",
-  "questBattleReadyTitle": "Quête Prêt au combat",
-  "questProgress": "{done} sur {total} terminées",
-  "@questProgress": {
-    "placeholders": {
-      "done": {
+      "current": {
         "type": "int"
       },
       "total": {
         "type": "int"
       }
     }
-  },
-  "questStepProfile_complete": "Complétez votre profil",
-  "questStepFirst_tournament_entered": "Inscrivez-vous à votre premier tournoi",
-  "questStepFirst_match_completed": "Terminez votre premier match",
-  "questStepGeneric": "Terminez cette étape",
-  "questTakeMeThere": "M'y emmener",
-  "questClaim": "Réclamer votre badge",
-  "questClaiming": "Réclamation…",
-  "questBadgeEarned": "Badge obtenu",
-  "questRewardLine": "{xp} XP et {coins} pièces",
-  "@questRewardLine": {
-    "placeholders": {
-      "xp": {
-        "type": "int"
-      },
-      "coins": {
-        "type": "int"
-      }
-    }
-  },
-  "questErrorIncomplete": "Terminez d'abord les trois étapes.",
-  "questErrorInProgress": "Votre récompense est en cours de traitement. Réessayez dans une minute.",
-  "questErrorUnavailable": "Cette récompense n'est pas disponible pour le moment.",
-  "questErrorGeneric": "Impossible de réclamer le badge. Réessayez.",
-  "questLoadError": "Impossible de charger votre quête.",
-  "guideAskAssistant": "Interroger l'assistant",
-  "guideReplayTour": "Revoir la visite",
-  "tourSlide1Title": "Qu'est-ce que Sentinel X ?",
-  "tourSlide1Body": "Le foyer de l'esport mobile au Nigeria : participez, regardez, rejoignez la communauté et échangez du matériel.",
-  "tourSlide2Title": "Les quatre piliers",
-  "tourSlide2Body": "Participez aux tournois, regardez Sentinel X TV, rejoignez la communauté et échangez sur le Gaming Exchange.",
-  "tourSlide3Title": "Comment fonctionnent les tournois",
-  "tourSlide3Body": "Inscrivez-vous, payez les frais, jouez vos matchs et soumettez votre résultat. Un administrateur le confirme avant la mise à jour du tableau.",
-  "tourSlide4Title": "Prêt à jouer ?",
-  "tourSlide4Body": "Créez un compte pour vous inscrire à votre premier tournoi.",
-  "tourNext": "Suivant",
-  "tourBack": "Retour",
-  "tourCreateAccount": "Créer un compte"
+  }
 }
