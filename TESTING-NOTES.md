@@ -145,3 +145,23 @@ the staging web). Never against production.
 | 14 | `markAllDelivered` timing: the sender sees two ticks shortly after the receiver opens the app | pending |
 | 15 | 375 px: no overflow on the inbox, conversation, request panel and voice composer (also in French) | pending |
 | 16 | The web 5a device pass is still outstanding (separate item) | pending |
+
+## Phase 5c device pass (guide, coach marks, avatar upload, support chat)
+
+Run on a real Android device against the **staging** web (never production). Test accounts use the `zzqa_` prefix.
+
+| # | Check | Result |
+|---|---|---|
+| 1 | Quest steps flip as each real step completes (profile, first tournament entry, first completed match) | pending |
+| 2 | Claim once: a second tap or a retry shows "Badge earned"; XP and coins change exactly once | pending |
+| 3 | Avatar upload with a GPS-tagged photo: open the uploaded file's URL and confirm it carries no EXIF; the avatar updates after saving | pending |
+| 4 | Chat signed in: a wallet question shows the correct balance; streaming looks smooth | pending |
+| 5 | Chat: background the app mid-reply, return, tap Retry (one answer, no duplicate bubble); airplane mode mid-reply, then Retry | pending |
+| 6 | Chat: rapid sends show the rate-limit message with a countdown; Retry enables when it ends | pending |
+| 7 | Chat: Clear chat asks first, then empties; the 30-day notice is shown | pending |
+| 8 | Chat signed out: an FAQ answer works, no account data is offered, nothing is saved, the notice says so, "busy" copy asks to sign in | pending |
+| 9 | Coach marks: first launch shows them, Skip and system Back dismiss and do not return, "Replay the tour" restarts them; TalkBack announces each step | pending |
+| 10 | The equipped bubble skin shows on the guide button; the default mascot shows when none is equipped or signed out | pending |
+| 11 | French locale: guide, tour, coach marks, chat and error copy; 375 px with no overflow | pending |
+| 12 | The **eval** result from the web plan (Task 14) | pending |
+| 13 | Streaming over Vercel on a real mobile network (buffering would show as one burst at the end) | pending |
