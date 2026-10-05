@@ -119,3 +119,29 @@ registered from the staging app are unreachable).
 | 11 | Sign out with the network off: sign-out still completes | pending |
 | 12 | 375px: no overflow on the bell, the mute sheet, the settings screen (also in French) | pending |
 | 13 | Tap a push whose link has no screen yet (e.g. a wallet notification): opens the bell, does nothing else | pending |
+
+## Phase 5b - direct messages (device pass, owner)
+
+Not verifiable in unit tests: anything that needs two real accounts, real Realtime, real Storage or real hardware.
+Run on **staging** (`sentinelx-staging`, `ofxmoxpvwbemfouaowoa`, via `--dart-define` of `SUPABASE_URL`,
+`SUPABASE_PUBLISHABLE_KEY`, `API_BASE_URL`) with two real accounts (`zzqa_` prefix) on two devices (or one device and
+the staging web). Never against production.
+
+| # | Check | Result |
+|---|---|---|
+| 1 | Send and receive text both ways; ticks go sent -> delivered -> read as the other side opens the thread | pending |
+| 2 | Photo: send one; the **received file has no GPS EXIF** (inspect it); a 4000 px photo arrives at <= 1600 px | pending |
+| 3 | Sticker: all 14 send and render on both sides | pending |
+| 4 | Voice note: record -> pause -> review -> send -> play on the other device; the 120 s cap lands in review; a phone call mid-recording pauses it (no auto-resume); deny the microphone, then Open settings, then return: the banner clears | pending |
+| 5 | Reply (quote shows), edit and unsend inside 10 minutes, and the controls gone after 10 minutes | pending |
+| 6 | Forward a message to another conversation | pending |
+| 7 | Typing shows in both directions, and is **absent** in a pending request thread and in a blocked thread | pending |
+| 8 | Online dot appears/disappears as the other account opens/backgrounds the app | pending |
+| 9 | DM push in the **foreground**: open thread = no banner, another thread = banner; **background** and **killed**: tap opens the thread over the current tab and Back returns to that tab | pending |
+| 10 | Message request, end to end: a stranger starts a thread -> the recipient sees a preview-only thread, **no read receipt and no push** -> Accept; Decline looks like a block to the sender; replying auto-accepts; the outgoing side notices acceptance within about 25 s | pending |
+| 11 | Block, unblock and report from the menu and from a message | pending |
+| 12 | Airplane-mode toggle, and background for 10 minutes then return: the window reconciles with no gap and expired image/voice URLs refresh | pending |
+| 13 | Realtime rejoin after a network loss (Ruling 4: whether `realtime_client` re-fires `subscribed` on its own rejoin is unverified) | pending |
+| 14 | `markAllDelivered` timing: the sender sees two ticks shortly after the receiver opens the app | pending |
+| 15 | 375 px: no overflow on the inbox, conversation, request panel and voice composer (also in French) | pending |
+| 16 | The web 5a device pass is still outstanding (separate item) | pending |

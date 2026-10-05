@@ -18,6 +18,7 @@ import 'package:sentinelx_mobile/features/progress/progress_providers.dart';
 import 'package:sentinelx_mobile/router/app_router.dart';
 
 import '../fakes/fake_messages_repository.dart';
+import '../fakes/fake_realtime.dart';
 import '../support/fake_players_repository.dart';
 import '../support/fake_progress_repository.dart';
 
@@ -73,6 +74,7 @@ void main() {
         messagesRepositoryProvider.overrideWithValue(messages),
         dmViewerIdProvider.overrideWith((ref) async => 'me1'),
         dmNudgeProvider.overrideWith((ref) => const Stream<RealtimeSignal>.empty()),
+        realtimeHubProvider.overrideWithValue(RealtimeHub(factory: FakeChannelFactory(), lifecycle: FakeLifecycle())),
         meProvider.overrideWith((ref) async => const MeResponse(id: 'me1', email: null, roles: [], isStaff: false, isAdmin: false, profile: null)),
       ],
       child: MaterialApp.router(

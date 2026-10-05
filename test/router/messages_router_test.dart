@@ -15,6 +15,7 @@ import 'package:sentinelx_mobile/features/notifications/notifications_repository
 
 import '../fakes/fake_messages_repository.dart';
 import '../fakes/fake_notifications_repository.dart';
+import '../fakes/fake_realtime.dart';
 import '../support/pump_app.dart';
 
 const _id = '3f2b8c1e-9d4a-4b7e-8a61-5c0d2e7f9a10';
@@ -27,6 +28,7 @@ Future<void> _pump(WidgetTester tester, String location, {int dmCount = 0}) => p
           FakeMessagesRepository(inbox: [thread('a')], requests: [thread('q', requestState: RequestState.pending, direction: RequestDirection.incoming)], requestCount: 1),
         ),
         dmNudgeProvider.overrideWith((ref) => const Stream<RealtimeSignal>.empty()),
+        realtimeHubProvider.overrideWithValue(RealtimeHub(factory: FakeChannelFactory(), lifecycle: FakeLifecycle())),
         notificationsRepositoryProvider.overrideWithValue(FakeNotificationsRepository(rows: [bell('a')])),
         notificationsRealtimeProvider.overrideWith((ref) => const Stream<int>.empty()),
         unreadNotificationCountProvider.overrideWith((ref) => Stream.value(0)),
