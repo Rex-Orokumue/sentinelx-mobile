@@ -266,6 +266,18 @@ abstract class AppLocalizations {
   /// **'Create account'**
   String get accountCreateAccount;
 
+  /// No description provided for @accountLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your account.'**
+  String get accountLoadFailed;
+
+  /// No description provided for @accountRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get accountRetry;
+
   /// No description provided for @accountSignOut.
   ///
   /// In en, this message translates to:

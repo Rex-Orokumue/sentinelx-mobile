@@ -96,6 +96,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get accountCreateAccount => 'Créer un compte';
 
   @override
+  String get accountLoadFailed => 'Impossible de charger votre compte.';
+
+  @override
+  String get accountRetry => 'Réessayer';
+
+  @override
   String get accountSignOut => 'Se déconnecter';
 
   @override

@@ -95,6 +95,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get accountCreateAccount => 'Create account';
 
   @override
+  String get accountLoadFailed => 'Couldn\'t load your account.';
+
+  @override
+  String get accountRetry => 'Retry';
+
+  @override
   String get accountSignOut => 'Sign out';
 
   @override

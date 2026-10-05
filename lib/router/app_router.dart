@@ -84,7 +84,8 @@ GoRouter buildAppRouter({
         path: '/',
         builder: (context, state) => HomeScreen(
           onGoTo: (path) => context.go(path),
-          onOpenLobby: (id, lobby) => context.push('/lobbies/$id/result', extra: lobby),
+          onOpenLobby: (id, lobby) =>
+              context.push('/lobbies/$id/result', extra: lobby),
         ),
       ),
       GoRoute(
@@ -133,17 +134,35 @@ GoRouter buildAppRouter({
           onUnauthorized: () => context.go('/login'),
         ),
       ),
-      GoRoute(path: '/invitations', builder: (context, state) => const InvitationsScreen()),
+      GoRoute(
+        path: '/invitations',
+        builder: (context, state) => const InvitationsScreen(),
+      ),
       GoRoute(path: '/games', builder: (context, state) => const GamesScreen()),
-      GoRoute(path: '/notifications', builder: (context, state) => const NotificationsScreen()),
+      GoRoute(
+        path: '/notifications',
+        builder: (context, state) => const NotificationsScreen(),
+      ),
       // Outside the shell. /messages/requests is declared before /messages/:threadId so it is never read as an id.
-      GoRoute(path: '/messages', builder: (context, state) => const InboxScreen()),
-      GoRoute(path: '/messages/requests', builder: (context, state) => const RequestsScreen()),
-      GoRoute(path: '/messages/:threadId', builder: (context, state) => ConversationScreen(threadId: state.pathParameters['threadId']!)),
+      GoRoute(
+        path: '/messages',
+        builder: (context, state) => const InboxScreen(),
+      ),
+      GoRoute(
+        path: '/messages/requests',
+        builder: (context, state) => const RequestsScreen(),
+      ),
+      GoRoute(
+        path: '/messages/:threadId',
+        builder: (context, state) =>
+            ConversationScreen(threadId: state.pathParameters['threadId']!),
+      ),
       GoRoute(
         path: '/lobbies/:id/result',
-        builder: (context, state) =>
-            LobbyResultScreen(lobbyId: state.pathParameters['id']!, lobby: state.extra as NextLobby?),
+        builder: (context, state) => LobbyResultScreen(
+          lobbyId: state.pathParameters['id']!,
+          lobby: state.extra as NextLobby?,
+        ),
       ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, shell) => Scaffold(
@@ -176,73 +195,95 @@ GoRouter buildAppRouter({
           ),
         ),
         branches: [
-          StatefulShellBranch(routes: [
-            GoRoute(
-              path: '/tournaments',
-              builder: (context, state) => CompeteListScreen(
-                onTournamentTap: (tournament) => context.push('/tournaments/${tournament.id}'),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/tournaments',
+                builder: (context, state) => CompeteListScreen(
+                  onTournamentTap: (tournament) =>
+                      context.push('/tournaments/${tournament.id}'),
+                ),
+                routes: [
+                  GoRoute(
+                    path: ':id',
+                    builder: (context, state) {
+                      final id = state.pathParameters['id']!;
+                      return CompeteDetailScreen(
+                        tournamentId: id,
+                        onViewBracket: (tournamentId) =>
+                            context.push('/tournaments/$tournamentId/bracket'),
+                        onLogin: () => context.push('/login'),
+                        onNeedsUsername: () =>
+                            context.push('/onboarding/username'),
+                        onViewInvitations: () => context.push('/invitations'),
+                      );
+                    },
+                    routes: [
+                      GoRoute(
+                        path: 'bracket',
+                        builder: (context, state) {
+                          final id = state.pathParameters['id']!;
+                          return BracketScreen(
+                            tournamentId: id,
+                            onMatchTap: (matchId) =>
+                                context.push('/matches/$matchId'),
+                            onStageTap: (stage) => context.push(
+                              '/tournaments/$id/stages/${stage.id}',
+                              extra: stage,
+                            ),
+                          );
+                        },
+                      ),
+                      GoRoute(
+                        path: 'stages/:stageId',
+                        builder: (context, state) {
+                          final id = state.pathParameters['id']!;
+                          final stageId = state.pathParameters['stageId']!;
+                          final stage =
+                              state.extra as StageInfo? ??
+                              StageInfo(
+                                id: stageId,
+                                seq: 0,
+                                name: AppLocalizations.of(context).mtcStages,
+                                status: '',
+                              );
+                          return StageStandingsScreen(
+                            tournamentId: id,
+                            stage: stage,
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ],
               ),
-              routes: [
-                GoRoute(
-                  path: ':id',
-                  builder: (context, state) {
-                    final id = state.pathParameters['id']!;
-                    return CompeteDetailScreen(
-                      tournamentId: id,
-                      onViewBracket: (tournamentId) => context.push('/tournaments/$tournamentId/bracket'),
-                      onLogin: () => context.push('/login'),
-                      onNeedsUsername: () => context.push('/onboarding/username'),
-                      onViewInvitations: () => context.push('/invitations'),
-                    );
-                  },
-                  routes: [
-                    GoRoute(
-                      path: 'bracket',
-                      builder: (context, state) {
-                        final id = state.pathParameters['id']!;
-                        return BracketScreen(
-                          tournamentId: id,
-                          onMatchTap: (matchId) => context.push('/matches/$matchId'),
-                          onStageTap: (stage) => context.push('/tournaments/$id/stages/${stage.id}', extra: stage),
-                        );
-                      },
-                    ),
-                    GoRoute(
-                      path: 'stages/:stageId',
-                      builder: (context, state) {
-                        final id = state.pathParameters['id']!;
-                        final stageId = state.pathParameters['stageId']!;
-                        final stage = state.extra as StageInfo? ??
-                            StageInfo(id: stageId, seq: 0, name: AppLocalizations.of(context).mtcStages, status: '');
-                        return StageStandingsScreen(tournamentId: id, stage: stage);
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            GoRoute(
-              path: '/matches/:id',
-              builder: (context, state) {
-                final id = state.pathParameters['id']!;
-                return MatchCentreScreen(
-                  matchId: id,
-                  onLogin: () => context.push('/login'),
-                  onSubmitResult: (m) => context.push('/matches/${m.id}/result', extra: m),
-                  onRate: (m) => showRatingSheet(context, match: m),
-                );
-              },
-              routes: [
-                GoRoute(
-                  path: 'result',
-                  builder: (context, state) {
-                    final extra = state.extra as MatchInfo?;
-                    if (extra != null) return ResultSubmissionScreen(match: extra);
-                    return _ResultRouteGate(matchId: state.pathParameters['id']!);
-                  },
-                ),
-              ],
-            ),
+              GoRoute(
+                path: '/matches/:id',
+                builder: (context, state) {
+                  final id = state.pathParameters['id']!;
+                  return MatchCentreScreen(
+                    matchId: id,
+                    onLogin: () => context.push('/login'),
+                    onSubmitResult: (m) =>
+                        context.push('/matches/${m.id}/result', extra: m),
+                    onRate: (m) => showRatingSheet(context, match: m),
+                  );
+                },
+                routes: [
+                  GoRoute(
+                    path: 'result',
+                    builder: (context, state) {
+                      final extra = state.extra as MatchInfo?;
+                      if (extra != null) {
+                        return ResultSubmissionScreen(match: extra);
+                      }
+                      return _ResultRouteGate(
+                        matchId: state.pathParameters['id']!,
+                      );
+                    },
+                  ),
+                ],
+              ),
               GoRoute(
                 path: '/rankings',
                 builder: (context, state) =>
@@ -265,137 +306,204 @@ GoRouter buildAppRouter({
                 path: '/hall-of-fame',
                 builder: (context, state) => const HallOfFameScreen(),
               ),
-            GoRoute(
-              path: '/players',
-              builder: (context, state) => PlayersDirectoryScreen(onPlayerTap: (u) => context.push('/players/${Uri.encodeComponent(u)}')),
-              routes: [
-                GoRoute(
-                  path: ':username',
-                  builder: (context, state) => PlayerProfileScreen(
-                    username: state.pathParameters['username']!,
-                    onLogIn: () => context.push('/login'),
-                    onOpenFollowers: (u) => context.push('/players/${Uri.encodeComponent(u)}/followers'),
-                    onOpenFollowing: (u) => context.push('/players/${Uri.encodeComponent(u)}/following'),
-                    onMessage: (threadId) => context.push('/messages/${Uri.encodeComponent(threadId)}'),
-                  ),
-                  routes: [
-                    GoRoute(
-                      path: 'followers',
-                      builder: (context, state) => FollowListScreen(
-                        username: state.pathParameters['username']!,
-                        kind: FollowListKind.followers,
-                        onPlayerTap: (u) => context.push('/players/${Uri.encodeComponent(u)}'),
-                      ),
-                    ),
-                    GoRoute(
-                      path: 'following',
-                      builder: (context, state) => FollowListScreen(
-                        username: state.pathParameters['username']!,
-                        kind: FollowListKind.following,
-                        onPlayerTap: (u) => context.push('/players/${Uri.encodeComponent(u)}'),
-                      ),
-                    ),
-                  ],
+              GoRoute(
+                path: '/players',
+                builder: (context, state) => PlayersDirectoryScreen(
+                  onPlayerTap: (u) =>
+                      context.push('/players/${Uri.encodeComponent(u)}'),
                 ),
-              ],
-            ),
-          ]),
-          StatefulShellBranch(routes: [
-            GoRoute(path: '/tv', builder: (context, state) => ComingSoonScreen(title: 'Watch', onLogoTap: () => context.go('/'))),
-          ]),
-          StatefulShellBranch(routes: [
-            GoRoute(
-              path: '/community',
-              builder: (context, state) => CommunityFeedScreen(
-                onCompose: () => context.push('/community/compose'),
-                onPostTap: (post) => context.push('/community/${Uri.encodeComponent(post.id)}'),
-                onLogin: () => context.push('/login'),
-                onStatusTap: (ring) => context.push('/community/statuses/${Uri.encodeComponent(ring.playerId)}', extra: ring),
-                onAddStatus: () => context.push('/community/statuses/compose'),
-                onEventTap: (event) {
-                  final path = resolveWebLink(event.ctaHref);
-                  if (path != null) context.push(path);
-                },
+                routes: [
+                  GoRoute(
+                    path: ':username',
+                    builder: (context, state) => PlayerProfileScreen(
+                      username: state.pathParameters['username']!,
+                      onLogIn: () => context.push('/login'),
+                      onOpenFollowers: (u) => context.push(
+                        '/players/${Uri.encodeComponent(u)}/followers',
+                      ),
+                      onOpenFollowing: (u) => context.push(
+                        '/players/${Uri.encodeComponent(u)}/following',
+                      ),
+                      onMessage: (threadId) => context.push(
+                        '/messages/${Uri.encodeComponent(threadId)}',
+                      ),
+                    ),
+                    routes: [
+                      GoRoute(
+                        path: 'followers',
+                        builder: (context, state) => FollowListScreen(
+                          username: state.pathParameters['username']!,
+                          kind: FollowListKind.followers,
+                          onPlayerTap: (u) => context.push(
+                            '/players/${Uri.encodeComponent(u)}',
+                          ),
+                        ),
+                      ),
+                      GoRoute(
+                        path: 'following',
+                        builder: (context, state) => FollowListScreen(
+                          username: state.pathParameters['username']!,
+                          kind: FollowListKind.following,
+                          onPlayerTap: (u) => context.push(
+                            '/players/${Uri.encodeComponent(u)}',
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-              routes: [
-                GoRoute(path: 'compose', builder: (context, state) => const ComposeScreen()),
-                GoRoute(path: 'statuses/compose', builder: (context, state) => const StatusComposeScreen()),
-                GoRoute(
-                  path: 'statuses/:playerId',
-                  builder: (context, state) {
-                    final ring = state.extra as StatusRing?;
-                    if (ring == null) return const _StatusRouteGate();
-                    return StatusViewerScreen(
-                      ring: ring,
-                      onOpenViewers: (id) => context.push('/community/statuses/${Uri.encodeComponent(id)}/viewers'),
-                    );
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/tv',
+                builder: (context, state) => ComingSoonScreen(
+                  title: 'Watch',
+                  onLogoTap: () => context.go('/'),
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/community',
+                builder: (context, state) => CommunityFeedScreen(
+                  onCompose: () => context.push('/community/compose'),
+                  onPostTap: (post) => context.push(
+                    '/community/${Uri.encodeComponent(post.id)}',
+                  ),
+                  onLogin: () => context.push('/login'),
+                  onStatusTap: (ring) => context.push(
+                    '/community/statuses/${Uri.encodeComponent(ring.playerId)}',
+                    extra: ring,
+                  ),
+                  onAddStatus: () =>
+                      context.push('/community/statuses/compose'),
+                  onEventTap: (event) {
+                    final path = resolveWebLink(event.ctaHref);
+                    if (path != null) context.push(path);
                   },
                 ),
-                GoRoute(
-                  path: 'statuses/:statusId/viewers',
-                  builder: (context, state) => StatusViewersScreen(statusId: state.pathParameters['statusId']!),
-                ),
-                GoRoute(
-                  path: ':id',
-                  builder: (context, state) => PostDetailScreen(
-                    postId: state.pathParameters['id']!,
-                    onLogin: () => context.push('/login'),
-                    onDeleted: () => context.pop(),
+                routes: [
+                  GoRoute(
+                    path: 'compose',
+                    builder: (context, state) => const ComposeScreen(),
                   ),
-                ),
-              ],
-            ),
-          ]),
-          StatefulShellBranch(routes: [
-            GoRoute(path: '/exchange', builder: (context, state) => ComingSoonScreen(title: 'Trade', onLogoTap: () => context.go('/'))),
-          ]),
-          StatefulShellBranch(routes: [
-            GoRoute(
-              path: '/account',
-              builder: (context, state) => AccountScreen(
-                onLogIn: () => context.push('/login'),
-                onSignUp: () => context.push('/signup'),
-                onLogoTap: () => context.go('/'),
-                onEditProfile: () => context.push('/account/profile'),
-                onOpenProgress: () => context.push('/account/progress'),
-                onOpenNotifications: () => context.push('/account/notifications'),
+                  GoRoute(
+                    path: 'statuses/compose',
+                    builder: (context, state) => const StatusComposeScreen(),
+                  ),
+                  GoRoute(
+                    path: 'statuses/:playerId',
+                    builder: (context, state) {
+                      final ring = state.extra as StatusRing?;
+                      if (ring == null) return const _StatusRouteGate();
+                      return StatusViewerScreen(
+                        ring: ring,
+                        onOpenViewers: (id) => context.push(
+                          '/community/statuses/${Uri.encodeComponent(id)}/viewers',
+                        ),
+                      );
+                    },
+                  ),
+                  GoRoute(
+                    path: 'statuses/:statusId/viewers',
+                    builder: (context, state) => StatusViewersScreen(
+                      statusId: state.pathParameters['statusId']!,
+                    ),
+                  ),
+                  GoRoute(
+                    path: ':id',
+                    builder: (context, state) => PostDetailScreen(
+                      postId: state.pathParameters['id']!,
+                      onLogin: () => context.push('/login'),
+                      onDeleted: () => context.pop(),
+                    ),
+                  ),
+                ],
               ),
-              routes: [
-                GoRoute(path: 'profile', builder: (context, state) => const EditProfileScreen()),
-                GoRoute(path: 'notifications', builder: (context, state) => const NotificationSettingsScreen()),
-                GoRoute(
-                  path: 'progress',
-                  builder: (context, state) => MyProgressScreen(onGoTo: (p) => context.push(p), onLogIn: () => context.push('/login')),
-                  routes: [
-                    GoRoute(
-                      path: 'xp',
-                      builder: (context, state) => HistoryListScreen<XpEvent>(
-                        title: AppLocalizations.of(context).progressHistoryXp,
-                        provider: xpHistoryProvider,
-                        rowBuilder: xpRow,
-                      ),
-                    ),
-                    GoRoute(
-                      path: 'score',
-                      builder: (context, state) => HistoryListScreen<SxScoreEvent>(
-                        title: AppLocalizations.of(context).progressHistoryScore,
-                        provider: scoreHistoryProvider,
-                        rowBuilder: scoreRow,
-                      ),
-                    ),
-                    GoRoute(
-                      path: 'coins',
-                      builder: (context, state) => HistoryListScreen<CoinTransaction>(
-                        title: AppLocalizations.of(context).progressHistoryCoins,
-                        provider: coinHistoryProvider,
-                        rowBuilder: coinRow,
-                      ),
-                    ),
-                  ],
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/exchange',
+                builder: (context, state) => ComingSoonScreen(
+                  title: 'Trade',
+                  onLogoTap: () => context.go('/'),
                 ),
-              ],
-            ),
-          ]),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/account',
+                builder: (context, state) => AccountScreen(
+                  onLogIn: () => context.push('/login'),
+                  onSignUp: () => context.push('/signup'),
+                  onLogoTap: () => context.go('/'),
+                  onEditProfile: () => context.push('/account/profile'),
+                  onOpenProgress: () => context.push('/account/progress'),
+                  onOpenNotifications: () =>
+                      context.push('/account/notifications'),
+                ),
+                routes: [
+                  GoRoute(
+                    path: 'profile',
+                    builder: (context, state) => const EditProfileScreen(),
+                  ),
+                  GoRoute(
+                    path: 'notifications',
+                    builder: (context, state) =>
+                        const NotificationSettingsScreen(),
+                  ),
+                  GoRoute(
+                    path: 'progress',
+                    builder: (context, state) => MyProgressScreen(
+                      onGoTo: (p) => context.push(p),
+                      onLogIn: () => context.push('/login'),
+                    ),
+                    routes: [
+                      GoRoute(
+                        path: 'xp',
+                        builder: (context, state) => HistoryListScreen<XpEvent>(
+                          title: AppLocalizations.of(context).progressHistoryXp,
+                          provider: xpHistoryProvider,
+                          rowBuilder: xpRow,
+                        ),
+                      ),
+                      GoRoute(
+                        path: 'score',
+                        builder: (context, state) =>
+                            HistoryListScreen<SxScoreEvent>(
+                              title: AppLocalizations.of(
+                                context,
+                              ).progressHistoryScore,
+                              provider: scoreHistoryProvider,
+                              rowBuilder: scoreRow,
+                            ),
+                      ),
+                      GoRoute(
+                        path: 'coins',
+                        builder: (context, state) =>
+                            HistoryListScreen<CoinTransaction>(
+                              title: AppLocalizations.of(
+                                context,
+                              ).progressHistoryCoins,
+                              provider: coinHistoryProvider,
+                              rowBuilder: coinRow,
+                            ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
         ],
       ),
       if (debugTools)
@@ -408,9 +516,6 @@ GoRouter buildAppRouter({
 }
 
 final routerProvider = Provider<GoRouter>((ref) {
-  final refresh = _RouterRefresh();
-  ref.listen(sessionProvider, (_, _) => refresh.ping());
-  ref.listen(meProvider, (_, _) => refresh.ping());
   final router = buildAppRouter(
     debugTools: ref.watch(appConfigProvider).debugTools,
     authGate: () => AuthGateSnapshot(
@@ -421,18 +526,16 @@ final routerProvider = Provider<GoRouter>((ref) {
       isSignedIn: ref.read(meProvider).asData?.value != null,
       onboardingGate: ref.read(onboardingGateProvider),
     ),
-    refreshListenable: refresh,
   );
+  void reevaluate() => router.refresh();
+
+  ref.listen(sessionProvider, (_, _) => reevaluate());
+  ref.listen(onboardingGateProvider, (_, _) => reevaluate());
   ref.onDispose(() {
     router.dispose();
-    refresh.dispose();
   });
   return router;
 });
-
-class _RouterRefresh extends ChangeNotifier {
-  void ping() => notifyListeners();
-}
 
 /// A cold `/community/statuses/:playerId` link carries no ring, and no endpoint hydrates one by id —
 /// so there is nothing to load. A ring tapped in the app always arrives with `extra`; only a
@@ -459,19 +562,23 @@ class _ResultRouteGate extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final async = ref.watch(matchInfoProvider(matchId));
     return async.when(
-      loading: () => const Scaffold(body: Center(child: CircularProgressIndicator())),
+      loading: () =>
+          const Scaffold(body: Center(child: CircularProgressIndicator())),
       error: (_, _) => Scaffold(
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(24),
-            child: Column(mainAxisSize: MainAxisSize.min, children: [
-              Text(AppLocalizations.of(context).cmpLoadError),
-              const SizedBox(height: 12),
-              OutlinedButton(
-                onPressed: () => ref.invalidate(matchInfoProvider(matchId)),
-                child: Text(AppLocalizations.of(context).cmpRetry),
-              ),
-            ]),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(AppLocalizations.of(context).cmpLoadError),
+                const SizedBox(height: 12),
+                OutlinedButton(
+                  onPressed: () => ref.invalidate(matchInfoProvider(matchId)),
+                  child: Text(AppLocalizations.of(context).cmpRetry),
+                ),
+              ],
+            ),
           ),
         ),
       ),

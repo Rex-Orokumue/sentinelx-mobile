@@ -1,6 +1,39 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 
+const _unsupportedPhoneRegions = ['HM', 'GS'];
+
+const _canonicalNamesByCode = <String, String>{
+  'AG': 'Antigua & Barbuda',
+  'BA': 'Bosnia & Herzegovina',
+  'CC': 'Cocos (Keeling) Islands',
+  'CD': 'Congo - Kinshasa',
+  'CG': 'Congo - Brazzaville',
+  'CI': 'Côte d’Ivoire',
+  'CZ': 'Czechia',
+  'TL': 'Timor-Leste',
+  'FK': 'Falkland Islands',
+  'GN': 'Guinea',
+  'HK': 'Hong Kong SAR China',
+  'MO': 'Macao SAR China',
+  'MM': 'Myanmar (Burma)',
+  'BL': 'St. Barthélemy',
+  'SH': 'St. Helena',
+  'KN': 'St. Kitts & Nevis',
+  'MF': 'St. Martin',
+  'PM': 'St. Pierre & Miquelon',
+  'VC': 'St. Vincent & Grenadines',
+  'ST': 'São Tomé & Príncipe',
+  'SJ': 'Svalbard & Jan Mayen',
+  'TR': 'Türkiye',
+  'TC': 'Turks & Caicos Islands',
+  'TT': 'Trinidad & Tobago',
+  'WF': 'Wallis & Futuna',
+};
+
+String canonicalCountryName(Country country) =>
+    _canonicalNamesByCode[country.countryCode] ?? country.name;
+
 class CountryField extends StatelessWidget {
   const CountryField({
     super.key,
@@ -27,7 +60,8 @@ class CountryField extends StatelessWidget {
             context: context,
             showPhoneCode: false,
             useSafeArea: true,
-            onSelect: (country) => onChanged(country.name),
+            exclude: _unsupportedPhoneRegions,
+            onSelect: (country) => onChanged(canonicalCountryName(country)),
           )
         : null,
     child: InputDecorator(

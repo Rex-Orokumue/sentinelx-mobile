@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/misc.dart' show Override;
@@ -29,6 +31,53 @@ Widget _app(List<Override> overrides, AccountScreen screen) => ProviderScope(
     );
 
 void main() {
+  testWidgets('loading: shows progress without authentication actions', (tester) async {
+    final pending = Completer<MeResponse?>();
+    addTearDown(() {
+      if (!pending.isCompleted) pending.complete(null);
+    });
+    await tester.pumpWidget(_app(
+      [meProvider.overrideWith((ref) => pending.future)],
+      AccountScreen(onLogIn: () {}, onSignUp: () {}, onLogoTap: () {}),
+    ));
+    await tester.pump();
+    expect(find.byKey(const Key('account-loading')), findsOneWidget);
+    expect(find.byKey(const Key('account-login')), findsNothing);
+    expect(find.byKey(const Key('account-signup')), findsNothing);
+  });
+
+  testWidgets('load failure: shows retry without authentication actions', (tester) async {
+    await tester.pumpWidget(_app(
+      [meProvider.overrideWith((ref) async => throw Exception('boom'))],
+      AccountScreen(onLogIn: () {}, onSignUp: () {}, onLogoTap: () {}),
+    ));
+    await tester.pumpAndSettle();
+    expect(find.text("Couldn't load your account."), findsOneWidget);
+    expect(find.byKey(const Key('account-retry')), findsOneWidget);
+    expect(find.byKey(const Key('account-login')), findsNothing);
+    expect(find.byKey(const Key('account-signup')), findsNothing);
+  });
+
+  testWidgets('load failure: retry refetches and shows the account', (tester) async {
+    var attempts = 0;
+    await tester.pumpWidget(_app(
+      [
+        meProvider.overrideWith((ref) async {
+          attempts++;
+          if (attempts == 1) throw Exception('boom');
+          return _me();
+        }),
+      ],
+      AccountScreen(onLogIn: () {}, onSignUp: () {}, onLogoTap: () {}),
+    ));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('account-retry')));
+    await tester.pumpAndSettle();
+    expect(attempts, 2);
+    expect(find.text('Ada'), findsOneWidget);
+    expect(find.byKey(const Key('account-sign-out')), findsOneWidget);
+  });
+
   testWidgets('signed out: shows log in and create account actions', (tester) async {
     var loginTapped = false;
     await tester.pumpWidget(_app(
