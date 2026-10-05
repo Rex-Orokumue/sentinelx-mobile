@@ -144,4 +144,33 @@ void main() {
     expect(resolveWebLink('/account/notifications'), isNull);
     expect(resolveWebLink('/account'), isNull);
   });
+
+  group('messages links', () {
+    const id = '3f2b8c1e-9d4a-4b7e-8a61-5c0d2e7f9a10';
+
+    test('/messages maps to the inbox, with or without a locale prefix', () {
+      expect(resolveWebLink('https://sentinelxesports.com.ng/messages'), '/messages');
+      expect(resolveWebLink('https://sentinelxesports.com.ng/fr/messages'), '/messages');
+    });
+
+    test('a thread link maps to the conversation (lower-cased), locale stripped', () {
+      expect(resolveWebLink('/messages/$id'), '/messages/$id');
+      expect(resolveWebLink('https://sentinelxesports.com.ng/fr/messages/$id'), '/messages/$id');
+      expect(resolveWebLink('https://sentinelxesports.com.ng/messages/${id.toUpperCase()}'), '/messages/$id');
+    });
+
+    test('in-app /messages/requests passes through the redirect untouched (lesson 9)', () {
+      expect(resolveWebLink('/messages/requests'), isNull);
+    });
+
+    test('an external page under /messages that is not a thread lands on the inbox', () {
+      expect(resolveWebLink('https://sentinelxesports.com.ng/messages/requests'), '/messages');
+      expect(resolveWebLink('https://sentinelxesports.com.ng/messages/garbage'), '/messages');
+    });
+
+    test('anything deeper than a thread is unmapped', () {
+      expect(resolveWebLink('/messages/$id/x'), isNull);
+      expect(resolveWebLink('https://sentinelxesports.com.ng/messages/$id/x'), isNull);
+    });
+  });
 }

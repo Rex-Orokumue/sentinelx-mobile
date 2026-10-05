@@ -32,6 +32,9 @@ import '../features/rankings/rankings_screen.dart';
 import '../features/seasons/seasons_list_screen.dart';
 import '../features/seasons/season_detail_screen.dart';
 import '../features/hall_of_fame/hall_of_fame_screen.dart';
+import '../features/messages/conversation_screen.dart';
+import '../features/messages/inbox_screen.dart';
+import '../features/messages/requests_screen.dart';
 import '../features/notifications/notification_settings_screen.dart';
 import '../features/notifications/notifications_screen.dart';
 import '../features/onboarding/onboarding_username_screen.dart';
@@ -133,6 +136,10 @@ GoRouter buildAppRouter({
       GoRoute(path: '/invitations', builder: (context, state) => const InvitationsScreen()),
       GoRoute(path: '/games', builder: (context, state) => const GamesScreen()),
       GoRoute(path: '/notifications', builder: (context, state) => const NotificationsScreen()),
+      // Outside the shell. /messages/requests is declared before /messages/:threadId so it is never read as an id.
+      GoRoute(path: '/messages', builder: (context, state) => const InboxScreen()),
+      GoRoute(path: '/messages/requests', builder: (context, state) => const RequestsScreen()),
+      GoRoute(path: '/messages/:threadId', builder: (context, state) => ConversationScreen(threadId: state.pathParameters['threadId']!)),
       GoRoute(
         path: '/lobbies/:id/result',
         builder: (context, state) =>

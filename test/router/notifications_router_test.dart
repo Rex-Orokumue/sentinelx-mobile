@@ -72,14 +72,6 @@ void main() {
     expect(find.byKey(const Key('ntf-push-post_reaction')), findsOneWidget);
   });
 
-  testWidgets('the messages bell still goes to coming-soon until 5b', (tester) async {
-    await _pump(tester, '/account');
-    await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const Key('bell-messages')));
-    await tester.pumpAndSettle();
-    expect(find.text('Coming soon'), findsWidgets);
-  });
-
   Future<GoRouter> pumpBell(WidgetTester tester, {required String link}) async {
     final repo = FakeNotificationsRepository(rows: [bell('a', link: link)]);
     final router = buildAppRouter(initialLocation: '/notifications');

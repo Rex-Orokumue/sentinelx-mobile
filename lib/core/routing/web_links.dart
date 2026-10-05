@@ -30,6 +30,17 @@ String? resolveWebLink(String input) {
     if (_postId.hasMatch(segments[1])) return '/community/${segments[1]}';
     return uri.hasAuthority ? '/community' : null;
   }
+  if (segments.first == 'messages') {
+    if (segments.length == 1) return '/messages';
+    if (segments.length == 2) {
+      // Web thread pages are /messages/<thread uuid>. Like /community, this runs as the redirect on every
+      // in-app location: /messages/requests (an in-app path) must pass through untouched (null), while an
+      // external page that is not a thread lands on the inbox.
+      if (_postId.hasMatch(segments[1])) return '/messages/${segments[1].toLowerCase()}';
+      return uri.hasAuthority ? '/messages' : null;
+    }
+    return null;
+  }
   if (segments.length == 2 && segments.first == 'matches') {
     return '/matches/${Uri.encodeComponent(segments[1])}';
   }

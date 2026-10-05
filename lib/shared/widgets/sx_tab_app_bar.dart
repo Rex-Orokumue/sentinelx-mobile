@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import '../../core/l10n/gen/app_localizations.dart';
 import '../../core/notifications/unread_counts.dart';
 import '../../core/theme/sx_colors.dart';
-import 'coming_soon_screen.dart';
 
 class SxTabAppBar extends ConsumerWidget implements PreferredSizeWidget {
   const SxTabAppBar({super.key, required this.title, required this.onLogoTap});
@@ -20,6 +19,7 @@ class SxTabAppBar extends ConsumerWidget implements PreferredSizeWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final notifCount = ref.watch(unreadNotificationCountProvider).asData?.value ?? 0;
     final dmCount = ref.watch(unreadMessageCountProvider).asData?.value ?? 0;
+    final l10n = AppLocalizations.of(context);
     return AppBar(
       leading: IconButton(
         key: const Key('sx-logo'),
@@ -32,10 +32,16 @@ class SxTabAppBar extends ConsumerWidget implements PreferredSizeWidget {
           key: const Key('bell-notifications'),
           icon: Icons.notifications_outlined,
           count: notifCount,
-          tooltip: AppLocalizations.of(context).ntfUnreadCount(notifCount),
+          tooltip: l10n.ntfUnreadCount(notifCount),
           onPressed: () => GoRouter.of(context).push('/notifications'),
         ),
-        _BellIcon(key: const Key('bell-messages'), icon: Icons.mail_outline, count: dmCount),
+        _BellIcon(
+          key: const Key('bell-messages'),
+          icon: Icons.mail_outline,
+          count: dmCount,
+          tooltip: l10n.dmUnreadCount(dmCount),
+          onPressed: () => GoRouter.of(context).push('/messages'),
+        ),
         const SizedBox(width: 8),
       ],
     );
@@ -43,31 +49,18 @@ class SxTabAppBar extends ConsumerWidget implements PreferredSizeWidget {
 }
 
 class _BellIcon extends StatelessWidget {
-  const _BellIcon({super.key, required this.icon, required this.count, this.onPressed, this.tooltip});
+  const _BellIcon({super.key, required this.icon, required this.count, required this.onPressed, this.tooltip});
   final IconData icon;
   final int count;
-
-  /// Null keeps the coming-soon placeholder (the messages bell, until 5b).
-  final VoidCallback? onPressed;
+  final VoidCallback onPressed;
   final String? tooltip;
-
-  // The messages bell still routes through the coming-soon pattern until 5b
-  // builds the inbox; the notifications bell opens /notifications.
-  // Pushed imperatively (not via go_router) since this is a one-off overlay,
-  // not a shell/tab destination — go_router has no named-route table to
-  // resolve a bare Navigator.pushNamed against.
-  void _openComingSoon(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute<void>(
-      builder: (_) => ComingSoonScreen(title: 'Coming soon', onLogoTap: () => Navigator.of(context).pop()),
-    ));
-  }
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        IconButton(icon: Icon(icon), tooltip: tooltip, onPressed: onPressed ?? () => _openComingSoon(context)),
+        IconButton(icon: Icon(icon), tooltip: tooltip, onPressed: onPressed),
         if (count > 0)
           Positioned(
             right: 6,
