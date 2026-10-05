@@ -1060,5 +1060,178 @@
   "ntfErrNotFound": "That notification no longer exists.",
   "ntfErrNetwork": "Check your connection and try again.",
   "ntfErrGeneric": "Something went wrong.",
-  "ntfBannerOpen": "Open"
+  "ntfBannerOpen": "Open",
+  "dmErrorGeneric": "Something went wrong. Please try again.",
+  "dmErrorBlockedByMe": "You blocked this player. Unblock them to send messages.",
+  "dmErrorBlocked": "You can't message this player.",
+  "dmErrorRestricted": "Messaging is restricted on your account right now.",
+  "dmErrorEditWindow": "You can only edit or unsend a message within 10 minutes of sending it.",
+  "dmErrorNotForwardable": "This message can't be forwarded.",
+  "dmErrorRequestLimit": "You can send one message until they accept your request.",
+  "dmErrorRequestNoMedia": "Photos, stickers and voice notes unlock once they accept your request.",
+  "dmErrorNotFound": "That message or conversation no longer exists.",
+  "dmErrorSendFailed": "Your message couldn't be sent.",
+  "dmErrorAction": "That didn't work. Please try again.",
+  "dmErrorValidation": "That message isn't valid.",
+  "dmErrorImageTooLarge": "That photo is too large to send.",
+  "dmInboxTitle": "Messages",
+  "dmMessagesTooltip": "Messages",
+  "dmRequestsTitle": "Message requests",
+  "dmRequestsRow": "{count, plural, one{Message requests ({count})} other{Message requests ({count})}}",
+  "@dmRequestsRow": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dmRequestsCount": "{count, plural, one{{count} request} other{{count} requests}}",
+  "@dmRequestsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dmEmptyInbox": "No messages yet. Open a player's profile to start a conversation.",
+  "dmEmptyRequests": "No message requests.",
+  "dmLoadError": "Couldn't load your messages.",
+  "dmRetry": "Try again",
+  "dmSignedOut": "Log in to see your messages.",
+  "dmLogIn": "Log in",
+  "dmUnreadCount": "{count, plural, one{{count} unread message} other{{count} unread messages}}",
+  "@dmUnreadCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dmWaitingFor": "Waiting for {name} to accept",
+  "@dmWaitingFor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dmRequestChip": "Request",
+  "dmPreviewPhoto": "Photo",
+  "dmPreviewVoice": "Voice message",
+  "dmPreviewRemoved": "Message removed",
+  "dmPreviewOther": "Message",
+  "dmTyping": "typing…",
+  "dmOnline": "Online",
+  "dmVoiceSeconds": "{seconds, plural, one{{seconds} second} other{{seconds} seconds}}",
+  "@dmVoiceSeconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "dmMessageRemoved": "Message removed",
+  "dmUnsupported": "Unsupported message",
+  "dmForwardedLabel": "Forwarded",
+  "dmEditedLabel": "edited",
+  "dmReplyRemoved": "Original message removed",
+  "dmReplyingTo": "Replying to {name}",
+  "@dmReplyingTo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dmReplyPhoto": "Photo",
+  "dmReplySticker": "Sticker",
+  "dmReplyVoice": "Voice message",
+  "dmYou": "You",
+  "dmToday": "Today",
+  "dmYesterday": "Yesterday",
+  "dmNewMessages": "New messages",
+  "dmReceiptSent": "Sent",
+  "dmReceiptDelivered": "Delivered",
+  "dmReceiptRead": "Read",
+  "dmSending": "Sending",
+  "dmRetryAction": "Retry",
+  "dmDiscard": "Discard",
+  "dmActionReply": "Reply",
+  "dmActionCopy": "Copy",
+  "dmActionForward": "Forward",
+  "dmActionEdit": "Edit",
+  "dmActionUnsend": "Unsend",
+  "dmActionReport": "Report",
+  "dmCopied": "Copied",
+  "dmComposerHint": "Message",
+  "dmSend": "Send",
+  "dmEditingBar": "Editing message",
+  "dmSave": "Save",
+  "dmCancel": "Cancel",
+  "dmCloseReply": "Cancel reply",
+  "dmConversationNotFound": "This conversation doesn't exist.",
+  "dmMore": "More options",
+  "dmStickers": "Stickers",
+  "dmStickerUnknown": "Unsupported sticker",
+  "dmForwardTitle": "Forward to…",
+  "dmForwardEmpty": "No conversations to forward to.",
+  "dmForwarded": "Message forwarded",
+  "dmAttachPhoto": "Send a photo",
+  "dmPhotoLibrary": "Choose from library",
+  "dmPhotoCamera": "Take a photo",
+  "dmImageUnavailable": "Image unavailable",
+  "dmBlock": "Block",
+  "dmUnblock": "Unblock",
+  "dmReport": "Report",
+  "dmBlockConfirmTitle": "Block {name}?",
+  "@dmBlockConfirmTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dmBlockConfirmBody": "They won't be able to message you. You can unblock them at any time.",
+  "dmBlockedByMeBanner": "You blocked {name}",
+  "@dmBlockedByMeBanner": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dmCannotMessage": "You can't message this player.",
+  "dmReportTitle": "Report this conversation",
+  "dmReportHint": "What happened?",
+  "dmReportSubmit": "Submit report",
+  "dmReported": "Thanks. We'll review your report.",
+  "dmIncomingTitle": "{name} wants to message you",
+  "@dmIncomingTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dmIncomingHint": "Only you can see that you have read this. They get no read receipt until you accept.",
+  "dmAccept": "Accept",
+  "dmDecline": "Decline",
+  "dmBlockAndReport": "Block and report",
+  "dmWaitingHint": "You can send one text message until they accept.",
+  "dmMessageButton": "Message",
+  "dmVoiceMessage": "Voice message",
+  "dmMicTooltip": "Record a voice message",
+  "dmVoiceRecording": "Recording",
+  "dmVoicePaused": "Paused",
+  "dmVoicePause": "Pause",
+  "dmVoiceResume": "Resume",
+  "dmVoiceStop": "Stop",
+  "dmVoiceDelete": "Delete",
+  "dmVoicePlay": "Play",
+  "dmVoiceTooShort": "That was too short. Hold on a little longer.",
+  "dmMicDenied": "Microphone access is needed to record voice messages.",
+  "dmMicTryAgain": "Try again",
+  "dmMicOpenSettings": "Open settings",
+  "dmVoicePlaybackError": "Couldn't play this voice message.",
+  "dmVoiceLimitReached": "Maximum length reached"
 }

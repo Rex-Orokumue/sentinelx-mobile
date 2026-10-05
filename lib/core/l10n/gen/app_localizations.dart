@@ -4423,6 +4423,666 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Open'**
   String get ntfBannerOpen;
+
+  /// No description provided for @dmErrorGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get dmErrorGeneric;
+
+  /// No description provided for @dmErrorBlockedByMe.
+  ///
+  /// In en, this message translates to:
+  /// **'You blocked this player. Unblock them to send messages.'**
+  String get dmErrorBlockedByMe;
+
+  /// No description provided for @dmErrorBlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'You can\'t message this player.'**
+  String get dmErrorBlocked;
+
+  /// No description provided for @dmErrorRestricted.
+  ///
+  /// In en, this message translates to:
+  /// **'Messaging is restricted on your account right now.'**
+  String get dmErrorRestricted;
+
+  /// No description provided for @dmErrorEditWindow.
+  ///
+  /// In en, this message translates to:
+  /// **'You can only edit or unsend a message within 10 minutes of sending it.'**
+  String get dmErrorEditWindow;
+
+  /// No description provided for @dmErrorNotForwardable.
+  ///
+  /// In en, this message translates to:
+  /// **'This message can\'t be forwarded.'**
+  String get dmErrorNotForwardable;
+
+  /// No description provided for @dmErrorRequestLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'You can send one message until they accept your request.'**
+  String get dmErrorRequestLimit;
+
+  /// No description provided for @dmErrorRequestNoMedia.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos, stickers and voice notes unlock once they accept your request.'**
+  String get dmErrorRequestNoMedia;
+
+  /// No description provided for @dmErrorNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'That message or conversation no longer exists.'**
+  String get dmErrorNotFound;
+
+  /// No description provided for @dmErrorSendFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Your message couldn\'t be sent.'**
+  String get dmErrorSendFailed;
+
+  /// No description provided for @dmErrorAction.
+  ///
+  /// In en, this message translates to:
+  /// **'That didn\'t work. Please try again.'**
+  String get dmErrorAction;
+
+  /// No description provided for @dmErrorValidation.
+  ///
+  /// In en, this message translates to:
+  /// **'That message isn\'t valid.'**
+  String get dmErrorValidation;
+
+  /// No description provided for @dmErrorImageTooLarge.
+  ///
+  /// In en, this message translates to:
+  /// **'That photo is too large to send.'**
+  String get dmErrorImageTooLarge;
+
+  /// No description provided for @dmInboxTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages'**
+  String get dmInboxTitle;
+
+  /// No description provided for @dmMessagesTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages'**
+  String get dmMessagesTooltip;
+
+  /// No description provided for @dmRequestsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Message requests'**
+  String get dmRequestsTitle;
+
+  /// No description provided for @dmRequestsRow.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{Message requests ({count})} other{Message requests ({count})}}'**
+  String dmRequestsRow(int count);
+
+  /// No description provided for @dmRequestsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{{count} request} other{{count} requests}}'**
+  String dmRequestsCount(int count);
+
+  /// No description provided for @dmEmptyInbox.
+  ///
+  /// In en, this message translates to:
+  /// **'No messages yet. Open a player\'s profile to start a conversation.'**
+  String get dmEmptyInbox;
+
+  /// No description provided for @dmEmptyRequests.
+  ///
+  /// In en, this message translates to:
+  /// **'No message requests.'**
+  String get dmEmptyRequests;
+
+  /// No description provided for @dmLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your messages.'**
+  String get dmLoadError;
+
+  /// No description provided for @dmRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get dmRetry;
+
+  /// No description provided for @dmSignedOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to see your messages.'**
+  String get dmSignedOut;
+
+  /// No description provided for @dmLogIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in'**
+  String get dmLogIn;
+
+  /// No description provided for @dmUnreadCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{{count} unread message} other{{count} unread messages}}'**
+  String dmUnreadCount(int count);
+
+  /// No description provided for @dmWaitingFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for {name} to accept'**
+  String dmWaitingFor(String name);
+
+  /// No description provided for @dmRequestChip.
+  ///
+  /// In en, this message translates to:
+  /// **'Request'**
+  String get dmRequestChip;
+
+  /// No description provided for @dmPreviewPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo'**
+  String get dmPreviewPhoto;
+
+  /// No description provided for @dmPreviewVoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice message'**
+  String get dmPreviewVoice;
+
+  /// No description provided for @dmPreviewRemoved.
+  ///
+  /// In en, this message translates to:
+  /// **'Message removed'**
+  String get dmPreviewRemoved;
+
+  /// No description provided for @dmPreviewOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get dmPreviewOther;
+
+  /// No description provided for @dmTyping.
+  ///
+  /// In en, this message translates to:
+  /// **'typing…'**
+  String get dmTyping;
+
+  /// No description provided for @dmOnline.
+  ///
+  /// In en, this message translates to:
+  /// **'Online'**
+  String get dmOnline;
+
+  /// No description provided for @dmVoiceSeconds.
+  ///
+  /// In en, this message translates to:
+  /// **'{seconds, plural, one{{seconds} second} other{{seconds} seconds}}'**
+  String dmVoiceSeconds(int seconds);
+
+  /// No description provided for @dmMessageRemoved.
+  ///
+  /// In en, this message translates to:
+  /// **'Message removed'**
+  String get dmMessageRemoved;
+
+  /// No description provided for @dmUnsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'Unsupported message'**
+  String get dmUnsupported;
+
+  /// No description provided for @dmForwardedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Forwarded'**
+  String get dmForwardedLabel;
+
+  /// No description provided for @dmEditedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'edited'**
+  String get dmEditedLabel;
+
+  /// No description provided for @dmReplyRemoved.
+  ///
+  /// In en, this message translates to:
+  /// **'Original message removed'**
+  String get dmReplyRemoved;
+
+  /// No description provided for @dmReplyingTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Replying to {name}'**
+  String dmReplyingTo(String name);
+
+  /// No description provided for @dmReplyPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo'**
+  String get dmReplyPhoto;
+
+  /// No description provided for @dmReplySticker.
+  ///
+  /// In en, this message translates to:
+  /// **'Sticker'**
+  String get dmReplySticker;
+
+  /// No description provided for @dmReplyVoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice message'**
+  String get dmReplyVoice;
+
+  /// No description provided for @dmYou.
+  ///
+  /// In en, this message translates to:
+  /// **'You'**
+  String get dmYou;
+
+  /// No description provided for @dmToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get dmToday;
+
+  /// No description provided for @dmYesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get dmYesterday;
+
+  /// No description provided for @dmNewMessages.
+  ///
+  /// In en, this message translates to:
+  /// **'New messages'**
+  String get dmNewMessages;
+
+  /// No description provided for @dmReceiptSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent'**
+  String get dmReceiptSent;
+
+  /// No description provided for @dmReceiptDelivered.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered'**
+  String get dmReceiptDelivered;
+
+  /// No description provided for @dmReceiptRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Read'**
+  String get dmReceiptRead;
+
+  /// No description provided for @dmSending.
+  ///
+  /// In en, this message translates to:
+  /// **'Sending'**
+  String get dmSending;
+
+  /// No description provided for @dmRetryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get dmRetryAction;
+
+  /// No description provided for @dmDiscard.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard'**
+  String get dmDiscard;
+
+  /// No description provided for @dmActionReply.
+  ///
+  /// In en, this message translates to:
+  /// **'Reply'**
+  String get dmActionReply;
+
+  /// No description provided for @dmActionCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy'**
+  String get dmActionCopy;
+
+  /// No description provided for @dmActionForward.
+  ///
+  /// In en, this message translates to:
+  /// **'Forward'**
+  String get dmActionForward;
+
+  /// No description provided for @dmActionEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get dmActionEdit;
+
+  /// No description provided for @dmActionUnsend.
+  ///
+  /// In en, this message translates to:
+  /// **'Unsend'**
+  String get dmActionUnsend;
+
+  /// No description provided for @dmActionReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Report'**
+  String get dmActionReport;
+
+  /// No description provided for @dmCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied'**
+  String get dmCopied;
+
+  /// No description provided for @dmComposerHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get dmComposerHint;
+
+  /// No description provided for @dmSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get dmSend;
+
+  /// No description provided for @dmEditingBar.
+  ///
+  /// In en, this message translates to:
+  /// **'Editing message'**
+  String get dmEditingBar;
+
+  /// No description provided for @dmSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get dmSave;
+
+  /// No description provided for @dmCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get dmCancel;
+
+  /// No description provided for @dmCloseReply.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel reply'**
+  String get dmCloseReply;
+
+  /// No description provided for @dmConversationNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'This conversation doesn\'t exist.'**
+  String get dmConversationNotFound;
+
+  /// No description provided for @dmMore.
+  ///
+  /// In en, this message translates to:
+  /// **'More options'**
+  String get dmMore;
+
+  /// No description provided for @dmStickers.
+  ///
+  /// In en, this message translates to:
+  /// **'Stickers'**
+  String get dmStickers;
+
+  /// No description provided for @dmStickerUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Unsupported sticker'**
+  String get dmStickerUnknown;
+
+  /// No description provided for @dmForwardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Forward to…'**
+  String get dmForwardTitle;
+
+  /// No description provided for @dmForwardEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No conversations to forward to.'**
+  String get dmForwardEmpty;
+
+  /// No description provided for @dmForwarded.
+  ///
+  /// In en, this message translates to:
+  /// **'Message forwarded'**
+  String get dmForwarded;
+
+  /// No description provided for @dmAttachPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a photo'**
+  String get dmAttachPhoto;
+
+  /// No description provided for @dmPhotoLibrary.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from library'**
+  String get dmPhotoLibrary;
+
+  /// No description provided for @dmPhotoCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo'**
+  String get dmPhotoCamera;
+
+  /// No description provided for @dmImageUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Image unavailable'**
+  String get dmImageUnavailable;
+
+  /// No description provided for @dmBlock.
+  ///
+  /// In en, this message translates to:
+  /// **'Block'**
+  String get dmBlock;
+
+  /// No description provided for @dmUnblock.
+  ///
+  /// In en, this message translates to:
+  /// **'Unblock'**
+  String get dmUnblock;
+
+  /// No description provided for @dmReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Report'**
+  String get dmReport;
+
+  /// No description provided for @dmBlockConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Block {name}?'**
+  String dmBlockConfirmTitle(String name);
+
+  /// No description provided for @dmBlockConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'They won\'t be able to message you. You can unblock them at any time.'**
+  String get dmBlockConfirmBody;
+
+  /// No description provided for @dmBlockedByMeBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'You blocked {name}'**
+  String dmBlockedByMeBanner(String name);
+
+  /// No description provided for @dmCannotMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'You can\'t message this player.'**
+  String get dmCannotMessage;
+
+  /// No description provided for @dmReportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Report this conversation'**
+  String get dmReportTitle;
+
+  /// No description provided for @dmReportHint.
+  ///
+  /// In en, this message translates to:
+  /// **'What happened?'**
+  String get dmReportHint;
+
+  /// No description provided for @dmReportSubmit.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit report'**
+  String get dmReportSubmit;
+
+  /// No description provided for @dmReported.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks. We\'ll review your report.'**
+  String get dmReported;
+
+  /// No description provided for @dmIncomingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} wants to message you'**
+  String dmIncomingTitle(String name);
+
+  /// No description provided for @dmIncomingHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Only you can see that you have read this. They get no read receipt until you accept.'**
+  String get dmIncomingHint;
+
+  /// No description provided for @dmAccept.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept'**
+  String get dmAccept;
+
+  /// No description provided for @dmDecline.
+  ///
+  /// In en, this message translates to:
+  /// **'Decline'**
+  String get dmDecline;
+
+  /// No description provided for @dmBlockAndReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Block and report'**
+  String get dmBlockAndReport;
+
+  /// No description provided for @dmWaitingHint.
+  ///
+  /// In en, this message translates to:
+  /// **'You can send one text message until they accept.'**
+  String get dmWaitingHint;
+
+  /// No description provided for @dmMessageButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get dmMessageButton;
+
+  /// No description provided for @dmVoiceMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice message'**
+  String get dmVoiceMessage;
+
+  /// No description provided for @dmMicTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Record a voice message'**
+  String get dmMicTooltip;
+
+  /// No description provided for @dmVoiceRecording.
+  ///
+  /// In en, this message translates to:
+  /// **'Recording'**
+  String get dmVoiceRecording;
+
+  /// No description provided for @dmVoicePaused.
+  ///
+  /// In en, this message translates to:
+  /// **'Paused'**
+  String get dmVoicePaused;
+
+  /// No description provided for @dmVoicePause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get dmVoicePause;
+
+  /// No description provided for @dmVoiceResume.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get dmVoiceResume;
+
+  /// No description provided for @dmVoiceStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop'**
+  String get dmVoiceStop;
+
+  /// No description provided for @dmVoiceDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get dmVoiceDelete;
+
+  /// No description provided for @dmVoicePlay.
+  ///
+  /// In en, this message translates to:
+  /// **'Play'**
+  String get dmVoicePlay;
+
+  /// No description provided for @dmVoiceTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'That was too short. Hold on a little longer.'**
+  String get dmVoiceTooShort;
+
+  /// No description provided for @dmMicDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Microphone access is needed to record voice messages.'**
+  String get dmMicDenied;
+
+  /// No description provided for @dmMicTryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get dmMicTryAgain;
+
+  /// No description provided for @dmMicOpenSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open settings'**
+  String get dmMicOpenSettings;
+
+  /// No description provided for @dmVoicePlaybackError.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t play this voice message.'**
+  String get dmVoicePlaybackError;
+
+  /// No description provided for @dmVoiceLimitReached.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum length reached'**
+  String get dmVoiceLimitReached;
 }
 
 class _AppLocalizationsDelegate

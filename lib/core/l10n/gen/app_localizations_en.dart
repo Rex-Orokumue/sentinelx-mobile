@@ -2394,4 +2394,387 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get ntfBannerOpen => 'Open';
+
+  @override
+  String get dmErrorGeneric => 'Something went wrong. Please try again.';
+
+  @override
+  String get dmErrorBlockedByMe =>
+      'You blocked this player. Unblock them to send messages.';
+
+  @override
+  String get dmErrorBlocked => 'You can\'t message this player.';
+
+  @override
+  String get dmErrorRestricted =>
+      'Messaging is restricted on your account right now.';
+
+  @override
+  String get dmErrorEditWindow =>
+      'You can only edit or unsend a message within 10 minutes of sending it.';
+
+  @override
+  String get dmErrorNotForwardable => 'This message can\'t be forwarded.';
+
+  @override
+  String get dmErrorRequestLimit =>
+      'You can send one message until they accept your request.';
+
+  @override
+  String get dmErrorRequestNoMedia =>
+      'Photos, stickers and voice notes unlock once they accept your request.';
+
+  @override
+  String get dmErrorNotFound =>
+      'That message or conversation no longer exists.';
+
+  @override
+  String get dmErrorSendFailed => 'Your message couldn\'t be sent.';
+
+  @override
+  String get dmErrorAction => 'That didn\'t work. Please try again.';
+
+  @override
+  String get dmErrorValidation => 'That message isn\'t valid.';
+
+  @override
+  String get dmErrorImageTooLarge => 'That photo is too large to send.';
+
+  @override
+  String get dmInboxTitle => 'Messages';
+
+  @override
+  String get dmMessagesTooltip => 'Messages';
+
+  @override
+  String get dmRequestsTitle => 'Message requests';
+
+  @override
+  String dmRequestsRow(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Message requests ($count)',
+      one: 'Message requests ($count)',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String dmRequestsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count requests',
+      one: '$count request',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get dmEmptyInbox =>
+      'No messages yet. Open a player\'s profile to start a conversation.';
+
+  @override
+  String get dmEmptyRequests => 'No message requests.';
+
+  @override
+  String get dmLoadError => 'Couldn\'t load your messages.';
+
+  @override
+  String get dmRetry => 'Try again';
+
+  @override
+  String get dmSignedOut => 'Log in to see your messages.';
+
+  @override
+  String get dmLogIn => 'Log in';
+
+  @override
+  String dmUnreadCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count unread messages',
+      one: '$count unread message',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String dmWaitingFor(String name) {
+    return 'Waiting for $name to accept';
+  }
+
+  @override
+  String get dmRequestChip => 'Request';
+
+  @override
+  String get dmPreviewPhoto => 'Photo';
+
+  @override
+  String get dmPreviewVoice => 'Voice message';
+
+  @override
+  String get dmPreviewRemoved => 'Message removed';
+
+  @override
+  String get dmPreviewOther => 'Message';
+
+  @override
+  String get dmTyping => 'typing…';
+
+  @override
+  String get dmOnline => 'Online';
+
+  @override
+  String dmVoiceSeconds(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: '$seconds seconds',
+      one: '$seconds second',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get dmMessageRemoved => 'Message removed';
+
+  @override
+  String get dmUnsupported => 'Unsupported message';
+
+  @override
+  String get dmForwardedLabel => 'Forwarded';
+
+  @override
+  String get dmEditedLabel => 'edited';
+
+  @override
+  String get dmReplyRemoved => 'Original message removed';
+
+  @override
+  String dmReplyingTo(String name) {
+    return 'Replying to $name';
+  }
+
+  @override
+  String get dmReplyPhoto => 'Photo';
+
+  @override
+  String get dmReplySticker => 'Sticker';
+
+  @override
+  String get dmReplyVoice => 'Voice message';
+
+  @override
+  String get dmYou => 'You';
+
+  @override
+  String get dmToday => 'Today';
+
+  @override
+  String get dmYesterday => 'Yesterday';
+
+  @override
+  String get dmNewMessages => 'New messages';
+
+  @override
+  String get dmReceiptSent => 'Sent';
+
+  @override
+  String get dmReceiptDelivered => 'Delivered';
+
+  @override
+  String get dmReceiptRead => 'Read';
+
+  @override
+  String get dmSending => 'Sending';
+
+  @override
+  String get dmRetryAction => 'Retry';
+
+  @override
+  String get dmDiscard => 'Discard';
+
+  @override
+  String get dmActionReply => 'Reply';
+
+  @override
+  String get dmActionCopy => 'Copy';
+
+  @override
+  String get dmActionForward => 'Forward';
+
+  @override
+  String get dmActionEdit => 'Edit';
+
+  @override
+  String get dmActionUnsend => 'Unsend';
+
+  @override
+  String get dmActionReport => 'Report';
+
+  @override
+  String get dmCopied => 'Copied';
+
+  @override
+  String get dmComposerHint => 'Message';
+
+  @override
+  String get dmSend => 'Send';
+
+  @override
+  String get dmEditingBar => 'Editing message';
+
+  @override
+  String get dmSave => 'Save';
+
+  @override
+  String get dmCancel => 'Cancel';
+
+  @override
+  String get dmCloseReply => 'Cancel reply';
+
+  @override
+  String get dmConversationNotFound => 'This conversation doesn\'t exist.';
+
+  @override
+  String get dmMore => 'More options';
+
+  @override
+  String get dmStickers => 'Stickers';
+
+  @override
+  String get dmStickerUnknown => 'Unsupported sticker';
+
+  @override
+  String get dmForwardTitle => 'Forward to…';
+
+  @override
+  String get dmForwardEmpty => 'No conversations to forward to.';
+
+  @override
+  String get dmForwarded => 'Message forwarded';
+
+  @override
+  String get dmAttachPhoto => 'Send a photo';
+
+  @override
+  String get dmPhotoLibrary => 'Choose from library';
+
+  @override
+  String get dmPhotoCamera => 'Take a photo';
+
+  @override
+  String get dmImageUnavailable => 'Image unavailable';
+
+  @override
+  String get dmBlock => 'Block';
+
+  @override
+  String get dmUnblock => 'Unblock';
+
+  @override
+  String get dmReport => 'Report';
+
+  @override
+  String dmBlockConfirmTitle(String name) {
+    return 'Block $name?';
+  }
+
+  @override
+  String get dmBlockConfirmBody =>
+      'They won\'t be able to message you. You can unblock them at any time.';
+
+  @override
+  String dmBlockedByMeBanner(String name) {
+    return 'You blocked $name';
+  }
+
+  @override
+  String get dmCannotMessage => 'You can\'t message this player.';
+
+  @override
+  String get dmReportTitle => 'Report this conversation';
+
+  @override
+  String get dmReportHint => 'What happened?';
+
+  @override
+  String get dmReportSubmit => 'Submit report';
+
+  @override
+  String get dmReported => 'Thanks. We\'ll review your report.';
+
+  @override
+  String dmIncomingTitle(String name) {
+    return '$name wants to message you';
+  }
+
+  @override
+  String get dmIncomingHint =>
+      'Only you can see that you have read this. They get no read receipt until you accept.';
+
+  @override
+  String get dmAccept => 'Accept';
+
+  @override
+  String get dmDecline => 'Decline';
+
+  @override
+  String get dmBlockAndReport => 'Block and report';
+
+  @override
+  String get dmWaitingHint =>
+      'You can send one text message until they accept.';
+
+  @override
+  String get dmMessageButton => 'Message';
+
+  @override
+  String get dmVoiceMessage => 'Voice message';
+
+  @override
+  String get dmMicTooltip => 'Record a voice message';
+
+  @override
+  String get dmVoiceRecording => 'Recording';
+
+  @override
+  String get dmVoicePaused => 'Paused';
+
+  @override
+  String get dmVoicePause => 'Pause';
+
+  @override
+  String get dmVoiceResume => 'Resume';
+
+  @override
+  String get dmVoiceStop => 'Stop';
+
+  @override
+  String get dmVoiceDelete => 'Delete';
+
+  @override
+  String get dmVoicePlay => 'Play';
+
+  @override
+  String get dmVoiceTooShort => 'That was too short. Hold on a little longer.';
+
+  @override
+  String get dmMicDenied =>
+      'Microphone access is needed to record voice messages.';
+
+  @override
+  String get dmMicTryAgain => 'Try again';
+
+  @override
+  String get dmMicOpenSettings => 'Open settings';
+
+  @override
+  String get dmVoicePlaybackError => 'Couldn\'t play this voice message.';
+
+  @override
+  String get dmVoiceLimitReached => 'Maximum length reached';
 }

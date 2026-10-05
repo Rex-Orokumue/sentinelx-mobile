@@ -2422,4 +2422,389 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get ntfBannerOpen => 'Ouvrir';
+
+  @override
+  String get dmErrorGeneric => 'Un problème est survenu. Veuillez réessayer.';
+
+  @override
+  String get dmErrorBlockedByMe =>
+      'Vous avez bloqué ce joueur. Débloquez-le pour envoyer des messages.';
+
+  @override
+  String get dmErrorBlocked => 'Vous ne pouvez pas écrire à ce joueur.';
+
+  @override
+  String get dmErrorRestricted =>
+      'La messagerie est actuellement restreinte sur votre compte.';
+
+  @override
+  String get dmErrorEditWindow =>
+      'Vous ne pouvez modifier ou annuler un message que dans les 10 minutes qui suivent son envoi.';
+
+  @override
+  String get dmErrorNotForwardable => 'Ce message ne peut pas être transféré.';
+
+  @override
+  String get dmErrorRequestLimit =>
+      'Vous pouvez envoyer un seul message tant que votre demande n\'est pas acceptée.';
+
+  @override
+  String get dmErrorRequestNoMedia =>
+      'Les photos, autocollants et messages vocaux sont disponibles une fois votre demande acceptée.';
+
+  @override
+  String get dmErrorNotFound =>
+      'Ce message ou cette conversation n\'existe plus.';
+
+  @override
+  String get dmErrorSendFailed => 'Votre message n\'a pas pu être envoyé.';
+
+  @override
+  String get dmErrorAction => 'Cela n\'a pas fonctionné. Veuillez réessayer.';
+
+  @override
+  String get dmErrorValidation => 'Ce message n\'est pas valide.';
+
+  @override
+  String get dmErrorImageTooLarge =>
+      'Cette photo est trop volumineuse pour être envoyée.';
+
+  @override
+  String get dmInboxTitle => 'Messages';
+
+  @override
+  String get dmMessagesTooltip => 'Messages';
+
+  @override
+  String get dmRequestsTitle => 'Demandes de message';
+
+  @override
+  String dmRequestsRow(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Demandes de message ($count)',
+      one: 'Demandes de message ($count)',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String dmRequestsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count demandes',
+      one: '$count demande',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get dmEmptyInbox =>
+      'Aucun message pour l\'instant. Ouvrez le profil d\'un joueur pour démarrer une conversation.';
+
+  @override
+  String get dmEmptyRequests => 'Aucune demande de message.';
+
+  @override
+  String get dmLoadError => 'Impossible de charger vos messages.';
+
+  @override
+  String get dmRetry => 'Réessayer';
+
+  @override
+  String get dmSignedOut => 'Connectez-vous pour voir vos messages.';
+
+  @override
+  String get dmLogIn => 'Se connecter';
+
+  @override
+  String dmUnreadCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count messages non lus',
+      one: '$count message non lu',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String dmWaitingFor(String name) {
+    return 'En attente de la réponse de $name';
+  }
+
+  @override
+  String get dmRequestChip => 'Demande';
+
+  @override
+  String get dmPreviewPhoto => 'Photo';
+
+  @override
+  String get dmPreviewVoice => 'Message vocal';
+
+  @override
+  String get dmPreviewRemoved => 'Message supprimé';
+
+  @override
+  String get dmPreviewOther => 'Message';
+
+  @override
+  String get dmTyping => 'écrit…';
+
+  @override
+  String get dmOnline => 'En ligne';
+
+  @override
+  String dmVoiceSeconds(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: '$seconds secondes',
+      one: '$seconds seconde',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get dmMessageRemoved => 'Message supprimé';
+
+  @override
+  String get dmUnsupported => 'Message non pris en charge';
+
+  @override
+  String get dmForwardedLabel => 'Transféré';
+
+  @override
+  String get dmEditedLabel => 'modifié';
+
+  @override
+  String get dmReplyRemoved => 'Message d\'origine supprimé';
+
+  @override
+  String dmReplyingTo(String name) {
+    return 'Réponse à $name';
+  }
+
+  @override
+  String get dmReplyPhoto => 'Photo';
+
+  @override
+  String get dmReplySticker => 'Autocollant';
+
+  @override
+  String get dmReplyVoice => 'Message vocal';
+
+  @override
+  String get dmYou => 'Vous';
+
+  @override
+  String get dmToday => 'Aujourd\'hui';
+
+  @override
+  String get dmYesterday => 'Hier';
+
+  @override
+  String get dmNewMessages => 'Nouveaux messages';
+
+  @override
+  String get dmReceiptSent => 'Envoyé';
+
+  @override
+  String get dmReceiptDelivered => 'Remis';
+
+  @override
+  String get dmReceiptRead => 'Lu';
+
+  @override
+  String get dmSending => 'Envoi en cours';
+
+  @override
+  String get dmRetryAction => 'Réessayer';
+
+  @override
+  String get dmDiscard => 'Supprimer';
+
+  @override
+  String get dmActionReply => 'Répondre';
+
+  @override
+  String get dmActionCopy => 'Copier';
+
+  @override
+  String get dmActionForward => 'Transférer';
+
+  @override
+  String get dmActionEdit => 'Modifier';
+
+  @override
+  String get dmActionUnsend => 'Annuler l\'envoi';
+
+  @override
+  String get dmActionReport => 'Signaler';
+
+  @override
+  String get dmCopied => 'Copié';
+
+  @override
+  String get dmComposerHint => 'Message';
+
+  @override
+  String get dmSend => 'Envoyer';
+
+  @override
+  String get dmEditingBar => 'Modification du message';
+
+  @override
+  String get dmSave => 'Enregistrer';
+
+  @override
+  String get dmCancel => 'Annuler';
+
+  @override
+  String get dmCloseReply => 'Annuler la réponse';
+
+  @override
+  String get dmConversationNotFound => 'Cette conversation n\'existe pas.';
+
+  @override
+  String get dmMore => 'Plus d\'options';
+
+  @override
+  String get dmStickers => 'Autocollants';
+
+  @override
+  String get dmStickerUnknown => 'Autocollant non pris en charge';
+
+  @override
+  String get dmForwardTitle => 'Transférer à…';
+
+  @override
+  String get dmForwardEmpty => 'Aucune conversation vers laquelle transférer.';
+
+  @override
+  String get dmForwarded => 'Message transféré';
+
+  @override
+  String get dmAttachPhoto => 'Envoyer une photo';
+
+  @override
+  String get dmPhotoLibrary => 'Choisir dans la galerie';
+
+  @override
+  String get dmPhotoCamera => 'Prendre une photo';
+
+  @override
+  String get dmImageUnavailable => 'Image indisponible';
+
+  @override
+  String get dmBlock => 'Bloquer';
+
+  @override
+  String get dmUnblock => 'Débloquer';
+
+  @override
+  String get dmReport => 'Signaler';
+
+  @override
+  String dmBlockConfirmTitle(String name) {
+    return 'Bloquer $name ?';
+  }
+
+  @override
+  String get dmBlockConfirmBody =>
+      'Cette personne ne pourra plus vous écrire. Vous pouvez la débloquer à tout moment.';
+
+  @override
+  String dmBlockedByMeBanner(String name) {
+    return 'Vous avez bloqué $name';
+  }
+
+  @override
+  String get dmCannotMessage => 'Vous ne pouvez pas écrire à ce joueur.';
+
+  @override
+  String get dmReportTitle => 'Signaler cette conversation';
+
+  @override
+  String get dmReportHint => 'Que s\'est-il passé ?';
+
+  @override
+  String get dmReportSubmit => 'Envoyer le signalement';
+
+  @override
+  String get dmReported => 'Merci. Nous examinerons votre signalement.';
+
+  @override
+  String dmIncomingTitle(String name) {
+    return '$name souhaite vous écrire';
+  }
+
+  @override
+  String get dmIncomingHint =>
+      'Vous seul savez que vous l\'avez lu. Aucun accusé de lecture n\'est envoyé tant que vous n\'acceptez pas.';
+
+  @override
+  String get dmAccept => 'Accepter';
+
+  @override
+  String get dmDecline => 'Refuser';
+
+  @override
+  String get dmBlockAndReport => 'Bloquer et signaler';
+
+  @override
+  String get dmWaitingHint =>
+      'Vous pouvez envoyer un seul message texte en attendant qu\'il soit accepté.';
+
+  @override
+  String get dmMessageButton => 'Message';
+
+  @override
+  String get dmVoiceMessage => 'Message vocal';
+
+  @override
+  String get dmMicTooltip => 'Enregistrer un message vocal';
+
+  @override
+  String get dmVoiceRecording => 'Enregistrement';
+
+  @override
+  String get dmVoicePaused => 'En pause';
+
+  @override
+  String get dmVoicePause => 'Pause';
+
+  @override
+  String get dmVoiceResume => 'Reprendre';
+
+  @override
+  String get dmVoiceStop => 'Arrêter';
+
+  @override
+  String get dmVoiceDelete => 'Supprimer';
+
+  @override
+  String get dmVoicePlay => 'Lecture';
+
+  @override
+  String get dmVoiceTooShort =>
+      'C\'était trop court. Enregistrez un peu plus longtemps.';
+
+  @override
+  String get dmMicDenied =>
+      'L\'accès au microphone est nécessaire pour enregistrer des messages vocaux.';
+
+  @override
+  String get dmMicTryAgain => 'Réessayer';
+
+  @override
+  String get dmMicOpenSettings => 'Ouvrir les réglages';
+
+  @override
+  String get dmVoicePlaybackError => 'Impossible de lire ce message vocal.';
+
+  @override
+  String get dmVoiceLimitReached => 'Durée maximale atteinte';
 }
