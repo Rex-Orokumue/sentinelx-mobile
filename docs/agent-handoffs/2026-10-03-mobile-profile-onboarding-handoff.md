@@ -15,7 +15,7 @@
 - OpenAPI copy matches web `origin/main` byte-for-byte (`773761bf46b704b01322f5fef417e9b2bc68b6a8`).
 - `flutter gen-l10n` is current.
 - `flutter analyze` reports no issues.
-- Full `flutter test` passes (975 tests on 2026-10-05, including the final review follow-up).
+- Full `flutter test` passes after rebasing onto current `origin/master` (1,342 tests on 2026-10-05, including the final review follow-up).
 - No production writes or live onboarding submissions were performed.
 
 ## First-submit gate bug resolution
