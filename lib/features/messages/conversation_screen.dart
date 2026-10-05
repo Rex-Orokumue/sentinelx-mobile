@@ -11,10 +11,12 @@ import '../../core/l10n/gen/app_localizations.dart';
 import '../../core/theme/sx_colors.dart';
 import '../../shared/widgets/player_avatar.dart';
 import 'composer.dart';
+import 'forward_sheet.dart';
 import 'inbox_providers.dart';
 import 'message_actions_sheet.dart';
 import 'message_bubble.dart';
 import 'message_error_copy.dart';
+import 'sticker_picker.dart';
 import 'messages_repository.dart';
 import 'thread_providers.dart';
 import 'thread_window.dart';
@@ -40,6 +42,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
   bool _resumed = true;
   bool _showPill = false;
   bool _stampedOnOpen = false;
+  bool _forwarding = false;
 
   @override
   void initState() {
@@ -112,7 +115,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
       !_windowClosed.contains(m.id) && ref.read(dmClockProvider)().difference(m.createdAt) < _editWindow;
 
   Future<void> _showActions(DmMessage m, String viewerId) async {
-    final actions = availableActions(m, mine: m.isMine(viewerId), withinWindow: _withinWindow(m));
+    final actions = availableActions(m, mine: m.isMine(viewerId), withinWindow: _withinWindow(m), canForward: true);
     if (actions.isEmpty) return;
     final picked = await showModalBottomSheet<MessageAction>(
       context: context,
@@ -136,9 +139,35 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
       case MessageAction.unsend:
         await _unsend(m);
       case MessageAction.forward:
+        await _forward(m);
       case MessageAction.report:
-        break; // wired by their own tasks
+        break; // wired by its own task
     }
+  }
+
+  Future<void> _forward(DmMessage m) async {
+    final target = await showModalBottomSheet<String>(
+      context: context,
+      isScrollControlled: true,
+      builder: (_) => ForwardSheet(currentThreadId: widget.threadId),
+    );
+    if (target == null || !mounted || _forwarding) return;
+    _forwarding = true;
+    final notifier = ref.read(threadProvider(widget.threadId).notifier);
+    final l10n = AppLocalizations.of(context);
+    try {
+      final ok = await notifier.forward(m.id, target);
+      if (mounted) _say(ok ? l10n.dmForwarded : dmErrorCopy(l10n, notifier.lastActionError ?? ''));
+    } finally {
+      _forwarding = false;
+    }
+  }
+
+  Future<void> _pickSticker() async {
+    final id = await showModalBottomSheet<String>(context: context, builder: (_) => const StickerPicker());
+    if (id == null || !mounted) return;
+    unawaited(ref.read(threadProvider(widget.threadId).notifier).send(SendDraft(stickerId: id)));
+    if (_scroll.hasClients) _scroll.jumpTo(0);
   }
 
   Future<void> _unsend(DmMessage m) async {
@@ -279,6 +308,14 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
       onCancelEdit: () => setState(() => _editing = null),
       onSend: _send,
       onSubmitEdit: _submitEdit,
+      trailing: [
+        IconButton(
+          key: const Key('dm-sticker-button'),
+          tooltip: l10n.dmStickers,
+          icon: const Icon(Icons.emoji_emotions_outlined),
+          onPressed: _pickSticker,
+        ),
+      ],
     );
   }
 
