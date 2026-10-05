@@ -205,6 +205,8 @@ class FakeMessagesRepository implements MessagesRepository {
         ),
       );
     }
+    final afterCommit = holds.remove('send:after');
+    if (afterCommit != null) await afterCommit.future; // committed, response not delivered yet
     final late = sendFailsAfterCommit;
     if (late != null) {
       sendFailsAfterCommit = null;
