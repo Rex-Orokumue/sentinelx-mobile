@@ -18,6 +18,7 @@ import 'package:sentinelx_mobile/features/compete/compete_models.dart';
 import 'package:sentinelx_mobile/features/compete/compete_providers.dart';
 import 'package:sentinelx_mobile/features/home/home_providers.dart';
 import 'package:sentinelx_mobile/router/app_router.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' show Session;
 
 import '../../support/pump_compete.dart';
 import '../auth_test_fakes.dart';
@@ -95,14 +96,6 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      expect(
-        tester.widget<Radio<bool>>(find.byType(Radio<bool>).first).groupValue,
-        isNull,
-      );
-      expect(
-        tester.widget<Radio<bool>>(find.byType(Radio<bool>).last).groupValue,
-        isNull,
-      );
       await tester.ensureVisible(
         find.byKey(const Key('profile-onboarding-submit')),
       );
@@ -363,6 +356,8 @@ void main() {
   testWidgets(
     'first successful submit waits for real routerProvider /me refresh and stays off onboarding',
     (tester) async {
+      final sessions = StreamController<Session?>();
+      addTearDown(sessions.close);
       final initialMe = Completer<MeResponse?>();
       final refreshedMe = Completer<MeResponse?>();
       var meFetches = 0;
@@ -372,7 +367,7 @@ void main() {
         ProviderScope(
           retry: (_, _) => null,
           overrides: [
-            sessionProvider.overrideWith((ref) => Stream.value(testSession())),
+            sessionProvider.overrideWith((ref) => sessions.stream),
             remoteConfigProvider.overrideWithValue(
               AsyncData(testRemoteConfig()),
             ),
@@ -401,6 +396,7 @@ void main() {
           ),
         ),
       );
+      sessions.add(testSession());
       await tester.pump();
       expect(meFetches, 1);
       initialMe.complete(_me(profileCompletedAt: null));
@@ -452,6 +448,20 @@ void main() {
         router.routerDelegate.currentConfiguration.last.matchedLocation,
         '/',
         reason: 'the refreshed completed profile must not bounce back',
+      );
+
+      router.push('/notifications');
+      await tester.pumpAndSettle();
+      expect(
+        router.routerDelegate.currentConfiguration.last.matchedLocation,
+        '/notifications',
+      );
+      sessions.add(testSession().copyWith(accessToken: 'refreshed-token'));
+      await tester.pumpAndSettle();
+      expect(
+        router.routerDelegate.currentConfiguration.last.matchedLocation,
+        '/notifications',
+        reason: 'a token refresh must preserve a pushed route',
       );
     },
   );

@@ -10,14 +10,17 @@ void main() {
       const expected = <String, String>{
         'AG': 'Antigua & Barbuda',
         'BA': 'Bosnia & Herzegovina',
+        'CC': 'Cocos (Keeling) Islands',
         'CD': 'Congo - Kinshasa',
         'CG': 'Congo - Brazzaville',
+        'CI': 'Côte d’Ivoire',
         'CZ': 'Czechia',
         'TL': 'Timor-Leste',
         'FK': 'Falkland Islands',
         'GN': 'Guinea',
         'HK': 'Hong Kong SAR China',
         'MO': 'Macao SAR China',
+        'MM': 'Myanmar (Burma)',
         'BL': 'St. Barthélemy',
         'SH': 'St. Helena',
         'KN': 'St. Kitts & Nevis',
@@ -28,6 +31,7 @@ void main() {
         'SJ': 'Svalbard & Jan Mayen',
         'TR': 'Türkiye',
         'TC': 'Turks & Caicos Islands',
+        'TT': 'Trinidad & Tobago',
         'WF': 'Wallis & Futuna',
       };
 

@@ -274,8 +274,9 @@ GoRouter buildAppRouter({
                     path: 'result',
                     builder: (context, state) {
                       final extra = state.extra as MatchInfo?;
-                      if (extra != null)
+                      if (extra != null) {
                         return ResultSubmissionScreen(match: extra);
+                      }
                       return _ResultRouteGate(
                         matchId: state.pathParameters['id']!,
                       );
@@ -526,8 +527,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       onboardingGate: ref.read(onboardingGateProvider),
     ),
   );
-  void reevaluate() =>
-      router.go(router.routerDelegate.currentConfiguration.uri.toString());
+  void reevaluate() => router.refresh();
 
   ref.listen(sessionProvider, (_, _) => reevaluate());
   ref.listen(onboardingGateProvider, (_, _) => reevaluate());

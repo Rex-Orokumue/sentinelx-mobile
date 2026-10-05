@@ -24,6 +24,9 @@ staging test account cleanup remains Pending until those checks finish.
 Fresh-context review on 2026-10-05 found and fixed five pre-device blockers: canonical country-name drift, default-false
 consent being treated as an answer, 401 login bounce, hidden Edit Profile server field errors, and insufficient real-router
 coverage. The combined focused profile/gate/router/push/contract suite passes (79 tests). No live calls were made.
+Follow-up review found four additional canonical country labels and a router-refresh regression that could pop a
+pushed screen on token refresh. Both now have regression coverage; router reevaluation preserves the pushed stack.
+The final full suite passed all 975 tests. Physical-device staging verification remains pending.
 
 ## 2026-09-25 — Phase 1 auth/lifecycle hardening (`fix/phase1-auth-lifecycle`)
 

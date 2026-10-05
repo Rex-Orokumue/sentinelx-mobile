@@ -15,7 +15,7 @@
 - OpenAPI copy matches web `origin/main` byte-for-byte (`773761bf46b704b01322f5fef417e9b2bc68b6a8`).
 - `flutter gen-l10n` is current.
 - `flutter analyze` reports no issues.
-- Baseline `flutter test` passes (965 tests on 2026-10-05).
+- Full `flutter test` passes (975 tests on 2026-10-05, including the final review follow-up).
 - No production writes or live onboarding submissions were performed.
 
 ## First-submit gate bug resolution
@@ -39,7 +39,7 @@ Phase 5a push/gate interaction.
   including `4a1f4cf`, were already present on `master`. Finish work continues from current `master` on
   `fix/profile-onboarding-finish`; the old pushed branch remains unchanged.
 - **Country contract:** submit the web's canonical English display names, not ISO codes (the database stores the
-  submitted value). Twenty-one `country_picker` labels are mapped by ISO code; `HM` and `GS` are excluded because the
+  submitted value). Twenty-five `country_picker` labels are mapped by ISO code; `HM` and `GS` are excluded because the
   server's phone library cannot validate those regions. Cost if wrong: a future picker/server data update could drift,
   so the mismatch table is covered exhaustively and should be rechecked when either dependency changes.
 
@@ -56,6 +56,12 @@ The review found no Critical issues and five Important issues. All five were fix
 
 Deferred Minor: Edit Profile retains its existing digits-only local WhatsApp validator. Spaced national formatting can
 be entered without spaces or in E.164 form; aligning local parsing with the server is useful but does not block this fix.
+
+A second fresh-context review found two further Important issues. The remaining four canonical-name differences
+(`CC`, `CI`, `MM`, and `TT`) are now mapped. Router reevaluation now uses `GoRouter.refresh()` rather than replaying
+`currentConfiguration.uri`: replaying the URI discarded imperative/pushed routes and their `extra` payload on token
+refresh. A red/green integration regression emits a changed signed-in session while `/notifications` is pushed and
+requires that route to remain on the stack. The reviewer found no Critical issues or Phase 5b contamination.
 
 ## Not yet verified
 
