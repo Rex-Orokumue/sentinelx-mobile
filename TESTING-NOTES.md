@@ -10,23 +10,24 @@ logged here.
 | zzqa_p1a | 2026-09-21 | not created: signup blocked, Supabase Auth returned 500 (Resend 550, sentinelxesports.com.ng sender domain not verified); nothing to clean up | n/a |
 | zzqa_p1a | 2026-09-22 | created + confirmed after the Resend DNS fix: signup returned 200, confirmation email delivered, App Link tap → `verifyOtp` → landed on Home signed in | Yes |
 | zzqa_mobile_profile | 2026-10-03 | staging-only account created and email-confirmed for physical-device profile-onboarding verification; auth user `aeaffd10-35e7-4952-8e9b-a0acb0762537` | Pending |
+| zzqa_profile_retest | 2026-10-05 | staging-only account created and email-confirmed for the one-submit profile-onboarding regression retest; auth user `9b04ec85-6d0d-401c-b671-5a405f29f142` | Pending |
 
-Profile-onboarding device result: the first deliberate submit returned HTTP 200 and refreshed `/me`, but the UI
-remained/returned to the onboarding screen. A second deliberate submit produced a second HTTP 200 and then exited
-onboarding. No application exception was logged. Investigation found that profile onboarding invalidated `meProvider`
-and navigated before the refreshed `/me` future completed, allowing the router to observe the old profile gate. Commit
-`4a1f4cf` now waits for that refresh before navigation, with a regression test that holds `/me` pending and verifies
-that completion does not fire early. On 2026-10-05, removing the wait made that regression fail for the expected
-reason; failed-network-POST and incomplete-profile push-gate regressions were also added. A physical-device staging
-retest of a successful first submit is still pending, as are the Edit Profile and airplane-mode retry checks. The
-staging test account cleanup remains Pending until those checks finish.
+Profile-onboarding device result: the original run required two successful submits because navigation happened before
+the refreshed `/me` completed. The app now waits for that refresh, with a regression test that fails when the wait is
+removed. On 2026-10-05, a fresh incomplete staging account reached the compulsory form. Its first request exposed a
+staging game ID that PostgreSQL accepts but strict RFC UUID validation rejected; after the web request and `/me`
+response schemas were aligned with PostgreSQL UUIDs, one submit returned HTTP 200 and opened Home. Opening Account
+then showed the completed profile. A separate account-screen regression now renders `/me` failures as a localized
+error with Retry instead of falsely showing Log in/Create account. The Edit Profile and airplane-mode checks remain
+pending. Staging test account cleanup remains Pending until those checks finish.
 
 Fresh-context review on 2026-10-05 found and fixed five pre-device blockers: canonical country-name drift, default-false
 consent being treated as an answer, 401 login bounce, hidden Edit Profile server field errors, and insufficient real-router
 coverage. The combined focused profile/gate/router/push/contract suite passes (79 tests). No live calls were made.
 Follow-up review found four additional canonical country labels and a router-refresh regression that could pop a
 pushed screen on token refresh. Both now have regression coverage; router reevaluation preserves the pushed stack.
-The final post-rebase full suite passed all 1,342 tests. Physical-device staging verification remains pending.
+The final post-rebase suite passed all 1,342 tests. After the Account error-state regression was added, the full suite
+passed all 1,345 tests and `flutter analyze` reported no issues.
 
 ## 2026-09-25 — Phase 1 auth/lifecycle hardening (`fix/phase1-auth-lifecycle`)
 
