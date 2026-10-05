@@ -28,6 +28,7 @@ import 'sticker_picker.dart';
 import 'messages_repository.dart';
 import 'thread_providers.dart';
 import 'thread_window.dart';
+import 'typing_controller.dart';
 
 const _editWindow = Duration(minutes: 10);
 
@@ -53,6 +54,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
   bool _forwarding = false;
   bool _requestBusy = false;
   Timer? _poll;
+  VoidCallback _onTyping = () {};
 
   @override
   void initState() {
@@ -88,12 +90,12 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      _resumed = true;
+      setState(() => _resumed = true);
       _claimOpen();
       _stampIfAllowed();
       ref.invalidate(threadHeaderProvider(widget.threadId)); // a request may have been answered while away
     } else if (state == AppLifecycleState.paused || state == AppLifecycleState.hidden) {
-      _resumed = false;
+      setState(() => _resumed = false);
       _openThread.close(widget.threadId);
       _stopPoll();
     }
@@ -374,6 +376,18 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
 
     final h = header.value; // keeps the last header while a poll or refetch is in flight
     _syncPoll(h);
+    // Typing runs only for an accepted, unblocked thread while the app is visible: otherwise no channel opens.
+    var typing = false;
+    _onTyping = () {};
+    if (h != null) {
+      final args = ThreadTypingArgs(
+        threadId: id,
+        otherId: h.other.id,
+        enabled: _resumed && threadModeFor(h) == ThreadMode.open,
+      );
+      _onTyping = ref.watch(typingNotifierProvider(args));
+      typing = ref.watch(threadTypingProvider(args)).asData?.value ?? false;
+    }
     final notFound = (thread.hasError && !thread.hasValue && _isNotFound(thread.error)) || (header.hasError && _isNotFound(header.error));
 
     return Scaffold(
@@ -387,7 +401,12 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
                 child: Row(children: [
                   AvatarWithPresence(avatarUrl: h.other.avatarUrl, online: ref.watch(isOnlineProvider(h.other.id)), dotKey: const Key('dm-online-header'), size: 34),
                   const SizedBox(width: 10),
-                  Expanded(child: Text(h.other.displayName, maxLines: 1, overflow: TextOverflow.ellipsis)),
+                  Expanded(
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
+                      Text(h.other.displayName, maxLines: 1, overflow: TextOverflow.ellipsis),
+                      if (typing) Text(l10n.dmTyping, key: const Key('dm-typing'), style: const TextStyle(fontSize: 12, color: SxColors.primary)),
+                    ]),
+                  ),
                 ]),
               ),
         actions: [if (h != null) _menu(l10n, h)],
@@ -503,6 +522,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
       onCancelEdit: () => setState(() => _editing = null),
       onSend: _send,
       onSubmitEdit: _submitEdit,
+      onTyping: _onTyping,
       trailing: h != null && mode == ThreadMode.outgoingRequest ? const [] : [ // text only until accepted
         IconButton(
           key: const Key('dm-photo-button'),

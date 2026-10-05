@@ -22,6 +22,7 @@ class Composer extends ConsumerStatefulWidget {
     this.editing,
     this.onCancelEdit,
     this.trailing = const [],
+    this.onTyping,
   });
 
   final String threadId;
@@ -34,6 +35,9 @@ class Composer extends ConsumerStatefulWidget {
 
   /// Extra buttons right of the field (stickers, photos, voice), added by their own tasks.
   final List<Widget> trailing;
+
+  /// Called when the player types (not when text is cleared or set by the edit bar); throttled by its owner.
+  final VoidCallback? onTyping;
 
   @override
   ConsumerState<Composer> createState() => _ComposerState();
@@ -54,7 +58,10 @@ class _ComposerState extends ConsumerState<Composer> {
 
   void _onChanged() {
     if (_programmatic) return;
-    if (widget.editing == null) ref.read(threadDraftProvider(widget.threadId).notifier).set(_controller.text);
+    if (widget.editing == null) {
+      ref.read(threadDraftProvider(widget.threadId).notifier).set(_controller.text);
+      if (_controller.text.isNotEmpty) widget.onTyping?.call();
+    }
     setState(() {});
   }
 

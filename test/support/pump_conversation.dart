@@ -12,14 +12,21 @@ import 'package:sentinelx_mobile/features/messages/inbox_providers.dart';
 import 'package:sentinelx_mobile/features/messages/thread_providers.dart';
 
 import '../fakes/fake_messages_repository.dart';
+import '../fakes/fake_realtime.dart';
 
 /// The fixed "now" the conversation tests run at (midday UTC so local dates stay on the same day anywhere).
 final kNow = DateTime.utc(2026, 10, 5, 12);
 
 class ConvRig {
-  ConvRig(this.router, this.nudges, this.container);
+  ConvRig(this.router, this.nudges, this.container, this.factory, this.lifecycle);
 
   final GoRouter router;
+
+  /// Every realtime channel the screen asked the hub for (presence, typing).
+  final FakeChannelFactory factory;
+
+  /// Drives the hub's app-lifecycle handling (the real binding stops building frames while paused).
+  final FakeLifecycle lifecycle;
   final StreamController<RealtimeSignal> nudges;
   final ProviderContainer container;
   var _seq = 0;
@@ -37,6 +44,7 @@ Future<ConvRig> pumpConversation(
   String threadId = 't1',
   String viewer = 'me',
   DateTime? now,
+  DateTime Function()? clock,
   Locale locale = const Locale('en'),
   List<Override> overrides = const [],
   Size size = const Size(375, 800),
@@ -46,6 +54,9 @@ Future<ConvRig> pumpConversation(
   addTearDown(tester.view.reset);
   final nudges = StreamController<RealtimeSignal>.broadcast();
   addTearDown(nudges.close);
+  final factory = FakeChannelFactory();
+  final lifecycle = FakeLifecycle();
+  final hub = RealtimeHub(factory: factory, lifecycle: lifecycle);
   final router = GoRouter(
     initialLocation: '/messages/$threadId',
     routes: [
@@ -60,10 +71,11 @@ Future<ConvRig> pumpConversation(
     retry: (_, _) => null,
     overrides: [
       messagesRepositoryProvider.overrideWithValue(repo),
+      realtimeHubProvider.overrideWithValue(hub),
       dmViewerIdProvider.overrideWith((ref) async => viewer),
       dmNudgeProvider.overrideWith((ref) => nudges.stream),
       deliveredThrottleProvider.overrideWithValue(DeliveredThrottle(send: repo.markAllDelivered)),
-      dmClockProvider.overrideWithValue(() => now ?? kNow),
+      dmClockProvider.overrideWithValue(clock ?? () => now ?? kNow),
       ...overrides,
     ],
     child: Builder(builder: (context) {
@@ -77,5 +89,5 @@ Future<ConvRig> pumpConversation(
     }),
   ));
   await tester.pumpAndSettle();
-  return ConvRig(router, nudges, container);
+  return ConvRig(router, nudges, container, factory, lifecycle);
 }
