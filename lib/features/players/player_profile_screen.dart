@@ -5,6 +5,8 @@ import '../../core/api/api_client.dart';
 import '../../core/api/players_models.dart';
 import '../../core/l10n/gen/app_localizations.dart';
 import '../../core/providers.dart';
+import '../messages/inbox_providers.dart';
+import '../messages/message_error_copy.dart';
 import 'players_providers.dart';
 import 'profile_sections.dart';
 
@@ -15,12 +17,16 @@ class PlayerProfileScreen extends ConsumerWidget {
     required this.onLogIn,
     required this.onOpenFollowers,
     required this.onOpenFollowing,
+    required this.onMessage,
   });
 
   final String username;
   final VoidCallback onLogIn;
   final void Function(String username) onOpenFollowers;
   final void Function(String username) onOpenFollowing;
+
+  /// Called with the thread id once a conversation with this player exists (started or already there).
+  final void Function(String threadId) onMessage;
 
   Future<void> _toggle(BuildContext context, WidgetRef ref, ProfileHeader p, bool following) async {
     final notifier = ref.read(myFollowsProvider.notifier);
@@ -61,6 +67,7 @@ class PlayerProfileScreen extends ConsumerWidget {
           onToggle: (following) => _toggle(context, ref, p.player, following),
           onOpenFollowers: () => onOpenFollowers(p.player.username),
           onOpenFollowing: () => onOpenFollowing(p.player.username),
+          onMessage: onMessage,
         ),
       ),
     );
@@ -74,6 +81,7 @@ class _ProfileBody extends ConsumerWidget {
     required this.onToggle,
     required this.onOpenFollowers,
     required this.onOpenFollowing,
+    required this.onMessage,
   });
 
   final PlayerProfile profile;
@@ -81,6 +89,7 @@ class _ProfileBody extends ConsumerWidget {
   final Future<void> Function(bool following) onToggle;
   final VoidCallback onOpenFollowers;
   final VoidCallback onOpenFollowing;
+  final void Function(String threadId) onMessage;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -130,11 +139,17 @@ class _ProfileBody extends ConsumerWidget {
                             child: Text(l10n.profileFollow),
                           ),
                   ),
-                  if (followsYou) ...[
-                    const SizedBox(width: 8),
-                    Chip(key: const Key('follows-you-chip'), label: Text(l10n.profileFollowsYou)),
-                  ],
+                  const SizedBox(width: 8),
+                  Expanded(child: _MessageButton(playerId: p.id, signedIn: signedIn, onLogIn: onLogIn, onOpen: onMessage)),
                 ],
+              ),
+            ),
+          if (!isOwn && followsYou)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 4, 16, 0),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Chip(key: const Key('follows-you-chip'), label: Text(l10n.profileFollowsYou)),
               ),
             ),
           const SizedBox(height: 8),
@@ -148,6 +163,53 @@ class _ProfileBody extends ConsumerWidget {
           const SizedBox(height: 24),
         ],
       ),
+    );
+  }
+}
+
+/// Starts (or reopens) the conversation with this player through the API, then hands the thread id to
+/// [onOpen]. Disabled while in flight, so a double tap starts one request.
+class _MessageButton extends ConsumerStatefulWidget {
+  const _MessageButton({required this.playerId, required this.signedIn, required this.onLogIn, required this.onOpen});
+
+  final String playerId;
+  final bool signedIn;
+  final VoidCallback onLogIn;
+  final void Function(String threadId) onOpen;
+
+  @override
+  ConsumerState<_MessageButton> createState() => _MessageButtonState();
+}
+
+class _MessageButtonState extends ConsumerState<_MessageButton> {
+  bool _busy = false;
+
+  Future<void> _tap() async {
+    if (!widget.signedIn) return widget.onLogIn();
+    if (_busy) return;
+    final repo = ref.read(messagesRepositoryProvider);
+    final l10n = AppLocalizations.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    setState(() => _busy = true);
+    try {
+      final started = await repo.start(widget.playerId);
+      if (mounted) widget.onOpen(started.threadId);
+    } catch (e) {
+      messenger.hideCurrentSnackBar();
+      messenger.showSnackBar(SnackBar(content: Text(dmErrorCopy(l10n, e))));
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return OutlinedButton.icon(
+      key: const Key('message-button'),
+      onPressed: _busy ? null : _tap,
+      icon: const Icon(Icons.mail_outline, size: 18),
+      label: Text(l10n.dmMessageButton, maxLines: 1, overflow: TextOverflow.ellipsis),
     );
   }
 }

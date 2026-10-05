@@ -5,6 +5,9 @@ import 'package:sentinelx_mobile/core/api/models.dart';
 import 'package:sentinelx_mobile/core/api/players_models.dart';
 import 'package:sentinelx_mobile/core/l10n/gen/app_localizations.dart';
 import 'package:sentinelx_mobile/core/providers.dart';
+import 'package:sentinelx_mobile/core/realtime/realtime_hub.dart';
+import 'package:sentinelx_mobile/features/messages/conversation_screen.dart';
+import 'package:sentinelx_mobile/features/messages/inbox_providers.dart';
 import 'package:sentinelx_mobile/features/players/follow_list_screen.dart';
 import 'package:sentinelx_mobile/features/players/player_profile_screen.dart';
 import 'package:sentinelx_mobile/features/players/players_directory_screen.dart';
@@ -14,6 +17,7 @@ import 'package:sentinelx_mobile/features/progress/my_progress_screen.dart';
 import 'package:sentinelx_mobile/features/progress/progress_providers.dart';
 import 'package:sentinelx_mobile/router/app_router.dart';
 
+import '../fakes/fake_messages_repository.dart';
 import '../support/fake_players_repository.dart';
 import '../support/fake_progress_repository.dart';
 
@@ -58,5 +62,33 @@ void main() {
     expect(find.byType(MyProgressScreen), findsOneWidget);
     await _pump(tester, '/account/progress/xp');
     expect(find.byType(HistoryListScreen<XpEvent>), findsOneWidget);
+  });
+
+  testWidgets('the profile Message button starts a thread, pushes the conversation, and Back returns to the profile', (tester) async {
+    final messages = FakeMessagesRepository();
+    await tester.pumpWidget(ProviderScope(
+      retry: (_, _) => null,
+      overrides: [
+        playersRepositoryProvider.overrideWithValue(FakePlayersRepository()),
+        messagesRepositoryProvider.overrideWithValue(messages),
+        dmViewerIdProvider.overrideWith((ref) async => 'me1'),
+        dmNudgeProvider.overrideWith((ref) => const Stream<RealtimeSignal>.empty()),
+        meProvider.overrideWith((ref) async => const MeResponse(id: 'me1', email: null, roles: [], isStaff: false, isAdmin: false, profile: null)),
+      ],
+      child: MaterialApp.router(
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        routerConfig: buildAppRouter(initialLocation: '/players/ada'),
+      ),
+    ));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('message-button')));
+    await tester.pumpAndSettle();
+    expect(messages.startCalls, hasLength(1));
+    expect(find.byType(ConversationScreen), findsOneWidget);
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+    expect(find.byType(PlayerProfileScreen), findsOneWidget);
+    expect(find.byType(ConversationScreen), findsNothing);
   });
 }

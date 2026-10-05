@@ -276,6 +276,7 @@ GoRouter buildAppRouter({
                     onLogIn: () => context.push('/login'),
                     onOpenFollowers: (u) => context.push('/players/${Uri.encodeComponent(u)}/followers'),
                     onOpenFollowing: (u) => context.push('/players/${Uri.encodeComponent(u)}/following'),
+                    onMessage: (threadId) => context.push('/messages/${Uri.encodeComponent(threadId)}'),
                   ),
                   routes: [
                     GoRoute(

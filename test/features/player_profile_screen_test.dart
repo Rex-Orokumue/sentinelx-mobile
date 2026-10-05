@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -6,19 +8,22 @@ import 'package:sentinelx_mobile/core/api/players_models.dart';
 import 'package:sentinelx_mobile/core/l10n/gen/app_localizations.dart';
 import 'package:sentinelx_mobile/core/providers.dart';
 import 'package:sentinelx_mobile/features/players/player_profile_screen.dart';
+import 'package:sentinelx_mobile/features/messages/inbox_providers.dart';
 import 'package:sentinelx_mobile/features/players/players_providers.dart';
 
+import '../fakes/fake_messages_repository.dart' as dm;
 import '../support/fake_players_repository.dart';
 import '../support/players_fixtures.dart';
 
 MeResponse _me(String id) => MeResponse(id: id, email: null, roles: const [], isStaff: false, isAdmin: false, profile: null);
 
-Widget _app(FakePlayersRepository repo, {String? meId, VoidCallback? onLogIn, String username = 'ada'}) => ProviderScope(
+Widget _app(FakePlayersRepository repo, {String? meId, VoidCallback? onLogIn, String username = 'ada', dm.FakeMessagesRepository? messages, void Function(String)? onMessage}) => ProviderScope(
       retry: (_, _) => null,
       overrides: [
         playersRepositoryProvider.overrideWithValue(repo),
         meProvider.overrideWith((ref) async => meId == null ? null : _me(meId)),
         followRetryDelayProvider.overrideWithValue(Duration.zero),
+        messagesRepositoryProvider.overrideWithValue(messages ?? dm.FakeMessagesRepository()),
       ],
       child: MaterialApp(
         localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -28,6 +33,7 @@ Widget _app(FakePlayersRepository repo, {String? meId, VoidCallback? onLogIn, St
           onLogIn: onLogIn ?? () {},
           onOpenFollowers: (_) {},
           onOpenFollowing: (_) {},
+          onMessage: onMessage ?? (_) {},
         ),
       ),
     );
@@ -170,5 +176,90 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Follow'), findsOneWidget);
     expect(repo.unfollowCalls, ['ada']);
+  });
+
+  group('Message button', () {
+    testWidgets('shown for another signed-in player', (tester) async {
+      await phone(tester);
+      await tester.pumpWidget(_app(FakePlayersRepository(), meId: 'someone-else'));
+      await tester.pumpAndSettle();
+      expect(find.byKey(const Key('message-button')), findsOneWidget);
+    });
+
+    testWidgets('signed out it is still shown and opens login instead of starting a thread', (tester) async {
+      await phone(tester);
+      var logins = 0;
+      final messages = dm.FakeMessagesRepository();
+      await tester.pumpWidget(_app(FakePlayersRepository(), onLogIn: () => logins++, messages: messages));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('message-button')));
+      await tester.pump();
+      expect(logins, 1);
+      expect(messages.startCalls, isEmpty);
+    });
+
+    testWidgets('own profile has no message button', (tester) async {
+      await phone(tester);
+      final repo = FakePlayersRepository()..profileData = profileJson(id: 'me1');
+      await tester.pumpWidget(_app(repo, meId: 'me1'));
+      await tester.pumpAndSettle();
+      expect(find.byKey(const Key('message-button')), findsNothing);
+    });
+
+    testWidgets('tapping starts a thread with the PLAYER id, once even on a double tap, then opens it', (tester) async {
+      await phone(tester);
+      final repo = FakePlayersRepository()..profileData = profileJson(id: 'player-77');
+      final messages = dm.FakeMessagesRepository();
+      final opened = <String>[];
+      final gate = Completer<void>();
+      messages.holds['start'] = gate;
+      await tester.pumpWidget(_app(repo, meId: 'me-1', messages: messages, onMessage: opened.add));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('message-button')));
+      await tester.tap(find.byKey(const Key('message-button')), warnIfMissed: false);
+      await tester.pump();
+      gate.complete();
+      await tester.pumpAndSettle();
+      expect(messages.startCalls, ['player-77']);
+      expect(opened, ['thread-player-77']);
+    });
+
+    testWidgets('the button is disabled while the request is in flight', (tester) async {
+      await phone(tester);
+      final repo = FakePlayersRepository();
+      final messages = dm.FakeMessagesRepository();
+      final gate = Completer<void>();
+      messages.holds['start'] = gate;
+      await tester.pumpWidget(_app(repo, meId: 'me-1', messages: messages));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('message-button')));
+      await tester.pump();
+      expect(tester.widget<OutlinedButton>(find.byKey(const Key('message-button'))).onPressed, isNull);
+      gate.complete();
+      await tester.pumpAndSettle();
+      expect(tester.widget<OutlinedButton>(find.byKey(const Key('message-button'))).onPressed, isNotNull);
+    });
+
+    testWidgets('a blocked error shows its copy and stays on the profile', (tester) async {
+      await phone(tester);
+      final messages = dm.FakeMessagesRepository()..failures['start'] = dm.apiError('blocked', status: 403);
+      final opened = <String>[];
+      await tester.pumpWidget(_app(FakePlayersRepository(), meId: 'me-1', messages: messages, onMessage: opened.add));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('message-button')));
+      await tester.pumpAndSettle();
+      expect(find.text("You can't message this player."), findsOneWidget);
+      expect(opened, isEmpty);
+    });
+
+    testWidgets('a blocked-by-me error uses its own copy', (tester) async {
+      await phone(tester);
+      final messages = dm.FakeMessagesRepository()..failures['start'] = dm.apiError('blocked_by_me', status: 403);
+      await tester.pumpWidget(_app(FakePlayersRepository(), meId: 'me-1', messages: messages));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('message-button')));
+      await tester.pumpAndSettle();
+      expect(find.text('You blocked this player. Unblock them to send messages.'), findsOneWidget);
+    });
   });
 }
