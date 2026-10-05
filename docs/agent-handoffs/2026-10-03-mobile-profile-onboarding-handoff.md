@@ -38,6 +38,24 @@ Phase 5a push/gate interaction.
 - **Integration base:** the old `feat/profile-onboarding` branch was not merged because its equivalent commits,
   including `4a1f4cf`, were already present on `master`. Finish work continues from current `master` on
   `fix/profile-onboarding-finish`; the old pushed branch remains unchanged.
+- **Country contract:** submit the web's canonical English display names, not ISO codes (the database stores the
+  submitted value). Twenty-one `country_picker` labels are mapped by ISO code; `HM` and `GS` are excluded because the
+  server's phone library cannot validate those regions. Cost if wrong: a future picker/server data update could drift,
+  so the mismatch table is covered exhaustively and should be rechecked when either dependency changes.
+
+## Fresh-context review resolution (2026-10-05)
+
+The review found no Critical issues and five Important issues. All five were fixed with regressions:
+
+- Canonicalize every picker label that differs from web `Intl.DisplayNames` and exclude the two unsupported regions.
+- Treat the database's default `consentWhatsappUpdates: false` as unanswered during compulsory onboarding.
+- On a 401, sign out and invalidate `/me` before navigating to login so the stale gate cannot bounce back.
+- Show server WhatsApp validation beside the Edit Profile field and retain a generic error for unmapped server fields.
+- Exercise delayed initial/refetched `/me` through the real `routerProvider`, including a push tap blocked by the gate;
+  replace the ineffective notifier bridge with semantic gate/session listeners that reevaluate the current route.
+
+Deferred Minor: Edit Profile retains its existing digits-only local WhatsApp validator. Spaced national formatting can
+be entered without spaces or in E.164 form; aligning local parsing with the server is useful but does not block this fix.
 
 ## Not yet verified
 

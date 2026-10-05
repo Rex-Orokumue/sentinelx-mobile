@@ -21,6 +21,10 @@ reason; failed-network-POST and incomplete-profile push-gate regressions were al
 retest of a successful first submit is still pending, as are the Edit Profile and airplane-mode retry checks. The
 staging test account cleanup remains Pending until those checks finish.
 
+Fresh-context review on 2026-10-05 found and fixed five pre-device blockers: canonical country-name drift, default-false
+consent being treated as an answer, 401 login bounce, hidden Edit Profile server field errors, and insufficient real-router
+coverage. The combined focused profile/gate/router/push/contract suite passes (79 tests). No live calls were made.
+
 ## 2026-09-25 — Phase 1 auth/lifecycle hardening (`fix/phase1-auth-lifecycle`)
 
 Manual check on a physical phone (Samsung SM-S9010, Android 16), debug build against production, Google sign-in via a

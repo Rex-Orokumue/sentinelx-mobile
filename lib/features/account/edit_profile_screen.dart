@@ -32,11 +32,17 @@ class EditProfileScreen extends ConsumerWidget {
               error: (_, _) => Center(
                 child: Padding(
                   padding: const EdgeInsets.all(24),
-                  child: Column(mainAxisSize: MainAxisSize.min, children: [
-                    Text(l10n.cmpLoadError, textAlign: TextAlign.center),
-                    const SizedBox(height: 12),
-                    OutlinedButton(onPressed: () => ref.invalidate(ownBioProvider), child: Text(l10n.cmpRetry)),
-                  ]),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(l10n.cmpLoadError, textAlign: TextAlign.center),
+                      const SizedBox(height: 12),
+                      OutlinedButton(
+                        onPressed: () => ref.invalidate(ownBioProvider),
+                        child: Text(l10n.cmpRetry),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               data: (b) => _EditForm(me: me, bio: b),
@@ -107,16 +113,18 @@ class _EditFormState extends ConsumerState<_EditForm> {
       _serverFields = const {};
     });
     try {
-      await ref.read(profileEditorProvider)(ProfileEdit(
-        displayName: _name.text.trim(),
-        // The server treats '' as "no username change"; the one-time change is enforced there.
-        username: username == _originalUsername ? '' : username,
-        whatsapp: _whatsapp.text.trim(),
-        country: _country?.trim() ?? '',
-        bio: _bio.text.trim(),
-        gameInterests: _gameInterests.toList(),
-        consentWhatsappUpdates: _consentWhatsappUpdates,
-      ));
+      await ref.read(profileEditorProvider)(
+        ProfileEdit(
+          displayName: _name.text.trim(),
+          // The server treats '' as "no username change"; the one-time change is enforced there.
+          username: username == _originalUsername ? '' : username,
+          whatsapp: _whatsapp.text.trim(),
+          country: _country?.trim() ?? '',
+          bio: _bio.text.trim(),
+          gameInterests: _gameInterests.toList(),
+          consentWhatsappUpdates: _consentWhatsappUpdates,
+        ),
+      );
       if (!mounted) return;
       ref.invalidate(meProvider);
       ref.invalidate(ownBioProvider);
@@ -125,7 +133,9 @@ class _EditFormState extends ConsumerState<_EditForm> {
     } catch (e) {
       if (!mounted) return;
       setState(() {
-        _errorCode = e is ApiException ? (e.isUnauthorized ? 'unauthorized' : e.code) : 'network';
+        _errorCode = e is ApiException
+            ? (e.isUnauthorized ? 'unauthorized' : e.code)
+            : 'network';
         _serverFields = e is ApiException ? e.fields : const {};
       });
     } finally {
@@ -141,86 +151,122 @@ class _EditFormState extends ConsumerState<_EditForm> {
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 80),
       child: Form(
         key: _formKey,
-        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-          TextFormField(
-            key: const Key('profile-display-name'),
-            controller: _name,
-            enabled: !_saving,
-            decoration: InputDecoration(labelText: l10n.cmpFieldDisplayName),
-            validator: (v) => RegistrationValidators.displayName(v ?? '') ? null : l10n.cmpValDisplayName,
-          ),
-          TextFormField(
-            key: const Key('profile-username'),
-            controller: _username,
-            enabled: !_saving,
-            decoration: InputDecoration(
-              labelText: l10n.cmpFieldUsername,
-              errorText: _serverFields.containsKey('username') ? l10n.cmpValUsername : null,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TextFormField(
+              key: const Key('profile-display-name'),
+              controller: _name,
+              enabled: !_saving,
+              decoration: InputDecoration(labelText: l10n.cmpFieldDisplayName),
+              validator: (v) => RegistrationValidators.displayName(v ?? '')
+                  ? null
+                  : l10n.cmpValDisplayName,
             ),
-          ),
-          TextFormField(
-            key: const Key('profile-whatsapp'),
-            controller: _whatsapp,
-            enabled: !_saving,
-            keyboardType: TextInputType.phone,
-            decoration: InputDecoration(labelText: l10n.cmpFieldWhatsapp),
-            validator: (v) {
-              final t = (v ?? '').trim();
-              return t.isEmpty || RegistrationValidators.whatsapp(t) ? null : l10n.cmpValWhatsapp;
-            },
-          ),
-          CountryField(
-            key: const Key('profile-country'),
-            label: l10n.profileCountryLabel,
-            placeholder: l10n.profileCountryPlaceholder,
-            value: _country,
-            enabled: !_saving,
-            errorText: _serverFields.containsKey('country') ? l10n.profileCountryInvalid : null,
-            onChanged: (value) => setState(() => _country = value),
-          ),
-          const SizedBox(height: 16),
-          GameInterestsField(
-            label: l10n.profileGamesLabel,
-            games: games,
-            selectedIds: _gameInterests,
-            enabled: !_saving,
-            errorText: _serverFields.containsKey('gameInterests') ? l10n.profileGamesRequired : null,
-            loadingText: l10n.profileGamesLoading,
-            retryText: l10n.profileGamesRetry,
-            onRetry: () => ref.invalidate(gamesProvider),
-            onChanged: (ids) => setState(() {
-              _gameInterests = ids;
-              _serverFields = {..._serverFields}..remove('gameInterests');
-            }),
-          ),
-          SwitchListTile(
-            key: const Key('profile-consent-whatsapp'),
-            contentPadding: EdgeInsets.zero,
-            title: Text(l10n.profileConsentLabel),
-            value: _consentWhatsappUpdates,
-            onChanged: _saving ? null : (value) => setState(() => _consentWhatsappUpdates = value),
-          ),
-          TextFormField(
-            key: const Key('profile-bio'),
-            controller: _bio,
-            enabled: !_saving,
-            maxLines: 4,
-            onChanged: (_) => setState(() {}),
-            decoration: InputDecoration(labelText: l10n.cmpFieldBio, counterText: '${_bio.text.length}/280'),
-            validator: (v) => (v ?? '').trim().length <= 280 ? null : l10n.cmpValBio,
-          ),
-          const SizedBox(height: 16),
-          FilledButton(
-            key: const Key('profile-save'),
-            onPressed: _saving ? null : _save,
-            child: Text(_saving ? l10n.cmpSubmitting : l10n.cmpSave),
-          ),
-          if (_errorCode != null && !(_errorCode == 'validation_failed' && _serverFields.isNotEmpty))
-            Padding(
-              padding: const EdgeInsets.only(top: 12),
-              child: Text(errorCopy(l10n, _errorCode!), style: TextStyle(color: Theme.of(context).colorScheme.error)),
+            TextFormField(
+              key: const Key('profile-username'),
+              controller: _username,
+              enabled: !_saving,
+              decoration: InputDecoration(
+                labelText: l10n.cmpFieldUsername,
+                errorText: _serverFields.containsKey('username')
+                    ? l10n.cmpValUsername
+                    : null,
+              ),
             ),
-        ]),
+            TextFormField(
+              key: const Key('profile-whatsapp'),
+              controller: _whatsapp,
+              enabled: !_saving,
+              keyboardType: TextInputType.phone,
+              decoration: InputDecoration(
+                labelText: l10n.cmpFieldWhatsapp,
+                errorText: _serverFields.containsKey('whatsapp')
+                    ? l10n.profileWhatsappInvalid
+                    : null,
+              ),
+              validator: (v) {
+                final t = (v ?? '').trim();
+                return t.isEmpty || RegistrationValidators.whatsapp(t)
+                    ? null
+                    : l10n.cmpValWhatsapp;
+              },
+            ),
+            CountryField(
+              key: const Key('profile-country'),
+              label: l10n.profileCountryLabel,
+              placeholder: l10n.profileCountryPlaceholder,
+              value: _country,
+              enabled: !_saving,
+              errorText: _serverFields.containsKey('country')
+                  ? l10n.profileCountryInvalid
+                  : null,
+              onChanged: (value) => setState(() => _country = value),
+            ),
+            const SizedBox(height: 16),
+            GameInterestsField(
+              label: l10n.profileGamesLabel,
+              games: games,
+              selectedIds: _gameInterests,
+              enabled: !_saving,
+              errorText: _serverFields.containsKey('gameInterests')
+                  ? l10n.profileGamesRequired
+                  : null,
+              loadingText: l10n.profileGamesLoading,
+              retryText: l10n.profileGamesRetry,
+              onRetry: () => ref.invalidate(gamesProvider),
+              onChanged: (ids) => setState(() {
+                _gameInterests = ids;
+                _serverFields = {..._serverFields}..remove('gameInterests');
+              }),
+            ),
+            SwitchListTile(
+              key: const Key('profile-consent-whatsapp'),
+              contentPadding: EdgeInsets.zero,
+              title: Text(l10n.profileConsentLabel),
+              value: _consentWhatsappUpdates,
+              onChanged: _saving
+                  ? null
+                  : (value) => setState(() => _consentWhatsappUpdates = value),
+            ),
+            TextFormField(
+              key: const Key('profile-bio'),
+              controller: _bio,
+              enabled: !_saving,
+              maxLines: 4,
+              onChanged: (_) => setState(() {}),
+              decoration: InputDecoration(
+                labelText: l10n.cmpFieldBio,
+                counterText: '${_bio.text.length}/280',
+              ),
+              validator: (v) =>
+                  (v ?? '').trim().length <= 280 ? null : l10n.cmpValBio,
+            ),
+            const SizedBox(height: 16),
+            FilledButton(
+              key: const Key('profile-save'),
+              onPressed: _saving ? null : _save,
+              child: Text(_saving ? l10n.cmpSubmitting : l10n.cmpSave),
+            ),
+            if (_errorCode != null &&
+                !(_errorCode == 'validation_failed' &&
+                    _serverFields.keys.any(
+                      const {
+                        'username',
+                        'whatsapp',
+                        'country',
+                        'gameInterests',
+                      }.contains,
+                    )))
+              Padding(
+                padding: const EdgeInsets.only(top: 12),
+                child: Text(
+                  errorCopy(l10n, _errorCode!),
+                  style: TextStyle(color: Theme.of(context).colorScheme.error),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/api/api_client.dart';
 import '../../core/api/profile_onboarding_models.dart';
+import '../../core/auth/auth_providers.dart';
 import '../../core/l10n/gen/app_localizations.dart';
 import '../../core/providers.dart';
 import '../compete/compete_providers.dart';
@@ -43,7 +44,9 @@ class _ProfileOnboardingScreenState
     _country = profile?.country;
     _whatsapp = TextEditingController(text: profile?.whatsappNumber ?? '');
     _gameIds = {...?profile?.gameInterests};
-    _consent = profile?.consentWhatsappUpdates;
+    // The stored false value is the database default, not proof that this
+    // compulsory form received an explicit answer from the player.
+    _consent = null;
   }
 
   @override
@@ -87,7 +90,13 @@ class _ProfileOnboardingScreenState
     } catch (error) {
       if (!mounted) return;
       if (error is ApiException && error.isUnauthorized) {
-        widget.onUnauthorized();
+        try {
+          await ref.read(authRepositoryProvider).signOut();
+        } catch (_) {
+          // The stale local identity must not keep the onboarding gate active.
+        }
+        ref.invalidate(meProvider);
+        if (mounted) widget.onUnauthorized();
         return;
       }
       setState(() {
