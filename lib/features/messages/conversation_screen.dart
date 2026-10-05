@@ -21,6 +21,7 @@ import 'inbox_providers.dart';
 import 'message_actions_sheet.dart';
 import 'message_bubble.dart';
 import 'message_error_copy.dart';
+import 'request_view.dart';
 import 'message_media.dart';
 import 'sticker_picker.dart';
 import 'messages_repository.dart';
@@ -49,6 +50,8 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
   bool _showPill = false;
   bool _stampedOnOpen = false;
   bool _forwarding = false;
+  bool _requestBusy = false;
+  Timer? _poll;
 
   @override
   void initState() {
@@ -62,6 +65,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    _poll?.cancel();
     _scroll.dispose();
     final notifier = _openThread;
     final id = widget.threadId;
@@ -86,9 +90,11 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
       _resumed = true;
       _claimOpen();
       _stampIfAllowed();
+      ref.invalidate(threadHeaderProvider(widget.threadId)); // a request may have been answered while away
     } else if (state == AppLifecycleState.paused || state == AppLifecycleState.hidden) {
       _resumed = false;
       _openThread.close(widget.threadId);
+      _stopPoll();
     }
   }
 
@@ -101,7 +107,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
 
   /// A request waiting for the viewer's answer is preview-only: opening it must not stamp read receipts.
   bool _stampAllowed() {
-    final h = ref.read(threadHeaderProvider(widget.threadId)).asData?.value;
+    final h = ref.read(threadHeaderProvider(widget.threadId)).value;
     if (h == null) return false;
     return !(h.requestState == RequestState.pending && h.direction == RequestDirection.incoming);
   }
@@ -109,6 +115,86 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
   void _stampIfAllowed() {
     if (!_resumed || !_stampAllowed()) return;
     unawaited(ref.read(threadProvider(widget.threadId).notifier).markRead());
+  }
+
+  /// While the viewer is waiting on a request they sent, ask the server every 25 s whether it was accepted (or
+  /// blocked). Runs only while this screen is open and the app visible, and stops the moment that state ends.
+  void _syncPoll(ThreadHeader? h) {
+    final should = _resumed && h != null && threadModeFor(h) == ThreadMode.outgoingRequest;
+    if (should && _poll == null) {
+      _poll = Timer.periodic(kOutgoingPendingPollInterval, (_) {
+        if (mounted) ref.invalidate(threadHeaderProvider(widget.threadId));
+      });
+    } else if (!should) {
+      _stopPoll();
+    }
+  }
+
+  void _stopPoll() {
+    _poll?.cancel();
+    _poll = null;
+  }
+
+  void _refreshInboxes() {
+    ref.invalidate(inboxProvider);
+    ref.invalidate(requestsInboxProvider);
+  }
+
+  Future<void> _accept() async {
+    if (_requestBusy) return;
+    _requestBusy = true;
+    setState(() {});
+    final repo = ref.read(messagesRepositoryProvider);
+    final notifier = ref.read(threadProvider(widget.threadId).notifier);
+    final l10n = AppLocalizations.of(context);
+    try {
+      await repo.accept(widget.threadId);
+      if (!mounted) return;
+      ref.invalidate(threadHeaderProvider(widget.threadId));
+      _refreshInboxes();
+      await ref.read(threadHeaderProvider(widget.threadId).future);
+      unawaited(notifier.markRead());
+    } catch (e) {
+      // Only a failure re-arms the buttons: after success the panel is replaced, so a late second tap on the
+      // old button must still be ignored.
+      _requestBusy = false;
+      if (mounted) {
+        setState(() {});
+        _say(dmErrorCopy(l10n, e));
+      }
+    }
+  }
+
+  Future<void> _decline() async {
+    if (_requestBusy) return;
+    _requestBusy = true;
+    setState(() {});
+    final repo = ref.read(messagesRepositoryProvider);
+    final l10n = AppLocalizations.of(context);
+    final router = GoRouter.of(context);
+    try {
+      await repo.decline(widget.threadId);
+      _refreshInboxes();
+      if (mounted) {
+        if (router.canPop()) {
+          router.pop();
+        } else {
+          router.go('/messages');
+        }
+      }
+    } catch (e) {
+      _requestBusy = false;
+      if (mounted) {
+        setState(() {});
+        _say(dmErrorCopy(l10n, e));
+      }
+    }
+  }
+
+  Future<void> _blockAndReport(ThreadHeader h) async {
+    if (_requestBusy) return;
+    final blocked = await confirmAndBlock(context, ref, threadId: widget.threadId, other: h.other);
+    if (blocked && mounted) await reportFlow(context, ref, threadId: widget.threadId);
   }
 
   void _say(String text) {
@@ -285,7 +371,8 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
       });
     }
 
-    final h = header.asData?.value;
+    final h = header.value; // keeps the last header while a poll or refetch is in flight
+    _syncPoll(h);
     final notFound = (thread.hasError && !thread.hasValue && _isNotFound(thread.error)) || (header.hasError && _isNotFound(header.error));
 
     return Scaffold(
@@ -348,7 +435,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
     if (view == null || viewer == null) return const Center(child: CircularProgressIndicator());
     return Column(children: [
       Expanded(child: Stack(children: [_list(context, l10n, view, viewer), if (_showPill) _pill(l10n)])),
-      _footer(l10n, h),
+      _footer(l10n, h, view),
     ]);
   }
 
@@ -368,8 +455,25 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
         ),
       );
 
-  Widget _footer(AppLocalizations l10n, ThreadHeader? h) {
-    if (h != null && !h.canSend) {
+  Widget _footer(AppLocalizations l10n, ThreadHeader? h, ThreadView view) {
+    final header = ref.read(threadHeaderProvider(widget.threadId));
+    if (h == null && !header.hasError) return const SizedBox.shrink(); // request state unknown yet: no composer flash
+    final mode = h == null ? ThreadMode.open : threadModeFor(h);
+    if (h != null && mode == ThreadMode.incomingRequest) {
+      return IncomingRequestPanel(
+        name: h.other.displayName,
+        busy: _requestBusy,
+        onAccept: () => unawaited(_accept()),
+        onDecline: () => unawaited(_decline()),
+        onBlockAndReport: () => unawaited(_blockAndReport(h)),
+      );
+    }
+    if (h != null && mode == ThreadMode.outgoingRequest) {
+      final viewer = ref.read(dmViewerIdProvider).asData?.value;
+      final sentOne = view.messages.any((m) => m.isMine(viewer ?? '')) || view.pending.any((p) => p.status == PendingStatus.sending);
+      if (sentOne) return WaitingBanner(name: h.other.displayName);
+    }
+    if (h != null && mode == ThreadMode.blocked) {
       final text = h.blockedByMe ? l10n.dmBlockedByMeBanner(h.other.displayName) : l10n.dmCannotMessage;
       return SafeArea(
         top: false,
@@ -398,7 +502,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
       onCancelEdit: () => setState(() => _editing = null),
       onSend: _send,
       onSubmitEdit: _submitEdit,
-      trailing: [
+      trailing: h != null && mode == ThreadMode.outgoingRequest ? const [] : [ // text only until accepted
         IconButton(
           key: const Key('dm-photo-button'),
           tooltip: l10n.dmAttachPhoto,

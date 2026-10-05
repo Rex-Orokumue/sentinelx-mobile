@@ -122,15 +122,22 @@ class ThreadNotifier extends AsyncNotifier<ThreadView> {
           if (!m.isMine(_viewerId)) m.id,
       };
 
+  /// An incoming request is preview-only: nothing may be stamped (read or delivered) while it waits for an
+  /// answer. Uses `exists` so merely asking never starts a header fetch.
+  bool _isIncomingRequest() {
+    final header = ref.exists(threadHeaderProvider(threadId)) ? ref.read(threadHeaderProvider(threadId)).value : null;
+    return header != null && header.requestState == RequestState.pending && header.direction == RequestDirection.incoming;
+  }
+
   Future<void> _onSignal(RealtimeSignalKind kind) async {
     if (kind == RealtimeSignalKind.event) {
       final before = _incomingIds();
       await refreshInPlace();
-      if (!ref.mounted) return;
+      if (!ref.mounted || _isIncomingRequest()) return;
       if (_incomingIds().difference(before).isNotEmpty) await ref.read(deliveredThrottleProvider).trigger();
     } else {
       await refreshWindow();
-      if (!ref.mounted) return;
+      if (!ref.mounted || _isIncomingRequest()) return;
       await ref.read(deliveredThrottleProvider).trigger();
     }
   }
