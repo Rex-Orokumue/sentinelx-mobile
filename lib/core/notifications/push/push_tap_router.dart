@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../features/notifications/notifications_repository.dart';
 import '../../../router/app_router.dart';
@@ -9,16 +10,34 @@ import 'push_models.dart';
 
 /// Where a tapped push goes: the in-app screen for its web `url`, or the bell when there is no url or the
 /// app has no screen for it yet (spec §3.7) — a tap must never silently do nothing.
+final _uuid = RegExp(r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$', caseSensitive: false);
+
 String destinationFor(PushMessage m) {
+  // A DM routes from its thread id; only without one does it fall back to url resolution (below).
+  final thread = m.threadId;
+  if (m.type == 'direct_message' && thread != null && _uuid.hasMatch(thread)) return '/messages/${thread.toLowerCase()}';
   final url = m.url?.trim();
   // A blank url must not reach resolveWebLink: it would resolve to Home, not the bell.
   if (url == null || url.isEmpty) return '/notifications';
   return resolveWebLink(url) ?? '/notifications';
 }
 
+/// Tab roots and Home are switched to (`go`); anything deeper stacks over whatever the player is looking at
+/// (`push`) so Back returns there, and is skipped when it is already the current location (no duplicate page).
+void pushNavigate(GoRouter router, String location) {
+  if (location == '/' || tabRootLocations.contains(location)) {
+    router.go(location);
+    return;
+  }
+  // The top page's location (a pushed page does not change the configuration's own uri).
+  final matches = router.routerDelegate.currentConfiguration;
+  if (matches.isNotEmpty && matches.last.matchedLocation == Uri.parse(location).path) return;
+  router.push<void>(location).ignore();
+}
+
 /// Navigates to an in-app location. A provider so tests record locations instead of building a router.
 final pushNavigatorProvider = Provider<void Function(String location)>(
-  (ref) => (location) => ref.read(routerProvider).go(location),
+  (ref) => (location) => pushNavigate(ref.read(routerProvider), location),
 );
 
 /// Routes push taps. A tap can fire before the Supabase session has restored (cold start from a killed

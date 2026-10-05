@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../l10n/gen/app_localizations.dart';
 import '../../providers.dart';
+import '../../../features/messages/thread_providers.dart';
 import 'push_gateway.dart';
 import 'push_models.dart';
 import 'push_tap_router.dart';
@@ -67,7 +68,13 @@ final pushBootstrapProvider = Provider<void>((ref) {
       await gateway.createChannels(buildPushChannels(_channelStrings()));
       if (disposed) return;
       subs.add(gateway.onMessageOpened.listen(tapRouter.onTap, onError: (Object _) {}));
-      subs.add(gateway.onForegroundMessage.listen(ref.read(foregroundPushProvider.notifier).show, onError: (Object _) {}));
+      subs.add(gateway.onForegroundMessage.listen((m) {
+        // The conversation the player is looking at needs no banner for its own messages.
+        final thread = m.threadId;
+        final openThread = ref.read(openThreadIdProvider);
+        if (m.type == 'direct_message' && thread != null && openThread != null && thread.toLowerCase() == openThread.toLowerCase()) return;
+        ref.read(foregroundPushProvider.notifier).show(m);
+      }, onError: (Object _) {}));
       try {
         final initial = await gateway.getInitialMessage();
         if (initial != null) tapRouter.onTap(initial);

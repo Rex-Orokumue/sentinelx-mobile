@@ -13,9 +13,12 @@ String? _str(Object? v) {
 
 /// A push as the app sees it, independent of firebase_messaging's types.
 class PushMessage {
-  const PushMessage({this.title, this.body, this.url, this.type});
+  const PushMessage({this.title, this.body, this.url, this.type, this.threadId});
 
   final String? title, body, url, type;
+
+  /// `data.threadId` on a `direct_message` push: the conversation to open and to suppress banners for.
+  final String? threadId;
 
   /// `data.url` is what the server sends today; `data.link` is accepted if it ever appears (spec §3.7).
   /// Blank or non-string values become null. Never throws.
@@ -24,6 +27,7 @@ class PushMessage {
         body: _str(body) ?? _str(data['body']),
         url: _str(data['url']) ?? _str(data['link']),
         type: _str(data['type']),
+        threadId: _str(data['threadId']),
       );
 }
 

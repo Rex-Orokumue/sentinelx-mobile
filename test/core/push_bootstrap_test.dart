@@ -8,6 +8,7 @@ import 'package:sentinelx_mobile/core/notifications/push/push_gateway.dart';
 import 'package:sentinelx_mobile/core/notifications/push/push_models.dart';
 import 'package:sentinelx_mobile/core/notifications/push/push_tap_router.dart';
 import 'package:sentinelx_mobile/core/providers.dart';
+import 'package:sentinelx_mobile/features/messages/thread_providers.dart';
 import 'package:sentinelx_mobile/features/notifications/notifications_repository.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' hide AuthException;
 
@@ -146,5 +147,69 @@ void main() {
     r.meGate.complete();
     await pumpEventQueue();
     expect(r.visited, isEmpty);
+  });
+
+  group('direct message banners', () {
+    const open = '3f2b8c1e-9d4a-4b7e-8a61-5c0d2e7f9a10';
+    const other = '9a1b2c3d-4e5f-4a6b-8c7d-0e1f2a3b4c5d';
+
+    Future<(_Rig, FakePushGateway)> started() async {
+      final g = FakePushGateway();
+      final r = _Rig(gateway: g);
+      addTearDown(r.container.dispose);
+      r.container.listen(foregroundPushProvider, (_, _) {});
+      r.start();
+      r.sessionGate.complete();
+      r.meGate.complete();
+      await pumpEventQueue();
+      return (r, g);
+    }
+
+    test('a foreground DM for the thread that is open shows no banner', () async {
+      final (r, g) = await started();
+      r.container.read(openThreadIdProvider.notifier).open(open);
+      g.foreground.add(const PushMessage(title: 'Ada', body: 'hi', type: 'direct_message', threadId: open));
+      await pumpEventQueue();
+      expect(r.container.read(foregroundPushProvider), isNull);
+    });
+
+    test('a foreground DM for another thread shows a banner', () async {
+      final (r, g) = await started();
+      r.container.read(openThreadIdProvider.notifier).open(open);
+      g.foreground.add(const PushMessage(title: 'Bo', body: 'yo', type: 'direct_message', threadId: other));
+      await pumpEventQueue();
+      expect(r.container.read(foregroundPushProvider)!.title, 'Bo');
+    });
+
+    test('a DM with no threadId still shows a banner, and a non-DM push is unaffected', () async {
+      final (r, g) = await started();
+      r.container.read(openThreadIdProvider.notifier).open(open);
+      g.foreground.add(const PushMessage(title: 'No thread', type: 'direct_message'));
+      await pumpEventQueue();
+      expect(r.container.read(foregroundPushProvider)!.title, 'No thread');
+      g.foreground.add(const PushMessage(title: 'Match', type: 'match_assigned', threadId: open));
+      await pumpEventQueue();
+      expect(r.container.read(foregroundPushProvider)!.title, 'Match');
+    });
+
+    test('with no thread open every DM banner shows', () async {
+      final (r, g) = await started();
+      g.foreground.add(const PushMessage(title: 'Ada', type: 'direct_message', threadId: open));
+      await pumpEventQueue();
+      expect(r.container.read(foregroundPushProvider)!.title, 'Ada');
+    });
+
+    test('a DM tap queued on a cold start routes once, to the thread', () async {
+      final g = FakePushGateway(initialMessage: const PushMessage(type: 'direct_message', threadId: open));
+      final r = _Rig(gateway: g);
+      addTearDown(r.container.dispose);
+      r.start();
+      await pumpEventQueue();
+      expect(r.visited, isEmpty, reason: 'not before the session settles');
+      r.sessionGate.complete();
+      r.meGate.complete();
+      await pumpEventQueue();
+      expect(r.visited, ['/messages/$open']);
+    });
   });
 }
