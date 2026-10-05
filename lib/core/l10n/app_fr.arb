@@ -35,6 +35,8 @@
   "accountTitle": "Compte",
   "accountLogIn": "Se connecter",
   "accountCreateAccount": "Créer un compte",
+  "accountLoadFailed": "Impossible de charger votre compte.",
+  "accountRetry": "Réessayer",
   "accountSignOut": "Se déconnecter",
   "accountSigningOut": "Déconnexion…",
   "accountSignOutFailed": "Impossible de se déconnecter. Veuillez réessayer.",

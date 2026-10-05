@@ -35,6 +35,8 @@
   "accountTitle": "Account",
   "accountLogIn": "Log in",
   "accountCreateAccount": "Create account",
+  "accountLoadFailed": "Couldn't load your account.",
+  "accountRetry": "Retry",
   "accountSignOut": "Sign out",
   "accountSigningOut": "Signing out…",
   "accountSignOutFailed": "Could not sign out. Please try again.",
