@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/api/notifications_models.dart';
 import '../../core/providers.dart';
+import '../../core/realtime/realtime_hub.dart';
 import 'notification_models.dart';
 import 'notifications_realtime.dart';
 import 'notifications_repository.dart';
@@ -215,7 +216,7 @@ final notificationsProvider = AsyncNotifierProvider.autoDispose<NotificationsNot
 final notificationsRealtimeProvider = StreamProvider.autoDispose<int>((ref) {
   final viewer = ref.watch(notificationsViewerIdProvider).asData?.value;
   if (viewer == null) return const Stream.empty();
-  return debouncedTicks(notificationRowChanges(ref.watch(supabaseClientProvider), viewer));
+  return debouncedTicks(notificationRowChanges(ref.watch(realtimeHubProvider), viewer));
 });
 
 /// Timed mutes for the bell menu's mute/unmute labels. Null when signed out.
