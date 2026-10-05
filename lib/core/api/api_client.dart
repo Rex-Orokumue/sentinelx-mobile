@@ -4,6 +4,7 @@ import '../config/remote_config.dart';
 import 'community_models.dart';
 import 'compete_models.dart';
 import 'match_models.dart';
+import 'messages_models.dart';
 import 'models.dart';
 import 'notifications_models.dart';
 import 'players_models.dart';
@@ -120,6 +121,21 @@ class ApiClient {
     'postNotificationRead': 'post /api/mobile/v1/notifications/{id}/read',
     'postNotificationsReadAll': 'post /api/mobile/v1/notifications/read-all',
     'postTestPush': 'post /api/mobile/v1/notifications/test-push',
+    'getMessageThreads': 'get /api/mobile/v1/messages/threads',
+    'getMessageThread': 'get /api/mobile/v1/messages/threads/{id}',
+    'getThreadMessages': 'get /api/mobile/v1/messages/threads/{id}/messages',
+    'startMessageThread': 'post /api/mobile/v1/messages/threads',
+    'sendMessage': 'post /api/mobile/v1/messages/threads/{id}/messages',
+    'editMessage': 'patch /api/mobile/v1/messages/{id}',
+    'unsendMessage': 'delete /api/mobile/v1/messages/{id}',
+    'forwardMessage': 'post /api/mobile/v1/messages/{id}/forward',
+    'markThreadRead': 'post /api/mobile/v1/messages/threads/{id}/read',
+    'markAllDelivered': 'post /api/mobile/v1/messages/delivered',
+    'blockPlayer': 'put /api/mobile/v1/messages/blocks/{playerId}',
+    'unblockPlayer': 'delete /api/mobile/v1/messages/blocks/{playerId}',
+    'reportThread': 'post /api/mobile/v1/messages/threads/{id}/report',
+    'acceptMessageRequest': 'post /api/mobile/v1/messages/threads/{id}/accept',
+    'declineMessageRequest': 'post /api/mobile/v1/messages/threads/{id}/decline',
   };
 
   static const _base = '/api/mobile/v1';
@@ -792,4 +808,98 @@ class ApiClient {
       );
 
   Future<void> sendTestPush() => _send('POST', '/notifications/test-push', (_) {});
+
+  // --- Phase 5b direct messages. All auth: 'user' (never publicRequest). Only send and forward are idempotent. ---
+
+  Future<ThreadsPage> getMessageThreads({String? cursor, String box = 'inbox'}) => _send(
+        'GET',
+        _withQuery('/messages/threads', {'box': box, 'cursor': cursor}),
+        (d) => ThreadsPage.fromJson(d! as Map<String, dynamic>),
+      );
+
+  Future<ThreadHeader> getMessageThread(String threadId) => _send(
+        'GET',
+        '/messages/threads/${Uri.encodeComponent(threadId)}',
+        (d) => ThreadHeader.fromJson(d! as Map<String, dynamic>),
+      );
+
+  Future<MessagesPage> getThreadMessages(String threadId, {String? before}) => _send(
+        'GET',
+        _withQuery('/messages/threads/${Uri.encodeComponent(threadId)}/messages', {'before': before}),
+        (d) => MessagesPage.fromJson(d! as Map<String, dynamic>),
+      );
+
+  Future<({String threadId, RequestState requestState})> startMessageThread(String recipientId) => _send(
+        'POST',
+        '/messages/threads',
+        (d) {
+          final m = d! as Map<String, dynamic>;
+          return (threadId: m['threadId'] as String, requestState: parseRequestState(m['requestState']));
+        },
+        body: {'recipientId': recipientId},
+      );
+
+  Future<({String messageId, DateTime createdAt})> sendMessage(
+    String threadId, {
+    String? body,
+    String? imagePath,
+    String? stickerId,
+    String? audioPath,
+    int? audioDurationSeconds,
+    String? replyToId,
+    required String idempotencyKey,
+  }) =>
+      _send(
+        'POST',
+        '/messages/threads/${Uri.encodeComponent(threadId)}/messages',
+        (d) {
+          final m = d! as Map<String, dynamic>;
+          return (messageId: m['messageId'] as String, createdAt: DateTime.parse(m['createdAt'] as String));
+        },
+        body: {
+          'body': ?body,
+          'imagePath': ?imagePath,
+          'stickerId': ?stickerId,
+          'audioPath': ?audioPath,
+          'audioDurationSeconds': ?audioDurationSeconds,
+          'replyToId': ?replyToId,
+        },
+        headers: {'Idempotency-Key': idempotencyKey},
+      );
+
+  Future<void> editMessage(String messageId, String body) =>
+      _send('PATCH', '/messages/${Uri.encodeComponent(messageId)}', (_) {}, body: {'body': body});
+
+  Future<void> unsendMessage(String messageId) => _send('DELETE', '/messages/${Uri.encodeComponent(messageId)}', (_) {});
+
+  Future<String> forwardMessage(String messageId, {required String toThreadId, required String idempotencyKey}) => _send(
+        'POST',
+        '/messages/${Uri.encodeComponent(messageId)}/forward',
+        (d) => (d! as Map<String, dynamic>)['messageId'] as String,
+        body: {'toThreadId': toThreadId},
+        headers: {'Idempotency-Key': idempotencyKey},
+      );
+
+  Future<void> markThreadRead(String threadId) =>
+      _send('POST', '/messages/threads/${Uri.encodeComponent(threadId)}/read', (_) {});
+
+  Future<void> markAllDelivered() => _send('POST', '/messages/delivered', (_) {});
+
+  Future<void> blockPlayer(String playerId) => _send('PUT', '/messages/blocks/${Uri.encodeComponent(playerId)}', (_) {});
+
+  Future<void> unblockPlayer(String playerId) =>
+      _send('DELETE', '/messages/blocks/${Uri.encodeComponent(playerId)}', (_) {});
+
+  Future<void> reportThread(String threadId, {String? messageId, required String reason}) => _send(
+        'POST',
+        '/messages/threads/${Uri.encodeComponent(threadId)}/report',
+        (_) {},
+        body: {'reason': reason, 'messageId': ?messageId},
+      );
+
+  Future<void> acceptMessageRequest(String threadId) =>
+      _send('POST', '/messages/threads/${Uri.encodeComponent(threadId)}/accept', (_) {});
+
+  Future<void> declineMessageRequest(String threadId) =>
+      _send('POST', '/messages/threads/${Uri.encodeComponent(threadId)}/decline', (_) {});
 }
