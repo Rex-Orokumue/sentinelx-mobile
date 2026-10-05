@@ -2968,4 +2968,105 @@ class AppLocalizationsEn extends AppLocalizations {
   String coachStepOf(int current, int total) {
     return '$current of $total';
   }
+
+  @override
+  String get chatTitle => 'Assistant';
+
+  @override
+  String get chatHint => 'Ask about tournaments, fees or your account';
+
+  @override
+  String get chatSend => 'Send';
+
+  @override
+  String get chatTyping => 'Thinking…';
+
+  @override
+  String get chatCheckingAccount => 'Checking your account…';
+
+  @override
+  String get chatRetry => 'Retry';
+
+  @override
+  String get chatInterrupted => 'The connection dropped. Tap Retry.';
+
+  @override
+  String get chatClear => 'Clear chat';
+
+  @override
+  String get chatClearConfirmTitle => 'Clear this chat?';
+
+  @override
+  String get chatClearConfirmBody => 'Your saved messages will be deleted.';
+
+  @override
+  String get chatCancel => 'Cancel';
+
+  @override
+  String get chatLoadEarlier => 'Load earlier messages';
+
+  @override
+  String get chatEmptyPrompt =>
+      'Ask me anything about tournaments, fees, SX Score or how Sentinel X works.';
+
+  @override
+  String get chatRetentionNotice => 'Chats are kept for 30 days.';
+
+  @override
+  String get chatSignedOutNotice =>
+      'Chats aren\'t saved. Sign in for answers about your account.';
+
+  @override
+  String chatErrorRateLimited(int seconds) {
+    return 'You\'re sending messages too fast. Try again in $seconds s.';
+  }
+
+  @override
+  String get chatErrorUnavailableSignedOut =>
+      'The assistant is busy right now. Sign in to keep chatting.';
+
+  @override
+  String get chatErrorUnavailable =>
+      'The assistant is unavailable right now. Please try again later.';
+
+  @override
+  String get chatErrorUnauthorized => 'Please sign in again.';
+
+  @override
+  String get chatErrorTruncated =>
+      'That answer was cut short. Try asking in a simpler way.';
+
+  @override
+  String get chatErrorNetwork =>
+      'Couldn\'t reach the assistant. Check your connection and try again.';
+
+  @override
+  String get chatErrorClear => 'Couldn\'t clear your chat. Try again.';
+
+  @override
+  String get chatErrorGeneric => 'Something went wrong. Please try again.';
+
+  @override
+  String get chatDestTournaments => 'Open tournaments';
+
+  @override
+  String get chatDestMatches => 'Open my matches';
+
+  @override
+  String get chatDestProfile => 'Edit my profile';
+
+  @override
+  String get chatDestNotifications => 'Open notifications';
+
+  @override
+  String get chatDestWallet => 'Open my wallet';
+
+  @override
+  String get chatDestRules => 'Read the rules';
+
+  @override
+  String get chatDestSafety => 'Safety tips';
+
+  @override
+  String get chatDestHelp => 'Open help';
 }

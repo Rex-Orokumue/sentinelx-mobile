@@ -11,6 +11,7 @@ import '../features/guide/coach/coach_host.dart';
 import '../features/guide/coach/coach_registry.dart';
 import '../features/guide/coach/coach_tours.dart';
 import '../features/guide/guide_screen.dart';
+import '../features/support_chat/chat_screen.dart';
 import '../features/account/account_screen.dart';
 import '../features/account/edit_profile_screen.dart';
 import '../features/account/profile_onboarding_screen.dart';
@@ -141,6 +142,7 @@ GoRouter buildAppRouter({
       GoRoute(path: '/games', builder: (context, state) => const GamesScreen()),
       GoRoute(path: '/notifications', builder: (context, state) => const NotificationsScreen()),
       GoRoute(path: '/guide', builder: (context, state) => const GuideScreen()),
+      GoRoute(path: '/guide/chat', builder: (context, state) => const ChatScreen()),
       // Outside the shell. /messages/requests is declared before /messages/:threadId so it is never read as an id.
       GoRoute(path: '/messages', builder: (context, state) => const InboxScreen()),
       GoRoute(path: '/messages/requests', builder: (context, state) => const RequestsScreen()),

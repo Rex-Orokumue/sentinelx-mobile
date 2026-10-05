@@ -5431,6 +5431,192 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{current} of {total}'**
   String coachStepOf(int current, int total);
+
+  /// No description provided for @chatTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Assistant'**
+  String get chatTitle;
+
+  /// No description provided for @chatHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask about tournaments, fees or your account'**
+  String get chatHint;
+
+  /// No description provided for @chatSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get chatSend;
+
+  /// No description provided for @chatTyping.
+  ///
+  /// In en, this message translates to:
+  /// **'Thinking…'**
+  String get chatTyping;
+
+  /// No description provided for @chatCheckingAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking your account…'**
+  String get chatCheckingAccount;
+
+  /// No description provided for @chatRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get chatRetry;
+
+  /// No description provided for @chatInterrupted.
+  ///
+  /// In en, this message translates to:
+  /// **'The connection dropped. Tap Retry.'**
+  String get chatInterrupted;
+
+  /// No description provided for @chatClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear chat'**
+  String get chatClear;
+
+  /// No description provided for @chatClearConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear this chat?'**
+  String get chatClearConfirmTitle;
+
+  /// No description provided for @chatClearConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your saved messages will be deleted.'**
+  String get chatClearConfirmBody;
+
+  /// No description provided for @chatCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get chatCancel;
+
+  /// No description provided for @chatLoadEarlier.
+  ///
+  /// In en, this message translates to:
+  /// **'Load earlier messages'**
+  String get chatLoadEarlier;
+
+  /// No description provided for @chatEmptyPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask me anything about tournaments, fees, SX Score or how Sentinel X works.'**
+  String get chatEmptyPrompt;
+
+  /// No description provided for @chatRetentionNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Chats are kept for 30 days.'**
+  String get chatRetentionNotice;
+
+  /// No description provided for @chatSignedOutNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Chats aren\'t saved. Sign in for answers about your account.'**
+  String get chatSignedOutNotice;
+
+  /// No description provided for @chatErrorRateLimited.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re sending messages too fast. Try again in {seconds} s.'**
+  String chatErrorRateLimited(int seconds);
+
+  /// No description provided for @chatErrorUnavailableSignedOut.
+  ///
+  /// In en, this message translates to:
+  /// **'The assistant is busy right now. Sign in to keep chatting.'**
+  String get chatErrorUnavailableSignedOut;
+
+  /// No description provided for @chatErrorUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'The assistant is unavailable right now. Please try again later.'**
+  String get chatErrorUnavailable;
+
+  /// No description provided for @chatErrorUnauthorized.
+  ///
+  /// In en, this message translates to:
+  /// **'Please sign in again.'**
+  String get chatErrorUnauthorized;
+
+  /// No description provided for @chatErrorTruncated.
+  ///
+  /// In en, this message translates to:
+  /// **'That answer was cut short. Try asking in a simpler way.'**
+  String get chatErrorTruncated;
+
+  /// No description provided for @chatErrorNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t reach the assistant. Check your connection and try again.'**
+  String get chatErrorNetwork;
+
+  /// No description provided for @chatErrorClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t clear your chat. Try again.'**
+  String get chatErrorClear;
+
+  /// No description provided for @chatErrorGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get chatErrorGeneric;
+
+  /// No description provided for @chatDestTournaments.
+  ///
+  /// In en, this message translates to:
+  /// **'Open tournaments'**
+  String get chatDestTournaments;
+
+  /// No description provided for @chatDestMatches.
+  ///
+  /// In en, this message translates to:
+  /// **'Open my matches'**
+  String get chatDestMatches;
+
+  /// No description provided for @chatDestProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit my profile'**
+  String get chatDestProfile;
+
+  /// No description provided for @chatDestNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Open notifications'**
+  String get chatDestNotifications;
+
+  /// No description provided for @chatDestWallet.
+  ///
+  /// In en, this message translates to:
+  /// **'Open my wallet'**
+  String get chatDestWallet;
+
+  /// No description provided for @chatDestRules.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the rules'**
+  String get chatDestRules;
+
+  /// No description provided for @chatDestSafety.
+  ///
+  /// In en, this message translates to:
+  /// **'Safety tips'**
+  String get chatDestSafety;
+
+  /// No description provided for @chatDestHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Open help'**
+  String get chatDestHelp;
 }
 
 class _AppLocalizationsDelegate

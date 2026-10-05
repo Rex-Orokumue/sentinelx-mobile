@@ -3003,4 +3003,110 @@ class AppLocalizationsFr extends AppLocalizations {
   String coachStepOf(int current, int total) {
     return '$current sur $total';
   }
+
+  @override
+  String get chatTitle => 'Assistant';
+
+  @override
+  String get chatHint =>
+      'Posez une question sur les tournois, les frais ou votre compte';
+
+  @override
+  String get chatSend => 'Envoyer';
+
+  @override
+  String get chatTyping => 'Réflexion…';
+
+  @override
+  String get chatCheckingAccount => 'Vérification de votre compte…';
+
+  @override
+  String get chatRetry => 'Réessayer';
+
+  @override
+  String get chatInterrupted =>
+      'La connexion a été interrompue. Appuyez sur Réessayer.';
+
+  @override
+  String get chatClear => 'Effacer la discussion';
+
+  @override
+  String get chatClearConfirmTitle => 'Effacer cette discussion ?';
+
+  @override
+  String get chatClearConfirmBody =>
+      'Vos messages enregistrés seront supprimés.';
+
+  @override
+  String get chatCancel => 'Annuler';
+
+  @override
+  String get chatLoadEarlier => 'Charger les messages précédents';
+
+  @override
+  String get chatEmptyPrompt =>
+      'Posez-moi vos questions sur les tournois, les frais, le score SX ou le fonctionnement de Sentinel X.';
+
+  @override
+  String get chatRetentionNotice => 'Les discussions sont conservées 30 jours.';
+
+  @override
+  String get chatSignedOutNotice =>
+      'Les discussions ne sont pas enregistrées. Connectez-vous pour des réponses sur votre compte.';
+
+  @override
+  String chatErrorRateLimited(int seconds) {
+    return 'Vous envoyez des messages trop vite. Réessayez dans $seconds s.';
+  }
+
+  @override
+  String get chatErrorUnavailableSignedOut =>
+      'L\'assistant est occupé. Connectez-vous pour continuer à discuter.';
+
+  @override
+  String get chatErrorUnavailable =>
+      'L\'assistant est indisponible pour le moment. Réessayez plus tard.';
+
+  @override
+  String get chatErrorUnauthorized => 'Veuillez vous reconnecter.';
+
+  @override
+  String get chatErrorTruncated =>
+      'La réponse a été coupée. Essayez de formuler plus simplement.';
+
+  @override
+  String get chatErrorNetwork =>
+      'Impossible de joindre l\'assistant. Vérifiez votre connexion et réessayez.';
+
+  @override
+  String get chatErrorClear =>
+      'Impossible d\'effacer la discussion. Réessayez.';
+
+  @override
+  String get chatErrorGeneric =>
+      'Une erreur s\'est produite. Veuillez réessayer.';
+
+  @override
+  String get chatDestTournaments => 'Ouvrir les tournois';
+
+  @override
+  String get chatDestMatches => 'Ouvrir mes matchs';
+
+  @override
+  String get chatDestProfile => 'Modifier mon profil';
+
+  @override
+  String get chatDestNotifications => 'Ouvrir les notifications';
+
+  @override
+  String get chatDestWallet => 'Ouvrir mon portefeuille';
+
+  @override
+  String get chatDestRules => 'Lire le règlement';
+
+  @override
+  String get chatDestSafety => 'Conseils de sécurité';
+
+  @override
+  String get chatDestHelp => 'Ouvrir l\'aide';
 }
