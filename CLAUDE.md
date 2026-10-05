@@ -93,9 +93,10 @@ and each phase needing endpoints gets its own spec in the **web** repo first.
   only when the OS status is `notDetermined`. A push tap on a link `resolveWebLink` cannot map opens `/notifications`.
 - **Direct messages (Phase 5b).** Every viewer-specific read and every write goes through `/api/mobile/v1/messages/**`
   (`MessagesRepository` over `ApiClient`); realtime is only a **nudge** that refetches the loaded window - content and
-  signed media URLs never come from a realtime payload. All channels (bell, DM nudge, `dm-online` presence,
-  `dm-typing:<id>` broadcast) go through the lifecycle-aware hub in `lib/core/realtime/` (counter signals, backoff,
-  channels dropped on pause). Sends and forwards carry one `Idempotency-Key` per compose action, reused by every retry;
+  signed media URLs never come from a realtime payload. The bell screen, DM nudge, `dm-online` presence and
+  `dm-typing:<id>` broadcast channels go through the lifecycle-aware hub in `lib/core/realtime/` (counter signals,
+  backoff, channels dropped on pause); the app-bar unread BADGES (`unread_counts.dart`) still use supabase's own
+  `.stream` and do not refetch on resume (deferred). Sends and forwards carry one `Idempotency-Key` per compose action, reused by every retry;
   per-thread operations run through `ThreadActionQueue`. **Photos are sanitized client-side** (`sanitizeJpeg`: long edge
   <= 1600 px, JPEG, EXIF/GPS stripped) because `image_picker`'s native resize copies the original EXIF back, GPS included;
   the same fix is still owed to community/evidence uploads (see the handoff). `permission_handler` is rejected (it breaks

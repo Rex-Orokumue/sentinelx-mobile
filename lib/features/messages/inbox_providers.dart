@@ -26,8 +26,9 @@ final dmNudgeProvider = StreamProvider.autoDispose<RealtimeSignal>((ref) {
   return debouncedSignals(handle.signals);
 });
 
-/// At most one `markAllDelivered` per [gap] (Ruling 11). Failures are swallowed and do not consume the window,
-/// so the next trigger tries again.
+/// At most one `markAllDelivered` per [gap] (Ruling 11), with a TRAILING call: a trigger inside the gap is not
+/// dropped, it runs once when the gap ends (coalescing any number of triggers), so the last message of a burst is
+/// always stamped. Failures are swallowed and do not consume the window, so the next trigger tries again.
 class DeliveredThrottle {
   DeliveredThrottle({required Future<void> Function() send, DateTime Function()? now, this.gap = const Duration(seconds: 15)})
       : _send = send,
@@ -37,11 +38,25 @@ class DeliveredThrottle {
   final DateTime Function() _now;
   final Duration gap;
   DateTime? _last;
+  Timer? _trailing;
+
+  void dispose() {
+    _trailing?.cancel();
+    _trailing = null;
+  }
 
   Future<void> trigger() async {
     final last = _last;
     final now = _now();
-    if (last != null && now.difference(last) < gap) return;
+    if (last != null && now.difference(last) < gap) {
+      _trailing ??= Timer(gap - now.difference(last), () {
+        _trailing = null;
+        unawaited(trigger());
+      });
+      return;
+    }
+    _trailing?.cancel();
+    _trailing = null;
     try {
       await _send();
       _last = now;
@@ -51,9 +66,11 @@ class DeliveredThrottle {
   }
 }
 
-final deliveredThrottleProvider = Provider<DeliveredThrottle>(
-  (ref) => DeliveredThrottle(send: () => ref.read(messagesRepositoryProvider).markAllDelivered()),
-);
+final deliveredThrottleProvider = Provider<DeliveredThrottle>((ref) {
+  final throttle = DeliveredThrottle(send: () => ref.read(messagesRepositoryProvider).markAllDelivered());
+  ref.onDispose(throttle.dispose);
+  return throttle;
+});
 
 class InboxState {
   const InboxState({required this.threads, this.nextCursor, this.requestCount = 0, this.loadingMore = false});

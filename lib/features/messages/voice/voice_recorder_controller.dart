@@ -51,6 +51,7 @@ class VoiceRecorderController extends Notifier<VoiceState> {
   DateTime? _segmentStart;
   String? _path;
   bool _handingOff = false;
+  String? _reviewPath; // a finished recording waiting in review: the controller owns the file until Send
   bool _running = false; // recorder started and not yet stopped/cancelled (readable while disposing)
 
   @override
@@ -175,6 +176,7 @@ class VoiceRecorderController extends Notifier<VoiceState> {
       state = const VoiceState(tooShort: true);
       return;
     }
+    _reviewPath = path;
     state = VoiceState(phase: VoicePhase.review, elapsed: elapsed, file: File(path));
   }
 
@@ -196,6 +198,7 @@ class VoiceRecorderController extends Notifier<VoiceState> {
       } catch (_) {}
     }
     if (path != null) _discardFile(path);
+    _reviewPath = null;
     if (!ref.mounted) return;
     _reset();
     state = const VoiceState();
@@ -219,6 +222,7 @@ class VoiceRecorderController extends Notifier<VoiceState> {
     }
     final pathId = newIdempotencyKey();
     String? uploaded;
+    _reviewPath = null; // handed off: the pending message owns the file now
     _reset();
     state = const VoiceState();
     _handingOff = false;
@@ -258,6 +262,9 @@ class VoiceRecorderController extends Notifier<VoiceState> {
     final path = running ? _path : null; // a file already handed off belongs to its pending message
     final recorder = _recorder;
     _recorder = null;
+    final review = _reviewPath;
+    _reviewPath = null;
+    if (review != null) _discardFile(review);
     _ticker?.cancel();
     _stateSub?.cancel();
     _levelSub?.cancel();

@@ -201,6 +201,16 @@ void main() {
       expect(File(path).existsSync(), isFalse);
     });
 
+    test('disposing while a recording sits in review deletes its file', () async {
+      final r = _rig();
+      await _record(r, const Duration(seconds: 4));
+      final path = r.state.file!.path;
+      expect(File(path).existsSync(), isTrue);
+      r.container.dispose();
+      await pumpEventQueue();
+      expect(File(path).existsSync(), isFalse);
+    });
+
     test('two recordings never share a file name', () async {
       final r = _rig();
       await _record(r, const Duration(seconds: 3));

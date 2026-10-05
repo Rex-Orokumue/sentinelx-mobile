@@ -141,9 +141,11 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
     _poll = null;
   }
 
-  void _refreshInboxes() {
-    ref.invalidate(inboxProvider);
-    ref.invalidate(requestsInboxProvider);
+  // Through the container, not `ref`: an answer can land after the player has left the thread, and the inbox
+  // must still refresh.
+  void _refreshInboxes(ProviderContainer container) {
+    container.invalidate(inboxProvider);
+    container.invalidate(requestsInboxProvider);
   }
 
   Future<void> _accept() async {
@@ -153,11 +155,12 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
     final repo = ref.read(messagesRepositoryProvider);
     final notifier = ref.read(threadProvider(widget.threadId).notifier);
     final l10n = AppLocalizations.of(context);
+    final container = ProviderScope.containerOf(context);
     try {
       await repo.accept(widget.threadId);
+      _refreshInboxes(container);
       if (!mounted) return;
       ref.invalidate(threadHeaderProvider(widget.threadId));
-      _refreshInboxes();
       await ref.read(threadHeaderProvider(widget.threadId).future);
       unawaited(notifier.markRead());
     } catch (e) {
@@ -178,9 +181,10 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
     final repo = ref.read(messagesRepositoryProvider);
     final l10n = AppLocalizations.of(context);
     final router = GoRouter.of(context);
+    final container = ProviderScope.containerOf(context);
     try {
       await repo.decline(widget.threadId);
-      _refreshInboxes();
+      _refreshInboxes(container);
       if (mounted) {
         if (router.canPop()) {
           router.pop();
@@ -363,8 +367,14 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
       final after = next.asData?.value.messages;
       if (after == null || viewer == null) return;
       final seen = {for (final m in before) m.id};
-      final arrived = [for (final m in after) if (!seen.contains(m.id) && !m.isMine(viewer)) m];
-      if (before.isNotEmpty && arrived.isNotEmpty) {
+      // Only rows NEWER than what was already on screen are arrivals: an older page appended by loadOlder, or a
+      // reconcile that re-adds history, is not "new messages".
+      final newest = before.isEmpty ? null : before.first.createdAt;
+      final arrived = [
+        for (final m in after)
+          if (newest != null && !seen.contains(m.id) && !m.isMine(viewer) && m.createdAt.isAfter(newest)) m,
+      ];
+      if (arrived.isNotEmpty) {
         if (_scroll.hasClients && _scroll.position.pixels > 80) setState(() => _showPill = true);
         _stampIfAllowed();
       }
@@ -377,8 +387,8 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
       });
     }
 
-    ref.listen(voiceRecorderControllerProvider(id), (prev, next) {
-      if (next.tooShort && !(prev?.tooShort ?? false)) {
+    ref.listen(voiceRecorderControllerProvider(id).select((s) => s.tooShort), (prev, next) {
+      if (next && !(prev ?? false)) {
         _say(l10n.dmVoiceTooShort);
         ref.read(voiceRecorderControllerProvider(id).notifier).clearTooShort();
       }
@@ -523,7 +533,8 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
         ),
       );
     }
-    if (ref.watch(voiceRecorderControllerProvider(widget.threadId)).phase != VoicePhase.idle) {
+    // select: the voice controller ticks every 100 ms while recording and only the voice panel needs that.
+    if (ref.watch(voiceRecorderControllerProvider(widget.threadId).select((s) => s.phase)) != VoicePhase.idle) {
       return VoiceComposer(threadId: widget.threadId);
     }
     return Composer(

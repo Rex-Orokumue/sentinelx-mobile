@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/misc.dart' show KeepAliveLink;
 
 import '../../core/api/api_client.dart';
 import '../../core/api/messages_models.dart';
@@ -94,6 +95,10 @@ class ThreadNotifier extends AsyncNotifier<ThreadView> {
   String _viewerId = '';
   int _localSeq = 0;
   DateTime? _lastMediaRefresh;
+
+  // Held while any outgoing message is unconfirmed, so leaving the screen mid-send neither loses a failed
+  // bubble (it is still there when the thread reopens) nor skips the item's cleanup. Released when none is left.
+  KeepAliveLink? _keepAlive;
 
   @override
   Future<ThreadView> build() async {
@@ -238,6 +243,17 @@ class ThreadNotifier extends AsyncNotifier<ThreadView> {
     final s = state.value;
     if (s == null) return;
     state = AsyncData(s.copyWith(pending: items));
+    _syncKeepAlive();
+  }
+
+  void _syncKeepAlive() {
+    final hasPending = state.value?.pending.isNotEmpty ?? false;
+    if (hasPending && _keepAlive == null) {
+      _keepAlive = ref.keepAlive();
+    } else if (!hasPending && _keepAlive != null) {
+      _keepAlive!.close();
+      _keepAlive = null;
+    }
   }
 
   PendingItem? _item(String localId) {
@@ -333,6 +349,7 @@ class ThreadNotifier extends AsyncNotifier<ThreadView> {
             ),
           );
     state = AsyncData(s.copyWith(messages: messages, pending: [for (final p in s.pending) if (p.localId != localId) p]));
+    _syncKeepAlive();
     if (!already && (draft.imagePath != null || draft.audioPath != null || draft.replyToId != null)) unawaited(_reconcile());
   }
 
