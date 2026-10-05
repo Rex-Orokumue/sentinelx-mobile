@@ -173,4 +173,9 @@ void main() {
       expect(resolveWebLink('https://sentinelxesports.com.ng/messages/$id/x'), isNull);
     });
   });
+
+  test('in-app guide paths are not swallowed by the redirect', () {
+    expect(resolveWebLink('/guide'), isNull);
+    expect(resolveWebLink('/guide/chat'), isNull);
+  });
 }

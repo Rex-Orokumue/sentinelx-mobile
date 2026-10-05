@@ -5125,6 +5125,204 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'That file isn\'t a photo we can use.'**
   String get avatarNotImage;
+
+  /// No description provided for @guideOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Guide and assistant'**
+  String get guideOpen;
+
+  /// No description provided for @guideTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Guide'**
+  String get guideTitle;
+
+  /// No description provided for @guideHello.
+  ///
+  /// In en, this message translates to:
+  /// **'Hey {name}!'**
+  String guideHello(String name);
+
+  /// No description provided for @guideHelloNoName.
+  ///
+  /// In en, this message translates to:
+  /// **'Hey there!'**
+  String get guideHelloNoName;
+
+  /// No description provided for @questBattleReadyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Battle Ready quest'**
+  String get questBattleReadyTitle;
+
+  /// No description provided for @questProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {total} done'**
+  String questProgress(int done, int total);
+
+  /// No description provided for @questStepProfile_complete.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete your profile'**
+  String get questStepProfile_complete;
+
+  /// No description provided for @questStepFirst_tournament_entered.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your first tournament'**
+  String get questStepFirst_tournament_entered;
+
+  /// No description provided for @questStepFirst_match_completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete your first match'**
+  String get questStepFirst_match_completed;
+
+  /// No description provided for @questStepGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete this step'**
+  String get questStepGeneric;
+
+  /// No description provided for @questTakeMeThere.
+  ///
+  /// In en, this message translates to:
+  /// **'Take me there'**
+  String get questTakeMeThere;
+
+  /// No description provided for @questClaim.
+  ///
+  /// In en, this message translates to:
+  /// **'Claim your badge'**
+  String get questClaim;
+
+  /// No description provided for @questClaiming.
+  ///
+  /// In en, this message translates to:
+  /// **'Claiming…'**
+  String get questClaiming;
+
+  /// No description provided for @questBadgeEarned.
+  ///
+  /// In en, this message translates to:
+  /// **'Badge earned'**
+  String get questBadgeEarned;
+
+  /// No description provided for @questRewardLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{xp} XP and {coins} coins'**
+  String questRewardLine(int xp, int coins);
+
+  /// No description provided for @questErrorIncomplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish all three steps first.'**
+  String get questErrorIncomplete;
+
+  /// No description provided for @questErrorInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Your reward is still being processed. Try again in a minute.'**
+  String get questErrorInProgress;
+
+  /// No description provided for @questErrorUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'This reward isn\'t available right now.'**
+  String get questErrorUnavailable;
+
+  /// No description provided for @questErrorGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t claim the badge. Try again.'**
+  String get questErrorGeneric;
+
+  /// No description provided for @questLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your quest.'**
+  String get questLoadError;
+
+  /// No description provided for @guideAskAssistant.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask the assistant'**
+  String get guideAskAssistant;
+
+  /// No description provided for @guideReplayTour.
+  ///
+  /// In en, this message translates to:
+  /// **'Replay the tour'**
+  String get guideReplayTour;
+
+  /// No description provided for @tourSlide1Title.
+  ///
+  /// In en, this message translates to:
+  /// **'What is Sentinel X?'**
+  String get tourSlide1Title;
+
+  /// No description provided for @tourSlide1Body.
+  ///
+  /// In en, this message translates to:
+  /// **'Nigeria\'s home of mobile esports: compete, watch, join the community and trade gear.'**
+  String get tourSlide1Body;
+
+  /// No description provided for @tourSlide2Title.
+  ///
+  /// In en, this message translates to:
+  /// **'The four pillars'**
+  String get tourSlide2Title;
+
+  /// No description provided for @tourSlide2Body.
+  ///
+  /// In en, this message translates to:
+  /// **'Compete in tournaments, watch Sentinel X TV, join the community and trade on the Gaming Exchange.'**
+  String get tourSlide2Body;
+
+  /// No description provided for @tourSlide3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'How tournaments work'**
+  String get tourSlide3Title;
+
+  /// No description provided for @tourSlide3Body.
+  ///
+  /// In en, this message translates to:
+  /// **'Register, pay the entry fee, play your fixtures and submit your result. An admin confirms it before the bracket updates.'**
+  String get tourSlide3Body;
+
+  /// No description provided for @tourSlide4Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready to play?'**
+  String get tourSlide4Title;
+
+  /// No description provided for @tourSlide4Body.
+  ///
+  /// In en, this message translates to:
+  /// **'Create an account to enter your first tournament.'**
+  String get tourSlide4Body;
+
+  /// No description provided for @tourNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get tourNext;
+
+  /// No description provided for @tourBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get tourBack;
+
+  /// No description provided for @tourCreateAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create account'**
+  String get tourCreateAccount;
 }
 
 class _AppLocalizationsDelegate

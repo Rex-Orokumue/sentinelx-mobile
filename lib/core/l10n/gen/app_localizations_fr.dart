@@ -2830,4 +2830,116 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get avatarNotImage => 'Ce fichier n\'est pas une photo utilisable.';
+
+  @override
+  String get guideOpen => 'Guide et assistant';
+
+  @override
+  String get guideTitle => 'Guide';
+
+  @override
+  String guideHello(String name) {
+    return 'Salut $name !';
+  }
+
+  @override
+  String get guideHelloNoName => 'Salut !';
+
+  @override
+  String get questBattleReadyTitle => 'Quête Prêt au combat';
+
+  @override
+  String questProgress(int done, int total) {
+    return '$done sur $total terminées';
+  }
+
+  @override
+  String get questStepProfile_complete => 'Complétez votre profil';
+
+  @override
+  String get questStepFirst_tournament_entered =>
+      'Inscrivez-vous à votre premier tournoi';
+
+  @override
+  String get questStepFirst_match_completed => 'Terminez votre premier match';
+
+  @override
+  String get questStepGeneric => 'Terminez cette étape';
+
+  @override
+  String get questTakeMeThere => 'M\'y emmener';
+
+  @override
+  String get questClaim => 'Réclamer votre badge';
+
+  @override
+  String get questClaiming => 'Réclamation…';
+
+  @override
+  String get questBadgeEarned => 'Badge obtenu';
+
+  @override
+  String questRewardLine(int xp, int coins) {
+    return '$xp XP et $coins pièces';
+  }
+
+  @override
+  String get questErrorIncomplete => 'Terminez d\'abord les trois étapes.';
+
+  @override
+  String get questErrorInProgress =>
+      'Votre récompense est en cours de traitement. Réessayez dans une minute.';
+
+  @override
+  String get questErrorUnavailable =>
+      'Cette récompense n\'est pas disponible pour le moment.';
+
+  @override
+  String get questErrorGeneric => 'Impossible de réclamer le badge. Réessayez.';
+
+  @override
+  String get questLoadError => 'Impossible de charger votre quête.';
+
+  @override
+  String get guideAskAssistant => 'Interroger l\'assistant';
+
+  @override
+  String get guideReplayTour => 'Revoir la visite';
+
+  @override
+  String get tourSlide1Title => 'Qu\'est-ce que Sentinel X ?';
+
+  @override
+  String get tourSlide1Body =>
+      'Le foyer de l\'esport mobile au Nigeria : participez, regardez, rejoignez la communauté et échangez du matériel.';
+
+  @override
+  String get tourSlide2Title => 'Les quatre piliers';
+
+  @override
+  String get tourSlide2Body =>
+      'Participez aux tournois, regardez Sentinel X TV, rejoignez la communauté et échangez sur le Gaming Exchange.';
+
+  @override
+  String get tourSlide3Title => 'Comment fonctionnent les tournois';
+
+  @override
+  String get tourSlide3Body =>
+      'Inscrivez-vous, payez les frais, jouez vos matchs et soumettez votre résultat. Un administrateur le confirme avant la mise à jour du tableau.';
+
+  @override
+  String get tourSlide4Title => 'Prêt à jouer ?';
+
+  @override
+  String get tourSlide4Body =>
+      'Créez un compte pour vous inscrire à votre premier tournoi.';
+
+  @override
+  String get tourNext => 'Suivant';
+
+  @override
+  String get tourBack => 'Retour';
+
+  @override
+  String get tourCreateAccount => 'Créer un compte';
 }

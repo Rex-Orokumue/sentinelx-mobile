@@ -5,6 +5,7 @@ import 'package:sentinelx_mobile/core/api/match_models.dart';
 import 'package:sentinelx_mobile/core/api/models.dart';
 import 'package:sentinelx_mobile/core/l10n/gen/app_localizations.dart';
 import 'package:sentinelx_mobile/core/providers.dart';
+import 'package:sentinelx_mobile/features/guide/quest_card.dart';
 import 'package:sentinelx_mobile/features/home/home_providers.dart';
 import 'package:sentinelx_mobile/features/home/home_repository.dart';
 import 'package:sentinelx_mobile/features/home/home_screen.dart';
@@ -205,6 +206,21 @@ void main() {
     await tester.scrollUntilVisible(find.byKey(const Key('home-invitations')), 200);
     await tester.tap(find.byKey(const Key('home-invitations')));
     expect(targets.last, '/invitations');
+  });
+
+  testWidgets('signed-out Home shows the guide button and no quest card', (tester) async {
+    await tester.pumpWidget(ProviderScope(
+      retry: (_, _) => null,
+      overrides: [homeRepositoryProvider.overrideWithValue(_FakeHomeRepository(_summary()))],
+      child: MaterialApp(
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: HomeScreen(onGoTo: (_) {}),
+      ),
+    ));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('guide-open')), findsOneWidget);
+    expect(find.byType(QuestCard), findsNothing);
   });
 
   testWidgets('Home has a Players entry', (tester) async {

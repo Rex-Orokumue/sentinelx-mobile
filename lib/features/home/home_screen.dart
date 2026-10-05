@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/api/match_models.dart' show NextLobby;
 import '../../core/l10n/gen/app_localizations.dart';
 import '../../core/providers.dart';
+import '../guide/guide_mascot.dart';
+import '../guide/quest_card.dart';
 import '../match/fixtures_card.dart';
 import 'home_providers.dart';
 
@@ -29,6 +32,12 @@ class HomeScreen extends ConsumerWidget {
         title: const Text('SentinelX Esports'),
         actions: [
           IconButton(
+            key: const Key('guide-open'),
+            icon: const GuideMascot(size: 28),
+            tooltip: l10n.guideOpen,
+            onPressed: () => GoRouter.of(context).push('/guide'),
+          ),
+          IconButton(
             key: const Key('home-account'),
             icon: Icon(isSignedIn ? Icons.person : Icons.person_outline),
             onPressed: () => onGoTo(isSignedIn ? '/account' : '/login'),
@@ -50,6 +59,7 @@ class HomeScreen extends ConsumerWidget {
                   onTap: () =>
                       onGoTo('/tournaments/${summary.featuredTournament!.id}'),
                 ),
+              if (isSignedIn) const QuestCard(),
               FixturesCard(onGoTo: onGoTo, onOpenLobby: (id, lobby) => onOpenLobby?.call(id, lobby)),
               Padding(
                 padding: const EdgeInsets.all(16),

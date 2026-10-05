@@ -2798,4 +2798,114 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get avatarNotImage => 'That file isn\'t a photo we can use.';
+
+  @override
+  String get guideOpen => 'Guide and assistant';
+
+  @override
+  String get guideTitle => 'Guide';
+
+  @override
+  String guideHello(String name) {
+    return 'Hey $name!';
+  }
+
+  @override
+  String get guideHelloNoName => 'Hey there!';
+
+  @override
+  String get questBattleReadyTitle => 'Battle Ready quest';
+
+  @override
+  String questProgress(int done, int total) {
+    return '$done of $total done';
+  }
+
+  @override
+  String get questStepProfile_complete => 'Complete your profile';
+
+  @override
+  String get questStepFirst_tournament_entered => 'Enter your first tournament';
+
+  @override
+  String get questStepFirst_match_completed => 'Complete your first match';
+
+  @override
+  String get questStepGeneric => 'Complete this step';
+
+  @override
+  String get questTakeMeThere => 'Take me there';
+
+  @override
+  String get questClaim => 'Claim your badge';
+
+  @override
+  String get questClaiming => 'Claiming…';
+
+  @override
+  String get questBadgeEarned => 'Badge earned';
+
+  @override
+  String questRewardLine(int xp, int coins) {
+    return '$xp XP and $coins coins';
+  }
+
+  @override
+  String get questErrorIncomplete => 'Finish all three steps first.';
+
+  @override
+  String get questErrorInProgress =>
+      'Your reward is still being processed. Try again in a minute.';
+
+  @override
+  String get questErrorUnavailable => 'This reward isn\'t available right now.';
+
+  @override
+  String get questErrorGeneric => 'Couldn\'t claim the badge. Try again.';
+
+  @override
+  String get questLoadError => 'Couldn\'t load your quest.';
+
+  @override
+  String get guideAskAssistant => 'Ask the assistant';
+
+  @override
+  String get guideReplayTour => 'Replay the tour';
+
+  @override
+  String get tourSlide1Title => 'What is Sentinel X?';
+
+  @override
+  String get tourSlide1Body =>
+      'Nigeria\'s home of mobile esports: compete, watch, join the community and trade gear.';
+
+  @override
+  String get tourSlide2Title => 'The four pillars';
+
+  @override
+  String get tourSlide2Body =>
+      'Compete in tournaments, watch Sentinel X TV, join the community and trade on the Gaming Exchange.';
+
+  @override
+  String get tourSlide3Title => 'How tournaments work';
+
+  @override
+  String get tourSlide3Body =>
+      'Register, pay the entry fee, play your fixtures and submit your result. An admin confirms it before the bracket updates.';
+
+  @override
+  String get tourSlide4Title => 'Ready to play?';
+
+  @override
+  String get tourSlide4Body =>
+      'Create an account to enter your first tournament.';
+
+  @override
+  String get tourNext => 'Next';
+
+  @override
+  String get tourBack => 'Back';
+
+  @override
+  String get tourCreateAccount => 'Create account';
 }
