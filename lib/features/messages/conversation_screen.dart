@@ -11,7 +11,6 @@ import '../../core/api/messages_models.dart';
 import '../../core/l10n/gen/app_localizations.dart';
 import '../../core/theme/sx_colors.dart';
 import '../../core/utils/idempotency_key.dart';
-import '../../shared/widgets/player_avatar.dart';
 import 'block_report.dart';
 import 'composer.dart';
 import 'dm_image_pipeline.dart';
@@ -19,6 +18,8 @@ import 'dm_media_uploader.dart';
 import 'forward_sheet.dart';
 import 'inbox_providers.dart';
 import 'message_actions_sheet.dart';
+import 'online_dot.dart';
+import 'presence_providers.dart';
 import 'message_bubble.dart';
 import 'message_error_copy.dart';
 import 'request_view.dart';
@@ -384,7 +385,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
                 key: const Key('dm-header'),
                 onTap: h.other.username == null ? null : () => context.push('/players/${Uri.encodeComponent(h.other.username!)}'),
                 child: Row(children: [
-                  PlayerAvatar(avatarUrl: h.other.avatarUrl, size: 34),
+                  AvatarWithPresence(avatarUrl: h.other.avatarUrl, online: ref.watch(isOnlineProvider(h.other.id)), dotKey: const Key('dm-online-header'), size: 34),
                   const SizedBox(width: 10),
                   Expanded(child: Text(h.other.displayName, maxLines: 1, overflow: TextOverflow.ellipsis)),
                 ]),

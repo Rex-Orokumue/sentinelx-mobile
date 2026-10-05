@@ -7,9 +7,10 @@ import 'package:go_router/go_router.dart';
 import '../../core/api/messages_models.dart';
 import '../../core/l10n/gen/app_localizations.dart';
 import '../../core/theme/sx_colors.dart';
-import '../../shared/widgets/player_avatar.dart';
 import '../notifications/relative_time.dart';
 import 'inbox_providers.dart';
+import 'online_dot.dart';
+import 'presence_providers.dart';
 import 'stickers.dart';
 
 /// `/messages`: the player's conversations. Every read goes through the API (never PostgREST); realtime only
@@ -184,16 +185,17 @@ class _RequestsRow extends StatelessWidget {
   }
 }
 
-class ThreadRow extends StatelessWidget {
+class ThreadRow extends ConsumerWidget {
   const ThreadRow({super.key, required this.thread, required this.now});
 
   final ThreadSummary thread;
   final DateTime now;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final t = thread;
+    final online = ref.watch(isOnlineProvider(t.other.id));
     final unread = t.unread > 0;
     final isRequest = t.requestState == RequestState.pending && t.direction == RequestDirection.incoming;
     return InkWell(
@@ -202,7 +204,7 @@ class ThreadRow extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         child: Row(children: [
-          PlayerAvatar(avatarUrl: t.other.avatarUrl, size: 44),
+          AvatarWithPresence(avatarUrl: t.other.avatarUrl, online: online, dotKey: Key('dm-online-${t.threadId}')),
           const SizedBox(width: 12),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

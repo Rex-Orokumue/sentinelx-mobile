@@ -15,6 +15,7 @@ import 'core/routing/incoming_links.dart';
 import 'core/session/session_lifecycle.dart';
 import 'features/compete/paystack_checkout.dart';
 import 'features/compete/registration_flow.dart';
+import 'features/messages/presence_providers.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,4 +53,6 @@ Future<void> main() async {
   container.read(incomingLinkListenerProvider);
   container.listen(pushRegistrationProvider, (_, _) {});
   container.listen(pushBootstrapProvider, (_, _) {});
+  // Online presence is app-wide while the app is resumed (the hub drops the channel on pause).
+  container.listen(onlinePlayersProvider, (_, _) {});
 }
