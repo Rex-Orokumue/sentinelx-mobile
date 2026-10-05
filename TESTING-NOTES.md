@@ -16,7 +16,10 @@ remained/returned to the onboarding screen. A second deliberate submit produced 
 onboarding. No application exception was logged. Investigation found that profile onboarding invalidated `meProvider`
 and navigated before the refreshed `/me` future completed, allowing the router to observe the old profile gate. Commit
 `4a1f4cf` now waits for that refresh before navigation, with a regression test that holds `/me` pending and verifies
-that completion does not fire early. A physical-device staging retest of a successful first submit is still pending.
+that completion does not fire early. On 2026-10-05, removing the wait made that regression fail for the expected
+reason; failed-network-POST and incomplete-profile push-gate regressions were also added. A physical-device staging
+retest of a successful first submit is still pending, as are the Edit Profile and airplane-mode retry checks. The
+staging test account cleanup remains Pending until those checks finish.
 
 ## 2026-09-25 — Phase 1 auth/lifecycle hardening (`fix/phase1-auth-lifecycle`)
 

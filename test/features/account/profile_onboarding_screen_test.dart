@@ -3,19 +3,46 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:sentinelx_mobile/core/api/api_client.dart';
 import 'package:sentinelx_mobile/core/api/models.dart';
 import 'package:sentinelx_mobile/core/api/profile_onboarding_models.dart';
+import 'package:sentinelx_mobile/core/auth/onboarding_gate.dart';
+import 'package:sentinelx_mobile/core/l10n/gen/app_localizations.dart';
 import 'package:sentinelx_mobile/core/providers.dart';
 import 'package:sentinelx_mobile/features/account/profile_onboarding_providers.dart';
 import 'package:sentinelx_mobile/features/account/profile_onboarding_screen.dart';
 import 'package:sentinelx_mobile/features/compete/compete_models.dart';
 import 'package:sentinelx_mobile/features/compete/compete_providers.dart';
+import 'package:sentinelx_mobile/router/app_router.dart';
+import 'package:sentinelx_mobile/router/auth_redirect.dart';
 
 import '../../support/pump_compete.dart';
 
 const _games = [
   GameSummary(id: 'game-1', name: 'COD Mobile', slug: 'codm', iconUrl: null),
 ];
+
+MeResponse _me({required String? profileCompletedAt}) => MeResponse(
+  id: 'player-1',
+  email: null,
+  roles: const [],
+  isStaff: false,
+  isAdmin: false,
+  profile: MeProfile(
+    username: 'player',
+    displayName: null,
+    avatarUrl: null,
+    whatsappNumber: '+2348012345678',
+    country: 'Nigeria',
+    locale: 'en',
+    membershipTier: null,
+    kycVerified: false,
+    deletionRequestedAt: null,
+    profileCompletedAt: profileCompletedAt,
+    consentWhatsappUpdates: false,
+    gameInterests: const ['game-1'],
+  ),
+);
 
 void main() {
   testWidgets('requires every field and an explicit consent answer', (
@@ -170,4 +197,138 @@ void main() {
     await tester.pumpAndSettle();
     expect(completed, isTrue);
   });
+
+  testWidgets(
+    'a failed POST stays on the form and leaves the profile incomplete',
+    (tester) async {
+      var completed = false;
+      var meFetches = 0;
+      await pumpCompete(
+        tester,
+        ProfileOnboardingScreen(
+          onCompleted: () => completed = true,
+          onUnauthorized: () {},
+        ),
+        overrides: [
+          meProvider.overrideWith((ref) async {
+            meFetches++;
+            return null;
+          }),
+          gamesProvider.overrideWith((ref) async => _games),
+          profileOnboardingSubmitterProvider.overrideWithValue(
+            (input) async => throw const ApiException(
+              status: 0,
+              code: 'network',
+              message: 'offline',
+            ),
+          ),
+        ],
+      );
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byKey(const Key('country-field')));
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byType(EditableText).last, 'Nigeria');
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Nigeria').last);
+      await tester.enterText(
+        find.byKey(const Key('profile-onboarding-whatsapp')),
+        '+2348012345678',
+      );
+      await tester.tap(find.byKey(const Key('game-interest-game-1')));
+      await tester.ensureVisible(find.byKey(const Key('profile-consent-no')));
+      await tester.tap(find.byKey(const Key('profile-consent-no')));
+      await tester.ensureVisible(
+        find.byKey(const Key('profile-onboarding-submit')),
+      );
+      await tester.tap(find.byKey(const Key('profile-onboarding-submit')));
+      await tester.pumpAndSettle();
+
+      expect(completed, isFalse);
+      expect(
+        meFetches,
+        1,
+        reason: 'a failed POST must not refresh or complete /me',
+      );
+      expect(
+        find.text('Could not save your profile. Please try again.'),
+        findsOneWidget,
+      );
+      expect(
+        find.byKey(const Key('profile-onboarding-submit')),
+        findsOneWidget,
+      );
+    },
+  );
+
+  testWidgets(
+    'first successful submit leaves the real onboarding route after refreshed /me',
+    (tester) async {
+      var meFetches = 0;
+      var gate = OnboardingGate.profile;
+      final router = buildAppRouter(
+        initialLocation: '/onboarding/profile',
+        authGate: () => AuthGateSnapshot(
+          isLoading: false,
+          isSignedIn: true,
+          onboardingGate: gate,
+        ),
+      );
+      addTearDown(router.dispose);
+
+      await tester.pumpWidget(
+        ProviderScope(
+          retry: (_, _) => null,
+          overrides: [
+            meProvider.overrideWith((ref) async {
+              meFetches++;
+              if (meFetches == 1) return _me(profileCompletedAt: null);
+              gate = OnboardingGate.none;
+              return _me(profileCompletedAt: '2026-10-03T12:00:00Z');
+            }),
+            gamesProvider.overrideWith((ref) async => _games),
+            profileOnboardingSubmitterProvider.overrideWithValue(
+              (input) async => const ProfileOnboardingResult(
+                profileCompletedAt: '2026-10-03T12:00:00Z',
+              ),
+            ),
+          ],
+          child: MaterialApp.router(
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            routerConfig: router,
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byKey(const Key('country-field')));
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byType(EditableText).last, 'Nigeria');
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Nigeria').last);
+      await tester.enterText(
+        find.byKey(const Key('profile-onboarding-whatsapp')),
+        '+2348012345678',
+      );
+      await tester.tap(find.byKey(const Key('game-interest-game-1')));
+      await tester.ensureVisible(find.byKey(const Key('profile-consent-no')));
+      await tester.tap(find.byKey(const Key('profile-consent-no')));
+      await tester.ensureVisible(
+        find.byKey(const Key('profile-onboarding-submit')),
+      );
+      await tester.tap(find.byKey(const Key('profile-onboarding-submit')));
+      await tester.pumpAndSettle();
+
+      expect(meFetches, 2);
+      expect(
+        router.routerDelegate.currentConfiguration.last.matchedLocation,
+        isNot('/onboarding/profile'),
+      );
+      expect(
+        router.routerDelegate.currentConfiguration.last.matchedLocation,
+        '/',
+      );
+    },
+  );
 }
