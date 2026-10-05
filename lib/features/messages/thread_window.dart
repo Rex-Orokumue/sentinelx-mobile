@@ -28,6 +28,7 @@ class PendingItem {
     this.error,
     this.prepare,
     this.localImage,
+    this.onDone,
   });
 
   final String clientKey;
@@ -43,6 +44,10 @@ class PendingItem {
   /// The sanitized photo bytes shown in the bubble while it uploads (never the remote URL).
   final Uint8List? localImage;
 
+  /// Runs once when the item is finished with: confirmed by the server or discarded. Releases anything it holds
+  /// (a voice note's temp file).
+  final void Function()? onDone;
+
   bool get canRetry {
     final e = error;
     return !(e is ApiException && kNonRetryableCodes.contains(e.code));
@@ -57,6 +62,7 @@ class PendingItem {
         error: clearError ? null : (error ?? this.error),
         prepare: prepare,
         localImage: localImage,
+        onDone: onDone,
       );
 }
 

@@ -249,7 +249,12 @@ class ThreadNotifier extends AsyncNotifier<ThreadView> {
 
   /// Optimistic: the bubble shows at once, then the send runs through the thread's serial queue with this
   /// item's idempotency key (generated once; every retry reuses it).
-  Future<void> send(SendDraft draft, {Future<SendDraft> Function(SendDraft draft)? prepare, Uint8List? localImage}) async {
+  Future<void> send(
+    SendDraft draft, {
+    Future<SendDraft> Function(SendDraft draft)? prepare,
+    Uint8List? localImage,
+    void Function()? onDone,
+  }) async {
     if (!ref.mounted || state.value == null) return;
     final item = PendingItem(
       clientKey: newIdempotencyKey(),
@@ -259,6 +264,7 @@ class ThreadNotifier extends AsyncNotifier<ThreadView> {
       queuedAt: ref.read(dmClockProvider)(),
       prepare: prepare,
       localImage: localImage,
+      onDone: onDone,
     );
     _setPending([..._pending, item]);
     await _attempt(item.localId);
@@ -275,6 +281,7 @@ class ThreadNotifier extends AsyncNotifier<ThreadView> {
 
   void discard(String localId) {
     if (!ref.mounted) return;
+    _item(localId)?.onDone?.call();
     _setPending([for (final p in _pending) if (p.localId != localId) p]);
   }
 
@@ -303,6 +310,9 @@ class ThreadNotifier extends AsyncNotifier<ThreadView> {
   void _onSent(String localId, SendDraft draft, ({String messageId, DateTime createdAt}) result) {
     final s = state.value;
     if (s == null) return;
+    for (final p in s.pending) {
+      if (p.localId == localId) p.onDone?.call();
+    }
     final already = s.messages.any((m) => m.id == result.messageId);
     // A refresh may have brought the server's own copy first: that one wins (it has signed URLs, receipts).
     final messages = already

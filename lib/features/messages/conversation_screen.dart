@@ -29,6 +29,9 @@ import 'messages_repository.dart';
 import 'thread_providers.dart';
 import 'thread_window.dart';
 import 'typing_controller.dart';
+import 'voice/voice_bubble.dart';
+import 'voice/voice_composer.dart';
+import 'voice/voice_recorder_controller.dart';
 
 const _editWindow = Duration(minutes: 10);
 
@@ -374,6 +377,12 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
       });
     }
 
+    ref.listen(voiceRecorderControllerProvider(id), (prev, next) {
+      if (next.tooShort && !(prev?.tooShort ?? false)) {
+        _say(l10n.dmVoiceTooShort);
+        ref.read(voiceRecorderControllerProvider(id).notifier).clearTooShort();
+      }
+    });
     final h = header.value; // keeps the last header while a poll or refetch is in flight
     _syncPoll(h);
     // Typing runs only for an accepted, unblocked thread while the app is visible: otherwise no channel opens.
@@ -514,6 +523,9 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
         ),
       );
     }
+    if (ref.watch(voiceRecorderControllerProvider(widget.threadId)).phase != VoicePhase.idle) {
+      return VoiceComposer(threadId: widget.threadId);
+    }
     return Composer(
       threadId: widget.threadId,
       replyTo: _replyTo,
@@ -524,6 +536,12 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
       onSubmitEdit: _submitEdit,
       onTyping: _onTyping,
       trailing: h != null && mode == ThreadMode.outgoingRequest ? const [] : [ // text only until accepted
+        IconButton(
+          key: const Key('dm-mic-button'),
+          tooltip: l10n.dmMicTooltip,
+          icon: const Icon(Icons.mic_none),
+          onPressed: () => unawaited(ref.read(voiceRecorderControllerProvider(widget.threadId).notifier).begin()),
+        ),
         IconButton(
           key: const Key('dm-photo-button'),
           tooltip: l10n.dmAttachPhoto,
@@ -587,6 +605,12 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> with Wi
       return ImageBubble(
         url: m.imageUrl ?? '',
         onError: () => unawaited(ref.read(threadProvider(widget.threadId).notifier).requestMediaRefresh()),
+      );
+    }
+    if (m.kind == MessageKind.voice) {
+      return VoiceBubble(
+        message: m,
+        onPlaybackError: () => unawaited(ref.read(threadProvider(widget.threadId).notifier).requestMediaRefresh()),
       );
     }
     return null;
