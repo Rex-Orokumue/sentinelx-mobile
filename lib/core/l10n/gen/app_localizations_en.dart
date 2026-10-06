@@ -2783,4 +2783,296 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dmVoiceLimitReached => 'Maximum length reached';
+
+  @override
+  String get avatarChangePhoto => 'Change photo';
+
+  @override
+  String get avatarFromGallery => 'Choose from gallery';
+
+  @override
+  String get avatarFromCamera => 'Take a photo';
+
+  @override
+  String get avatarUploading => 'Uploading photo…';
+
+  @override
+  String get avatarUploadFailed => 'Couldn\'t upload your photo. Try again.';
+
+  @override
+  String get avatarTooLarge => 'That photo is too large. Pick a smaller one.';
+
+  @override
+  String get avatarNotImage => 'That file isn\'t a photo we can use.';
+
+  @override
+  String get guideOpen => 'Guide and assistant';
+
+  @override
+  String get guideTitle => 'Guide';
+
+  @override
+  String guideHello(String name) {
+    return 'Hey $name!';
+  }
+
+  @override
+  String get guideHelloNoName => 'Hey there!';
+
+  @override
+  String get questBattleReadyTitle => 'Battle Ready quest';
+
+  @override
+  String questProgress(int done, int total) {
+    return '$done of $total done';
+  }
+
+  @override
+  String get questStepProfile_complete => 'Complete your profile';
+
+  @override
+  String get questStepFirst_tournament_entered => 'Enter your first tournament';
+
+  @override
+  String get questStepFirst_match_completed => 'Complete your first match';
+
+  @override
+  String get questStepGeneric => 'Complete this step';
+
+  @override
+  String get questTakeMeThere => 'Take me there';
+
+  @override
+  String get questClaim => 'Claim your badge';
+
+  @override
+  String get questClaiming => 'Claiming…';
+
+  @override
+  String get questBadgeEarned => 'Badge earned';
+
+  @override
+  String questRewardLine(int xp, int coins) {
+    return '$xp XP and $coins coins';
+  }
+
+  @override
+  String get questErrorIncomplete => 'Finish all three steps first.';
+
+  @override
+  String get questErrorInProgress =>
+      'Your reward is still being processed. Try again in a minute.';
+
+  @override
+  String get questErrorUnavailable => 'This reward isn\'t available right now.';
+
+  @override
+  String get questErrorGeneric => 'Couldn\'t claim the badge. Try again.';
+
+  @override
+  String get questLoadError => 'Couldn\'t load your quest.';
+
+  @override
+  String get guideAskAssistant => 'Ask the assistant';
+
+  @override
+  String get guideReplayTour => 'Replay the tour';
+
+  @override
+  String get tourSlide1Title => 'What is Sentinel X?';
+
+  @override
+  String get tourSlide1Body =>
+      'Nigeria\'s home of mobile esports: compete, watch, join the community and trade gear.';
+
+  @override
+  String get tourSlide2Title => 'The four pillars';
+
+  @override
+  String get tourSlide2Body =>
+      'Compete in tournaments, watch Sentinel X TV, join the community and trade on the Gaming Exchange.';
+
+  @override
+  String get tourSlide3Title => 'How tournaments work';
+
+  @override
+  String get tourSlide3Body =>
+      'Register, pay the entry fee, play your fixtures and submit your result. An admin confirms it before the bracket updates.';
+
+  @override
+  String get tourSlide4Title => 'Ready to play?';
+
+  @override
+  String get tourSlide4Body =>
+      'Create an account to enter your first tournament.';
+
+  @override
+  String get tourNext => 'Next';
+
+  @override
+  String get tourBack => 'Back';
+
+  @override
+  String get tourCreateAccount => 'Create account';
+
+  @override
+  String get coachFixturesTitle => 'Your fixtures';
+
+  @override
+  String get coachFixturesBody =>
+      'Your next matches show up here. Check in when it\'s time.';
+
+  @override
+  String get coachQuestTitle => 'Battle Ready quest';
+
+  @override
+  String get coachQuestBody =>
+      'Finish three steps to earn a badge and rewards.';
+
+  @override
+  String get coachGuideTitle => 'Guide and assistant';
+
+  @override
+  String get coachGuideBody =>
+      'Quests, a quick tour and a chat assistant live here.';
+
+  @override
+  String get coachAccountTitle => 'Your account';
+
+  @override
+  String get coachAccountBody => 'Edit your profile and settings.';
+
+  @override
+  String get coachTabsTitle => 'Five tabs';
+
+  @override
+  String get coachTabsBody =>
+      'Compete, Watch, Community, Trade and your Account.';
+
+  @override
+  String get coachBellTitle => 'Notifications';
+
+  @override
+  String get coachBellBody => 'Match updates and rewards appear here.';
+
+  @override
+  String get coachMessagesTitle => 'Messages';
+
+  @override
+  String get coachMessagesBody => 'Direct messages with other players.';
+
+  @override
+  String get coachNext => 'Next';
+
+  @override
+  String get coachDone => 'Done';
+
+  @override
+  String get coachSkip => 'Skip';
+
+  @override
+  String coachStepOf(int current, int total) {
+    return '$current of $total';
+  }
+
+  @override
+  String get chatTitle => 'Assistant';
+
+  @override
+  String get chatHint => 'Ask about tournaments, fees or your account';
+
+  @override
+  String get chatSend => 'Send';
+
+  @override
+  String get chatTyping => 'Thinking…';
+
+  @override
+  String get chatCheckingAccount => 'Checking your account…';
+
+  @override
+  String get chatRetry => 'Retry';
+
+  @override
+  String get chatInterrupted => 'The connection dropped. Tap Retry.';
+
+  @override
+  String get chatClear => 'Clear chat';
+
+  @override
+  String get chatClearConfirmTitle => 'Clear this chat?';
+
+  @override
+  String get chatClearConfirmBody => 'Your saved messages will be deleted.';
+
+  @override
+  String get chatCancel => 'Cancel';
+
+  @override
+  String get chatLoadEarlier => 'Load earlier messages';
+
+  @override
+  String get chatEmptyPrompt =>
+      'Ask me anything about tournaments, fees, SX Score or how Sentinel X works.';
+
+  @override
+  String get chatRetentionNotice => 'Chats are kept for 30 days.';
+
+  @override
+  String get chatSignedOutNotice =>
+      'Chats aren\'t saved. Sign in for answers about your account.';
+
+  @override
+  String chatErrorRateLimited(int seconds) {
+    return 'You\'re sending messages too fast. Try again in $seconds s.';
+  }
+
+  @override
+  String get chatErrorUnavailableSignedOut =>
+      'The assistant is busy right now. Sign in to keep chatting.';
+
+  @override
+  String get chatErrorUnavailable =>
+      'The assistant is unavailable right now. Please try again later.';
+
+  @override
+  String get chatErrorUnauthorized => 'Please sign in again.';
+
+  @override
+  String get chatErrorTruncated =>
+      'That answer was cut short. Try asking in a simpler way.';
+
+  @override
+  String get chatErrorNetwork =>
+      'Couldn\'t reach the assistant. Check your connection and try again.';
+
+  @override
+  String get chatErrorClear => 'Couldn\'t clear your chat. Try again.';
+
+  @override
+  String get chatErrorGeneric => 'Something went wrong. Please try again.';
+
+  @override
+  String get chatDestTournaments => 'Open tournaments';
+
+  @override
+  String get chatDestMatches => 'Open my matches';
+
+  @override
+  String get chatDestProfile => 'Edit my profile';
+
+  @override
+  String get chatDestNotifications => 'Open notifications';
+
+  @override
+  String get chatDestWallet => 'Open my wallet';
+
+  @override
+  String get chatDestRules => 'Read the rules';
+
+  @override
+  String get chatDestSafety => 'Safety tips';
+
+  @override
+  String get chatDestHelp => 'Open help';
 }

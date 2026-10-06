@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import '../../core/l10n/gen/app_localizations.dart';
 import '../../core/notifications/unread_counts.dart';
 import '../../core/theme/sx_colors.dart';
+import '../../features/guide/coach/coach_registry.dart';
+import '../../features/guide/guide_mascot.dart';
 
 class SxTabAppBar extends ConsumerWidget implements PreferredSizeWidget {
   const SxTabAppBar({super.key, required this.title, required this.onLogoTap});
@@ -28,20 +30,29 @@ class SxTabAppBar extends ConsumerWidget implements PreferredSizeWidget {
       ),
       title: Text(title),
       actions: [
-        _BellIcon(
+        CoachTarget(
+          id: 'appbar.guide',
+          child: IconButton(
+            key: const Key('guide-open'),
+            icon: const GuideMascot(size: 28),
+            tooltip: l10n.guideOpen,
+            onPressed: () => GoRouter.of(context).push('/guide'),
+          ),
+        ),
+        CoachTarget(id: 'appbar.bell', child: _BellIcon(
           key: const Key('bell-notifications'),
           icon: Icons.notifications_outlined,
           count: notifCount,
           tooltip: l10n.ntfUnreadCount(notifCount),
           onPressed: () => GoRouter.of(context).push('/notifications'),
-        ),
-        _BellIcon(
+        )),
+        CoachTarget(id: 'appbar.messages', child: _BellIcon(
           key: const Key('bell-messages'),
           icon: Icons.mail_outline,
           count: dmCount,
           tooltip: l10n.dmUnreadCount(dmCount),
           onPressed: () => GoRouter.of(context).push('/messages'),
-        ),
+        )),
         const SizedBox(width: 8),
       ],
     );

@@ -7,6 +7,11 @@ import '../core/providers.dart';
 import '../core/api/players_models.dart';
 import '../core/l10n/gen/app_localizations.dart';
 import '../core/routing/web_links.dart';
+import '../features/guide/coach/coach_host.dart';
+import '../features/guide/coach/coach_registry.dart';
+import '../features/guide/coach/coach_tours.dart';
+import '../features/guide/guide_screen.dart';
+import '../features/support_chat/chat_screen.dart';
 import '../features/account/account_screen.dart';
 import '../features/account/edit_profile_screen.dart';
 import '../features/account/profile_onboarding_screen.dart';
@@ -143,6 +148,11 @@ GoRouter buildAppRouter({
         path: '/notifications',
         builder: (context, state) => const NotificationsScreen(),
       ),
+      GoRoute(path: '/guide', builder: (context, state) => const GuideScreen()),
+      GoRoute(
+        path: '/guide/chat',
+        builder: (context, state) => const ChatScreen(),
+      ),
       // Outside the shell. /messages/requests is declared before /messages/:threadId so it is never read as an id.
       GoRoute(
         path: '/messages',
@@ -165,33 +175,39 @@ GoRouter buildAppRouter({
         ),
       ),
       StatefulShellRoute.indexedStack(
-        builder: (context, state, shell) => Scaffold(
-          body: shell,
-          bottomNavigationBar: NavigationBar(
-            selectedIndex: shell.currentIndex,
-            onDestinationSelected: shell.goBranch,
-            destinations: const [
-              NavigationDestination(
-                icon: Icon(Icons.emoji_events_outlined),
-                label: 'Compete',
+        builder: (context, state, shell) => CoachHost(
+          tour: shellTour,
+          child: Scaffold(
+            body: shell,
+            bottomNavigationBar: CoachTarget(
+              id: 'shell.tabs',
+              child: NavigationBar(
+                selectedIndex: shell.currentIndex,
+                onDestinationSelected: shell.goBranch,
+                destinations: const [
+                  NavigationDestination(
+                    icon: Icon(Icons.emoji_events_outlined),
+                    label: 'Compete',
+                  ),
+                  NavigationDestination(
+                    icon: Icon(Icons.live_tv_outlined),
+                    label: 'Watch',
+                  ),
+                  NavigationDestination(
+                    icon: Icon(Icons.groups_outlined),
+                    label: 'Community',
+                  ),
+                  NavigationDestination(
+                    icon: Icon(Icons.storefront_outlined),
+                    label: 'Trade',
+                  ),
+                  NavigationDestination(
+                    icon: Icon(Icons.person_outline),
+                    label: 'Account',
+                  ),
+                ],
               ),
-              NavigationDestination(
-                icon: Icon(Icons.live_tv_outlined),
-                label: 'Watch',
-              ),
-              NavigationDestination(
-                icon: Icon(Icons.groups_outlined),
-                label: 'Community',
-              ),
-              NavigationDestination(
-                icon: Icon(Icons.storefront_outlined),
-                label: 'Trade',
-              ),
-              NavigationDestination(
-                icon: Icon(Icons.person_outline),
-                label: 'Account',
-              ),
-            ],
+            ),
           ),
         ),
         branches: [

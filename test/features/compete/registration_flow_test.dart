@@ -1,13 +1,18 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/misc.dart' show Override;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sentinelx_mobile/core/api/api_client.dart';
 import 'package:sentinelx_mobile/core/api/compete_models.dart';
 import 'package:sentinelx_mobile/core/notifications/push/push_permission.dart';
+import 'package:sentinelx_mobile/core/providers.dart' show viewerIdProvider;
+import 'package:sentinelx_mobile/features/guide/guide_providers.dart';
+import 'package:sentinelx_mobile/features/guide/guide_repository.dart';
 import 'package:sentinelx_mobile/features/compete/compete_providers.dart';
 import 'package:sentinelx_mobile/features/compete/registration_flow.dart';
 
+import '../../fakes/fake_guide_repository.dart';
 import '../../fakes/fake_registration_repository.dart';
 
 const _details = RegistrationDetails(displayName: 'Ada', whatsapp: '+2348012345678', registrationDetails: {'club_name': 'FC Ada'}, agreedToRules: true);
@@ -27,7 +32,7 @@ class _FakePrompter implements PushPermissionPrompter {
 }
 
 class _Rig {
-  _Rig({bool launcherReturns = true}) : repo = FakeRegistrationRepository() {
+  _Rig({bool launcherReturns = true, List<Override> extra = const []}) : repo = FakeRegistrationRepository() {
     container = ProviderContainer(retry: (_, _) => null, overrides: [
       pushPermissionPrompterProvider.overrideWithValue(prompter),
       registrationRepositoryProvider.overrideWithValue(repo),
@@ -36,6 +41,7 @@ class _Rig {
         return launcherReturns;
       }),
       pollDelayProvider.overrideWithValue((_) async {}),
+      ...extra,
     ]);
     // autoDispose provider: keep it alive for the whole test, like a mounted screen would.
     container.listen(registrationFlowProvider('t1'), (_, _) {});
@@ -50,6 +56,22 @@ class _Rig {
 }
 
 void main() {
+  test('a confirmed registration refetches the guide quests (the first-tournament step may now be done)', () async {
+    final guide = FakeGuideRepository();
+    final r = _Rig(extra: [
+      viewerIdProvider.overrideWith((ref) async => 'u1'),
+      guideRepositoryProvider.overrideWithValue(guide),
+    ]);
+    addTearDown(r.container.dispose);
+    r.container.listen(questsProvider, (_, _) {});
+    await r.container.read(questsProvider.future);
+    expect(guide.questsCalls, 1);
+    r.repo.registerResults.add(const RegisterConfirmed());
+    await r.flow.submitRegister(_details);
+    await r.container.read(questsProvider.future);
+    expect(guide.questsCalls, 2);
+  });
+
   test('zero-fee / waiver path: confirmed, no checkout opened', () async {
     final r = _Rig();
     addTearDown(r.container.dispose);

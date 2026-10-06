@@ -5095,6 +5095,540 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Maximum length reached'**
   String get dmVoiceLimitReached;
+
+  /// No description provided for @avatarChangePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Change photo'**
+  String get avatarChangePhoto;
+
+  /// No description provided for @avatarFromGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from gallery'**
+  String get avatarFromGallery;
+
+  /// No description provided for @avatarFromCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo'**
+  String get avatarFromCamera;
+
+  /// No description provided for @avatarUploading.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading photo…'**
+  String get avatarUploading;
+
+  /// No description provided for @avatarUploadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t upload your photo. Try again.'**
+  String get avatarUploadFailed;
+
+  /// No description provided for @avatarTooLarge.
+  ///
+  /// In en, this message translates to:
+  /// **'That photo is too large. Pick a smaller one.'**
+  String get avatarTooLarge;
+
+  /// No description provided for @avatarNotImage.
+  ///
+  /// In en, this message translates to:
+  /// **'That file isn\'t a photo we can use.'**
+  String get avatarNotImage;
+
+  /// No description provided for @guideOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Guide and assistant'**
+  String get guideOpen;
+
+  /// No description provided for @guideTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Guide'**
+  String get guideTitle;
+
+  /// No description provided for @guideHello.
+  ///
+  /// In en, this message translates to:
+  /// **'Hey {name}!'**
+  String guideHello(String name);
+
+  /// No description provided for @guideHelloNoName.
+  ///
+  /// In en, this message translates to:
+  /// **'Hey there!'**
+  String get guideHelloNoName;
+
+  /// No description provided for @questBattleReadyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Battle Ready quest'**
+  String get questBattleReadyTitle;
+
+  /// No description provided for @questProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {total} done'**
+  String questProgress(int done, int total);
+
+  /// No description provided for @questStepProfile_complete.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete your profile'**
+  String get questStepProfile_complete;
+
+  /// No description provided for @questStepFirst_tournament_entered.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your first tournament'**
+  String get questStepFirst_tournament_entered;
+
+  /// No description provided for @questStepFirst_match_completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete your first match'**
+  String get questStepFirst_match_completed;
+
+  /// No description provided for @questStepGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete this step'**
+  String get questStepGeneric;
+
+  /// No description provided for @questTakeMeThere.
+  ///
+  /// In en, this message translates to:
+  /// **'Take me there'**
+  String get questTakeMeThere;
+
+  /// No description provided for @questClaim.
+  ///
+  /// In en, this message translates to:
+  /// **'Claim your badge'**
+  String get questClaim;
+
+  /// No description provided for @questClaiming.
+  ///
+  /// In en, this message translates to:
+  /// **'Claiming…'**
+  String get questClaiming;
+
+  /// No description provided for @questBadgeEarned.
+  ///
+  /// In en, this message translates to:
+  /// **'Badge earned'**
+  String get questBadgeEarned;
+
+  /// No description provided for @questRewardLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{xp} XP and {coins} coins'**
+  String questRewardLine(int xp, int coins);
+
+  /// No description provided for @questErrorIncomplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish all three steps first.'**
+  String get questErrorIncomplete;
+
+  /// No description provided for @questErrorInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Your reward is still being processed. Try again in a minute.'**
+  String get questErrorInProgress;
+
+  /// No description provided for @questErrorUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'This reward isn\'t available right now.'**
+  String get questErrorUnavailable;
+
+  /// No description provided for @questErrorGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t claim the badge. Try again.'**
+  String get questErrorGeneric;
+
+  /// No description provided for @questLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your quest.'**
+  String get questLoadError;
+
+  /// No description provided for @guideAskAssistant.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask the assistant'**
+  String get guideAskAssistant;
+
+  /// No description provided for @guideReplayTour.
+  ///
+  /// In en, this message translates to:
+  /// **'Replay the tour'**
+  String get guideReplayTour;
+
+  /// No description provided for @tourSlide1Title.
+  ///
+  /// In en, this message translates to:
+  /// **'What is Sentinel X?'**
+  String get tourSlide1Title;
+
+  /// No description provided for @tourSlide1Body.
+  ///
+  /// In en, this message translates to:
+  /// **'Nigeria\'s home of mobile esports: compete, watch, join the community and trade gear.'**
+  String get tourSlide1Body;
+
+  /// No description provided for @tourSlide2Title.
+  ///
+  /// In en, this message translates to:
+  /// **'The four pillars'**
+  String get tourSlide2Title;
+
+  /// No description provided for @tourSlide2Body.
+  ///
+  /// In en, this message translates to:
+  /// **'Compete in tournaments, watch Sentinel X TV, join the community and trade on the Gaming Exchange.'**
+  String get tourSlide2Body;
+
+  /// No description provided for @tourSlide3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'How tournaments work'**
+  String get tourSlide3Title;
+
+  /// No description provided for @tourSlide3Body.
+  ///
+  /// In en, this message translates to:
+  /// **'Register, pay the entry fee, play your fixtures and submit your result. An admin confirms it before the bracket updates.'**
+  String get tourSlide3Body;
+
+  /// No description provided for @tourSlide4Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready to play?'**
+  String get tourSlide4Title;
+
+  /// No description provided for @tourSlide4Body.
+  ///
+  /// In en, this message translates to:
+  /// **'Create an account to enter your first tournament.'**
+  String get tourSlide4Body;
+
+  /// No description provided for @tourNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get tourNext;
+
+  /// No description provided for @tourBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get tourBack;
+
+  /// No description provided for @tourCreateAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create account'**
+  String get tourCreateAccount;
+
+  /// No description provided for @coachFixturesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your fixtures'**
+  String get coachFixturesTitle;
+
+  /// No description provided for @coachFixturesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your next matches show up here. Check in when it\'s time.'**
+  String get coachFixturesBody;
+
+  /// No description provided for @coachQuestTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Battle Ready quest'**
+  String get coachQuestTitle;
+
+  /// No description provided for @coachQuestBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish three steps to earn a badge and rewards.'**
+  String get coachQuestBody;
+
+  /// No description provided for @coachGuideTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Guide and assistant'**
+  String get coachGuideTitle;
+
+  /// No description provided for @coachGuideBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Quests, a quick tour and a chat assistant live here.'**
+  String get coachGuideBody;
+
+  /// No description provided for @coachAccountTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account'**
+  String get coachAccountTitle;
+
+  /// No description provided for @coachAccountBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit your profile and settings.'**
+  String get coachAccountBody;
+
+  /// No description provided for @coachTabsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Five tabs'**
+  String get coachTabsTitle;
+
+  /// No description provided for @coachTabsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Compete, Watch, Community, Trade and your Account.'**
+  String get coachTabsBody;
+
+  /// No description provided for @coachBellTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get coachBellTitle;
+
+  /// No description provided for @coachBellBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Match updates and rewards appear here.'**
+  String get coachBellBody;
+
+  /// No description provided for @coachMessagesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages'**
+  String get coachMessagesTitle;
+
+  /// No description provided for @coachMessagesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct messages with other players.'**
+  String get coachMessagesBody;
+
+  /// No description provided for @coachNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get coachNext;
+
+  /// No description provided for @coachDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get coachDone;
+
+  /// No description provided for @coachSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get coachSkip;
+
+  /// No description provided for @coachStepOf.
+  ///
+  /// In en, this message translates to:
+  /// **'{current} of {total}'**
+  String coachStepOf(int current, int total);
+
+  /// No description provided for @chatTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Assistant'**
+  String get chatTitle;
+
+  /// No description provided for @chatHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask about tournaments, fees or your account'**
+  String get chatHint;
+
+  /// No description provided for @chatSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get chatSend;
+
+  /// No description provided for @chatTyping.
+  ///
+  /// In en, this message translates to:
+  /// **'Thinking…'**
+  String get chatTyping;
+
+  /// No description provided for @chatCheckingAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking your account…'**
+  String get chatCheckingAccount;
+
+  /// No description provided for @chatRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get chatRetry;
+
+  /// No description provided for @chatInterrupted.
+  ///
+  /// In en, this message translates to:
+  /// **'The connection dropped. Tap Retry.'**
+  String get chatInterrupted;
+
+  /// No description provided for @chatClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear chat'**
+  String get chatClear;
+
+  /// No description provided for @chatClearConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear this chat?'**
+  String get chatClearConfirmTitle;
+
+  /// No description provided for @chatClearConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your saved messages will be deleted.'**
+  String get chatClearConfirmBody;
+
+  /// No description provided for @chatCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get chatCancel;
+
+  /// No description provided for @chatLoadEarlier.
+  ///
+  /// In en, this message translates to:
+  /// **'Load earlier messages'**
+  String get chatLoadEarlier;
+
+  /// No description provided for @chatEmptyPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask me anything about tournaments, fees, SX Score or how Sentinel X works.'**
+  String get chatEmptyPrompt;
+
+  /// No description provided for @chatRetentionNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Chats are kept for 30 days.'**
+  String get chatRetentionNotice;
+
+  /// No description provided for @chatSignedOutNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Chats aren\'t saved. Sign in for answers about your account.'**
+  String get chatSignedOutNotice;
+
+  /// No description provided for @chatErrorRateLimited.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re sending messages too fast. Try again in {seconds} s.'**
+  String chatErrorRateLimited(int seconds);
+
+  /// No description provided for @chatErrorUnavailableSignedOut.
+  ///
+  /// In en, this message translates to:
+  /// **'The assistant is busy right now. Sign in to keep chatting.'**
+  String get chatErrorUnavailableSignedOut;
+
+  /// No description provided for @chatErrorUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'The assistant is unavailable right now. Please try again later.'**
+  String get chatErrorUnavailable;
+
+  /// No description provided for @chatErrorUnauthorized.
+  ///
+  /// In en, this message translates to:
+  /// **'Please sign in again.'**
+  String get chatErrorUnauthorized;
+
+  /// No description provided for @chatErrorTruncated.
+  ///
+  /// In en, this message translates to:
+  /// **'That answer was cut short. Try asking in a simpler way.'**
+  String get chatErrorTruncated;
+
+  /// No description provided for @chatErrorNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t reach the assistant. Check your connection and try again.'**
+  String get chatErrorNetwork;
+
+  /// No description provided for @chatErrorClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t clear your chat. Try again.'**
+  String get chatErrorClear;
+
+  /// No description provided for @chatErrorGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get chatErrorGeneric;
+
+  /// No description provided for @chatDestTournaments.
+  ///
+  /// In en, this message translates to:
+  /// **'Open tournaments'**
+  String get chatDestTournaments;
+
+  /// No description provided for @chatDestMatches.
+  ///
+  /// In en, this message translates to:
+  /// **'Open my matches'**
+  String get chatDestMatches;
+
+  /// No description provided for @chatDestProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit my profile'**
+  String get chatDestProfile;
+
+  /// No description provided for @chatDestNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Open notifications'**
+  String get chatDestNotifications;
+
+  /// No description provided for @chatDestWallet.
+  ///
+  /// In en, this message translates to:
+  /// **'Open my wallet'**
+  String get chatDestWallet;
+
+  /// No description provided for @chatDestRules.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the rules'**
+  String get chatDestRules;
+
+  /// No description provided for @chatDestSafety.
+  ///
+  /// In en, this message translates to:
+  /// **'Safety tips'**
+  String get chatDestSafety;
+
+  /// No description provided for @chatDestHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Open help'**
+  String get chatDestHelp;
 }
 
 class _AppLocalizationsDelegate

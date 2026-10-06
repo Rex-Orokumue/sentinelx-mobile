@@ -62,4 +62,12 @@ void main() {
     expect(current.toJson()['gameInterests'], ['74db07fa-e711-4e78-a982-2863a45137f1']);
     expect(current.toJson()['consentWhatsappUpdates'], isFalse);
   });
+
+  test('ProfileEdit.avatarUrl is omitted when null and sent when set; other keys unchanged', () {
+    const none = ProfileEdit(displayName: 'Ada', username: '', whatsapp: '', country: '', bio: '');
+    expect(none.toJson().containsKey('avatarUrl'), isFalse);
+    const withAvatar = ProfileEdit(displayName: 'Ada', username: '', whatsapp: '', country: '', bio: '', avatarUrl: 'https://x/avatars/u1/a.jpg');
+    expect(withAvatar.toJson()['avatarUrl'], 'https://x/avatars/u1/a.jpg');
+    expect(withAvatar.toJson()['displayName'], 'Ada');
+  });
 }

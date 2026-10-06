@@ -6,6 +6,7 @@ import '../../core/api/api_client.dart';
 import '../../core/api/compete_models.dart';
 import '../../core/notifications/push/push_permission.dart';
 import '../../core/utils/idempotency_key.dart';
+import '../guide/guide_providers.dart' show questsProvider;
 import 'compete_providers.dart';
 import 'payment_poller.dart';
 
@@ -83,6 +84,7 @@ class RegistrationFlow extends Notifier<FlowState> {
       if (!ref.mounted) return;
       state = const FlowState(phase: FlowPhase.waitlisted);
       ref.invalidate(registrationStateProvider(tournamentId));
+      ref.invalidate(questsProvider);
       unawaited(ref.read(pushPermissionPrompterProvider).onStake()); // first stake: ask for notifications
     } catch (e) {
       if (!ref.mounted) return;
@@ -174,6 +176,7 @@ class RegistrationFlow extends Notifier<FlowState> {
   void _finishConfirmed() {
     state = const FlowState(phase: FlowPhase.confirmed);
     ref.invalidate(registrationStateProvider(tournamentId));
+    ref.invalidate(questsProvider); // the first-tournament quest step may now be done
     unawaited(ref.read(pushPermissionPrompterProvider).onStake()); // first stake: ask for notifications
   }
 

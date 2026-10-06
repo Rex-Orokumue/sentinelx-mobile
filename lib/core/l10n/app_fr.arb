@@ -1031,5 +1031,138 @@
   "dmMicTryAgain": "Réessayer",
   "dmMicOpenSettings": "Ouvrir les réglages",
   "dmVoicePlaybackError": "Impossible de lire ce message vocal.",
-  "dmVoiceLimitReached": "Durée maximale atteinte"
+  "dmVoiceLimitReached": "Durée maximale atteinte",
+  "avatarChangePhoto": "Changer la photo",
+  "avatarFromGallery": "Choisir dans la galerie",
+  "avatarFromCamera": "Prendre une photo",
+  "avatarUploading": "Envoi de la photo…",
+  "avatarUploadFailed": "Impossible d'envoyer votre photo. Réessayez.",
+  "avatarTooLarge": "Cette photo est trop volumineuse. Choisissez-en une plus petite.",
+  "avatarNotImage": "Ce fichier n'est pas une photo utilisable.",
+  "guideOpen": "Guide et assistant",
+  "guideTitle": "Guide",
+  "guideHello": "Salut {name} !",
+  "@guideHello": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "guideHelloNoName": "Salut !",
+  "questBattleReadyTitle": "Quête Prêt au combat",
+  "questProgress": "{done} sur {total} terminées",
+  "@questProgress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "questStepProfile_complete": "Complétez votre profil",
+  "questStepFirst_tournament_entered": "Inscrivez-vous à votre premier tournoi",
+  "questStepFirst_match_completed": "Terminez votre premier match",
+  "questStepGeneric": "Terminez cette étape",
+  "questTakeMeThere": "M'y emmener",
+  "questClaim": "Réclamer votre badge",
+  "questClaiming": "Réclamation…",
+  "questBadgeEarned": "Badge obtenu",
+  "questRewardLine": "{xp} XP et {coins} pièces",
+  "@questRewardLine": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      },
+      "coins": {
+        "type": "int"
+      }
+    }
+  },
+  "questErrorIncomplete": "Terminez d'abord les trois étapes.",
+  "questErrorInProgress": "Votre récompense est en cours de traitement. Réessayez dans une minute.",
+  "questErrorUnavailable": "Cette récompense n'est pas disponible pour le moment.",
+  "questErrorGeneric": "Impossible de réclamer le badge. Réessayez.",
+  "questLoadError": "Impossible de charger votre quête.",
+  "guideAskAssistant": "Interroger l'assistant",
+  "guideReplayTour": "Revoir la visite",
+  "tourSlide1Title": "Qu'est-ce que Sentinel X ?",
+  "tourSlide1Body": "Le foyer de l'esport mobile au Nigeria : participez, regardez, rejoignez la communauté et échangez du matériel.",
+  "tourSlide2Title": "Les quatre piliers",
+  "tourSlide2Body": "Participez aux tournois, regardez Sentinel X TV, rejoignez la communauté et échangez sur le Gaming Exchange.",
+  "tourSlide3Title": "Comment fonctionnent les tournois",
+  "tourSlide3Body": "Inscrivez-vous, payez les frais, jouez vos matchs et soumettez votre résultat. Un administrateur le confirme avant la mise à jour du tableau.",
+  "tourSlide4Title": "Prêt à jouer ?",
+  "tourSlide4Body": "Créez un compte pour vous inscrire à votre premier tournoi.",
+  "tourNext": "Suivant",
+  "tourBack": "Retour",
+  "tourCreateAccount": "Créer un compte",
+  "coachFixturesTitle": "Vos matchs",
+  "coachFixturesBody": "Vos prochains matchs apparaissent ici. Confirmez votre présence le moment venu.",
+  "coachQuestTitle": "Quête Prêt au combat",
+  "coachQuestBody": "Terminez trois étapes pour gagner un badge et des récompenses.",
+  "coachGuideTitle": "Guide et assistant",
+  "coachGuideBody": "Les quêtes, une visite rapide et un assistant de discussion se trouvent ici.",
+  "coachAccountTitle": "Votre compte",
+  "coachAccountBody": "Modifiez votre profil et vos paramètres.",
+  "coachTabsTitle": "Cinq onglets",
+  "coachTabsBody": "Compétition, Regarder, Communauté, Échanger et votre compte.",
+  "coachBellTitle": "Notifications",
+  "coachBellBody": "Les mises à jour de match et les récompenses apparaissent ici.",
+  "coachMessagesTitle": "Messages",
+  "coachMessagesBody": "Messages privés avec d'autres joueurs.",
+  "coachNext": "Suivant",
+  "coachDone": "Terminé",
+  "coachSkip": "Passer",
+  "coachStepOf": "{current} sur {total}",
+  "@coachStepOf": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "chatTitle": "Assistant",
+  "chatHint": "Posez une question sur les tournois, les frais ou votre compte",
+  "chatSend": "Envoyer",
+  "chatTyping": "Réflexion…",
+  "chatCheckingAccount": "Vérification de votre compte…",
+  "chatRetry": "Réessayer",
+  "chatInterrupted": "La connexion a été interrompue. Appuyez sur Réessayer.",
+  "chatClear": "Effacer la discussion",
+  "chatClearConfirmTitle": "Effacer cette discussion ?",
+  "chatClearConfirmBody": "Vos messages enregistrés seront supprimés.",
+  "chatCancel": "Annuler",
+  "chatLoadEarlier": "Charger les messages précédents",
+  "chatEmptyPrompt": "Posez-moi vos questions sur les tournois, les frais, le score SX ou le fonctionnement de Sentinel X.",
+  "chatRetentionNotice": "Les discussions sont conservées 30 jours.",
+  "chatSignedOutNotice": "Les discussions ne sont pas enregistrées. Connectez-vous pour des réponses sur votre compte.",
+  "chatErrorRateLimited": "Vous envoyez des messages trop vite. Réessayez dans {seconds} s.",
+  "@chatErrorRateLimited": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "chatErrorUnavailableSignedOut": "L'assistant est occupé. Connectez-vous pour continuer à discuter.",
+  "chatErrorUnavailable": "L'assistant est indisponible pour le moment. Réessayez plus tard.",
+  "chatErrorUnauthorized": "Veuillez vous reconnecter.",
+  "chatErrorTruncated": "La réponse a été coupée. Essayez de formuler plus simplement.",
+  "chatErrorNetwork": "Impossible de joindre l'assistant. Vérifiez votre connexion et réessayez.",
+  "chatErrorClear": "Impossible d'effacer la discussion. Réessayez.",
+  "chatErrorGeneric": "Une erreur s'est produite. Veuillez réessayer.",
+  "chatDestTournaments": "Ouvrir les tournois",
+  "chatDestMatches": "Ouvrir mes matchs",
+  "chatDestProfile": "Modifier mon profil",
+  "chatDestNotifications": "Ouvrir les notifications",
+  "chatDestWallet": "Ouvrir mon portefeuille",
+  "chatDestRules": "Lire le règlement",
+  "chatDestSafety": "Conseils de sécurité",
+  "chatDestHelp": "Ouvrir l'aide"
 }

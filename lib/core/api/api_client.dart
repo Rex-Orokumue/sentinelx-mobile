@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 
 import '../config/remote_config.dart';
+import 'chat_models.dart';
 import 'community_models.dart';
 import 'compete_models.dart';
+import 'guide_models.dart';
 import 'match_models.dart';
 import 'messages_models.dart';
 import 'models.dart';
@@ -136,6 +140,11 @@ class ApiClient {
     'reportThread': 'post /api/mobile/v1/messages/threads/{id}/report',
     'acceptMessageRequest': 'post /api/mobile/v1/messages/threads/{id}/accept',
     'declineMessageRequest': 'post /api/mobile/v1/messages/threads/{id}/decline',
+    'getGuideQuests': 'get /api/mobile/v1/guide/quests',
+    'claimGuideBadge': 'post /api/mobile/v1/guide/badge',
+    'postChatMessage': 'post /api/mobile/v1/chat/messages',
+    'getChatHistory': 'get /api/mobile/v1/chat/history',
+    'deleteChatHistory': 'delete /api/mobile/v1/chat/history',
   };
 
   static const _base = '/api/mobile/v1';
@@ -902,4 +911,75 @@ class ApiClient {
 
   Future<void> declineMessageRequest(String threadId) =>
       _send('POST', '/messages/threads/${Uri.encodeComponent(threadId)}/decline', (_) {});
+
+  Future<GuideQuests> getGuideQuests() => _send('GET', '/guide/quests', (d) => GuideQuests.fromJson(d! as Map<String, dynamic>));
+
+  Future<BadgeClaim> postGuideBadge() =>
+      _send('POST', '/guide/badge', (d) => BadgeClaim.fromJson(d! as Map<String, dynamic>), body: {'quest': 'battle_ready'});
+
+  Future<ChatHistoryPage> getChatHistory({String? before, int? limit}) => _send(
+        'GET',
+        _withQuery('/chat/history', {'before': before, 'limit': limit}),
+        (d) => ChatHistoryPage.fromJson(d! as Map<String, dynamic>),
+      );
+
+  Future<void> deleteChatHistory() => _send('DELETE', '/chat/history', (_) {});
+
+  /// Streams NDJSON events. Pre-stream failures (rate limit, unavailable, 401) throw [ApiException]; once the
+  /// stream has started a dropped connection simply ends it, and the caller treats "ended without a terminal
+  /// event" as an interrupted turn. Signed-out callers get no bearer (the interceptor sends one only when a
+  /// session exists) and should pass [deviceId].
+  Stream<ChatEvent> postChatMessage({
+    required List<ChatTurnMessage> messages,
+    required String clientTurnId,
+    required String locale,
+    String? deviceId,
+  }) async* {
+    final Response<ResponseBody> res;
+    try {
+      res = await _dio.request<ResponseBody>(
+        '$_base/chat/messages',
+        data: {'messages': messages.map((m) => m.toJson()).toList(), 'clientTurnId': clientTurnId, 'locale': locale},
+        options: Options(
+          method: 'POST',
+          responseType: ResponseType.stream,
+          receiveTimeout: const Duration(seconds: 60),
+          headers: {'X-Device-Id': ?deviceId},
+        ),
+      );
+    } on DioException catch (e) {
+      throw ApiException(status: 0, code: 'network', message: e.message ?? 'Network error');
+    }
+    final status = res.statusCode ?? 0;
+    final body = res.data;
+    if (body == null) throw ApiException(status: status, code: 'bad_response', message: 'Unexpected response ($status).');
+    if (status != 200) {
+      String text = '';
+      try {
+        text = await body.stream.cast<List<int>>().transform(utf8.decoder).join();
+      } catch (_) {}
+      Object? json;
+      try {
+        json = jsonDecode(text);
+      } catch (_) {}
+      if (json is Map<String, dynamic> && json['error'] is Map<String, dynamic>) {
+        final err = json['error'] as Map<String, dynamic>;
+        throw ApiException(
+          status: status,
+          code: err['code'] as String? ?? 'unknown',
+          message: err['message'] as String? ?? 'Request failed',
+          fields: (err['fields'] as Map<String, dynamic>?)?.map((k, v) => MapEntry(k, v.toString())) ?? const <String, String>{},
+        );
+      }
+      throw ApiException(status: status, code: 'bad_response', message: 'Unexpected response ($status).');
+    }
+    try {
+      await for (final line in body.stream.cast<List<int>>().transform(utf8.decoder).transform(const LineSplitter())) {
+        final e = parseChatLine(line);
+        if (e != null) yield e;
+      }
+    } catch (_) {
+      return; // dropped mid-stream: end without a terminal event
+    }
+  }
 }

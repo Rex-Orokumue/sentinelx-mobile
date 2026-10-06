@@ -1235,5 +1235,138 @@
   "dmMicTryAgain": "Try again",
   "dmMicOpenSettings": "Open settings",
   "dmVoicePlaybackError": "Couldn't play this voice message.",
-  "dmVoiceLimitReached": "Maximum length reached"
+  "dmVoiceLimitReached": "Maximum length reached",
+  "avatarChangePhoto": "Change photo",
+  "avatarFromGallery": "Choose from gallery",
+  "avatarFromCamera": "Take a photo",
+  "avatarUploading": "Uploading photo…",
+  "avatarUploadFailed": "Couldn't upload your photo. Try again.",
+  "avatarTooLarge": "That photo is too large. Pick a smaller one.",
+  "avatarNotImage": "That file isn't a photo we can use.",
+  "guideOpen": "Guide and assistant",
+  "guideTitle": "Guide",
+  "guideHello": "Hey {name}!",
+  "@guideHello": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "guideHelloNoName": "Hey there!",
+  "questBattleReadyTitle": "Battle Ready quest",
+  "questProgress": "{done} of {total} done",
+  "@questProgress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "questStepProfile_complete": "Complete your profile",
+  "questStepFirst_tournament_entered": "Enter your first tournament",
+  "questStepFirst_match_completed": "Complete your first match",
+  "questStepGeneric": "Complete this step",
+  "questTakeMeThere": "Take me there",
+  "questClaim": "Claim your badge",
+  "questClaiming": "Claiming…",
+  "questBadgeEarned": "Badge earned",
+  "questRewardLine": "{xp} XP and {coins} coins",
+  "@questRewardLine": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      },
+      "coins": {
+        "type": "int"
+      }
+    }
+  },
+  "questErrorIncomplete": "Finish all three steps first.",
+  "questErrorInProgress": "Your reward is still being processed. Try again in a minute.",
+  "questErrorUnavailable": "This reward isn't available right now.",
+  "questErrorGeneric": "Couldn't claim the badge. Try again.",
+  "questLoadError": "Couldn't load your quest.",
+  "guideAskAssistant": "Ask the assistant",
+  "guideReplayTour": "Replay the tour",
+  "tourSlide1Title": "What is Sentinel X?",
+  "tourSlide1Body": "Nigeria's home of mobile esports: compete, watch, join the community and trade gear.",
+  "tourSlide2Title": "The four pillars",
+  "tourSlide2Body": "Compete in tournaments, watch Sentinel X TV, join the community and trade on the Gaming Exchange.",
+  "tourSlide3Title": "How tournaments work",
+  "tourSlide3Body": "Register, pay the entry fee, play your fixtures and submit your result. An admin confirms it before the bracket updates.",
+  "tourSlide4Title": "Ready to play?",
+  "tourSlide4Body": "Create an account to enter your first tournament.",
+  "tourNext": "Next",
+  "tourBack": "Back",
+  "tourCreateAccount": "Create account",
+  "coachFixturesTitle": "Your fixtures",
+  "coachFixturesBody": "Your next matches show up here. Check in when it's time.",
+  "coachQuestTitle": "Battle Ready quest",
+  "coachQuestBody": "Finish three steps to earn a badge and rewards.",
+  "coachGuideTitle": "Guide and assistant",
+  "coachGuideBody": "Quests, a quick tour and a chat assistant live here.",
+  "coachAccountTitle": "Your account",
+  "coachAccountBody": "Edit your profile and settings.",
+  "coachTabsTitle": "Five tabs",
+  "coachTabsBody": "Compete, Watch, Community, Trade and your Account.",
+  "coachBellTitle": "Notifications",
+  "coachBellBody": "Match updates and rewards appear here.",
+  "coachMessagesTitle": "Messages",
+  "coachMessagesBody": "Direct messages with other players.",
+  "coachNext": "Next",
+  "coachDone": "Done",
+  "coachSkip": "Skip",
+  "coachStepOf": "{current} of {total}",
+  "@coachStepOf": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "chatTitle": "Assistant",
+  "chatHint": "Ask about tournaments, fees or your account",
+  "chatSend": "Send",
+  "chatTyping": "Thinking…",
+  "chatCheckingAccount": "Checking your account…",
+  "chatRetry": "Retry",
+  "chatInterrupted": "The connection dropped. Tap Retry.",
+  "chatClear": "Clear chat",
+  "chatClearConfirmTitle": "Clear this chat?",
+  "chatClearConfirmBody": "Your saved messages will be deleted.",
+  "chatCancel": "Cancel",
+  "chatLoadEarlier": "Load earlier messages",
+  "chatEmptyPrompt": "Ask me anything about tournaments, fees, SX Score or how Sentinel X works.",
+  "chatRetentionNotice": "Chats are kept for 30 days.",
+  "chatSignedOutNotice": "Chats aren't saved. Sign in for answers about your account.",
+  "chatErrorRateLimited": "You're sending messages too fast. Try again in {seconds} s.",
+  "@chatErrorRateLimited": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "chatErrorUnavailableSignedOut": "The assistant is busy right now. Sign in to keep chatting.",
+  "chatErrorUnavailable": "The assistant is unavailable right now. Please try again later.",
+  "chatErrorUnauthorized": "Please sign in again.",
+  "chatErrorTruncated": "That answer was cut short. Try asking in a simpler way.",
+  "chatErrorNetwork": "Couldn't reach the assistant. Check your connection and try again.",
+  "chatErrorClear": "Couldn't clear your chat. Try again.",
+  "chatErrorGeneric": "Something went wrong. Please try again.",
+  "chatDestTournaments": "Open tournaments",
+  "chatDestMatches": "Open my matches",
+  "chatDestProfile": "Edit my profile",
+  "chatDestNotifications": "Open notifications",
+  "chatDestWallet": "Open my wallet",
+  "chatDestRules": "Read the rules",
+  "chatDestSafety": "Safety tips",
+  "chatDestHelp": "Open help"
 }
