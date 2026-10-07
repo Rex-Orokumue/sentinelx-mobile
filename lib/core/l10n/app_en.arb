@@ -1266,7 +1266,7 @@
       }
     }
   },
-  "questStepProfile_complete": "Complete your profile",
+  "questStepProfile_complete": "Add a profile photo",
   "questStepFirst_tournament_entered": "Enter your first tournament",
   "questStepFirst_match_completed": "Complete your first match",
   "questStepGeneric": "Complete this step",

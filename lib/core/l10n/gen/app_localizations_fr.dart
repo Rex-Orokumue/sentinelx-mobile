@@ -2860,7 +2860,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get questStepProfile_complete => 'Complétez votre profil';
+  String get questStepProfile_complete => 'Ajoutez une photo de profil';
 
   @override
   String get questStepFirst_tournament_entered =>

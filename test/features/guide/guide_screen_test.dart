@@ -32,7 +32,7 @@ void main() {
   testWidgets('signed in: checklist with one Take me there per pending step', (tester) async {
     await tester.pumpWidget(guideApp(FakeGuideRepository(seed: [quest(done: 1)])));
     await tester.pumpAndSettle();
-    expect(find.text('Complete your profile'), findsOneWidget);
+    expect(find.text('Add a profile photo'), findsOneWidget);
     expect(find.text('Take me there'), findsNWidgets(2)); // the done step has no link
   });
   testWidgets('an unknown step key shows the generic label; an unknown target shows no link', (tester) async {

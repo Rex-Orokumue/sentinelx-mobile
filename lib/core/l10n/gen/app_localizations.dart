@@ -5177,7 +5177,7 @@ abstract class AppLocalizations {
   /// No description provided for @questStepProfile_complete.
   ///
   /// In en, this message translates to:
-  /// **'Complete your profile'**
+  /// **'Add a profile photo'**
   String get questStepProfile_complete;
 
   /// No description provided for @questStepFirst_tournament_entered.

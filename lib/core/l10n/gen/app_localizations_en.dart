@@ -2828,7 +2828,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get questStepProfile_complete => 'Complete your profile';
+  String get questStepProfile_complete => 'Add a profile photo';
 
   @override
   String get questStepFirst_tournament_entered => 'Enter your first tournament';
