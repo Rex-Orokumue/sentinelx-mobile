@@ -178,4 +178,15 @@ void main() {
     expect(resolveWebLink('/guide'), isNull);
     expect(resolveWebLink('/guide/chat'), isNull);
   });
+
+  test('the Google link-callback deep link maps to no in-app route (supabase_flutter consumes it)', () {
+    expect(resolveWebLink('ng.com.sentinelxesports.app://link-callback/?code=abc'), isNull);
+  });
+
+  test('the Settings sub-routes are not swallowed by the redirect', () {
+    for (final p in ['/account/language', '/account/security', '/account/sign-in-methods', '/account/phone', '/account/delete']) {
+      expect(resolveWebLink(p), isNull, reason: p);
+    }
+    expect(resolveWebLink('/onboarding/phone'), isNull);
+  });
 }

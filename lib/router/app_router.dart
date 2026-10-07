@@ -17,6 +17,7 @@ import '../features/account/edit_profile_screen.dart';
 import '../features/account/profile_onboarding_screen.dart';
 import '../features/account/settings/language_screen.dart';
 import '../features/account/settings/security_screen.dart';
+import '../features/account/settings/sign_in_methods_screen.dart';
 import '../core/api/community_models.dart';
 import '../features/community/community_feed_screen.dart';
 import '../features/community/compose_screen.dart';
@@ -487,6 +488,10 @@ GoRouter buildAppRouter({
                   GoRoute(
                     path: 'security',
                     builder: (context, state) => const SecurityScreen(),
+                  ),
+                  GoRoute(
+                    path: 'sign-in-methods',
+                    builder: (context, state) => const SignInMethodsScreen(),
                   ),
                   GoRoute(
                     path: 'notifications',
