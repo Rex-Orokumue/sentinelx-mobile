@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 
 import '../../core/api/community_models.dart';
 import '../../core/l10n/gen/app_localizations.dart';
+import '../../core/utils/date_locale.dart';
 import '../../core/providers.dart';
 import '../../core/utils/write_flow.dart';
 import '../../shared/widgets/player_avatar.dart';
@@ -59,7 +60,7 @@ class PostCard extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final created = DateTime.tryParse(post.createdAt)?.toLocal();
-    final when = created == null ? post.createdAt : DateFormat.yMMMd(l10n.localeName).add_Hm().format(created);
+    final when = created == null ? post.createdAt : DateFormat.yMMMd(dateLocale(l10n.localeName)).add_Hm().format(created);
     final boosted = _isBoosted(post);
     final signedIn = ref.watch(meProvider).asData?.value != null;
     // Resolved now, not inside the callback: a reaction write can finish after this card has scrolled
