@@ -1368,5 +1368,238 @@
   "chatDestWallet": "Open my wallet",
   "chatDestRules": "Read the rules",
   "chatDestSafety": "Safety tips",
-  "chatDestHelp": "Open help"
+  "chatDestHelp": "Open help",
+  "mobileSettingsHubTitle": "Settings",
+  "mobileSettingsHubProfile": "Profile",
+  "mobileSettingsHubNotifications": "Notifications",
+  "mobileSettingsHubLanguage": "Language",
+  "mobileSettingsHubSecurity": "Security",
+  "mobileSettingsHubSignInMethods": "Sign-in methods",
+  "mobileSettingsHubPhone": "Phone verification",
+  "mobileSettingsHubDeleteAccount": "Delete account",
+  "mobileSettingsLanguageTitle": "Language",
+  "mobileSettingsLanguageEnglish": "English",
+  "mobileSettingsLanguageFrench": "Français",
+  "mobileSettingsLanguagePidgin": "Pidgin",
+  "mobileSettingsLanguageSaveFailed": "Could not save your language. Please try again.",
+  "mobileSettingsSecurityTitle": "Security",
+  "mobileSettingsSecurityEmailRow": "Email",
+  "mobileSettingsSecurityChangeEmail": "Change email",
+  "mobileSettingsSecurityPasswordRow": "Password",
+  "mobileSettingsSecuritySetPassword": "Set or reset password",
+  "mobileSettingsSecuritySetPasswordHint": "We'll email a link to your current address. Opening it proves the account is yours.",
+  "mobileSettingsSecurityResetSent": "Check your inbox for a link to set a new password.",
+  "mobileSettingsPhoneTitle": "Phone verification",
+  "mobileSettingsPhoneNumberLabel": "WhatsApp number",
+  "mobileSettingsPhoneSendCode": "Send code",
+  "mobileSettingsPhoneCodeLabel": "6-digit code",
+  "mobileSettingsPhoneConfirm": "Verify",
+  "mobileSettingsPhoneResend": "Resend code",
+  "mobileSettingsPhoneResendIn": "Resend in {seconds}s",
+  "mobileSettingsPhoneVerified": "Verified: {masked}",
+  "mobileSettingsPhoneUnavailable": "Verification is unavailable right now. Please try again later.",
+  "mobileSettingsPhoneErrorInvalid": "Enter a valid phone number, including your country code if you are outside Nigeria.",
+  "mobileSettingsPhoneErrorCooldown": "Please wait a moment before requesting another code.",
+  "mobileSettingsPhoneErrorDailyLimit": "Too many codes requested today. Please try again tomorrow.",
+  "mobileSettingsPhoneErrorSendFailed": "Could not send the WhatsApp message. Please try again.",
+  "mobileSettingsPhoneErrorCodeInvalid": "Enter the 6-digit code.",
+  "mobileSettingsPhoneErrorCodeMissing": "Request a new code first.",
+  "mobileSettingsPhoneErrorCodeExpired": "That code expired. Request a new one.",
+  "mobileSettingsPhoneErrorCodeWrong": "That code isn't right.",
+  "mobileSettingsPhoneErrorAttempts": "Too many incorrect attempts. Request a new code.",
+  "mobileSettingsDeleteAccountTitle": "Delete account",
+  "mobileSettingsDeleteFailed": "Could not complete that. Please try again.",
+  "mobileSettingsReauthRateLimited": "Too many attempts. Please try again later.",
+  "mobileSettingsLinkingUnavailable": "This isn't available right now. Please contact support.",
+  "mobileSettingsGenericError": "Something went wrong. Please try again.",
+  "mobileSettingsNetworkError": "No connection. Check your network and try again.",
+  "accountDeletionTitle": "Delete account",
+  "accountDeletionScheduledFor": "Your account will be permanently deleted on {date}.",
+  "accountDeletionCanCancel": "Until then you can sign in and cancel at any time.",
+  "accountDeletionHistoryKept": "Your match history and tournament results will remain visible under “Deleted player”.",
+  "accountDeletionUsernameRetired": "Your username {username} will be retired and cannot be used again.",
+  "accountDeletionEmailReusable": "The email address on the account can be used to register again later.",
+  "accountDeletionTypeDelete": "Type DELETE to confirm.",
+  "accountDeletionConfirmButton": "Schedule deletion",
+  "accountDeletionConfirmButtonPending": "Scheduling…",
+  "accountDeletionDeleteNowTitle": "Delete immediately",
+  "accountDeletionDeleteNowWarning": "This skips the 15-day grace period. Your account is deleted immediately. There is no cancellation and no undo.",
+  "accountDeletionDeleteNowPrompt": "Type your username {username} to confirm.",
+  "accountDeletionDeleteNowButton": "Delete permanently",
+  "accountDeletionDeleteNowButtonPending": "Deleting…",
+  "accountDeletionCancel": "Cancel",
+  "accountDeletionPendingHeading": "Deletion scheduled",
+  "accountDeletionPendingBody": "Your account will be deleted on {date} — {days} days left.",
+  "accountDeletionBannerText": "Your account is scheduled for deletion on {date} — {days} days left.",
+  "accountDeletionBannerCancel": "Cancel deletion",
+  "accountDeletionBannerCancelling": "Cancelling…",
+  "accountDeletionBlockedTitle": "You can't delete your account yet:",
+  "accountDeletionBlockerWalletBalance": "{amount} wallet balance — withdraw or spend it first",
+  "accountDeletionBlockerWithdrawal": "{count} pending withdrawal — wait for it to be paid",
+  "accountDeletionBlockerEscrow": "{count} open Exchange order — complete or cancel it",
+  "accountDeletionBlockerListing": "{count} live Exchange listing — remove it first",
+  "accountDeletionBlockerTournament": "You're in an active tournament — wait for it to finish",
+  "accountDeletionBlockerMatch": "{count} unfinished match — play or resolve it",
+  "accountDeletionBlockerFriendly": "{count} unfinished friendly — play or decline it",
+  "accountDeletionRestricted": "Your account is scheduled for deletion. Cancel the deletion in Settings to do this.",
+  "emailChangeTitle": "Change email",
+  "emailChangeOpen": "Change Email →",
+  "emailChangeNewLabel": "New email address",
+  "emailChangePasswordLabel": "Current password",
+  "emailChangePasswordHint": "Your password confirms it's really you — without it, anyone who found your account signed in could move it to their own inbox.",
+  "emailChangeSubmit": "Send confirmation link",
+  "emailChangeSending": "Sending…",
+  "emailChangeCancel": "Cancel",
+  "emailChangeSent": "Confirmation link sent to {email}. Your address stays the same until you open that link.",
+  "emailChangeSentSpam": "Check your spam folder if it doesn't arrive.",
+  "emailChangePending": "Pending: {email}",
+  "emailChangePendingHint": "Waiting for you to confirm from that inbox.",
+  "emailChangeGoogleHint": "Signed in with Google? If you've never set a password, use Change Password above first — the link goes to your current inbox.",
+  "emailChangeGoogleSurvives": "Google sign-in will keep working after this change — it's tied to your Google account, not your email. Remove it under Sign-in methods below.",
+  "emailChangeChanged": "Your email address has been updated.",
+  "emailChangeErrorsInvalidEmail": "Enter a valid email address.",
+  "emailChangeErrorsPasswordRequired": "Enter your current password.",
+  "emailChangeErrorsNotLoggedIn": "Your session has expired. Please log in again.",
+  "emailChangeErrorsGoogleOnly": "Your account signs in with Google, so there's no password to confirm. Use Change Password above to set one, then you can change your email.",
+  "emailChangeErrorsSameEmail": "That's already your email address.",
+  "emailChangeErrorsWrongPassword": "That password isn't right.",
+  "emailChangeErrorsEmailBanned": "We could not use that email address.",
+  "emailChangeErrorsEmailInUse": "That email address is already in use.",
+  "emailChangeErrorsFailed": "Could not start the email change. Please try again.",
+  "signInMethodsTitle": "Sign-in methods",
+  "signInMethodsIntro": "Google sign-in is tied to your Google account, not to your email address — changing your email does not remove it.",
+  "signInMethodsGoogle": "Google",
+  "signInMethodsEmailPassword": "Email & password",
+  "signInMethodsLinked": "Linked",
+  "signInMethodsNotLinked": "Not linked",
+  "signInMethodsNotSet": "Not set up",
+  "signInMethodsLink": "Link Google",
+  "signInMethodsLinkedOk": "Google sign-in is now linked to your account.",
+  "signInMethodsLinkFailed": "Could not link that Google account — it may already be attached to another SentinelX account.",
+  "signInMethodsUnlink": "Unlink",
+  "signInMethodsUnlinkConfirm": "Unlink Google",
+  "signInMethodsUnlinkConfirming": "Unlinking…",
+  "signInMethodsUnlinkExplain": "This removes Google sign-in from your account and signs you out everywhere else.",
+  "signInMethodsRelinkWarning": "Signing in with Google again will re-link it, because your account uses the same email address. To fully remove that account's access, change your email as well.",
+  "signInMethodsOnlyMethod": "This is the only way into your account, so it can't be removed.",
+  "signInMethodsPasswordLabel": "Current password",
+  "signInMethodsCancel": "Cancel",
+  "signInMethodsErrorsPasswordRequired": "Enter your current password.",
+  "signInMethodsErrorsNotLoggedIn": "Your session has expired. Please log in again.",
+  "signInMethodsErrorsWrongPassword": "That password isn't right.",
+  "signInMethodsErrorsNotLinked": "Google isn't linked to this account.",
+  "signInMethodsErrorsLastIdentity": "That's the only way into your account — set up email and password sign-in first.",
+  "signInMethodsErrorsUnavailable": "Unlinking isn't available right now. Please contact support.",
+  "signInMethodsErrorsFailed": "Could not unlink Google. Please try again.",
+  "@mobileSettingsPhoneResendIn": {
+    "placeholders": {
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
+  "@mobileSettingsPhoneVerified": {
+    "placeholders": {
+      "masked": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionScheduledFor": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionUsernameRetired": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionDeleteNowPrompt": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionPendingBody": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionBannerText": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionBlockerWalletBalance": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionBlockerWithdrawal": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionBlockerEscrow": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionBlockerListing": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionBlockerMatch": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionBlockerFriendly": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@emailChangeSent": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "@emailChangePending": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  }
 }

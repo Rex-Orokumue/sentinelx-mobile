@@ -1164,5 +1164,238 @@
   "chatDestWallet": "Ouvrir mon portefeuille",
   "chatDestRules": "Lire le règlement",
   "chatDestSafety": "Conseils de sécurité",
-  "chatDestHelp": "Ouvrir l'aide"
+  "chatDestHelp": "Ouvrir l'aide",
+  "mobileSettingsHubTitle": "Paramètres",
+  "mobileSettingsHubProfile": "Profil",
+  "mobileSettingsHubNotifications": "Notifications",
+  "mobileSettingsHubLanguage": "Langue",
+  "mobileSettingsHubSecurity": "Sécurité",
+  "mobileSettingsHubSignInMethods": "Méthodes de connexion",
+  "mobileSettingsHubPhone": "Vérification du téléphone",
+  "mobileSettingsHubDeleteAccount": "Supprimer le compte",
+  "mobileSettingsLanguageTitle": "Langue",
+  "mobileSettingsLanguageEnglish": "English",
+  "mobileSettingsLanguageFrench": "Français",
+  "mobileSettingsLanguagePidgin": "Pidgin",
+  "mobileSettingsLanguageSaveFailed": "Impossible d'enregistrer votre langue. Veuillez réessayer.",
+  "mobileSettingsSecurityTitle": "Sécurité",
+  "mobileSettingsSecurityEmailRow": "E-mail",
+  "mobileSettingsSecurityChangeEmail": "Changer d'e-mail",
+  "mobileSettingsSecurityPasswordRow": "Mot de passe",
+  "mobileSettingsSecuritySetPassword": "Définir ou réinitialiser le mot de passe",
+  "mobileSettingsSecuritySetPasswordHint": "Nous enverrons un lien à votre adresse actuelle. L'ouvrir prouve que le compte est le vôtre.",
+  "mobileSettingsSecurityResetSent": "Consultez votre boîte de réception : un lien pour définir un nouveau mot de passe vous a été envoyé.",
+  "mobileSettingsPhoneTitle": "Vérification du téléphone",
+  "mobileSettingsPhoneNumberLabel": "Numéro WhatsApp",
+  "mobileSettingsPhoneSendCode": "Envoyer le code",
+  "mobileSettingsPhoneCodeLabel": "Code à 6 chiffres",
+  "mobileSettingsPhoneConfirm": "Vérifier",
+  "mobileSettingsPhoneResend": "Renvoyer le code",
+  "mobileSettingsPhoneResendIn": "Renvoyer dans {seconds} s",
+  "mobileSettingsPhoneVerified": "Vérifié : {masked}",
+  "mobileSettingsPhoneUnavailable": "La vérification est indisponible pour le moment. Veuillez réessayer plus tard.",
+  "mobileSettingsPhoneErrorInvalid": "Saisissez un numéro valide, avec l'indicatif de votre pays si vous êtes hors du Nigeria.",
+  "mobileSettingsPhoneErrorCooldown": "Veuillez patienter un instant avant de demander un autre code.",
+  "mobileSettingsPhoneErrorDailyLimit": "Trop de codes demandés aujourd'hui. Veuillez réessayer demain.",
+  "mobileSettingsPhoneErrorSendFailed": "Impossible d'envoyer le message WhatsApp. Veuillez réessayer.",
+  "mobileSettingsPhoneErrorCodeInvalid": "Saisissez le code à 6 chiffres.",
+  "mobileSettingsPhoneErrorCodeMissing": "Demandez d'abord un nouveau code.",
+  "mobileSettingsPhoneErrorCodeExpired": "Ce code a expiré. Demandez-en un nouveau.",
+  "mobileSettingsPhoneErrorCodeWrong": "Ce code n'est pas correct.",
+  "mobileSettingsPhoneErrorAttempts": "Trop de tentatives incorrectes. Demandez un nouveau code.",
+  "mobileSettingsDeleteAccountTitle": "Supprimer le compte",
+  "mobileSettingsDeleteFailed": "Impossible de terminer cette action. Veuillez réessayer.",
+  "mobileSettingsReauthRateLimited": "Trop de tentatives. Veuillez réessayer plus tard.",
+  "mobileSettingsLinkingUnavailable": "Cette option n'est pas disponible pour le moment. Veuillez contacter le support.",
+  "mobileSettingsGenericError": "Une erreur s'est produite. Veuillez réessayer.",
+  "mobileSettingsNetworkError": "Pas de connexion. Vérifiez votre réseau et réessayez.",
+  "accountDeletionTitle": "Supprimer le compte",
+  "accountDeletionScheduledFor": "Votre compte sera définitivement supprimé le {date}.",
+  "accountDeletionCanCancel": "D'ici là, vous pouvez vous connecter et annuler à tout moment.",
+  "accountDeletionHistoryKept": "Votre historique de matchs et vos résultats de tournois resteront visibles sous « Joueur supprimé ».",
+  "accountDeletionUsernameRetired": "Votre nom d'utilisateur {username} sera retiré et ne pourra plus jamais être utilisé.",
+  "accountDeletionEmailReusable": "L'adresse e-mail du compte pourra servir à créer un nouveau compte plus tard.",
+  "accountDeletionTypeDelete": "Tapez DELETE pour confirmer.",
+  "accountDeletionConfirmButton": "Programmer la suppression",
+  "accountDeletionConfirmButtonPending": "Programmation…",
+  "accountDeletionDeleteNowTitle": "Supprimer immédiatement",
+  "accountDeletionDeleteNowWarning": "Cela ignore le délai de grâce de 15 jours. Votre compte est supprimé immédiatement. Aucune annulation, aucun retour en arrière.",
+  "accountDeletionDeleteNowPrompt": "Tapez votre nom d'utilisateur {username} pour confirmer.",
+  "accountDeletionDeleteNowButton": "Supprimer définitivement",
+  "accountDeletionDeleteNowButtonPending": "Suppression…",
+  "accountDeletionCancel": "Annuler",
+  "accountDeletionPendingHeading": "Suppression programmée",
+  "accountDeletionPendingBody": "Votre compte sera supprimé le {date} — {days} jours restants.",
+  "accountDeletionBannerText": "Votre compte est programmé pour suppression le {date} — {days} jours restants.",
+  "accountDeletionBannerCancel": "Annuler la suppression",
+  "accountDeletionBannerCancelling": "Annulation…",
+  "accountDeletionBlockedTitle": "Vous ne pouvez pas encore supprimer votre compte :",
+  "accountDeletionBlockerWalletBalance": "{amount} sur votre portefeuille — retirez-les ou dépensez-les",
+  "accountDeletionBlockerWithdrawal": "{count} retrait en attente — attendez son paiement",
+  "accountDeletionBlockerEscrow": "{count} commande Exchange en cours — terminez-la ou annulez-la",
+  "accountDeletionBlockerListing": "{count} annonce Exchange active — retirez-la",
+  "accountDeletionBlockerTournament": "Vous participez à un tournoi en cours — attendez la fin",
+  "accountDeletionBlockerMatch": "{count} match non terminé — jouez-le ou résolvez-le",
+  "accountDeletionBlockerFriendly": "{count} match amical non terminé — jouez-le ou refusez-le",
+  "accountDeletionRestricted": "Votre compte est programmé pour suppression. Annulez la suppression dans les Paramètres pour faire cela.",
+  "emailChangeTitle": "Changer d'e-mail",
+  "emailChangeOpen": "Changer d'e-mail →",
+  "emailChangeNewLabel": "Nouvelle adresse e-mail",
+  "emailChangePasswordLabel": "Mot de passe actuel",
+  "emailChangePasswordHint": "Votre mot de passe confirme que c'est bien vous — sans lui, toute personne trouvant votre compte connecté pourrait le transférer vers sa propre boîte mail.",
+  "emailChangeSubmit": "Envoyer le lien de confirmation",
+  "emailChangeSending": "Envoi…",
+  "emailChangeCancel": "Annuler",
+  "emailChangeSent": "Lien de confirmation envoyé à {email}. Votre adresse ne change pas tant que vous n'avez pas ouvert ce lien.",
+  "emailChangeSentSpam": "Vérifiez vos spams si le message n'arrive pas.",
+  "emailChangePending": "En attente : {email}",
+  "emailChangePendingHint": "Nous attendons votre confirmation depuis cette boîte mail.",
+  "emailChangeGoogleHint": "Connecté avec Google ? Si vous n'avez jamais défini de mot de passe, utilisez d'abord « Changer le mot de passe » ci-dessus — le lien est envoyé à votre boîte mail actuelle.",
+  "emailChangeGoogleSurvives": "La connexion Google continuera de fonctionner après ce changement — elle est liée à votre compte Google, pas à votre e-mail. Supprimez-la sous « Méthodes de connexion » ci-dessous.",
+  "emailChangeChanged": "Votre adresse e-mail a été mise à jour.",
+  "emailChangeErrorsInvalidEmail": "Saisissez une adresse e-mail valide.",
+  "emailChangeErrorsPasswordRequired": "Saisissez votre mot de passe actuel.",
+  "emailChangeErrorsNotLoggedIn": "Votre session a expiré. Veuillez vous reconnecter.",
+  "emailChangeErrorsGoogleOnly": "Votre compte se connecte avec Google : il n'y a donc aucun mot de passe à confirmer. Utilisez « Changer le mot de passe » ci-dessus pour en définir un, puis vous pourrez changer votre e-mail.",
+  "emailChangeErrorsSameEmail": "C'est déjà votre adresse e-mail.",
+  "emailChangeErrorsWrongPassword": "Ce mot de passe n'est pas correct.",
+  "emailChangeErrorsEmailBanned": "Nous ne pouvons pas utiliser cette adresse e-mail.",
+  "emailChangeErrorsEmailInUse": "Cette adresse e-mail est déjà utilisée.",
+  "emailChangeErrorsFailed": "Impossible de lancer le changement d'e-mail. Veuillez réessayer.",
+  "signInMethodsTitle": "Méthodes de connexion",
+  "signInMethodsIntro": "La connexion Google est liée à votre compte Google, pas à votre adresse e-mail — changer d'e-mail ne la supprime pas.",
+  "signInMethodsGoogle": "Google",
+  "signInMethodsEmailPassword": "E-mail et mot de passe",
+  "signInMethodsLinked": "Liée",
+  "signInMethodsNotLinked": "Non liée",
+  "signInMethodsNotSet": "Non configurée",
+  "signInMethodsLink": "Lier Google",
+  "signInMethodsLinkedOk": "La connexion Google est désormais liée à votre compte.",
+  "signInMethodsLinkFailed": "Impossible de lier ce compte Google — il est peut-être déjà rattaché à un autre compte SentinelX.",
+  "signInMethodsUnlink": "Délier",
+  "signInMethodsUnlinkConfirm": "Délier Google",
+  "signInMethodsUnlinkConfirming": "Déliaison…",
+  "signInMethodsUnlinkExplain": "Cela supprime la connexion Google de votre compte et vous déconnecte partout ailleurs.",
+  "signInMethodsRelinkWarning": "Se reconnecter avec Google rétablira le lien, car votre compte utilise la même adresse e-mail. Pour retirer complètement l'accès de ce compte, changez aussi votre e-mail.",
+  "signInMethodsOnlyMethod": "C'est le seul accès à votre compte, il ne peut donc pas être supprimé.",
+  "signInMethodsPasswordLabel": "Mot de passe actuel",
+  "signInMethodsCancel": "Annuler",
+  "signInMethodsErrorsPasswordRequired": "Saisissez votre mot de passe actuel.",
+  "signInMethodsErrorsNotLoggedIn": "Votre session a expiré. Veuillez vous reconnecter.",
+  "signInMethodsErrorsWrongPassword": "Ce mot de passe n'est pas correct.",
+  "signInMethodsErrorsNotLinked": "Google n'est pas lié à ce compte.",
+  "signInMethodsErrorsLastIdentity": "C'est le seul accès à votre compte — configurez d'abord la connexion par e-mail et mot de passe.",
+  "signInMethodsErrorsUnavailable": "La dissociation n'est pas disponible pour le moment. Veuillez contacter l'assistance.",
+  "signInMethodsErrorsFailed": "Impossible de délier Google. Veuillez réessayer.",
+  "@mobileSettingsPhoneResendIn": {
+    "placeholders": {
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
+  "@mobileSettingsPhoneVerified": {
+    "placeholders": {
+      "masked": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionScheduledFor": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionUsernameRetired": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionDeleteNowPrompt": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionPendingBody": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionBannerText": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionBlockerWalletBalance": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionBlockerWithdrawal": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionBlockerEscrow": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionBlockerListing": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionBlockerMatch": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionBlockerFriendly": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@emailChangeSent": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "@emailChangePending": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  }
 }

@@ -1,0 +1,402 @@
+{
+  "@@locale": "pcm",
+  "mobileSettingsHubTitle": "Settings",
+  "mobileSettingsHubProfile": "Profile",
+  "mobileSettingsHubNotifications": "Notifications",
+  "mobileSettingsHubLanguage": "Language",
+  "mobileSettingsHubSecurity": "Security",
+  "mobileSettingsHubSignInMethods": "How you dey sign in",
+  "mobileSettingsHubPhone": "Phone verification",
+  "mobileSettingsHubDeleteAccount": "Delete account",
+  "mobileSettingsLanguageTitle": "Language",
+  "mobileSettingsLanguageEnglish": "English",
+  "mobileSettingsLanguageFrench": "Français",
+  "mobileSettingsLanguagePidgin": "Pidgin",
+  "mobileSettingsLanguageSaveFailed": "We no fit save your language. Abeg try again.",
+  "mobileSettingsSecurityTitle": "Security",
+  "mobileSettingsSecurityEmailRow": "Email",
+  "mobileSettingsSecurityChangeEmail": "Change email",
+  "mobileSettingsSecurityPasswordRow": "Password",
+  "mobileSettingsSecuritySetPassword": "Set or reset password",
+  "mobileSettingsSecuritySetPasswordHint": "We go send link go your current email. If you open am, e go show say na your account.",
+  "mobileSettingsSecurityResetSent": "Check your inbox, link dey there to set new password.",
+  "mobileSettingsPhoneTitle": "Phone verification",
+  "mobileSettingsPhoneNumberLabel": "WhatsApp number",
+  "mobileSettingsPhoneSendCode": "Send code",
+  "mobileSettingsPhoneCodeLabel": "6-digit code",
+  "mobileSettingsPhoneConfirm": "Verify",
+  "mobileSettingsPhoneResend": "Send code again",
+  "mobileSettingsPhoneResendIn": "Send again in {seconds}s",
+  "mobileSettingsPhoneVerified": "Verified: {masked}",
+  "mobileSettingsPhoneUnavailable": "Verification no dey work now. Abeg try again later.",
+  "mobileSettingsPhoneErrorInvalid": "Put correct phone number, add your country code if you no dey Nigeria.",
+  "mobileSettingsPhoneErrorCooldown": "Abeg wait small before you ask for another code.",
+  "mobileSettingsPhoneErrorDailyLimit": "You don ask for too many codes today. Abeg try again tomorrow.",
+  "mobileSettingsPhoneErrorSendFailed": "We no fit send the WhatsApp message. Abeg try again.",
+  "mobileSettingsPhoneErrorCodeInvalid": "Put the 6-digit code.",
+  "mobileSettingsPhoneErrorCodeMissing": "Ask for new code first.",
+  "mobileSettingsPhoneErrorCodeExpired": "That code don expire. Ask for new one.",
+  "mobileSettingsPhoneErrorCodeWrong": "That code no correct.",
+  "mobileSettingsPhoneErrorAttempts": "You don try wrong code too many times. Ask for new code.",
+  "mobileSettingsDeleteAccountTitle": "Delete account",
+  "mobileSettingsDeleteFailed": "We no fit finish that one. Abeg try again.",
+  "mobileSettingsReauthRateLimited": "You don try too many times. Abeg try again later.",
+  "mobileSettingsLinkingUnavailable": "This one no dey work now. Abeg contact support.",
+  "mobileSettingsGenericError": "Something happen. Abeg try again.",
+  "mobileSettingsNetworkError": "No network. Check your connection and try again.",
+  "accountDeletionTitle": "Delete account",
+  "accountDeletionScheduledFor": "We go delete your account permanently for {date}.",
+  "accountDeletionCanCancel": "Before den, you fit login and cancel am any time.",
+  "accountDeletionHistoryKept": "Your match history and tournament results go still dey show as “Deleted player”.",
+  "accountDeletionUsernameRetired": "Your username {username} go retire and nobody fit use am again.",
+  "accountDeletionEmailReusable": "You fit use di email wey dey dis account to open new account later.",
+  "accountDeletionTypeDelete": "Type DELETE to confam.",
+  "accountDeletionConfirmButton": "Schedule di deletion",
+  "accountDeletionConfirmButtonPending": "E dey schedule…",
+  "accountDeletionDeleteNowTitle": "Delete now now",
+  "accountDeletionDeleteNowWarning": "Dis one go skip di 15-day grace period. We go delete your account immediately. No cancel, no undo.",
+  "accountDeletionDeleteNowPrompt": "Type your username {username} to confam.",
+  "accountDeletionDeleteNowButton": "Delete permanently",
+  "accountDeletionDeleteNowButtonPending": "E dey delete…",
+  "accountDeletionCancel": "Cancel",
+  "accountDeletionPendingHeading": "Deletion don schedule",
+  "accountDeletionPendingBody": "We go delete your account for {date} — {days} days remain.",
+  "accountDeletionBannerText": "Dem don schedule your account for deletion for {date} — {days} days remain.",
+  "accountDeletionBannerCancel": "Cancel di deletion",
+  "accountDeletionBannerCancelling": "E dey cancel…",
+  "accountDeletionBlockedTitle": "You never fit delete your account:",
+  "accountDeletionBlockerWalletBalance": "{amount} dey your wallet — withdraw am or spend am first",
+  "accountDeletionBlockerWithdrawal": "{count} withdrawal dey pending — wait make dem pay am",
+  "accountDeletionBlockerEscrow": "{count} Exchange order still dey open — complete am or cancel am",
+  "accountDeletionBlockerListing": "{count} Exchange listing still dey live — remove am first",
+  "accountDeletionBlockerTournament": "You dey inside tournament wey never finish — wait make e finish",
+  "accountDeletionBlockerMatch": "{count} match never finish — play am or resolve am",
+  "accountDeletionBlockerFriendly": "{count} friendly never finish — play am or decline am",
+  "accountDeletionRestricted": "Dem don schedule your account for deletion. Cancel di deletion for Settings before you fit do dis.",
+  "emailChangeTitle": "Change email",
+  "emailChangeOpen": "Change Email →",
+  "emailChangeNewLabel": "New email address",
+  "emailChangePasswordLabel": "Your current password",
+  "emailChangePasswordHint": "Your password na wetin confam say na you — without am, anybody wey meet your account login fit carry am go him own inbox.",
+  "emailChangeSubmit": "Send confirmation link",
+  "emailChangeSending": "E dey send…",
+  "emailChangeCancel": "Cancel",
+  "emailChangeSent": "We don send confirmation link go {email}. Your address go remain di same until you open dat link.",
+  "emailChangeSentSpam": "Check your spam folder if e no enter.",
+  "emailChangePending": "E dey wait: {email}",
+  "emailChangePendingHint": "We dey wait make you confam from dat inbox.",
+  "emailChangeGoogleHint": "Na Google you take login? If you never set password before, use “Change Password” for up first — di link go enter your current inbox.",
+  "emailChangeGoogleSurvives": "Google sign-in go still dey work after dis change — e tie to your Google account, no be your email. Remove am for Sign-in methods below.",
+  "emailChangeChanged": "Your email address don update.",
+  "emailChangeErrorsInvalidEmail": "Put email address wey correct.",
+  "emailChangeErrorsPasswordRequired": "Put your current password.",
+  "emailChangeErrorsNotLoggedIn": "Your session don expire. Abeg login again.",
+  "emailChangeErrorsGoogleOnly": "Na Google you dey take login, so no password dey to confam. Use “Change Password” for up to set one, then you fit change your email.",
+  "emailChangeErrorsSameEmail": "Na dat one already be your email address.",
+  "emailChangeErrorsWrongPassword": "Dat password no correct.",
+  "emailChangeErrorsEmailBanned": "We no fit use dat email address.",
+  "emailChangeErrorsEmailInUse": "Person don dey use dat email address.",
+  "emailChangeErrorsFailed": "We no fit start di email change. Abeg try again.",
+  "signInMethodsTitle": "Sign-in methods",
+  "signInMethodsIntro": "Google sign-in dey tied to your Google account, no be to your email address — if you change your email, e no go remove am.",
+  "signInMethodsGoogle": "Google",
+  "signInMethodsEmailPassword": "Email and password",
+  "signInMethodsLinked": "E don link",
+  "signInMethodsNotLinked": "E never link",
+  "signInMethodsNotSet": "You never set am up",
+  "signInMethodsLink": "Link Google",
+  "signInMethodsLinkedOk": "Google sign-in don link to your account now.",
+  "signInMethodsLinkFailed": "We no fit link dat Google account — e fit be say e dey another SentinelX account already.",
+  "signInMethodsUnlink": "Unlink",
+  "signInMethodsUnlinkConfirm": "Unlink Google",
+  "signInMethodsUnlinkConfirming": "E dey unlink…",
+  "signInMethodsUnlinkExplain": "Dis one go remove Google sign-in from your account and log you out everywhere else.",
+  "signInMethodsRelinkWarning": "If you sign in with Google again, e go link back, because your account dey use di same email address. To comot dat account access finish, change your email too.",
+  "signInMethodsOnlyMethod": "Na only dis one dey enter your account, so we no fit remove am.",
+  "signInMethodsPasswordLabel": "Your current password",
+  "signInMethodsCancel": "Cancel",
+  "signInMethodsErrorsPasswordRequired": "Put your current password.",
+  "signInMethodsErrorsNotLoggedIn": "Your session don expire. Abeg login again.",
+  "signInMethodsErrorsWrongPassword": "Dat password no correct.",
+  "signInMethodsErrorsNotLinked": "Google no dey linked to dis account.",
+  "signInMethodsErrorsLastIdentity": "Na only dat one dey enter your account — set up email and password sign-in first.",
+  "signInMethodsErrorsUnavailable": "You no fit unlink am right now. Abeg contact support.",
+  "signInMethodsErrorsFailed": "We no fit unlink Google. Abeg try again.",
+  "@mobileSettingsPhoneResendIn": {
+    "placeholders": {
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
+  "@mobileSettingsPhoneVerified": {
+    "placeholders": {
+      "masked": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionScheduledFor": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionUsernameRetired": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionDeleteNowPrompt": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionPendingBody": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionBannerText": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionBlockerWalletBalance": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionBlockerWithdrawal": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionBlockerEscrow": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionBlockerListing": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionBlockerMatch": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@accountDeletionBlockerFriendly": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@emailChangeSent": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "@emailChangePending": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "commonSiteName": "SentinelX",
+  "commonViewAll": "See all",
+  "commonMenu": "Menu",
+  "commonCloseMenu": "Close menu",
+  "commonJoinWhatsapp": "Join WhatsApp Community",
+  "commonAdmin": "Admin",
+  "commonModerator": "Moderator",
+  "navHome": "Home",
+  "navTournaments": "Tournaments",
+  "navGames": "Games",
+  "navRankings": "Leaderboard",
+  "navSeasons": "Seasons",
+  "navExchange": "Exchange",
+  "navStore": "Store",
+  "navCommunity": "Community",
+  "navAbout": "About Us",
+  "navTv": "TV",
+  "navMore": "More",
+  "homeUpcomingHeading": "Wetin dey come",
+  "homeTopPlayersHeading": "Top Players",
+  "homeFullRankingsLink": "Full Ranking",
+  "authMetaLogin": "Log in · SentinelX Esports",
+  "authMetaSignup": "Sign up · SentinelX Esports",
+  "authMetaForgotPassword": "Forgot password · SentinelX Esports",
+  "authMetaResetPassword": "Set new password · SentinelX Esports",
+  "authMetaUsername": "Choose your username · SentinelX Esports",
+  "authMetaPhone": "Verify your phone · SentinelX Esports",
+  "authMetaProfile": "Complete your profile · SentinelX Esports",
+  "authCommonEmail": "Email",
+  "authCommonPassword": "Password",
+  "authCommonUsername": "Username",
+  "authCommonOr": "OR",
+  "authCommonBackToLogin": "Go back to log in",
+  "authCommonShowPassword": "Show password",
+  "authCommonHidePassword": "Hide password",
+  "authCommonAtLeast8": "Na 8 characters minimum.",
+  "authCommonContinueWithGoogle": "Continue with Google",
+  "authCommonBack": "Go back",
+  "authLoginTitle": "Welcome back",
+  "authLoginSubtitle": "Log in to your SentinelX Esports account.",
+  "authLoginSubmit": "Log in",
+  "authLoginSubmitting": "We dey sign you in…",
+  "authLoginResend": "Send di confirmation email again",
+  "authLoginResending": "E dey send…",
+  "authLoginResendHint": "You no see di first one? Check your spam — or use Google sign-in for below, wey no need email confirmation at all.",
+  "authLoginForgot": "You forget password?",
+  "authLoginCreateAccount": "Create account",
+  "authSignupStep1Title": "Join SentinelX Esports",
+  "authSignupStep1Subtitle": "Dis na di fastest way — no email confirmation needed:",
+  "authSignupContinueWithEmail": "Continue with email",
+  "authSignupHaveAccount": "You get account already?",
+  "authSignupLogIn": "Log in",
+  "authSignupStep2Title": "Create your account",
+  "authSignupSubmit": "Create account",
+  "authSignupSubmitting": "We dey create di account…",
+  "authSignupCheckEmailTitle": "Check your email",
+  "authSignupCheckEmailBody": "We don send confirmation link go {email}. Click am to activate your account, then log in and pick your handle.",
+  "authSignupNothingYet": "Nothing enter after some minutes? Check your spam folder, then:",
+  "authSignupResend": "Send am again",
+  "authSignupResending": "E dey send…",
+  "authSignupGoogleTipBefore": "Email link fit delay sometimes. If you sign up with Google, no confirmation dey at all — ",
+  "authSignupStartOver": "start over",
+  "authSignupGoogleTipAfter": " and use di Google button.",
+  "authSignupOrSignUpWithEmail": "OR SIGN UP WITH EMAIL",
+  "authSignupSigningUpAs": "You dey sign up as {username}.",
+  "authForgotTitle": "Reset your password",
+  "authForgotSubtitle": "Put your email and we go send you reset link.",
+  "authForgotSubmit": "Send reset link",
+  "authForgotSubmitting": "E dey send…",
+  "authResetTitle": "Set new password",
+  "authResetSubtitle": "Choose new password for your account.",
+  "authResetNewPassword": "New password",
+  "authResetSubmit": "Set new password",
+  "authResetSubmitting": "E dey update…",
+  "authUsernameStepTitle": "Choose your handle",
+  "authUsernameStepSubtitle": "Na dis one go be your public username for SentinelX Esports.",
+  "authUsernameStepSubmit": "Continue",
+  "authUsernameStepSubmitting": "E dey save…",
+  "authPhoneStepTitle": "Verify your phone",
+  "authPhoneStepSubtitle": "We go send 6-digit code for WhatsApp so we fit reach you about fixtures and results.",
+  "authProfileStepTitle": "Complete your profile",
+  "authProfileStepSubtitle": "Tell us where you dey play and which games you like — we go only reach out about tournaments wey concern you.",
+  "authAvailabilityTaken": "Person don take dat username.",
+  "authAvailabilityInvalid": "3–20 characters: letters, numbers, underscore.",
+  "authAvailabilityUnknown": "We no fit check am right now — you fit still continue.",
+  "authNoticesCheckEmail": "Check your email for di confirmation link.",
+  "authNoticesResendSent": "If dat address still need confirmation, new link dey come. Check your spam folder — and Google sign-in no need email at all.",
+  "authNoticesResetSent": "If account dey for dat email, we don send reset link.",
+  "authErrorsInvalidEmail": "Put email address wey correct.",
+  "authErrorsPasswordRequired": "You need to put password.",
+  "authErrorsPasswordTooShort": "Password must be 8 characters minimum.",
+  "authErrorsUsernameTooShort": "Username must be 3 characters minimum.",
+  "authErrorsUsernameTooLong": "Username no suppose pass 20 characters.",
+  "authErrorsUsernameCharset": "Na letters, numbers and underscore only.",
+  "authErrorsInvalidCredentials": "Di email or password no correct.",
+  "authErrorsEmailNotConfirmed": "You never confam your email — check your inbox (and spam) for di link.",
+  "authErrorsBlockedDetails": "We no fit create account with dose details.",
+  "authErrorsUsernameTaken": "Person don take dat username — try another one.",
+  "authErrorsUsernameTakenGoBack": "Person don take dat username — go back and pick another one.",
+  "authErrorsSignupFailed": "Something spoil when we dey create your account. Abeg try again.",
+  "authErrorsUsernameSaveFailed": "We no fit save your username. Abeg try again.",
+  "authErrorsLinkExpired": "Your reset link don expire. Abeg request new one.",
+  "authErrorsResetFailed": "We no fit update your password. Abeg try again.",
+  "termsEyebrow": "Legal",
+  "termsTitle": "Terms of Service",
+  "termsSubtitle": "Di terms wey dey guide how you dey use SentinelX platform.",
+  "termsMetaUpdated": "Last update: September 2026",
+  "termsSummary": "Di short version: you must reach 13 years or pass, na one account per person, and you must play fair — real results, with evidence. Prize money dey enter your bank through Paystack after ID check. SX Coins na platform points wey no get cash value. Naija law dey apply. Dis summary no be di legal text — na di sections wey dey below.",
+  "termsMetaTitle": "Terms of Service",
+  "termsMetaDescription": "The terms wey dey guide how you go use SentinelX Esports platform.",
+  "termsS1Heading": "1. Who We Be",
+  "termsS1P1": "SentinelX Esports na mobile esports platform wey Samuel Chinoyerem Akpoke dey run (“we”, “us”, “our”). We dey based for Nigeria and our platform dey available for sentinelxesports.com.ng.",
+  "termsS1P2": "If you create account or use any part of SentinelX, e mean say you don agree to dis Terms of Service. If you no agree, abeg no use di platform.",
+  "termsS2Heading": "2. Wetin You Need Before You Fit Join",
+  "termsS2P1": "You must don reach 13 years before you fit create account. If you no reach 18, you don confam say your parent or guardian give you permission to use di platform. Players wey no reach 18 no fit withdraw prize money without say their parent or guardian confam am well well.",
+  "termsS2P2": "You fit get one account only. If you create plenty accounts to cheat, dem go permanently ban you.",
+  "termsS3Heading": "3. Your Account",
+  "termsS3P1": "Na your work to keep your login details safe. No share your password with anybody. Anything wey happen for your account, na you dey responsible for am.",
+  "termsS3P2": "If you feel say person don enter your account, contact us sharp sharp for <email>sentinelxesports@gmail.com</email>.",
+  "termsS4Heading": "4. Tournaments and Entry Fee",
+  "termsS4P1": "Every tournament get entry fee wey dem go show you clearly before you register. Right now, standard fee na ₦500. If you register and complete payment, e mean say you don confam say you wan play.",
+  "termsS4P2": "Paystack dey process entry fee safely. We no dey keep your card details.",
+  "termsS4P3": "You fit use SX Coins to reduce or waive entry fee where dem allow am. Check our <link>Refund Policy</link> to see how cancellation dey work.",
+  "termsS5Heading": "5. Match Rules and Fair Play",
+  "termsS5Intro": "Every player must play straight. Dis ones no dey allowed:",
+  "termsS5List": "<li>To submit fake or manipulated match result</li><li>To use outside tools, scripts, or exploit to get advantage</li><li>To gang up with your opponent to fix result</li><li>To threaten, harass, or abuse your opponent</li>",
+  "termsS5P2": "You must submit match result with evidence (screenshot and screen recording). Wetin admin decide for disputed result, na im be final. Di full conduct and match rules dey inside di <link>Tournament Rules</link>.",
+  "termsS5P3": "No-show — wey mean say you no show up for your match without notice — go make you forfeit and lose SX Score.",
+  "termsS6Heading": "6. Prize Money and Withdrawal",
+  "termsS6P1": "Prize money dey enter di bank account wey you link to your player dashboard through Paystack. You must complete identity verification before your first withdrawal.",
+  "termsS6P2": "We dey try process approved withdrawal within 1–5 business days. If your bank delay am, na dem cause am, no be us.",
+  "termsS7Heading": "7. SX Coins",
+  "termsS7P1": "SX Coins na virtual currency wey dey inside di platform. You go earn am as you dey play and spend time for di platform. SX Coins no get any cash value and you no fit change am to money. You fit use am inside di platform for entry fee discount, community features, and di in-platform store. You fit also stake SX Coins for community wagering (see section 8), and you fit lose am if your wager no win.",
+  "termsS8Heading": "8. Community Wagering (SX Coins)",
+  "termsS8P1": "You fit stake SX Coins on di outcome of match wey you no dey play. Wagering na optional and na SX Coins only e dey use.",
+  "termsS8List": "<li>Wagering dey open once dem confirm di two players for scheduled match, and e dey close 15 minutes before di scheduled start time. For matches wey dem schedule for full day, e dey close 24 hours after dat day start.</li><li>Dem dey take 5% platform fee from di losing pool. Winnings na SX Coins only.</li><li>Wager dey settle automatically from di match result wey admin confirm, and dat settlement na final.</li><li>If dem void match or overturn result, dem go return every stake in full.</li>",
+  "termsS8P2": "Because SX Coins no get any cash value and you no fit change am to money, community wagering no be betting for money.",
+  "termsS9Heading": "9. Gaming Exchange",
+  "termsS9P1": "Gaming Exchange (wey Zolarux escrow dey power) make players fit buy and sell gaming accounts and in-game items. SentinelX dey provide di platform and escrow infrastructure. We no be part of di transaction between buyer and seller and we no dey responsible for any dispute wey come from transaction wey happen outside di platform escrow system. Check <link>how escrow dey work</link> for di step-by-step.",
+  "termsS10Heading": "10. Community Standards",
+  "termsS10P1": "You agree to respect every other member of SentinelX community. Hate speech, discrimination, threat, and harassment no get space here — e go cause suspension or permanent ban. Check our <link>Community Rules</link> to see di full standards.",
+  "termsS11Heading": "11. Intellectual Property",
+  "termsS11P1": "All SentinelX branding, design, and original content na SentinelX Esports property. You no fit copy or share our content without written permission. Content wey you post (match screenshots, community posts) still remain yours, but you dey give us licence to show am for di platform.",
+  "termsS12Heading": "12. Limitation of Liability",
+  "termsS12P1": "SentinelX Esports no dey liable for indirect, incidental, or consequential loss wey come from how you dey use di platform. Di total wey we fit owe you for any claim no go pass di total entry fee wey you don pay us for di last 3 months before di claim.",
+  "termsS12P2": "We no dey guarantee say platform go dey up 24/7. We go try our best to restore service quick quick if downtime happen.",
+  "termsS13Heading": "13. Changes to Dis Terms",
+  "termsS13P1": "We fit update dis Terms anytime. We go notify you through di platform or email if any major change happen. If you still dey use SentinelX after we post di changes, e mean say you don accept di new terms.",
+  "termsS14Heading": "14. Governing Law",
+  "termsS14P1": "Dis Terms dey follow di law of Federal Republic of Nigeria. Any dispute go dey under Nigerian court jurisdiction.",
+  "termsS15Heading": "15. Contact",
+  "termsS15P1": "You get question about dis Terms? Email us for <email>sentinelxesports@gmail.com</email> or message us for WhatsApp: <whatsapp>+234 903 239 5685</whatsapp>.",
+  "@authSignupCheckEmailBody": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "@authSignupSigningUpAs": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  }
+}

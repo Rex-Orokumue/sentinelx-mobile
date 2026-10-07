@@ -4,9 +4,9 @@ import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
 
-/// The translations for English (`en`).
-class AppLocalizationsEn extends AppLocalizations {
-  AppLocalizationsEn([String locale = 'en']) : super(locale);
+/// The translations for Nigerian Pidgin (`pcm`).
+class AppLocalizationsPcm extends AppLocalizations {
+  AppLocalizationsPcm([String locale = 'pcm']) : super(locale);
 
   @override
   String get appName => 'Sentinel X';
@@ -29,7 +29,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonSiteName => 'SentinelX';
 
   @override
-  String get commonViewAll => 'View all';
+  String get commonViewAll => 'See all';
 
   @override
   String get commonMenu => 'Menu';
@@ -56,7 +56,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navGames => 'Games';
 
   @override
-  String get navRankings => 'Leaderboards';
+  String get navRankings => 'Leaderboard';
 
   @override
   String get navSeasons => 'Seasons';
@@ -80,7 +80,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navMore => 'More';
 
   @override
-  String get homeUpcomingHeading => 'Upcoming';
+  String get homeUpcomingHeading => 'Wetin dey come';
 
   @override
   String get homeLoadError => 'Something went wrong loading this page.';
@@ -113,7 +113,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeTopPlayersHeading => 'Top Players';
 
   @override
-  String get homeFullRankingsLink => 'Full Rankings';
+  String get homeFullRankingsLink => 'Full Ranking';
 
   @override
   String get authMetaLogin => 'Log in · SentinelX Esports';
@@ -146,7 +146,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authCommonOr => 'OR';
 
   @override
-  String get authCommonBackToLogin => 'Back to log in';
+  String get authCommonBackToLogin => 'Go back to log in';
 
   @override
   String get authCommonShowPassword => 'Show password';
@@ -155,13 +155,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authCommonHidePassword => 'Hide password';
 
   @override
-  String get authCommonAtLeast8 => 'At least 8 characters.';
+  String get authCommonAtLeast8 => 'Na 8 characters minimum.';
 
   @override
   String get authCommonContinueWithGoogle => 'Continue with Google';
 
   @override
-  String get authCommonBack => 'Back';
+  String get authCommonBack => 'Go back';
 
   @override
   String get authLoginTitle => 'Welcome back';
@@ -173,20 +173,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authLoginSubmit => 'Log in';
 
   @override
-  String get authLoginSubmitting => 'Signing in…';
+  String get authLoginSubmitting => 'We dey sign you in…';
 
   @override
-  String get authLoginResend => 'Resend confirmation email';
+  String get authLoginResend => 'Send di confirmation email again';
 
   @override
-  String get authLoginResending => 'Sending…';
+  String get authLoginResending => 'E dey send…';
 
   @override
   String get authLoginResendHint =>
-      'Didn\'t get the first one? Check spam — or use Google sign-in below, which skips email confirmation.';
+      'You no see di first one? Check your spam — or use Google sign-in for below, wey no need email confirmation at all.';
 
   @override
-  String get authLoginForgot => 'Forgot password?';
+  String get authLoginForgot => 'You forget password?';
 
   @override
   String get authLoginCreateAccount => 'Create account';
@@ -196,13 +196,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get authSignupStep1Subtitle =>
-      'Fastest way in — no email confirmation needed:';
+      'Dis na di fastest way — no email confirmation needed:';
 
   @override
   String get authSignupContinueWithEmail => 'Continue with email';
 
   @override
-  String get authSignupHaveAccount => 'Already have an account?';
+  String get authSignupHaveAccount => 'You get account already?';
 
   @override
   String get authSignupLogIn => 'Log in';
@@ -214,42 +214,42 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authSignupSubmit => 'Create account';
 
   @override
-  String get authSignupSubmitting => 'Creating account…';
+  String get authSignupSubmitting => 'We dey create di account…';
 
   @override
   String get authSignupCheckEmailTitle => 'Check your email';
 
   @override
   String authSignupCheckEmailBody(String email) {
-    return 'We sent a confirmation link to $email. Click it to activate your account, then log in and pick your handle.';
+    return 'We don send confirmation link go $email. Click am to activate your account, then log in and pick your handle.';
   }
 
   @override
   String get authSignupNothingYet =>
-      'Nothing after a few minutes? Check your spam folder, then:';
+      'Nothing enter after some minutes? Check your spam folder, then:';
 
   @override
-  String get authSignupResend => 'Resend it';
+  String get authSignupResend => 'Send am again';
 
   @override
-  String get authSignupResending => 'Sending…';
+  String get authSignupResending => 'E dey send…';
 
   @override
   String get authSignupGoogleTipBefore =>
-      'Email links sometimes get held up. Signing up with Google skips confirmation entirely — ';
+      'Email link fit delay sometimes. If you sign up with Google, no confirmation dey at all — ';
 
   @override
   String get authSignupStartOver => 'start over';
 
   @override
-  String get authSignupGoogleTipAfter => ' and use the Google button.';
+  String get authSignupGoogleTipAfter => ' and use di Google button.';
 
   @override
   String get authSignupOrSignUpWithEmail => 'OR SIGN UP WITH EMAIL';
 
   @override
   String authSignupSigningUpAs(String username) {
-    return 'Signing up as $username.';
+    return 'You dey sign up as $username.';
   }
 
   @override
@@ -257,19 +257,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get authForgotSubtitle =>
-      'Enter your email and we\'ll send a reset link.';
+      'Put your email and we go send you reset link.';
 
   @override
   String get authForgotSubmit => 'Send reset link';
 
   @override
-  String get authForgotSubmitting => 'Sending…';
+  String get authForgotSubmitting => 'E dey send…';
 
   @override
-  String get authResetTitle => 'Set a new password';
+  String get authResetTitle => 'Set new password';
 
   @override
-  String get authResetSubtitle => 'Choose a new password for your account.';
+  String get authResetSubtitle => 'Choose new password for your account.';
 
   @override
   String get authResetNewPassword => 'New password';
@@ -278,106 +278,107 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authResetSubmit => 'Set new password';
 
   @override
-  String get authResetSubmitting => 'Updating…';
+  String get authResetSubmitting => 'E dey update…';
 
   @override
   String get authUsernameStepTitle => 'Choose your handle';
 
   @override
   String get authUsernameStepSubtitle =>
-      'This is your public username on SentinelX Esports.';
+      'Na dis one go be your public username for SentinelX Esports.';
 
   @override
   String get authUsernameStepSubmit => 'Continue';
 
   @override
-  String get authUsernameStepSubmitting => 'Saving…';
+  String get authUsernameStepSubmitting => 'E dey save…';
 
   @override
   String get authPhoneStepTitle => 'Verify your phone';
 
   @override
   String get authPhoneStepSubtitle =>
-      'We\'ll send a 6-digit code on WhatsApp so we can reach you about fixtures and results.';
+      'We go send 6-digit code for WhatsApp so we fit reach you about fixtures and results.';
 
   @override
-  String get authAvailabilityTaken => 'That username is taken.';
+  String get authAvailabilityTaken => 'Person don take dat username.';
 
   @override
   String get authAvailabilityInvalid =>
-      '3–20 characters: letters, numbers, underscores.';
+      '3–20 characters: letters, numbers, underscore.';
 
   @override
   String get authAvailabilityUnknown =>
-      'Couldn\'t verify right now — you can still continue.';
+      'We no fit check am right now — you fit still continue.';
 
   @override
   String get authNoticesCheckEmail =>
-      'Check your email for a confirmation link.';
+      'Check your email for di confirmation link.';
 
   @override
   String get authNoticesResendSent =>
-      'If that address still needs confirming, a fresh link is on its way. Check your spam folder — and Google sign-in skips email entirely.';
+      'If dat address still need confirmation, new link dey come. Check your spam folder — and Google sign-in no need email at all.';
 
   @override
   String get authNoticesResetSent =>
-      'If an account exists for that email, we\'ve sent a reset link.';
+      'If account dey for dat email, we don send reset link.';
 
   @override
-  String get authErrorsInvalidEmail => 'Enter a valid email address.';
+  String get authErrorsInvalidEmail => 'Put email address wey correct.';
 
   @override
-  String get authErrorsPasswordRequired => 'Password is required.';
+  String get authErrorsPasswordRequired => 'You need to put password.';
 
   @override
   String get authErrorsPasswordTooShort =>
-      'Password must be at least 8 characters.';
+      'Password must be 8 characters minimum.';
 
   @override
   String get authErrorsUsernameTooShort =>
-      'Username must be at least 3 characters.';
+      'Username must be 3 characters minimum.';
 
   @override
   String get authErrorsUsernameTooLong =>
-      'Username must be at most 20 characters.';
+      'Username no suppose pass 20 characters.';
 
   @override
   String get authErrorsUsernameCharset =>
-      'Only letters, numbers, and underscores.';
+      'Na letters, numbers and underscore only.';
 
   @override
-  String get authErrorsInvalidCredentials => 'Invalid email or password.';
+  String get authErrorsInvalidCredentials => 'Di email or password no correct.';
 
   @override
   String get authErrorsEmailNotConfirmed =>
-      'Your email isn\'t confirmed yet — check your inbox (and spam) for the link.';
+      'You never confam your email — check your inbox (and spam) for di link.';
 
   @override
   String get authErrorsBlockedDetails =>
-      'We could not create an account with those details.';
+      'We no fit create account with dose details.';
 
   @override
-  String get authErrorsUsernameTaken => 'That username is taken — try another.';
+  String get authErrorsUsernameTaken =>
+      'Person don take dat username — try another one.';
 
   @override
   String get authErrorsUsernameTakenGoBack =>
-      'That username is taken — go back and pick another.';
+      'Person don take dat username — go back and pick another one.';
 
   @override
   String get authErrorsSignupFailed =>
-      'Something went wrong creating your account. Please try again.';
+      'Something spoil when we dey create your account. Abeg try again.';
 
   @override
   String get authErrorsUsernameSaveFailed =>
-      'Could not save your username. Please try again.';
+      'We no fit save your username. Abeg try again.';
 
   @override
   String get authErrorsLinkExpired =>
-      'Your reset link has expired. Please request a new one.';
+      'Your reset link don expire. Abeg request new one.';
 
   @override
   String get authErrorsResetFailed =>
-      'Could not update your password. Please try again.';
+      'We no fit update your password. Abeg try again.';
 
   @override
   String get authErrorsForgotFailed =>
@@ -403,174 +404,174 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get termsSubtitle =>
-      'The terms that govern your use of the SentinelX platform.';
+      'Di terms wey dey guide how you dey use SentinelX platform.';
 
   @override
-  String get termsMetaUpdated => 'Last updated September 2026';
+  String get termsMetaUpdated => 'Last update: September 2026';
 
   @override
   String get termsSummary =>
-      'The short version: you must be 13 or older, one account per person, and you play fair — real results, backed by proof. Prize money pays to your bank through Paystack after an ID check. SX Coins are platform points with no cash value. Nigerian law applies. This summary is not the legal text — the sections below are.';
+      'Di short version: you must reach 13 years or pass, na one account per person, and you must play fair — real results, with evidence. Prize money dey enter your bank through Paystack after ID check. SX Coins na platform points wey no get cash value. Naija law dey apply. Dis summary no be di legal text — na di sections wey dey below.';
 
   @override
   String get termsMetaTitle => 'Terms of Service';
 
   @override
   String get termsMetaDescription =>
-      'The terms that govern using the SentinelX Esports platform.';
+      'The terms wey dey guide how you go use SentinelX Esports platform.';
 
   @override
-  String get termsS1Heading => '1. Who We Are';
+  String get termsS1Heading => '1. Who We Be';
 
   @override
   String get termsS1P1 =>
-      'SentinelX Esports is a mobile esports platform operated by Samuel Chinoyerem Akpoke (“we”, “us”, “our”). We are based in Nigeria and our platform is available at sentinelxesports.com.ng.';
+      'SentinelX Esports na mobile esports platform wey Samuel Chinoyerem Akpoke dey run (“we”, “us”, “our”). We dey based for Nigeria and our platform dey available for sentinelxesports.com.ng.';
 
   @override
   String get termsS1P2 =>
-      'By creating an account or using any part of SentinelX, you agree to these Terms of Service. If you do not agree, please do not use the platform.';
+      'If you create account or use any part of SentinelX, e mean say you don agree to dis Terms of Service. If you no agree, abeg no use di platform.';
 
   @override
-  String get termsS2Heading => '2. Eligibility';
+  String get termsS2Heading => '2. Wetin You Need Before You Fit Join';
 
   @override
   String get termsS2P1 =>
-      'You must be at least 13 years old to create an account. If you are under 18, you confirm that you have permission from a parent or guardian to use the platform. Players under 18 may not withdraw prize money without verifiable parental or guardian consent.';
+      'You must don reach 13 years before you fit create account. If you no reach 18, you don confam say your parent or guardian give you permission to use di platform. Players wey no reach 18 no fit withdraw prize money without say their parent or guardian confam am well well.';
 
   @override
   String get termsS2P2 =>
-      'You may only hold one account. Creating multiple accounts to gain an unfair advantage is prohibited and will result in a permanent ban.';
+      'You fit get one account only. If you create plenty accounts to cheat, dem go permanently ban you.';
 
   @override
   String get termsS3Heading => '3. Your Account';
 
   @override
   String get termsS3P1 =>
-      'You are responsible for keeping your login details secure. Do not share your password with anyone. You are responsible for all activity that takes place under your account.';
+      'Na your work to keep your login details safe. No share your password with anybody. Anything wey happen for your account, na you dey responsible for am.';
 
   @override
   String get termsS3P2 =>
-      'If you believe your account has been compromised, contact us immediately at <email>sentinelxesports@gmail.com</email>.';
+      'If you feel say person don enter your account, contact us sharp sharp for <email>sentinelxesports@gmail.com</email>.';
 
   @override
-  String get termsS4Heading => '4. Tournaments and Entry Fees';
+  String get termsS4Heading => '4. Tournaments and Entry Fee';
 
   @override
   String get termsS4P1 =>
-      'Tournament entry fees are set per event and displayed clearly before registration. The current standard fee is ₦500. By registering and completing payment, you confirm your intent to participate.';
+      'Every tournament get entry fee wey dem go show you clearly before you register. Right now, standard fee na ₦500. If you register and complete payment, e mean say you don confam say you wan play.';
 
   @override
   String get termsS4P2 =>
-      'Entry fees are processed securely by Paystack. We do not store your card details.';
+      'Paystack dey process entry fee safely. We no dey keep your card details.';
 
   @override
   String get termsS4P3 =>
-      'SX Coins may be used to reduce or eliminate entry fees where that option is offered. See the <link>Refund Policy</link> for how cancellations are handled.';
+      'You fit use SX Coins to reduce or waive entry fee where dem allow am. Check our <link>Refund Policy</link> to see how cancellation dey work.';
 
   @override
   String get termsS5Heading => '5. Match Rules and Fair Play';
 
   @override
   String get termsS5Intro =>
-      'All players must compete honestly. The following are prohibited:';
+      'Every player must play straight. Dis ones no dey allowed:';
 
   @override
   String get termsS5List =>
-      '<li>Submitting false or manipulated match results</li><li>Using external tools, scripts, or exploits to gain an advantage</li><li>Colluding with an opponent to produce a predetermined result</li><li>Threatening, harassing, or abusing opponents</li>';
+      '<li>To submit fake or manipulated match result</li><li>To use outside tools, scripts, or exploit to get advantage</li><li>To gang up with your opponent to fix result</li><li>To threaten, harass, or abuse your opponent</li>';
 
   @override
   String get termsS5P2 =>
-      'Match results must be submitted with supporting evidence (screenshot and screen recording). Admin decisions on disputed results are final. Full conduct and match rules are in the <link>Tournament Rules</link>.';
+      'You must submit match result with evidence (screenshot and screen recording). Wetin admin decide for disputed result, na im be final. Di full conduct and match rules dey inside di <link>Tournament Rules</link>.';
 
   @override
   String get termsS5P3 =>
-      'A no-show — failing to appear for your scheduled match without notice — results in a forfeit and a penalty to your SX Score.';
+      'No-show — wey mean say you no show up for your match without notice — go make you forfeit and lose SX Score.';
 
   @override
-  String get termsS6Heading => '6. Prizes and Withdrawals';
+  String get termsS6Heading => '6. Prize Money and Withdrawal';
 
   @override
   String get termsS6P1 =>
-      'Prize money is paid to the bank account you link to your player dashboard via Paystack. You must complete identity verification before your first withdrawal.';
+      'Prize money dey enter di bank account wey you link to your player dashboard through Paystack. You must complete identity verification before your first withdrawal.';
 
   @override
   String get termsS6P2 =>
-      'We aim to process approved withdrawals within 1–5 business days. We are not responsible for delays caused by your bank.';
+      'We dey try process approved withdrawal within 1–5 business days. If your bank delay am, na dem cause am, no be us.';
 
   @override
   String get termsS7Heading => '7. SX Coins';
 
   @override
   String get termsS7P1 =>
-      'SX Coins are a virtual in-platform currency. They are earned by competing and spending time on the platform. SX Coins have no monetary value and cannot be exchanged for cash. They may be used within the platform for entry fee discounts, community features, and the in-platform store. SX Coins may also be staked in community wagering (see section 8), and can be lost if your wager does not win.';
+      'SX Coins na virtual currency wey dey inside di platform. You go earn am as you dey play and spend time for di platform. SX Coins no get any cash value and you no fit change am to money. You fit use am inside di platform for entry fee discount, community features, and di in-platform store. You fit also stake SX Coins for community wagering (see section 8), and you fit lose am if your wager no win.';
 
   @override
   String get termsS8Heading => '8. Community Wagering (SX Coins)';
 
   @override
   String get termsS8P1 =>
-      'You may stake SX Coins on the outcome of a match you are not playing in. Wagering is optional and uses SX Coins only.';
+      'You fit stake SX Coins on di outcome of match wey you no dey play. Wagering na optional and na SX Coins only e dey use.';
 
   @override
   String get termsS8List =>
-      '<li>Wagering opens once both players are confirmed for a scheduled match and closes 15 minutes before the scheduled start time. For matches scheduled across a full day, it closes 24 hours after that day begins.</li><li>A 5% platform fee is taken from the losing pool. Winnings are paid in SX Coins only.</li><li>Wagers settle automatically from the admin-confirmed match result, and that settlement is final.</li><li>If a match is voided or a result is overturned, every stake is returned in full.</li>';
+      '<li>Wagering dey open once dem confirm di two players for scheduled match, and e dey close 15 minutes before di scheduled start time. For matches wey dem schedule for full day, e dey close 24 hours after dat day start.</li><li>Dem dey take 5% platform fee from di losing pool. Winnings na SX Coins only.</li><li>Wager dey settle automatically from di match result wey admin confirm, and dat settlement na final.</li><li>If dem void match or overturn result, dem go return every stake in full.</li>';
 
   @override
   String get termsS8P2 =>
-      'Because SX Coins have no monetary value and cannot be exchanged for cash, community wagering is not betting for money.';
+      'Because SX Coins no get any cash value and you no fit change am to money, community wagering no be betting for money.';
 
   @override
   String get termsS9Heading => '9. Gaming Exchange';
 
   @override
   String get termsS9P1 =>
-      'The Gaming Exchange (powered by Zolarux escrow) allows players to buy and sell gaming accounts and in-game items. SentinelX provides the platform and escrow infrastructure. We are not party to the transaction between buyer and seller and are not liable for disputes that arise from transactions conducted outside the platform\'s escrow system. See <link>how escrow works</link> for the step-by-step.';
+      'Gaming Exchange (wey Zolarux escrow dey power) make players fit buy and sell gaming accounts and in-game items. SentinelX dey provide di platform and escrow infrastructure. We no be part of di transaction between buyer and seller and we no dey responsible for any dispute wey come from transaction wey happen outside di platform escrow system. Check <link>how escrow dey work</link> for di step-by-step.';
 
   @override
   String get termsS10Heading => '10. Community Standards';
 
   @override
   String get termsS10P1 =>
-      'You agree to treat all other members of the SentinelX community with respect. Hate speech, discrimination, threats, and harassment are not tolerated and will result in suspension or permanent ban. See our <link>Community Rules</link> for the full standards.';
+      'You agree to respect every other member of SentinelX community. Hate speech, discrimination, threat, and harassment no get space here — e go cause suspension or permanent ban. Check our <link>Community Rules</link> to see di full standards.';
 
   @override
   String get termsS11Heading => '11. Intellectual Property';
 
   @override
   String get termsS11P1 =>
-      'All SentinelX branding, design, and original content is owned by SentinelX Esports. You may not reproduce, copy, or distribute our content without written permission. Content you post (match screenshots, community posts) remains yours, but you grant us a licence to display it on the platform.';
+      'All SentinelX branding, design, and original content na SentinelX Esports property. You no fit copy or share our content without written permission. Content wey you post (match screenshots, community posts) still remain yours, but you dey give us licence to show am for di platform.';
 
   @override
   String get termsS12Heading => '12. Limitation of Liability';
 
   @override
   String get termsS12P1 =>
-      'SentinelX Esports is not liable for indirect, incidental, or consequential losses arising from your use of the platform. Our total liability to you for any claim shall not exceed the total entry fees you have paid to us in the 3 months prior to the claim.';
+      'SentinelX Esports no dey liable for indirect, incidental, or consequential loss wey come from how you dey use di platform. Di total wey we fit owe you for any claim no go pass di total entry fee wey you don pay us for di last 3 months before di claim.';
 
   @override
   String get termsS12P2 =>
-      'We do not guarantee uninterrupted access to the platform. We will make reasonable efforts to restore service promptly in the event of downtime.';
+      'We no dey guarantee say platform go dey up 24/7. We go try our best to restore service quick quick if downtime happen.';
 
   @override
-  String get termsS13Heading => '13. Changes to These Terms';
+  String get termsS13Heading => '13. Changes to Dis Terms';
 
   @override
   String get termsS13P1 =>
-      'We may update these Terms from time to time. We will notify you via the platform or email when significant changes are made. Continuing to use SentinelX after changes are posted means you accept the updated terms.';
+      'We fit update dis Terms anytime. We go notify you through di platform or email if any major change happen. If you still dey use SentinelX after we post di changes, e mean say you don accept di new terms.';
 
   @override
   String get termsS14Heading => '14. Governing Law';
 
   @override
   String get termsS14P1 =>
-      'These Terms are governed by the laws of the Federal Republic of Nigeria. Any disputes shall be subject to the jurisdiction of Nigerian courts.';
+      'Dis Terms dey follow di law of Federal Republic of Nigeria. Any dispute go dey under Nigerian court jurisdiction.';
 
   @override
   String get termsS15Heading => '15. Contact';
 
   @override
   String get termsS15P1 =>
-      'Questions about these Terms? Email us at <email>sentinelxesports@gmail.com</email> or message us on WhatsApp: <whatsapp>+234 903 239 5685</whatsapp>.';
+      'You get question about dis Terms? Email us for <email>sentinelxesports@gmail.com</email> or message us for WhatsApp: <whatsapp>+234 903 239 5685</whatsapp>.';
 
   @override
   String get cmpTabAll => 'All';
@@ -2050,7 +2051,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get authProfileStepSubtitle =>
-      'Tell us where you play and which games you\'re into — we\'ll only reach out about tournaments you actually care about.';
+      'Tell us where you dey play and which games you like — we go only reach out about tournaments wey concern you.';
 
   @override
   String get profileCountryLabel => 'Country';
@@ -3092,7 +3093,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mobileSettingsHubSecurity => 'Security';
 
   @override
-  String get mobileSettingsHubSignInMethods => 'Sign-in methods';
+  String get mobileSettingsHubSignInMethods => 'How you dey sign in';
 
   @override
   String get mobileSettingsHubPhone => 'Phone verification';
@@ -3114,7 +3115,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get mobileSettingsLanguageSaveFailed =>
-      'Could not save your language. Please try again.';
+      'We no fit save your language. Abeg try again.';
 
   @override
   String get mobileSettingsSecurityTitle => 'Security';
@@ -3133,11 +3134,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get mobileSettingsSecuritySetPasswordHint =>
-      'We\'ll email a link to your current address. Opening it proves the account is yours.';
+      'We go send link go your current email. If you open am, e go show say na your account.';
 
   @override
   String get mobileSettingsSecurityResetSent =>
-      'Check your inbox for a link to set a new password.';
+      'Check your inbox, link dey there to set new password.';
 
   @override
   String get mobileSettingsPhoneTitle => 'Phone verification';
@@ -3155,11 +3156,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mobileSettingsPhoneConfirm => 'Verify';
 
   @override
-  String get mobileSettingsPhoneResend => 'Resend code';
+  String get mobileSettingsPhoneResend => 'Send code again';
 
   @override
   String mobileSettingsPhoneResendIn(String seconds) {
-    return 'Resend in ${seconds}s';
+    return 'Send again in ${seconds}s';
   }
 
   @override
@@ -3169,179 +3170,178 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get mobileSettingsPhoneUnavailable =>
-      'Verification is unavailable right now. Please try again later.';
+      'Verification no dey work now. Abeg try again later.';
 
   @override
   String get mobileSettingsPhoneErrorInvalid =>
-      'Enter a valid phone number, including your country code if you are outside Nigeria.';
+      'Put correct phone number, add your country code if you no dey Nigeria.';
 
   @override
   String get mobileSettingsPhoneErrorCooldown =>
-      'Please wait a moment before requesting another code.';
+      'Abeg wait small before you ask for another code.';
 
   @override
   String get mobileSettingsPhoneErrorDailyLimit =>
-      'Too many codes requested today. Please try again tomorrow.';
+      'You don ask for too many codes today. Abeg try again tomorrow.';
 
   @override
   String get mobileSettingsPhoneErrorSendFailed =>
-      'Could not send the WhatsApp message. Please try again.';
+      'We no fit send the WhatsApp message. Abeg try again.';
 
   @override
-  String get mobileSettingsPhoneErrorCodeInvalid => 'Enter the 6-digit code.';
+  String get mobileSettingsPhoneErrorCodeInvalid => 'Put the 6-digit code.';
 
   @override
-  String get mobileSettingsPhoneErrorCodeMissing => 'Request a new code first.';
+  String get mobileSettingsPhoneErrorCodeMissing => 'Ask for new code first.';
 
   @override
   String get mobileSettingsPhoneErrorCodeExpired =>
-      'That code expired. Request a new one.';
+      'That code don expire. Ask for new one.';
 
   @override
-  String get mobileSettingsPhoneErrorCodeWrong => 'That code isn\'t right.';
+  String get mobileSettingsPhoneErrorCodeWrong => 'That code no correct.';
 
   @override
   String get mobileSettingsPhoneErrorAttempts =>
-      'Too many incorrect attempts. Request a new code.';
+      'You don try wrong code too many times. Ask for new code.';
 
   @override
   String get mobileSettingsDeleteAccountTitle => 'Delete account';
 
   @override
   String get mobileSettingsDeleteFailed =>
-      'Could not complete that. Please try again.';
+      'We no fit finish that one. Abeg try again.';
 
   @override
   String get mobileSettingsReauthRateLimited =>
-      'Too many attempts. Please try again later.';
+      'You don try too many times. Abeg try again later.';
 
   @override
   String get mobileSettingsLinkingUnavailable =>
-      'This isn\'t available right now. Please contact support.';
+      'This one no dey work now. Abeg contact support.';
 
   @override
-  String get mobileSettingsGenericError =>
-      'Something went wrong. Please try again.';
+  String get mobileSettingsGenericError => 'Something happen. Abeg try again.';
 
   @override
   String get mobileSettingsNetworkError =>
-      'No connection. Check your network and try again.';
+      'No network. Check your connection and try again.';
 
   @override
   String get accountDeletionTitle => 'Delete account';
 
   @override
   String accountDeletionScheduledFor(String date) {
-    return 'Your account will be permanently deleted on $date.';
+    return 'We go delete your account permanently for $date.';
   }
 
   @override
   String get accountDeletionCanCancel =>
-      'Until then you can sign in and cancel at any time.';
+      'Before den, you fit login and cancel am any time.';
 
   @override
   String get accountDeletionHistoryKept =>
-      'Your match history and tournament results will remain visible under “Deleted player”.';
+      'Your match history and tournament results go still dey show as “Deleted player”.';
 
   @override
   String accountDeletionUsernameRetired(String username) {
-    return 'Your username $username will be retired and cannot be used again.';
+    return 'Your username $username go retire and nobody fit use am again.';
   }
 
   @override
   String get accountDeletionEmailReusable =>
-      'The email address on the account can be used to register again later.';
+      'You fit use di email wey dey dis account to open new account later.';
 
   @override
-  String get accountDeletionTypeDelete => 'Type DELETE to confirm.';
+  String get accountDeletionTypeDelete => 'Type DELETE to confam.';
 
   @override
-  String get accountDeletionConfirmButton => 'Schedule deletion';
+  String get accountDeletionConfirmButton => 'Schedule di deletion';
 
   @override
-  String get accountDeletionConfirmButtonPending => 'Scheduling…';
+  String get accountDeletionConfirmButtonPending => 'E dey schedule…';
 
   @override
-  String get accountDeletionDeleteNowTitle => 'Delete immediately';
+  String get accountDeletionDeleteNowTitle => 'Delete now now';
 
   @override
   String get accountDeletionDeleteNowWarning =>
-      'This skips the 15-day grace period. Your account is deleted immediately. There is no cancellation and no undo.';
+      'Dis one go skip di 15-day grace period. We go delete your account immediately. No cancel, no undo.';
 
   @override
   String accountDeletionDeleteNowPrompt(String username) {
-    return 'Type your username $username to confirm.';
+    return 'Type your username $username to confam.';
   }
 
   @override
   String get accountDeletionDeleteNowButton => 'Delete permanently';
 
   @override
-  String get accountDeletionDeleteNowButtonPending => 'Deleting…';
+  String get accountDeletionDeleteNowButtonPending => 'E dey delete…';
 
   @override
   String get accountDeletionCancel => 'Cancel';
 
   @override
-  String get accountDeletionPendingHeading => 'Deletion scheduled';
+  String get accountDeletionPendingHeading => 'Deletion don schedule';
 
   @override
   String accountDeletionPendingBody(String date, String days) {
-    return 'Your account will be deleted on $date — $days days left.';
+    return 'We go delete your account for $date — $days days remain.';
   }
 
   @override
   String accountDeletionBannerText(String date, String days) {
-    return 'Your account is scheduled for deletion on $date — $days days left.';
+    return 'Dem don schedule your account for deletion for $date — $days days remain.';
   }
 
   @override
-  String get accountDeletionBannerCancel => 'Cancel deletion';
+  String get accountDeletionBannerCancel => 'Cancel di deletion';
 
   @override
-  String get accountDeletionBannerCancelling => 'Cancelling…';
+  String get accountDeletionBannerCancelling => 'E dey cancel…';
 
   @override
   String get accountDeletionBlockedTitle =>
-      'You can\'t delete your account yet:';
+      'You never fit delete your account:';
 
   @override
   String accountDeletionBlockerWalletBalance(String amount) {
-    return '$amount wallet balance — withdraw or spend it first';
+    return '$amount dey your wallet — withdraw am or spend am first';
   }
 
   @override
   String accountDeletionBlockerWithdrawal(String count) {
-    return '$count pending withdrawal — wait for it to be paid';
+    return '$count withdrawal dey pending — wait make dem pay am';
   }
 
   @override
   String accountDeletionBlockerEscrow(String count) {
-    return '$count open Exchange order — complete or cancel it';
+    return '$count Exchange order still dey open — complete am or cancel am';
   }
 
   @override
   String accountDeletionBlockerListing(String count) {
-    return '$count live Exchange listing — remove it first';
+    return '$count Exchange listing still dey live — remove am first';
   }
 
   @override
   String get accountDeletionBlockerTournament =>
-      'You\'re in an active tournament — wait for it to finish';
+      'You dey inside tournament wey never finish — wait make e finish';
 
   @override
   String accountDeletionBlockerMatch(String count) {
-    return '$count unfinished match — play or resolve it';
+    return '$count match never finish — play am or resolve am';
   }
 
   @override
   String accountDeletionBlockerFriendly(String count) {
-    return '$count unfinished friendly — play or decline it';
+    return '$count friendly never finish — play am or decline am';
   }
 
   @override
   String get accountDeletionRestricted =>
-      'Your account is scheduled for deletion. Cancel the deletion in Settings to do this.';
+      'Dem don schedule your account for deletion. Cancel di deletion for Settings before you fit do dis.';
 
   @override
   String get emailChangeTitle => 'Change email';
@@ -3353,116 +3353,113 @@ class AppLocalizationsEn extends AppLocalizations {
   String get emailChangeNewLabel => 'New email address';
 
   @override
-  String get emailChangePasswordLabel => 'Current password';
+  String get emailChangePasswordLabel => 'Your current password';
 
   @override
   String get emailChangePasswordHint =>
-      'Your password confirms it\'s really you — without it, anyone who found your account signed in could move it to their own inbox.';
+      'Your password na wetin confam say na you — without am, anybody wey meet your account login fit carry am go him own inbox.';
 
   @override
   String get emailChangeSubmit => 'Send confirmation link';
 
   @override
-  String get emailChangeSending => 'Sending…';
+  String get emailChangeSending => 'E dey send…';
 
   @override
   String get emailChangeCancel => 'Cancel';
 
   @override
   String emailChangeSent(String email) {
-    return 'Confirmation link sent to $email. Your address stays the same until you open that link.';
+    return 'We don send confirmation link go $email. Your address go remain di same until you open dat link.';
   }
 
   @override
-  String get emailChangeSentSpam =>
-      'Check your spam folder if it doesn\'t arrive.';
+  String get emailChangeSentSpam => 'Check your spam folder if e no enter.';
 
   @override
   String emailChangePending(String email) {
-    return 'Pending: $email';
+    return 'E dey wait: $email';
   }
 
   @override
   String get emailChangePendingHint =>
-      'Waiting for you to confirm from that inbox.';
+      'We dey wait make you confam from dat inbox.';
 
   @override
   String get emailChangeGoogleHint =>
-      'Signed in with Google? If you\'ve never set a password, use Change Password above first — the link goes to your current inbox.';
+      'Na Google you take login? If you never set password before, use “Change Password” for up first — di link go enter your current inbox.';
 
   @override
   String get emailChangeGoogleSurvives =>
-      'Google sign-in will keep working after this change — it\'s tied to your Google account, not your email. Remove it under Sign-in methods below.';
+      'Google sign-in go still dey work after dis change — e tie to your Google account, no be your email. Remove am for Sign-in methods below.';
 
   @override
-  String get emailChangeChanged => 'Your email address has been updated.';
+  String get emailChangeChanged => 'Your email address don update.';
 
   @override
-  String get emailChangeErrorsInvalidEmail => 'Enter a valid email address.';
+  String get emailChangeErrorsInvalidEmail => 'Put email address wey correct.';
 
   @override
-  String get emailChangeErrorsPasswordRequired =>
-      'Enter your current password.';
+  String get emailChangeErrorsPasswordRequired => 'Put your current password.';
 
   @override
   String get emailChangeErrorsNotLoggedIn =>
-      'Your session has expired. Please log in again.';
+      'Your session don expire. Abeg login again.';
 
   @override
   String get emailChangeErrorsGoogleOnly =>
-      'Your account signs in with Google, so there\'s no password to confirm. Use Change Password above to set one, then you can change your email.';
+      'Na Google you dey take login, so no password dey to confam. Use “Change Password” for up to set one, then you fit change your email.';
 
   @override
   String get emailChangeErrorsSameEmail =>
-      'That\'s already your email address.';
+      'Na dat one already be your email address.';
 
   @override
-  String get emailChangeErrorsWrongPassword => 'That password isn\'t right.';
+  String get emailChangeErrorsWrongPassword => 'Dat password no correct.';
 
   @override
-  String get emailChangeErrorsEmailBanned =>
-      'We could not use that email address.';
+  String get emailChangeErrorsEmailBanned => 'We no fit use dat email address.';
 
   @override
   String get emailChangeErrorsEmailInUse =>
-      'That email address is already in use.';
+      'Person don dey use dat email address.';
 
   @override
   String get emailChangeErrorsFailed =>
-      'Could not start the email change. Please try again.';
+      'We no fit start di email change. Abeg try again.';
 
   @override
   String get signInMethodsTitle => 'Sign-in methods';
 
   @override
   String get signInMethodsIntro =>
-      'Google sign-in is tied to your Google account, not to your email address — changing your email does not remove it.';
+      'Google sign-in dey tied to your Google account, no be to your email address — if you change your email, e no go remove am.';
 
   @override
   String get signInMethodsGoogle => 'Google';
 
   @override
-  String get signInMethodsEmailPassword => 'Email & password';
+  String get signInMethodsEmailPassword => 'Email and password';
 
   @override
-  String get signInMethodsLinked => 'Linked';
+  String get signInMethodsLinked => 'E don link';
 
   @override
-  String get signInMethodsNotLinked => 'Not linked';
+  String get signInMethodsNotLinked => 'E never link';
 
   @override
-  String get signInMethodsNotSet => 'Not set up';
+  String get signInMethodsNotSet => 'You never set am up';
 
   @override
   String get signInMethodsLink => 'Link Google';
 
   @override
   String get signInMethodsLinkedOk =>
-      'Google sign-in is now linked to your account.';
+      'Google sign-in don link to your account now.';
 
   @override
   String get signInMethodsLinkFailed =>
-      'Could not link that Google account — it may already be attached to another SentinelX account.';
+      'We no fit link dat Google account — e fit be say e dey another SentinelX account already.';
 
   @override
   String get signInMethodsUnlink => 'Unlink';
@@ -3471,50 +3468,50 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signInMethodsUnlinkConfirm => 'Unlink Google';
 
   @override
-  String get signInMethodsUnlinkConfirming => 'Unlinking…';
+  String get signInMethodsUnlinkConfirming => 'E dey unlink…';
 
   @override
   String get signInMethodsUnlinkExplain =>
-      'This removes Google sign-in from your account and signs you out everywhere else.';
+      'Dis one go remove Google sign-in from your account and log you out everywhere else.';
 
   @override
   String get signInMethodsRelinkWarning =>
-      'Signing in with Google again will re-link it, because your account uses the same email address. To fully remove that account\'s access, change your email as well.';
+      'If you sign in with Google again, e go link back, because your account dey use di same email address. To comot dat account access finish, change your email too.';
 
   @override
   String get signInMethodsOnlyMethod =>
-      'This is the only way into your account, so it can\'t be removed.';
+      'Na only dis one dey enter your account, so we no fit remove am.';
 
   @override
-  String get signInMethodsPasswordLabel => 'Current password';
+  String get signInMethodsPasswordLabel => 'Your current password';
 
   @override
   String get signInMethodsCancel => 'Cancel';
 
   @override
   String get signInMethodsErrorsPasswordRequired =>
-      'Enter your current password.';
+      'Put your current password.';
 
   @override
   String get signInMethodsErrorsNotLoggedIn =>
-      'Your session has expired. Please log in again.';
+      'Your session don expire. Abeg login again.';
 
   @override
-  String get signInMethodsErrorsWrongPassword => 'That password isn\'t right.';
+  String get signInMethodsErrorsWrongPassword => 'Dat password no correct.';
 
   @override
   String get signInMethodsErrorsNotLinked =>
-      'Google isn\'t linked to this account.';
+      'Google no dey linked to dis account.';
 
   @override
   String get signInMethodsErrorsLastIdentity =>
-      'That\'s the only way into your account — set up email and password sign-in first.';
+      'Na only dat one dey enter your account — set up email and password sign-in first.';
 
   @override
   String get signInMethodsErrorsUnavailable =>
-      'Unlinking isn\'t available right now. Please contact support.';
+      'You no fit unlink am right now. Abeg contact support.';
 
   @override
   String get signInMethodsErrorsFailed =>
-      'Could not unlink Google. Please try again.';
+      'We no fit unlink Google. Abeg try again.';
 }

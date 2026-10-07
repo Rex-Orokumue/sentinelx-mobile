@@ -34,4 +34,29 @@ void main() {
       expect(result['signupCheckEmailBody'], 'We sent a link to {email}.');
     });
   });
+
+  group('placeholderMetadata', () {
+    test('adds a String placeholder block for each {name}, in order of appearance, deduplicated', () {
+      final meta = placeholderMetadata({
+        'accountDeletionPendingBody': 'Deleted on {date} — {days} days left ({date})',
+        'plain': 'no placeholders',
+      }, existing: {});
+      expect(meta.keys, ['@accountDeletionPendingBody']);
+      final ph = (meta['@accountDeletionPendingBody'] as Map)['placeholders'] as Map;
+      expect(ph.keys.toList(), ['date', 'days']);
+      expect((ph['date'] as Map)['type'], 'String');
+    });
+
+    test('never overwrites metadata a developer already wrote', () {
+      final meta = placeholderMetadata({'k': 'Hi {name}'}, existing: {'@k': {'placeholders': {'name': {'type': 'int'}}}});
+      expect(meta, isEmpty);
+    });
+
+    test('ignores ICU plural arms and braces that are not simple placeholders', () {
+      final meta = placeholderMetadata({'k': 'Have {count, plural, one{# item} other{# items}}'}, existing: {});
+      final ph = (meta['@k'] as Map)['placeholders'] as Map;
+      expect(ph.keys.toList(), ['count']);
+      expect((ph['count'] as Map)['type'], 'num');
+    });
+  });
 }
