@@ -149,4 +149,27 @@ void main() {
       );
     },
   );
+
+  group('phone gate', () {
+    test('every route redirects to /onboarding/phone while gated', () {
+      final g = gate(onboardingGate: OnboardingGate.phone);
+      expect(evaluateAuthRedirect(g, '/'), '/onboarding/phone');
+      expect(evaluateAuthRedirect(g, '/tournaments'), '/onboarding/phone');
+      expect(evaluateAuthRedirect(g, '/account/phone'), '/onboarding/phone');
+    });
+    test('the gate screen itself and the always-exempt routes are reachable', () {
+      final g = gate(onboardingGate: OnboardingGate.phone);
+      expect(evaluateAuthRedirect(g, '/onboarding/phone'), isNull);
+      expect(evaluateAuthRedirect(g, '/reset-password'), isNull);
+    });
+    test('a verified or non-gated user opening /onboarding/phone is sent home', () {
+      expect(evaluateAuthRedirect(gate(), '/onboarding/phone'), '/');
+    });
+    test('a user who still needs a username is not sent to the phone screen first', () {
+      expect(evaluateAuthRedirect(gate(onboardingGate: OnboardingGate.username), '/onboarding/phone'), '/onboarding/username');
+    });
+    test('a signed-out visitor is never redirected to it', () {
+      expect(evaluateAuthRedirect(gate(isSignedIn: false, onboardingGate: OnboardingGate.phone), '/'), isNull);
+    });
+  });
 }

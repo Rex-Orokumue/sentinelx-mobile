@@ -14,7 +14,7 @@ class AuthGateSnapshot {
 // - /reset-password (a recovery link establishes a session locally via
 //   verifyOtp before the user has necessarily finished onboarding)
 const _alwaysGateExempt = {'/debug', '/reset-password'};
-const _onboardingRoutes = {'/onboarding/username', '/onboarding/profile'};
+const _onboardingRoutes = {'/onboarding/username', '/onboarding/phone', '/onboarding/profile'};
 
 /// The single place the router's onboarding enforcement is decided. Pure and
 /// synchronous so it is unit-testable without GoRouter or Riverpod; see
@@ -26,8 +26,14 @@ String? evaluateAuthRedirect(AuthGateSnapshot gate, String location) {
     if (location == '/onboarding/username') return null;
     return '/onboarding/username';
   }
+  if (gate.onboardingGate == OnboardingGate.phone) {
+    if (location == '/onboarding/phone') return null;
+    return '/onboarding/phone';
+  }
   if (gate.onboardingGate == OnboardingGate.profile) {
-    if (_onboardingRoutes.contains(location)) return null;
+    // The phone screen is only reachable while the phone gate is active.
+    if (location == '/onboarding/username' || location == '/onboarding/profile') return null;
+    if (location == '/onboarding/phone') return '/';
     return '/onboarding/profile';
   }
   if (_onboardingRoutes.contains(location)) return '/';

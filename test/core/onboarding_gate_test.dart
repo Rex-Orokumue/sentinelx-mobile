@@ -3,7 +3,7 @@ import 'package:sentinelx_mobile/core/api/models.dart';
 import 'package:sentinelx_mobile/core/auth/onboarding_gate.dart';
 import 'package:sentinelx_mobile/core/config/remote_config.dart';
 
-MeResponse _me({String? username, String? profileCompletedAt}) => MeResponse(
+MeResponse _me({String? username, String? profileCompletedAt, String? phoneVerifiedAt}) => MeResponse(
       id: 'u',
       email: 'a@b.com',
       roles: const [],
@@ -22,6 +22,7 @@ MeResponse _me({String? username, String? profileCompletedAt}) => MeResponse(
               kycVerified: false,
               deletionRequestedAt: null,
               profileCompletedAt: profileCompletedAt,
+              phoneVerifiedAt: phoneVerifiedAt,
             ),
     );
 
@@ -51,6 +52,24 @@ void main() {
   });
   test('config not loaded yet: never demands phone (open by default, matches AppGate’s own null-config fail-open)', () {
     expect(resolveOnboardingGate(_me(username: 'ada'), null), OnboardingGate.profile);
+  });
+  test('phone gate on and the phone is verified: falls through to the profile gate', () {
+    expect(
+      resolveOnboardingGate(_me(username: 'ada', phoneVerifiedAt: '2026-10-01T00:00:00.000Z'), _config(enforcePhone: true)),
+      OnboardingGate.profile,
+    );
+  });
+  test('phone gate on, verified and profile complete: no gate at all', () {
+    expect(
+      resolveOnboardingGate(
+        _me(username: 'ada', phoneVerifiedAt: '2026-10-01T00:00:00.000Z', profileCompletedAt: '2026-10-02T00:00:00.000Z'),
+        _config(enforcePhone: true),
+      ),
+      OnboardingGate.none,
+    );
+  });
+  test('phone gate off: an unverified phone never gates', () {
+    expect(resolveOnboardingGate(_me(username: 'ada'), _config()), OnboardingGate.profile);
   });
   test('completed profile clears the final gate', () {
     expect(
