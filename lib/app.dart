@@ -6,6 +6,7 @@ import 'core/l10n/fallback_delegates.dart';
 import 'core/l10n/gen/app_localizations.dart';
 import 'core/notifications/push/push_banner_host.dart';
 import 'core/theme/theme.dart';
+import 'features/account/settings/locale_providers.dart';
 import 'router/app_router.dart';
 
 class SentinelXApp extends ConsumerWidget {
@@ -17,6 +18,7 @@ class SentinelXApp extends ConsumerWidget {
       title: 'SentinelX Esports',
       theme: buildTheme(),
       routerConfig: ref.watch(routerProvider),
+      locale: ref.watch(localeProvider),
       localizationsDelegates: appLocalizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       builder: (context, child) => AppGate(child: PushBannerHost(child: child ?? const SizedBox.shrink())),
