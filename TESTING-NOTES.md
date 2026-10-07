@@ -117,10 +117,10 @@ registered from the staging app are unreachable).
 
 | # | Check | Result |
 |---|---|---|
-| 1 | Sign in; confirm `fcm_tokens` has a row for this phone with `platform = android` (POST /devices ran) | pending |
-| 2 | Settings -> Notifications -> "Send a test notification" with the app in the **foreground**: in-app banner; tap opens Settings -> Notifications | pending |
-| 3 | Same test with the app in the **background**: a system notification on the right channel; tap opens the destination | pending |
-| 4 | Same test with the app **killed**: it still arrives (notification block); tap cold-starts straight to the destination, no login/onboarding bounce | pending |
+| 1 | Sign in; confirm `fcm_tokens` has a row for this phone with `platform = android` (POST /devices ran) | PASS 2026-10-06 (Galaxy S9010, Android 16, staging via local web dev server). Token registered; server sent to platform android |
+| 2 | Settings -> Notifications -> "Send a test notification" with the app in the **foreground**: in-app banner; tap opens Settings -> Notifications | PASS 2026-10-06 foreground: banner shown; tap stayed on Settings -> Notifications (already the destination) |
+| 3 | Same test with the app in the **background**: a system notification on the right channel; tap opens the destination | PASS 2026-10-06 background: system notification arrived; tap opened Settings -> Notifications |
+| 4 | Same test with the app **killed**: it still arrives (notification block); tap cold-starts straight to the destination, no login/onboarding bounce | PASS 2026-10-06 killed: notification arrived; tap cold-started to the destination, no login bounce |
 | 5 | Android 13+: the permission dialog appears **once**, after the first confirmed stake (register / waitlist / invitation accept), not at launch; deny it and confirm it is never re-asked and the passive rows show "Open system settings" | pending |
 | 6 | Turn notifications on in system settings, return to the app: the passive row disappears (resume refresh) | pending |
 | 7 | A real fixture assignment arrives, on the Matches channel; tap opens the match | pending |
@@ -163,10 +163,10 @@ Run on a real Android device against the **staging** web (never production). Tes
 
 | # | Check | Result |
 |---|---|---|
-| 1 | Quest steps flip as each real step completes (profile, first tournament entry, first completed match) | pending |
+| 1 | Quest steps flip as each real step completes (profile, first tournament entry, first completed match) | PARTIAL 2026-10-07: profile step flips to done after avatar upload (it needs username + avatar, not bio); tournament and match steps not yet tested |
 | 2 | Claim once: a second tap or a retry shows "Badge earned"; XP and coins change exactly once | pending |
-| 3 | Avatar upload with a GPS-tagged photo: open the uploaded file's URL and confirm it carries no EXIF; the avatar updates after saving | pending |
-| 4 | Chat signed in: a wallet question shows the correct balance; streaming looks smooth | pending |
+| 3 | Avatar upload with a GPS-tagged photo: open the uploaded file's URL and confirm it carries no EXIF; the avatar updates after saving | PASS 2026-10-07: phone-camera photo with location on; stored file is 400x400 JPEG, no EXIF/GPS/XMP (only an ICC colour profile); step ticked after save |
+| 4 | Chat signed in: a wallet question shows the correct balance; streaming looks smooth | PARTIAL 2026-10-07: owner reports the signed-in chat worked well; wallet-balance accuracy and streaming smoothness not separately confirmed |
 | 5 | Chat: background the app mid-reply, return, tap Retry (one answer, no duplicate bubble); airplane mode mid-reply, then Retry | pending |
 | 6 | Chat: rapid sends show the rate-limit message with a countdown; Retry enables when it ends | pending |
 | 7 | Chat: Clear chat asks first, then empties; the 30-day notice is shown | pending |
