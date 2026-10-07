@@ -176,3 +176,18 @@ Run on a real Android device against the **staging** web (never production). Tes
 | 11 | French locale: guide, tour, coach marks, chat and error copy; 375 px with no overflow | pending |
 | 12 | The **eval** result from the web plan (Task 14) | pending |
 | 13 | Streaming over Vercel on a real mobile network (buffering would show as one burst at the end) | pending |
+
+## Phase 6e device pass (settings: language, security, sign-in methods, phone, delete account)
+
+Run on a real Android device against the **staging** web (never production), after the web branch is deployed to staging and the `account_rate_limit_events` migration is applied there. Test accounts use the `zzqa_` prefix. Everything below is **pending**: only unit/widget tests have run so far (see the Phase 6e line in the ledger); no endpoint has been exercised against a real server.
+
+| # | Check | Result |
+|---|---|---|
+| 1 | Language: switch to Pidgin; open Community (post dates), a match (dates) and any text field; nothing crashes. Restart the app: the language persists. Switch back. Sign in on a second device: the server language applies. | pending |
+| 2 | Security: change email with a wrong password (inline error stays on the sheet), then the right one (staging inbox gets the link; opening it clears the pending row); the password-reset link arrives | pending |
+| 3 | Sign-in methods: link Google through the browser (success refreshes the row; cancelling leaves no error); unlink with the right password; with Google as the only method, Unlink is hidden with the explanation. Needs Supabase **Manual Linking** on and `ng.com.sentinelxesports.app://link-callback` allowlisted | pending |
+| 4 | Phone: if staging has `META_WHATSAPP_*`, request, receive and confirm a code; otherwise the screen shows the "unavailable" message with no retry loop. Resend countdown, the 429 cooldown and a wrong code behave as in the widget tests | pending |
+| 5 | Delete: schedule (the banner appears on every screen and survives navigation), cancel (banner gone), schedule again, then **delete now** with the exact username (lands on login; the account is a tombstone). Throwaway `zzqa_` account only; remove it with `anonymise_account` if delete-now was not used | pending |
+| 6 | Blockers: a staging account with a wallet balance or an active listing sees the blocker lines and nothing is scheduled | pending |
+| 7 | Gate: **not tested on a device**; unit tests only. Do not flip `enforce_phone_verification` for testing | pending |
+| 8 | 375 px with no overflow on every new screen and sheet, also in French and Pidgin | pending |
