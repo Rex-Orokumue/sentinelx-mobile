@@ -15,6 +15,7 @@ import '../features/support_chat/chat_screen.dart';
 import '../features/account/account_screen.dart';
 import '../features/account/edit_profile_screen.dart';
 import '../features/account/profile_onboarding_screen.dart';
+import '../features/account/settings/language_screen.dart';
 import '../core/api/community_models.dart';
 import '../features/community/community_feed_screen.dart';
 import '../features/community/compose_screen.dart';
@@ -466,11 +467,21 @@ GoRouter buildAppRouter({
                   onOpenProgress: () => context.push('/account/progress'),
                   onOpenNotifications: () =>
                       context.push('/account/notifications'),
+                  onOpenLanguage: () => context.push('/account/language'),
+                  onOpenSecurity: () => context.push('/account/security'),
+                  onOpenSignInMethods: () =>
+                      context.push('/account/sign-in-methods'),
+                  onOpenPhone: () => context.push('/account/phone'),
+                  onOpenDeleteAccount: () => context.push('/account/delete'),
                 ),
                 routes: [
                   GoRoute(
                     path: 'profile',
                     builder: (context, state) => const EditProfileScreen(),
+                  ),
+                  GoRoute(
+                    path: 'language',
+                    builder: (context, state) => const LanguageScreen(),
                   ),
                   GoRoute(
                     path: 'notifications',
