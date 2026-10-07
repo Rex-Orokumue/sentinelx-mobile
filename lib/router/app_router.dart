@@ -15,6 +15,7 @@ import '../features/support_chat/chat_screen.dart';
 import '../features/account/account_screen.dart';
 import '../features/account/edit_profile_screen.dart';
 import '../features/account/profile_onboarding_screen.dart';
+import '../features/account/settings/delete_account_screen.dart';
 import '../features/account/settings/language_screen.dart';
 import '../features/account/settings/phone_screen.dart';
 import '../features/account/settings/security_screen.dart';
@@ -502,6 +503,10 @@ GoRouter buildAppRouter({
                   GoRoute(
                     path: 'phone',
                     builder: (context, state) => const PhoneScreen(),
+                  ),
+                  GoRoute(
+                    path: 'delete',
+                    builder: (context, state) => const DeleteAccountScreen(),
                   ),
                   GoRoute(
                     path: 'notifications',
