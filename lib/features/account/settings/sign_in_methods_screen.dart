@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
 import '../../../core/api/api_client.dart';
 import '../../../core/l10n/gen/app_localizations.dart';
@@ -52,7 +53,7 @@ class _SignInMethodsScreenState extends ConsumerState<SignInMethodsScreen> with 
     } catch (e) {
       _awaitingLink = false;
       if (!mounted) return;
-      final unavailable = e.toString().contains('manual_linking_disabled');
+      final unavailable = e is supabase.AuthException && e.code == 'manual_linking_disabled';
       setState(() => _linkError = unavailable ? l10n.mobileSettingsLinkingUnavailable : l10n.signInMethodsLinkFailed);
     }
   }
