@@ -36,6 +36,14 @@
                 <data android:scheme="https" android:host="sentinelxesports.com.ng" android:path="/community"/>
                 <data android:scheme="https" android:host="sentinelxesports.com.ng" android:path="/exchange"/>
             </intent-filter>
+            <!-- Google account linking: the Supabase OAuth round-trip returns here (see google_linker.dart).
+                 The redirect URL must also be allowlisted in the Supabase Auth settings. -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="ng.com.sentinelxesports.app" android:host="link-callback"/>
+            </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->

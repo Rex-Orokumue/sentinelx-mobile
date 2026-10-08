@@ -39,6 +39,33 @@ Map<String, String> flattenNamespace(Map<String, dynamic> json, String prefix) {
   return out;
 }
 
+final _simplePlaceholder = RegExp(r'\{(\w+)\}');
+final _pluralPlaceholder = RegExp(r'\{(\w+)\s*,\s*(?:plural|select)\b');
+
+/// `@key` blocks for messages that contain placeholders and have none yet. gen-l10n refuses a `{name}`
+/// without one. Simple placeholders are Strings (callers format numbers and dates themselves); an ICU
+/// plural's argument is a num. Metadata a developer already wrote is never replaced.
+Map<String, Object> placeholderMetadata(Map<String, String> additions, {required Map<String, dynamic> existing}) {
+  final out = <String, Object>{};
+  additions.forEach((key, value) {
+    if (existing.containsKey('@$key')) return;
+    final names = <String, String>{};
+    for (final m in _pluralPlaceholder.allMatches(value)) {
+      names[m.group(1)!] = 'num';
+    }
+    for (final m in _simplePlaceholder.allMatches(value)) {
+      names.putIfAbsent(m.group(1)!, () => 'String');
+    }
+    if (names.isEmpty) return;
+    out['@$key'] = {
+      'placeholders': {
+        for (final e in names.entries) e.key: {'type': e.value},
+      },
+    };
+  });
+  return out;
+}
+
 // Merges `additions` into the ARB file at `path`, preserving every existing
 // key (including '@@locale' and any '@key' ICU metadata blocks) and only
 // adding/overwriting the keys this run produced. Keys are written in a
@@ -46,7 +73,7 @@ Map<String, String> flattenNamespace(Map<String, dynamic> json, String prefix) {
 void mergeIntoArb(String path, Map<String, String> additions) {
   final file = File(path);
   final existing = jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
-  final merged = {...existing, ...additions};
+  final merged = {...existing, ...additions, ...placeholderMetadata(additions, existing: existing)};
   final encoder = const JsonEncoder.withIndent('  ');
   file.writeAsStringSync('${encoder.convert(merged)}\n');
 }

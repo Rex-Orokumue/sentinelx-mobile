@@ -10,6 +10,7 @@ class MeProfile {
     required this.kycVerified,
     required this.deletionRequestedAt,
     this.profileCompletedAt,
+    this.phoneVerifiedAt,
     this.consentWhatsappUpdates = false,
     this.gameInterests = const [],
     this.bubbleSkinUrl,
@@ -26,6 +27,7 @@ class MeProfile {
         kycVerified: j['kycVerified'] as bool,
         deletionRequestedAt: j['deletionRequestedAt'] as String?,
         profileCompletedAt: j['profileCompletedAt'] as String?,
+        phoneVerifiedAt: j['phoneVerifiedAt'] as String?,
         consentWhatsappUpdates: j['consentWhatsappUpdates'] as bool,
         gameInterests: (j['gameInterests'] as List<dynamic>).cast<String>(),
         bubbleSkinUrl: j['bubbleSkinUrl'] as String?,
@@ -41,6 +43,9 @@ class MeProfile {
   final bool kycVerified;
   final String? deletionRequestedAt;
   final String? profileCompletedAt;
+
+  /// When the WhatsApp number was verified (ISO), or null. Absent from older servers, which reads as null.
+  final String? phoneVerifiedAt;
   final bool consentWhatsappUpdates;
   final List<String> gameInterests;
 

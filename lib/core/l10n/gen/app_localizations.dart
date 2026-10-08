@@ -7,6 +7,7 @@ import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
 import 'app_localizations_fr.dart';
+import 'app_localizations_pcm.dart';
 
 // ignore_for_file: type=lint
 
@@ -96,6 +97,7 @@ abstract class AppLocalizations {
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
     Locale('fr'),
+    Locale('pcm'),
   ];
 
   /// No description provided for @appName.
@@ -5629,6 +5631,738 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Open help'**
   String get chatDestHelp;
+
+  /// No description provided for @mobileSettingsHubTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get mobileSettingsHubTitle;
+
+  /// No description provided for @mobileSettingsHubProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get mobileSettingsHubProfile;
+
+  /// No description provided for @mobileSettingsHubNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get mobileSettingsHubNotifications;
+
+  /// No description provided for @mobileSettingsHubLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get mobileSettingsHubLanguage;
+
+  /// No description provided for @mobileSettingsHubSecurity.
+  ///
+  /// In en, this message translates to:
+  /// **'Security'**
+  String get mobileSettingsHubSecurity;
+
+  /// No description provided for @mobileSettingsHubSignInMethods.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign-in methods'**
+  String get mobileSettingsHubSignInMethods;
+
+  /// No description provided for @mobileSettingsHubPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone verification'**
+  String get mobileSettingsHubPhone;
+
+  /// No description provided for @mobileSettingsHubDeleteAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete account'**
+  String get mobileSettingsHubDeleteAccount;
+
+  /// No description provided for @mobileSettingsLanguageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get mobileSettingsLanguageTitle;
+
+  /// No description provided for @mobileSettingsLanguageEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get mobileSettingsLanguageEnglish;
+
+  /// No description provided for @mobileSettingsLanguageFrench.
+  ///
+  /// In en, this message translates to:
+  /// **'Français'**
+  String get mobileSettingsLanguageFrench;
+
+  /// No description provided for @mobileSettingsLanguagePidgin.
+  ///
+  /// In en, this message translates to:
+  /// **'Pidgin'**
+  String get mobileSettingsLanguagePidgin;
+
+  /// No description provided for @mobileSettingsLanguageSaveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not save your language. Please try again.'**
+  String get mobileSettingsLanguageSaveFailed;
+
+  /// No description provided for @mobileSettingsSecurityTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Security'**
+  String get mobileSettingsSecurityTitle;
+
+  /// No description provided for @mobileSettingsSecurityEmailRow.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get mobileSettingsSecurityEmailRow;
+
+  /// No description provided for @mobileSettingsSecurityChangeEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Change email'**
+  String get mobileSettingsSecurityChangeEmail;
+
+  /// No description provided for @mobileSettingsSecurityPasswordRow.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get mobileSettingsSecurityPasswordRow;
+
+  /// No description provided for @mobileSettingsSecuritySetPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Set or reset password'**
+  String get mobileSettingsSecuritySetPassword;
+
+  /// No description provided for @mobileSettingsSecuritySetPasswordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ll email a link to your current address. Opening it proves the account is yours.'**
+  String get mobileSettingsSecuritySetPasswordHint;
+
+  /// No description provided for @mobileSettingsSecurityResetSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your inbox for a link to set a new password.'**
+  String get mobileSettingsSecurityResetSent;
+
+  /// No description provided for @mobileSettingsPhoneTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone verification'**
+  String get mobileSettingsPhoneTitle;
+
+  /// No description provided for @mobileSettingsPhoneNumberLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp number'**
+  String get mobileSettingsPhoneNumberLabel;
+
+  /// No description provided for @mobileSettingsPhoneSendCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Send code'**
+  String get mobileSettingsPhoneSendCode;
+
+  /// No description provided for @mobileSettingsPhoneCodeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'6-digit code'**
+  String get mobileSettingsPhoneCodeLabel;
+
+  /// No description provided for @mobileSettingsPhoneConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify'**
+  String get mobileSettingsPhoneConfirm;
+
+  /// No description provided for @mobileSettingsPhoneResend.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend code'**
+  String get mobileSettingsPhoneResend;
+
+  /// No description provided for @mobileSettingsPhoneResendIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend in {seconds}s'**
+  String mobileSettingsPhoneResendIn(String seconds);
+
+  /// No description provided for @mobileSettingsPhoneVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified: {masked}'**
+  String mobileSettingsPhoneVerified(String masked);
+
+  /// No description provided for @mobileSettingsPhoneUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification is unavailable right now. Please try again later.'**
+  String get mobileSettingsPhoneUnavailable;
+
+  /// No description provided for @mobileSettingsPhoneErrorInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid phone number, including your country code if you are outside Nigeria.'**
+  String get mobileSettingsPhoneErrorInvalid;
+
+  /// No description provided for @mobileSettingsPhoneErrorCooldown.
+  ///
+  /// In en, this message translates to:
+  /// **'Please wait a moment before requesting another code.'**
+  String get mobileSettingsPhoneErrorCooldown;
+
+  /// No description provided for @mobileSettingsPhoneErrorDailyLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many codes requested today. Please try again tomorrow.'**
+  String get mobileSettingsPhoneErrorDailyLimit;
+
+  /// No description provided for @mobileSettingsPhoneErrorSendFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not send the WhatsApp message. Please try again.'**
+  String get mobileSettingsPhoneErrorSendFailed;
+
+  /// No description provided for @mobileSettingsPhoneErrorCodeInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the 6-digit code.'**
+  String get mobileSettingsPhoneErrorCodeInvalid;
+
+  /// No description provided for @mobileSettingsPhoneErrorCodeMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'Request a new code first.'**
+  String get mobileSettingsPhoneErrorCodeMissing;
+
+  /// No description provided for @mobileSettingsPhoneErrorCodeExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'That code expired. Request a new one.'**
+  String get mobileSettingsPhoneErrorCodeExpired;
+
+  /// No description provided for @mobileSettingsPhoneErrorCodeWrong.
+  ///
+  /// In en, this message translates to:
+  /// **'That code isn\'t right.'**
+  String get mobileSettingsPhoneErrorCodeWrong;
+
+  /// No description provided for @mobileSettingsPhoneErrorAttempts.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many incorrect attempts. Request a new code.'**
+  String get mobileSettingsPhoneErrorAttempts;
+
+  /// No description provided for @mobileSettingsDeleteAccountTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete account'**
+  String get mobileSettingsDeleteAccountTitle;
+
+  /// No description provided for @mobileSettingsDeleteFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not complete that. Please try again.'**
+  String get mobileSettingsDeleteFailed;
+
+  /// No description provided for @mobileSettingsReauthRateLimited.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many attempts. Please try again later.'**
+  String get mobileSettingsReauthRateLimited;
+
+  /// No description provided for @mobileSettingsLinkingUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'This isn\'t available right now. Please contact support.'**
+  String get mobileSettingsLinkingUnavailable;
+
+  /// No description provided for @mobileSettingsGenericError.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get mobileSettingsGenericError;
+
+  /// No description provided for @mobileSettingsNetworkError.
+  ///
+  /// In en, this message translates to:
+  /// **'No connection. Check your network and try again.'**
+  String get mobileSettingsNetworkError;
+
+  /// No description provided for @accountDeletionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete account'**
+  String get accountDeletionTitle;
+
+  /// No description provided for @accountDeletionScheduledFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account will be permanently deleted on {date}.'**
+  String accountDeletionScheduledFor(String date);
+
+  /// No description provided for @accountDeletionCanCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Until then you can sign in and cancel at any time.'**
+  String get accountDeletionCanCancel;
+
+  /// No description provided for @accountDeletionHistoryKept.
+  ///
+  /// In en, this message translates to:
+  /// **'Your match history and tournament results will remain visible under “Deleted player”.'**
+  String get accountDeletionHistoryKept;
+
+  /// No description provided for @accountDeletionUsernameRetired.
+  ///
+  /// In en, this message translates to:
+  /// **'Your username {username} will be retired and cannot be used again.'**
+  String accountDeletionUsernameRetired(String username);
+
+  /// No description provided for @accountDeletionEmailReusable.
+  ///
+  /// In en, this message translates to:
+  /// **'The email address on the account can be used to register again later.'**
+  String get accountDeletionEmailReusable;
+
+  /// No description provided for @accountDeletionTypeDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Type DELETE to confirm.'**
+  String get accountDeletionTypeDelete;
+
+  /// No description provided for @accountDeletionConfirmButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Schedule deletion'**
+  String get accountDeletionConfirmButton;
+
+  /// No description provided for @accountDeletionConfirmButtonPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Scheduling…'**
+  String get accountDeletionConfirmButtonPending;
+
+  /// No description provided for @accountDeletionDeleteNowTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete immediately'**
+  String get accountDeletionDeleteNowTitle;
+
+  /// No description provided for @accountDeletionDeleteNowWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'This skips the 15-day grace period. Your account is deleted immediately. There is no cancellation and no undo.'**
+  String get accountDeletionDeleteNowWarning;
+
+  /// No description provided for @accountDeletionDeleteNowPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Type your username {username} to confirm.'**
+  String accountDeletionDeleteNowPrompt(String username);
+
+  /// No description provided for @accountDeletionDeleteNowButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete permanently'**
+  String get accountDeletionDeleteNowButton;
+
+  /// No description provided for @accountDeletionDeleteNowButtonPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Deleting…'**
+  String get accountDeletionDeleteNowButtonPending;
+
+  /// No description provided for @accountDeletionCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get accountDeletionCancel;
+
+  /// No description provided for @accountDeletionPendingHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Deletion scheduled'**
+  String get accountDeletionPendingHeading;
+
+  /// No description provided for @accountDeletionPendingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account will be deleted on {date} — {days} days left.'**
+  String accountDeletionPendingBody(String date, String days);
+
+  /// No description provided for @accountDeletionBannerText.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is scheduled for deletion on {date} — {days} days left.'**
+  String accountDeletionBannerText(String date, String days);
+
+  /// No description provided for @accountDeletionBannerCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel deletion'**
+  String get accountDeletionBannerCancel;
+
+  /// No description provided for @accountDeletionBannerCancelling.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelling…'**
+  String get accountDeletionBannerCancelling;
+
+  /// No description provided for @accountDeletionBlockedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You can\'t delete your account yet:'**
+  String get accountDeletionBlockedTitle;
+
+  /// No description provided for @accountDeletionBlockerWalletBalance.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} wallet balance — withdraw or spend it first'**
+  String accountDeletionBlockerWalletBalance(String amount);
+
+  /// No description provided for @accountDeletionBlockerWithdrawal.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} pending withdrawal — wait for it to be paid'**
+  String accountDeletionBlockerWithdrawal(String count);
+
+  /// No description provided for @accountDeletionBlockerEscrow.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} open Exchange order — complete or cancel it'**
+  String accountDeletionBlockerEscrow(String count);
+
+  /// No description provided for @accountDeletionBlockerListing.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} live Exchange listing — remove it first'**
+  String accountDeletionBlockerListing(String count);
+
+  /// No description provided for @accountDeletionBlockerTournament.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re in an active tournament — wait for it to finish'**
+  String get accountDeletionBlockerTournament;
+
+  /// No description provided for @accountDeletionBlockerMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} unfinished match — play or resolve it'**
+  String accountDeletionBlockerMatch(String count);
+
+  /// No description provided for @accountDeletionBlockerFriendly.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} unfinished friendly — play or decline it'**
+  String accountDeletionBlockerFriendly(String count);
+
+  /// No description provided for @accountDeletionRestricted.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is scheduled for deletion. Cancel the deletion in Settings to do this.'**
+  String get accountDeletionRestricted;
+
+  /// No description provided for @emailChangeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Change email'**
+  String get emailChangeTitle;
+
+  /// No description provided for @emailChangeOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Email →'**
+  String get emailChangeOpen;
+
+  /// No description provided for @emailChangeNewLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'New email address'**
+  String get emailChangeNewLabel;
+
+  /// No description provided for @emailChangePasswordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Current password'**
+  String get emailChangePasswordLabel;
+
+  /// No description provided for @emailChangePasswordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Your password confirms it\'s really you — without it, anyone who found your account signed in could move it to their own inbox.'**
+  String get emailChangePasswordHint;
+
+  /// No description provided for @emailChangeSubmit.
+  ///
+  /// In en, this message translates to:
+  /// **'Send confirmation link'**
+  String get emailChangeSubmit;
+
+  /// No description provided for @emailChangeSending.
+  ///
+  /// In en, this message translates to:
+  /// **'Sending…'**
+  String get emailChangeSending;
+
+  /// No description provided for @emailChangeCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get emailChangeCancel;
+
+  /// No description provided for @emailChangeSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmation link sent to {email}. Your address stays the same until you open that link.'**
+  String emailChangeSent(String email);
+
+  /// No description provided for @emailChangeSentSpam.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your spam folder if it doesn\'t arrive.'**
+  String get emailChangeSentSpam;
+
+  /// No description provided for @emailChangePending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending: {email}'**
+  String emailChangePending(String email);
+
+  /// No description provided for @emailChangePendingHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for you to confirm from that inbox.'**
+  String get emailChangePendingHint;
+
+  /// No description provided for @emailChangeGoogleHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in with Google? If you\'ve never set a password, use Change Password above first — the link goes to your current inbox.'**
+  String get emailChangeGoogleHint;
+
+  /// No description provided for @emailChangeGoogleSurvives.
+  ///
+  /// In en, this message translates to:
+  /// **'Google sign-in will keep working after this change — it\'s tied to your Google account, not your email. Remove it under Sign-in methods below.'**
+  String get emailChangeGoogleSurvives;
+
+  /// No description provided for @emailChangeChanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Your email address has been updated.'**
+  String get emailChangeChanged;
+
+  /// No description provided for @emailChangeErrorsInvalidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid email address.'**
+  String get emailChangeErrorsInvalidEmail;
+
+  /// No description provided for @emailChangeErrorsPasswordRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your current password.'**
+  String get emailChangeErrorsPasswordRequired;
+
+  /// No description provided for @emailChangeErrorsNotLoggedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Your session has expired. Please log in again.'**
+  String get emailChangeErrorsNotLoggedIn;
+
+  /// No description provided for @emailChangeErrorsGoogleOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account signs in with Google, so there\'s no password to confirm. Use Change Password above to set one, then you can change your email.'**
+  String get emailChangeErrorsGoogleOnly;
+
+  /// No description provided for @emailChangeErrorsSameEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'That\'s already your email address.'**
+  String get emailChangeErrorsSameEmail;
+
+  /// No description provided for @emailChangeErrorsWrongPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'That password isn\'t right.'**
+  String get emailChangeErrorsWrongPassword;
+
+  /// No description provided for @emailChangeErrorsEmailBanned.
+  ///
+  /// In en, this message translates to:
+  /// **'We could not use that email address.'**
+  String get emailChangeErrorsEmailBanned;
+
+  /// No description provided for @emailChangeErrorsEmailInUse.
+  ///
+  /// In en, this message translates to:
+  /// **'That email address is already in use.'**
+  String get emailChangeErrorsEmailInUse;
+
+  /// No description provided for @emailChangeErrorsFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not start the email change. Please try again.'**
+  String get emailChangeErrorsFailed;
+
+  /// No description provided for @signInMethodsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign-in methods'**
+  String get signInMethodsTitle;
+
+  /// No description provided for @signInMethodsIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Google sign-in is tied to your Google account, not to your email address — changing your email does not remove it.'**
+  String get signInMethodsIntro;
+
+  /// No description provided for @signInMethodsGoogle.
+  ///
+  /// In en, this message translates to:
+  /// **'Google'**
+  String get signInMethodsGoogle;
+
+  /// No description provided for @signInMethodsEmailPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Email & password'**
+  String get signInMethodsEmailPassword;
+
+  /// No description provided for @signInMethodsLinked.
+  ///
+  /// In en, this message translates to:
+  /// **'Linked'**
+  String get signInMethodsLinked;
+
+  /// No description provided for @signInMethodsNotLinked.
+  ///
+  /// In en, this message translates to:
+  /// **'Not linked'**
+  String get signInMethodsNotLinked;
+
+  /// No description provided for @signInMethodsNotSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set up'**
+  String get signInMethodsNotSet;
+
+  /// No description provided for @signInMethodsLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Link Google'**
+  String get signInMethodsLink;
+
+  /// No description provided for @signInMethodsLinkedOk.
+  ///
+  /// In en, this message translates to:
+  /// **'Google sign-in is now linked to your account.'**
+  String get signInMethodsLinkedOk;
+
+  /// No description provided for @signInMethodsLinkFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not link that Google account — it may already be attached to another SentinelX account.'**
+  String get signInMethodsLinkFailed;
+
+  /// No description provided for @signInMethodsUnlink.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlink'**
+  String get signInMethodsUnlink;
+
+  /// No description provided for @signInMethodsUnlinkConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlink Google'**
+  String get signInMethodsUnlinkConfirm;
+
+  /// No description provided for @signInMethodsUnlinkConfirming.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlinking…'**
+  String get signInMethodsUnlinkConfirming;
+
+  /// No description provided for @signInMethodsUnlinkExplain.
+  ///
+  /// In en, this message translates to:
+  /// **'This removes Google sign-in from your account and signs you out everywhere else.'**
+  String get signInMethodsUnlinkExplain;
+
+  /// No description provided for @signInMethodsRelinkWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Signing in with Google again will re-link it, because your account uses the same email address. To fully remove that account\'s access, change your email as well.'**
+  String get signInMethodsRelinkWarning;
+
+  /// No description provided for @signInMethodsOnlyMethod.
+  ///
+  /// In en, this message translates to:
+  /// **'This is the only way into your account, so it can\'t be removed.'**
+  String get signInMethodsOnlyMethod;
+
+  /// No description provided for @signInMethodsPasswordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Current password'**
+  String get signInMethodsPasswordLabel;
+
+  /// No description provided for @signInMethodsCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get signInMethodsCancel;
+
+  /// No description provided for @signInMethodsErrorsPasswordRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your current password.'**
+  String get signInMethodsErrorsPasswordRequired;
+
+  /// No description provided for @signInMethodsErrorsNotLoggedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Your session has expired. Please log in again.'**
+  String get signInMethodsErrorsNotLoggedIn;
+
+  /// No description provided for @signInMethodsErrorsWrongPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'That password isn\'t right.'**
+  String get signInMethodsErrorsWrongPassword;
+
+  /// No description provided for @signInMethodsErrorsNotLinked.
+  ///
+  /// In en, this message translates to:
+  /// **'Google isn\'t linked to this account.'**
+  String get signInMethodsErrorsNotLinked;
+
+  /// No description provided for @signInMethodsErrorsLastIdentity.
+  ///
+  /// In en, this message translates to:
+  /// **'That\'s the only way into your account — set up email and password sign-in first.'**
+  String get signInMethodsErrorsLastIdentity;
+
+  /// No description provided for @signInMethodsErrorsUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlinking isn\'t available right now. Please contact support.'**
+  String get signInMethodsErrorsUnavailable;
+
+  /// No description provided for @signInMethodsErrorsFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not unlink Google. Please try again.'**
+  String get signInMethodsErrorsFailed;
 }
 
 class _AppLocalizationsDelegate
@@ -5642,7 +6376,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en', 'fr'].contains(locale.languageCode);
+      <String>['en', 'fr', 'pcm'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -5655,6 +6389,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsEn();
     case 'fr':
       return AppLocalizationsFr();
+    case 'pcm':
+      return AppLocalizationsPcm();
   }
 
   throw FlutterError(

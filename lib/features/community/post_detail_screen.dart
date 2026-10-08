@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 
 import '../../core/api/community_models.dart';
 import '../../core/l10n/gen/app_localizations.dart';
+import '../../core/utils/date_locale.dart';
 import '../../core/providers.dart';
 import '../../core/utils/write_flow.dart';
 import '../../shared/widgets/player_avatar.dart';
@@ -270,7 +271,7 @@ class _PostDetailScreenState extends ConsumerState<PostDetailScreen> {
 
   String _when(AppLocalizations l10n, String iso) {
     final t = DateTime.tryParse(iso)?.toLocal();
-    return t == null ? iso : DateFormat.yMMMd(l10n.localeName).add_Hm().format(t);
+    return t == null ? iso : DateFormat.yMMMd(dateLocale(l10n.localeName)).add_Hm().format(t);
   }
 }
 

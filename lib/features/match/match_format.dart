@@ -1,6 +1,7 @@
 import 'package:intl/intl.dart';
 
 import '../../core/l10n/gen/app_localizations.dart';
+import '../../core/utils/date_locale.dart';
 
 /// Localized status text; null for a status the app doesn't know (the chip is then hidden, never blank).
 String? matchStatusText(AppLocalizations l10n, String status) => switch (status) {
@@ -25,6 +26,6 @@ String roundLabel(String code) => code
 String scheduleText(AppLocalizations l10n, String? iso, {required bool isFullDay}) {
   final at = iso == null ? null : DateTime.tryParse(iso)?.toLocal();
   if (at == null) return l10n.mtcTbd;
-  final f = DateFormat.yMMMd(l10n.localeName);
+  final f = DateFormat.yMMMd(dateLocale(l10n.localeName));
   return isFullDay ? f.format(at) : f.add_jm().format(at);
 }

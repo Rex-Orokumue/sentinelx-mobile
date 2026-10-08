@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 
 import '../config/remote_config.dart';
+import 'account_models.dart';
 import 'chat_models.dart';
 import 'community_models.dart';
 import 'compete_models.dart';
@@ -22,12 +23,16 @@ class ApiException implements Exception {
     required this.code,
     required this.message,
     this.fields = const {},
+    this.details = const {},
   });
 
   final int status;
   final String code;
   final String message;
   final Map<String, String> fields;
+
+  /// Structured, code-specific data (for example deletion blockers). Never shown to the user directly.
+  final Map<String, dynamic> details;
 
   bool get isUpdateRequired => status == 426;
   bool get isUnauthorized => status == 401;
@@ -46,6 +51,15 @@ class ApiClient {
   static const Map<String, String> usedOperations = {
     'getConfig': 'get /api/mobile/v1/config',
     'getMe': 'get /api/mobile/v1/me',
+    'getMyAccount': 'get /api/mobile/v1/me/account',
+    'postAccountDeletion': 'post /api/mobile/v1/me/deletion',
+    'deleteAccountDeletion': 'delete /api/mobile/v1/me/deletion',
+    'postAccountDeletionExecute': 'post /api/mobile/v1/me/deletion/execute',
+    'postPhoneCode': 'post /api/mobile/v1/me/phone/code',
+    'postPhoneConfirm': 'post /api/mobile/v1/me/phone/confirm',
+    'postMyEmail': 'post /api/mobile/v1/me/email',
+    'deleteGoogleIdentity': 'delete /api/mobile/v1/me/identities/google',
+    'putMyLocale': 'put /api/mobile/v1/me/locale',
     'postClientError': 'post /api/mobile/v1/errors',
     'postDevice': 'post /api/mobile/v1/devices',
     'deleteDevice': 'delete /api/mobile/v1/devices',
@@ -230,11 +244,15 @@ class ApiClient {
             (k, v) => MapEntry(k, v.toString()),
           ) ??
           const <String, String>{};
+      final details = err['details'] is Map<String, dynamic>
+          ? err['details'] as Map<String, dynamic>
+          : const <String, dynamic>{};
       throw ApiException(
         status: status,
         code: err['code'] as String? ?? 'unknown',
         message: err['message'] as String? ?? 'Request failed',
         fields: fields,
+        details: details,
       );
     }
     throw ApiException(
@@ -395,6 +413,39 @@ class ApiClient {
       );
 
   Future<void> patchMeProfile(ProfileEdit edit) => _send('PATCH', '/me/profile', (_) {}, body: edit.toJson());
+
+  Future<MyAccount> getMyAccount() => _send('GET', '/me/account', (d) => MyAccount.fromJson(d! as Map<String, dynamic>));
+
+  Future<DeletionTicket> postAccountDeletion() =>
+      _send('POST', '/me/deletion', (d) => DeletionTicket.fromJson(d! as Map<String, dynamic>), body: {'confirm': 'DELETE'});
+
+  Future<void> deleteAccountDeletion() => _send('DELETE', '/me/deletion', (_) {});
+
+  Future<void> postAccountDeletionExecute(String username) =>
+      _send('POST', '/me/deletion/execute', (_) {}, body: {'username': username});
+
+  Future<PhoneCodeTicket> postPhoneCode(String phone) =>
+      _send('POST', '/me/phone/code', (d) => PhoneCodeTicket.fromJson(d! as Map<String, dynamic>), body: {'phone': phone});
+
+  Future<DateTime> postPhoneConfirm(String code) => _send(
+        'POST',
+        '/me/phone/confirm',
+        (d) => DateTime.parse((d! as Map<String, dynamic>)['verifiedAt'] as String).toUtc(),
+        body: {'code': code},
+      );
+
+  Future<String> postMyEmail({required String email, required String password}) => _send(
+        'POST',
+        '/me/email',
+        (d) => (d! as Map<String, dynamic>)['sentTo'] as String,
+        body: {'email': email, 'password': password},
+      );
+
+  Future<void> deleteGoogleIdentity(String password) =>
+      _send('DELETE', '/me/identities/google', (_) {}, body: {'password': password});
+
+  Future<String> putMyLocale(String locale) =>
+      _send('PUT', '/me/locale', (d) => (d! as Map<String, dynamic>)['locale'] as String, body: {'locale': locale});
 
   String _withQuery(String path, Map<String, Object?> query) {
     final q = <String, String>{

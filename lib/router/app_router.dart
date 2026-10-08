@@ -15,6 +15,11 @@ import '../features/support_chat/chat_screen.dart';
 import '../features/account/account_screen.dart';
 import '../features/account/edit_profile_screen.dart';
 import '../features/account/profile_onboarding_screen.dart';
+import '../features/account/settings/delete_account_screen.dart';
+import '../features/account/settings/language_screen.dart';
+import '../features/account/settings/phone_screen.dart';
+import '../features/account/settings/security_screen.dart';
+import '../features/account/settings/sign_in_methods_screen.dart';
 import '../core/api/community_models.dart';
 import '../features/community/community_feed_screen.dart';
 import '../features/community/compose_screen.dart';
@@ -42,6 +47,7 @@ import '../features/messages/inbox_screen.dart';
 import '../features/messages/requests_screen.dart';
 import '../features/notifications/notification_settings_screen.dart';
 import '../features/notifications/notifications_screen.dart';
+import '../features/onboarding/onboarding_phone_screen.dart';
 import '../features/onboarding/onboarding_username_screen.dart';
 import '../features/players/follow_list_screen.dart';
 import '../features/players/player_profile_screen.dart';
@@ -131,6 +137,10 @@ GoRouter buildAppRouter({
         path: '/onboarding/username',
         builder: (context, state) =>
             OnboardingUsernameScreen(onClaimed: () => context.go('/')),
+      ),
+      GoRoute(
+        path: '/onboarding/phone',
+        builder: (context, state) => const OnboardingPhoneScreen(),
       ),
       GoRoute(
         path: '/onboarding/profile',
@@ -466,11 +476,37 @@ GoRouter buildAppRouter({
                   onOpenProgress: () => context.push('/account/progress'),
                   onOpenNotifications: () =>
                       context.push('/account/notifications'),
+                  onOpenLanguage: () => context.push('/account/language'),
+                  onOpenSecurity: () => context.push('/account/security'),
+                  onOpenSignInMethods: () =>
+                      context.push('/account/sign-in-methods'),
+                  onOpenPhone: () => context.push('/account/phone'),
+                  onOpenDeleteAccount: () => context.push('/account/delete'),
                 ),
                 routes: [
                   GoRoute(
                     path: 'profile',
                     builder: (context, state) => const EditProfileScreen(),
+                  ),
+                  GoRoute(
+                    path: 'language',
+                    builder: (context, state) => const LanguageScreen(),
+                  ),
+                  GoRoute(
+                    path: 'security',
+                    builder: (context, state) => const SecurityScreen(),
+                  ),
+                  GoRoute(
+                    path: 'sign-in-methods',
+                    builder: (context, state) => const SignInMethodsScreen(),
+                  ),
+                  GoRoute(
+                    path: 'phone',
+                    builder: (context, state) => const PhoneScreen(),
+                  ),
+                  GoRoute(
+                    path: 'delete',
+                    builder: (context, state) => const DeleteAccountScreen(),
                   ),
                   GoRoute(
                     path: 'notifications',

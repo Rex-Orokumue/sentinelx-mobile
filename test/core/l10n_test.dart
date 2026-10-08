@@ -13,4 +13,11 @@ void main() {
     final en = _keys('lib/core/l10n/app_en.arb');
     expect(_keys('lib/core/l10n/app_fr.arb'), en);
   });
+
+  test('Pidgin is a subset of the English template; missing keys fall back to English', () {
+    final en = _keys('lib/core/l10n/app_en.arb');
+    final pcm = _keys('lib/core/l10n/app_pcm.arb');
+    expect(pcm.difference(en), isEmpty, reason: 'delete these from app_pcm.arb: web keys en never imported');
+    expect(pcm, isNotEmpty);
+  });
 }

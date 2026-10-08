@@ -16,10 +16,17 @@ final installedVersionProvider =
 
 final supabaseClientProvider = Provider<SupabaseClient>((ref) => Supabase.instance.client);
 
+/// The current Supabase session, then every change.
+///
+/// Error events on `onAuthStateChange` are dropped, not forwarded. supabase_flutter reports problems there
+/// that are not sign-outs: an OAuth callback that carries an error (the user cancelled or denied the Google
+/// link), a retryable token-refresh failure, a bad email-link. Forwarding one would put this provider in
+/// `AsyncError`, which `meProvider` reads as "signed out" until the next auth event (up to an hour or a restart).
+/// gotrue has already logged the error by the time it is emitted.
 final sessionProvider = StreamProvider<Session?>((ref) async* {
   final auth = ref.watch(supabaseClientProvider).auth;
   yield auth.currentSession;
-  yield* auth.onAuthStateChange.map((state) => state.session);
+  yield* auth.onAuthStateChange.handleError((Object _) {}).map((state) => state.session);
 });
 
 /// Who is looking: the signed-in user's id, or null when signed out. Everything caller-specific watches

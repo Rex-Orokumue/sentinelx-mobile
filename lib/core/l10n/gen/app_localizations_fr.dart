@@ -3115,4 +3115,451 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get chatDestHelp => 'Ouvrir l\'aide';
+
+  @override
+  String get mobileSettingsHubTitle => 'Paramètres';
+
+  @override
+  String get mobileSettingsHubProfile => 'Profil';
+
+  @override
+  String get mobileSettingsHubNotifications => 'Notifications';
+
+  @override
+  String get mobileSettingsHubLanguage => 'Langue';
+
+  @override
+  String get mobileSettingsHubSecurity => 'Sécurité';
+
+  @override
+  String get mobileSettingsHubSignInMethods => 'Méthodes de connexion';
+
+  @override
+  String get mobileSettingsHubPhone => 'Vérification du téléphone';
+
+  @override
+  String get mobileSettingsHubDeleteAccount => 'Supprimer le compte';
+
+  @override
+  String get mobileSettingsLanguageTitle => 'Langue';
+
+  @override
+  String get mobileSettingsLanguageEnglish => 'English';
+
+  @override
+  String get mobileSettingsLanguageFrench => 'Français';
+
+  @override
+  String get mobileSettingsLanguagePidgin => 'Pidgin';
+
+  @override
+  String get mobileSettingsLanguageSaveFailed =>
+      'Impossible d\'enregistrer votre langue. Veuillez réessayer.';
+
+  @override
+  String get mobileSettingsSecurityTitle => 'Sécurité';
+
+  @override
+  String get mobileSettingsSecurityEmailRow => 'E-mail';
+
+  @override
+  String get mobileSettingsSecurityChangeEmail => 'Changer d\'e-mail';
+
+  @override
+  String get mobileSettingsSecurityPasswordRow => 'Mot de passe';
+
+  @override
+  String get mobileSettingsSecuritySetPassword =>
+      'Définir ou réinitialiser le mot de passe';
+
+  @override
+  String get mobileSettingsSecuritySetPasswordHint =>
+      'Nous enverrons un lien à votre adresse actuelle. L\'ouvrir prouve que le compte est le vôtre.';
+
+  @override
+  String get mobileSettingsSecurityResetSent =>
+      'Consultez votre boîte de réception : un lien pour définir un nouveau mot de passe vous a été envoyé.';
+
+  @override
+  String get mobileSettingsPhoneTitle => 'Vérification du téléphone';
+
+  @override
+  String get mobileSettingsPhoneNumberLabel => 'Numéro WhatsApp';
+
+  @override
+  String get mobileSettingsPhoneSendCode => 'Envoyer le code';
+
+  @override
+  String get mobileSettingsPhoneCodeLabel => 'Code à 6 chiffres';
+
+  @override
+  String get mobileSettingsPhoneConfirm => 'Vérifier';
+
+  @override
+  String get mobileSettingsPhoneResend => 'Renvoyer le code';
+
+  @override
+  String mobileSettingsPhoneResendIn(String seconds) {
+    return 'Renvoyer dans $seconds s';
+  }
+
+  @override
+  String mobileSettingsPhoneVerified(String masked) {
+    return 'Vérifié : $masked';
+  }
+
+  @override
+  String get mobileSettingsPhoneUnavailable =>
+      'La vérification est indisponible pour le moment. Veuillez réessayer plus tard.';
+
+  @override
+  String get mobileSettingsPhoneErrorInvalid =>
+      'Saisissez un numéro valide, avec l\'indicatif de votre pays si vous êtes hors du Nigeria.';
+
+  @override
+  String get mobileSettingsPhoneErrorCooldown =>
+      'Veuillez patienter un instant avant de demander un autre code.';
+
+  @override
+  String get mobileSettingsPhoneErrorDailyLimit =>
+      'Trop de codes demandés aujourd\'hui. Veuillez réessayer demain.';
+
+  @override
+  String get mobileSettingsPhoneErrorSendFailed =>
+      'Impossible d\'envoyer le message WhatsApp. Veuillez réessayer.';
+
+  @override
+  String get mobileSettingsPhoneErrorCodeInvalid =>
+      'Saisissez le code à 6 chiffres.';
+
+  @override
+  String get mobileSettingsPhoneErrorCodeMissing =>
+      'Demandez d\'abord un nouveau code.';
+
+  @override
+  String get mobileSettingsPhoneErrorCodeExpired =>
+      'Ce code a expiré. Demandez-en un nouveau.';
+
+  @override
+  String get mobileSettingsPhoneErrorCodeWrong => 'Ce code n\'est pas correct.';
+
+  @override
+  String get mobileSettingsPhoneErrorAttempts =>
+      'Trop de tentatives incorrectes. Demandez un nouveau code.';
+
+  @override
+  String get mobileSettingsDeleteAccountTitle => 'Supprimer le compte';
+
+  @override
+  String get mobileSettingsDeleteFailed =>
+      'Impossible de terminer cette action. Veuillez réessayer.';
+
+  @override
+  String get mobileSettingsReauthRateLimited =>
+      'Trop de tentatives. Veuillez réessayer plus tard.';
+
+  @override
+  String get mobileSettingsLinkingUnavailable =>
+      'Cette option n\'est pas disponible pour le moment. Veuillez contacter le support.';
+
+  @override
+  String get mobileSettingsGenericError =>
+      'Une erreur s\'est produite. Veuillez réessayer.';
+
+  @override
+  String get mobileSettingsNetworkError =>
+      'Pas de connexion. Vérifiez votre réseau et réessayez.';
+
+  @override
+  String get accountDeletionTitle => 'Supprimer le compte';
+
+  @override
+  String accountDeletionScheduledFor(String date) {
+    return 'Votre compte sera définitivement supprimé le $date.';
+  }
+
+  @override
+  String get accountDeletionCanCancel =>
+      'D\'ici là, vous pouvez vous connecter et annuler à tout moment.';
+
+  @override
+  String get accountDeletionHistoryKept =>
+      'Votre historique de matchs et vos résultats de tournois resteront visibles sous « Joueur supprimé ».';
+
+  @override
+  String accountDeletionUsernameRetired(String username) {
+    return 'Votre nom d\'utilisateur $username sera retiré et ne pourra plus jamais être utilisé.';
+  }
+
+  @override
+  String get accountDeletionEmailReusable =>
+      'L\'adresse e-mail du compte pourra servir à créer un nouveau compte plus tard.';
+
+  @override
+  String get accountDeletionTypeDelete => 'Tapez DELETE pour confirmer.';
+
+  @override
+  String get accountDeletionConfirmButton => 'Programmer la suppression';
+
+  @override
+  String get accountDeletionConfirmButtonPending => 'Programmation…';
+
+  @override
+  String get accountDeletionDeleteNowTitle => 'Supprimer immédiatement';
+
+  @override
+  String get accountDeletionDeleteNowWarning =>
+      'Cela ignore le délai de grâce de 15 jours. Votre compte est supprimé immédiatement. Aucune annulation, aucun retour en arrière.';
+
+  @override
+  String accountDeletionDeleteNowPrompt(String username) {
+    return 'Tapez votre nom d\'utilisateur $username pour confirmer.';
+  }
+
+  @override
+  String get accountDeletionDeleteNowButton => 'Supprimer définitivement';
+
+  @override
+  String get accountDeletionDeleteNowButtonPending => 'Suppression…';
+
+  @override
+  String get accountDeletionCancel => 'Annuler';
+
+  @override
+  String get accountDeletionPendingHeading => 'Suppression programmée';
+
+  @override
+  String accountDeletionPendingBody(String date, String days) {
+    return 'Votre compte sera supprimé le $date — $days jours restants.';
+  }
+
+  @override
+  String accountDeletionBannerText(String date, String days) {
+    return 'Votre compte est programmé pour suppression le $date — $days jours restants.';
+  }
+
+  @override
+  String get accountDeletionBannerCancel => 'Annuler la suppression';
+
+  @override
+  String get accountDeletionBannerCancelling => 'Annulation…';
+
+  @override
+  String get accountDeletionBlockedTitle =>
+      'Vous ne pouvez pas encore supprimer votre compte :';
+
+  @override
+  String accountDeletionBlockerWalletBalance(String amount) {
+    return '$amount sur votre portefeuille — retirez-les ou dépensez-les';
+  }
+
+  @override
+  String accountDeletionBlockerWithdrawal(String count) {
+    return '$count retrait en attente — attendez son paiement';
+  }
+
+  @override
+  String accountDeletionBlockerEscrow(String count) {
+    return '$count commande Exchange en cours — terminez-la ou annulez-la';
+  }
+
+  @override
+  String accountDeletionBlockerListing(String count) {
+    return '$count annonce Exchange active — retirez-la';
+  }
+
+  @override
+  String get accountDeletionBlockerTournament =>
+      'Vous participez à un tournoi en cours — attendez la fin';
+
+  @override
+  String accountDeletionBlockerMatch(String count) {
+    return '$count match non terminé — jouez-le ou résolvez-le';
+  }
+
+  @override
+  String accountDeletionBlockerFriendly(String count) {
+    return '$count match amical non terminé — jouez-le ou refusez-le';
+  }
+
+  @override
+  String get accountDeletionRestricted =>
+      'Votre compte est programmé pour suppression. Annulez la suppression dans les Paramètres pour faire cela.';
+
+  @override
+  String get emailChangeTitle => 'Changer d\'e-mail';
+
+  @override
+  String get emailChangeOpen => 'Changer d\'e-mail →';
+
+  @override
+  String get emailChangeNewLabel => 'Nouvelle adresse e-mail';
+
+  @override
+  String get emailChangePasswordLabel => 'Mot de passe actuel';
+
+  @override
+  String get emailChangePasswordHint =>
+      'Votre mot de passe confirme que c\'est bien vous — sans lui, toute personne trouvant votre compte connecté pourrait le transférer vers sa propre boîte mail.';
+
+  @override
+  String get emailChangeSubmit => 'Envoyer le lien de confirmation';
+
+  @override
+  String get emailChangeSending => 'Envoi…';
+
+  @override
+  String get emailChangeCancel => 'Annuler';
+
+  @override
+  String emailChangeSent(String email) {
+    return 'Lien de confirmation envoyé à $email. Votre adresse ne change pas tant que vous n\'avez pas ouvert ce lien.';
+  }
+
+  @override
+  String get emailChangeSentSpam =>
+      'Vérifiez vos spams si le message n\'arrive pas.';
+
+  @override
+  String emailChangePending(String email) {
+    return 'En attente : $email';
+  }
+
+  @override
+  String get emailChangePendingHint =>
+      'Nous attendons votre confirmation depuis cette boîte mail.';
+
+  @override
+  String get emailChangeGoogleHint =>
+      'Connecté avec Google ? Si vous n\'avez jamais défini de mot de passe, utilisez d\'abord « Changer le mot de passe » ci-dessus — le lien est envoyé à votre boîte mail actuelle.';
+
+  @override
+  String get emailChangeGoogleSurvives =>
+      'La connexion Google continuera de fonctionner après ce changement — elle est liée à votre compte Google, pas à votre e-mail. Supprimez-la sous « Méthodes de connexion » ci-dessous.';
+
+  @override
+  String get emailChangeChanged => 'Votre adresse e-mail a été mise à jour.';
+
+  @override
+  String get emailChangeErrorsInvalidEmail =>
+      'Saisissez une adresse e-mail valide.';
+
+  @override
+  String get emailChangeErrorsPasswordRequired =>
+      'Saisissez votre mot de passe actuel.';
+
+  @override
+  String get emailChangeErrorsNotLoggedIn =>
+      'Votre session a expiré. Veuillez vous reconnecter.';
+
+  @override
+  String get emailChangeErrorsGoogleOnly =>
+      'Votre compte se connecte avec Google : il n\'y a donc aucun mot de passe à confirmer. Utilisez « Changer le mot de passe » ci-dessus pour en définir un, puis vous pourrez changer votre e-mail.';
+
+  @override
+  String get emailChangeErrorsSameEmail => 'C\'est déjà votre adresse e-mail.';
+
+  @override
+  String get emailChangeErrorsWrongPassword =>
+      'Ce mot de passe n\'est pas correct.';
+
+  @override
+  String get emailChangeErrorsEmailBanned =>
+      'Nous ne pouvons pas utiliser cette adresse e-mail.';
+
+  @override
+  String get emailChangeErrorsEmailInUse =>
+      'Cette adresse e-mail est déjà utilisée.';
+
+  @override
+  String get emailChangeErrorsFailed =>
+      'Impossible de lancer le changement d\'e-mail. Veuillez réessayer.';
+
+  @override
+  String get signInMethodsTitle => 'Méthodes de connexion';
+
+  @override
+  String get signInMethodsIntro =>
+      'La connexion Google est liée à votre compte Google, pas à votre adresse e-mail — changer d\'e-mail ne la supprime pas.';
+
+  @override
+  String get signInMethodsGoogle => 'Google';
+
+  @override
+  String get signInMethodsEmailPassword => 'E-mail et mot de passe';
+
+  @override
+  String get signInMethodsLinked => 'Liée';
+
+  @override
+  String get signInMethodsNotLinked => 'Non liée';
+
+  @override
+  String get signInMethodsNotSet => 'Non configurée';
+
+  @override
+  String get signInMethodsLink => 'Lier Google';
+
+  @override
+  String get signInMethodsLinkedOk =>
+      'La connexion Google est désormais liée à votre compte.';
+
+  @override
+  String get signInMethodsLinkFailed =>
+      'Impossible de lier ce compte Google — il est peut-être déjà rattaché à un autre compte SentinelX.';
+
+  @override
+  String get signInMethodsUnlink => 'Délier';
+
+  @override
+  String get signInMethodsUnlinkConfirm => 'Délier Google';
+
+  @override
+  String get signInMethodsUnlinkConfirming => 'Déliaison…';
+
+  @override
+  String get signInMethodsUnlinkExplain =>
+      'Cela supprime la connexion Google de votre compte et vous déconnecte partout ailleurs.';
+
+  @override
+  String get signInMethodsRelinkWarning =>
+      'Se reconnecter avec Google rétablira le lien, car votre compte utilise la même adresse e-mail. Pour retirer complètement l\'accès de ce compte, changez aussi votre e-mail.';
+
+  @override
+  String get signInMethodsOnlyMethod =>
+      'C\'est le seul accès à votre compte, il ne peut donc pas être supprimé.';
+
+  @override
+  String get signInMethodsPasswordLabel => 'Mot de passe actuel';
+
+  @override
+  String get signInMethodsCancel => 'Annuler';
+
+  @override
+  String get signInMethodsErrorsPasswordRequired =>
+      'Saisissez votre mot de passe actuel.';
+
+  @override
+  String get signInMethodsErrorsNotLoggedIn =>
+      'Votre session a expiré. Veuillez vous reconnecter.';
+
+  @override
+  String get signInMethodsErrorsWrongPassword =>
+      'Ce mot de passe n\'est pas correct.';
+
+  @override
+  String get signInMethodsErrorsNotLinked =>
+      'Google n\'est pas lié à ce compte.';
+
+  @override
+  String get signInMethodsErrorsLastIdentity =>
+      'C\'est le seul accès à votre compte — configurez d\'abord la connexion par e-mail et mot de passe.';
+
+  @override
+  String get signInMethodsErrorsUnavailable =>
+      'La dissociation n\'est pas disponible pour le moment. Veuillez contacter l\'assistance.';
+
+  @override
+  String get signInMethodsErrorsFailed =>
+      'Impossible de délier Google. Veuillez réessayer.';
 }

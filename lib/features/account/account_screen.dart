@@ -16,6 +16,11 @@ class AccountScreen extends ConsumerStatefulWidget {
     this.onEditProfile,
     this.onOpenProgress,
     this.onOpenNotifications,
+    this.onOpenLanguage,
+    this.onOpenSecurity,
+    this.onOpenSignInMethods,
+    this.onOpenPhone,
+    this.onOpenDeleteAccount,
   });
 
   final VoidCallback onLogIn;
@@ -24,6 +29,11 @@ class AccountScreen extends ConsumerStatefulWidget {
   final VoidCallback? onEditProfile;
   final VoidCallback? onOpenProgress;
   final VoidCallback? onOpenNotifications;
+  final VoidCallback? onOpenLanguage;
+  final VoidCallback? onOpenSecurity;
+  final VoidCallback? onOpenSignInMethods;
+  final VoidCallback? onOpenPhone;
+  final VoidCallback? onOpenDeleteAccount;
 
   @override
   ConsumerState<AccountScreen> createState() => _AccountScreenState();
@@ -65,7 +75,8 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Center(
-          child: me.when(
+          child: SingleChildScrollView(
+            child: me.when(
             loading: () => const CircularProgressIndicator(key: Key('account-loading')),
             error: (_, _) => Column(
               mainAxisSize: MainAxisSize.min,
@@ -111,6 +122,41 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
                           trailing: const Icon(Icons.chevron_right),
                           onTap: widget.onOpenNotifications,
                         ),
+                      if (widget.onOpenLanguage != null)
+                        ListTile(
+                          key: const Key('account-language'),
+                          title: Text(l10n.mobileSettingsHubLanguage),
+                          trailing: const Icon(Icons.chevron_right),
+                          onTap: widget.onOpenLanguage,
+                        ),
+                      if (widget.onOpenSecurity != null)
+                        ListTile(
+                          key: const Key('account-security'),
+                          title: Text(l10n.mobileSettingsHubSecurity),
+                          trailing: const Icon(Icons.chevron_right),
+                          onTap: widget.onOpenSecurity,
+                        ),
+                      if (widget.onOpenSignInMethods != null)
+                        ListTile(
+                          key: const Key('account-sign-in-methods'),
+                          title: Text(l10n.mobileSettingsHubSignInMethods),
+                          trailing: const Icon(Icons.chevron_right),
+                          onTap: widget.onOpenSignInMethods,
+                        ),
+                      if (widget.onOpenPhone != null)
+                        ListTile(
+                          key: const Key('account-phone'),
+                          title: Text(l10n.mobileSettingsHubPhone),
+                          trailing: const Icon(Icons.chevron_right),
+                          onTap: widget.onOpenPhone,
+                        ),
+                      if (widget.onOpenDeleteAccount != null)
+                        ListTile(
+                          key: const Key('account-delete'),
+                          title: Text(l10n.mobileSettingsHubDeleteAccount),
+                          trailing: const Icon(Icons.chevron_right),
+                          onTap: widget.onOpenDeleteAccount,
+                        ),
                       TextButton(
                         key: const Key('account-sign-out'),
                         onPressed: _signingOut ? null : _signOut,
@@ -122,6 +168,7 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
                       ],
                     ],
                   ),
+            ),
           ),
         ),
       ),
