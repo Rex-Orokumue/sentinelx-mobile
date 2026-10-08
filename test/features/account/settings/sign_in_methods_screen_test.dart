@@ -21,7 +21,7 @@ class _FakeLinker implements GoogleLinker {
   }
 }
 
-Future<AppLocalizations> _pump(WidgetTester tester, FakeAccountRepository repo, _FakeLinker linker) async {
+Future<AppLocalizations> _pump(WidgetTester tester, FakeAccountRepository repo, GoogleLinker linker) async {
   tester.view.physicalSize = const Size(375, 900);
   tester.view.devicePixelRatio = 1;
   addTearDown(tester.view.reset);
@@ -68,6 +68,13 @@ void main() {
     await tester.tap(find.byKey(const Key('signin-link-google')));
     await tester.pumpAndSettle();
     expect(find.text(l10n.mobileSettingsLinkingUnavailable), findsOneWidget);
+  });
+
+  testWidgets('a browser launch that returns false shows the link-failed message', (tester) async {
+    final l10n = await _pump(tester, FakeAccountRepository(), SupabaseGoogleLinker(() async => false));
+    await tester.tap(find.byKey(const Key('signin-link-google')));
+    await tester.pumpAndSettle();
+    expect(find.text(l10n.signInMethodsLinkFailed), findsOneWidget);
   });
 
   testWidgets('an untyped error mentioning manual linking uses the generic failure copy', (tester) async {
