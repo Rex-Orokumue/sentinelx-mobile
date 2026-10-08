@@ -87,13 +87,6 @@ class _PhoneVerifyFormState extends ConsumerState<PhoneVerifyForm> {
     }
   }
 
-  Future<void> _resendFromCodeStep() async {
-    // Same call as the first send, with the number the user already typed (the field is read-only now).
-    setState(() => _codeSent = false);
-    await _send();
-    if (mounted && _error != null) setState(() => _codeSent = true);
-  }
-
   Future<void> _confirm() async {
     final code = _code.text.trim();
     if (_busy) return;
@@ -158,7 +151,7 @@ class _PhoneVerifyFormState extends ConsumerState<PhoneVerifyForm> {
           FilledButton(key: const Key('phone-confirm'), onPressed: _busy ? null : _confirm, child: Text(l10n.mobileSettingsPhoneConfirm)),
           TextButton(
             key: const Key('phone-resend'),
-            onPressed: (_busy || _secondsLeft > 0) ? null : _resendFromCodeStep,
+            onPressed: (_busy || _secondsLeft > 0) ? null : _send,
             child: Text(_secondsLeft > 0 ? l10n.mobileSettingsPhoneResendIn('$_secondsLeft') : l10n.mobileSettingsPhoneResend),
           ),
         ],
