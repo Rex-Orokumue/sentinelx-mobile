@@ -67,7 +67,7 @@ class LocaleNotifier extends Notifier<Locale?> {
     _chosen = true;
     state = Locale(code);
     await _write(code);
-    if (ref.read(meProvider).asData?.value == null) return true;
+    if (await ref.read(viewerIdProvider.future) == null) return true;
     try {
       await ref.read(accountRepositoryProvider).setLocale(code);
       return true;

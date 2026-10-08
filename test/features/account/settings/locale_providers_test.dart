@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -34,6 +35,7 @@ void main() {
         overrides: [
           accountRepositoryProvider.overrideWithValue(repo),
           localKvProvider.overrideWith((ref) async => kv),
+          viewerIdProvider.overrideWith((ref) async => signedIn ? 'u1' : null),
           meProvider.overrideWith((ref) async => signedIn ? _me(serverLocale) : null),
         ],
       );
@@ -86,6 +88,57 @@ void main() {
     expect(c.read(localeProvider), const Locale('pcm'));
     expect(repo.lastLocale, 'pcm');
     expect(kv.values['app.locale'], 'pcm');
+  });
+
+  test('select saves while /me is refreshing', () async {
+    final refresh = Completer<MeResponse?>();
+    var calls = 0;
+    c = ProviderContainer(
+      retry: (_, _) => null,
+      overrides: [
+        accountRepositoryProvider.overrideWithValue(repo),
+        localKvProvider.overrideWith((ref) async => kv),
+        viewerIdProvider.overrideWith((ref) async => 'u1'),
+        meProvider.overrideWith((ref) {
+          calls++;
+          return calls == 1 ? Future.value(_me('fr')) : refresh.future;
+        }),
+      ],
+    );
+    addTearDown(c.dispose);
+    c.listen(localeProvider, (_, _) {});
+    await c.read(meProvider.future);
+    c.invalidate(meProvider);
+    await _settle();
+    expect(c.read(meProvider).isLoading, isTrue);
+
+    expect(await c.read(localeProvider.notifier).select('pcm'), isTrue);
+    expect(repo.lastLocale, 'pcm');
+    refresh.complete(_me('fr'));
+    await c.read(meProvider.future);
+    expect(c.read(localeProvider), const Locale('pcm'));
+  });
+
+  test('select saves before the first /me response for a signed-in viewer', () async {
+    final firstMe = Completer<MeResponse?>();
+    c = ProviderContainer(
+      retry: (_, _) => null,
+      overrides: [
+        accountRepositoryProvider.overrideWithValue(repo),
+        localKvProvider.overrideWith((ref) async => kv),
+        viewerIdProvider.overrideWith((ref) async => 'u1'),
+        meProvider.overrideWith((ref) => firstMe.future),
+      ],
+    );
+    addTearDown(c.dispose);
+    c.listen(localeProvider, (_, _) {});
+    expect(c.read(meProvider).asData, isNull);
+
+    expect(await c.read(localeProvider.notifier).select('pcm'), isTrue);
+    expect(repo.lastLocale, 'pcm');
+    firstMe.complete(_me('fr'));
+    await c.read(meProvider.future);
+    expect(c.read(localeProvider), const Locale('pcm'));
   });
 
   test('a failed save reverts both the UI and the cache', () async {
