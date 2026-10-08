@@ -29,6 +29,7 @@ Future<void> _pump(WidgetTester tester, FakeAccountRepository repo) async {
     overrides: [
       accountRepositoryProvider.overrideWithValue(repo),
       localKvProvider.overrideWith((ref) async => MemoryLocalKv()),
+      viewerIdProvider.overrideWith((ref) async => 'u1'),
       meProvider.overrideWith((ref) async => _me()),
     ],
     child: Consumer(builder: (context, ref, _) {
