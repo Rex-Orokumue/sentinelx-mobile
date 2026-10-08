@@ -7,6 +7,7 @@ import 'package:sentinelx_mobile/core/providers.dart';
 import 'package:sentinelx_mobile/features/account/settings/account_repository.dart';
 import 'package:sentinelx_mobile/features/account/settings/google_linker.dart';
 import 'package:sentinelx_mobile/features/account/settings/sign_in_methods_screen.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
 import '../../../fakes/fake_account_repository.dart';
 
@@ -61,11 +62,20 @@ void main() {
   });
 
   testWidgets('manual linking disabled shows the unavailable message, not a retry prompt', (tester) async {
-    final linker = _FakeLinker()..error = Exception('manual_linking_disabled');
+    final linker = _FakeLinker()
+      ..error = const supabase.AuthException('Linking unavailable', code: 'manual_linking_disabled');
     final l10n = await _pump(tester, FakeAccountRepository(), linker);
     await tester.tap(find.byKey(const Key('signin-link-google')));
     await tester.pumpAndSettle();
     expect(find.text(l10n.mobileSettingsLinkingUnavailable), findsOneWidget);
+  });
+
+  testWidgets('an untyped error mentioning manual linking uses the generic failure copy', (tester) async {
+    final linker = _FakeLinker()..error = StateError('manual_linking_disabled appears in message');
+    final l10n = await _pump(tester, FakeAccountRepository(), linker);
+    await tester.tap(find.byKey(const Key('signin-link-google')));
+    await tester.pumpAndSettle();
+    expect(find.text(l10n.signInMethodsLinkFailed), findsOneWidget);
   });
 
   testWidgets('coming back from the browser round-trip refetches the account so a successful link shows', (tester) async {
