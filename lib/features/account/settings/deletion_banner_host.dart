@@ -72,15 +72,23 @@ class _BannerState extends ConsumerState<_Banner> {
         bottom: false,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-          child: Row(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(Icons.warning_amber_rounded, color: Colors.amber),
-              const SizedBox(width: 8),
-              Expanded(child: Text(text, style: Theme.of(context).textTheme.bodySmall)),
-              TextButton(
-                key: const Key('deletion-banner-cancel'),
-                onPressed: _cancelling ? null : _cancel,
-                child: Text(_cancelling ? l10n.accountDeletionBannerCancelling : l10n.accountDeletionBannerCancel),
+              Row(
+                children: [
+                  const Icon(Icons.warning_amber_rounded, color: Colors.amber),
+                  const SizedBox(width: 8),
+                  Expanded(child: Text(text, style: Theme.of(context).textTheme.bodySmall)),
+                ],
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  key: const Key('deletion-banner-cancel'),
+                  onPressed: _cancelling ? null : _cancel,
+                  child: Text(_cancelling ? l10n.accountDeletionBannerCancelling : l10n.accountDeletionBannerCancel),
+                ),
               ),
             ],
           ),
