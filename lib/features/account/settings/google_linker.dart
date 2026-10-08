@@ -12,15 +12,18 @@ abstract class GoogleLinker {
 }
 
 class SupabaseGoogleLinker implements GoogleLinker {
-  SupabaseGoogleLinker(this._auth);
-  final GoTrueClient _auth;
+  SupabaseGoogleLinker(this._launch);
+  final Future<bool> Function() _launch;
 
   static const redirectTo = 'ng.com.sentinelxesports.app://link-callback';
 
   @override
   Future<void> link() async {
-    await _auth.linkIdentity(OAuthProvider.google, redirectTo: redirectTo);
+    if (!await _launch()) throw StateError('No browser could open the Google link.');
   }
 }
 
-final googleLinkerProvider = Provider<GoogleLinker>((ref) => SupabaseGoogleLinker(ref.watch(supabaseClientProvider).auth));
+final googleLinkerProvider = Provider<GoogleLinker>((ref) {
+  final auth = ref.watch(supabaseClientProvider).auth;
+  return SupabaseGoogleLinker(() => auth.linkIdentity(OAuthProvider.google, redirectTo: SupabaseGoogleLinker.redirectTo));
+});
