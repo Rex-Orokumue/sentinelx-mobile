@@ -16,3 +16,4 @@
 ## Landed slices
 
 - 2026-10-08 · Phase 6e locale persistence · `fix/6e-locale-save` → mobile `c6ed0bd` (web: none) · mobile `flutter test`: 1,528 passed; `flutter analyze`: no issues · Ruling: viewer ID, rather than `/me` loading state, determines whether to save. Riverpod retained the previous `/me` value during an ordinary refetch, so the handoff's stated refetch bug did not reproduce; the signed-in first-load case did fail and was fixed. Open items: the remaining Phase 6e leftovers, then Phase 6d onward; device pass pending.
+- 2026-10-08 · Phase 6e phone resend · `fix/6e-phone-resend` → mobile `8b62c86` (web: none) · mobile `flutter test`: 1,529 passed; `flutter analyze`: no issues · Ruling: resend uses the same request routine while retaining the code step; the number remains disabled. Cost if wrong: none identified beyond the existing server cooldown behavior. Open items: Phase 6e layout, Google link, number formatting and web leftovers; device pass pending.
