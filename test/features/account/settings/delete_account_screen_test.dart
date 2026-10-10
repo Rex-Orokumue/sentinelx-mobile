@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:sentinelx_mobile/core/api/account_models.dart';
 import 'package:sentinelx_mobile/core/api/api_client.dart';
 import 'package:sentinelx_mobile/core/api/models.dart';
 import 'package:sentinelx_mobile/core/auth/auth_providers.dart';
 import 'package:sentinelx_mobile/core/auth/auth_repository.dart';
 import 'package:sentinelx_mobile/core/l10n/gen/app_localizations.dart';
+import 'package:sentinelx_mobile/core/l10n/fallback_delegates.dart';
 import 'package:sentinelx_mobile/core/providers.dart';
 import 'package:sentinelx_mobile/features/account/settings/account_repository.dart';
 import 'package:sentinelx_mobile/features/account/settings/delete_account_screen.dart';
@@ -35,7 +37,7 @@ MeResponse _me({String? deletionRequestedAt}) => MeResponse(
       ),
     );
 
-Future<AppLocalizations> _pump(WidgetTester tester, FakeAccountRepository repo, _FakeAuth auth, {MeResponse? me}) async {
+Future<AppLocalizations> _pump(WidgetTester tester, FakeAccountRepository repo, _FakeAuth auth, {MeResponse? me, String locale = 'en'}) async {
   tester.view.physicalSize = const Size(375, 1200);
   tester.view.devicePixelRatio = 1;
   addTearDown(tester.view.reset);
@@ -53,7 +55,8 @@ Future<AppLocalizations> _pump(WidgetTester tester, FakeAccountRepository repo, 
     ],
     child: MaterialApp.router(
       routerConfig: router,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      locale: Locale(locale),
+      localizationsDelegates: appLocalizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
     ),
   ));
@@ -107,6 +110,23 @@ void main() {
     expect(find.text(l10n.accountDeletionBlockerWithdrawal('2')), findsOneWidget);
     expect(find.byKey(const Key('blocker-unknown')), findsOneWidget); // an unknown code still gets a line
   });
+
+  for (final locale in ['fr', 'pcm']) {
+    testWidgets('wallet blocker formats its amount for $locale', (tester) async {
+      final repo = FakeAccountRepository()
+        ..deletionError = const ApiException(status: 409, code: 'deletion_blocked', message: 'x', details: {
+          'blockers': [{'code': 'wallet_balance', 'amount': 5000}],
+        });
+      final l10n = await _pump(tester, repo, _FakeAuth(), locale: locale);
+      await tester.ensureVisible(find.byKey(const Key('delete-schedule')));
+      await tester.enterText(find.byKey(const Key('delete-confirm-field')), 'DELETE');
+      await tester.pump();
+      await tester.tap(find.byKey(const Key('delete-schedule')));
+      await tester.pumpAndSettle();
+      final formatted = NumberFormat.decimalPattern(locale == 'fr' ? 'fr' : 'en').format(5000);
+      expect(find.text(l10n.accountDeletionBlockerWalletBalance('₦$formatted')), findsOneWidget);
+    });
+  }
 
   testWidgets('pending: shows the countdown and Cancel deletion cancels', (tester) async {
     final repo = FakeAccountRepository()

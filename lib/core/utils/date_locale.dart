@@ -12,3 +12,12 @@ String dateLocale(String localeName) {
     return 'en';
   }
 }
+
+/// NumberFormat has no Pidgin data. Keep supported number grouping and use English otherwise.
+String numberLocale(String localeName) {
+  try {
+    return NumberFormat.localeExists(localeName) ? localeName : 'en';
+  } catch (_) {
+    return 'en';
+  }
+}

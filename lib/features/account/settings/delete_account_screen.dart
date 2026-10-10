@@ -12,7 +12,7 @@ import '../../../core/utils/date_locale.dart';
 import 'account_error_copy.dart';
 import 'account_repository.dart';
 
-String _formatAmount(num amount) => '₦${NumberFormat.decimalPattern('en').format(amount)}';
+String _formatAmount(num amount, String localeName) => '₦${NumberFormat.decimalPattern(numberLocale(localeName)).format(amount)}';
 
 const _knownBlockers = {
   'wallet_balance',
@@ -29,7 +29,7 @@ const _knownBlockers = {
 Widget _blockerLine(AppLocalizations l10n, DeletionBlocker b) {
   final count = '${b.count ?? 0}';
   final text = switch (b.code) {
-    'wallet_balance' => l10n.accountDeletionBlockerWalletBalance(_formatAmount(b.amount ?? 0)),
+    'wallet_balance' => l10n.accountDeletionBlockerWalletBalance(_formatAmount(b.amount ?? 0, l10n.localeName)),
     'pending_withdrawal' => l10n.accountDeletionBlockerWithdrawal(count),
     'open_escrow_order' => l10n.accountDeletionBlockerEscrow(count),
     'active_listing' => l10n.accountDeletionBlockerListing(count),
