@@ -6,6 +6,7 @@
 
 ## Rulings
 
+- 2026-10-10 · Phase 6d: the current username is the referral code; one owner-scoped read provides the full panel; expose only the web panel's invited-player fields; explicit App Links take precedence over a stored Play install referrer; do not add a public Play CTA before a listing exists. Costs if wrong: username changes invalidate old links, very large invite lists may need pagination, privacy requirements could reduce visible fields, unattributed installs need a fresh link, and install-first referrals remain web-only until store distribution.
 - 2026-10-08 · Phase 6e locale save: use the signed-in viewer ID to decide whether a language choice is saved to `/me/locale`. A pending `/me` response does not establish that the player is signed out. Cost if wrong: a choice may wait for the session's first value before completing; the server still authorizes the write.
 - 2026-10-10 · Phase 6e cancellation: a no-op cancellation returns success without sending an email. Cost if wrong: a caller expecting an email on a no-op request will no longer receive one.
 
@@ -13,6 +14,7 @@
 
 - Phase 5 and Phase 6e physical-device passes remain pending by the owner's choice; see `TESTING-NOTES.md`.
 - No Phase 6e write endpoint has been exercised against a live server in this takeover.
+- Phase 6d real App Links, Play Install Referrer delivery and WhatsApp sharing await a physical-device pass; no live Play listing exists for an install CTA.
 
 ## Landed slices
 
@@ -25,3 +27,4 @@
 - 2026-10-10 · Phase 6e cancellation email · `fix/6e-cancel-deletion-email` → web `8127a23` (mobile: none) · web Vitest: 2,987 passed with two workers; TypeScript, Next lint and staging-backed build passed · Ruling: cancelling with no pending deletion is an idempotent success and sends no email; a matched pending row sends one. Cost if wrong: a caller expecting an email on a no-op cancellation will no longer receive one. Characterization: the pre-existing pending-row test remained; a no-pending regression test failed before the fix. Open items: OTP-slot refund, delete-now re-auth limit, device pass pending.
 - 2026-10-10 · Phase 6e OTP slot refund · `fix/6e-otp-slot-refund` → web `3d75894` (mobile: none) · web Vitest: 2,988 passed with two workers; TypeScript, Next lint and staging-backed build passed · Ruling: refund only the ledger row inserted by the failed send, using its ID; successful and skipped sends retain their hits. Cost if wrong: a failed database delete can still leave a spent slot. Characterization: existing success and skipped-send paths were asserted to retain their hits; failed-send and exact-row refund tests failed before the fix. Open items: delete-now re-auth limit, device pass pending.
 - 2026-10-10 · Phase 6e immediate deletion re-auth limit · `fix/6e-delete-now-reauth` → web `125be81` (mobile: none) · web Vitest: 2,989 passed with two workers; TypeScript, Next lint and staging-backed build passed · Ruling: use the existing per-user re-auth gate and its 429 response before checking the username. Cost if wrong: a legitimate deletion attempt can be delayed by five recent re-auth attempts in fifteen minutes. Characterization: the username-mismatch behavior remained; a new blocked-gate test failed before the fix. Open items: Phase 6d referrals onward; Phase 5/6e device passes pending.
+- 2026-10-10 · Phase 6d referrals web · `phase6d/referrals-spec` → web `7a157be`; `phase6d/referrals-web` → web `d205b3b`; mobile plan `phase6d/referrals-mobile-plan` → mobile `8fd51ba` · web Vitest: 3,004 passed with two workers; TypeScript, Next lint and staging-backed build passed · Rulings: current username code, one owner-scoped panel read, no public Play CTA before listing. Existing signup metadata tests already cover `ref`. No migration or production write. Open items: mobile screen, installed/deferred link handling, device pass pending.
