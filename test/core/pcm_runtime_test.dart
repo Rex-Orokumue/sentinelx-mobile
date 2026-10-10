@@ -24,6 +24,13 @@ void main() {
     expect(DateFormat.yMMMd(dateLocale('pcm')).format(DateTime.utc(2026, 10, 7)), isNotEmpty);
   });
 
+  test('numberLocale keeps French grouping and falls back to English for Pidgin', () {
+    expect(numberLocale('fr'), 'fr');
+    expect(numberLocale('pcm'), 'en');
+    expect(NumberFormat.decimalPattern(numberLocale('fr')).format(5000), NumberFormat.decimalPattern('fr').format(5000));
+    expect(NumberFormat.decimalPattern(numberLocale('pcm')).format(5000), '5,000');
+  });
+
   testWidgets('a Pidgin app builds Material widgets and reads Pidgin strings', (tester) async {
     late AppLocalizations l10n;
     await tester.pumpWidget(MaterialApp(
