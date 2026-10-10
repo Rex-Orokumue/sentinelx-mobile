@@ -7,6 +7,7 @@
 ## Rulings
 
 - 2026-10-08 · Phase 6e locale save: use the signed-in viewer ID to decide whether a language choice is saved to `/me/locale`. A pending `/me` response does not establish that the player is signed out. Cost if wrong: a choice may wait for the session's first value before completing; the server still authorizes the write.
+- 2026-10-10 · Phase 6e cancellation: a no-op cancellation returns success without sending an email. Cost if wrong: a caller expecting an email on a no-op request will no longer receive one.
 
 ## Not verified
 
@@ -21,3 +22,4 @@
 - 2026-10-08 · Phase 6e Google error classification · `fix/6e-google-error-code` → mobile `9921d76` (web: none) · mobile `flutter test`: 1,542 passed; `flutter analyze`: no issues · Ruling: only Supabase `AuthException.code == manual_linking_disabled` maps to unavailable; unrelated exception text maps to the existing generic failure. Cost if wrong: an unexpected Supabase exception type shows a generic failure. Open items: launch-false handling, number formatting and web leftovers; device pass pending.
 - 2026-10-08 · Phase 6e Google browser launch · `fix/6e-google-launch-false` → mobile `534d9b1` (web: none) · mobile `flutter test`: 1,545 passed; `flutter analyze`: no issues · Ruling: a `false` launcher result is an error and uses the existing link-failed copy. Cost if wrong: a deliberately suppressed browser launch would appear as a failure. Open items: number formatting and web leftovers; device pass pending.
 - 2026-10-10 · Phase 6e deletion amount locale · `fix/6e-number-locale` → mobile `fe516ab` (web: none) · mobile `flutter test`: 1,548 passed; `flutter analyze`: no issues · Ruling: `numberLocale()` keeps locales supported by `intl` and falls back to English for Pidgin; wallet blocker amounts use the screen locale. Cost if wrong: a future locale without `intl` number data will show English grouping. Open items: three web Phase 6e leftovers; device pass pending.
+- 2026-10-10 · Phase 6e cancellation email · `fix/6e-cancel-deletion-email` → web `8127a23` (mobile: none) · web Vitest: 2,987 passed with two workers; TypeScript, Next lint and staging-backed build passed · Ruling: cancelling with no pending deletion is an idempotent success and sends no email; a matched pending row sends one. Cost if wrong: a caller expecting an email on a no-op cancellation will no longer receive one. Characterization: the pre-existing pending-row test remained; a no-pending regression test failed before the fix. Open items: OTP-slot refund, delete-now re-auth limit, device pass pending.
