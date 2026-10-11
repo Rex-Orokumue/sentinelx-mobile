@@ -89,14 +89,14 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get appName => 'Sentinel X';
 
   @override
-  String get maintenanceTitle => 'We\'ll be right back';
+  String get maintenanceTitle => 'We go soon come back';
 
   @override
-  String get updateRequiredTitle => 'Update required';
+  String get updateRequiredTitle => 'You must update';
 
   @override
   String updateRequiredBody(String minVersion) {
-    return 'Please update Sentinel X to version $minVersion or newer to continue.';
+    return 'Abeg update Sentinel X to version $minVersion or newer before you fit continue.';
   }
 
   @override
@@ -160,7 +160,7 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get homeUpcomingHeading => 'Wetin dey come';
 
   @override
-  String get homeLoadError => 'Something went wrong loading this page.';
+  String get homeLoadError => 'Something go wrong as this page dey load.';
 
   @override
   String get accountTitle => 'Account';
@@ -172,19 +172,19 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get accountCreateAccount => 'Create account';
 
   @override
-  String get accountLoadFailed => 'Couldn\'t load your account.';
+  String get accountLoadFailed => 'We no fit load your account.';
 
   @override
-  String get accountRetry => 'Retry';
+  String get accountRetry => 'Try again';
 
   @override
-  String get accountSignOut => 'Sign out';
+  String get accountSignOut => 'Log out';
 
   @override
-  String get accountSigningOut => 'Signing out…';
+  String get accountSigningOut => 'E dey log you out…';
 
   @override
-  String get accountSignOutFailed => 'Could not sign out. Please try again.';
+  String get accountSignOutFailed => 'We no fit log you out. Abeg try again.';
 
   @override
   String get homeTopPlayersHeading => 'Top Players';
@@ -459,19 +459,18 @@ class AppLocalizationsPcm extends AppLocalizations {
 
   @override
   String get authErrorsForgotFailed =>
-      'Could not send the reset link. Please try again.';
+      'We no fit send the reset link. Abeg try again.';
 
   @override
   String get authErrorsResendFailed =>
-      'Could not resend the confirmation link. Please try again.';
+      'We no fit send the confirmation link again. Abeg try again.';
 
   @override
-  String get authErrorsGoogleNotConfigured =>
-      'Google sign-in isn\'t set up yet.';
+  String get authErrorsGoogleNotConfigured => 'Google sign-in never ready yet.';
 
   @override
   String get authErrorsGoogleFailed =>
-      'Google sign-in failed. Please try again.';
+      'Google sign-in no work. Abeg try again.';
 
   @override
   String get termsEyebrow => 'Legal';
@@ -657,20 +656,20 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get cmpTabLive => 'Live';
 
   @override
-  String get cmpTabUpcoming => 'Upcoming';
+  String get cmpTabUpcoming => 'Dey come';
 
   @override
-  String get cmpTabCompleted => 'Completed';
+  String get cmpTabCompleted => 'Don finish';
 
   @override
   String get cmpAllGames => 'All games';
 
   @override
-  String get cmpEmpty => 'No tournaments here yet.';
+  String get cmpEmpty => 'No tournament dey here yet.';
 
   @override
   String get cmpLoadError =>
-      'Couldn\'t load this. Check your connection and try again.';
+      'We no fit load am. Check your network and try again.';
 
   @override
   String get cmpRetry => 'Try again';
@@ -702,48 +701,49 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get cmpRules => 'Rules';
 
   @override
-  String get cmpViewBracket => 'View bracket';
+  String get cmpViewBracket => 'See bracket';
 
   @override
-  String get cmpShareWhatsapp => 'Share on WhatsApp';
+  String get cmpShareWhatsapp => 'Share for WhatsApp';
 
   @override
   String cmpShareText(String title, String url) {
-    return 'Join $title on Sentinel X: $url';
+    return 'Join $title for Sentinel X: $url';
   }
 
   @override
   String get cmpCtaRegister => 'Register';
 
   @override
-  String get cmpCtaResume => 'Resume payment';
+  String get cmpCtaResume => 'Continue payment';
 
   @override
-  String get cmpCtaLogin => 'Log in to register';
+  String get cmpCtaLogin => 'Log in make you register';
 
   @override
   String get cmpCtaJoinWaitlist => 'Join waitlist';
 
   @override
-  String get cmpViewInvitations => 'View my invitations';
+  String get cmpViewInvitations => 'See my invitations';
 
   @override
-  String get cmpStateRegistered => 'You\'re registered.';
+  String get cmpStateRegistered => 'You don register.';
 
   @override
-  String get cmpStateWaitlisted => 'You\'re on the waitlist.';
+  String get cmpStateWaitlisted => 'You dey for the waitlist.';
 
   @override
-  String get cmpStateFull => 'This tournament is full.';
+  String get cmpStateFull => 'This tournament don full.';
 
   @override
-  String get cmpStateEnded => 'This tournament has ended.';
+  String get cmpStateEnded => 'This tournament don end.';
 
   @override
-  String get cmpStateInvitationOnly => 'This tournament is invitation-only.';
+  String get cmpStateInvitationOnly =>
+      'Na only people wey dem invite fit join this tournament.';
 
   @override
-  String get cmpFeeWaived => 'Free entry — waiver applied';
+  String get cmpFeeWaived => 'Free entry — dem don waive the fee';
 
   @override
   String get cmpFieldDisplayName => 'Display name';
@@ -752,13 +752,13 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get cmpFieldWhatsapp => 'WhatsApp number';
 
   @override
-  String get cmpAgreeRules => 'I have read and agree to the rules';
+  String get cmpAgreeRules => 'I don read the rules and I agree';
 
   @override
   String get cmpCoinsTitle => 'Use SX Coins';
 
   @override
-  String get cmpCoinsNone => 'Don\'t use coins';
+  String get cmpCoinsNone => 'No use coins';
 
   @override
   String cmpCoinsOption(int coins, String naira) {
@@ -772,62 +772,62 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get cmpSubmitWaitlist => 'Join waitlist';
 
   @override
-  String get cmpSubmitting => 'Working…';
+  String get cmpSubmitting => 'E dey work…';
 
   @override
-  String get cmpValDisplayName => 'Enter a name (1–60 characters).';
+  String get cmpValDisplayName => 'Put name (1–60 letters).';
 
   @override
-  String get cmpValWhatsapp => 'Enter a valid WhatsApp number.';
+  String get cmpValWhatsapp => 'Put correct WhatsApp number.';
 
   @override
-  String get cmpValRules => 'Please agree to the rules.';
+  String get cmpValRules => 'Abeg agree to the rules.';
 
   @override
-  String get cmpPayConfirming => 'Confirming your payment…';
+  String get cmpPayConfirming => 'We dey confirm your payment…';
 
   @override
-  String get cmpPaySuccess => 'You\'re in! Payment confirmed.';
+  String get cmpPaySuccess => 'You don enter! We don confirm your payment.';
 
   @override
   String get cmpPayNotConfirmed =>
-      'We haven\'t seen your payment yet. If you were charged it will confirm shortly — check back in a minute.';
+      'We never see your payment yet. If dem don debit you, e go confirm soon — check back after small time.';
 
   @override
   String get cmpPayCancelled =>
-      'Payment window closed. You can resume from the tournament page.';
+      'Payment window don close. You fit continue from the tournament page.';
 
   @override
-  String get cmpConfirmedFree => 'You\'re registered!';
+  String get cmpConfirmedFree => 'You don register!';
 
   @override
-  String get cmpWaitlistJoined => 'You\'re on the waitlist.';
+  String get cmpWaitlistJoined => 'You dey for the waitlist.';
 
   @override
   String get cmpInvTitle => 'My invitations';
 
   @override
-  String get cmpInvEmpty => 'No pending invitations.';
+  String get cmpInvEmpty => 'No invitation dey wait for you.';
 
   @override
   String get cmpInvAccept => 'Accept';
 
   @override
-  String get cmpInvDecline => 'Decline';
+  String get cmpInvDecline => 'Reject';
 
   @override
   String cmpInvExpires(String date) {
-    return 'Expires $date';
+    return 'E go expire $date';
   }
 
   @override
-  String get cmpInvDeclined => 'Invitation declined.';
+  String get cmpInvDeclined => 'You don reject the invitation.';
 
   @override
   String get cmpGamesTitle => 'Games';
 
   @override
-  String get cmpGamesEmpty => 'No games yet.';
+  String get cmpGamesEmpty => 'No game dey yet.';
 
   @override
   String get cmpEditProfile => 'Edit profile';
@@ -839,86 +839,84 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get cmpFieldCountry => 'Country';
 
   @override
-  String get cmpFieldUsername => 'Username (can be changed once)';
+  String get cmpFieldUsername => 'Username (you fit change am one time)';
 
   @override
   String get cmpSave => 'Save';
 
   @override
-  String get cmpSaved => 'Profile saved.';
+  String get cmpSaved => 'Profile don save.';
 
   @override
-  String get cmpValBio => 'Bio must be 280 characters or fewer.';
+  String get cmpValBio => 'Bio no suppose pass 280 characters.';
 
   @override
-  String get cmpValCountry => 'Country is too long (60 max).';
+  String get cmpValCountry => 'Country name too long (60 max).';
 
   @override
-  String get cmpEcGeneric => 'Something went wrong. Please try again.';
+  String get cmpEcGeneric => 'Something go wrong. Abeg try again.';
 
   @override
-  String get cmpEcNetwork =>
-      'No connection. Check your internet and try again.';
+  String get cmpEcNetwork => 'No network. Check your internet and try again.';
 
   @override
-  String get cmpEcSession => 'Your session expired. Please log in again.';
+  String get cmpEcSession => 'Your session don expire. Abeg log in again.';
 
   @override
-  String get cmpEcTournamentNotFound => 'Tournament not found.';
+  String get cmpEcTournamentNotFound => 'We no see the tournament.';
 
   @override
-  String get cmpEcRulesRequired => 'Please confirm you agree to the rules.';
+  String get cmpEcRulesRequired => 'Abeg confirm say you agree to the rules.';
 
   @override
   String get cmpEcAlreadyRegistered =>
-      'You\'re already registered for this tournament.';
+      'You don already register for this tournament.';
 
   @override
-  String get cmpEcTournamentFull => 'This tournament is full.';
+  String get cmpEcTournamentFull => 'This tournament don full.';
 
   @override
-  String get cmpEcInvitationOnly => 'This tournament is invitation-only.';
+  String get cmpEcInvitationOnly =>
+      'Na only people wey dem invite fit join this tournament.';
 
   @override
-  String get cmpEcRegistrationClosed => 'Registration is closed.';
+  String get cmpEcRegistrationClosed => 'Registration don close.';
 
   @override
-  String get cmpEcInsufficientCoins => 'Not enough SX Coins for this discount.';
+  String get cmpEcInsufficientCoins => 'SX Coins no reach for this discount.';
 
   @override
-  String get cmpEcPaymentInit =>
-      'Payment couldn\'t be started. Please try again.';
+  String get cmpEcPaymentInit => 'We no fit start the payment. Abeg try again.';
 
   @override
   String get cmpEcWaitlistNotOpen =>
-      'The waitlist opens once registration closes.';
+      'Waitlist go open after registration close.';
 
   @override
-  String get cmpEcAlreadyWaitlisted => 'You\'re already on the waitlist.';
+  String get cmpEcAlreadyWaitlisted => 'You don already dey for the waitlist.';
 
   @override
   String get cmpEcInProgress =>
-      'Still processing your request. Please wait a moment and try again.';
+      'We still dey process your request. Abeg wait small and try again.';
 
   @override
-  String get cmpEcInvitationNotFound => 'Invitation not found.';
+  String get cmpEcInvitationNotFound => 'We no see the invitation.';
 
   @override
-  String get cmpEcInvitationGone => 'This invitation is no longer available.';
+  String get cmpEcInvitationGone => 'This invitation no dey available again.';
 
   @override
-  String get cmpEcInvitationExpired => 'This invitation has expired.';
+  String get cmpEcInvitationExpired => 'This invitation don expire.';
 
   @override
-  String get cmpEcUsernameTaken => 'That username is already taken.';
+  String get cmpEcUsernameTaken => 'Person don already take that username.';
 
   @override
   String get cmpEcUsernameLocked =>
-      'Your username has already been changed once.';
+      'You don already change your username one time.';
 
   @override
-  String get cmpEcSaveFailed =>
-      'Couldn\'t save your profile. Please try again.';
+  String get cmpEcSaveFailed => 'We no fit save your profile. Abeg try again.';
 
   @override
   String get cmpHomeGamesTile => 'Games';
@@ -930,39 +928,39 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get cmpAccountEditProfile => 'Edit profile';
 
   @override
-  String get cmpStatusRegistrationOpen => 'Registration open';
+  String get cmpStatusRegistrationOpen => 'Registration don open';
 
   @override
-  String get cmpStatusRegistrationClosed => 'Registration closed';
+  String get cmpStatusRegistrationClosed => 'Registration don close';
 
   @override
   String get cmpStatusActive => 'Live';
 
   @override
-  String get cmpStatusCompleted => 'Completed';
+  String get cmpStatusCompleted => 'Don finish';
 
   @override
   String get cmpPayCheckAgain => 'Check payment status';
 
   @override
   String get cmpInvPayCancelled =>
-      'Payment window closed. If you were charged, it will confirm shortly.';
+      'Payment window don close. If dem don debit you, e go confirm soon.';
 
   @override
   String get cmpValUsername =>
-      'Usernames are 3–20 letters, numbers or underscores.';
+      'Username na 3–20 letters, numbers or underscore.';
 
   @override
-  String get commonDeletedPlayer => 'Deleted player';
+  String get commonDeletedPlayer => 'Player wey dem don delete';
 
   @override
   String get rankingsTitle => 'Leaderboards';
 
   @override
-  String get rankingsRankByScore => 'Ranked by SX Score';
+  String get rankingsRankByScore => 'Dem rank am by SX Score';
 
   @override
-  String get rankingsRankByWins => 'Ranked by wins';
+  String get rankingsRankByWins => 'Dem rank am by wins';
 
   @override
   String get rankingsAllGames => 'All games';
@@ -977,16 +975,16 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get rankingsYou => '(you)';
 
   @override
-  String get rankingsPrev => 'Previous';
+  String get rankingsPrev => 'Back';
 
   @override
   String get rankingsNext => 'Next';
 
   @override
-  String get rankingsEmpty => 'No ranked players yet.';
+  String get rankingsEmpty => 'No ranked player dey yet.';
 
   @override
-  String get rankingsErrorRetry => 'Couldn\'t load. Tap to retry.';
+  String get rankingsErrorRetry => 'We no fit load am. Tap make you try again.';
 
   @override
   String get rankingsTrendNew => 'New';
@@ -995,17 +993,17 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get seasonsTitle => 'Seasons';
 
   @override
-  String get seasonsEmpty => 'No seasons yet.';
+  String get seasonsEmpty => 'No season dey yet.';
 
   @override
-  String get seasonsLeaderboardEmpty => 'No season points awarded yet.';
+  String get seasonsLeaderboardEmpty => 'Dem never give any season points yet.';
 
   @override
-  String get seasonsProvisional => 'Provisional';
+  String get seasonsProvisional => 'E never final';
 
   @override
   String get seasonsProvisionalNote =>
-      'Points can still change while tournaments are in progress.';
+      'Points fit still change as tournaments dey go on.';
 
   @override
   String get seasonsTournaments => 'Tournaments';
@@ -1041,7 +1039,7 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get hallOfFameBronze => 'Bronze finishes';
 
   @override
-  String get hallOfFameEmpty => 'Nothing here yet.';
+  String get hallOfFameEmpty => 'Nothing dey here yet.';
 
   @override
   String rankingsWinsCount(int wins) {
@@ -1065,7 +1063,7 @@ class AppLocalizationsPcm extends AppLocalizations {
 
   @override
   String rankingsPlayersRanked(int n) {
-    return '$n players ranked';
+    return '$n players dey ranked';
   }
 
   @override
@@ -1075,11 +1073,11 @@ class AppLocalizationsPcm extends AppLocalizations {
 
   @override
   String hallOfFameRunnerUp(String name) {
-    return 'Runner-up: $name';
+    return 'Second place: $name';
   }
 
   @override
-  String get commonLoadError => 'Couldn\'t load. Tap to retry.';
+  String get commonLoadError => 'We no fit load am. Tap make you try again.';
 
   @override
   String get playersTitle => 'Players';
@@ -1088,10 +1086,10 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get playersSearchHint => 'Search players';
 
   @override
-  String get playersEmpty => 'No players found.';
+  String get playersEmpty => 'We no see any player.';
 
   @override
-  String get playersNotFound => 'Player not found.';
+  String get playersNotFound => 'We no see the player.';
 
   @override
   String get profileFollow => 'Follow';
@@ -1100,7 +1098,7 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get profileFollowing => 'Following';
 
   @override
-  String get profileFollowsYou => 'Follows you';
+  String get profileFollowsYou => 'E dey follow you';
 
   @override
   String profileFollowersCount(int n) {
@@ -1122,10 +1120,10 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get profileStatLosses => 'Losses';
 
   @override
-  String get profileStatGoalsFor => 'Goals for';
+  String get profileStatGoalsFor => 'Goals wey e score';
 
   @override
-  String get profileStatGoalsAgainst => 'Goals against';
+  String get profileStatGoalsAgainst => 'Goals wey dem score am';
 
   @override
   String get profileStatTitles => 'Titles';
@@ -1145,7 +1143,7 @@ class AppLocalizationsPcm extends AppLocalizations {
   }
 
   @override
-  String get profileRankUnranked => 'Unranked';
+  String get profileRankUnranked => 'No rank yet';
 
   @override
   String profileSxScore(int n) {
@@ -1159,13 +1157,13 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get profileTitlesHeading => 'Titles';
 
   @override
-  String get profileNoTitles => 'No titles yet.';
+  String get profileNoTitles => 'No title yet.';
 
   @override
   String get profileRecentMatches => 'Recent matches';
 
   @override
-  String get profileNoMatches => 'No matches yet.';
+  String get profileNoMatches => 'No match yet.';
 
   @override
   String get profileOutcomeWin => 'Win';
@@ -1181,11 +1179,11 @@ class AppLocalizationsPcm extends AppLocalizations {
 
   @override
   String profileAchievementsProgress(int unlocked, int total) {
-    return '$unlocked/$total unlocked';
+    return '$unlocked/$total don open';
   }
 
   @override
-  String get profileAchievementLocked => 'Locked';
+  String get profileAchievementLocked => 'E lock';
 
   @override
   String get profilePosts => 'Recent posts';
@@ -1194,16 +1192,16 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get profileGallery => 'Gallery';
 
   @override
-  String get followErrorSelf => 'You can\'t follow yourself.';
+  String get followErrorSelf => 'You no fit follow yourself.';
 
   @override
-  String get followErrorBlocked => 'You can\'t follow this player.';
+  String get followErrorBlocked => 'You no fit follow this player.';
 
   @override
-  String get followErrorNotFound => 'This player no longer exists.';
+  String get followErrorNotFound => 'This player no dey again.';
 
   @override
-  String get followErrorGeneric => 'Couldn\'t update. Please try again.';
+  String get followErrorGeneric => 'We no fit update am. Abeg try again.';
 
   @override
   String get followersTitle => 'Followers';
@@ -1212,10 +1210,10 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get followingTitle => 'Following';
 
   @override
-  String get followersEmpty => 'No followers yet.';
+  String get followersEmpty => 'No follower yet.';
 
   @override
-  String get followingEmpty => 'Not following anyone yet.';
+  String get followingEmpty => 'You no dey follow anybody yet.';
 
   @override
   String get accountMyProgress => 'My progress';
@@ -1224,18 +1222,18 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get progressTitle => 'My progress';
 
   @override
-  String get progressSignIn => 'Log in to see your progress.';
+  String get progressSignIn => 'Log in make you see your progress.';
 
   @override
   String get progressXpHeading => 'XP';
 
   @override
   String progressXpToNext(int into, int needed, String tier) {
-    return '$into / $needed XP to $tier';
+    return '$into / $needed XP reach $tier';
   }
 
   @override
-  String get progressMaxTier => 'Max tier reached';
+  String get progressMaxTier => 'You don reach the top tier';
 
   @override
   String get progressSxScore => 'SX Score';
@@ -1252,17 +1250,17 @@ class AppLocalizationsPcm extends AppLocalizations {
   }
 
   @override
-  String get progressSeasonUnranked => 'Unranked';
+  String get progressSeasonUnranked => 'No rank yet';
 
   @override
   String get progressSeasonMonthly => 'This month';
 
   @override
-  String get progressSeasonNone => 'No active season.';
+  String get progressSeasonNone => 'No season dey active.';
 
   @override
   String progressToRankSixteen(int n) {
-    return 'Rank 16 has $n pts';
+    return 'Rank 16 get $n pts';
   }
 
   @override
@@ -1275,10 +1273,11 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get progressHistoryCoins => 'Coin history';
 
   @override
-  String get historyEmpty => 'No activity yet.';
+  String get historyEmpty => 'Nothing don happen yet.';
 
   @override
-  String get historyLoadMoreError => 'Couldn\'t load more. Tap to retry.';
+  String get historyLoadMoreError =>
+      'We no fit load more. Tap make you try again.';
 
   @override
   String historyBalanceAfter(int n) {
@@ -1301,22 +1300,22 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get tierLegend => 'Legend';
 
   @override
-  String get xpSourceMatchPlayed => 'Match played';
+  String get xpSourceMatchPlayed => 'You play match';
 
   @override
-  String get xpSourceMatchWon => 'Match won';
+  String get xpSourceMatchWon => 'You win match';
 
   @override
-  String get xpSourceTournamentEntered => 'Tournament entered';
+  String get xpSourceTournamentEntered => 'You enter tournament';
 
   @override
-  String get xpSourceTournamentCompleted => 'Tournament completed';
+  String get xpSourceTournamentCompleted => 'You finish tournament';
 
   @override
   String get xpSourceTournamentPlacement => 'Tournament placement';
 
   @override
-  String get xpSourceAchievementUnlocked => 'Achievement unlocked';
+  String get xpSourceAchievementUnlocked => 'You open achievement';
 
   @override
   String get xpSourceDailyLogin => 'Daily login';
@@ -1328,22 +1327,22 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get xpSourceCommunityActivity => 'Community activity';
 
   @override
-  String get xpSourceAdminGrant => 'Admin grant';
+  String get xpSourceAdminGrant => 'Admin give am';
 
   @override
-  String get scoreEventMatchCompleted => 'Match completed';
+  String get scoreEventMatchCompleted => 'You finish match';
 
   @override
-  String get scoreEventNoShow => 'No-show';
+  String get scoreEventNoShow => 'You no show';
 
   @override
-  String get scoreEventRageQuit => 'Left a match early';
+  String get scoreEventRageQuit => 'You leave match before e finish';
 
   @override
-  String get scoreEventDisputeLost => 'Dispute lost';
+  String get scoreEventDisputeLost => 'You lose dispute';
 
   @override
-  String get scoreEventRatingReceived => 'Rating received';
+  String get scoreEventRatingReceived => 'Dem rate you';
 
   @override
   String get scoreEventAdminFlagConduct => 'Conduct flag';
@@ -1352,10 +1351,10 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get scoreEventAdminFlagCheat => 'Cheat flag';
 
   @override
-  String get coinSourceMatchPlayed => 'Match played';
+  String get coinSourceMatchPlayed => 'You play match';
 
   @override
-  String get coinSourceMatchWon => 'Match won';
+  String get coinSourceMatchWon => 'You win match';
 
   @override
   String get coinSourceTournamentPlacement => 'Tournament placement';
@@ -1367,7 +1366,7 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get coinSourceLoginStreak => 'Login streak';
 
   @override
-  String get coinSourceAchievementUnlocked => 'Achievement unlocked';
+  String get coinSourceAchievementUnlocked => 'You open achievement';
 
   @override
   String get coinSourceStorePurchase => 'Store purchase';
@@ -1376,10 +1375,10 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get coinSourceCommunityActivity => 'Community activity';
 
   @override
-  String get coinSourceAdminGrant => 'Admin grant';
+  String get coinSourceAdminGrant => 'Admin give am';
 
   @override
-  String get coinSourceAdminDeduct => 'Admin deduction';
+  String get coinSourceAdminDeduct => 'Admin take am';
 
   @override
   String get coinSourceWeeklyChallenge => 'Weekly challenge';
@@ -1388,7 +1387,7 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get coinSourceBestPlayWinner => 'Best Play winner';
 
   @override
-  String get coinSourceBestPlayRunnerUp => 'Best Play runner-up';
+  String get coinSourceBestPlayRunnerUp => 'Best Play second place';
 
   @override
   String get coinSourceEntryDiscount => 'Entry discount';
@@ -1400,7 +1399,7 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get coinSourceWagerStake => 'Wager stake';
 
   @override
-  String get coinSourceWagerWon => 'Wager won';
+  String get coinSourceWagerWon => 'You win wager';
 
   @override
   String get coinSourceWagerRefund => 'Wager refund';
@@ -1433,7 +1432,7 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get mtcTabKnockout => 'Knockout';
 
   @override
-  String get mtcNoDrawYet => 'The draw hasn\'t been made yet.';
+  String get mtcNoDrawYet => 'Dem never do the draw yet.';
 
   @override
   String get mtcChampion => 'Champion';
@@ -1442,7 +1441,7 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get mtcThirdPlace => 'Third place';
 
   @override
-  String get mtcNoWinner => 'This tournament closed without a winner.';
+  String get mtcNoWinner => 'This tournament close without winner.';
 
   @override
   String mtcGroupCol(String group) {
@@ -1468,27 +1467,27 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get mtcColPoints => 'Pts';
 
   @override
-  String get mtcAdvancing => 'Advancing';
+  String get mtcAdvancing => 'Dem dey go next round';
 
   @override
   String get mtcFixtLive => 'Live';
 
   @override
-  String get mtcFixtUpcoming => 'Upcoming';
+  String get mtcFixtUpcoming => 'Dey come';
 
   @override
-  String get mtcFixtCompleted => 'Completed';
+  String get mtcFixtCompleted => 'Don finish';
 
   @override
-  String get mtcFixtDisputed => 'Disputed or cancelled';
+  String get mtcFixtDisputed => 'Dem dispute am or dem cancel am';
 
   @override
   String mtcProjectedMatches(int count) {
-    return '$count matches to come';
+    return '$count matches dey come';
   }
 
   @override
-  String get mtcTbd => 'To be announced';
+  String get mtcTbd => 'Dem never announce am';
 
   @override
   String get mtcVs => 'vs';
@@ -1506,31 +1505,31 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get mtcColKills => 'Kills';
 
   @override
-  String get mtcTieUnresolved => 'Tied — awaiting tiebreak';
+  String get mtcTieUnresolved => 'Dem tie — dem dey wait for tiebreak';
 
   @override
   String get mtcMatchTitle => 'Match';
 
   @override
-  String get mtcStatusScheduled => 'Scheduled';
+  String get mtcStatusScheduled => 'Dem don schedule am';
 
   @override
   String get mtcStatusLive => 'Live';
 
   @override
-  String get mtcStatusCompleted => 'Completed';
+  String get mtcStatusCompleted => 'Don finish';
 
   @override
-  String get mtcStatusDisputed => 'Under review';
+  String get mtcStatusDisputed => 'Dem dey review am';
 
   @override
-  String get mtcStatusCancelled => 'Cancelled';
+  String get mtcStatusCancelled => 'Dem cancel am';
 
   @override
   String get mtcStatusBye => 'Bye';
 
   @override
-  String get mtcStatusForfeited => 'Forfeited';
+  String get mtcStatusForfeited => 'Dem forfeit am';
 
   @override
   String get mtcWatchLive => 'Watch live';
@@ -1539,37 +1538,38 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get mtcWatchReplay => 'Watch replay';
 
   @override
-  String get mtcCheckIn => 'I\'m here — check in';
+  String get mtcCheckIn => 'I dey here — check me in';
 
   @override
-  String get mtcCheckedIn => 'Checked in';
+  String get mtcCheckedIn => 'You don check in';
 
   @override
-  String get mtcNotCheckedIn => 'Not checked in';
+  String get mtcNotCheckedIn => 'You never check in';
 
   @override
-  String get mtcCheckInSuccess => 'You\'re checked in.';
+  String get mtcCheckInSuccess => 'You don check in.';
 
   @override
   String get mtcSubmitResult => 'Submit result';
 
   @override
-  String get mtcResultSubmitted => 'Result submitted — awaiting confirmation.';
+  String get mtcResultSubmitted =>
+      'Result don enter — dem dey wait for confirmation.';
 
   @override
   String get mtcRateOpponent => 'Rate your opponent';
 
   @override
-  String get mtcRated => 'Thanks for rating!';
+  String get mtcRated => 'Thank you for the rating!';
 
   @override
   String get mtcWagerTitle => 'Wager';
 
   @override
-  String get mtcWagerLoginPrompt => 'Log in to place a wager.';
+  String get mtcWagerLoginPrompt => 'Log in make you place wager.';
 
   @override
-  String get mtcWagerClosed => 'Wagering is closed for this match.';
+  String get mtcWagerClosed => 'Wager don close for this match.';
 
   @override
   String mtcWagerPool(int a, int b) {
@@ -1601,16 +1601,15 @@ class AppLocalizationsPcm extends AppLocalizations {
   }
 
   @override
-  String get mtcWagerPlaced => 'Wager placed.';
+  String get mtcWagerPlaced => 'Wager don enter.';
 
   @override
   String mtcWagerEstimate(String payout) {
-    return 'A 100-coin wager on the first player would pay about $payout coins.';
+    return 'If you wager 100 coins on the first player, e go pay about $payout coins.';
   }
 
   @override
-  String get mtcNoShowInfo =>
-      'This match is eligible for no-show handling by the organizers.';
+  String get mtcNoShowInfo => 'The organizers fit treat this match as no-show.';
 
   @override
   String mtcScoreA(String name) {
@@ -1618,7 +1617,7 @@ class AppLocalizationsPcm extends AppLocalizations {
   }
 
   @override
-  String get mtcRecordingUrl => 'Recording link (optional)';
+  String get mtcRecordingUrl => 'Recording link (if you want)';
 
   @override
   String get mtcPickScreenshot => 'Choose screenshot';
@@ -1627,16 +1626,16 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get mtcChangeScreenshot => 'Change screenshot';
 
   @override
-  String get mtcScreenshotRequired => 'A screenshot is required.';
+  String get mtcScreenshotRequired => 'You must add screenshot.';
 
   @override
-  String get mtcUploading => 'Uploading screenshot…';
+  String get mtcUploading => 'Screenshot dey upload…';
 
   @override
-  String get mtcSubmitting => 'Submitting…';
+  String get mtcSubmitting => 'E dey submit…';
 
   @override
-  String get mtcValScore => 'Enter a whole number from 0 to 99.';
+  String get mtcValScore => 'Put whole number from 0 to 99.';
 
   @override
   String get mtcLobbyResultTitle => 'Lobby result';
@@ -1648,10 +1647,10 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get mtcKills => 'Kills';
 
   @override
-  String get mtcValPlacement => 'Enter a whole number from 1 to 100.';
+  String get mtcValPlacement => 'Put whole number from 1 to 100.';
 
   @override
-  String get mtcValKills => 'Enter a whole number from 0 to 100.';
+  String get mtcValKills => 'Put whole number from 0 to 100.';
 
   @override
   String get mtcFixturesTitle => 'Your fixtures';
@@ -1663,119 +1662,118 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get mtcNextLobby => 'Next lobby';
 
   @override
-  String get mtcSubmitPrompt => 'You have a match awaiting your result.';
+  String get mtcSubmitPrompt => 'You get match wey dey wait for your result.';
 
   @override
-  String get mtcLobbySubmitted => 'Result submitted';
+  String get mtcLobbySubmitted => 'Result don enter';
 
   @override
-  String get mtcRoomCodeReady => 'Room details are ready';
+  String get mtcRoomCodeReady => 'Room details don ready';
 
   @override
   String mtcBannerQualified(String title, String round) {
-    return 'You qualified in $title ($round).';
+    return 'You qualify for $title ($round).';
   }
 
   @override
-  String get mtcBannerAwaiting => 'Waiting for your opponent.';
+  String get mtcBannerAwaiting => 'We dey wait for your opponent.';
 
   @override
   String mtcBannerEliminated(String title, String round) {
-    return 'You were eliminated from $title ($round).';
+    return 'Dem don eliminate you from $title ($round).';
   }
 
   @override
   String get mtcRegistrationsHeading => 'Your registrations';
 
   @override
-  String get mtcPaymentPending => 'Payment pending';
+  String get mtcPaymentPending => 'Payment dey wait';
 
   @override
-  String get mtcPaymentPaid => 'Paid';
+  String get mtcPaymentPaid => 'You don pay';
 
   @override
-  String get mtcEcGeneric => 'Something went wrong. Please try again.';
+  String get mtcEcGeneric => 'Something go wrong. Abeg try again.';
 
   @override
-  String get mtcEcNetwork =>
-      'No connection. Check your internet and try again.';
+  String get mtcEcNetwork => 'No network. Check your internet and try again.';
 
   @override
-  String get mtcEcSession => 'Your session expired. Please log in again.';
+  String get mtcEcSession => 'Your session don expire. Abeg log in again.';
 
   @override
   String get mtcEcInProgress =>
-      'Still processing your request. Please wait a moment and try again.';
+      'We still dey process your request. Abeg wait small and try again.';
 
   @override
-  String get mtcEcUploadFailed => 'Screenshot upload failed. Please try again.';
+  String get mtcEcUploadFailed => 'Screenshot no upload. Abeg try again.';
 
   @override
-  String get mtcEcMatchNotFound => 'Match not found.';
+  String get mtcEcMatchNotFound => 'We no see the match.';
 
   @override
-  String get mtcEcNotParticipant => 'You\'re not playing in this match.';
+  String get mtcEcNotParticipant => 'You no dey play for this match.';
 
   @override
-  String get mtcEcNotMatchDay => 'You can check in once it\'s match day.';
+  String get mtcEcNotMatchDay => 'You fit check in when match day reach.';
 
   @override
-  String get mtcEcCheckInClosed => 'This match is no longer open for check-in.';
+  String get mtcEcCheckInClosed => 'Check-in don close for this match.';
 
   @override
-  String get mtcEcBye => 'This is a bye — there is no result to submit.';
+  String get mtcEcBye => 'Na bye be this — no result to submit.';
 
   @override
-  String get mtcEcCancelled => 'This match was cancelled.';
+  String get mtcEcCancelled => 'Dem cancel this match.';
 
   @override
-  String get mtcEcAlreadyConfirmed => 'This result is already confirmed.';
+  String get mtcEcAlreadyConfirmed => 'Dem don already confirm this result.';
 
   @override
   String get mtcEcSubmissionLocked =>
-      'Your submission is under review and can no longer be edited.';
+      'Dem dey review your submission, you no fit edit am again.';
 
   @override
-  String get mtcEcValidation => 'Please check what you entered.';
+  String get mtcEcValidation => 'Abeg check wetin you put.';
 
   @override
   String get mtcEcResultNotConfirmed =>
-      'You can rate your opponent once the result is confirmed.';
+      'You fit rate your opponent after dem confirm the result.';
 
   @override
-  String get mtcEcCannotRateSelf => 'You can\'t rate yourself.';
+  String get mtcEcCannotRateSelf => 'You no fit rate yourself.';
 
   @override
-  String get mtcEcNotRatable => 'This match can\'t be rated.';
+  String get mtcEcNotRatable => 'You no fit rate this match.';
 
   @override
-  String get mtcEcAlreadyRated => 'You\'ve already rated this match.';
+  String get mtcEcAlreadyRated => 'You don already rate this match.';
 
   @override
-  String get mtcEcPendingDeletion => 'Your account is pending deletion.';
+  String get mtcEcPendingDeletion => 'Dem dey wait to delete your account.';
 
   @override
-  String get mtcEcOwnMatch => 'You can\'t wager on your own match.';
+  String get mtcEcOwnMatch => 'You no fit wager for your own match.';
 
   @override
-  String get mtcEcInvalidPick => 'Pick one of the two players in this match.';
+  String get mtcEcInvalidPick => 'Pick one of the two players for this match.';
 
   @override
-  String get mtcEcWindowClosed => 'Wagering is closed for this match.';
+  String get mtcEcWindowClosed => 'Wager don close for this match.';
 
   @override
-  String get mtcEcInsufficientCoins => 'Not enough SX Coins for this stake.';
+  String get mtcEcInsufficientCoins => 'SX Coins no reach for this stake.';
 
   @override
-  String get mtcEcNotInLobby => 'You\'re not in this lobby.';
+  String get mtcEcNotInLobby => 'You no dey this lobby.';
 
   @override
   String get mtcEcLobbyConfirmed =>
-      'This lobby is confirmed and can no longer be edited.';
+      'Dem don confirm this lobby, you no fit edit am again.';
 
   @override
   String get mtcEcResultConfirmed =>
-      'Your result is confirmed and can no longer be edited.';
+      'Dem don confirm your result, you no fit edit am again.';
 
   @override
   String get mtcHomeFixtures => 'Fixtures';
@@ -1787,10 +1785,11 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get cmtTitle => 'Community';
 
   @override
-  String get cmtFeedEmpty => 'No posts yet. Be the first to share something!';
+  String get cmtFeedEmpty =>
+      'No post dey yet. Be the first person wey go share something!';
 
   @override
-  String get cmtFeedLoadError => 'Couldn\'t load the feed.';
+  String get cmtFeedLoadError => 'We no fit load the feed.';
 
   @override
   String get cmtRetry => 'Try again';
@@ -1808,19 +1807,19 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get cmtComposeFab => 'New post';
 
   @override
-  String get cmtSignInToPost => 'Log in to post';
+  String get cmtSignInToPost => 'Log in make you post';
 
   @override
-  String get cmtSignInToReact => 'Log in to react';
+  String get cmtSignInToReact => 'Log in make you react';
 
   @override
-  String get cmtSignInToComment => 'Log in to comment';
+  String get cmtSignInToComment => 'Log in make you comment';
 
   @override
-  String get cmtSignInToVote => 'Log in to vote';
+  String get cmtSignInToVote => 'Log in make you vote';
 
   @override
-  String get cmtSignInToReport => 'Log in to report';
+  String get cmtSignInToReport => 'Log in make you report';
 
   @override
   String cmtCommentCount(int count) {
@@ -1858,7 +1857,7 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get cmtComposeTitle => 'New post';
 
   @override
-  String get cmtComposeHint => 'What\'s happening in the SentinelX community?';
+  String get cmtComposeHint => 'Wetin dey happen for SentinelX community?';
 
   @override
   String get cmtComposeAddImage => 'Add photo';
@@ -1872,13 +1871,13 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get cmtComposePost => 'Post';
 
   @override
-  String get cmtComposePosting => 'Posting…';
+  String get cmtComposePosting => 'E dey post…';
 
   @override
   String get cmtComposeCancel => 'Cancel';
 
   @override
-  String get cmtComposeValidation => 'Write something or add a photo first.';
+  String get cmtComposeValidation => 'Write something or add photo first.';
 
   @override
   String get cmtComposeRemoveImage => 'Remove image';
@@ -1890,13 +1889,13 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get cmtCommentsTitle => 'Comments';
 
   @override
-  String get cmtCommentsEmpty => 'No comments yet.';
+  String get cmtCommentsEmpty => 'No comment yet.';
 
   @override
-  String get cmtCommentsCapNotice => 'Showing the first 50 comments.';
+  String get cmtCommentsCapNotice => 'Na the first 50 comments we dey show.';
 
   @override
-  String get cmtCommentHint => 'Add a comment…';
+  String get cmtCommentHint => 'Add comment…';
 
   @override
   String get cmtCommentSend => 'Send';
@@ -1905,7 +1904,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get cmtDeletePost => 'Delete post';
 
   @override
-  String get cmtDeletePostConfirm => 'Delete this post? This can\'t be undone.';
+  String get cmtDeletePostConfirm =>
+      'Delete this post? You no fit bring am back.';
 
   @override
   String get cmtDeleteComment => 'Delete comment';
@@ -1927,13 +1927,13 @@ class AppLocalizationsPcm extends AppLocalizations {
 
   @override
   String get cmtBoostConfirmBody =>
-      'Your post will be pinned to the top of the feed for 24 hours for 200 SX Coins.';
+      'Your post go stay for the top of the feed for 24 hours for 200 SX Coins.';
 
   @override
   String get cmtBoostConfirm => 'Boost';
 
   @override
-  String get cmtBoostSuccess => 'Post boosted!';
+  String get cmtBoostSuccess => 'Post don boost!';
 
   @override
   String get cmtStatusesTitle => 'Stories';
@@ -1945,16 +1945,16 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get cmtStatusPost => 'Post story';
 
   @override
-  String get cmtStatusCaptionHint => 'Add a caption (optional)';
+  String get cmtStatusCaptionHint => 'Add caption (if you want)';
 
   @override
-  String get cmtStatusEmpty => 'No stories yet.';
+  String get cmtStatusEmpty => 'No story dey yet.';
 
   @override
-  String get cmtStatusViewersTitle => 'Viewers';
+  String get cmtStatusViewersTitle => 'Who see am';
 
   @override
-  String get cmtStatusViewersEmpty => 'No one has viewed this yet.';
+  String get cmtStatusViewersEmpty => 'Nobody don see this one yet.';
 
   @override
   String get cmtStatusDelete => 'Delete story';
@@ -1963,16 +1963,17 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get cmtStatusDeleteConfirm => 'Delete this story?';
 
   @override
-  String get cmtStatusValidation => 'Add a photo or a caption.';
+  String get cmtStatusValidation => 'Add photo or caption.';
 
   @override
   String get cmtChallengesTitle => 'Weekly challenges';
 
   @override
-  String get cmtChallengesSignedOut => 'Log in to track weekly challenges.';
+  String get cmtChallengesSignedOut =>
+      'Log in make you follow weekly challenges.';
 
   @override
-  String get cmtChallengeCompleted => 'Completed';
+  String get cmtChallengeCompleted => 'Don finish';
 
   @override
   String cmtChallengeProgress(int progress, int goal) {
@@ -1983,22 +1984,22 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get cmtBestPlayTitle => 'Best Play of the Week';
 
   @override
-  String get cmtBestPlayEmpty => 'No nominations this week.';
+  String get cmtBestPlayEmpty => 'No nomination for this week.';
 
   @override
   String get cmtBestPlayVote => 'Vote';
 
   @override
-  String get cmtBestPlayVoted => 'Voted';
+  String get cmtBestPlayVoted => 'You don vote';
 
   @override
-  String get cmtBestPlayVoteSuccess => 'Vote recorded!';
+  String get cmtBestPlayVoteSuccess => 'Your vote don enter!';
 
   @override
   String get cmtTopMembersTitle => 'Top members';
 
   @override
-  String get cmtUpcomingEventsTitle => 'Upcoming events';
+  String get cmtUpcomingEventsTitle => 'Events wey dey come';
 
   @override
   String get cmtGalleryTitle => 'Gallery';
@@ -2061,64 +2062,64 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get cmtReportReasonViolence => 'Violence';
 
   @override
-  String get cmtReportReasonMisinformation => 'Misinformation';
+  String get cmtReportReasonMisinformation => 'Fake news';
 
   @override
   String get cmtReportReasonOther => 'Other';
 
   @override
-  String get cmtReportNoteHint => 'Add details (optional)';
+  String get cmtReportNoteHint => 'Add details (if you want)';
 
   @override
   String get cmtReportSubmit => 'Submit report';
 
   @override
-  String get cmtReportSubmitted => 'Report submitted. Thank you.';
+  String get cmtReportSubmitted => 'Report don enter. Thank you.';
 
   @override
-  String get cmtEcGeneric => 'Something went wrong. Please try again.';
+  String get cmtEcGeneric => 'Something go wrong. Abeg try again.';
 
   @override
-  String get cmtEcNetwork =>
-      'No connection. Check your internet and try again.';
+  String get cmtEcNetwork => 'No network. Check your internet and try again.';
 
   @override
-  String get cmtEcSession => 'Your session expired. Please log in again.';
+  String get cmtEcSession => 'Your session don expire. Abeg log in again.';
 
   @override
   String get cmtEcInProgress =>
-      'Still processing your request. Please wait a moment and try again.';
+      'We still dey process your request. Abeg wait small and try again.';
 
   @override
-  String get cmtEcValidation => 'Write something or add a photo first.';
+  String get cmtEcValidation => 'Write something or add photo first.';
 
   @override
-  String get cmtEcNotFound => 'This content is no longer available.';
+  String get cmtEcNotFound => 'This content no dey again.';
 
   @override
-  String get cmtEcForbidden => 'You can only do this for your own content.';
+  String get cmtEcForbidden =>
+      'Na only your own content you fit do this one for.';
 
   @override
-  String get cmtEcAlreadyBoosted => 'This post is already boosted.';
+  String get cmtEcAlreadyBoosted => 'This post don already boost.';
 
   @override
   String get cmtEcActiveBoostExists =>
-      'You already have an active boost on another post.';
+      'You don already get active boost for another post.';
 
   @override
-  String get cmtEcInsufficientCoins => 'Not enough SX Coins to boost.';
+  String get cmtEcInsufficientCoins => 'SX Coins no reach to boost.';
 
   @override
-  String get cmtEcVotingClosed => 'Voting is closed right now.';
+  String get cmtEcVotingClosed => 'Voting don close for now.';
 
   @override
-  String get cmtEcAlreadyVoted => 'You\'ve already voted this week.';
+  String get cmtEcAlreadyVoted => 'You don already vote this week.';
 
   @override
-  String get cmtEcAlreadyReported => 'You\'ve already reported this.';
+  String get cmtEcAlreadyReported => 'You don already report this one.';
 
   @override
-  String get cmtEcUploadFailed => 'Image upload failed. Please try again.';
+  String get cmtEcUploadFailed => 'Image no upload. Abeg try again.';
 
   @override
   String get authMetaProfile => 'Complete your profile · SentinelX Esports';
@@ -2143,16 +2144,17 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get profileWhatsappHint => '+2348012345678';
 
   @override
-  String get profileGamesLabel => 'Which games are you interested in?';
+  String get profileGamesLabel => 'Which games you like?';
 
   @override
-  String get profileGamesLoading => 'Loading games…';
+  String get profileGamesLoading => 'Games dey load…';
 
   @override
-  String get profileGamesRetry => 'Couldn\'t load games. Try again';
+  String get profileGamesRetry => 'We no fit load games. Try again';
 
   @override
-  String get profileConsentLabel => 'Receive tournament updates on WhatsApp?';
+  String get profileConsentLabel =>
+      'You want make we dey send you tournament updates for WhatsApp?';
 
   @override
   String get profileConsentYes => 'Yes';
@@ -2164,11 +2166,11 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get profileCountryRequired => 'Select your country.';
 
   @override
-  String get profileWhatsappRequired => 'Enter your WhatsApp number.';
+  String get profileWhatsappRequired => 'Put your WhatsApp number.';
 
   @override
   String get profileWhatsappInvalid =>
-      'Enter a valid WhatsApp number for the selected country.';
+      'Put correct WhatsApp number for the country wey you select.';
 
   @override
   String get profileGamesRequired => 'Choose at least one game.';
@@ -2177,30 +2179,30 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get profileConsentRequired => 'Choose yes or no.';
 
   @override
-  String get profileCountryInvalid => 'Select a country from the list.';
+  String get profileCountryInvalid => 'Select country from the list.';
 
   @override
   String get profileGameUnavailable =>
-      'One of the games you picked is no longer available. Reload and try again.';
+      'One of the games wey you pick no dey available again. Reload and try again.';
 
   @override
   String get profileContinue => 'Continue';
 
   @override
-  String get profileSaving => 'Saving…';
+  String get profileSaving => 'E dey save…';
 
   @override
   String get profileSaveFailed =>
-      'Could not save your profile. Please try again.';
+      'We no fit save your profile. Abeg try again.';
 
   @override
-  String get profileSaved => 'Profile saved.';
+  String get profileSaved => 'Profile don save.';
 
   @override
   String get ntfTitle => 'Notifications';
 
   @override
-  String get ntfMarkAllRead => 'Mark all read';
+  String get ntfMarkAllRead => 'Mark all as read';
 
   @override
   String get ntfMuteThread => 'Mute this thread';
@@ -2230,34 +2232,34 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get ntfUnmuted => 'Unmuted';
 
   @override
-  String get ntfEmptyTitle => 'You\'re all caught up';
+  String get ntfEmptyTitle => 'You don see everything';
 
   @override
   String get ntfEmptyBody =>
-      'Fixture assignments, results and prizes show up here.';
+      'Fixture assignments, results and prizes go show here.';
 
   @override
-  String get ntfLoadError => 'Couldn\'t load your notifications.';
+  String get ntfLoadError => 'We no fit load your notifications.';
 
   @override
   String get ntfRetry => 'Try again';
 
   @override
-  String get ntfSignedOut => 'Log in to see your notifications.';
+  String get ntfSignedOut => 'Log in make you see your notifications.';
 
   @override
   String get ntfLogIn => 'Log in';
 
   @override
-  String get ntfActionFailed => 'That didn\'t work. Try again.';
+  String get ntfActionFailed => 'E no work. Try again.';
 
   @override
   String ntfUnreadCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count unread notifications',
-      one: '$count unread notification',
+      other: '$count notifications wey you never read',
+      one: '$count notification wey you never read',
     );
     return '$_temp0';
   }
@@ -2303,7 +2305,7 @@ class AppLocalizationsPcm extends AppLocalizations {
 
   @override
   String get ntfPermBody =>
-      'Get fixture assignments and match reminders on this phone.';
+      'Get fixture assignments and match reminders for this phone.';
 
   @override
   String get ntfPermEnable => 'Turn on';
@@ -2312,11 +2314,11 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get ntfPermOpenSettings => 'Open system settings';
 
   @override
-  String get ntfPermOn => 'Notifications are on for this phone.';
+  String get ntfPermOn => 'Notifications dey on for this phone.';
 
   @override
   String get ntfPermBlocked =>
-      'Notifications are turned off for this app in your phone settings.';
+      'You don turn off notifications for this app inside your phone settings.';
 
   @override
   String get ntfSettingsTitle => 'Notification settings';
@@ -2331,35 +2333,35 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get ntfSectionWhatsapp => 'WhatsApp';
 
   @override
-  String get ntfSectionSharing => 'Share achievements to the community';
+  String get ntfSectionSharing => 'Share achievements for the community';
 
   @override
-  String get ntfSaveFailed => 'Couldn\'t save that change.';
+  String get ntfSaveFailed => 'We no fit save that change.';
 
   @override
-  String get ntfTestAction => 'Send a test notification';
+  String get ntfTestAction => 'Send test notification';
 
   @override
-  String get ntfTestSent => 'Test sent — it should arrive in a moment.';
+  String get ntfTestSent => 'Test don go — e go reach you soon.';
 
   @override
   String get ntfTestNoDevice =>
-      'This phone isn\'t registered for notifications yet.';
+      'This phone never register for notifications yet.';
 
   @override
-  String get ntfTestFailed => 'The test notification couldn\'t be delivered.';
+  String get ntfTestFailed => 'The test notification no reach.';
 
   @override
   String get ntfPushMatchReminder => 'Match reminders';
 
   @override
-  String get ntfPushResultConfirmed => 'Result confirmed';
+  String get ntfPushResultConfirmed => 'Result don confirm';
 
   @override
-  String get ntfPushAchievementUnlocked => 'Achievement unlocked';
+  String get ntfPushAchievementUnlocked => 'Achievement don open';
 
   @override
-  String get ntfPushChallengeCompleted => 'Weekly challenge completed';
+  String get ntfPushChallengeCompleted => 'Weekly challenge don finish';
 
   @override
   String get ntfPushNewAnnouncement => 'Community announcements';
@@ -2368,10 +2370,10 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get ntfPushTournamentAnnounced => 'New tournaments';
 
   @override
-  String get ntfPushWagerSettled => 'Wager settled';
+  String get ntfPushWagerSettled => 'Wager don settle';
 
   @override
-  String get ntfPushReferralConverted => 'Referral converted';
+  String get ntfPushReferralConverted => 'Referral don convert';
 
   @override
   String get ntfPushPostComment => 'Comments on your posts';
@@ -2380,43 +2382,43 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get ntfPushPostReaction => 'Reactions on your posts';
 
   @override
-  String get ntfPushBracketReleased => 'Bracket released';
+  String get ntfPushBracketReleased => 'Bracket don come out';
 
   @override
-  String get ntfPushMatchAssigned => 'New fixture assigned';
+  String get ntfPushMatchAssigned => 'Dem assign you new fixture';
 
   @override
-  String get ntfPushPrizeCredited => 'Prize credited';
+  String get ntfPushPrizeCredited => 'Prize don enter your wallet';
 
   @override
-  String get ntfPushStatusFromFriend => 'A friend posts a status';
+  String get ntfPushStatusFromFriend => 'Your friend post status';
 
   @override
-  String get ntfPushStatusViewed => 'Someone views your status';
+  String get ntfPushStatusViewed => 'Somebody see your status';
 
   @override
-  String get ntfPushNewFollower => 'Someone follows you';
+  String get ntfPushNewFollower => 'Somebody follow you';
 
   @override
   String get ntfPushDirectMessage => 'Direct messages';
 
   @override
-  String get ntfWaMatchReminder => 'Match reminders (1h before kickoff)';
+  String get ntfWaMatchReminder => 'Match reminders (1 hour before kickoff)';
 
   @override
-  String get ntfWaResultConfirmed => 'Result confirmed';
+  String get ntfWaResultConfirmed => 'Result don confirm';
 
   @override
-  String get ntfWaPrizeCredited => 'Prize credited to wallet';
+  String get ntfWaPrizeCredited => 'Prize don enter wallet';
 
   @override
-  String get ntfWaChallengeCompleted => 'Weekly challenge completed';
+  String get ntfWaChallengeCompleted => 'Weekly challenge don finish';
 
   @override
-  String get ntfWaAchievementUnlocked => 'Achievement unlocked';
+  String get ntfWaAchievementUnlocked => 'Achievement don open';
 
   @override
-  String get ntfWaRegistrationConfirmed => 'Registration confirmed';
+  String get ntfWaRegistrationConfirmed => 'Registration don confirm';
 
   @override
   String get ntfShareTournament => 'Tournament wins';
@@ -2462,67 +2464,66 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get ntfChannelAdmin => 'Admin alerts';
 
   @override
-  String get ntfChannelAdminDesc => 'Staff-only alerts';
+  String get ntfChannelAdminDesc => 'Alerts for staff only';
 
   @override
-  String get ntfErrValidation => 'That value isn\'t valid.';
+  String get ntfErrValidation => 'That value no correct.';
 
   @override
-  String get ntfErrNotFound => 'That notification no longer exists.';
+  String get ntfErrNotFound => 'That notification no dey again.';
 
   @override
-  String get ntfErrNetwork => 'Check your connection and try again.';
+  String get ntfErrNetwork => 'Check your network and try again.';
 
   @override
-  String get ntfErrGeneric => 'Something went wrong.';
+  String get ntfErrGeneric => 'Something go wrong.';
 
   @override
   String get ntfBannerOpen => 'Open';
 
   @override
-  String get dmErrorGeneric => 'Something went wrong. Please try again.';
+  String get dmErrorGeneric => 'Something go wrong. Abeg try again.';
 
   @override
   String get dmErrorBlockedByMe =>
-      'You blocked this player. Unblock them to send messages.';
+      'You don block this player. Unblock am make you fit send message.';
 
   @override
-  String get dmErrorBlocked => 'You can\'t message this player.';
+  String get dmErrorBlocked => 'You no fit message this player.';
 
   @override
   String get dmErrorRestricted =>
-      'Messaging is restricted on your account right now.';
+      'Dem don restrict messaging for your account for now.';
 
   @override
   String get dmErrorEditWindow =>
-      'You can only edit or unsend a message within 10 minutes of sending it.';
+      'You fit only edit or unsend message inside 10 minutes after you send am.';
 
   @override
-  String get dmErrorNotForwardable => 'This message can\'t be forwarded.';
+  String get dmErrorNotForwardable => 'You no fit forward this message.';
 
   @override
   String get dmErrorRequestLimit =>
-      'You can send one message until they accept your request.';
+      'You fit send one message until the person accept your request.';
 
   @override
   String get dmErrorRequestNoMedia =>
-      'Photos, stickers and voice notes unlock once they accept your request.';
+      'Photos, stickers and voice notes go open after the person accept your request.';
 
   @override
-  String get dmErrorNotFound =>
-      'That message or conversation no longer exists.';
+  String get dmErrorNotFound => 'That message or conversation no dey again.';
 
   @override
-  String get dmErrorSendFailed => 'Your message couldn\'t be sent.';
+  String get dmErrorSendFailed => 'Your message no go.';
 
   @override
-  String get dmErrorAction => 'That didn\'t work. Please try again.';
+  String get dmErrorAction => 'E no work. Abeg try again.';
 
   @override
-  String get dmErrorValidation => 'That message isn\'t valid.';
+  String get dmErrorValidation => 'That message no correct.';
 
   @override
-  String get dmErrorImageTooLarge => 'That photo is too large to send.';
+  String get dmErrorImageTooLarge => 'That photo too big to send.';
 
   @override
   String get dmInboxTitle => 'Messages';
@@ -2557,19 +2558,19 @@ class AppLocalizationsPcm extends AppLocalizations {
 
   @override
   String get dmEmptyInbox =>
-      'No messages yet. Open a player\'s profile to start a conversation.';
+      'No message dey yet. Open player profile make you start conversation.';
 
   @override
-  String get dmEmptyRequests => 'No message requests.';
+  String get dmEmptyRequests => 'No message request dey.';
 
   @override
-  String get dmLoadError => 'Couldn\'t load your messages.';
+  String get dmLoadError => 'We no fit load your messages.';
 
   @override
   String get dmRetry => 'Try again';
 
   @override
-  String get dmSignedOut => 'Log in to see your messages.';
+  String get dmSignedOut => 'Log in make you see your messages.';
 
   @override
   String get dmLogIn => 'Log in';
@@ -2579,15 +2580,15 @@ class AppLocalizationsPcm extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count unread messages',
-      one: '$count unread message',
+      other: '$count messages wey you never read',
+      one: '$count message wey you never read',
     );
     return '$_temp0';
   }
 
   @override
   String dmWaitingFor(String name) {
-    return 'Waiting for $name to accept';
+    return 'We dey wait make $name accept';
   }
 
   @override
@@ -2600,13 +2601,13 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get dmPreviewVoice => 'Voice message';
 
   @override
-  String get dmPreviewRemoved => 'Message removed';
+  String get dmPreviewRemoved => 'Dem don remove the message';
 
   @override
   String get dmPreviewOther => 'Message';
 
   @override
-  String get dmTyping => 'typing…';
+  String get dmTyping => 'dey type…';
 
   @override
   String get dmOnline => 'Online';
@@ -2623,23 +2624,23 @@ class AppLocalizationsPcm extends AppLocalizations {
   }
 
   @override
-  String get dmMessageRemoved => 'Message removed';
+  String get dmMessageRemoved => 'Dem don remove the message';
 
   @override
-  String get dmUnsupported => 'Unsupported message';
+  String get dmUnsupported => 'Message wey we no support';
 
   @override
   String get dmForwardedLabel => 'Forwarded';
 
   @override
-  String get dmEditedLabel => 'edited';
+  String get dmEditedLabel => 'dem edit am';
 
   @override
-  String get dmReplyRemoved => 'Original message removed';
+  String get dmReplyRemoved => 'Dem don remove the original message';
 
   @override
   String dmReplyingTo(String name) {
-    return 'Replying to $name';
+    return 'You dey reply $name';
   }
 
   @override
@@ -2664,22 +2665,22 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get dmNewMessages => 'New messages';
 
   @override
-  String get dmReceiptSent => 'Sent';
+  String get dmReceiptSent => 'E don go';
 
   @override
-  String get dmReceiptDelivered => 'Delivered';
+  String get dmReceiptDelivered => 'E don reach';
 
   @override
-  String get dmReceiptRead => 'Read';
+  String get dmReceiptRead => 'Dem don read am';
 
   @override
-  String get dmSending => 'Sending';
+  String get dmSending => 'E dey go';
 
   @override
-  String get dmRetryAction => 'Retry';
+  String get dmRetryAction => 'Try again';
 
   @override
-  String get dmDiscard => 'Discard';
+  String get dmDiscard => 'Throw am away';
 
   @override
   String get dmActionReply => 'Reply';
@@ -2700,7 +2701,7 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get dmActionReport => 'Report';
 
   @override
-  String get dmCopied => 'Copied';
+  String get dmCopied => 'E don copy';
 
   @override
   String get dmComposerHint => 'Message';
@@ -2709,7 +2710,7 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get dmSend => 'Send';
 
   @override
-  String get dmEditingBar => 'Editing message';
+  String get dmEditingBar => 'You dey edit message';
 
   @override
   String get dmSave => 'Save';
@@ -2721,7 +2722,7 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get dmCloseReply => 'Cancel reply';
 
   @override
-  String get dmConversationNotFound => 'This conversation doesn\'t exist.';
+  String get dmConversationNotFound => 'This conversation no dey.';
 
   @override
   String get dmMore => 'More options';
@@ -2730,28 +2731,28 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get dmStickers => 'Stickers';
 
   @override
-  String get dmStickerUnknown => 'Unsupported sticker';
+  String get dmStickerUnknown => 'Sticker wey we no support';
 
   @override
   String get dmForwardTitle => 'Forward to…';
 
   @override
-  String get dmForwardEmpty => 'No conversations to forward to.';
+  String get dmForwardEmpty => 'No conversation dey to forward to.';
 
   @override
-  String get dmForwarded => 'Message forwarded';
+  String get dmForwarded => 'Message don forward';
 
   @override
-  String get dmAttachPhoto => 'Send a photo';
+  String get dmAttachPhoto => 'Send photo';
 
   @override
   String get dmPhotoLibrary => 'Choose from library';
 
   @override
-  String get dmPhotoCamera => 'Take a photo';
+  String get dmPhotoCamera => 'Take photo';
 
   @override
-  String get dmImageUnavailable => 'Image unavailable';
+  String get dmImageUnavailable => 'Image no dey available';
 
   @override
   String get dmBlock => 'Block';
@@ -2769,49 +2770,48 @@ class AppLocalizationsPcm extends AppLocalizations {
 
   @override
   String get dmBlockConfirmBody =>
-      'They won\'t be able to message you. You can unblock them at any time.';
+      'Dem no go fit message you again. You fit unblock them anytime.';
 
   @override
   String dmBlockedByMeBanner(String name) {
-    return 'You blocked $name';
+    return 'You don block $name';
   }
 
   @override
-  String get dmCannotMessage => 'You can\'t message this player.';
+  String get dmCannotMessage => 'You no fit message this player.';
 
   @override
   String get dmReportTitle => 'Report this conversation';
 
   @override
-  String get dmReportHint => 'What happened?';
+  String get dmReportHint => 'Wetin happen?';
 
   @override
   String get dmReportSubmit => 'Submit report';
 
   @override
-  String get dmReported => 'Thanks. We\'ll review your report.';
+  String get dmReported => 'Thank you. We go review your report.';
 
   @override
   String dmIncomingTitle(String name) {
-    return '$name wants to message you';
+    return '$name wan message you';
   }
 
   @override
   String get dmIncomingHint =>
-      'Only you can see that you have read this. They get no read receipt until you accept.';
+      'Na only you fit see say you don read this. Dem no go see read receipt until you accept.';
 
   @override
   String get dmAccept => 'Accept';
 
   @override
-  String get dmDecline => 'Decline';
+  String get dmDecline => 'Reject';
 
   @override
   String get dmBlockAndReport => 'Block and report';
 
   @override
-  String get dmWaitingHint =>
-      'You can send one text message until they accept.';
+  String get dmWaitingHint => 'You fit send one text message until dem accept.';
 
   @override
   String get dmMessageButton => 'Message';
@@ -2820,19 +2820,19 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get dmVoiceMessage => 'Voice message';
 
   @override
-  String get dmMicTooltip => 'Record a voice message';
+  String get dmMicTooltip => 'Record voice message';
 
   @override
-  String get dmVoiceRecording => 'Recording';
+  String get dmVoiceRecording => 'E dey record';
 
   @override
-  String get dmVoicePaused => 'Paused';
+  String get dmVoicePaused => 'E don pause';
 
   @override
   String get dmVoicePause => 'Pause';
 
   @override
-  String get dmVoiceResume => 'Resume';
+  String get dmVoiceResume => 'Continue';
 
   @override
   String get dmVoiceStop => 'Stop';
@@ -2844,11 +2844,11 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get dmVoicePlay => 'Play';
 
   @override
-  String get dmVoiceTooShort => 'That was too short. Hold on a little longer.';
+  String get dmVoiceTooShort => 'E too short. Hold am small more.';
 
   @override
   String get dmMicDenied =>
-      'Microphone access is needed to record voice messages.';
+      'We need microphone access make you fit record voice messages.';
 
   @override
   String get dmMicTryAgain => 'Try again';
@@ -2857,10 +2857,10 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get dmMicOpenSettings => 'Open settings';
 
   @override
-  String get dmVoicePlaybackError => 'Couldn\'t play this voice message.';
+  String get dmVoicePlaybackError => 'We no fit play this voice message.';
 
   @override
-  String get dmVoiceLimitReached => 'Maximum length reached';
+  String get dmVoiceLimitReached => 'You don reach the maximum length';
 
   @override
   String get avatarChangePhoto => 'Change photo';
@@ -2869,19 +2869,19 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get avatarFromGallery => 'Choose from gallery';
 
   @override
-  String get avatarFromCamera => 'Take a photo';
+  String get avatarFromCamera => 'Take photo';
 
   @override
-  String get avatarUploading => 'Uploading photo…';
+  String get avatarUploading => 'Photo dey upload…';
 
   @override
-  String get avatarUploadFailed => 'Couldn\'t upload your photo. Try again.';
+  String get avatarUploadFailed => 'We no fit upload your photo. Try again.';
 
   @override
-  String get avatarTooLarge => 'That photo is too large. Pick a smaller one.';
+  String get avatarTooLarge => 'That photo too big. Pick smaller one.';
 
   @override
-  String get avatarNotImage => 'That file isn\'t a photo we can use.';
+  String get avatarNotImage => 'We no fit use that file as photo.';
 
   @override
   String get guideOpen => 'Guide and assistant';
@@ -2891,43 +2891,43 @@ class AppLocalizationsPcm extends AppLocalizations {
 
   @override
   String guideHello(String name) {
-    return 'Hey $name!';
+    return 'How far $name!';
   }
 
   @override
-  String get guideHelloNoName => 'Hey there!';
+  String get guideHelloNoName => 'How far!';
 
   @override
   String get questBattleReadyTitle => 'Battle Ready quest';
 
   @override
   String questProgress(int done, int total) {
-    return '$done of $total done';
+    return '$done of $total don finish';
   }
 
   @override
-  String get questStepProfile_complete => 'Add a profile photo';
+  String get questStepProfile_complete => 'Add profile photo';
 
   @override
   String get questStepFirst_tournament_entered => 'Enter your first tournament';
 
   @override
-  String get questStepFirst_match_completed => 'Complete your first match';
+  String get questStepFirst_match_completed => 'Finish your first match';
 
   @override
-  String get questStepGeneric => 'Complete this step';
+  String get questStepGeneric => 'Finish this step';
 
   @override
-  String get questTakeMeThere => 'Take me there';
+  String get questTakeMeThere => 'Carry me go there';
 
   @override
-  String get questClaim => 'Claim your badge';
+  String get questClaim => 'Collect your badge';
 
   @override
-  String get questClaiming => 'Claiming…';
+  String get questClaiming => 'E dey collect…';
 
   @override
-  String get questBadgeEarned => 'Badge earned';
+  String get questBadgeEarned => 'You don earn badge';
 
   @override
   String questRewardLine(int xp, int coins) {
@@ -2939,50 +2939,50 @@ class AppLocalizationsPcm extends AppLocalizations {
 
   @override
   String get questErrorInProgress =>
-      'Your reward is still being processed. Try again in a minute.';
+      'We still dey process your reward. Try again after one minute.';
 
   @override
-  String get questErrorUnavailable => 'This reward isn\'t available right now.';
+  String get questErrorUnavailable => 'This reward no dey available for now.';
 
   @override
-  String get questErrorGeneric => 'Couldn\'t claim the badge. Try again.';
+  String get questErrorGeneric => 'We no fit give you the badge. Try again.';
 
   @override
-  String get questLoadError => 'Couldn\'t load your quest.';
+  String get questLoadError => 'We no fit load your quest.';
 
   @override
   String get guideAskAssistant => 'Ask the assistant';
 
   @override
-  String get guideReplayTour => 'Replay the tour';
+  String get guideReplayTour => 'Show the tour again';
 
   @override
-  String get tourSlide1Title => 'What is Sentinel X?';
+  String get tourSlide1Title => 'Wetin be Sentinel X?';
 
   @override
   String get tourSlide1Body =>
-      'Nigeria\'s home of mobile esports: compete, watch, join the community and trade gear.';
+      'Nigeria home for mobile esports: compete, watch, join the community and trade gear.';
 
   @override
   String get tourSlide2Title => 'The four pillars';
 
   @override
   String get tourSlide2Body =>
-      'Compete in tournaments, watch Sentinel X TV, join the community and trade on the Gaming Exchange.';
+      'Compete for tournaments, watch Sentinel X TV, join the community and trade for the Gaming Exchange.';
 
   @override
-  String get tourSlide3Title => 'How tournaments work';
+  String get tourSlide3Title => 'How tournaments dey work';
 
   @override
   String get tourSlide3Body =>
-      'Register, pay the entry fee, play your fixtures and submit your result. An admin confirms it before the bracket updates.';
+      'Register, pay the entry fee, play your fixtures and submit your result. Admin go confirm am before the bracket update.';
 
   @override
-  String get tourSlide4Title => 'Ready to play?';
+  String get tourSlide4Title => 'You ready to play?';
 
   @override
   String get tourSlide4Body =>
-      'Create an account to enter your first tournament.';
+      'Create account make you enter your first tournament.';
 
   @override
   String get tourNext => 'Next';
@@ -2998,21 +2998,21 @@ class AppLocalizationsPcm extends AppLocalizations {
 
   @override
   String get coachFixturesBody =>
-      'Your next matches show up here. Check in when it\'s time.';
+      'Your next matches go show here. Check in when time reach.';
 
   @override
   String get coachQuestTitle => 'Battle Ready quest';
 
   @override
   String get coachQuestBody =>
-      'Finish three steps to earn a badge and rewards.';
+      'Finish three steps make you earn badge and rewards.';
 
   @override
   String get coachGuideTitle => 'Guide and assistant';
 
   @override
   String get coachGuideBody =>
-      'Quests, a quick tour and a chat assistant live here.';
+      'Quests, quick tour and chat assistant dey here.';
 
   @override
   String get coachAccountTitle => 'Your account';
@@ -3031,7 +3031,7 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get coachBellTitle => 'Notifications';
 
   @override
-  String get coachBellBody => 'Match updates and rewards appear here.';
+  String get coachBellBody => 'Match updates and rewards go show here.';
 
   @override
   String get coachMessagesTitle => 'Messages';
@@ -3063,16 +3063,16 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get chatSend => 'Send';
 
   @override
-  String get chatTyping => 'Thinking…';
+  String get chatTyping => 'E dey think…';
 
   @override
-  String get chatCheckingAccount => 'Checking your account…';
+  String get chatCheckingAccount => 'E dey check your account…';
 
   @override
-  String get chatRetry => 'Retry';
+  String get chatRetry => 'Try again';
 
   @override
-  String get chatInterrupted => 'The connection dropped. Tap Retry.';
+  String get chatInterrupted => 'Network cut. Tap Try again.';
 
   @override
   String get chatClear => 'Clear chat';
@@ -3081,7 +3081,7 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get chatClearConfirmTitle => 'Clear this chat?';
 
   @override
-  String get chatClearConfirmBody => 'Your saved messages will be deleted.';
+  String get chatClearConfirmBody => 'Dem go delete your saved messages.';
 
   @override
   String get chatCancel => 'Cancel';
@@ -3091,44 +3091,44 @@ class AppLocalizationsPcm extends AppLocalizations {
 
   @override
   String get chatEmptyPrompt =>
-      'Ask me anything about tournaments, fees, SX Score or how Sentinel X works.';
+      'Ask me anything about tournaments, fees, SX Score or how Sentinel X dey work.';
 
   @override
-  String get chatRetentionNotice => 'Chats are kept for 30 days.';
+  String get chatRetentionNotice => 'We dey keep chats for 30 days.';
 
   @override
   String get chatSignedOutNotice =>
-      'Chats aren\'t saved. Sign in for answers about your account.';
+      'We no dey save chats. Log in to get answers about your account.';
 
   @override
   String chatErrorRateLimited(int seconds) {
-    return 'You\'re sending messages too fast. Try again in $seconds s.';
+    return 'You dey send messages too fast. Try again after $seconds s.';
   }
 
   @override
   String get chatErrorUnavailableSignedOut =>
-      'The assistant is busy right now. Sign in to keep chatting.';
+      'The assistant dey busy now. Log in make you continue to chat.';
 
   @override
   String get chatErrorUnavailable =>
-      'The assistant is unavailable right now. Please try again later.';
+      'The assistant no dey available now. Abeg try again later.';
 
   @override
-  String get chatErrorUnauthorized => 'Please sign in again.';
+  String get chatErrorUnauthorized => 'Abeg log in again.';
 
   @override
   String get chatErrorTruncated =>
-      'That answer was cut short. Try asking in a simpler way.';
+      'The answer cut short. Try ask am another way.';
 
   @override
   String get chatErrorNetwork =>
-      'Couldn\'t reach the assistant. Check your connection and try again.';
+      'We no fit reach the assistant. Check your network and try again.';
 
   @override
-  String get chatErrorClear => 'Couldn\'t clear your chat. Try again.';
+  String get chatErrorClear => 'We no fit clear your chat. Try again.';
 
   @override
-  String get chatErrorGeneric => 'Something went wrong. Please try again.';
+  String get chatErrorGeneric => 'Something go wrong. Abeg try again.';
 
   @override
   String get chatDestTournaments => 'Open tournaments';

@@ -133,8 +133,9 @@ and each phase needing endpoints gets its own spec in the **web** repo first.
   `supabase.auth.updateUser` / `unlinkIdentity` (they skip the password re-auth, ban blocklist and deletion guards). The
   only direct Supabase auth call is `linkIdentity` (`google_linker.dart`), returning through
   `ng.com.sentinelxesports.app://link-callback` (Android intent filter); that URL must be allowlisted in Supabase and
-  Manual Linking enabled, else the link reports `linking_unavailable`. `pcm` (Pidgin) ships with web-derived copy only:
-  mobile-authored strings (`ntf*`, `cmp*`, `dm*`, ...) fall back to English until a translation pass. Material/Widgets/
+  Manual Linking enabled, else the link reports `linking_unavailable`. `pcm` (Pidgin) is fully translated as of 2026-10-11
+  (the mobile-authored `ntf*`, `cmp*`, `dm*`, ... strings were machine-drafted, not native-reviewed: have a Pidgin speaker
+  review them; new keys still fall back to English until added to `app_pcm.arb`). Material/Widgets/
   Cupertino ship no `pcm`, so `appLocalizationsDelegates` (`lib/core/l10n/fallback_delegates.dart`) load English for them,
   and **every `DateFormat` locale must go through `dateLocale()`** (`lib/core/utils/date_locale.dart`) or Pidgin users crash.
   `localeProvider` is seeded from `/me.locale`, cached in `LocalKv` (`app.locale`), and a stale `/me` never overrides a
