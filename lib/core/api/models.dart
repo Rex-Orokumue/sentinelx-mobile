@@ -14,6 +14,8 @@ class MeProfile {
     this.consentWhatsappUpdates = false,
     this.gameInterests = const [],
     this.bubbleSkinUrl,
+    this.usernameColour,
+    this.profileTheme,
   });
 
   factory MeProfile.fromJson(Map<String, dynamic> j) => MeProfile(
@@ -31,6 +33,8 @@ class MeProfile {
         consentWhatsappUpdates: j['consentWhatsappUpdates'] as bool,
         gameInterests: (j['gameInterests'] as List<dynamic>).cast<String>(),
         bubbleSkinUrl: j['bubbleSkinUrl'] as String?,
+        usernameColour: j['usernameColour'] as String?,
+        profileTheme: j['profileTheme'] as String?,
       );
 
   final String? username;
@@ -51,6 +55,10 @@ class MeProfile {
 
   /// Equipped chat-bubble skin (relative URL on the web origin), or null.
   final String? bubbleSkinUrl;
+
+  /// Equipped username-colour and profile-theme store slugs (absent from older servers, which reads as null).
+  final String? usernameColour;
+  final String? profileTheme;
 }
 
 class MeResponse {

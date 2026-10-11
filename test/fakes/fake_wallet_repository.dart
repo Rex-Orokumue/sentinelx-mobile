@@ -5,6 +5,7 @@ const testPayoutAccount = PayoutAccount(bankName: 'GTBank', accountName: 'ADA OB
 
 WalletOverview walletOverviewFixture({
   int balance = 5000,
+  int coinBalance = 1250,
   int pendingWithdrawal = 0,
   int? trendPct,
   List<WalletTxn> recent = const [],
@@ -14,6 +15,7 @@ WalletOverview walletOverviewFixture({
 }) =>
     WalletOverview(
       balance: balance,
+      coinBalance: coinBalance,
       pendingWithdrawal: pendingWithdrawal,
       earnings: WalletEarnings(tournamentPrize: 3000, referral: 250, bonus: 700, tournamentPrizeTrendPct: trendPct),
       recentTransactions: recent,
