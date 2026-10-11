@@ -16,6 +16,7 @@ import 'players_models.dart';
 import 'profile_onboarding_models.dart';
 import 'progress_models.dart';
 import 'registration_fields_models.dart';
+import 'referrals_models.dart';
 
 class ApiException implements Exception {
   const ApiException({
@@ -52,6 +53,7 @@ class ApiClient {
     'getConfig': 'get /api/mobile/v1/config',
     'getMe': 'get /api/mobile/v1/me',
     'getMyAccount': 'get /api/mobile/v1/me/account',
+    'getMyReferrals': 'get /api/mobile/v1/me/referrals',
     'postAccountDeletion': 'post /api/mobile/v1/me/deletion',
     'deleteAccountDeletion': 'delete /api/mobile/v1/me/deletion',
     'postAccountDeletionExecute': 'post /api/mobile/v1/me/deletion/execute',
@@ -415,6 +417,9 @@ class ApiClient {
   Future<void> patchMeProfile(ProfileEdit edit) => _send('PATCH', '/me/profile', (_) {}, body: edit.toJson());
 
   Future<MyAccount> getMyAccount() => _send('GET', '/me/account', (d) => MyAccount.fromJson(d! as Map<String, dynamic>));
+
+  Future<ReferralOverview> getMyReferrals() =>
+      _send('GET', '/me/referrals', (d) => ReferralOverview.fromJson(d! as Map<String, dynamic>));
 
   Future<DeletionTicket> postAccountDeletion() =>
       _send('POST', '/me/deletion', (d) => DeletionTicket.fromJson(d! as Map<String, dynamic>), body: {'confirm': 'DELETE'});

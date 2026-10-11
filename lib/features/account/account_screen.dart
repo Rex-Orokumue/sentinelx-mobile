@@ -15,6 +15,7 @@ class AccountScreen extends ConsumerStatefulWidget {
     required this.onLogoTap,
     this.onEditProfile,
     this.onOpenProgress,
+    this.onOpenReferrals,
     this.onOpenNotifications,
     this.onOpenLanguage,
     this.onOpenSecurity,
@@ -28,6 +29,7 @@ class AccountScreen extends ConsumerStatefulWidget {
   final VoidCallback onLogoTap;
   final VoidCallback? onEditProfile;
   final VoidCallback? onOpenProgress;
+  final VoidCallback? onOpenReferrals;
   final VoidCallback? onOpenNotifications;
   final VoidCallback? onOpenLanguage;
   final VoidCallback? onOpenSecurity;
@@ -114,6 +116,13 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
                           title: Text(l10n.accountMyProgress),
                           trailing: const Icon(Icons.chevron_right),
                           onTap: widget.onOpenProgress,
+                        ),
+                      if (widget.onOpenReferrals != null && ref.watch(roleProvider) != AppRole.moderator)
+                        ListTile(
+                          key: const Key('account-referrals'),
+                          title: Text(l10n.referralTitle),
+                          trailing: const Icon(Icons.chevron_right),
+                          onTap: widget.onOpenReferrals,
                         ),
                       if (widget.onOpenNotifications != null)
                         ListTile(

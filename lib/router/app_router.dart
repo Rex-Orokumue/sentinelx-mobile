@@ -13,6 +13,7 @@ import '../features/guide/coach/coach_tours.dart';
 import '../features/guide/guide_screen.dart';
 import '../features/support_chat/chat_screen.dart';
 import '../features/account/account_screen.dart';
+import '../features/account/referrals/referral_screen.dart';
 import '../features/account/edit_profile_screen.dart';
 import '../features/account/profile_onboarding_screen.dart';
 import '../features/account/settings/delete_account_screen.dart';
@@ -474,6 +475,7 @@ GoRouter buildAppRouter({
                   onLogoTap: () => context.go('/'),
                   onEditProfile: () => context.push('/account/profile'),
                   onOpenProgress: () => context.push('/account/progress'),
+                  onOpenReferrals: () => context.push('/account/referrals'),
                   onOpenNotifications: () =>
                       context.push('/account/notifications'),
                   onOpenLanguage: () => context.push('/account/language'),
@@ -484,6 +486,10 @@ GoRouter buildAppRouter({
                   onOpenDeleteAccount: () => context.push('/account/delete'),
                 ),
                 routes: [
+                  GoRoute(
+                    path: 'referrals',
+                    builder: (context, state) => const ReferralScreen(),
+                  ),
                   GoRoute(
                     path: 'profile',
                     builder: (context, state) => const EditProfileScreen(),

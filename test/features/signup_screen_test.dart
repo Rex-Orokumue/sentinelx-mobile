@@ -5,8 +5,10 @@ import 'package:sentinelx_mobile/core/auth/auth_providers.dart';
 import 'package:sentinelx_mobile/core/auth/auth_repository.dart';
 import 'package:sentinelx_mobile/core/l10n/gen/app_localizations.dart';
 import 'package:sentinelx_mobile/features/auth/signup_screen.dart';
+import 'package:sentinelx_mobile/features/account/referrals/referral_attribution.dart';
 
 import 'auth_test_fakes.dart';
+import '../fakes/fake_local_kv.dart';
 
 class _RecordingSignup extends FakeAuthRepositoryForForgot {
   Map<String, Object?>? args;
@@ -19,10 +21,14 @@ class _RecordingSignup extends FakeAuthRepositoryForForgot {
   }
 }
 
-Future<void> _pump(WidgetTester tester, _RecordingSignup repo, {String? initialRef, void Function(String email)? onSignedUp}) {
+Future<void> _pump(WidgetTester tester, _RecordingSignup repo, {String? initialRef, void Function(String email)? onSignedUp,
+    ReferralAttribution? attribution}) {
   return tester.pumpWidget(ProviderScope(
     retry: (_, _) => null,
-    overrides: [authRepositoryProvider.overrideWithValue(repo)],
+    overrides: [
+      authRepositoryProvider.overrideWithValue(repo),
+      referralAttributionProvider.overrideWith((ref) async => attribution ?? ReferralAttribution(MemoryLocalKv(), () async => null)),
+    ],
     child: MaterialApp(
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
@@ -60,6 +66,36 @@ void main() {
     await tester.tap(find.byKey(const Key('signup-submit')));
     await tester.pumpAndSettle();
     expect(repo.args?['ref'], 'friend1');
+  });
+
+  testWidgets('uses a deferred install referral and clears it after signup succeeds', (tester) async {
+    final repo = _RecordingSignup();
+    final attribution = ReferralAttribution(MemoryLocalKv(), () async => 'ref=install_friend');
+    await _pump(tester, repo, attribution: attribution);
+    await tester.enterText(find.byKey(const Key('signup-username')), 'newplayer');
+    await tester.tap(find.byKey(const Key('signup-continue-email')));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byKey(const Key('signup-email')), 'new@x.com');
+    await tester.enterText(find.byKey(const Key('signup-password')), 'password123');
+    await tester.tap(find.byKey(const Key('signup-submit')));
+    await tester.pumpAndSettle();
+    expect(repo.args?['ref'], 'install_friend');
+    expect(await attribution.refForSignup(null), isNull);
+  });
+
+  testWidgets('a failed signup keeps its deferred referral for retry', (tester) async {
+    final repo = _RecordingSignup()..throwOnSignUp = const AuthException('username_taken', 'x');
+    final attribution = ReferralAttribution(MemoryLocalKv(), () async => 'ref=install_friend');
+    await _pump(tester, repo, attribution: attribution);
+    await tester.enterText(find.byKey(const Key('signup-username')), 'taken');
+    await tester.tap(find.byKey(const Key('signup-continue-email')));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byKey(const Key('signup-email')), 'new@x.com');
+    await tester.enterText(find.byKey(const Key('signup-password')), 'password123');
+    await tester.tap(find.byKey(const Key('signup-submit')));
+    await tester.pumpAndSettle();
+    expect(repo.args?['ref'], 'install_friend');
+    expect(await attribution.refForSignup(null), 'install_friend');
   });
 
   testWidgets('shows a translated error on a taken username without leaving the wizard', (tester) async {

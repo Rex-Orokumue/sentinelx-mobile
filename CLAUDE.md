@@ -93,8 +93,11 @@ and each phase needing endpoints gets its own spec in the **web** repo first.
   | `/account/sign-in-methods` | Settings -> Sign-in methods (link / unlink Google) |
   | `/account/phone` | Settings -> Phone verification |
   | `/account/delete` | Settings -> Delete account (schedule, cancel, delete now) |
+  | `/account/referrals` | Referrals (link, invited players, conversion and milestone history) |
   | `/onboarding/phone` | Phone gate (reachable only while `enforcePhoneVerification` is on and the phone is unverified) |
   | `/debug` | debugTools only |
+
+- **Referrals (Phase 6d).** `/account/referrals` reads only `GET /me/referrals`; conversion and coin awards remain server-owned after a paid, non-waived entry. The current username is the share code, and `/signup?ref=` App Links pass it to the existing signup API. Android's Play Install Referrer adapter stores only a validated `ref` until signup succeeds; an explicit App Link wins. System text sharing uses a small Android channel because `share_plus` 11 conflicts with the current `package_info_plus` dependency and `share_plus` 12+ requires a newer Android Gradle plugin. Real Play attribution and verified App Links still need a physical-device pass; the public web signup link works before a Play listing exists.
 
 - **Push (Phase 5a).** Firebase sits behind `PushGateway` (`lib/core/notifications/push/`); push is never required
   to boot (a failed `Firebase.initializeApp()` yields a disabled gateway). `android/app/google-services.json` is
