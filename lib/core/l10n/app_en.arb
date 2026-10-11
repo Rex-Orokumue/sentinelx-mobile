@@ -1765,5 +1765,64 @@
         "type": "String"
       }
     }
+  },
+  "storeTitle": "Store",
+  "storeBalance": "Your coins",
+  "storeDisclaimer": "SX Coins cannot be exchanged for cash. They are earned by competing and spent on the platform.",
+  "storeCatBorders": "Frames",
+  "storeCatBubbles": "Assistant skins",
+  "storeCatThemes": "Themes",
+  "storeCatColours": "Name colours",
+  "storeOwned": "Owned",
+  "storeEquipped": "Equipped",
+  "storeBuy": "Buy",
+  "storeEquip": "Equip",
+  "storeUnequip": "Unequip",
+  "storeBuyConfirmTitle": "Buy {name}?",
+  "storeBuyConfirmBody": "{price} coins. You'll have {balance} left.",
+  "storeCancel": "Cancel",
+  "storeBought": "Bought! You can equip it now.",
+  "storeEquippedNow": "Equipped.",
+  "storeUnequippedNow": "Removed.",
+  "storeNeedMore": "You need {more} more coins.",
+  "storeLoadFailed": "Couldn't load the store.",
+  "storeRetry": "Try again",
+  "storeEmpty": "Nothing here yet.",
+  "storeLogInToBuy": "Log in to buy",
+  "storeErrNotFound": "That item no longer exists.",
+  "storeErrUnavailable": "This item isn't available any more.",
+  "storeErrOwned": "You already own this item.",
+  "storeErrInsufficient": "Not enough SX Coins.",
+  "storeErrNotOwned": "You don't own this item yet.",
+  "storeErrStore": "The store is unavailable right now. Please try again.",
+  "storeErrPendingDeletion": "Cancel your account deletion in Settings to do this.",
+  "storeErrNetwork": "No connection. Check your internet and try again.",
+  "storeErrSession": "Your session expired. Please log in again.",
+  "storeErrInProgress": "Still processing. Wait a moment and try again.",
+  "storeErrGeneric": "Something went wrong. Please try again.",
+  "walletCoinBalance": "SX Coins",
+  "@storeBuyConfirmTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@storeBuyConfirmBody": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "balance": {
+        "type": "String"
+      }
+    }
+  },
+  "@storeNeedMore": {
+    "placeholders": {
+      "more": {
+        "type": "String"
+      }
+    }
   }
 }

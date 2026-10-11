@@ -7035,6 +7035,216 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No transactions here.'**
   String get walletTxnEmpty;
+
+  /// No description provided for @storeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Store'**
+  String get storeTitle;
+
+  /// No description provided for @storeBalance.
+  ///
+  /// In en, this message translates to:
+  /// **'Your coins'**
+  String get storeBalance;
+
+  /// No description provided for @storeDisclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'SX Coins cannot be exchanged for cash. They are earned by competing and spent on the platform.'**
+  String get storeDisclaimer;
+
+  /// No description provided for @storeCatBorders.
+  ///
+  /// In en, this message translates to:
+  /// **'Frames'**
+  String get storeCatBorders;
+
+  /// No description provided for @storeCatBubbles.
+  ///
+  /// In en, this message translates to:
+  /// **'Assistant skins'**
+  String get storeCatBubbles;
+
+  /// No description provided for @storeCatThemes.
+  ///
+  /// In en, this message translates to:
+  /// **'Themes'**
+  String get storeCatThemes;
+
+  /// No description provided for @storeCatColours.
+  ///
+  /// In en, this message translates to:
+  /// **'Name colours'**
+  String get storeCatColours;
+
+  /// No description provided for @storeOwned.
+  ///
+  /// In en, this message translates to:
+  /// **'Owned'**
+  String get storeOwned;
+
+  /// No description provided for @storeEquipped.
+  ///
+  /// In en, this message translates to:
+  /// **'Equipped'**
+  String get storeEquipped;
+
+  /// No description provided for @storeBuy.
+  ///
+  /// In en, this message translates to:
+  /// **'Buy'**
+  String get storeBuy;
+
+  /// No description provided for @storeEquip.
+  ///
+  /// In en, this message translates to:
+  /// **'Equip'**
+  String get storeEquip;
+
+  /// No description provided for @storeUnequip.
+  ///
+  /// In en, this message translates to:
+  /// **'Unequip'**
+  String get storeUnequip;
+
+  /// No description provided for @storeBuyConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Buy {name}?'**
+  String storeBuyConfirmTitle(String name);
+
+  /// No description provided for @storeBuyConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{price} coins. You\'ll have {balance} left.'**
+  String storeBuyConfirmBody(String price, String balance);
+
+  /// No description provided for @storeCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get storeCancel;
+
+  /// No description provided for @storeBought.
+  ///
+  /// In en, this message translates to:
+  /// **'Bought! You can equip it now.'**
+  String get storeBought;
+
+  /// No description provided for @storeEquippedNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Equipped.'**
+  String get storeEquippedNow;
+
+  /// No description provided for @storeUnequippedNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed.'**
+  String get storeUnequippedNow;
+
+  /// No description provided for @storeNeedMore.
+  ///
+  /// In en, this message translates to:
+  /// **'You need {more} more coins.'**
+  String storeNeedMore(String more);
+
+  /// No description provided for @storeLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load the store.'**
+  String get storeLoadFailed;
+
+  /// No description provided for @storeRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get storeRetry;
+
+  /// No description provided for @storeEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing here yet.'**
+  String get storeEmpty;
+
+  /// No description provided for @storeLogInToBuy.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to buy'**
+  String get storeLogInToBuy;
+
+  /// No description provided for @storeErrNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'That item no longer exists.'**
+  String get storeErrNotFound;
+
+  /// No description provided for @storeErrUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'This item isn\'t available any more.'**
+  String get storeErrUnavailable;
+
+  /// No description provided for @storeErrOwned.
+  ///
+  /// In en, this message translates to:
+  /// **'You already own this item.'**
+  String get storeErrOwned;
+
+  /// No description provided for @storeErrInsufficient.
+  ///
+  /// In en, this message translates to:
+  /// **'Not enough SX Coins.'**
+  String get storeErrInsufficient;
+
+  /// No description provided for @storeErrNotOwned.
+  ///
+  /// In en, this message translates to:
+  /// **'You don\'t own this item yet.'**
+  String get storeErrNotOwned;
+
+  /// No description provided for @storeErrStore.
+  ///
+  /// In en, this message translates to:
+  /// **'The store is unavailable right now. Please try again.'**
+  String get storeErrStore;
+
+  /// No description provided for @storeErrPendingDeletion.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel your account deletion in Settings to do this.'**
+  String get storeErrPendingDeletion;
+
+  /// No description provided for @storeErrNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'No connection. Check your internet and try again.'**
+  String get storeErrNetwork;
+
+  /// No description provided for @storeErrSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Your session expired. Please log in again.'**
+  String get storeErrSession;
+
+  /// No description provided for @storeErrInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Still processing. Wait a moment and try again.'**
+  String get storeErrInProgress;
+
+  /// No description provided for @storeErrGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get storeErrGeneric;
+
+  /// No description provided for @walletCoinBalance.
+  ///
+  /// In en, this message translates to:
+  /// **'SX Coins'**
+  String get walletCoinBalance;
 }
 
 class _AppLocalizationsDelegate
