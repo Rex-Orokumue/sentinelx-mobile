@@ -3595,4 +3595,299 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get signInMethodsErrorsFailed =>
       'Could not unlink Google. Please try again.';
+
+  @override
+  String get walletTitle => 'Wallet';
+
+  @override
+  String get walletBalance => 'Available balance';
+
+  @override
+  String walletPendingWithdrawal(String amount) {
+    return '$amount pending withdrawal';
+  }
+
+  @override
+  String get walletAddMoney => 'Add money';
+
+  @override
+  String get walletWithdraw => 'Withdraw';
+
+  @override
+  String get walletTransactions => 'Transactions';
+
+  @override
+  String get walletSeeAll => 'See all';
+
+  @override
+  String get walletEarnings => 'Earnings';
+
+  @override
+  String get walletEarnPrize => 'Tournament prizes';
+
+  @override
+  String get walletEarnReferral => 'Referrals';
+
+  @override
+  String get walletEarnBonus => 'Bonuses';
+
+  @override
+  String walletTrend(String pct) {
+    return '$pct% vs last month';
+  }
+
+  @override
+  String get walletNoTransactions => 'No transactions yet.';
+
+  @override
+  String get walletPayoutAccount => 'Payout account';
+
+  @override
+  String get walletPayoutNone => 'No payout account yet';
+
+  @override
+  String get walletPayoutManage => 'Manage';
+
+  @override
+  String get walletPayoutAdd => 'Add payout account';
+
+  @override
+  String get walletPayoutVerified => 'Verified';
+
+  @override
+  String get walletLoadFailed => 'Couldn\'t load your wallet.';
+
+  @override
+  String get walletRetry => 'Try again';
+
+  @override
+  String get walletSignedOut => 'Log in to see your wallet.';
+
+  @override
+  String get walletManualPayoutNotice =>
+      'Withdrawals are paid out by an administrator, not instantly.';
+
+  @override
+  String get walletStatusPending => 'Pending';
+
+  @override
+  String get walletStatusFailed => 'Failed';
+
+  @override
+  String get walletStatusPaid => 'Paid';
+
+  @override
+  String get walletStatusRejected => 'Rejected';
+
+  @override
+  String get walletCatPrize => 'Tournament prize';
+
+  @override
+  String get walletCatReferral => 'Referral';
+
+  @override
+  String get walletCatBonus => 'Bonus';
+
+  @override
+  String get walletCatWithdrawal => 'Withdrawal';
+
+  @override
+  String get walletCatDeposit => 'Deposit';
+
+  @override
+  String get walletCatOther => 'Transaction';
+
+  @override
+  String get walletDepositTitle => 'Add money';
+
+  @override
+  String get walletAmountLabel => 'Amount (₦)';
+
+  @override
+  String walletMinAmount(String min) {
+    return 'Minimum is $min';
+  }
+
+  @override
+  String walletDepositFee(String fee, String total) {
+    return 'Paystack fee $fee. You\'ll pay $total in total.';
+  }
+
+  @override
+  String get walletDepositContinue => 'Continue to payment';
+
+  @override
+  String get walletDepositConfirming => 'Confirming your payment…';
+
+  @override
+  String get walletDepositSuccess =>
+      'Payment confirmed. Your wallet has been credited.';
+
+  @override
+  String get walletDepositMayArrive =>
+      'We haven\'t seen your payment yet. If you were charged, it will arrive shortly.';
+
+  @override
+  String get walletDepositCheckAgain => 'Check again';
+
+  @override
+  String get walletDepositClosed =>
+      'Payment window closed. If you paid, your balance will update shortly.';
+
+  @override
+  String get walletDone => 'Done';
+
+  @override
+  String walletErrRateLimited(String seconds) {
+    return 'Too many attempts. Try again in $seconds s.';
+  }
+
+  @override
+  String get walletErrPendingDeletion =>
+      'Cancel your account deletion in Settings to do this.';
+
+  @override
+  String get walletErrEmailRequired => 'Add an email to your account to pay.';
+
+  @override
+  String get walletErrPaymentUnavailable =>
+      'Payment couldn\'t be started. Please try again.';
+
+  @override
+  String get walletErrGeneric => 'Something went wrong. Please try again.';
+
+  @override
+  String get walletErrNetwork =>
+      'No connection. Check your internet and try again.';
+
+  @override
+  String get walletErrSession => 'Your session expired. Please log in again.';
+
+  @override
+  String get walletErrInProgress =>
+      'Still processing. Wait a moment and try again.';
+
+  @override
+  String get walletPayoutBank => 'Bank';
+
+  @override
+  String get walletPayoutBankHint => 'Choose your bank';
+
+  @override
+  String get walletPayoutSearchBank => 'Search banks';
+
+  @override
+  String get walletPayoutNumber => 'Account number (10 digits)';
+
+  @override
+  String get walletPayoutResolve => 'Check account';
+
+  @override
+  String walletPayoutAccountName(String name) {
+    return 'Account name: $name';
+  }
+
+  @override
+  String get walletPayoutConfirmPrompt =>
+      'Make sure this is your account before saving.';
+
+  @override
+  String get walletPayoutSave => 'Save payout account';
+
+  @override
+  String get walletPayoutRemove => 'Remove account';
+
+  @override
+  String get walletPayoutRemoveTitle => 'Remove payout account?';
+
+  @override
+  String get walletPayoutRemoveBody =>
+      'You\'ll need to add one again before your next withdrawal. A pending withdrawal isn\'t affected.';
+
+  @override
+  String get walletCancel => 'Cancel';
+
+  @override
+  String get walletPayoutSaved => 'Payout account saved.';
+
+  @override
+  String get walletPayoutRemoved => 'Payout account removed.';
+
+  @override
+  String get walletErrAccountUnresolvable =>
+      'We couldn\'t verify that account number. Check the details and try again.';
+
+  @override
+  String get walletErrUnknownBank =>
+      'We don\'t recognise that bank. Select your bank again.';
+
+  @override
+  String get walletErrAlreadyVerified =>
+      'A payout account is already saved. Remove it first to change it.';
+
+  @override
+  String get walletErrPayoutUnavailable =>
+      'Payout accounts are unavailable right now. Please try again.';
+
+  @override
+  String get walletWithdrawTitle => 'Withdraw';
+
+  @override
+  String walletWithdrawAvailable(String amount) {
+    return 'Available: $amount';
+  }
+
+  @override
+  String get walletWithdrawRequest => 'Request withdrawal';
+
+  @override
+  String get walletWithdrawNeedAccount => 'Add a payout account to withdraw.';
+
+  @override
+  String get walletWithdrawPendingExists =>
+      'You already have a pending withdrawal.';
+
+  @override
+  String get walletWithdrawExceeds =>
+      'That\'s more than your available balance.';
+
+  @override
+  String get walletWithdrawSubmitted =>
+      'Withdrawal requested. An administrator will pay it out.';
+
+  @override
+  String get walletWithdrawHistory => 'Your withdrawals';
+
+  @override
+  String get walletWithdrawNone => 'No withdrawals yet.';
+
+  @override
+  String get walletErrKycRequired =>
+      'Add a payout account before requesting a withdrawal.';
+
+  @override
+  String get walletErrInsufficient =>
+      'That amount is more than your available balance.';
+
+  @override
+  String get walletErrWithdrawalPending =>
+      'You already have a pending withdrawal request.';
+
+  @override
+  String get walletFilterAll => 'All';
+
+  @override
+  String get walletFilterWinnings => 'Winnings';
+
+  @override
+  String get walletFilterWithdrawals => 'Withdrawals';
+
+  @override
+  String get walletFilterDeposits => 'Deposits';
+
+  @override
+  String get walletTxnLoadMoreFailed => 'Couldn\'t load more. Tap to retry.';
+
+  @override
+  String get walletTxnEmpty => 'No transactions here.';
 }

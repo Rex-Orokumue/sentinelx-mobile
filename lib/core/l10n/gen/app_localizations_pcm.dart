@@ -3591,4 +3591,300 @@ class AppLocalizationsPcm extends AppLocalizations {
   @override
   String get signInMethodsErrorsFailed =>
       'We no fit unlink Google. Abeg try again.';
+
+  @override
+  String get walletTitle => 'Wallet';
+
+  @override
+  String get walletBalance => 'Money wey you fit use';
+
+  @override
+  String walletPendingWithdrawal(String amount) {
+    return '$amount withdrawal dey wait';
+  }
+
+  @override
+  String get walletAddMoney => 'Add money';
+
+  @override
+  String get walletWithdraw => 'Withdraw';
+
+  @override
+  String get walletTransactions => 'Transactions';
+
+  @override
+  String get walletSeeAll => 'See all';
+
+  @override
+  String get walletEarnings => 'Wetin you earn';
+
+  @override
+  String get walletEarnPrize => 'Tournament prizes';
+
+  @override
+  String get walletEarnReferral => 'Referrals';
+
+  @override
+  String get walletEarnBonus => 'Bonus';
+
+  @override
+  String walletTrend(String pct) {
+    return '$pct% compare to last month';
+  }
+
+  @override
+  String get walletNoTransactions => 'No transaction dey yet.';
+
+  @override
+  String get walletPayoutAccount => 'Payout account';
+
+  @override
+  String get walletPayoutNone => 'You never add payout account';
+
+  @override
+  String get walletPayoutManage => 'Manage';
+
+  @override
+  String get walletPayoutAdd => 'Add payout account';
+
+  @override
+  String get walletPayoutVerified => 'Verified';
+
+  @override
+  String get walletLoadFailed => 'We no fit load your wallet.';
+
+  @override
+  String get walletRetry => 'Try again';
+
+  @override
+  String get walletSignedOut => 'Log in make you see your wallet.';
+
+  @override
+  String get walletManualPayoutNotice =>
+      'Admin dey pay withdrawals by hand, e no dey instant.';
+
+  @override
+  String get walletStatusPending => 'Dey wait';
+
+  @override
+  String get walletStatusFailed => 'E fail';
+
+  @override
+  String get walletStatusPaid => 'Don pay';
+
+  @override
+  String get walletStatusRejected => 'Dem reject am';
+
+  @override
+  String get walletCatPrize => 'Tournament prize';
+
+  @override
+  String get walletCatReferral => 'Referral';
+
+  @override
+  String get walletCatBonus => 'Bonus';
+
+  @override
+  String get walletCatWithdrawal => 'Withdrawal';
+
+  @override
+  String get walletCatDeposit => 'Deposit';
+
+  @override
+  String get walletCatOther => 'Transaction';
+
+  @override
+  String get walletDepositTitle => 'Add money';
+
+  @override
+  String get walletAmountLabel => 'Amount (₦)';
+
+  @override
+  String walletMinAmount(String min) {
+    return 'Minimum na $min';
+  }
+
+  @override
+  String walletDepositFee(String fee, String total) {
+    return 'Paystack fee na $fee. You go pay $total for all.';
+  }
+
+  @override
+  String get walletDepositContinue => 'Go to payment';
+
+  @override
+  String get walletDepositConfirming => 'We dey confirm your payment…';
+
+  @override
+  String get walletDepositSuccess =>
+      'Payment don confirm. Your wallet don full.';
+
+  @override
+  String get walletDepositMayArrive =>
+      'We never see your payment yet. If dem don debit you, e go reach soon.';
+
+  @override
+  String get walletDepositCheckAgain => 'Check again';
+
+  @override
+  String get walletDepositClosed =>
+      'Payment window don close. If you don pay, your balance go update soon.';
+
+  @override
+  String get walletDone => 'Done';
+
+  @override
+  String walletErrRateLimited(String seconds) {
+    return 'You don try too many times. Try again after $seconds s.';
+  }
+
+  @override
+  String get walletErrPendingDeletion =>
+      'Cancel your account deletion for Settings before you fit do this.';
+
+  @override
+  String get walletErrEmailRequired =>
+      'Add email to your account make you fit pay.';
+
+  @override
+  String get walletErrPaymentUnavailable =>
+      'We no fit start the payment. Abeg try again.';
+
+  @override
+  String get walletErrGeneric => 'Something go wrong. Abeg try again.';
+
+  @override
+  String get walletErrNetwork =>
+      'No network. Check your internet and try again.';
+
+  @override
+  String get walletErrSession => 'Your session don expire. Abeg log in again.';
+
+  @override
+  String get walletErrInProgress =>
+      'We still dey process am. Wait small and try again.';
+
+  @override
+  String get walletPayoutBank => 'Bank';
+
+  @override
+  String get walletPayoutBankHint => 'Choose your bank';
+
+  @override
+  String get walletPayoutSearchBank => 'Search banks';
+
+  @override
+  String get walletPayoutNumber => 'Account number (10 digits)';
+
+  @override
+  String get walletPayoutResolve => 'Check account';
+
+  @override
+  String walletPayoutAccountName(String name) {
+    return 'Account name: $name';
+  }
+
+  @override
+  String get walletPayoutConfirmPrompt =>
+      'Make sure say na your account before you save am.';
+
+  @override
+  String get walletPayoutSave => 'Save payout account';
+
+  @override
+  String get walletPayoutRemove => 'Remove account';
+
+  @override
+  String get walletPayoutRemoveTitle => 'Remove payout account?';
+
+  @override
+  String get walletPayoutRemoveBody =>
+      'You go need add another one before your next withdrawal. Withdrawal wey dey wait no go change.';
+
+  @override
+  String get walletCancel => 'Cancel';
+
+  @override
+  String get walletPayoutSaved => 'Payout account don save.';
+
+  @override
+  String get walletPayoutRemoved => 'Payout account don comot.';
+
+  @override
+  String get walletErrAccountUnresolvable =>
+      'We no fit verify that account number. Check the details and try again.';
+
+  @override
+  String get walletErrUnknownBank =>
+      'We no know that bank. Select your bank again.';
+
+  @override
+  String get walletErrAlreadyVerified =>
+      'Payout account don already dey. Remove am first before you change am.';
+
+  @override
+  String get walletErrPayoutUnavailable =>
+      'Payout accounts no dey work now. Abeg try again.';
+
+  @override
+  String get walletWithdrawTitle => 'Withdraw';
+
+  @override
+  String walletWithdrawAvailable(String amount) {
+    return 'You fit use: $amount';
+  }
+
+  @override
+  String get walletWithdrawRequest => 'Request withdrawal';
+
+  @override
+  String get walletWithdrawNeedAccount =>
+      'Add payout account make you fit withdraw.';
+
+  @override
+  String get walletWithdrawPendingExists =>
+      'You don already get withdrawal wey dey wait.';
+
+  @override
+  String get walletWithdrawExceeds => 'E pass the money wey you get.';
+
+  @override
+  String get walletWithdrawSubmitted =>
+      'Withdrawal don enter. Admin go pay am.';
+
+  @override
+  String get walletWithdrawHistory => 'Your withdrawals';
+
+  @override
+  String get walletWithdrawNone => 'No withdrawal dey yet.';
+
+  @override
+  String get walletErrKycRequired =>
+      'Add payout account before you request withdrawal.';
+
+  @override
+  String get walletErrInsufficient => 'That amount pass the money wey you get.';
+
+  @override
+  String get walletErrWithdrawalPending =>
+      'You don already get withdrawal request wey dey wait.';
+
+  @override
+  String get walletFilterAll => 'All';
+
+  @override
+  String get walletFilterWinnings => 'Winnings';
+
+  @override
+  String get walletFilterWithdrawals => 'Withdrawals';
+
+  @override
+  String get walletFilterDeposits => 'Deposits';
+
+  @override
+  String get walletTxnLoadMoreFailed =>
+      'We no fit load more. Tap make you try again.';
+
+  @override
+  String get walletTxnEmpty => 'No transaction dey here.';
 }

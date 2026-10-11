@@ -8,6 +8,21 @@ void main() {
     expect(resolveWebLink('https://evil.example/signup?ref=friend'), isNull);
   });
 
+  test('maps the web wallet pages to the in-app wallet routes, locale prefix included', () {
+    const host = 'https://sentinelxesports.com.ng';
+    expect(resolveWebLink('$host/dashboard/wallet'), '/account/wallet');
+    expect(resolveWebLink('$host/fr/dashboard/wallet/deposit'), '/account/wallet/deposit');
+    expect(resolveWebLink('$host/dashboard/wallet/withdraw'), '/account/wallet/withdraw');
+    expect(resolveWebLink('$host/dashboard/wallet/transactions?filter=deposits'), '/account/wallet/transactions');
+    expect(resolveWebLink('$host/dashboard/wallet/payment-methods'), '/account/wallet/payout-account');
+  });
+
+  test('never maps the Paystack callback or an in-app wallet path (the checkout WebView intercepts the callback)', () {
+    expect(resolveWebLink('https://sentinelxesports.com.ng/api/paystack/callback?reference=sxdep_abc'), isNull);
+    expect(resolveWebLink('/account/wallet/deposit'), isNull);
+    expect(resolveWebLink('https://evil.example/dashboard/wallet'), isNull);
+  });
+
   test('maps the site root to standalone Home', () {
     expect(resolveWebLink('https://sentinelxesports.com.ng/'), '/');
     expect(resolveWebLink('/'), '/');
@@ -139,7 +154,7 @@ void main() {
 
   test('web destinations the app has no screen for stay unmapped (a push tap then falls back to the bell)', () {
     expect(resolveWebLink('/dashboard/settings/extra'), isNull);
-    expect(resolveWebLink('/dashboard/wallet'), isNull);
+    expect(resolveWebLink('/dashboard/wallet/unknown'), isNull);
     expect(resolveWebLink('/messages/abc'), isNull);
     expect(resolveWebLink('/admin/matches/1/review'), isNull);
     expect(resolveWebLink('/exchange/abc'), isNull);

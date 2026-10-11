@@ -6513,6 +6513,528 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Could not unlink Google. Please try again.'**
   String get signInMethodsErrorsFailed;
+
+  /// No description provided for @walletTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Wallet'**
+  String get walletTitle;
+
+  /// No description provided for @walletBalance.
+  ///
+  /// In en, this message translates to:
+  /// **'Available balance'**
+  String get walletBalance;
+
+  /// No description provided for @walletPendingWithdrawal.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} pending withdrawal'**
+  String walletPendingWithdrawal(String amount);
+
+  /// No description provided for @walletAddMoney.
+  ///
+  /// In en, this message translates to:
+  /// **'Add money'**
+  String get walletAddMoney;
+
+  /// No description provided for @walletWithdraw.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdraw'**
+  String get walletWithdraw;
+
+  /// No description provided for @walletTransactions.
+  ///
+  /// In en, this message translates to:
+  /// **'Transactions'**
+  String get walletTransactions;
+
+  /// No description provided for @walletSeeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'See all'**
+  String get walletSeeAll;
+
+  /// No description provided for @walletEarnings.
+  ///
+  /// In en, this message translates to:
+  /// **'Earnings'**
+  String get walletEarnings;
+
+  /// No description provided for @walletEarnPrize.
+  ///
+  /// In en, this message translates to:
+  /// **'Tournament prizes'**
+  String get walletEarnPrize;
+
+  /// No description provided for @walletEarnReferral.
+  ///
+  /// In en, this message translates to:
+  /// **'Referrals'**
+  String get walletEarnReferral;
+
+  /// No description provided for @walletEarnBonus.
+  ///
+  /// In en, this message translates to:
+  /// **'Bonuses'**
+  String get walletEarnBonus;
+
+  /// No description provided for @walletTrend.
+  ///
+  /// In en, this message translates to:
+  /// **'{pct}% vs last month'**
+  String walletTrend(String pct);
+
+  /// No description provided for @walletNoTransactions.
+  ///
+  /// In en, this message translates to:
+  /// **'No transactions yet.'**
+  String get walletNoTransactions;
+
+  /// No description provided for @walletPayoutAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Payout account'**
+  String get walletPayoutAccount;
+
+  /// No description provided for @walletPayoutNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No payout account yet'**
+  String get walletPayoutNone;
+
+  /// No description provided for @walletPayoutManage.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage'**
+  String get walletPayoutManage;
+
+  /// No description provided for @walletPayoutAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add payout account'**
+  String get walletPayoutAdd;
+
+  /// No description provided for @walletPayoutVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified'**
+  String get walletPayoutVerified;
+
+  /// No description provided for @walletLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your wallet.'**
+  String get walletLoadFailed;
+
+  /// No description provided for @walletRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get walletRetry;
+
+  /// No description provided for @walletSignedOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to see your wallet.'**
+  String get walletSignedOut;
+
+  /// No description provided for @walletManualPayoutNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdrawals are paid out by an administrator, not instantly.'**
+  String get walletManualPayoutNotice;
+
+  /// No description provided for @walletStatusPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get walletStatusPending;
+
+  /// No description provided for @walletStatusFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed'**
+  String get walletStatusFailed;
+
+  /// No description provided for @walletStatusPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid'**
+  String get walletStatusPaid;
+
+  /// No description provided for @walletStatusRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejected'**
+  String get walletStatusRejected;
+
+  /// No description provided for @walletCatPrize.
+  ///
+  /// In en, this message translates to:
+  /// **'Tournament prize'**
+  String get walletCatPrize;
+
+  /// No description provided for @walletCatReferral.
+  ///
+  /// In en, this message translates to:
+  /// **'Referral'**
+  String get walletCatReferral;
+
+  /// No description provided for @walletCatBonus.
+  ///
+  /// In en, this message translates to:
+  /// **'Bonus'**
+  String get walletCatBonus;
+
+  /// No description provided for @walletCatWithdrawal.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdrawal'**
+  String get walletCatWithdrawal;
+
+  /// No description provided for @walletCatDeposit.
+  ///
+  /// In en, this message translates to:
+  /// **'Deposit'**
+  String get walletCatDeposit;
+
+  /// No description provided for @walletCatOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction'**
+  String get walletCatOther;
+
+  /// No description provided for @walletDepositTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add money'**
+  String get walletDepositTitle;
+
+  /// No description provided for @walletAmountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount (₦)'**
+  String get walletAmountLabel;
+
+  /// No description provided for @walletMinAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum is {min}'**
+  String walletMinAmount(String min);
+
+  /// No description provided for @walletDepositFee.
+  ///
+  /// In en, this message translates to:
+  /// **'Paystack fee {fee}. You\'ll pay {total} in total.'**
+  String walletDepositFee(String fee, String total);
+
+  /// No description provided for @walletDepositContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue to payment'**
+  String get walletDepositContinue;
+
+  /// No description provided for @walletDepositConfirming.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirming your payment…'**
+  String get walletDepositConfirming;
+
+  /// No description provided for @walletDepositSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment confirmed. Your wallet has been credited.'**
+  String get walletDepositSuccess;
+
+  /// No description provided for @walletDepositMayArrive.
+  ///
+  /// In en, this message translates to:
+  /// **'We haven\'t seen your payment yet. If you were charged, it will arrive shortly.'**
+  String get walletDepositMayArrive;
+
+  /// No description provided for @walletDepositCheckAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Check again'**
+  String get walletDepositCheckAgain;
+
+  /// No description provided for @walletDepositClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment window closed. If you paid, your balance will update shortly.'**
+  String get walletDepositClosed;
+
+  /// No description provided for @walletDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get walletDone;
+
+  /// No description provided for @walletErrRateLimited.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many attempts. Try again in {seconds} s.'**
+  String walletErrRateLimited(String seconds);
+
+  /// No description provided for @walletErrPendingDeletion.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel your account deletion in Settings to do this.'**
+  String get walletErrPendingDeletion;
+
+  /// No description provided for @walletErrEmailRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Add an email to your account to pay.'**
+  String get walletErrEmailRequired;
+
+  /// No description provided for @walletErrPaymentUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment couldn\'t be started. Please try again.'**
+  String get walletErrPaymentUnavailable;
+
+  /// No description provided for @walletErrGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get walletErrGeneric;
+
+  /// No description provided for @walletErrNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'No connection. Check your internet and try again.'**
+  String get walletErrNetwork;
+
+  /// No description provided for @walletErrSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Your session expired. Please log in again.'**
+  String get walletErrSession;
+
+  /// No description provided for @walletErrInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Still processing. Wait a moment and try again.'**
+  String get walletErrInProgress;
+
+  /// No description provided for @walletPayoutBank.
+  ///
+  /// In en, this message translates to:
+  /// **'Bank'**
+  String get walletPayoutBank;
+
+  /// No description provided for @walletPayoutBankHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your bank'**
+  String get walletPayoutBankHint;
+
+  /// No description provided for @walletPayoutSearchBank.
+  ///
+  /// In en, this message translates to:
+  /// **'Search banks'**
+  String get walletPayoutSearchBank;
+
+  /// No description provided for @walletPayoutNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Account number (10 digits)'**
+  String get walletPayoutNumber;
+
+  /// No description provided for @walletPayoutResolve.
+  ///
+  /// In en, this message translates to:
+  /// **'Check account'**
+  String get walletPayoutResolve;
+
+  /// No description provided for @walletPayoutAccountName.
+  ///
+  /// In en, this message translates to:
+  /// **'Account name: {name}'**
+  String walletPayoutAccountName(String name);
+
+  /// No description provided for @walletPayoutConfirmPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Make sure this is your account before saving.'**
+  String get walletPayoutConfirmPrompt;
+
+  /// No description provided for @walletPayoutSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save payout account'**
+  String get walletPayoutSave;
+
+  /// No description provided for @walletPayoutRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove account'**
+  String get walletPayoutRemove;
+
+  /// No description provided for @walletPayoutRemoveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove payout account?'**
+  String get walletPayoutRemoveTitle;
+
+  /// No description provided for @walletPayoutRemoveBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ll need to add one again before your next withdrawal. A pending withdrawal isn\'t affected.'**
+  String get walletPayoutRemoveBody;
+
+  /// No description provided for @walletCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get walletCancel;
+
+  /// No description provided for @walletPayoutSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Payout account saved.'**
+  String get walletPayoutSaved;
+
+  /// No description provided for @walletPayoutRemoved.
+  ///
+  /// In en, this message translates to:
+  /// **'Payout account removed.'**
+  String get walletPayoutRemoved;
+
+  /// No description provided for @walletErrAccountUnresolvable.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t verify that account number. Check the details and try again.'**
+  String get walletErrAccountUnresolvable;
+
+  /// No description provided for @walletErrUnknownBank.
+  ///
+  /// In en, this message translates to:
+  /// **'We don\'t recognise that bank. Select your bank again.'**
+  String get walletErrUnknownBank;
+
+  /// No description provided for @walletErrAlreadyVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'A payout account is already saved. Remove it first to change it.'**
+  String get walletErrAlreadyVerified;
+
+  /// No description provided for @walletErrPayoutUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Payout accounts are unavailable right now. Please try again.'**
+  String get walletErrPayoutUnavailable;
+
+  /// No description provided for @walletWithdrawTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdraw'**
+  String get walletWithdrawTitle;
+
+  /// No description provided for @walletWithdrawAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Available: {amount}'**
+  String walletWithdrawAvailable(String amount);
+
+  /// No description provided for @walletWithdrawRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'Request withdrawal'**
+  String get walletWithdrawRequest;
+
+  /// No description provided for @walletWithdrawNeedAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a payout account to withdraw.'**
+  String get walletWithdrawNeedAccount;
+
+  /// No description provided for @walletWithdrawPendingExists.
+  ///
+  /// In en, this message translates to:
+  /// **'You already have a pending withdrawal.'**
+  String get walletWithdrawPendingExists;
+
+  /// No description provided for @walletWithdrawExceeds.
+  ///
+  /// In en, this message translates to:
+  /// **'That\'s more than your available balance.'**
+  String get walletWithdrawExceeds;
+
+  /// No description provided for @walletWithdrawSubmitted.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdrawal requested. An administrator will pay it out.'**
+  String get walletWithdrawSubmitted;
+
+  /// No description provided for @walletWithdrawHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Your withdrawals'**
+  String get walletWithdrawHistory;
+
+  /// No description provided for @walletWithdrawNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No withdrawals yet.'**
+  String get walletWithdrawNone;
+
+  /// No description provided for @walletErrKycRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a payout account before requesting a withdrawal.'**
+  String get walletErrKycRequired;
+
+  /// No description provided for @walletErrInsufficient.
+  ///
+  /// In en, this message translates to:
+  /// **'That amount is more than your available balance.'**
+  String get walletErrInsufficient;
+
+  /// No description provided for @walletErrWithdrawalPending.
+  ///
+  /// In en, this message translates to:
+  /// **'You already have a pending withdrawal request.'**
+  String get walletErrWithdrawalPending;
+
+  /// No description provided for @walletFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get walletFilterAll;
+
+  /// No description provided for @walletFilterWinnings.
+  ///
+  /// In en, this message translates to:
+  /// **'Winnings'**
+  String get walletFilterWinnings;
+
+  /// No description provided for @walletFilterWithdrawals.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdrawals'**
+  String get walletFilterWithdrawals;
+
+  /// No description provided for @walletFilterDeposits.
+  ///
+  /// In en, this message translates to:
+  /// **'Deposits'**
+  String get walletFilterDeposits;
+
+  /// No description provided for @walletTxnLoadMoreFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load more. Tap to retry.'**
+  String get walletTxnLoadMoreFailed;
+
+  /// No description provided for @walletTxnEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No transactions here.'**
+  String get walletTxnEmpty;
 }
 
 class _AppLocalizationsDelegate

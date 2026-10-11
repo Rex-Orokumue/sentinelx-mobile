@@ -76,6 +76,18 @@ String? resolveWebLink(String input) {
       return '/hall-of-fame';
     case 'dashboard/referrals':
       return '/account/referrals';
+    // The Paystack return path (/api/paystack/callback) is deliberately NOT mapped: the in-app checkout
+    // WebView intercepts it and the app confirms the deposit through the API instead.
+    case 'dashboard/wallet':
+      return '/account/wallet';
+    case 'dashboard/wallet/deposit':
+      return '/account/wallet/deposit';
+    case 'dashboard/wallet/withdraw':
+      return '/account/wallet/withdraw';
+    case 'dashboard/wallet/transactions':
+      return '/account/wallet/transactions';
+    case 'dashboard/wallet/payment-methods':
+      return '/account/wallet/payout-account';
     // The web settings page (the test push's url) holds the notification preferences; the app's
     // equivalent is Settings -> Notifications.
     case 'dashboard/settings':

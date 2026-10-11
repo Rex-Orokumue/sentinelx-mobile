@@ -1626,5 +1626,144 @@
   "chatDestWallet": "Open my wallet",
   "chatDestRules": "Read the rules",
   "chatDestSafety": "Safety tips",
-  "chatDestHelp": "Open help"
+  "chatDestHelp": "Open help",
+  "walletTitle": "Wallet",
+  "walletBalance": "Money wey you fit use",
+  "walletPendingWithdrawal": "{amount} withdrawal dey wait",
+  "walletAddMoney": "Add money",
+  "walletWithdraw": "Withdraw",
+  "walletTransactions": "Transactions",
+  "walletSeeAll": "See all",
+  "walletEarnings": "Wetin you earn",
+  "walletEarnPrize": "Tournament prizes",
+  "walletEarnReferral": "Referrals",
+  "walletEarnBonus": "Bonus",
+  "walletTrend": "{pct}% compare to last month",
+  "walletNoTransactions": "No transaction dey yet.",
+  "walletPayoutAccount": "Payout account",
+  "walletPayoutNone": "You never add payout account",
+  "walletPayoutManage": "Manage",
+  "walletPayoutAdd": "Add payout account",
+  "walletPayoutVerified": "Verified",
+  "walletLoadFailed": "We no fit load your wallet.",
+  "walletRetry": "Try again",
+  "walletSignedOut": "Log in make you see your wallet.",
+  "walletManualPayoutNotice": "Admin dey pay withdrawals by hand, e no dey instant.",
+  "walletStatusPending": "Dey wait",
+  "walletStatusFailed": "E fail",
+  "walletStatusPaid": "Don pay",
+  "walletStatusRejected": "Dem reject am",
+  "walletCatPrize": "Tournament prize",
+  "walletCatReferral": "Referral",
+  "walletCatBonus": "Bonus",
+  "walletCatWithdrawal": "Withdrawal",
+  "walletCatDeposit": "Deposit",
+  "walletCatOther": "Transaction",
+  "walletDepositTitle": "Add money",
+  "walletAmountLabel": "Amount (₦)",
+  "walletMinAmount": "Minimum na {min}",
+  "walletDepositFee": "Paystack fee na {fee}. You go pay {total} for all.",
+  "walletDepositContinue": "Go to payment",
+  "walletDepositConfirming": "We dey confirm your payment…",
+  "walletDepositSuccess": "Payment don confirm. Your wallet don full.",
+  "walletDepositMayArrive": "We never see your payment yet. If dem don debit you, e go reach soon.",
+  "walletDepositCheckAgain": "Check again",
+  "walletDepositClosed": "Payment window don close. If you don pay, your balance go update soon.",
+  "walletDone": "Done",
+  "walletErrRateLimited": "You don try too many times. Try again after {seconds} s.",
+  "walletErrPendingDeletion": "Cancel your account deletion for Settings before you fit do this.",
+  "walletErrEmailRequired": "Add email to your account make you fit pay.",
+  "walletErrPaymentUnavailable": "We no fit start the payment. Abeg try again.",
+  "walletErrGeneric": "Something go wrong. Abeg try again.",
+  "walletErrNetwork": "No network. Check your internet and try again.",
+  "walletErrSession": "Your session don expire. Abeg log in again.",
+  "walletErrInProgress": "We still dey process am. Wait small and try again.",
+  "walletPayoutBank": "Bank",
+  "walletPayoutBankHint": "Choose your bank",
+  "walletPayoutSearchBank": "Search banks",
+  "walletPayoutNumber": "Account number (10 digits)",
+  "walletPayoutResolve": "Check account",
+  "walletPayoutAccountName": "Account name: {name}",
+  "walletPayoutConfirmPrompt": "Make sure say na your account before you save am.",
+  "walletPayoutSave": "Save payout account",
+  "walletPayoutRemove": "Remove account",
+  "walletPayoutRemoveTitle": "Remove payout account?",
+  "walletPayoutRemoveBody": "You go need add another one before your next withdrawal. Withdrawal wey dey wait no go change.",
+  "walletCancel": "Cancel",
+  "walletPayoutSaved": "Payout account don save.",
+  "walletPayoutRemoved": "Payout account don comot.",
+  "walletErrAccountUnresolvable": "We no fit verify that account number. Check the details and try again.",
+  "walletErrUnknownBank": "We no know that bank. Select your bank again.",
+  "walletErrAlreadyVerified": "Payout account don already dey. Remove am first before you change am.",
+  "walletErrPayoutUnavailable": "Payout accounts no dey work now. Abeg try again.",
+  "walletWithdrawTitle": "Withdraw",
+  "walletWithdrawAvailable": "You fit use: {amount}",
+  "walletWithdrawRequest": "Request withdrawal",
+  "walletWithdrawNeedAccount": "Add payout account make you fit withdraw.",
+  "walletWithdrawPendingExists": "You don already get withdrawal wey dey wait.",
+  "walletWithdrawExceeds": "E pass the money wey you get.",
+  "walletWithdrawSubmitted": "Withdrawal don enter. Admin go pay am.",
+  "walletWithdrawHistory": "Your withdrawals",
+  "walletWithdrawNone": "No withdrawal dey yet.",
+  "walletErrKycRequired": "Add payout account before you request withdrawal.",
+  "walletErrInsufficient": "That amount pass the money wey you get.",
+  "walletErrWithdrawalPending": "You don already get withdrawal request wey dey wait.",
+  "walletFilterAll": "All",
+  "walletFilterWinnings": "Winnings",
+  "walletFilterWithdrawals": "Withdrawals",
+  "walletFilterDeposits": "Deposits",
+  "walletTxnLoadMoreFailed": "We no fit load more. Tap make you try again.",
+  "walletTxnEmpty": "No transaction dey here.",
+  "@walletPendingWithdrawal": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@walletTrend": {
+    "placeholders": {
+      "pct": {
+        "type": "String"
+      }
+    }
+  },
+  "@walletMinAmount": {
+    "placeholders": {
+      "min": {
+        "type": "String"
+      }
+    }
+  },
+  "@walletDepositFee": {
+    "placeholders": {
+      "fee": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "@walletErrRateLimited": {
+    "placeholders": {
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
+  "@walletPayoutAccountName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@walletWithdrawAvailable": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  }
 }

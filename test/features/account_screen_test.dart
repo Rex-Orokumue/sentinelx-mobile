@@ -197,6 +197,23 @@ void main() {
     expect(opened, 1);
   });
 
+  testWidgets('signed-in player can open the wallet but a moderator has no wallet tile', (tester) async {
+    var opened = 0;
+    final screen = AccountScreen(onLogIn: () {}, onSignUp: () {}, onLogoTap: () {}, onOpenWallet: () => opened++);
+    await tester.pumpWidget(_app([meProvider.overrideWith((ref) async => _me())], screen));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('account-wallet')));
+    expect(opened, 1);
+
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pumpWidget(_app([
+      meProvider.overrideWith((ref) async => _me()),
+      roleProvider.overrideWithValue(AppRole.moderator),
+    ], screen));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('account-wallet')), findsNothing);
+  });
+
   testWidgets('signed-in player can open referrals but a moderator has no referral tile', (tester) async {
     var opened = 0;
     final screen = AccountScreen(onLogIn: () {}, onSignUp: () {}, onLogoTap: () {}, onOpenReferrals: () => opened++);

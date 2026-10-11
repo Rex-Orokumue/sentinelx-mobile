@@ -97,7 +97,7 @@ void main() {
     });
 
     testWidgets('a link the app cannot map navigates nowhere', (tester) async {
-      final repo = FakeNotificationsRepository(rows: [bell('w', link: '/dashboard/wallet')]);
+      final repo = FakeNotificationsRepository(rows: [bell('w', link: '/dashboard/friendlies')]);
       await _pump(tester, repo);
       await tester.tap(find.byKey(const Key('ntf-row-w')));
       await tester.pumpAndSettle();

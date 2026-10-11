@@ -1626,5 +1626,144 @@
         "type": "String"
       }
     }
+  },
+  "walletTitle": "Wallet",
+  "walletBalance": "Available balance",
+  "walletPendingWithdrawal": "{amount} pending withdrawal",
+  "walletAddMoney": "Add money",
+  "walletWithdraw": "Withdraw",
+  "walletTransactions": "Transactions",
+  "walletSeeAll": "See all",
+  "walletEarnings": "Earnings",
+  "walletEarnPrize": "Tournament prizes",
+  "walletEarnReferral": "Referrals",
+  "walletEarnBonus": "Bonuses",
+  "walletTrend": "{pct}% vs last month",
+  "walletNoTransactions": "No transactions yet.",
+  "walletPayoutAccount": "Payout account",
+  "walletPayoutNone": "No payout account yet",
+  "walletPayoutManage": "Manage",
+  "walletPayoutAdd": "Add payout account",
+  "walletPayoutVerified": "Verified",
+  "walletLoadFailed": "Couldn't load your wallet.",
+  "walletRetry": "Try again",
+  "walletSignedOut": "Log in to see your wallet.",
+  "walletManualPayoutNotice": "Withdrawals are paid out by an administrator, not instantly.",
+  "walletStatusPending": "Pending",
+  "walletStatusFailed": "Failed",
+  "walletStatusPaid": "Paid",
+  "walletStatusRejected": "Rejected",
+  "walletCatPrize": "Tournament prize",
+  "walletCatReferral": "Referral",
+  "walletCatBonus": "Bonus",
+  "walletCatWithdrawal": "Withdrawal",
+  "walletCatDeposit": "Deposit",
+  "walletCatOther": "Transaction",
+  "walletDepositTitle": "Add money",
+  "walletAmountLabel": "Amount (₦)",
+  "walletMinAmount": "Minimum is {min}",
+  "walletDepositFee": "Paystack fee {fee}. You'll pay {total} in total.",
+  "walletDepositContinue": "Continue to payment",
+  "walletDepositConfirming": "Confirming your payment…",
+  "walletDepositSuccess": "Payment confirmed. Your wallet has been credited.",
+  "walletDepositMayArrive": "We haven't seen your payment yet. If you were charged, it will arrive shortly.",
+  "walletDepositCheckAgain": "Check again",
+  "walletDepositClosed": "Payment window closed. If you paid, your balance will update shortly.",
+  "walletDone": "Done",
+  "walletErrRateLimited": "Too many attempts. Try again in {seconds} s.",
+  "walletErrPendingDeletion": "Cancel your account deletion in Settings to do this.",
+  "walletErrEmailRequired": "Add an email to your account to pay.",
+  "walletErrPaymentUnavailable": "Payment couldn't be started. Please try again.",
+  "walletErrGeneric": "Something went wrong. Please try again.",
+  "walletErrNetwork": "No connection. Check your internet and try again.",
+  "walletErrSession": "Your session expired. Please log in again.",
+  "walletErrInProgress": "Still processing. Wait a moment and try again.",
+  "walletPayoutBank": "Bank",
+  "walletPayoutBankHint": "Choose your bank",
+  "walletPayoutSearchBank": "Search banks",
+  "walletPayoutNumber": "Account number (10 digits)",
+  "walletPayoutResolve": "Check account",
+  "walletPayoutAccountName": "Account name: {name}",
+  "walletPayoutConfirmPrompt": "Make sure this is your account before saving.",
+  "walletPayoutSave": "Save payout account",
+  "walletPayoutRemove": "Remove account",
+  "walletPayoutRemoveTitle": "Remove payout account?",
+  "walletPayoutRemoveBody": "You'll need to add one again before your next withdrawal. A pending withdrawal isn't affected.",
+  "walletCancel": "Cancel",
+  "walletPayoutSaved": "Payout account saved.",
+  "walletPayoutRemoved": "Payout account removed.",
+  "walletErrAccountUnresolvable": "We couldn't verify that account number. Check the details and try again.",
+  "walletErrUnknownBank": "We don't recognise that bank. Select your bank again.",
+  "walletErrAlreadyVerified": "A payout account is already saved. Remove it first to change it.",
+  "walletErrPayoutUnavailable": "Payout accounts are unavailable right now. Please try again.",
+  "walletWithdrawTitle": "Withdraw",
+  "walletWithdrawAvailable": "Available: {amount}",
+  "walletWithdrawRequest": "Request withdrawal",
+  "walletWithdrawNeedAccount": "Add a payout account to withdraw.",
+  "walletWithdrawPendingExists": "You already have a pending withdrawal.",
+  "walletWithdrawExceeds": "That's more than your available balance.",
+  "walletWithdrawSubmitted": "Withdrawal requested. An administrator will pay it out.",
+  "walletWithdrawHistory": "Your withdrawals",
+  "walletWithdrawNone": "No withdrawals yet.",
+  "walletErrKycRequired": "Add a payout account before requesting a withdrawal.",
+  "walletErrInsufficient": "That amount is more than your available balance.",
+  "walletErrWithdrawalPending": "You already have a pending withdrawal request.",
+  "walletFilterAll": "All",
+  "walletFilterWinnings": "Winnings",
+  "walletFilterWithdrawals": "Withdrawals",
+  "walletFilterDeposits": "Deposits",
+  "walletTxnLoadMoreFailed": "Couldn't load more. Tap to retry.",
+  "walletTxnEmpty": "No transactions here.",
+  "@walletPendingWithdrawal": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@walletTrend": {
+    "placeholders": {
+      "pct": {
+        "type": "String"
+      }
+    }
+  },
+  "@walletMinAmount": {
+    "placeholders": {
+      "min": {
+        "type": "String"
+      }
+    }
+  },
+  "@walletDepositFee": {
+    "placeholders": {
+      "fee": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "@walletErrRateLimited": {
+    "placeholders": {
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
+  "@walletPayoutAccountName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@walletWithdrawAvailable": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
   }
 }
