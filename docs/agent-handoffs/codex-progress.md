@@ -2,7 +2,7 @@
 
 ## Waiting on the owner
 
-- None from Codex's work yet.
+- Phase 6a wallet is paused before its mobile API spec and implementation. Owner approval is required for a payments/KYC authorization boundary: may the existing signed-in web deposit, payout-account verification/removal and withdrawal flows be exposed to the same player through bearer-authenticated `/api/mobile/v1/*` endpoints? Proposed boundary: require the authenticated owner on every request; return only a masked payout account number in reads; resolve the bank account on the server; reuse the existing web money and KYC services; require `Idempotency-Key` for deposit and withdrawal creation; make no BVN prompt or new production-data write during development. The 2026-10-08 handoff explicitly says to stop for payment authorization and KYC data-handling decisions. Web sources reviewed: `lib/wallet/actions.ts`, `deposit.ts`, `service.ts`, `lib/kyc/actions.ts`, `lib/mobile-api/define-endpoint.ts`, and wallet pages. No Phase 6a code or migration has been started.
 
 ## Rulings
 
