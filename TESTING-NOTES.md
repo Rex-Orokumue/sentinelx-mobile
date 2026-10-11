@@ -205,3 +205,19 @@ Run on a real Android device against the staging web. Use `zzqa_` accounts and P
 | 5 | A new staging account signs up through the link: referral is pending; its first paid, non-waived tournament entry converts it once and credits 250 coins plus any milestone | pending |
 | 6 | A free or waived entry does not convert the referral; invalid/self code does not fail signup or credit coins | pending |
 | 7 | Moderator has no referral entry in Account; player sees the page at 320–375 px in English, French and Pidgin without overflow | pending |
+
+## Phase 6a device pass (wallet)
+
+Run on a real Android device against **staging only** (`sentinelx-staging`, `ofxmoxpvwbemfouaowoa`) with the staging web deployment, a `zzqa_` account and Paystack **test** mode (sandbox bank code `001`). Staging needs the `wallet_atomic_functions` migration, Paystack test keys and a webhook pointing at the staging deployment (spec decision D3). No production writes. All items are pending until a real device pass.
+
+| # | Check | Result |
+|---|---|---|
+| 1 | Account -> Wallet loads on staging: balance, earnings, recent rows and the payout account match the staging web wallet page | pending |
+| 2 | Add a payout account with the sandbox bank: Check account shows the resolved name, Save works, the saved account reads back masked (`•••1234`), Remove asks first | pending |
+| 3 | Add money (₦100 and a larger amount): the fee shown matches the web, the Paystack test card pays, the balance rises exactly once | pending |
+| 4 | Close the checkout mid-payment: no credit appears until Paystack confirms; Check again then credits once | pending |
+| 5 | Airplane mode on Continue, then retry: exactly one `wallet_deposits` row and one `api_idempotency_keys` row | pending |
+| 6 | Withdraw: one `withdrawal_requests` row and one ledger debit; a second request is refused while one is pending | pending |
+| 7 | Admin marks the request paid on the web admin: the timeline shows Paid after a refresh | pending |
+| 8 | Eleven account checks within 15 minutes show the rate-limit message with a seconds count | pending |
+| 9 | Moderator has no Wallet entry and a deep link returns to Account; player screens fit at 320-375 px in English, French and Pidgin | pending |

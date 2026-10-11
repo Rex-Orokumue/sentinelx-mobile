@@ -33,7 +33,7 @@ void main() {
     test('a missing, blank or unmappable url opens the bell instead of doing nothing', () {
       expect(destinationFor(const PushMessage()), '/notifications');
       expect(destinationFor(const PushMessage(url: '')), '/notifications');
-      expect(destinationFor(const PushMessage(url: '/dashboard/wallet')), '/notifications');
+      expect(destinationFor(const PushMessage(url: '/dashboard/friendlies')), '/notifications');
       expect(destinationFor(const PushMessage(url: '/messages/abc')), '/notifications');
       expect(destinationFor(const PushMessage(url: 'https://evil.example/matches/1')), '/notifications');
     });
@@ -82,10 +82,10 @@ void main() {
       addTearDown(r.container.dispose);
       r.router.markReady();
       r.router.onTap(const PushMessage(url: '/matches/m1'));
-      r.router.onTap(const PushMessage(url: '/dashboard/wallet'));
+      r.router.onTap(const PushMessage(url: '/dashboard/friendlies'));
       r.router.onTap(const PushMessage());
       await pumpEventQueue();
-      expect(r.repo.readForLink, ['/matches/m1', '/dashboard/wallet']);
+      expect(r.repo.readForLink, ['/matches/m1', '/dashboard/friendlies']);
       expect(r.visited, ['/matches/m1', '/notifications', '/notifications']);
     });
   });
