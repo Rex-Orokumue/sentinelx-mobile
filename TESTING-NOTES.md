@@ -221,3 +221,20 @@ Run on a real Android device against **staging only** (`sentinelx-staging`, `ofx
 | 7 | Admin marks the request paid on the web admin: the timeline shows Paid after a refresh | pending |
 | 8 | Eleven account checks within 15 minutes show the rate-limit message with a seconds count | pending |
 | 9 | Moderator has no Wallet entry and a deep link returns to Account; player screens fit at 320-375 px in English, French and Pidgin | pending |
+
+## Phase 6b device pass (store, equip, atomic coins)
+
+Run on a real Android device against **staging only** (`sentinelx-staging`, `ofxmoxpvwbemfouaowoa`), served from a local dev server on the LAN (`.env.development.local`), with a `zzqa_` account. Staging has the `coin_atomic_and_store_functions` migration. **Run this once all of Phase 6 is built** (owner decision: no device tests before then). No production writes. All items are pending.
+
+| # | Check | Result |
+|---|---|---|
+| 1 | Account -> Store lists the 3 staging borders, 3 bubble skins, 3 themes and 4 name colours; prices and previews match the staging web store | pending |
+| 2 | Signed out, the catalogue shows with no balance; Buy asks to log in | pending |
+| 3 | Buy a 150-coin item: the confirmation shows the balance left, the coin history shows exactly one -150 `store_purchase` row, and the wallet's coin line drops by 150 | pending |
+| 4 | Two quick taps on Buy: one purchase, no error; airplane mode on confirm then retry: still one purchase | pending |
+| 5 | Equip a frame: it shows on lists, your profile and the Players directory after a relaunch, with the bundled art working offline | pending |
+| 6 | Equip a name colour and a theme: they show on your profile and the Account identity; Unequip clears them | pending |
+| 7 | Equip a bubble skin: the assistant's face changes everywhere (home, tabs, guide) | pending |
+| 8 | With too few coins Buy is disabled and says how many more are needed; a server refusal shows localized copy | pending |
+| 9 | A wager edited up and down, a post boost and an entry discount each move coins exactly once in the ledger | pending |
+| 10 | Layouts at 320-375 px in English, French and Pidgin; no coin-purchase wording anywhere | pending |
