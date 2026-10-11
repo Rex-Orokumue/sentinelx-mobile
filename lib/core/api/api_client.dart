@@ -17,6 +17,7 @@ import 'profile_onboarding_models.dart';
 import 'progress_models.dart';
 import 'registration_fields_models.dart';
 import 'referrals_models.dart';
+import 'wallet_models.dart';
 
 class ApiException implements Exception {
   const ApiException({
@@ -54,6 +55,16 @@ class ApiClient {
     'getMe': 'get /api/mobile/v1/me',
     'getMyAccount': 'get /api/mobile/v1/me/account',
     'getMyReferrals': 'get /api/mobile/v1/me/referrals',
+    'getMyWallet': 'get /api/mobile/v1/wallet',
+    'listMyWalletTransactions': 'get /api/mobile/v1/wallet/transactions',
+    'listWalletBanks': 'get /api/mobile/v1/wallet/banks',
+    'resolvePayoutAccount': 'post /api/mobile/v1/wallet/payout-account/resolve',
+    'setPayoutAccount': 'put /api/mobile/v1/wallet/payout-account',
+    'removePayoutAccount': 'delete /api/mobile/v1/wallet/payout-account',
+    'startWalletDeposit': 'post /api/mobile/v1/wallet/deposits',
+    'getWalletDeposit': 'get /api/mobile/v1/wallet/deposits/{reference}',
+    'requestWithdrawal': 'post /api/mobile/v1/wallet/withdrawals',
+    'listMyWithdrawals': 'get /api/mobile/v1/wallet/withdrawals',
     'postAccountDeletion': 'post /api/mobile/v1/me/deletion',
     'deleteAccountDeletion': 'delete /api/mobile/v1/me/deletion',
     'postAccountDeletionExecute': 'post /api/mobile/v1/me/deletion/execute',
@@ -420,6 +431,64 @@ class ApiClient {
 
   Future<ReferralOverview> getMyReferrals() =>
       _send('GET', '/me/referrals', (d) => ReferralOverview.fromJson(d! as Map<String, dynamic>));
+
+  Future<WalletOverview> getMyWallet() =>
+      _send('GET', '/wallet', (d) => WalletOverview.fromJson(d! as Map<String, dynamic>));
+
+  Future<WalletTxnPage> listMyWalletTransactions({String filter = 'all', String? cursor}) {
+    final query = Uri(queryParameters: {'filter': filter, 'cursor': ?cursor}).query;
+    return _send('GET', '/wallet/transactions?$query', (d) => WalletTxnPage.fromJson(d! as Map<String, dynamic>));
+  }
+
+  Future<List<WalletBank>> listWalletBanks() => _send(
+        'GET',
+        '/wallet/banks',
+        (d) => [for (final b in (d! as Map<String, dynamic>)['banks'] as List<dynamic>) WalletBank.fromJson(b as Map<String, dynamic>)],
+      );
+
+  /// Returns the account holder name Paystack resolves, for the player to confirm before saving.
+  Future<String> resolvePayoutAccount({required String bankCode, required String accountNumber}) => _send(
+        'POST',
+        '/wallet/payout-account/resolve',
+        (d) => (d! as Map<String, dynamic>)['accountName'] as String,
+        body: {'bankCode': bankCode, 'accountNumber': accountNumber},
+      );
+
+  Future<PayoutAccount> setPayoutAccount({required String bankCode, required String accountNumber}) => _send(
+        'PUT',
+        '/wallet/payout-account',
+        (d) => PayoutAccount.fromJson((d! as Map<String, dynamic>)['payoutAccount'] as Map<String, dynamic>),
+        body: {'bankCode': bankCode, 'accountNumber': accountNumber},
+      );
+
+  Future<void> removePayoutAccount() => _send('DELETE', '/wallet/payout-account', (_) {});
+
+  Future<DepositStart> startWalletDeposit(int amount, {required String idempotencyKey}) => _send(
+        'POST',
+        '/wallet/deposits',
+        (d) => DepositStart.fromJson(d! as Map<String, dynamic>),
+        body: {'amount': amount},
+        headers: {'Idempotency-Key': idempotencyKey},
+      );
+
+  Future<DepositPoll> getWalletDeposit(String reference) => _send(
+        'GET',
+        '/wallet/deposits/${Uri.encodeComponent(reference)}',
+        (d) => DepositPoll.fromJson(d! as Map<String, dynamic>),
+      );
+
+  Future<Withdrawal> requestWithdrawal(int amount, {required String idempotencyKey}) => _send(
+        'POST',
+        '/wallet/withdrawals',
+        (d) => Withdrawal.fromJson(d! as Map<String, dynamic>),
+        body: {'amount': amount},
+        headers: {'Idempotency-Key': idempotencyKey},
+      );
+
+  Future<WithdrawalPage> listMyWithdrawals({String? cursor}) {
+    final query = cursor == null ? '' : '?${Uri(queryParameters: {'cursor': cursor}).query}';
+    return _send('GET', '/wallet/withdrawals$query', (d) => WithdrawalPage.fromJson(d! as Map<String, dynamic>));
+  }
 
   Future<DeletionTicket> postAccountDeletion() =>
       _send('POST', '/me/deletion', (d) => DeletionTicket.fromJson(d! as Map<String, dynamic>), body: {'confirm': 'DELETE'});
