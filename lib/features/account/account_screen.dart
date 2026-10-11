@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/api/models.dart';
 import '../../core/auth/auth_providers.dart';
 import '../../core/l10n/gen/app_localizations.dart';
 import '../../core/notifications/push/push_registration.dart';
 import '../../core/providers.dart';
+import '../../shared/cosmetics/cosmetic_style.dart';
 import '../../shared/widgets/sx_tab_app_bar.dart';
 
 class AccountScreen extends ConsumerStatefulWidget {
@@ -46,6 +48,23 @@ class AccountScreen extends ConsumerStatefulWidget {
 class _AccountScreenState extends ConsumerState<AccountScreen> {
   bool _signingOut = false;
   bool _signOutFailed = false;
+
+  /// The player's name, in their equipped username colour and on their equipped profile theme (both optional).
+  Widget _identity(MeResponse me) {
+    final profile = me.profile;
+    final colour = CosmeticStyle.usernameColour(profile?.usernameColour);
+    final themeDecoration = CosmeticStyle.profileTheme(profile?.profileTheme);
+    final name = Text(
+      profile?.displayName ?? profile?.username ?? me.email ?? '',
+      style: colour == null ? null : TextStyle(color: colour),
+    );
+    if (themeDecoration == null) return name;
+    return DecoratedBox(
+      key: const Key('account-theme'),
+      decoration: themeDecoration,
+      child: Padding(padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8), child: name),
+    );
+  }
 
   Future<void> _signOut() async {
     setState(() {
@@ -105,7 +124,7 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
                 : Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(me.profile?.displayName ?? me.profile?.username ?? me.email ?? ''),
+                      _identity(me),
                       if (widget.onEditProfile != null)
                         TextButton(
                           key: const Key('account-edit-profile'),
