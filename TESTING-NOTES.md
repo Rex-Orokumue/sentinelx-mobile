@@ -208,7 +208,7 @@ Run on a real Android device against the staging web. Use `zzqa_` accounts and P
 
 ## Phase 6a device pass (wallet)
 
-Run on a real Android device against **staging only** (`sentinelx-staging`, `ofxmoxpvwbemfouaowoa`) with the staging web deployment, a `zzqa_` account and Paystack **test** mode (sandbox bank code `001`). Staging needs the `wallet_atomic_functions` migration, Paystack test keys and a webhook pointing at the staging deployment (spec decision D3). No production writes. All items are pending until a real device pass.
+Run on a real Android device against **staging only** (`sentinelx-staging`, `ofxmoxpvwbemfouaowoa`) with the staging web deployment, a `zzqa_` account and Paystack **test** mode (sandbox bank code `001`). Staging has the `wallet_atomic_functions` migration and a verified Paystack test key. No webhook is needed: the app confirms a deposit by polling `GET /wallet/deposits/{reference}`, which verifies with Paystack. Serve the staging web from a local dev server on the LAN (`.env.development.local`), as in earlier phases; Vercel previews hit production. Run this pass once all of Phase 6 is built. No production writes. All items are pending until a real device pass.
 
 | # | Check | Result |
 |---|---|---|
