@@ -423,5 +423,1208 @@
         "type": "String"
       }
     }
-  }
+  },
+  "appName": "Sentinel X",
+  "maintenanceTitle": "We go soon come back",
+  "updateRequiredTitle": "You must update",
+  "updateRequiredBody": "Abeg update Sentinel X to version {minVersion} or newer before you fit continue.",
+  "@updateRequiredBody": {
+    "placeholders": {
+      "minVersion": {
+        "type": "String"
+      }
+    }
+  },
+  "updateAction": "Update now",
+  "homeLoadError": "Something go wrong as this page dey load.",
+  "accountTitle": "Account",
+  "accountLogIn": "Log in",
+  "accountCreateAccount": "Create account",
+  "accountLoadFailed": "We no fit load your account.",
+  "accountRetry": "Try again",
+  "accountSignOut": "Log out",
+  "accountSigningOut": "E dey log you out…",
+  "accountSignOutFailed": "We no fit log you out. Abeg try again.",
+  "authErrorsForgotFailed": "We no fit send the reset link. Abeg try again.",
+  "authErrorsResendFailed": "We no fit send the confirmation link again. Abeg try again.",
+  "authErrorsGoogleNotConfigured": "Google sign-in never ready yet.",
+  "authErrorsGoogleFailed": "Google sign-in no work. Abeg try again.",
+  "cmpTabAll": "All",
+  "cmpTabLive": "Live",
+  "cmpTabUpcoming": "Dey come",
+  "cmpTabCompleted": "Don finish",
+  "cmpAllGames": "All games",
+  "cmpEmpty": "No tournament dey here yet.",
+  "cmpLoadError": "We no fit load am. Check your network and try again.",
+  "cmpRetry": "Try again",
+  "cmpLoadMore": "Load more",
+  "cmpEntryFee": "Entry fee",
+  "cmpFree": "Free",
+  "cmpPrizePool": "Prize pool",
+  "cmpSecondPlace": "2nd place",
+  "cmpThirdPlace": "3rd place",
+  "cmpMaxPlayers": "{count} players max",
+  "@cmpMaxPlayers": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cmpRules": "Rules",
+  "cmpViewBracket": "See bracket",
+  "cmpShareWhatsapp": "Share for WhatsApp",
+  "cmpShareText": "Join {title} for Sentinel X: {url}",
+  "@cmpShareText": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "cmpCtaRegister": "Register",
+  "cmpCtaResume": "Continue payment",
+  "cmpCtaLogin": "Log in make you register",
+  "cmpCtaJoinWaitlist": "Join waitlist",
+  "cmpViewInvitations": "See my invitations",
+  "cmpStateRegistered": "You don register.",
+  "cmpStateWaitlisted": "You dey for the waitlist.",
+  "cmpStateFull": "This tournament don full.",
+  "cmpStateEnded": "This tournament don end.",
+  "cmpStateInvitationOnly": "Na only people wey dem invite fit join this tournament.",
+  "cmpFeeWaived": "Free entry — dem don waive the fee",
+  "cmpFieldDisplayName": "Display name",
+  "cmpFieldWhatsapp": "WhatsApp number",
+  "cmpAgreeRules": "I don read the rules and I agree",
+  "cmpCoinsTitle": "Use SX Coins",
+  "cmpCoinsNone": "No use coins",
+  "cmpCoinsOption": "{coins} coins (−₦{naira})",
+  "@cmpCoinsOption": {
+    "placeholders": {
+      "coins": {
+        "type": "int"
+      },
+      "naira": {
+        "type": "String"
+      }
+    }
+  },
+  "cmpSubmitRegister": "Continue",
+  "cmpSubmitWaitlist": "Join waitlist",
+  "cmpSubmitting": "E dey work…",
+  "cmpValDisplayName": "Put name (1–60 letters).",
+  "cmpValWhatsapp": "Put correct WhatsApp number.",
+  "cmpValRules": "Abeg agree to the rules.",
+  "cmpPayConfirming": "We dey confirm your payment…",
+  "cmpPaySuccess": "You don enter! We don confirm your payment.",
+  "cmpPayNotConfirmed": "We never see your payment yet. If dem don debit you, e go confirm soon — check back after small time.",
+  "cmpPayCancelled": "Payment window don close. You fit continue from the tournament page.",
+  "cmpConfirmedFree": "You don register!",
+  "cmpWaitlistJoined": "You dey for the waitlist.",
+  "cmpInvTitle": "My invitations",
+  "cmpInvEmpty": "No invitation dey wait for you.",
+  "cmpInvAccept": "Accept",
+  "cmpInvDecline": "Reject",
+  "cmpInvExpires": "E go expire {date}",
+  "@cmpInvExpires": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "cmpInvDeclined": "You don reject the invitation.",
+  "cmpGamesTitle": "Games",
+  "cmpGamesEmpty": "No game dey yet.",
+  "cmpEditProfile": "Edit profile",
+  "cmpFieldBio": "Bio",
+  "cmpFieldCountry": "Country",
+  "cmpFieldUsername": "Username (you fit change am one time)",
+  "cmpSave": "Save",
+  "cmpSaved": "Profile don save.",
+  "cmpValBio": "Bio no suppose pass 280 characters.",
+  "cmpValCountry": "Country name too long (60 max).",
+  "cmpEcGeneric": "Something go wrong. Abeg try again.",
+  "cmpEcNetwork": "No network. Check your internet and try again.",
+  "cmpEcSession": "Your session don expire. Abeg log in again.",
+  "cmpEcTournamentNotFound": "We no see the tournament.",
+  "cmpEcRulesRequired": "Abeg confirm say you agree to the rules.",
+  "cmpEcAlreadyRegistered": "You don already register for this tournament.",
+  "cmpEcTournamentFull": "This tournament don full.",
+  "cmpEcInvitationOnly": "Na only people wey dem invite fit join this tournament.",
+  "cmpEcRegistrationClosed": "Registration don close.",
+  "cmpEcInsufficientCoins": "SX Coins no reach for this discount.",
+  "cmpEcPaymentInit": "We no fit start the payment. Abeg try again.",
+  "cmpEcWaitlistNotOpen": "Waitlist go open after registration close.",
+  "cmpEcAlreadyWaitlisted": "You don already dey for the waitlist.",
+  "cmpEcInProgress": "We still dey process your request. Abeg wait small and try again.",
+  "cmpEcInvitationNotFound": "We no see the invitation.",
+  "cmpEcInvitationGone": "This invitation no dey available again.",
+  "cmpEcInvitationExpired": "This invitation don expire.",
+  "cmpEcUsernameTaken": "Person don already take that username.",
+  "cmpEcUsernameLocked": "You don already change your username one time.",
+  "cmpEcSaveFailed": "We no fit save your profile. Abeg try again.",
+  "cmpHomeGamesTile": "Games",
+  "cmpHomeInvitationsTile": "My invitations",
+  "cmpAccountEditProfile": "Edit profile",
+  "cmpStatusRegistrationOpen": "Registration don open",
+  "cmpStatusRegistrationClosed": "Registration don close",
+  "cmpStatusActive": "Live",
+  "cmpStatusCompleted": "Don finish",
+  "cmpPayCheckAgain": "Check payment status",
+  "cmpInvPayCancelled": "Payment window don close. If dem don debit you, e go confirm soon.",
+  "cmpValUsername": "Username na 3–20 letters, numbers or underscore.",
+  "commonDeletedPlayer": "Player wey dem don delete",
+  "rankingsTitle": "Leaderboards",
+  "rankingsRankByScore": "Dem rank am by SX Score",
+  "rankingsRankByWins": "Dem rank am by wins",
+  "rankingsAllGames": "All games",
+  "rankingsAllRegions": "All regions",
+  "rankingsYourRank": "Your rank",
+  "rankingsYou": "(you)",
+  "rankingsPrev": "Back",
+  "rankingsNext": "Next",
+  "rankingsEmpty": "No ranked player dey yet.",
+  "rankingsErrorRetry": "We no fit load am. Tap make you try again.",
+  "rankingsTrendNew": "New",
+  "seasonsTitle": "Seasons",
+  "seasonsEmpty": "No season dey yet.",
+  "seasonsLeaderboardEmpty": "Dem never give any season points yet.",
+  "seasonsProvisional": "E never final",
+  "seasonsProvisionalNote": "Points fit still change as tournaments dey go on.",
+  "seasonsTournaments": "Tournaments",
+  "seasonsInviteOnly": "Invite only",
+  "seasonsYou": "You",
+  "hallOfFameTitle": "Hall of Fame",
+  "hallOfFameMvp": "All-Time MVP",
+  "hallOfFameGoldenBoot": "Golden Boot",
+  "hallOfFameChampionsCup": "Champions Cup",
+  "hallOfFameMasters": "Masters",
+  "hallOfFameCommunityClub": "Community Club",
+  "hallOfFameOpen": "Open tournaments",
+  "hallOfFameBronze": "Bronze finishes",
+  "hallOfFameEmpty": "Nothing dey here yet.",
+  "rankingsWinsCount": "{wins} wins",
+  "@rankingsWinsCount": {
+    "placeholders": {
+      "wins": {
+        "type": "int"
+      }
+    }
+  },
+  "rankingsMatchesCount": "{matches} matches",
+  "@rankingsMatchesCount": {
+    "placeholders": {
+      "matches": {
+        "type": "int"
+      }
+    }
+  },
+  "rankingsStreakValue": "{n}-win streak",
+  "@rankingsStreakValue": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "rankingsPageOf": "Page {page} of {total}",
+  "@rankingsPageOf": {
+    "placeholders": {
+      "page": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "rankingsPlayersRanked": "{n} players dey ranked",
+  "@rankingsPlayersRanked": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "seasonsPoints": "{n} pts",
+  "@seasonsPoints": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "hallOfFameRunnerUp": "Second place: {name}",
+  "@hallOfFameRunnerUp": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "commonLoadError": "We no fit load am. Tap make you try again.",
+  "playersTitle": "Players",
+  "playersSearchHint": "Search players",
+  "playersEmpty": "We no see any player.",
+  "playersNotFound": "We no see the player.",
+  "profileFollow": "Follow",
+  "profileFollowing": "Following",
+  "profileFollowsYou": "E dey follow you",
+  "profileFollowersCount": "{n} followers",
+  "@profileFollowersCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "profileFollowingCount": "{n} following",
+  "@profileFollowingCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "profileStatMatches": "Matches",
+  "profileStatWins": "Wins",
+  "profileStatLosses": "Losses",
+  "profileStatGoalsFor": "Goals wey e score",
+  "profileStatGoalsAgainst": "Goals wey dem score am",
+  "profileStatTitles": "Titles",
+  "profileStatTournaments": "Tournaments",
+  "profileStatStreak": "Win streak",
+  "profileStatRank": "Global rank",
+  "profileRankOf": "#{rank} of {total}",
+  "@profileRankOf": {
+    "placeholders": {
+      "rank": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "profileRankUnranked": "No rank yet",
+  "profileSxScore": "SX Score {n}",
+  "@profileSxScore": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "profileCategoryStats": "Goals by category",
+  "profileTitlesHeading": "Titles",
+  "profileNoTitles": "No title yet.",
+  "profileRecentMatches": "Recent matches",
+  "profileNoMatches": "No match yet.",
+  "profileOutcomeWin": "Win",
+  "profileOutcomeLoss": "Loss",
+  "profileOutcomeDraw": "Draw",
+  "profileAchievements": "Achievements",
+  "profileAchievementsProgress": "{unlocked}/{total} don open",
+  "@profileAchievementsProgress": {
+    "placeholders": {
+      "unlocked": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "profileAchievementLocked": "E lock",
+  "profilePosts": "Recent posts",
+  "profileGallery": "Gallery",
+  "followErrorSelf": "You no fit follow yourself.",
+  "followErrorBlocked": "You no fit follow this player.",
+  "followErrorNotFound": "This player no dey again.",
+  "followErrorGeneric": "We no fit update am. Abeg try again.",
+  "followersTitle": "Followers",
+  "followingTitle": "Following",
+  "followersEmpty": "No follower yet.",
+  "followingEmpty": "You no dey follow anybody yet.",
+  "accountMyProgress": "My progress",
+  "progressTitle": "My progress",
+  "progressSignIn": "Log in make you see your progress.",
+  "progressXpHeading": "XP",
+  "progressXpToNext": "{into} / {needed} XP reach {tier}",
+  "@progressXpToNext": {
+    "placeholders": {
+      "into": {
+        "type": "int"
+      },
+      "needed": {
+        "type": "int"
+      },
+      "tier": {
+        "type": "String"
+      }
+    }
+  },
+  "progressMaxTier": "You don reach the top tier",
+  "progressSxScore": "SX Score",
+  "progressCoins": "Coins",
+  "progressSeasonHeading": "Season standing",
+  "progressSeasonRank": "Rank #{rank}",
+  "@progressSeasonRank": {
+    "placeholders": {
+      "rank": {
+        "type": "int"
+      }
+    }
+  },
+  "progressSeasonUnranked": "No rank yet",
+  "progressSeasonMonthly": "This month",
+  "progressSeasonNone": "No season dey active.",
+  "progressToRankSixteen": "Rank 16 get {n} pts",
+  "@progressToRankSixteen": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "progressHistoryXp": "XP history",
+  "progressHistoryScore": "SX Score history",
+  "progressHistoryCoins": "Coin history",
+  "historyEmpty": "Nothing don happen yet.",
+  "historyLoadMoreError": "We no fit load more. Tap make you try again.",
+  "historyBalanceAfter": "Balance {n}",
+  "@historyBalanceAfter": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "tierRecruit": "Recruit",
+  "tierGuardian": "Guardian",
+  "tierElite": "Elite",
+  "tierSentinel": "Sentinel",
+  "tierLegend": "Legend",
+  "xpSourceMatchPlayed": "You play match",
+  "xpSourceMatchWon": "You win match",
+  "xpSourceTournamentEntered": "You enter tournament",
+  "xpSourceTournamentCompleted": "You finish tournament",
+  "xpSourceTournamentPlacement": "Tournament placement",
+  "xpSourceAchievementUnlocked": "You open achievement",
+  "xpSourceDailyLogin": "Daily login",
+  "xpSourceLoginStreak": "Login streak",
+  "xpSourceCommunityActivity": "Community activity",
+  "xpSourceAdminGrant": "Admin give am",
+  "scoreEventMatchCompleted": "You finish match",
+  "scoreEventNoShow": "You no show",
+  "scoreEventRageQuit": "You leave match before e finish",
+  "scoreEventDisputeLost": "You lose dispute",
+  "scoreEventRatingReceived": "Dem rate you",
+  "scoreEventAdminFlagConduct": "Conduct flag",
+  "scoreEventAdminFlagCheat": "Cheat flag",
+  "coinSourceMatchPlayed": "You play match",
+  "coinSourceMatchWon": "You win match",
+  "coinSourceTournamentPlacement": "Tournament placement",
+  "coinSourceDailyLogin": "Daily login",
+  "coinSourceLoginStreak": "Login streak",
+  "coinSourceAchievementUnlocked": "You open achievement",
+  "coinSourceStorePurchase": "Store purchase",
+  "coinSourceCommunityActivity": "Community activity",
+  "coinSourceAdminGrant": "Admin give am",
+  "coinSourceAdminDeduct": "Admin take am",
+  "coinSourceWeeklyChallenge": "Weekly challenge",
+  "coinSourceBestPlayWinner": "Best Play winner",
+  "coinSourceBestPlayRunnerUp": "Best Play second place",
+  "coinSourceEntryDiscount": "Entry discount",
+  "coinSourceEntryDiscountRefund": "Entry discount refund",
+  "coinSourceWagerStake": "Wager stake",
+  "coinSourceWagerWon": "You win wager",
+  "coinSourceWagerRefund": "Wager refund",
+  "coinSourcePostBoost": "Post boost",
+  "coinSourceReferralReward": "Referral reward",
+  "coinSourceReferralMilestone": "Referral milestone",
+  "coinSourceFriendlyStake": "Friendly stake",
+  "coinSourceFriendlyStakePayout": "Friendly payout",
+  "mtcBracketTitle": "Bracket",
+  "mtcTabGroups": "Groups",
+  "mtcTabFixtures": "Fixtures",
+  "mtcTabKnockout": "Knockout",
+  "mtcNoDrawYet": "Dem never do the draw yet.",
+  "mtcChampion": "Champion",
+  "mtcThirdPlace": "Third place",
+  "mtcNoWinner": "This tournament close without winner.",
+  "mtcGroupCol": "{group}",
+  "@mtcGroupCol": {
+    "placeholders": {
+      "group": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcColPlayed": "P",
+  "mtcColWins": "W",
+  "mtcColDraws": "D",
+  "mtcColLosses": "L",
+  "mtcColGoalDiff": "GD",
+  "mtcColPoints": "Pts",
+  "mtcAdvancing": "Dem dey go next round",
+  "mtcFixtLive": "Live",
+  "mtcFixtUpcoming": "Dey come",
+  "mtcFixtCompleted": "Don finish",
+  "mtcFixtDisputed": "Dem dispute am or dem cancel am",
+  "mtcProjectedMatches": "{count} matches dey come",
+  "@mtcProjectedMatches": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "mtcTbd": "Dem never announce am",
+  "mtcVs": "vs",
+  "mtcStages": "Stages",
+  "mtcStageStandingsTitle": "Standings",
+  "mtcColRank": "#",
+  "mtcColKills": "Kills",
+  "mtcTieUnresolved": "Dem tie — dem dey wait for tiebreak",
+  "mtcMatchTitle": "Match",
+  "mtcStatusScheduled": "Dem don schedule am",
+  "mtcStatusLive": "Live",
+  "mtcStatusCompleted": "Don finish",
+  "mtcStatusDisputed": "Dem dey review am",
+  "mtcStatusCancelled": "Dem cancel am",
+  "mtcStatusBye": "Bye",
+  "mtcStatusForfeited": "Dem forfeit am",
+  "mtcWatchLive": "Watch live",
+  "mtcWatchReplay": "Watch replay",
+  "mtcCheckIn": "I dey here — check me in",
+  "mtcCheckedIn": "You don check in",
+  "mtcNotCheckedIn": "You never check in",
+  "mtcCheckInSuccess": "You don check in.",
+  "mtcSubmitResult": "Submit result",
+  "mtcResultSubmitted": "Result don enter — dem dey wait for confirmation.",
+  "mtcRateOpponent": "Rate your opponent",
+  "mtcRated": "Thank you for the rating!",
+  "mtcWagerTitle": "Wager",
+  "mtcWagerLoginPrompt": "Log in make you place wager.",
+  "mtcWagerClosed": "Wager don close for this match.",
+  "mtcWagerPool": "Pool: {a} vs {b} coins",
+  "@mtcWagerPool": {
+    "placeholders": {
+      "a": {
+        "type": "int"
+      },
+      "b": {
+        "type": "int"
+      }
+    }
+  },
+  "mtcWagerFee": "House fee {percent}%",
+  "@mtcWagerFee": {
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcWagerYourPick": "Your wager: {coins} coins on {name}",
+  "@mtcWagerYourPick": {
+    "placeholders": {
+      "coins": {
+        "type": "int"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcWagerPlace": "Place wager",
+  "mtcWagerChange": "Change wager",
+  "mtcWagerStake": "Stake (coins)",
+  "mtcWagerStakeRange": "Between {min} and {max} coins.",
+  "@mtcWagerStakeRange": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "mtcWagerPlaced": "Wager don enter.",
+  "mtcWagerEstimate": "If you wager 100 coins on the first player, e go pay about {payout} coins.",
+  "@mtcWagerEstimate": {
+    "placeholders": {
+      "payout": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcNoShowInfo": "The organizers fit treat this match as no-show.",
+  "mtcScoreA": "{name} score",
+  "@mtcScoreA": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcRecordingUrl": "Recording link (if you want)",
+  "mtcPickScreenshot": "Choose screenshot",
+  "mtcChangeScreenshot": "Change screenshot",
+  "mtcScreenshotRequired": "You must add screenshot.",
+  "mtcUploading": "Screenshot dey upload…",
+  "mtcSubmitting": "E dey submit…",
+  "mtcValScore": "Put whole number from 0 to 99.",
+  "mtcLobbyResultTitle": "Lobby result",
+  "mtcPlacement": "Placement",
+  "mtcKills": "Kills",
+  "mtcValPlacement": "Put whole number from 1 to 100.",
+  "mtcValKills": "Put whole number from 0 to 100.",
+  "mtcFixturesTitle": "Your fixtures",
+  "mtcNextMatch": "Next match",
+  "mtcNextLobby": "Next lobby",
+  "mtcSubmitPrompt": "You get match wey dey wait for your result.",
+  "mtcLobbySubmitted": "Result don enter",
+  "mtcRoomCodeReady": "Room details don ready",
+  "mtcBannerQualified": "You qualify for {title} ({round}).",
+  "@mtcBannerQualified": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "round": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcBannerAwaiting": "We dey wait for your opponent.",
+  "mtcBannerEliminated": "Dem don eliminate you from {title} ({round}).",
+  "@mtcBannerEliminated": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "round": {
+        "type": "String"
+      }
+    }
+  },
+  "mtcRegistrationsHeading": "Your registrations",
+  "mtcPaymentPending": "Payment dey wait",
+  "mtcPaymentPaid": "You don pay",
+  "mtcEcGeneric": "Something go wrong. Abeg try again.",
+  "mtcEcNetwork": "No network. Check your internet and try again.",
+  "mtcEcSession": "Your session don expire. Abeg log in again.",
+  "mtcEcInProgress": "We still dey process your request. Abeg wait small and try again.",
+  "mtcEcUploadFailed": "Screenshot no upload. Abeg try again.",
+  "mtcEcMatchNotFound": "We no see the match.",
+  "mtcEcNotParticipant": "You no dey play for this match.",
+  "mtcEcNotMatchDay": "You fit check in when match day reach.",
+  "mtcEcCheckInClosed": "Check-in don close for this match.",
+  "mtcEcBye": "Na bye be this — no result to submit.",
+  "mtcEcCancelled": "Dem cancel this match.",
+  "mtcEcAlreadyConfirmed": "Dem don already confirm this result.",
+  "mtcEcSubmissionLocked": "Dem dey review your submission, you no fit edit am again.",
+  "mtcEcValidation": "Abeg check wetin you put.",
+  "mtcEcResultNotConfirmed": "You fit rate your opponent after dem confirm the result.",
+  "mtcEcCannotRateSelf": "You no fit rate yourself.",
+  "mtcEcNotRatable": "You no fit rate this match.",
+  "mtcEcAlreadyRated": "You don already rate this match.",
+  "mtcEcPendingDeletion": "Dem dey wait to delete your account.",
+  "mtcEcOwnMatch": "You no fit wager for your own match.",
+  "mtcEcInvalidPick": "Pick one of the two players for this match.",
+  "mtcEcWindowClosed": "Wager don close for this match.",
+  "mtcEcInsufficientCoins": "SX Coins no reach for this stake.",
+  "mtcEcNotInLobby": "You no dey this lobby.",
+  "mtcEcLobbyConfirmed": "Dem don confirm this lobby, you no fit edit am again.",
+  "mtcEcResultConfirmed": "Dem don confirm your result, you no fit edit am again.",
+  "mtcHomeFixtures": "Fixtures",
+  "mtcDone": "Done",
+  "cmtTitle": "Community",
+  "cmtFeedEmpty": "No post dey yet. Be the first person wey go share something!",
+  "cmtFeedLoadError": "We no fit load the feed.",
+  "cmtRetry": "Try again",
+  "cmtLoadMore": "Load more",
+  "cmtPinnedLabel": "Pinned",
+  "cmtBoostedLabel": "Boosted",
+  "cmtComposeFab": "New post",
+  "cmtSignInToPost": "Log in make you post",
+  "cmtSignInToReact": "Log in make you react",
+  "cmtSignInToComment": "Log in make you comment",
+  "cmtSignInToVote": "Log in make you vote",
+  "cmtSignInToReport": "Log in make you report",
+  "cmtCommentCount": "{count, plural, one{{count} comment} other{{count} comments}}",
+  "@cmtCommentCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cmtReactFire": "Fire",
+  "cmtReactCrown": "Crown",
+  "cmtReactStrong": "Strong",
+  "cmtReactWow": "Wow",
+  "cmtMatchResultLabel": "Match result",
+  "cmtAchievementLabel": "Achievement",
+  "cmtAnnouncementLabel": "Announcement",
+  "cmtComposeTitle": "New post",
+  "cmtComposeHint": "Wetin dey happen for SentinelX community?",
+  "cmtComposeAddImage": "Add photo",
+  "cmtComposeImagesCount": "{count}/5",
+  "@cmtComposeImagesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cmtComposePost": "Post",
+  "cmtComposePosting": "E dey post…",
+  "cmtComposeCancel": "Cancel",
+  "cmtComposeValidation": "Write something or add photo first.",
+  "cmtComposeRemoveImage": "Remove image",
+  "cmtPostDetailTitle": "Post",
+  "cmtCommentsTitle": "Comments",
+  "cmtCommentsEmpty": "No comment yet.",
+  "cmtCommentsCapNotice": "Na the first 50 comments we dey show.",
+  "cmtCommentHint": "Add comment…",
+  "cmtCommentSend": "Send",
+  "cmtDeletePost": "Delete post",
+  "cmtDeletePostConfirm": "Delete this post? You no fit bring am back.",
+  "cmtDeleteComment": "Delete comment",
+  "cmtDeleteCommentConfirm": "Delete this comment?",
+  "cmtDeleteConfirmYes": "Delete",
+  "cmtDeleteConfirmCancel": "Cancel",
+  "cmtBoostAction": "Boost (200 coins)",
+  "cmtBoostConfirmTitle": "Boost this post?",
+  "cmtBoostConfirmBody": "Your post go stay for the top of the feed for 24 hours for 200 SX Coins.",
+  "cmtBoostConfirm": "Boost",
+  "cmtBoostSuccess": "Post don boost!",
+  "cmtStatusesTitle": "Stories",
+  "cmtStatusAddYours": "Your story",
+  "cmtStatusPost": "Post story",
+  "cmtStatusCaptionHint": "Add caption (if you want)",
+  "cmtStatusEmpty": "No story dey yet.",
+  "cmtStatusViewersTitle": "Who see am",
+  "cmtStatusViewersEmpty": "Nobody don see this one yet.",
+  "cmtStatusDelete": "Delete story",
+  "cmtStatusDeleteConfirm": "Delete this story?",
+  "cmtStatusValidation": "Add photo or caption.",
+  "cmtChallengesTitle": "Weekly challenges",
+  "cmtChallengesSignedOut": "Log in make you follow weekly challenges.",
+  "cmtChallengeCompleted": "Don finish",
+  "cmtChallengeProgress": "{progress}/{goal}",
+  "@cmtChallengeProgress": {
+    "placeholders": {
+      "progress": {
+        "type": "int"
+      },
+      "goal": {
+        "type": "int"
+      }
+    }
+  },
+  "cmtBestPlayTitle": "Best Play of the Week",
+  "cmtBestPlayEmpty": "No nomination for this week.",
+  "cmtBestPlayVote": "Vote",
+  "cmtBestPlayVoted": "You don vote",
+  "cmtBestPlayVoteSuccess": "Your vote don enter!",
+  "cmtTopMembersTitle": "Top members",
+  "cmtUpcomingEventsTitle": "Events wey dey come",
+  "cmtGalleryTitle": "Gallery",
+  "cmtStatsMembers": "{count, plural, one{{count} member} other{{count} members}}",
+  "@cmtStatsMembers": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cmtStatsCountries": "{count, plural, one{{count} country} other{{count} countries}}",
+  "@cmtStatsCountries": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cmtStatsTournaments": "{count, plural, one{{count} tournament} other{{count} tournaments}}",
+  "@cmtStatsTournaments": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cmtReportPost": "Report post",
+  "cmtReportComment": "Report comment",
+  "cmtReportTitle": "Report content",
+  "cmtReportReasonSpam": "Spam",
+  "cmtReportReasonHarassment": "Harassment",
+  "cmtReportReasonHateSpeech": "Hate speech",
+  "cmtReportReasonNudity": "Nudity or sexual content",
+  "cmtReportReasonViolence": "Violence",
+  "cmtReportReasonMisinformation": "Fake news",
+  "cmtReportReasonOther": "Other",
+  "cmtReportNoteHint": "Add details (if you want)",
+  "cmtReportSubmit": "Submit report",
+  "cmtReportSubmitted": "Report don enter. Thank you.",
+  "cmtEcGeneric": "Something go wrong. Abeg try again.",
+  "cmtEcNetwork": "No network. Check your internet and try again.",
+  "cmtEcSession": "Your session don expire. Abeg log in again.",
+  "cmtEcInProgress": "We still dey process your request. Abeg wait small and try again.",
+  "cmtEcValidation": "Write something or add photo first.",
+  "cmtEcNotFound": "This content no dey again.",
+  "cmtEcForbidden": "Na only your own content you fit do this one for.",
+  "cmtEcAlreadyBoosted": "This post don already boost.",
+  "cmtEcActiveBoostExists": "You don already get active boost for another post.",
+  "cmtEcInsufficientCoins": "SX Coins no reach to boost.",
+  "cmtEcVotingClosed": "Voting don close for now.",
+  "cmtEcAlreadyVoted": "You don already vote this week.",
+  "cmtEcAlreadyReported": "You don already report this one.",
+  "cmtEcUploadFailed": "Image no upload. Abeg try again.",
+  "profileCountryLabel": "Country",
+  "profileCountryPlaceholder": "Select your country",
+  "profileWhatsappLabel": "WhatsApp number",
+  "profileWhatsappHint": "+2348012345678",
+  "profileGamesLabel": "Which games you like?",
+  "profileGamesLoading": "Games dey load…",
+  "profileGamesRetry": "We no fit load games. Try again",
+  "profileConsentLabel": "You want make we dey send you tournament updates for WhatsApp?",
+  "profileConsentYes": "Yes",
+  "profileConsentNo": "No",
+  "profileCountryRequired": "Select your country.",
+  "profileWhatsappRequired": "Put your WhatsApp number.",
+  "profileWhatsappInvalid": "Put correct WhatsApp number for the country wey you select.",
+  "profileGamesRequired": "Choose at least one game.",
+  "profileConsentRequired": "Choose yes or no.",
+  "profileCountryInvalid": "Select country from the list.",
+  "profileGameUnavailable": "One of the games wey you pick no dey available again. Reload and try again.",
+  "profileContinue": "Continue",
+  "profileSaving": "E dey save…",
+  "profileSaveFailed": "We no fit save your profile. Abeg try again.",
+  "profileSaved": "Profile don save.",
+  "ntfTitle": "Notifications",
+  "ntfMarkAllRead": "Mark all as read",
+  "ntfMuteThread": "Mute this thread",
+  "ntfUnmuteThread": "Unmute this thread",
+  "ntfMuteType": "Mute this type",
+  "ntfUnmuteType": "Unmute this type",
+  "ntfMuteFor1h": "For 1 hour",
+  "ntfMuteFor1w": "For 1 week",
+  "ntfMuteAlways": "Always",
+  "ntfMuted": "Muted",
+  "ntfUnmuted": "Unmuted",
+  "ntfEmptyTitle": "You don see everything",
+  "ntfEmptyBody": "Fixture assignments, results and prizes go show here.",
+  "ntfLoadError": "We no fit load your notifications.",
+  "ntfRetry": "Try again",
+  "ntfSignedOut": "Log in make you see your notifications.",
+  "ntfLogIn": "Log in",
+  "ntfActionFailed": "E no work. Try again.",
+  "ntfUnreadCount": "{count, plural, one{{count} notification wey you never read} other{{count} notifications wey you never read}}",
+  "@ntfUnreadCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ntfTimeNow": "Just now",
+  "ntfTimeMinutes": "{count, plural, one{{count} minute ago} other{{count} minutes ago}}",
+  "@ntfTimeMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ntfTimeHours": "{count, plural, one{{count} hour ago} other{{count} hours ago}}",
+  "@ntfTimeHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ntfTimeDays": "{count, plural, one{{count} day ago} other{{count} days ago}}",
+  "@ntfTimeDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ntfPermTitle": "Turn on notifications",
+  "ntfPermBody": "Get fixture assignments and match reminders for this phone.",
+  "ntfPermEnable": "Turn on",
+  "ntfPermOpenSettings": "Open system settings",
+  "ntfPermOn": "Notifications dey on for this phone.",
+  "ntfPermBlocked": "You don turn off notifications for this app inside your phone settings.",
+  "ntfSettingsTitle": "Notification settings",
+  "ntfSettingsEntry": "Notifications",
+  "ntfSectionPush": "Push notifications",
+  "ntfSectionWhatsapp": "WhatsApp",
+  "ntfSectionSharing": "Share achievements for the community",
+  "ntfSaveFailed": "We no fit save that change.",
+  "ntfTestAction": "Send test notification",
+  "ntfTestSent": "Test don go — e go reach you soon.",
+  "ntfTestNoDevice": "This phone never register for notifications yet.",
+  "ntfTestFailed": "The test notification no reach.",
+  "ntfPushMatchReminder": "Match reminders",
+  "ntfPushResultConfirmed": "Result don confirm",
+  "ntfPushAchievementUnlocked": "Achievement don open",
+  "ntfPushChallengeCompleted": "Weekly challenge don finish",
+  "ntfPushNewAnnouncement": "Community announcements",
+  "ntfPushTournamentAnnounced": "New tournaments",
+  "ntfPushWagerSettled": "Wager don settle",
+  "ntfPushReferralConverted": "Referral don convert",
+  "ntfPushPostComment": "Comments on your posts",
+  "ntfPushPostReaction": "Reactions on your posts",
+  "ntfPushBracketReleased": "Bracket don come out",
+  "ntfPushMatchAssigned": "Dem assign you new fixture",
+  "ntfPushPrizeCredited": "Prize don enter your wallet",
+  "ntfPushStatusFromFriend": "Your friend post status",
+  "ntfPushStatusViewed": "Somebody see your status",
+  "ntfPushNewFollower": "Somebody follow you",
+  "ntfPushDirectMessage": "Direct messages",
+  "ntfWaMatchReminder": "Match reminders (1 hour before kickoff)",
+  "ntfWaResultConfirmed": "Result don confirm",
+  "ntfWaPrizeCredited": "Prize don enter wallet",
+  "ntfWaChallengeCompleted": "Weekly challenge don finish",
+  "ntfWaAchievementUnlocked": "Achievement don open",
+  "ntfWaRegistrationConfirmed": "Registration don confirm",
+  "ntfShareTournament": "Tournament wins",
+  "ntfShareMilestone": "Milestone achievements (100 matches, etc.)",
+  "ntfShareStreak": "Streak achievements",
+  "ntfShareSocial": "Social achievements (reactions, posts)",
+  "ntfShareOther": "All other achievements",
+  "ntfChannelMatches": "Matches",
+  "ntfChannelMatchesDesc": "Fixtures, reminders and results",
+  "ntfChannelSocial": "Community",
+  "ntfChannelSocialDesc": "Comments, reactions, followers and achievements",
+  "ntfChannelMessages": "Messages",
+  "ntfChannelMessagesDesc": "Direct messages",
+  "ntfChannelMoney": "Money",
+  "ntfChannelMoneyDesc": "Prizes and referral rewards",
+  "ntfChannelAdmin": "Admin alerts",
+  "ntfChannelAdminDesc": "Alerts for staff only",
+  "ntfErrValidation": "That value no correct.",
+  "ntfErrNotFound": "That notification no dey again.",
+  "ntfErrNetwork": "Check your network and try again.",
+  "ntfErrGeneric": "Something go wrong.",
+  "ntfBannerOpen": "Open",
+  "dmErrorGeneric": "Something go wrong. Abeg try again.",
+  "dmErrorBlockedByMe": "You don block this player. Unblock am make you fit send message.",
+  "dmErrorBlocked": "You no fit message this player.",
+  "dmErrorRestricted": "Dem don restrict messaging for your account for now.",
+  "dmErrorEditWindow": "You fit only edit or unsend message inside 10 minutes after you send am.",
+  "dmErrorNotForwardable": "You no fit forward this message.",
+  "dmErrorRequestLimit": "You fit send one message until the person accept your request.",
+  "dmErrorRequestNoMedia": "Photos, stickers and voice notes go open after the person accept your request.",
+  "dmErrorNotFound": "That message or conversation no dey again.",
+  "dmErrorSendFailed": "Your message no go.",
+  "dmErrorAction": "E no work. Abeg try again.",
+  "dmErrorValidation": "That message no correct.",
+  "dmErrorImageTooLarge": "That photo too big to send.",
+  "dmInboxTitle": "Messages",
+  "dmMessagesTooltip": "Messages",
+  "dmRequestsTitle": "Message requests",
+  "dmRequestsRow": "{count, plural, one{Message requests ({count})} other{Message requests ({count})}}",
+  "@dmRequestsRow": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dmRequestsCount": "{count, plural, one{{count} request} other{{count} requests}}",
+  "@dmRequestsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dmEmptyInbox": "No message dey yet. Open player profile make you start conversation.",
+  "dmEmptyRequests": "No message request dey.",
+  "dmLoadError": "We no fit load your messages.",
+  "dmRetry": "Try again",
+  "dmSignedOut": "Log in make you see your messages.",
+  "dmLogIn": "Log in",
+  "dmUnreadCount": "{count, plural, one{{count} message wey you never read} other{{count} messages wey you never read}}",
+  "@dmUnreadCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dmWaitingFor": "We dey wait make {name} accept",
+  "@dmWaitingFor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dmRequestChip": "Request",
+  "dmPreviewPhoto": "Photo",
+  "dmPreviewVoice": "Voice message",
+  "dmPreviewRemoved": "Dem don remove the message",
+  "dmPreviewOther": "Message",
+  "dmTyping": "dey type…",
+  "dmOnline": "Online",
+  "dmVoiceSeconds": "{seconds, plural, one{{seconds} second} other{{seconds} seconds}}",
+  "@dmVoiceSeconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "dmMessageRemoved": "Dem don remove the message",
+  "dmUnsupported": "Message wey we no support",
+  "dmForwardedLabel": "Forwarded",
+  "dmEditedLabel": "dem edit am",
+  "dmReplyRemoved": "Dem don remove the original message",
+  "dmReplyingTo": "You dey reply {name}",
+  "@dmReplyingTo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dmReplyPhoto": "Photo",
+  "dmReplySticker": "Sticker",
+  "dmReplyVoice": "Voice message",
+  "dmYou": "You",
+  "dmToday": "Today",
+  "dmYesterday": "Yesterday",
+  "dmNewMessages": "New messages",
+  "dmReceiptSent": "E don go",
+  "dmReceiptDelivered": "E don reach",
+  "dmReceiptRead": "Dem don read am",
+  "dmSending": "E dey go",
+  "dmRetryAction": "Try again",
+  "dmDiscard": "Throw am away",
+  "dmActionReply": "Reply",
+  "dmActionCopy": "Copy",
+  "dmActionForward": "Forward",
+  "dmActionEdit": "Edit",
+  "dmActionUnsend": "Unsend",
+  "dmActionReport": "Report",
+  "dmCopied": "E don copy",
+  "dmComposerHint": "Message",
+  "dmSend": "Send",
+  "dmEditingBar": "You dey edit message",
+  "dmSave": "Save",
+  "dmCancel": "Cancel",
+  "dmCloseReply": "Cancel reply",
+  "dmConversationNotFound": "This conversation no dey.",
+  "dmMore": "More options",
+  "dmStickers": "Stickers",
+  "dmStickerUnknown": "Sticker wey we no support",
+  "dmForwardTitle": "Forward to…",
+  "dmForwardEmpty": "No conversation dey to forward to.",
+  "dmForwarded": "Message don forward",
+  "dmAttachPhoto": "Send photo",
+  "dmPhotoLibrary": "Choose from library",
+  "dmPhotoCamera": "Take photo",
+  "dmImageUnavailable": "Image no dey available",
+  "dmBlock": "Block",
+  "dmUnblock": "Unblock",
+  "dmReport": "Report",
+  "dmBlockConfirmTitle": "Block {name}?",
+  "@dmBlockConfirmTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dmBlockConfirmBody": "Dem no go fit message you again. You fit unblock them anytime.",
+  "dmBlockedByMeBanner": "You don block {name}",
+  "@dmBlockedByMeBanner": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dmCannotMessage": "You no fit message this player.",
+  "dmReportTitle": "Report this conversation",
+  "dmReportHint": "Wetin happen?",
+  "dmReportSubmit": "Submit report",
+  "dmReported": "Thank you. We go review your report.",
+  "dmIncomingTitle": "{name} wan message you",
+  "@dmIncomingTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dmIncomingHint": "Na only you fit see say you don read this. Dem no go see read receipt until you accept.",
+  "dmAccept": "Accept",
+  "dmDecline": "Reject",
+  "dmBlockAndReport": "Block and report",
+  "dmWaitingHint": "You fit send one text message until dem accept.",
+  "dmMessageButton": "Message",
+  "dmVoiceMessage": "Voice message",
+  "dmMicTooltip": "Record voice message",
+  "dmVoiceRecording": "E dey record",
+  "dmVoicePaused": "E don pause",
+  "dmVoicePause": "Pause",
+  "dmVoiceResume": "Continue",
+  "dmVoiceStop": "Stop",
+  "dmVoiceDelete": "Delete",
+  "dmVoicePlay": "Play",
+  "dmVoiceTooShort": "E too short. Hold am small more.",
+  "dmMicDenied": "We need microphone access make you fit record voice messages.",
+  "dmMicTryAgain": "Try again",
+  "dmMicOpenSettings": "Open settings",
+  "dmVoicePlaybackError": "We no fit play this voice message.",
+  "dmVoiceLimitReached": "You don reach the maximum length",
+  "avatarChangePhoto": "Change photo",
+  "avatarFromGallery": "Choose from gallery",
+  "avatarFromCamera": "Take photo",
+  "avatarUploading": "Photo dey upload…",
+  "avatarUploadFailed": "We no fit upload your photo. Try again.",
+  "avatarTooLarge": "That photo too big. Pick smaller one.",
+  "avatarNotImage": "We no fit use that file as photo.",
+  "guideOpen": "Guide and assistant",
+  "guideTitle": "Guide",
+  "guideHello": "How far {name}!",
+  "@guideHello": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "guideHelloNoName": "How far!",
+  "questBattleReadyTitle": "Battle Ready quest",
+  "questProgress": "{done} of {total} don finish",
+  "@questProgress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "questStepProfile_complete": "Add profile photo",
+  "questStepFirst_tournament_entered": "Enter your first tournament",
+  "questStepFirst_match_completed": "Finish your first match",
+  "questStepGeneric": "Finish this step",
+  "questTakeMeThere": "Carry me go there",
+  "questClaim": "Collect your badge",
+  "questClaiming": "E dey collect…",
+  "questBadgeEarned": "You don earn badge",
+  "questRewardLine": "{xp} XP and {coins} coins",
+  "@questRewardLine": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      },
+      "coins": {
+        "type": "int"
+      }
+    }
+  },
+  "questErrorIncomplete": "Finish all three steps first.",
+  "questErrorInProgress": "We still dey process your reward. Try again after one minute.",
+  "questErrorUnavailable": "This reward no dey available for now.",
+  "questErrorGeneric": "We no fit give you the badge. Try again.",
+  "questLoadError": "We no fit load your quest.",
+  "guideAskAssistant": "Ask the assistant",
+  "guideReplayTour": "Show the tour again",
+  "tourSlide1Title": "Wetin be Sentinel X?",
+  "tourSlide1Body": "Nigeria home for mobile esports: compete, watch, join the community and trade gear.",
+  "tourSlide2Title": "The four pillars",
+  "tourSlide2Body": "Compete for tournaments, watch Sentinel X TV, join the community and trade for the Gaming Exchange.",
+  "tourSlide3Title": "How tournaments dey work",
+  "tourSlide3Body": "Register, pay the entry fee, play your fixtures and submit your result. Admin go confirm am before the bracket update.",
+  "tourSlide4Title": "You ready to play?",
+  "tourSlide4Body": "Create account make you enter your first tournament.",
+  "tourNext": "Next",
+  "tourBack": "Back",
+  "tourCreateAccount": "Create account",
+  "coachFixturesTitle": "Your fixtures",
+  "coachFixturesBody": "Your next matches go show here. Check in when time reach.",
+  "coachQuestTitle": "Battle Ready quest",
+  "coachQuestBody": "Finish three steps make you earn badge and rewards.",
+  "coachGuideTitle": "Guide and assistant",
+  "coachGuideBody": "Quests, quick tour and chat assistant dey here.",
+  "coachAccountTitle": "Your account",
+  "coachAccountBody": "Edit your profile and settings.",
+  "coachTabsTitle": "Five tabs",
+  "coachTabsBody": "Compete, Watch, Community, Trade and your Account.",
+  "coachBellTitle": "Notifications",
+  "coachBellBody": "Match updates and rewards go show here.",
+  "coachMessagesTitle": "Messages",
+  "coachMessagesBody": "Direct messages with other players.",
+  "coachNext": "Next",
+  "coachDone": "Done",
+  "coachSkip": "Skip",
+  "coachStepOf": "{current} of {total}",
+  "@coachStepOf": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "chatTitle": "Assistant",
+  "chatHint": "Ask about tournaments, fees or your account",
+  "chatSend": "Send",
+  "chatTyping": "E dey think…",
+  "chatCheckingAccount": "E dey check your account…",
+  "chatRetry": "Try again",
+  "chatInterrupted": "Network cut. Tap Try again.",
+  "chatClear": "Clear chat",
+  "chatClearConfirmTitle": "Clear this chat?",
+  "chatClearConfirmBody": "Dem go delete your saved messages.",
+  "chatCancel": "Cancel",
+  "chatLoadEarlier": "Load earlier messages",
+  "chatEmptyPrompt": "Ask me anything about tournaments, fees, SX Score or how Sentinel X dey work.",
+  "chatRetentionNotice": "We dey keep chats for 30 days.",
+  "chatSignedOutNotice": "We no dey save chats. Log in to get answers about your account.",
+  "chatErrorRateLimited": "You dey send messages too fast. Try again after {seconds} s.",
+  "@chatErrorRateLimited": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "chatErrorUnavailableSignedOut": "The assistant dey busy now. Log in make you continue to chat.",
+  "chatErrorUnavailable": "The assistant no dey available now. Abeg try again later.",
+  "chatErrorUnauthorized": "Abeg log in again.",
+  "chatErrorTruncated": "The answer cut short. Try ask am another way.",
+  "chatErrorNetwork": "We no fit reach the assistant. Check your network and try again.",
+  "chatErrorClear": "We no fit clear your chat. Try again.",
+  "chatErrorGeneric": "Something go wrong. Abeg try again.",
+  "chatDestTournaments": "Open tournaments",
+  "chatDestMatches": "Open my matches",
+  "chatDestProfile": "Edit my profile",
+  "chatDestNotifications": "Open notifications",
+  "chatDestWallet": "Open my wallet",
+  "chatDestRules": "Read the rules",
+  "chatDestSafety": "Safety tips",
+  "chatDestHelp": "Open help"
 }
