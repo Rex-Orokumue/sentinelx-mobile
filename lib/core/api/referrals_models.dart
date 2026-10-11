@@ -1,7 +1,8 @@
 class ReferralMilestone {
   const ReferralMilestone({required this.count, required this.bonusCoins});
 
-  factory ReferralMilestone.fromJson(Map<String, dynamic> json) => ReferralMilestone(
+  factory ReferralMilestone.fromJson(Map<String, dynamic> json) =>
+      ReferralMilestone(
         count: (json['count'] as num).toInt(),
         bonusCoins: (json['bonusCoins'] as num?)?.toInt(),
       );
@@ -23,15 +24,15 @@ class ReferredPlayer {
   });
 
   factory ReferredPlayer.fromJson(Map<String, dynamic> json) => ReferredPlayer(
-        id: json['id'] as String,
-        name: json['name'] as String,
-        avatarUrl: json['avatarUrl'] as String?,
-        tier: json['tier'] as String,
-        frameUrl: json['frameUrl'] as String?,
-        status: json['status'] as String,
-        date: DateTime.parse(json['date'] as String).toUtc(),
-        coinsAwarded: (json['coinsAwarded'] as num?)?.toInt(),
-      );
+    id: json['id'] as String,
+    name: json['name'] as String,
+    avatarUrl: json['avatarUrl'] as String?,
+    tier: json['tier'] as String,
+    frameUrl: json['frameUrl'] as String?,
+    status: json['status'] as String,
+    date: DateTime.parse(json['date'] as String).toUtc(),
+    coinsAwarded: (json['coinsAwarded'] as num?)?.toInt(),
+  );
 
   final String id;
   final String name;
@@ -44,9 +45,15 @@ class ReferredPlayer {
 }
 
 class ReferralMilestoneHistory {
-  const ReferralMilestoneHistory({required this.id, required this.description, required this.coins, required this.date});
+  const ReferralMilestoneHistory({
+    required this.id,
+    required this.description,
+    required this.coins,
+    required this.date,
+  });
 
-  factory ReferralMilestoneHistory.fromJson(Map<String, dynamic> json) => ReferralMilestoneHistory(
+  factory ReferralMilestoneHistory.fromJson(Map<String, dynamic> json) =>
+      ReferralMilestoneHistory(
         id: json['id'] as String,
         description: json['description'] as String,
         coins: (json['coins'] as num).toInt(),
@@ -71,22 +78,29 @@ class ReferralOverview {
     required this.milestoneHistory,
   });
 
-  factory ReferralOverview.fromJson(Map<String, dynamic> json) => ReferralOverview(
-        username: json['username'] as String?,
-        shareUrl: json['shareUrl'] as String?,
-        totalReferrals: (json['totalReferrals'] as num).toInt(),
-        convertedCount: (json['convertedCount'] as num).toInt(),
-        totalCoinsEarned: (json['totalCoinsEarned'] as num).toInt(),
-        nextMilestone: json['nextMilestone'] == null
-            ? null
-            : ReferralMilestone.fromJson(json['nextMilestone'] as Map<String, dynamic>),
-        invited: (json['invited'] as List<dynamic>)
-            .map((item) => ReferredPlayer.fromJson(item as Map<String, dynamic>))
-            .toList(),
-        milestoneHistory: (json['milestoneHistory'] as List<dynamic>)
-            .map((item) => ReferralMilestoneHistory.fromJson(item as Map<String, dynamic>))
-            .toList(),
-      );
+  factory ReferralOverview.fromJson(
+    Map<String, dynamic> json,
+  ) => ReferralOverview(
+    username: json['username'] as String?,
+    shareUrl: json['shareUrl'] as String?,
+    totalReferrals: (json['totalReferrals'] as num).toInt(),
+    convertedCount: (json['convertedCount'] as num).toInt(),
+    totalCoinsEarned: (json['totalCoinsEarned'] as num).toInt(),
+    nextMilestone: json['nextMilestone'] == null
+        ? null
+        : ReferralMilestone.fromJson(
+            json['nextMilestone'] as Map<String, dynamic>,
+          ),
+    invited: (json['invited'] as List<dynamic>)
+        .map((item) => ReferredPlayer.fromJson(item as Map<String, dynamic>))
+        .toList(),
+    milestoneHistory: (json['milestoneHistory'] as List<dynamic>)
+        .map(
+          (item) =>
+              ReferralMilestoneHistory.fromJson(item as Map<String, dynamic>),
+        )
+        .toList(),
+  );
 
   final String? username;
   final String? shareUrl;

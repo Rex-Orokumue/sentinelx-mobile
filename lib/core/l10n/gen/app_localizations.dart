@@ -100,6 +100,156 @@ abstract class AppLocalizations {
     Locale('pcm'),
   ];
 
+  /// No description provided for @referralTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Referrals'**
+  String get referralTitle;
+
+  /// No description provided for @referralSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bring in a friend. Earn coins when they compete.'**
+  String get referralSubtitle;
+
+  /// No description provided for @referralCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Your referral code'**
+  String get referralCode;
+
+  /// No description provided for @referralLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Your referral link'**
+  String get referralLink;
+
+  /// No description provided for @referralCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy link'**
+  String get referralCopy;
+
+  /// No description provided for @referralCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Link copied'**
+  String get referralCopied;
+
+  /// No description provided for @referralShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get referralShare;
+
+  /// No description provided for @referralWhatsApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Share on WhatsApp'**
+  String get referralWhatsApp;
+
+  /// No description provided for @referralShareFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t share the link. Try copying it instead.'**
+  String get referralShareFailed;
+
+  /// No description provided for @referralTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Total referrals'**
+  String get referralTotal;
+
+  /// No description provided for @referralConverted.
+  ///
+  /// In en, this message translates to:
+  /// **'Converted'**
+  String get referralConverted;
+
+  /// No description provided for @referralEarned.
+  ///
+  /// In en, this message translates to:
+  /// **'Coins earned'**
+  String get referralEarned;
+
+  /// No description provided for @referralNextMilestone.
+  ///
+  /// In en, this message translates to:
+  /// **'Next milestone'**
+  String get referralNextMilestone;
+
+  /// No description provided for @referralAllMilestones.
+  ///
+  /// In en, this message translates to:
+  /// **'All milestones reached'**
+  String get referralAllMilestones;
+
+  /// No description provided for @referralBonus.
+  ///
+  /// In en, this message translates to:
+  /// **'Bonus coins'**
+  String get referralBonus;
+
+  /// No description provided for @referralInvited.
+  ///
+  /// In en, this message translates to:
+  /// **'Referred players'**
+  String get referralInvited;
+
+  /// No description provided for @referralHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Milestone history'**
+  String get referralHistory;
+
+  /// No description provided for @referralEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No referrals yet. Share your link to get started.'**
+  String get referralEmpty;
+
+  /// No description provided for @referralNoCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Claim your username to get a referral link.'**
+  String get referralNoCode;
+
+  /// No description provided for @referralPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get referralPending;
+
+  /// No description provided for @referralInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid'**
+  String get referralInvalid;
+
+  /// No description provided for @referralLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load referrals.'**
+  String get referralLoadFailed;
+
+  /// No description provided for @referralSignedOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to see your referrals.'**
+  String get referralSignedOut;
+
+  /// No description provided for @referralRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get referralRetry;
+
+  /// No description provided for @referralCoins.
+  ///
+  /// In en, this message translates to:
+  /// **'coins'**
+  String get referralCoins;
+
   /// No description provided for @appName.
   ///
   /// In en, this message translates to:

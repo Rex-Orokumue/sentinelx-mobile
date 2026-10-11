@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/auth/auth_providers.dart';
 import '../../core/auth/auth_repository.dart';
 import '../../core/l10n/gen/app_localizations.dart';
+import '../account/referrals/referral_attribution.dart';
 import 'google_sign_in_button.dart';
 
 class SignupScreen extends ConsumerStatefulWidget {
@@ -59,13 +60,26 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
     setState(() { _loading = true; _errorCode = null; });
     try {
       final locale = Localizations.localeOf(context).languageCode;
+      ReferralAttribution? attribution;
+      var referral = widget.initialRef;
+      try {
+        final loaded = await ref.read(referralAttributionProvider.future);
+        attribution = loaded;
+        referral = await loaded.refForSignup(widget.initialRef);
+      } catch (_) {
+        // Install attribution is optional; a valid signup must still proceed.
+      }
+      if (!mounted) return;
       await ref.read(authRepositoryProvider).signUp(
             username: _username.text.trim(),
             email: _email.text.trim(),
             password: _password.text,
-            ref: widget.initialRef,
+            ref: referral,
             locale: locale,
           );
+      try {
+        await attribution?.clearAfterSignup();
+      } catch (_) {}
       if (mounted) widget.onSignedUp(_email.text.trim());
     } on AuthException catch (e) {
       if (mounted) setState(() => _errorCode = e.code);

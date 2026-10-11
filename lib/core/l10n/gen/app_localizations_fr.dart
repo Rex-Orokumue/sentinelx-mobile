@@ -9,6 +9,85 @@ class AppLocalizationsFr extends AppLocalizations {
   AppLocalizationsFr([String locale = 'fr']) : super(locale);
 
   @override
+  String get referralTitle => 'Parrainages';
+
+  @override
+  String get referralSubtitle =>
+      'Invitez un ami. Gagnez des pièces quand il participe.';
+
+  @override
+  String get referralCode => 'Votre code de parrainage';
+
+  @override
+  String get referralLink => 'Votre lien de parrainage';
+
+  @override
+  String get referralCopy => 'Copier le lien';
+
+  @override
+  String get referralCopied => 'Lien copié';
+
+  @override
+  String get referralShare => 'Partager';
+
+  @override
+  String get referralWhatsApp => 'Partager sur WhatsApp';
+
+  @override
+  String get referralShareFailed =>
+      'Impossible de partager le lien. Essayez de le copier.';
+
+  @override
+  String get referralTotal => 'Parrainages au total';
+
+  @override
+  String get referralConverted => 'Convertis';
+
+  @override
+  String get referralEarned => 'Pièces gagnées';
+
+  @override
+  String get referralNextMilestone => 'Prochain palier';
+
+  @override
+  String get referralAllMilestones => 'Tous les paliers atteints';
+
+  @override
+  String get referralBonus => 'Pièces bonus';
+
+  @override
+  String get referralInvited => 'Joueurs parrainés';
+
+  @override
+  String get referralHistory => 'Historique des paliers';
+
+  @override
+  String get referralEmpty =>
+      'Aucun parrainage pour le moment. Partagez votre lien pour commencer.';
+
+  @override
+  String get referralNoCode =>
+      'Choisissez votre nom d\'utilisateur pour obtenir un lien de parrainage.';
+
+  @override
+  String get referralPending => 'En attente';
+
+  @override
+  String get referralInvalid => 'Invalide';
+
+  @override
+  String get referralLoadFailed => 'Impossible de charger les parrainages.';
+
+  @override
+  String get referralSignedOut => 'Connectez-vous pour voir vos parrainages.';
+
+  @override
+  String get referralRetry => 'Réessayer';
+
+  @override
+  String get referralCoins => 'pièces';
+
+  @override
   String get appName => 'Sentinel X';
 
   @override

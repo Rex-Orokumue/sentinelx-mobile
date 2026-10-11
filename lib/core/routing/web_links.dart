@@ -15,6 +15,10 @@ String? resolveWebLink(String input) {
   }
 
   if (segments.isEmpty) return '/';
+  if (segments.length == 1 && segments.first == 'signup') {
+    final ref = uri.queryParameters['ref'];
+    return ref == null ? '/signup' : '/signup?ref=${Uri.encodeQueryComponent(ref)}';
+  }
   // Web tournament links carry the slug; the detail screen accepts an id or a slug.
   if (segments.length == 2 && segments.first == 'tournaments') {
     return '/tournaments/${Uri.encodeComponent(segments[1])}';
@@ -70,6 +74,8 @@ String? resolveWebLink(String input) {
       return '/seasons';
     case 'hall-of-fame':
       return '/hall-of-fame';
+    case 'dashboard/referrals':
+      return '/account/referrals';
     // The web settings page (the test push's url) holds the notification preferences; the app's
     // equivalent is Settings -> Notifications.
     case 'dashboard/settings':

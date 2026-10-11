@@ -9,6 +9,84 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get referralTitle => 'Referrals';
+
+  @override
+  String get referralSubtitle =>
+      'Bring in a friend. Earn coins when they compete.';
+
+  @override
+  String get referralCode => 'Your referral code';
+
+  @override
+  String get referralLink => 'Your referral link';
+
+  @override
+  String get referralCopy => 'Copy link';
+
+  @override
+  String get referralCopied => 'Link copied';
+
+  @override
+  String get referralShare => 'Share';
+
+  @override
+  String get referralWhatsApp => 'Share on WhatsApp';
+
+  @override
+  String get referralShareFailed =>
+      'Couldn\'t share the link. Try copying it instead.';
+
+  @override
+  String get referralTotal => 'Total referrals';
+
+  @override
+  String get referralConverted => 'Converted';
+
+  @override
+  String get referralEarned => 'Coins earned';
+
+  @override
+  String get referralNextMilestone => 'Next milestone';
+
+  @override
+  String get referralAllMilestones => 'All milestones reached';
+
+  @override
+  String get referralBonus => 'Bonus coins';
+
+  @override
+  String get referralInvited => 'Referred players';
+
+  @override
+  String get referralHistory => 'Milestone history';
+
+  @override
+  String get referralEmpty =>
+      'No referrals yet. Share your link to get started.';
+
+  @override
+  String get referralNoCode => 'Claim your username to get a referral link.';
+
+  @override
+  String get referralPending => 'Pending';
+
+  @override
+  String get referralInvalid => 'Invalid';
+
+  @override
+  String get referralLoadFailed => 'Couldn\'t load referrals.';
+
+  @override
+  String get referralSignedOut => 'Log in to see your referrals.';
+
+  @override
+  String get referralRetry => 'Try again';
+
+  @override
+  String get referralCoins => 'coins';
+
+  @override
   String get appName => 'Sentinel X';
 
   @override

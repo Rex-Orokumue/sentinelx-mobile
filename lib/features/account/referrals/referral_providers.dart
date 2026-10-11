@@ -21,7 +21,9 @@ final referralRepositoryProvider = Provider<ReferralRepository>(
   (ref) => ApiReferralRepository(ref.watch(apiClientProvider)),
 );
 
-final referralOverviewProvider = FutureProvider.autoDispose<ReferralOverview?>((ref) async {
+final referralOverviewProvider = FutureProvider.autoDispose<ReferralOverview?>((
+  ref,
+) async {
   final viewer = await ref.watch(viewerIdProvider.future);
   if (viewer == null) return null;
   return ref.watch(referralRepositoryProvider).overview();

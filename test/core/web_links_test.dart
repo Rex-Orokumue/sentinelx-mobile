@@ -2,6 +2,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:sentinelx_mobile/core/routing/web_links.dart';
 
 void main() {
+  test('maps referral dashboard and signup links while preserving the referral code', () {
+    expect(resolveWebLink('https://sentinelxesports.com.ng/dashboard/referrals'), '/account/referrals');
+    expect(resolveWebLink('https://sentinelxesports.com.ng/fr/signup?ref=friend%2B1'), '/signup?ref=friend%2B1');
+    expect(resolveWebLink('https://evil.example/signup?ref=friend'), isNull);
+  });
+
   test('maps the site root to standalone Home', () {
     expect(resolveWebLink('https://sentinelxesports.com.ng/'), '/');
     expect(resolveWebLink('/'), '/');

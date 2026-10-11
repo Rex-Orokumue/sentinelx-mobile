@@ -9,6 +9,83 @@ class AppLocalizationsPcm extends AppLocalizations {
   AppLocalizationsPcm([String locale = 'pcm']) : super(locale);
 
   @override
+  String get referralTitle => 'Referral';
+
+  @override
+  String get referralSubtitle =>
+      'Bring your friend. You go get coins when dem play.';
+
+  @override
+  String get referralCode => 'Your referral code';
+
+  @override
+  String get referralLink => 'Your referral link';
+
+  @override
+  String get referralCopy => 'Copy link';
+
+  @override
+  String get referralCopied => 'Link don copy';
+
+  @override
+  String get referralShare => 'Share am';
+
+  @override
+  String get referralWhatsApp => 'Share for WhatsApp';
+
+  @override
+  String get referralShareFailed => 'Link no gree share. Try copy am.';
+
+  @override
+  String get referralTotal => 'All your referrals';
+
+  @override
+  String get referralConverted => 'Dem don convert';
+
+  @override
+  String get referralEarned => 'Coins wey you earn';
+
+  @override
+  String get referralNextMilestone => 'Next milestone';
+
+  @override
+  String get referralAllMilestones => 'You don reach all milestones';
+
+  @override
+  String get referralBonus => 'Extra coins';
+
+  @override
+  String get referralInvited => 'Players wey you bring';
+
+  @override
+  String get referralHistory => 'Milestone history';
+
+  @override
+  String get referralEmpty =>
+      'You never get referral. Share your link make you start.';
+
+  @override
+  String get referralNoCode => 'Pick your username make you get referral link.';
+
+  @override
+  String get referralPending => 'Dey wait';
+
+  @override
+  String get referralInvalid => 'No valid';
+
+  @override
+  String get referralLoadFailed => 'Referrals no gree load.';
+
+  @override
+  String get referralSignedOut => 'Log in make you see your referrals.';
+
+  @override
+  String get referralRetry => 'Try again';
+
+  @override
+  String get referralCoins => 'coins';
+
+  @override
   String get appName => 'Sentinel X';
 
   @override

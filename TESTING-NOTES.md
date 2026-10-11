@@ -191,3 +191,17 @@ Run on a real Android device against the **staging** web (never production), aft
 | 6 | Blockers: a staging account with a wallet balance or an active listing sees the blocker lines and nothing is scheduled | pending |
 | 7 | Gate: **not tested on a device**; unit tests only. Do not flip `enforce_phone_verification` for testing | pending |
 | 8 | 375 px with no overflow on every new screen and sheet, also in French and Pidgin | pending |
+
+## Phase 6d device pass (referrals)
+
+Run on a real Android device against the staging web. Use `zzqa_` accounts and Paystack test mode for the paid-entry conversion. No production writes. All items are pending until a real device pass.
+
+| # | Check | Result |
+|---|---|---|
+| 1 | Player opens Account -> Referrals: code/link, counts, invited statuses and milestones match the staging web dashboard | pending |
+| 2 | Copy link and share through Android's system sheet and WhatsApp; the received link opens the correct web signup with `ref` intact | pending |
+| 3 | On an installed app, tapping the referral App Link opens `/signup` with the code; the signup call carries that code | pending |
+| 4 | A Play-delivered install carrying `ref` saves it across app restarts, uses it for signup, and clears it only after successful signup; an explicit link wins | pending (requires a Play listing/test track) |
+| 5 | A new staging account signs up through the link: referral is pending; its first paid, non-waived tournament entry converts it once and credits 250 coins plus any milestone | pending |
+| 6 | A free or waived entry does not convert the referral; invalid/self code does not fail signup or credit coins | pending |
+| 7 | Moderator has no referral entry in Account; player sees the page at 320–375 px in English, French and Pidgin without overflow | pending |
