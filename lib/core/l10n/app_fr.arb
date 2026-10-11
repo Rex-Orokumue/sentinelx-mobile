@@ -1422,5 +1422,144 @@
         "type": "String"
       }
     }
+  },
+  "walletTitle": "Portefeuille",
+  "walletBalance": "Solde disponible",
+  "walletPendingWithdrawal": "{amount} de retrait en attente",
+  "walletAddMoney": "Ajouter de l'argent",
+  "walletWithdraw": "Retirer",
+  "walletTransactions": "Transactions",
+  "walletSeeAll": "Tout voir",
+  "walletEarnings": "Gains",
+  "walletEarnPrize": "Prix de tournoi",
+  "walletEarnReferral": "Parrainages",
+  "walletEarnBonus": "Bonus",
+  "walletTrend": "{pct} % vs le mois dernier",
+  "walletNoTransactions": "Aucune transaction pour le moment.",
+  "walletPayoutAccount": "Compte de paiement",
+  "walletPayoutNone": "Aucun compte de paiement",
+  "walletPayoutManage": "Gérer",
+  "walletPayoutAdd": "Ajouter un compte de paiement",
+  "walletPayoutVerified": "Vérifié",
+  "walletLoadFailed": "Impossible de charger votre portefeuille.",
+  "walletRetry": "Réessayer",
+  "walletSignedOut": "Connectez-vous pour voir votre portefeuille.",
+  "walletManualPayoutNotice": "Les retraits sont versés par un administrateur, pas instantanément.",
+  "walletStatusPending": "En attente",
+  "walletStatusFailed": "Échoué",
+  "walletStatusPaid": "Payé",
+  "walletStatusRejected": "Refusé",
+  "walletCatPrize": "Prix de tournoi",
+  "walletCatReferral": "Parrainage",
+  "walletCatBonus": "Bonus",
+  "walletCatWithdrawal": "Retrait",
+  "walletCatDeposit": "Dépôt",
+  "walletCatOther": "Transaction",
+  "walletDepositTitle": "Ajouter de l'argent",
+  "walletAmountLabel": "Montant (₦)",
+  "walletMinAmount": "Le minimum est {min}",
+  "walletDepositFee": "Frais Paystack {fee}. Vous paierez {total} au total.",
+  "walletDepositContinue": "Continuer vers le paiement",
+  "walletDepositConfirming": "Confirmation de votre paiement…",
+  "walletDepositSuccess": "Paiement confirmé. Votre portefeuille a été crédité.",
+  "walletDepositMayArrive": "Nous n'avons pas encore reçu votre paiement. Si vous avez été débité, il arrivera bientôt.",
+  "walletDepositCheckAgain": "Vérifier à nouveau",
+  "walletDepositClosed": "Fenêtre de paiement fermée. Si vous avez payé, votre solde sera mis à jour bientôt.",
+  "walletDone": "Terminé",
+  "walletErrRateLimited": "Trop de tentatives. Réessayez dans {seconds} s.",
+  "walletErrPendingDeletion": "Annulez la suppression de votre compte dans les Paramètres pour continuer.",
+  "walletErrEmailRequired": "Ajoutez un e-mail à votre compte pour payer.",
+  "walletErrPaymentUnavailable": "Le paiement n'a pas pu démarrer. Veuillez réessayer.",
+  "walletErrGeneric": "Une erreur s'est produite. Veuillez réessayer.",
+  "walletErrNetwork": "Pas de connexion. Vérifiez votre internet et réessayez.",
+  "walletErrSession": "Votre session a expiré. Veuillez vous reconnecter.",
+  "walletErrInProgress": "Traitement en cours. Patientez un instant puis réessayez.",
+  "walletPayoutBank": "Banque",
+  "walletPayoutBankHint": "Choisissez votre banque",
+  "walletPayoutSearchBank": "Rechercher une banque",
+  "walletPayoutNumber": "Numéro de compte (10 chiffres)",
+  "walletPayoutResolve": "Vérifier le compte",
+  "walletPayoutAccountName": "Nom du compte : {name}",
+  "walletPayoutConfirmPrompt": "Vérifiez que c'est bien votre compte avant d'enregistrer.",
+  "walletPayoutSave": "Enregistrer le compte",
+  "walletPayoutRemove": "Supprimer le compte",
+  "walletPayoutRemoveTitle": "Supprimer le compte de paiement ?",
+  "walletPayoutRemoveBody": "Vous devrez en ajouter un autre avant votre prochain retrait. Un retrait en attente n'est pas affecté.",
+  "walletCancel": "Annuler",
+  "walletPayoutSaved": "Compte de paiement enregistré.",
+  "walletPayoutRemoved": "Compte de paiement supprimé.",
+  "walletErrAccountUnresolvable": "Nous n'avons pas pu vérifier ce numéro de compte. Vérifiez les détails et réessayez.",
+  "walletErrUnknownBank": "Nous ne reconnaissons pas cette banque. Sélectionnez à nouveau votre banque.",
+  "walletErrAlreadyVerified": "Un compte est déjà enregistré. Supprimez-le d'abord pour le changer.",
+  "walletErrPayoutUnavailable": "Les comptes de paiement sont indisponibles pour le moment. Veuillez réessayer.",
+  "walletWithdrawTitle": "Retirer",
+  "walletWithdrawAvailable": "Disponible : {amount}",
+  "walletWithdrawRequest": "Demander le retrait",
+  "walletWithdrawNeedAccount": "Ajoutez un compte de paiement pour retirer.",
+  "walletWithdrawPendingExists": "Vous avez déjà un retrait en attente.",
+  "walletWithdrawExceeds": "C'est plus que votre solde disponible.",
+  "walletWithdrawSubmitted": "Retrait demandé. Un administrateur le versera.",
+  "walletWithdrawHistory": "Vos retraits",
+  "walletWithdrawNone": "Aucun retrait pour le moment.",
+  "walletErrKycRequired": "Ajoutez un compte de paiement avant de demander un retrait.",
+  "walletErrInsufficient": "Ce montant dépasse votre solde disponible.",
+  "walletErrWithdrawalPending": "Vous avez déjà une demande de retrait en attente.",
+  "walletFilterAll": "Tout",
+  "walletFilterWinnings": "Gains",
+  "walletFilterWithdrawals": "Retraits",
+  "walletFilterDeposits": "Dépôts",
+  "walletTxnLoadMoreFailed": "Impossible de charger plus. Touchez pour réessayer.",
+  "walletTxnEmpty": "Aucune transaction ici.",
+  "@walletPendingWithdrawal": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@walletTrend": {
+    "placeholders": {
+      "pct": {
+        "type": "String"
+      }
+    }
+  },
+  "@walletMinAmount": {
+    "placeholders": {
+      "min": {
+        "type": "String"
+      }
+    }
+  },
+  "@walletDepositFee": {
+    "placeholders": {
+      "fee": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "@walletErrRateLimited": {
+    "placeholders": {
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
+  "@walletPayoutAccountName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@walletWithdrawAvailable": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
   }
 }
