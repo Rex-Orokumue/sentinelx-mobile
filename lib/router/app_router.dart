@@ -14,6 +14,7 @@ import '../features/guide/guide_screen.dart';
 import '../features/support_chat/chat_screen.dart';
 import '../features/account/account_screen.dart';
 import '../features/account/referrals/referral_screen.dart';
+import '../features/store/store_screen.dart';
 import '../features/wallet/deposit_screen.dart';
 import '../features/wallet/payout_account_screen.dart';
 import '../features/wallet/transactions_screen.dart';
@@ -483,6 +484,7 @@ GoRouter buildAppRouter({
                   onOpenProgress: () => context.push('/account/progress'),
                   onOpenReferrals: () => context.push('/account/referrals'),
                   onOpenWallet: () => context.push('/account/wallet'),
+                  onOpenStore: () => context.push('/account/store'),
                   onOpenNotifications: () =>
                       context.push('/account/notifications'),
                   onOpenLanguage: () => context.push('/account/language'),
@@ -496,6 +498,10 @@ GoRouter buildAppRouter({
                   GoRoute(
                     path: 'referrals',
                     builder: (context, state) => const ReferralScreen(),
+                  ),
+                  GoRoute(
+                    path: 'store',
+                    builder: (context, state) => const StoreScreen(),
                   ),
                   GoRoute(
                     path: 'wallet',

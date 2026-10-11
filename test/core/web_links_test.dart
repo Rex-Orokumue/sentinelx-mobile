@@ -17,6 +17,13 @@ void main() {
     expect(resolveWebLink('$host/dashboard/wallet/payment-methods'), '/account/wallet/payout-account');
   });
 
+  test('maps the web store to the in-app store, locale prefix included, and leaves other hosts alone', () {
+    expect(resolveWebLink('https://sentinelxesports.com.ng/store'), '/account/store');
+    expect(resolveWebLink('https://sentinelxesports.com.ng/fr/store'), '/account/store');
+    expect(resolveWebLink('/account/store'), isNull); // an in-app path passes through the redirect untouched
+    expect(resolveWebLink('https://evil.example/store'), isNull);
+  });
+
   test('never maps the Paystack callback or an in-app wallet path (the checkout WebView intercepts the callback)', () {
     expect(resolveWebLink('https://sentinelxesports.com.ng/api/paystack/callback?reference=sxdep_abc'), isNull);
     expect(resolveWebLink('/account/wallet/deposit'), isNull);

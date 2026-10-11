@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../core/api/wallet_models.dart';
 import '../../core/l10n/gen/app_localizations.dart';
 import '../../core/theme/sx_colors.dart';
+import '../store/coin_format.dart';
 import 'money_format.dart';
 import 'wallet_providers.dart';
 import 'wallet_widgets.dart';
@@ -116,6 +117,25 @@ class _Body extends StatelessWidget {
                   style: theme.textTheme.bodySmall?.copyWith(color: SxColors.textSecondary),
                 ),
               ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        WalletPanel(
+          children: [
+            Row(
+              key: const Key('wallet-coins'),
+              children: [
+                const Icon(Icons.monetization_on_outlined, color: SxColors.warning),
+                const SizedBox(width: 8),
+                Expanded(child: Text(l10n.walletCoinBalance, style: theme.textTheme.titleSmall)),
+                Text(formatCoins(data.coinBalance), style: theme.textTheme.titleMedium),
+              ],
+            ),
+            const SizedBox(height: 4),
+            Text(
+              l10n.storeDisclaimer,
+              style: theme.textTheme.bodySmall?.copyWith(color: SxColors.textSecondary),
+            ),
           ],
         ),
         const SizedBox(height: 16),

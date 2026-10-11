@@ -19,6 +19,7 @@ class AccountScreen extends ConsumerStatefulWidget {
     this.onOpenProgress,
     this.onOpenReferrals,
     this.onOpenWallet,
+    this.onOpenStore,
     this.onOpenNotifications,
     this.onOpenLanguage,
     this.onOpenSecurity,
@@ -34,6 +35,7 @@ class AccountScreen extends ConsumerStatefulWidget {
   final VoidCallback? onOpenProgress;
   final VoidCallback? onOpenReferrals;
   final VoidCallback? onOpenWallet;
+  final VoidCallback? onOpenStore;
   final VoidCallback? onOpenNotifications;
   final VoidCallback? onOpenLanguage;
   final VoidCallback? onOpenSecurity;
@@ -137,6 +139,13 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
                           title: Text(l10n.accountMyProgress),
                           trailing: const Icon(Icons.chevron_right),
                           onTap: widget.onOpenProgress,
+                        ),
+                      if (widget.onOpenStore != null)
+                        ListTile(
+                          key: const Key('account-store'),
+                          title: Text(l10n.storeTitle),
+                          trailing: const Icon(Icons.chevron_right),
+                          onTap: widget.onOpenStore,
                         ),
                       if (widget.onOpenWallet != null && ref.watch(roleProvider) != AppRole.moderator)
                         ListTile(
