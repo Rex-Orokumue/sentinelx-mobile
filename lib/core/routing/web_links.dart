@@ -76,6 +76,8 @@ String? resolveWebLink(String input) {
       return '/hall-of-fame';
     case 'dashboard/referrals':
       return '/account/referrals';
+    case 'store':
+      return '/account/store';
     // The Paystack return path (/api/paystack/callback) is deliberately NOT mapped: the in-app checkout
     // WebView intercepts it and the app confirms the deposit through the API instead.
     case 'dashboard/wallet':

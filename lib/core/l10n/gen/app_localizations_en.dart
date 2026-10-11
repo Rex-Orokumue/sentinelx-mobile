@@ -3890,4 +3890,120 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get walletTxnEmpty => 'No transactions here.';
+
+  @override
+  String get storeTitle => 'Store';
+
+  @override
+  String get storeBalance => 'Your coins';
+
+  @override
+  String get storeDisclaimer =>
+      'SX Coins cannot be exchanged for cash. They are earned by competing and spent on the platform.';
+
+  @override
+  String get storeCatBorders => 'Frames';
+
+  @override
+  String get storeCatBubbles => 'Assistant skins';
+
+  @override
+  String get storeCatThemes => 'Themes';
+
+  @override
+  String get storeCatColours => 'Name colours';
+
+  @override
+  String get storeOwned => 'Owned';
+
+  @override
+  String get storeEquipped => 'Equipped';
+
+  @override
+  String get storeBuy => 'Buy';
+
+  @override
+  String get storeEquip => 'Equip';
+
+  @override
+  String get storeUnequip => 'Unequip';
+
+  @override
+  String storeBuyConfirmTitle(String name) {
+    return 'Buy $name?';
+  }
+
+  @override
+  String storeBuyConfirmBody(String price, String balance) {
+    return '$price coins. You\'ll have $balance left.';
+  }
+
+  @override
+  String get storeCancel => 'Cancel';
+
+  @override
+  String get storeBought => 'Bought! You can equip it now.';
+
+  @override
+  String get storeEquippedNow => 'Equipped.';
+
+  @override
+  String get storeUnequippedNow => 'Removed.';
+
+  @override
+  String storeNeedMore(String more) {
+    return 'You need $more more coins.';
+  }
+
+  @override
+  String get storeLoadFailed => 'Couldn\'t load the store.';
+
+  @override
+  String get storeRetry => 'Try again';
+
+  @override
+  String get storeEmpty => 'Nothing here yet.';
+
+  @override
+  String get storeLogInToBuy => 'Log in to buy';
+
+  @override
+  String get storeErrNotFound => 'That item no longer exists.';
+
+  @override
+  String get storeErrUnavailable => 'This item isn\'t available any more.';
+
+  @override
+  String get storeErrOwned => 'You already own this item.';
+
+  @override
+  String get storeErrInsufficient => 'Not enough SX Coins.';
+
+  @override
+  String get storeErrNotOwned => 'You don\'t own this item yet.';
+
+  @override
+  String get storeErrStore =>
+      'The store is unavailable right now. Please try again.';
+
+  @override
+  String get storeErrPendingDeletion =>
+      'Cancel your account deletion in Settings to do this.';
+
+  @override
+  String get storeErrNetwork =>
+      'No connection. Check your internet and try again.';
+
+  @override
+  String get storeErrSession => 'Your session expired. Please log in again.';
+
+  @override
+  String get storeErrInProgress =>
+      'Still processing. Wait a moment and try again.';
+
+  @override
+  String get storeErrGeneric => 'Something went wrong. Please try again.';
+
+  @override
+  String get walletCoinBalance => 'SX Coins';
 }

@@ -6,6 +6,7 @@ void main() {
     test('parses a full overview, with a null trend and a pending transaction', () {
       final o = WalletOverview.fromJson({
         'balance': 5000,
+        'coinBalance': 1250,
         'pendingWithdrawal': 1000,
         'earnings': {'tournamentPrize': 5000, 'referral': 250, 'bonus': 700, 'tournamentPrizeTrendPct': null},
         'recentTransactions': [
@@ -23,6 +24,7 @@ void main() {
         'activeWithdrawal': {'id': 'wr1', 'amount': 1000, 'requestedAt': '2026-10-14T09:00:00.000Z'},
       });
       expect(o.balance, 5000);
+      expect(o.coinBalance, 1250);
       expect(o.pendingWithdrawal, 1000);
       expect(o.earnings.tournamentPrizeTrendPct, isNull);
       expect(o.earnings.bonus, 700);
@@ -36,6 +38,7 @@ void main() {
     test('parses an overview with no payout account and no active withdrawal', () {
       final o = WalletOverview.fromJson({
         'balance': 0,
+        'coinBalance': 0,
         'pendingWithdrawal': 0,
         'earnings': {'tournamentPrize': 0, 'referral': 0, 'bonus': 0, 'tournamentPrizeTrendPct': 50},
         'recentTransactions': <Object>[],

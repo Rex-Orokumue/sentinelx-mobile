@@ -1561,5 +1561,64 @@
         "type": "String"
       }
     }
+  },
+  "storeTitle": "Boutique",
+  "storeBalance": "Vos pièces",
+  "storeDisclaimer": "Les SX Coins ne peuvent pas être échangés contre de l'argent. Ils se gagnent en jouant et se dépensent sur la plateforme.",
+  "storeCatBorders": "Cadres",
+  "storeCatBubbles": "Apparences de l'assistant",
+  "storeCatThemes": "Thèmes",
+  "storeCatColours": "Couleurs de nom",
+  "storeOwned": "Possédé",
+  "storeEquipped": "Équipé",
+  "storeBuy": "Acheter",
+  "storeEquip": "Équiper",
+  "storeUnequip": "Retirer",
+  "storeBuyConfirmTitle": "Acheter {name} ?",
+  "storeBuyConfirmBody": "{price} pièces. Il vous en restera {balance}.",
+  "storeCancel": "Annuler",
+  "storeBought": "Acheté ! Vous pouvez l'équiper.",
+  "storeEquippedNow": "Équipé.",
+  "storeUnequippedNow": "Retiré.",
+  "storeNeedMore": "Il vous manque {more} pièces.",
+  "storeLoadFailed": "Impossible de charger la boutique.",
+  "storeRetry": "Réessayer",
+  "storeEmpty": "Rien ici pour le moment.",
+  "storeLogInToBuy": "Connectez-vous pour acheter",
+  "storeErrNotFound": "Cet article n'existe plus.",
+  "storeErrUnavailable": "Cet article n'est plus disponible.",
+  "storeErrOwned": "Vous possédez déjà cet article.",
+  "storeErrInsufficient": "Pas assez de SX Coins.",
+  "storeErrNotOwned": "Vous ne possédez pas encore cet article.",
+  "storeErrStore": "La boutique est indisponible pour le moment. Veuillez réessayer.",
+  "storeErrPendingDeletion": "Annulez la suppression de votre compte dans les Paramètres pour continuer.",
+  "storeErrNetwork": "Pas de connexion. Vérifiez votre internet et réessayez.",
+  "storeErrSession": "Votre session a expiré. Veuillez vous reconnecter.",
+  "storeErrInProgress": "Traitement en cours. Patientez un instant puis réessayez.",
+  "storeErrGeneric": "Une erreur s'est produite. Veuillez réessayer.",
+  "walletCoinBalance": "SX Coins",
+  "@storeBuyConfirmTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@storeBuyConfirmBody": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "balance": {
+        "type": "String"
+      }
+    }
+  },
+  "@storeNeedMore": {
+    "placeholders": {
+      "more": {
+        "type": "String"
+      }
+    }
   }
 }

@@ -85,6 +85,7 @@ class ActiveWithdrawal {
 class WalletOverview {
   const WalletOverview({
     required this.balance,
+    required this.coinBalance,
     required this.pendingWithdrawal,
     required this.earnings,
     required this.recentTransactions,
@@ -95,6 +96,7 @@ class WalletOverview {
 
   factory WalletOverview.fromJson(Map<String, dynamic> json) => WalletOverview(
         balance: (json['balance'] as num).toInt(),
+        coinBalance: (json['coinBalance'] as num).toInt(),
         pendingWithdrawal: (json['pendingWithdrawal'] as num).toInt(),
         earnings: WalletEarnings.fromJson(json['earnings'] as Map<String, dynamic>),
         recentTransactions: [
@@ -110,6 +112,9 @@ class WalletOverview {
       );
 
   final int balance;
+
+  /// SX Coins, shown beside the naira balance. Earned only; never converted to naira.
+  final int coinBalance;
   final int pendingWithdrawal;
   final WalletEarnings earnings;
   final List<WalletTxn> recentTransactions;

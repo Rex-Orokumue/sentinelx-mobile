@@ -3887,4 +3887,119 @@ class AppLocalizationsPcm extends AppLocalizations {
 
   @override
   String get walletTxnEmpty => 'No transaction dey here.';
+
+  @override
+  String get storeTitle => 'Store';
+
+  @override
+  String get storeBalance => 'Your coins';
+
+  @override
+  String get storeDisclaimer =>
+      'SX Coins no fit change to cash. You go earn dem by competing and spend dem for the platform.';
+
+  @override
+  String get storeCatBorders => 'Frames';
+
+  @override
+  String get storeCatBubbles => 'Assistant skins';
+
+  @override
+  String get storeCatThemes => 'Themes';
+
+  @override
+  String get storeCatColours => 'Name colours';
+
+  @override
+  String get storeOwned => 'You get am';
+
+  @override
+  String get storeEquipped => 'Dey use am';
+
+  @override
+  String get storeBuy => 'Buy';
+
+  @override
+  String get storeEquip => 'Use am';
+
+  @override
+  String get storeUnequip => 'Remove am';
+
+  @override
+  String storeBuyConfirmTitle(String name) {
+    return 'Buy $name?';
+  }
+
+  @override
+  String storeBuyConfirmBody(String price, String balance) {
+    return '$price coins. You go remain with $balance.';
+  }
+
+  @override
+  String get storeCancel => 'Cancel';
+
+  @override
+  String get storeBought => 'Don buy! You fit use am now.';
+
+  @override
+  String get storeEquippedNow => 'E dey on.';
+
+  @override
+  String get storeUnequippedNow => 'E don comot.';
+
+  @override
+  String storeNeedMore(String more) {
+    return 'You need $more more coins.';
+  }
+
+  @override
+  String get storeLoadFailed => 'We no fit load the store.';
+
+  @override
+  String get storeRetry => 'Try again';
+
+  @override
+  String get storeEmpty => 'Nothing dey here yet.';
+
+  @override
+  String get storeLogInToBuy => 'Log in make you buy';
+
+  @override
+  String get storeErrNotFound => 'That item no dey again.';
+
+  @override
+  String get storeErrUnavailable => 'This item no dey available again.';
+
+  @override
+  String get storeErrOwned => 'You don already get this item.';
+
+  @override
+  String get storeErrInsufficient => 'SX Coins no reach.';
+
+  @override
+  String get storeErrNotOwned => 'You never get this item yet.';
+
+  @override
+  String get storeErrStore => 'The store no dey work now. Abeg try again.';
+
+  @override
+  String get storeErrPendingDeletion =>
+      'Cancel your account deletion for Settings before you fit do this.';
+
+  @override
+  String get storeErrNetwork =>
+      'No network. Check your internet and try again.';
+
+  @override
+  String get storeErrSession => 'Your session don expire. Abeg log in again.';
+
+  @override
+  String get storeErrInProgress =>
+      'We still dey process am. Wait small and try again.';
+
+  @override
+  String get storeErrGeneric => 'Something go wrong. Abeg try again.';
+
+  @override
+  String get walletCoinBalance => 'SX Coins';
 }

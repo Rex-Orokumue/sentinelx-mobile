@@ -42,6 +42,42 @@ void main() {
     expect(tester.getSize(find.byType(Image)).width, greaterThan(40));
   });
 
+  testWidgets('a bundled frame renders from the app bundle, not the network', (tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: PlayerAvatar(avatarUrl: null, frameUrl: 'https://s.test/coin-items/gold-crown.webp'),
+        ),
+      ),
+    );
+    final image = tester.widget<Image>(find.byType(Image));
+    expect(image.image, isA<AssetImage>());
+    expect((image.image as AssetImage).assetName, 'assets/store/gold-crown.webp');
+    expect(tester.getSize(find.byType(Image)).width, greaterThan(40)); // still overhangs the avatar
+  });
+
+  testWidgets('a frame the app does not bundle yet still renders from the network', (tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: PlayerAvatar(avatarUrl: null, frameUrl: 'https://s.test/coin-items/brand-new-frame.webp'),
+        ),
+      ),
+    );
+    expect(tester.widget<Image>(find.byType(Image)).image, isA<NetworkImage>());
+  });
+
+  testWidgets('a deleted account shows no frame even when one is supplied', (tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: PlayerAvatar(avatarUrl: 'https://x/a.png', isDeleted: true, frameUrl: 'https://s.test/coin-items/gold-crown.webp'),
+        ),
+      ),
+    );
+    expect(find.byType(Image), findsNothing);
+  });
+
   test(
     'resolveAsset resolves site-relative paths, passes absolute urls through and keeps null',
     () {

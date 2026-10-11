@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/api/players_models.dart';
 import '../../core/l10n/gen/app_localizations.dart';
 import '../../core/theme/sx_colors.dart';
+import '../../shared/cosmetics/cosmetic_style.dart';
 import '../../shared/widgets/player_avatar.dart';
 import '../progress/history_labels.dart';
 
@@ -28,7 +29,10 @@ class ProfileHeaderSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
-    return Padding(
+    final nameStyle = theme.textTheme.titleLarge;
+    final nameColour = CosmeticStyle.usernameColour(player.usernameColour);
+    final themeDecoration = CosmeticStyle.profileTheme(player.profileTheme);
+    final content = Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,7 +45,7 @@ class ProfileHeaderSection extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(player.label, style: theme.textTheme.titleLarge, maxLines: 2, overflow: TextOverflow.ellipsis),
+                    Text(player.label, style: nameColour == null ? nameStyle : nameStyle?.copyWith(color: nameColour), maxLines: 2, overflow: TextOverflow.ellipsis),
                     Text('@${player.username}', style: theme.textTheme.bodyMedium?.copyWith(color: SxColors.textSecondary), maxLines: 1, overflow: TextOverflow.ellipsis),
                   ],
                 ),
@@ -74,6 +78,8 @@ class ProfileHeaderSection extends StatelessWidget {
         ],
       ),
     );
+    if (themeDecoration == null) return content;
+    return DecoratedBox(key: const Key('profile-theme'), decoration: themeDecoration, child: content);
   }
 }
 

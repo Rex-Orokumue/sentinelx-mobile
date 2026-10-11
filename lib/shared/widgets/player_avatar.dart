@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/theme/sx_colors.dart';
+import '../cosmetics/cosmetic_art.dart';
 
 /// Circular avatar with an optional equipped frame overlay. Deleted accounts and missing images
 /// render the same neutral placeholder — never a blank box or a broken-image icon.
@@ -60,10 +61,8 @@ class PlayerAvatar extends StatelessWidget {
               width: size * 1.25,
               height: size * 1.25,
               child: IgnorePointer(
-                child: Image.network(
-                  frameUrl!,
-                  errorBuilder: (_, _, _) => const SizedBox.shrink(),
-                ),
+                // Bundled art when the file name is known (instant, offline); otherwise the network URL.
+                child: CosmeticArt.image(frameUrl),
               ),
             ),
         ],

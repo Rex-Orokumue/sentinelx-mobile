@@ -197,6 +197,45 @@ void main() {
     expect(opened, 1);
   });
 
+  testWidgets('the signed-in name shows the equipped username colour and theme, and is unchanged without them', (tester) async {
+    MeResponse withCosmetics({String? colour, String? theme}) => MeResponse(
+          id: 'u1', email: 'a@b.com', roles: const [], isStaff: false, isAdmin: false,
+          profile: MeProfile(
+            username: 'ada', displayName: 'Ada', avatarUrl: null, whatsappNumber: null, country: null,
+            locale: 'en', membershipTier: null, kycVerified: false, deletionRequestedAt: null,
+            usernameColour: colour, profileTheme: theme,
+          ),
+        );
+    final screen = AccountScreen(onLogIn: () {}, onSignUp: () {}, onLogoTap: () {});
+    await tester.pumpWidget(_app([meProvider.overrideWith((ref) async => withCosmetics(colour: 'username_red', theme: 'theme_dark_void'))], screen));
+    await tester.pumpAndSettle();
+    expect(tester.widget<Text>(find.text('Ada')).style?.color, const Color(0xFFF87171));
+    expect(find.byKey(const Key('account-theme')), findsOneWidget);
+
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pumpWidget(_app([meProvider.overrideWith((ref) async => withCosmetics())], screen));
+    await tester.pumpAndSettle();
+    expect(tester.widget<Text>(find.text('Ada')).style?.color, isNull);
+    expect(find.byKey(const Key('account-theme')), findsNothing);
+  });
+
+  testWidgets('the Store tile opens the store for a player and also for a moderator', (tester) async {
+    var opened = 0;
+    final screen = AccountScreen(onLogIn: () {}, onSignUp: () {}, onLogoTap: () {}, onOpenStore: () => opened++);
+    await tester.pumpWidget(_app([meProvider.overrideWith((ref) async => _me())], screen));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('account-store')));
+    expect(opened, 1);
+
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pumpWidget(_app([
+      meProvider.overrideWith((ref) async => _me()),
+      roleProvider.overrideWithValue(AppRole.moderator),
+    ], screen));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('account-store')), findsOneWidget);
+  });
+
   testWidgets('signed-in player can open the wallet but a moderator has no wallet tile', (tester) async {
     var opened = 0;
     final screen = AccountScreen(onLogIn: () {}, onSignUp: () {}, onLogoTap: () {}, onOpenWallet: () => opened++);

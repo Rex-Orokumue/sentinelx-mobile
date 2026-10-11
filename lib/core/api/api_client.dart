@@ -17,6 +17,7 @@ import 'profile_onboarding_models.dart';
 import 'progress_models.dart';
 import 'registration_fields_models.dart';
 import 'referrals_models.dart';
+import 'store_models.dart';
 import 'wallet_models.dart';
 
 class ApiException implements Exception {
@@ -65,6 +66,10 @@ class ApiClient {
     'getWalletDeposit': 'get /api/mobile/v1/wallet/deposits/{reference}',
     'requestWithdrawal': 'post /api/mobile/v1/wallet/withdrawals',
     'listMyWithdrawals': 'get /api/mobile/v1/wallet/withdrawals',
+    'getStore': 'get /api/mobile/v1/store',
+    'purchaseStoreItem': 'post /api/mobile/v1/store/{itemId}/purchase',
+    'equipStoreItem': 'post /api/mobile/v1/store/{itemId}/equip',
+    'unequipStoreItem': 'post /api/mobile/v1/store/{itemId}/unequip',
     'postAccountDeletion': 'post /api/mobile/v1/me/deletion',
     'deleteAccountDeletion': 'delete /api/mobile/v1/me/deletion',
     'postAccountDeletionExecute': 'post /api/mobile/v1/me/deletion/execute',
@@ -489,6 +494,28 @@ class ApiClient {
     final query = cursor == null ? '' : '?${Uri(queryParameters: {'cursor': cursor}).query}';
     return _send('GET', '/wallet/withdrawals$query', (d) => WithdrawalPage.fromJson(d! as Map<String, dynamic>));
   }
+
+  // Sent WITH the bearer when there is one (ownership and balance depend on it); signed out it simply has none.
+  Future<StoreCatalogue> getStore() => _send('GET', '/store', (d) => StoreCatalogue.fromJson(d! as Map<String, dynamic>));
+
+  Future<PurchaseOutcome> purchaseStoreItem(String itemId, {required String idempotencyKey}) => _send(
+        'POST',
+        '/store/${Uri.encodeComponent(itemId)}/purchase',
+        (d) => PurchaseOutcome.fromJson(d! as Map<String, dynamic>),
+        headers: {'Idempotency-Key': idempotencyKey},
+      );
+
+  Future<EquipOutcome> equipStoreItem(String itemId) => _send(
+        'POST',
+        '/store/${Uri.encodeComponent(itemId)}/equip',
+        (d) => EquipOutcome.fromJson(d! as Map<String, dynamic>),
+      );
+
+  Future<EquipOutcome> unequipStoreItem(String itemId) => _send(
+        'POST',
+        '/store/${Uri.encodeComponent(itemId)}/unequip',
+        (d) => EquipOutcome.fromJson(d! as Map<String, dynamic>),
+      );
 
   Future<DeletionTicket> postAccountDeletion() =>
       _send('POST', '/me/deletion', (d) => DeletionTicket.fromJson(d! as Map<String, dynamic>), body: {'confirm': 'DELETE'});

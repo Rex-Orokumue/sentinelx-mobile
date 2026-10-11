@@ -62,6 +62,14 @@ void main() {
     expect(find.textContaining('vs last month'), findsNothing);
   });
 
+  testWidgets('shows the SX Coin balance beside the naira balance, with the coin disclaimer and no naira conversion', (tester) async {
+    final repo = FakeWalletRepository()..overview = walletOverviewFixture(balance: 1250000, coinBalance: 3400);
+    await pumpWallet(tester, const WalletScreen(), repo: repo);
+    expect(find.byKey(const Key('wallet-coins')), findsOneWidget);
+    expect(find.descendant(of: find.byKey(const Key('wallet-coins')), matching: find.text('3,400')), findsOneWidget);
+    expect(find.text('SX Coins cannot be exchanged for cash. They are earned by competing and spent on the platform.'), findsOneWidget);
+  });
+
   testWidgets('no pending withdrawal hides the pending line', (tester) async {
     final repo = FakeWalletRepository()..overview = walletOverviewFixture(pendingWithdrawal: 0);
     await pumpWallet(tester, const WalletScreen(), repo: repo);
@@ -101,7 +109,9 @@ void main() {
     final button = tester.widget<FilledButton>(find.byKey(const Key('wallet-withdraw')));
     expect(button.onPressed, isNull);
     expect(find.byKey(const Key('wallet-withdraw-hint')), findsOneWidget);
-    await tester.scrollUntilVisible(find.byKey(const Key('wallet-payout-add')), 300);
+    // scroll to the very bottom, where the payout panel and its button sit
+    await tester.drag(find.byType(ListView), const Offset(0, -3000));
+    await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('wallet-payout-add')));
     await tester.pumpAndSettle();
     expect(find.text('page:/account/wallet/payout-account'), findsOneWidget);
