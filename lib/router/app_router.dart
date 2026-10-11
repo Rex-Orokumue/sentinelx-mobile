@@ -14,6 +14,12 @@ import '../features/guide/guide_screen.dart';
 import '../features/support_chat/chat_screen.dart';
 import '../features/account/account_screen.dart';
 import '../features/account/referrals/referral_screen.dart';
+import '../features/wallet/deposit_screen.dart';
+import '../features/wallet/payout_account_screen.dart';
+import '../features/wallet/transactions_screen.dart';
+import '../features/wallet/wallet_gate.dart';
+import '../features/wallet/wallet_screen.dart';
+import '../features/wallet/withdraw_screen.dart';
 import '../features/account/edit_profile_screen.dart';
 import '../features/account/profile_onboarding_screen.dart';
 import '../features/account/settings/delete_account_screen.dart';
@@ -476,6 +482,7 @@ GoRouter buildAppRouter({
                   onEditProfile: () => context.push('/account/profile'),
                   onOpenProgress: () => context.push('/account/progress'),
                   onOpenReferrals: () => context.push('/account/referrals'),
+                  onOpenWallet: () => context.push('/account/wallet'),
                   onOpenNotifications: () =>
                       context.push('/account/notifications'),
                   onOpenLanguage: () => context.push('/account/language'),
@@ -489,6 +496,28 @@ GoRouter buildAppRouter({
                   GoRoute(
                     path: 'referrals',
                     builder: (context, state) => const ReferralScreen(),
+                  ),
+                  GoRoute(
+                    path: 'wallet',
+                    builder: (context, state) => const WalletGate(child: WalletScreen()),
+                    routes: [
+                      GoRoute(
+                        path: 'deposit',
+                        builder: (context, state) => const WalletGate(child: DepositScreen()),
+                      ),
+                      GoRoute(
+                        path: 'withdraw',
+                        builder: (context, state) => const WalletGate(child: WithdrawScreen()),
+                      ),
+                      GoRoute(
+                        path: 'transactions',
+                        builder: (context, state) => const WalletGate(child: TransactionsScreen()),
+                      ),
+                      GoRoute(
+                        path: 'payout-account',
+                        builder: (context, state) => const WalletGate(child: PayoutAccountScreen()),
+                      ),
+                    ],
                   ),
                   GoRoute(
                     path: 'profile',
