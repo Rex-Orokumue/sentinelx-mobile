@@ -67,5 +67,6 @@ class _SendToAccountState extends State<_SendToAccount> {
   }
 
   @override
-  Widget build(BuildContext context) => const Scaffold(body: SizedBox.shrink());
+  // Keep the spinner up for the frame before the redirect lands, so the screen is never blank.
+  Widget build(BuildContext context) => const _Waiting();
 }

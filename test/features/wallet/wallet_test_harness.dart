@@ -39,6 +39,7 @@ Future<GoRouter> pumpWallet(
   final router = GoRouter(
     routes: [
       GoRoute(path: '/', builder: (_, _) => home),
+      GoRoute(path: '/account', builder: (_, _) => const Scaffold(body: Text('page:/account'))),
       GoRoute(path: '/login', builder: (_, _) => const Scaffold(body: Text('page:/login'))),
       for (final r in walletRoutes) GoRoute(path: r, builder: (_, _) => Scaffold(body: Text('page:$r'))),
     ],

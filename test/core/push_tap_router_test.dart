@@ -34,6 +34,8 @@ void main() {
       expect(destinationFor(const PushMessage()), '/notifications');
       expect(destinationFor(const PushMessage(url: '')), '/notifications');
       expect(destinationFor(const PushMessage(url: '/dashboard/friendlies')), '/notifications');
+      // wallet notifications (deposit credited, withdrawal paid) deep-link to the wallet, not the bell
+      expect(destinationFor(const PushMessage(url: '/dashboard/wallet')), '/account/wallet');
       expect(destinationFor(const PushMessage(url: '/messages/abc')), '/notifications');
       expect(destinationFor(const PushMessage(url: 'https://evil.example/matches/1')), '/notifications');
     });
